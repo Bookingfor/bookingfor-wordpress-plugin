@@ -23,9 +23,7 @@ twentyseventeen<br/>
 twentysixteen<br/>
 twentyfifteen<br/>
 Compatible but not supported:<br/>
-genesis<br/>
-royal <br/>
-saladmag 
+genesis (Agent Focused Pro)
 
 # Shortcode
 [bookingfor_merchants category=1019 rating=4]

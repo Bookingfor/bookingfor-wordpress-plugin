@@ -1,0 +1,1635 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: VERSION\n"
+"POT-Creation-Date: 2016-12-22 10:43+0000\n"
+"PO-Revision-Date: 2016-12-22 16:11+0100\n"
+"Language-Team: LANGUAGE TEAM <EMAIL@ADDRESS>\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: \n"
+"X-Generator: Poedit 1.8.11\n"
+
+msgctxt "Page slug"
+msgid "thankspopup"
+msgstr "thankspopup"
+
+msgid "Sending..."
+msgstr "Elküldés..."
+
+msgctxt "Page slug"
+msgid "rating"
+msgstr "minősítés"
+
+msgctxt "Page slug"
+msgid "rapidview"
+msgstr "rapidview"
+
+msgid "Read more"
+msgstr "Tudjon meg többet"
+
+msgid "Read less"
+msgstr "Olvassa el, kevesebb"
+
+msgid "Error, please try again"
+msgstr "Hiba, legyen szíves megpróbál újra"
+
+msgctxt "Page slug"
+msgid "form"
+msgstr "űrlap"
+
+msgid "Order by"
+msgstr "Rendezés"
+
+msgid "Disappointing"
+msgstr "Kiábrándító"
+
+msgid "Okay"
+msgstr "oké"
+
+msgid "Fair"
+msgstr "Tisztességes"
+
+msgid "Very good"
+msgstr "nagyon jó"
+
+msgid "Fabulous"
+msgstr "Mesés"
+
+msgid "Exceptional"
+msgstr "Kivételes"
+
+msgid "Show reviews from"
+msgstr "A Térkép-értékelések"
+
+msgid "Write a Review"
+msgstr "Írjon egy ismertetőt"
+
+msgid "Stayed"
+msgstr "Maradt"
+
+msgid "Replied on %1s"
+msgstr "Válaszolt a %1s"
+
+msgid "+"
+msgstr "+"
+
+msgid "-"
+msgstr "-"
+
+msgid "Ages of children"
+msgstr "Korosztály, a gyermekek"
+
+msgid "%s available accommodations"
+msgstr "%s elérhető szállást"
+
+msgid "Real Estate"
+msgstr "Real Estate"
+
+msgid "Age of children"
+msgstr "Gyerek(ek) kora"
+
+msgid "Filter by"
+msgstr "Szűrés"
+
+msgctxt "Page slug"
+msgid "my-account"
+msgstr "az én-m számla"
+
+msgctxt "Page title"
+msgid "My Account"
+msgstr "Az én-m számla"
+
+msgctxt "Page slug"
+msgid "cartdetails"
+msgstr "cartdetails"
+
+msgctxt "Page title"
+msgid "Cart Details"
+msgstr "Kosárba részletek"
+
+msgid "Cart details"
+msgstr "Kosárba részletek"
+
+msgid "Display the user's Cart link in the sidebar."
+msgstr "Megjeleníteni a felhasználó kosár link az oldalsávon."
+
+msgid "BookingFor Cart"
+msgstr "BookingFor kosár"
+
+msgid "A Search box for multimerchant, monomerchant and sell on."
+msgstr "Multimerchant, monomerchant és eladni a keresőmezőbe."
+
+msgid "Activities"
+msgstr "Tevékenységek"
+
+msgid "Search Type"
+msgstr "Keresés típusa"
+
+msgid "Multimerchant"
+msgstr "Multimerchant"
+
+msgid "Monomerchant"
+msgstr "Monomerchant"
+
+msgid "Tab"
+msgstr "Lap"
+
+msgid "Block Months"
+msgstr "Blokk hónappal"
+
+msgid "Disable Days"
+msgstr "Kikapcsolni a napok"
+
+msgid "Merchant category"
+msgstr "Kereskedelmi kategória"
+
+msgid "Product category"
+msgstr "Termék kategória"
+
+msgid "Displays horizontally"
+msgstr "Vízszintesen jeleníti meg"
+
+msgid "Group by condominium"
+msgstr "Csoportosítás társasház"
+
+msgid "Fields Visibility"
+msgstr "Látható mezők"
+
+msgid "Map Button"
+msgstr "Gomb megjelenítése"
+
+msgid "Selected Nights"
+msgstr "Kijelölt éjszaka"
+
+msgid "Date Range"
+msgstr "Dátumtartomány"
+
+msgid "Childrens"
+msgstr "Gyereknap"
+
+msgid "Only Online Booking"
+msgstr "Csak Online foglalás"
+
+msgid "Senior"
+msgstr "Senior"
+
+msgid "Floor Area"
+msgstr "Alapterület:"
+
+msgid "BedRooms"
+msgstr "Hálószoba"
+
+msgid "Baths"
+msgstr "Fürdő"
+
+msgid "Only New"
+msgstr "Csak az új"
+
+msgid "Services list"
+msgstr "Szolgáltatások listája"
+
+msgid "A Search box. (DISMISSED)"
+msgstr "A Keresés mezőbe. (ELUTASÍTOTTA)"
+
+msgid "BookingFor Search (DISMISSED)"
+msgstr "BookingFor keresés (ELUTASÍTOTTA)"
+
+msgid "A Search on Sell box. (DISMISSED)"
+msgstr "A Keresés mezőbe eladni. (ELUTASÍTOTTA)"
+
+msgid "BookingFor Search On Sell (DISMISSED)"
+msgstr "BookingFor keresés eladás (ELUTASÍTOTTA)"
+
+msgid "Your Cart is empty! "
+msgstr "Jelenleg üres a kosara! "
+
+msgid "Are you sure?"
+msgstr "biztos vagy benne?"
+
+msgid "Discount"
+msgstr "Kedvezmény"
+
+msgid "Subtotal"
+msgstr "Részösszeg"
+
+msgid "I agree to the conditions"
+msgstr "Egyetértek azzal, hogy a feltételek"
+
+msgid "I accept personal data treatment"
+msgstr "Elfogadom a személyes adatok kezelése"
+
+msgid "I accept additional purposes"
+msgstr "Én kiegészítő adatkezelési célok elfogadása"
+
+msgid "Cart Not enabled! "
+msgstr "A kosár nem engedélyezett! "
+
+msgid "Personal data treatment"
+msgstr "A személyes adatok kezelése"
+
+msgid "Additional purposes"
+msgstr "Kiegészítő adatkezelési célok"
+
+msgid "You need to be loggedin in order to access this page."
+msgstr "Sírnod kell loggedin-a lap eléréséhez."
+
+msgid "Reservations"
+msgstr "Fenntartások"
+
+msgid "Social Network"
+msgstr "Szociális háló"
+
+msgid "Personal Informations"
+msgstr "Személyes információk"
+
+msgid "Settings"
+msgstr "Beállítások"
+
+msgid "Give your social profiles"
+msgstr "Adja meg a társadalmi profilok"
+
+msgid "Your profile"
+msgstr "A profil"
+
+msgid "Connect with your account via your social networks , one less password to remember!"
+msgstr "Kapcsolatba a számla keresztül a társadalmi hálózatok, egy kevesebb jelszót kell megjegyeznie!"
+
+msgid "This information is used to automatically fill in your details and book more quickly. We do not share it publicly."
+msgstr "Ez az információ automatikusan töltse ki az adatait, és foglalja le gyorsabban használatos. Nem osztjuk meg nyilvánosan."
+
+msgid "Date of birth"
+msgstr "születési dátum"
+
+msgid "Gender"
+msgstr "A nemek közötti"
+
+msgid "Male"
+msgstr "Férfi"
+
+msgid "Language"
+msgstr "Nyelv"
+
+msgid "Female"
+msgstr "Női"
+
+msgid "Zip Code"
+msgstr "irányítószám"
+
+msgid "State/Province"
+msgstr "Állam/megye"
+
+msgid "Reservation number"
+msgstr "Foglalási szám"
+
+msgid "Cancel Booking"
+msgstr "Foglalás törlése"
+
+msgid "Booking Detail"
+msgstr "Foglalás részletei"
+
+msgid "You want to change your password? Click on the button below and we'll send you an email with a link to reset it."
+msgstr "Meg szeretné változtatni a jelszavát? Kattintson a lenti gombra és küldünk Önnek egy e-mailt egy láncszem-hoz orrgazdaság ez."
+
+msgid "Change your password"
+msgstr "Jelszó módosítása"
+
+msgid "Choose how often you want to receive offers and suggestions, do not miss the best offers!"
+msgstr "Válassza ki, milyen gyakran szeretné fogadni az ajánlatokat és javaslatokat, ne hagyja ki a legjobb ajánlatok!"
+
+msgid "Receive newsletter"
+msgstr "Hírlevél"
+
+msgid "I do not care"
+msgstr "nem érdekel"
+
+msgid "Fetching Reservation Details"
+msgstr "Elragadó foglalásom"
+
+msgid " Years"
+msgstr " Év"
+
+msgid "adults"
+msgstr "felnőttek"
+
+msgid "Back to list"
+msgstr "Vissza a listázáshoz"
+
+msgid "children"
+msgstr "gyermekek"
+
+msgid "Total Price"
+msgstr "Teljes ár"
+
+msgid "My Cart"
+msgstr "Kosaram"
+
+msgid "Days"
+msgstr "Nap"
+
+msgid "Continue shopping"
+msgstr "Folytatom a vásárlást"
+
+msgid "You can't acquire resources from another merchant."
+msgstr "Nem lehet megszerezni egy másik kereskedő forrásaihoz."
+
+msgid "Please, select a day"
+msgstr "Kérem válasszon egy nap"
+
+msgid "Circle"
+msgstr "Kör"
+
+msgid "BFI Custom Merchants Links"
+msgstr "BFI egyéni kereskedők linkek"
+
+msgid "This is a demo store for testing purposes &mdash; no orders shall be fulfilled."
+msgstr "Ez egy demo készlet részére vizsgálat cél &mdash; nem megrendeléseket teljesíteni kell."
+
+msgid "Search Results: &ldquo;%s&rdquo;"
+msgstr "Keresési eredmények: \"%s\""
+
+msgid "&nbsp;&ndash; Page %s"
+msgstr "– Oldal %s"
+
+msgctxt "Page slug"
+msgid "search-availability"
+msgstr "Keresés-elérhetőség"
+
+msgctxt "slug"
+msgid "search-availability"
+msgstr "Keresés-elérhetőség"
+
+msgctxt "default-slug"
+msgid "search-availability"
+msgstr "Keresés-elérhetőség"
+
+msgctxt "Page title"
+msgid "Search Availability"
+msgstr "Keresés elérhetőség"
+
+msgctxt "Page slug"
+msgid "properties-for-sale"
+msgstr "tulajdonságok-eladó"
+
+msgctxt "Page title"
+msgid "Search Properties for sale"
+msgstr "Szálláshelyek keresése eladó ingatlanok"
+
+msgctxt "Page slug"
+msgid "merchantdetails"
+msgstr "merchantdetails"
+
+msgctxt "slug"
+msgid "merchantdetails"
+msgstr "merchantdetails"
+
+msgctxt "Page title"
+msgid "Merchant Details"
+msgstr "Kereskedő részletek"
+
+msgctxt "Page slug"
+msgid "accommodation-details"
+msgstr "Szállás-részletek"
+
+msgctxt "slug"
+msgid "accommodation-details"
+msgstr "Szállás-részletek"
+
+msgctxt "Page title"
+msgid "Accommodation Details"
+msgstr "Szállás-részletek"
+
+msgctxt "Page slug"
+msgid "onsell-details"
+msgstr "onsell-részletek"
+
+msgctxt "slug"
+msgid "onsell-details"
+msgstr "onsell-részletek"
+
+msgctxt "Page title"
+msgid "On Sell Details"
+msgstr "A részletek eladás"
+
+msgctxt "Page slug"
+msgid "orders"
+msgstr "rendelések"
+
+msgctxt "Page title"
+msgid "Order Details"
+msgstr "Rendelés részletei"
+
+msgctxt "Page slug"
+msgid "payment"
+msgstr "fizetési"
+
+msgctxt "Page title"
+msgid "Payment Details"
+msgstr "Fizetési részletek"
+
+msgctxt "slug"
+msgid "merchantlist"
+msgstr "merchantlist"
+
+msgid "Merchant list pages"
+msgstr "Kereskedői lista lapok"
+
+msgid "Merchant list page"
+msgstr "Bankkártya-elfogadói listáján"
+
+msgctxt "Admin menu name"
+msgid "Merchant list"
+msgstr "Kereskedői lista"
+
+msgid "Add Merchant list page"
+msgstr "Add hozzá a kereskedő listája oldalon"
+
+msgid "Add New Merchant list page"
+msgstr "Add hozzá új kereskedő-lista oldal"
+
+msgid "Edit"
+msgstr "Szerkesztése"
+
+msgid "Edit Merchant list page"
+msgstr "Kereskedő-lista oldal szerkesztése"
+
+msgid "New Merchant list page"
+msgstr "Új kereskedő-lista oldal"
+
+msgid "View Merchant list page"
+msgstr "Nézd kereskedő listája oldalon"
+
+msgid "Search Merchant list page"
+msgstr "Kereskedő lista keresőlap"
+
+msgid "No Merchant list page found"
+msgstr "Nem kereskedő listája oldalon található"
+
+msgid "No Merchant list page found in trash"
+msgstr "Nem található szemetet kereskedő-lista oldal"
+
+msgid "Parent Merchant list page"
+msgstr "Szülőoldal kereskedő listája"
+
+msgid "Insert into Merchant list page"
+msgstr "Helyezze be a kereskedő listája oldalon"
+
+msgid "Uploaded to this Merchant list page"
+msgstr "Feltöltött kereskedő lista oldal"
+
+msgid "Filter Merchant list pages"
+msgstr "Szűrő kereskedő oldalak listáját"
+
+msgid "Merchant list pages navigation"
+msgstr "Kereskedői lista oldalak navigáció"
+
+msgid "This is where you can add new Merchant list page."
+msgstr "Ez az, ahol felveheti új kereskedő-lista oldal."
+
+msgid "Merchant details"
+msgstr "Kereskedő részletek"
+
+msgid "Accomodation details"
+msgstr "Szállás-részletek"
+
+msgid "Order details"
+msgstr "Rendelés részletei"
+
+msgid "On Sell details"
+msgstr "A részletek eladás"
+
+msgid "behavior.calendar"
+msgstr "Behavior.Calendar"
+
+msgid "behavior.tooltip"
+msgstr "Behavior.tooltip"
+
+msgid "date"
+msgstr "dátum"
+
+msgid "JLIB_HTML_CALENDAR"
+msgstr "JLIB_HTML_CALENDAR"
+
+msgid "image"
+msgstr "kép"
+
+msgid "Autentication Mode"
+msgstr "Autentication mód"
+
+msgid "Categories"
+msgstr "Kategóriák"
+
+msgid "Merchant category filter"
+msgstr "Kereskedelmi kategória szűrő"
+
+msgid "Merchant Rating filter"
+msgstr "Kereskedelmi minősítés szűrő"
+
+msgid "All"
+msgstr "Minden"
+
+msgid "Cities"
+msgstr "Városok"
+
+msgid "BookingFor Permalinks"
+msgstr "BookingFor Permalinks"
+
+msgid "BookingFor search result page"
+msgstr "BookingFor kutatás eredmény oldal"
+
+msgid "BookingFor Merchant details page"
+msgstr "BookingFor kereskedő részletek oldal"
+
+msgid "BookingFor Accommodation details page"
+msgstr "Szállás BookingFor részletek oldal"
+
+msgid "BookingFor On Sell details page"
+msgstr "BookingFor a eladni részletek oldal"
+
+msgid "BookingFor Merchant List page"
+msgstr "BookingFor kereskedő-lista oldal"
+
+msgid "These settings control the permalinks used specifically for BookingFor."
+msgstr "Ezek a beállítások vezérlik a permalinks, különösen BookingFor használatos."
+
+msgid "Default"
+msgstr "Alapértelmezett"
+
+msgid "Search Availability base"
+msgstr "Elérhetőség keresésekhez"
+
+msgid "Custom Base"
+msgstr "Egyéni Base"
+
+msgid "Enter a custom base to use. A base <strong>must</strong> be set or WordPress will use default instead."
+msgstr "Adjon meg egy egyéni kiindulópont használható. A bázis <strong> kell </strong> kell beállítani, vagy WordPress használni alapértelmezett helyett."
+
+msgctxt "default-slug"
+msgid "searchavailability"
+msgstr "searchavailability"
+
+msgid "If you like <strong>BookingFor</strong> please leave us a %s&#9733;&#9733;&#9733;&#9733;&#9733;%s rating. A huge thank you from Bookingfor in advance!"
+msgstr "Ha úgy tetszik <strong> BookingFor </strong> kérjük hagyja el nekünk egy %s &#9733; &#9733; &#9733; &#9733; &#9733; %s Értékelés. Egy hatalmas előre is köszönöm a Bookingfor!"
+
+msgid "Thanks"
+msgstr "kösz"
+
+msgid "Thank you for selling with BookingFor."
+msgstr "Köszönjük, hogy eladja a BookingFor."
+
+msgid "Save changes"
+msgstr "Módosítások mentése"
+
+msgid "There was some issue posting your review. Please try back later."
+msgstr "Volt néhány probléma, kiküldetés meg véleményét. Kérjük, próbálja meg vissza később."
+
+msgid "Your review was succesfully posted."
+msgstr "A felülvizsgálatot sikeresen kifüggesztett."
+
+msgid "&resourceId="
+msgstr "& resourceId ="
+
+msgid "index.php?option=com_bookingforconnector&view=onsellunit&resourceId="
+msgstr "index.php?option=com_bookingforconnector&View=onsellunit&resourceId="
+
+msgid "index.php?view=payment&actionmode=activa&payedOrderId="
+msgstr "index.php?View=payment&actionmode=Activa&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=setefi&payedOrderId="
+msgstr "index.php?View=payment&actionmode=setefi&payedOrderId="
+
+msgid "A details merchant box."
+msgstr "Egy kereskedő mezőben."
+
+msgid "BookingFor details merchant box"
+msgstr "BookingFor részletek kereskedő doboz"
+
+msgid "Title"
+msgstr "Cím"
+
+msgid "A Carousel list of Merchants."
+msgstr "Kereskedők körhinta listája."
+
+msgid "BookingFor Merchants"
+msgstr "BookingFor kereskedők"
+
+msgid "Tags"
+msgstr "Címkék"
+
+msgid "Items per page"
+msgstr "Elemek oldalanként"
+
+msgid "Max items"
+msgstr "Max elemek"
+
+msgid "Max description characters"
+msgstr "Max leíró karakterek"
+
+msgid "A Filter box."
+msgstr "A szűrő mezőbe."
+
+msgid "BookingFor Search Filters"
+msgstr "BookingFor keresési szűrők"
+
+msgid "A Search box."
+msgstr "A Keresés mezőbe."
+
+msgid "BookingFor Search"
+msgstr "BookingFor keresés"
+
+msgid "A Search on Sell box."
+msgstr "A Keresés mezőbe eladni."
+
+msgid "BookingFor Search On Sell"
+msgstr "BookingFor keresés eladás"
+
+msgid "Request for Information"
+msgstr "Információkérés"
+
+msgid "Name"
+msgstr "név"
+
+msgid "Mandatory"
+msgstr "Kötelező"
+
+msgid "Surname"
+msgstr "Vezetéknév"
+
+msgid "Email"
+msgstr "E-mailben"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Address"
+msgstr "Cím"
+
+msgid "Cap"
+msgstr "Sapka"
+
+msgid "City"
+msgstr "Város"
+
+msgid "Provincia"
+msgstr "Provincia"
+
+msgid "Check-in"
+msgstr "Check-in"
+
+msgid "Check-out"
+msgstr "Kijelentkezés"
+
+msgid "Persons"
+msgstr "Személyek"
+
+msgid "Special Requests"
+msgstr "Különleges kérések"
+
+msgid "Personal data's treatment policy"
+msgstr "Személyes adatok politikája"
+
+msgid "I agree to the personal data's treatment policy"
+msgstr "Egyetértek azzal, hogy a személyes adatok kezelése politika"
+
+msgid "Send"
+msgstr "Küldés"
+
+msgctxt "Page slug"
+msgid "contactspopup"
+msgstr "contactspopup"
+
+msgctxt "Page slug"
+msgid "mapspopup"
+msgstr "mapspopup"
+
+msgctxt "Page slug"
+msgid "resources"
+msgstr "források"
+
+msgctxt "Page slug"
+msgid "onsellunits"
+msgstr "onsellunits"
+
+msgctxt "Page slug"
+msgid "offers"
+msgstr "ajánlatok"
+
+msgctxt "Page slug"
+msgid "offer"
+msgstr "ajánlat"
+
+msgctxt "Page slug"
+msgid "thanks"
+msgstr "kösz"
+
+msgctxt "Page slug"
+msgid "errors"
+msgstr "hibák"
+
+msgctxt "Page slug"
+msgid "packages"
+msgstr "csomagok"
+
+msgctxt "Page slug"
+msgid "package"
+msgstr "csomag"
+
+msgctxt "Page slug"
+msgid "reviews"
+msgstr "-értékelések"
+
+msgctxt "Page slug"
+msgid "review"
+msgstr "felülvizsgálat"
+
+msgctxt "Page slug"
+msgid "redirect"
+msgstr "átirányítás"
+
+msgctxt "Page slug"
+msgid "inforequestpopup"
+msgstr "inforequestpopup"
+
+msgid "List"
+msgstr "Lista"
+
+msgid "Grid"
+msgstr "Rács"
+
+msgid "Vetrina"
+msgstr "Vetrina"
+
+msgid "Top"
+msgstr "Top"
+
+msgid "New!"
+msgstr "Új!"
+
+msgid "Show phone"
+msgstr "Térkép telefon"
+
+msgid "Request info"
+msgstr "Kérés info"
+
+msgid "Rooms"
+msgstr "Szobák"
+
+msgid "m&sup2;"
+msgstr "m²"
+
+msgid "Contact Agent"
+msgstr "Kapcsolattartó-ügynök"
+
+msgid "New ad"
+msgstr "Új hirdetés"
+
+msgid "&laquo;"
+msgstr "&laquo;"
+
+msgid "&raquo;"
+msgstr "&raquo;"
+
+msgid "Page"
+msgstr "Oldal"
+
+msgid "Would you like to leave your review?"
+msgstr "Szeretné, hogy hagyja el a felülvizsgálatot?"
+
+msgid "Score from %s reviews"
+msgstr "Pontozás-%s-értékelések"
+
+msgid "Guest Rating"
+msgstr "Vendég értékelése"
+
+msgid "No results available"
+msgstr "Nincs elérhető eredmények"
+
+msgid "Order"
+msgstr "Rendelés"
+
+msgid "Payment"
+msgstr "Fizetési"
+
+msgid "Sort By:"
+msgstr "Rendezés:"
+
+msgid "Price"
+msgstr "Ár"
+
+msgid "Offers"
+msgstr "Ajánlatok"
+
+msgid "Only %d available"
+msgstr "Csak %d elérhető"
+
+msgid "Available"
+msgstr "Rendelkezésre álló"
+
+msgid "Treatment"
+msgstr "Kezelés"
+
+msgid "Total for %d night/s"
+msgstr "Összesen %d éjszaka/s"
+
+msgid "Book Now"
+msgstr "Foglaljon most"
+
+msgid "More Information"
+msgstr "További információ"
+
+msgid "Offer %d%%"
+msgstr "Ajánlat %d%%"
+
+msgid "Show More"
+msgstr "Megjelenítése több"
+
+msgid "Show Less"
+msgstr "Mutass kevesebbet"
+
+msgid "%s Results  found from %s for %s nigth(s)"
+msgstr "%s találat a %s a %s nigth(s)"
+
+msgid "Lowest price first"
+msgstr "Először a legalacsonyabb ár"
+
+msgid "Review score"
+msgstr "Felülvizsgálat pontszám"
+
+msgid "Best offers"
+msgstr "Legjobb ajánlatok"
+
+msgid " Offer "
+msgstr " Ajánlat "
+
+msgid "Meals"
+msgstr "Étkezés"
+
+msgid "SHOW ALL"
+msgstr "ÖSSZES MEGJELENÍTÉSE"
+
+msgid "Facility contacts data"
+msgstr "Létesítmény névjegyzék adatait"
+
+msgid "OPS, some errors occurred! Please try again later."
+msgstr "OPS, néhány hiba történt! Kérjük, próbálkozzon később."
+
+msgid "Show All"
+msgstr "Összes megjelenítése"
+
+msgid "Reviews"
+msgstr "Vélemények"
+
+msgid "Would you like to be the first to write a review?"
+msgstr "Szeretne az első, írja meg a véleményét?"
+
+msgid "Poor"
+msgstr "Szegény"
+
+msgid "Average"
+msgstr "Átlagos"
+
+msgid "Pleasant"
+msgstr "Kellemes"
+
+msgid "Good"
+msgstr "jó"
+
+msgid "Excellent"
+msgstr "Kiváló"
+
+msgid "All reviewers"
+msgstr "Összes látogató"
+
+msgid "Solo travellers"
+msgstr "Egyéni utazók"
+
+msgid "Groups"
+msgstr "Csoportok"
+
+msgid "Young couplet"
+msgstr "Fiatal és azzal"
+
+msgid "Mature couples"
+msgstr "Középkorú/idős párok"
+
+msgid "Families with young children"
+msgstr "Családok kiskorú gyermekekkel"
+
+msgid "Family with older children"
+msgstr "Család nagykorú gyermekekkel"
+
+msgid "Based on %1$s Reviews."
+msgstr "Alapul %1$s Értékelés."
+
+msgid "Staff"
+msgstr "A személyzet"
+
+msgid "Services"
+msgstr "Szolgáltatások"
+
+msgid "Clean"
+msgstr "Tiszta"
+
+msgid "Comfort"
+msgstr "Comfort"
+
+msgid "Value for Money"
+msgstr "Ár-érték arány"
+
+msgid "Score filter"
+msgstr "Tisztaság"
+
+msgid "Review"
+msgstr "Felülvizsgálat"
+
+msgid "Reviewed"
+msgstr "Felül"
+
+msgid "Period Stay"
+msgstr "Időszak szálláshelyén."
+
+msgid "Reference"
+msgstr "Referencia"
+
+msgid "Review certified by %1$s"
+msgstr "Által hitelesített felülvizsgálat %1$s"
+
+msgid "+ Details"
+msgstr "+ Részletek"
+
+msgid "- Details"
+msgstr "-Részletek"
+
+msgid "%s has responded to this review"
+msgstr "%s birtokol alperes-hoz ez áttekintés"
+
+msgid "No Reviews Found."
+msgstr "Nem található vendégértékelés."
+
+msgid "Details"
+msgstr "Részletek"
+
+msgid "Media"
+msgstr "Média"
+
+msgid "Description"
+msgstr "Leírás"
+
+msgid "Map"
+msgstr "Megjelenítése"
+
+msgid "Booking"
+msgstr "Foglalás"
+
+msgid "View Services"
+msgstr "Szolgáltatások"
+
+msgid "No Results Found"
+msgstr "Nincs találat"
+
+msgid "%s available offers"
+msgstr "%s kedvezményeink"
+
+msgid "Read More"
+msgstr "Tudjon meg többet"
+
+msgid "Read Less"
+msgstr "Olvassa el, kevesebb"
+
+msgid "%s available holiday packages"
+msgstr "%s rendelkezésre álló Üdülési csomagok"
+
+msgid "please wait..."
+msgstr "várj, kérlek..."
+
+msgid "Type of traveller"
+msgstr "Típusú utazó"
+
+msgid "Country"
+msgstr "Ország"
+
+msgid "E-mail"
+msgstr "E-mailben"
+
+msgid "Confirm E-mail"
+msgstr "Erősítse meg E-mail"
+
+msgid "When did you travel?"
+msgstr "Mikor utazik?"
+
+msgid "Value for money"
+msgstr "Ár-érték arány"
+
+msgid "Valuation"
+msgstr "Értékelési"
+
+msgid "List of the facility's positive points"
+msgstr "A létesítmény pozitív pontok listája"
+
+msgid "List of the facility's negative points"
+msgstr "A létesítmény negatív pontok listája"
+
+msgid "I agree to the personal datas treatment policy:"
+msgstr "Hozzájárulok, hogy a személyes adatok kezelése házirendben:"
+
+msgid "Privacy policy"
+msgstr "Adatvédelmi politika"
+
+msgid "I accept"
+msgstr "Elfogadom"
+
+msgid "I certify that this review is based on my own experience and is my genuine opinion of this accommodation, and that I have no personal or business relationship with this establishment, and have not been offered any incentive or payment originating from the establishment to write this review. I understand that Bibione.com has a zero-tolerance policy on fake reviews."
+msgstr "Igazolom, hogy e felülvizsgálat saját tapasztalataim alapján, és a valódi véleményem ez a szállás, és hogy nem személyes vagy üzleti kapcsolat ebben az intézményben, és semmilyen ösztönző vagy fizetési létesítményből származó írni ezt a felülvizsgálatot nem ajánlottak. Tudomásul veszem, hogy Bibione.com van egy zéró tolerancia hamis Értékelés."
+
+msgid "send"
+msgstr "Küldés"
+
+msgid "Availability"
+msgstr "Elérhetőség"
+
+msgid "Check-out "
+msgstr "Kijelentkezés "
+
+msgid "Nights"
+msgstr "Éjszaka"
+
+msgid "Adults "
+msgstr "Felnőttek "
+
+msgid "Seniors "
+msgstr "Idősek "
+
+msgid "Children"
+msgstr "Gyermekek"
+
+msgid "Calculate"
+msgstr "Kiszámításához"
+
+msgid "Children Ages"
+msgstr "Éves gyermekek"
+
+msgid "Accommodation"
+msgstr "Szállás"
+
+msgid "Conditions"
+msgstr "Feltételek"
+
+msgid "Price for %d nights"
+msgstr "Ár %d éjszaka"
+
+msgid "Reservation"
+msgstr "Foglalás"
+
+msgid "No results available for the submitted data"
+msgstr "Nincs eredmény a benyújtott adatok rendelkezésre"
+
+msgid "Offer"
+msgstr "Ajánlat"
+
+msgid "Show all accommodations"
+msgstr "Minden Szállás Térkép"
+
+msgid "We are processing your request"
+msgstr "Mi feldolgozzuk kérését"
+
+msgid "Please be patient"
+msgstr "Kérjük, legyen türelemmel"
+
+msgid "Thank you for having chosen us."
+msgstr "Köszönjük, hogy választott minket."
+
+msgid "A-Z"
+msgstr "A-Z-IG"
+
+msgid "Z-A"
+msgstr "Z-A"
+
+msgid "On sale"
+msgstr "Eladó"
+
+msgid "Type"
+msgstr "Típus"
+
+msgid "Floor area"
+msgstr "Alapterület:"
+
+msgid "Province"
+msgstr "Tartomány"
+
+msgid "Area"
+msgstr "Terület"
+
+msgid "Last update"
+msgstr "Utolsó frissítés"
+
+msgid "Floor"
+msgstr "Emelet"
+
+msgid "Ground floor"
+msgstr "Földszint"
+
+msgid "Top floor"
+msgstr "Legfelső emeleti"
+
+msgid "Attic"
+msgstr "Tetőtérben"
+
+msgid "Multiple levels"
+msgstr "Több szinten"
+
+msgid "ND"
+msgstr "ND"
+
+msgid "Condition"
+msgstr "Feltétel"
+
+msgid "New"
+msgstr "Új"
+
+msgid "Bathrooms"
+msgstr "Fürdőszoba"
+
+msgid "Heating"
+msgstr "Fűtés"
+
+msgid "Autonomous"
+msgstr "Autonóm"
+
+msgid "Communal"
+msgstr "Kommunális"
+
+msgid "Pay per use"
+msgstr "Pay-per-use"
+
+msgid "Box Auto"
+msgstr "Box Auto"
+
+msgid "Parking space"
+msgstr "Parkolóhely"
+
+msgid "Energy efficiency class"
+msgstr "Energiahatékonysági osztály"
+
+msgid "not set"
+msgstr "nincs beállítva"
+
+msgid "Nondescript"
+msgstr "Meghatározhatatlan"
+
+msgid "Free property"
+msgstr "Ingyenes ingatlan"
+
+msgid "Under evaluation"
+msgstr "Értékelés alapján"
+
+msgid "IPE"
+msgstr "IPE"
+
+msgid "Yes"
+msgstr "igen"
+
+msgid "Real estate agency collaboration"
+msgstr "Ingatlan Ügynökség együttműködés"
+
+msgid "Facility"
+msgstr "Létesítmény"
+
+msgid "External order ID"
+msgstr "Külső azonosító"
+
+msgid "This field is required."
+msgstr "Ez a mező szükség."
+
+msgid "Correct format: dd/mm/yyyy"
+msgstr "Helyes formátum: nn/hh/éééé"
+
+msgid "Booking reference"
+msgstr "Foglalási számot"
+
+msgid "Client code"
+msgstr "Ügyfél-kód"
+
+msgid "Check-in must be great than Check-out"
+msgstr "Be kell nagy, mint a Check-out"
+
+msgid "Please insert a valid email address!"
+msgstr "Helyezzen be egy érvényes elektronikus levél cím!"
+
+msgid "Rejected order"
+msgstr "Elutasított megrendelés"
+
+msgid "Period"
+msgstr "Időszak"
+
+msgid "Check-In %1s Check-Out %2s"
+msgstr "Check-In %1s Check-Out %2s"
+
+msgid "People"
+msgstr "Az emberek"
+
+msgid "Web Check-in"
+msgstr "Internetes utasfelvétel"
+
+msgid "Total"
+msgstr "Összesen"
+
+msgid "&euro; %d"
+msgstr "&euro; %d"
+
+msgid "Deposit total"
+msgstr "Teljes letét"
+
+msgid "Status"
+msgstr "Állapot"
+
+msgid "Order sent to bank"
+msgstr "Rendelés küldött, a bank"
+
+msgid "Pay"
+msgstr "Fizetés"
+
+msgid "Waiting to confirm"
+msgstr "Arra vár, hogy győződjön meg arról"
+
+msgid "Payment attempt was not successful. Try again"
+msgstr "Fizetési kísérlet nem sikerült. próbáld újra"
+
+msgid "Payed order"
+msgstr "Fizetett rendelés"
+
+msgid "Order by credit card guarantee"
+msgstr "Rendezés hitelkártya-garancia"
+
+msgid "Credit card details"
+msgstr "Hitelkártya-adatok"
+
+msgid "Holder"
+msgstr "Tartó"
+
+msgid "Number"
+msgstr "Szám"
+
+msgid "Valid until"
+msgstr "Érvényes-ig"
+
+msgid "Change data"
+msgstr "Adatok módosítása"
+
+msgid "Month (MM)"
+msgstr "Hónap (MM)"
+
+msgid "Year (YY)"
+msgstr "Év (ÉÉ)"
+
+msgid "%1s will not charge anything to your credit card. Your credit card details are only requested in order to guarantee your booking."
+msgstr "%1s nem számol semmit, hogy a hitelkártya. A hitelkártya-adatok csak kérte, annak érdekében, hogy a foglalás garanciájaként."
+
+msgid "Other payments"
+msgstr "Egyéb kifizetések"
+
+msgid "Date"
+msgstr "Dátum"
+
+msgid "Amount"
+msgstr "Összeg"
+
+msgid "Payment refused"
+msgstr "Elutasított kifizetés"
+
+msgid "New payment"
+msgstr "Új fizetési"
+
+msgid "It 'requires a further amount for payments"
+msgstr "Ez \"igényel egy további összeget, a kifizetések"
+
+msgid "Please insert a correct amount, it should be this format: xxx.xx (please use dot for deciaml prices)"
+msgstr "Helyezzen be egy megfelelő összeget, kell lennie ebben a formátumban: xxx.xx (használ pont a deciaml áron)"
+
+msgid "Thank you: payment process successfully completed"
+msgstr "Köszönöm: fizetési folyamat sikeresen befejeződött"
+
+msgid "Print"
+msgstr "Nyomtatás"
+
+msgid "Payment process not successfully completed"
+msgstr "Fizetés folyamata nem sikeresen befejeződött"
+
+msgid "Payment process not successfully completed and has been deleted"
+msgstr "Fizetés folyamata nem sikeresen befejeződött, és törölték"
+
+msgid "Some problems occured durint payment process, please contact merchant if you are sure that your payment process completed"
+msgstr "Néhány probléma történt durint fizetési folyamatot, kérjük, forduljon kereskedő, ha biztos abban, hogy a fizetési folyamat befejezett"
+
+msgid "Error inserting data"
+msgstr "Hiba az adatok beszúrása"
+
+msgid "Order doesn't exist"
+msgstr "Rendelés nem létezik"
+
+msgid "Deposit does not exist"
+msgstr "Betét nem létezik."
+
+msgid "At this moment you cannot do payments."
+msgstr "Ebben a pillanatban nem kifizetések."
+
+msgid "index.php?view=payment&actionmode=error&payedOrderId="
+msgstr "index.php?View=payment&actionmode=Error&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=activaServer&payedOrderId="
+msgstr "index.php?View=payment&actionmode=activaServer&payedOrderId="
+
+msgid "index.php?view=orders"
+msgstr "index.php?View=Orders"
+
+msgid "index.php?view=payment&actionmode=bnlpositivity&payedOrderId="
+msgstr "index.php?View=payment&actionmode=bnlpositivity&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=keyclient&payedOrderId="
+msgstr "index.php?View=payment&actionmode=keyclient&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=keyclient2014&payedOrderId="
+msgstr "index.php?View=payment&actionmode=keyclient2014&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=pagoonline&payedOrderId="
+msgstr "index.php?View=payment&actionmode=pagoonline&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=pagoonline&payedOrderId=donation"
+msgstr "index.php?View=payment&actionmode=pagoonline&payedOrderId=Donation"
+
+msgid "index.php?view=payment&actionmode=errordonation"
+msgstr "index.php?View=payment&actionmode=errordonation"
+
+msgid "index.php?view=payment&actionmode=errordonation&payedOrderId="
+msgstr "index.php?View=payment&actionmode=errordonation&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=setefiServer&payedOrderId="
+msgstr "index.php?View=payment&actionmode=setefiServer&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=virtualpay&payedOrderId="
+msgstr "index.php?View=payment&actionmode=virtualpay&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=virtualpay&payedOrderId=donation"
+msgstr "index.php?View=payment&actionmode=virtualpay&payedOrderId=Donation"
+
+msgid "index.php?view=payment&actionmode=wspayform&payedOrderId="
+msgstr "index.php?View=payment&actionmode=wspayform&payedOrderId="
+
+msgid "Enter your details"
+msgstr "Adja meg adatait"
+
+msgid "Reenter email"
+msgstr "Írja be újra e-mail"
+
+msgid "Your Address"
+msgstr "A cím"
+
+msgid "Postal Code"
+msgstr "Irányítószám"
+
+msgid "Note"
+msgstr "Megjegyzés:"
+
+msgid "Your estimated time of arrival"
+msgstr "Becsült érkezési idejét"
+
+msgid "I don't know"
+msgstr "nem tudom"
+
+msgid "Password"
+msgstr "Jelszó"
+
+msgid "Payment method"
+msgstr "Fizetési mód"
+
+msgid "Please choose a payment method"
+msgstr "Válasszon fizetési módot"
+
+msgid "Total deposit : €"
+msgstr "Teljes letét: €"
+
+msgid "Good to know"
+msgstr "Jó tudni"
+
+msgid "Info"
+msgstr "Info"
+
+msgid "I agree to conditions"
+msgstr "Egyetértek azzal, hogy feltételeket"
+
+msgid "I agree"
+msgstr "egyetértek"
+
+msgid "Almost done"
+msgstr "Majdnem kész"
+
+msgid "comment"
+msgstr "Megjegyzés"
+
+msgid "Book now"
+msgstr "Foglaljon most"
+
+msgid "Energy Class"
+msgstr "Energia osztály"
+
+msgid "nondescript"
+msgstr "meghatározhatatlan"
+
+msgid "free property"
+msgstr "Ingyenes ingatlan"
+
+msgid "A+"
+msgstr "A +"
+
+msgid "A"
+msgstr "A"
+
+msgid "B"
+msgstr "B"
+
+msgid "C"
+msgstr "C"
+
+msgid "D"
+msgstr "D"
+
+msgid "E"
+msgstr "E"
+
+msgid "F"
+msgstr "F"
+
+msgid "G"
+msgstr "G"
+
+msgid "EPI Value"
+msgstr "EPI érték"
+
+msgid "Smart offer"
+msgstr "Intelligens ajánlat"
+
+msgid "Attention!"
+msgstr "Figyelem!"
+
+msgid "It 's not possible to insert your own review"
+msgstr "A ' nem lehetséges-hoz behelyez a saját véleményed"
+
+msgid "nonexistent order"
+msgstr "nem létező rendelés"
+
+msgid "Order with already a Review"
+msgstr "Hogy a már a felülvizsgálatot"
+
+msgid "nonexistent order or to which it is not possible to associate a review"
+msgstr "nem létező rendelés, vagy amelyek esetében nem lehetséges-hoz egy áttekintés társ"
+
+msgid "Order not related at this resource"
+msgstr "Ez az erőforrás nem kapcsolódó rendelés"
+
+msgid "Order make before the date to make a review"
+msgstr "Érdekében, hogy a felülvizsgálat időpontja előtt, hogy"
+
+msgid "Search"
+msgstr "Szálláshelyek keresése"
+
+msgid "Persons min:%1$d max:%2$d"
+msgstr "Személyek min: %1$d max: %2$d"
+
+msgid "Alternative accommodations"
+msgstr "Alternatív szálláshelyeken"
+
+msgid "Qt."
+msgstr "QT."
+
+msgid "Select"
+msgstr "Válassza ki"
+
+msgid "We're processing your request"
+msgstr "Mi vagyunk a kérés feldolgozása"
+
+msgid "No result available"
+msgstr "Nincs elérhető eredmény"
+
+msgid "Leatest ads"
+msgstr "Hirdetések Leatest"
+
+msgid "To rent"
+msgstr "A kiadó"
+
+msgid "Web site"
+msgstr "Web site"
+
+msgid "Accomodation"
+msgstr "Szállás"
+
+msgid "On Sell Houses"
+msgstr "A ház eladás"
+
+msgid "Holiday Packages"
+msgstr "Üdülési csomagok"
+
+msgid "Destination"
+msgstr "Rendeltetési hely"
+
+msgid "Booking online"
+msgstr "Online foglalás"
+
+msgid "Destination, property name or address"
+msgstr "Rendeltetési hely, a tulajdonság nevét vagy a címét"
+
+msgid "Enter a destination"
+msgstr "Adjon meg egy úticélt"
+
+msgid "Tipology"
+msgstr "Tipus"
+
+msgid "Adults"
+msgstr "Felnőttek"
+
+msgid "Show only online booking"
+msgstr "A következő szálláshely csak online foglalás"
+
+msgid "Show map"
+msgstr "Térkép megjelenítése"
+
+msgid "Search filters"
+msgstr "Keresési szűrők"
+
+msgid "Booking type"
+msgstr "Foglalás típusa"
+
+msgid "Ratings"
+msgstr "Minősítések"
+
+msgid "Quality"
+msgstr "Minőségi"
+
+msgid "Bedrooms"
+msgstr "Hálószoba"
+
+msgid "or more bedrooms"
+msgstr "vagy több hálószoba"
+
+msgid "Club Hotel"
+msgstr "Club Hotel"
+
+msgid "Merchant's facility"
+msgstr "Kereskedő állás"
+
+msgid ">3"
+msgstr "> 3"
+
+msgid "Find your property"
+msgstr "Az Ingatlankereső"
+
+msgid "Contract"
+msgstr "Szerződés"
+
+msgid "All province"
+msgstr "Minden tartomány"
+
+msgid "from"
+msgstr "a"
+
+msgid "to"
+msgstr "a"
+
+msgid "Floor area m&sup2;"
+msgstr "Padló területe m²"
+
+msgid "Only new building"
+msgstr "Csak új épület"
+
+msgid "Please select"
+msgstr "Kérjük, válassza ki"
+
+msgid "Please enter a integer number"
+msgstr "Adjon meg egy egész számot"
+
+msgid "Draw area"
+msgstr "Dolgozzon területet"
+
+msgid "Reset"
+msgstr "Reset"
+
+msgid "Submit"
+msgstr "Nyújtson be"
+
+msgid "Click on map and choose your area."
+msgstr "Kattintson a térképen, és válassza ki a területen."
+
+msgid "Your holiday"
+msgstr "A nyaralás"
+
+msgid "Seniores"
+msgstr "Seniores"
+
+msgid "Years"
+msgstr "Év"
+
+msgid "Total price"
+msgstr "Teljes ár"
+
+msgid "Deposit"
+msgstr "Betét"

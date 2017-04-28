@@ -1,0 +1,1635 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: VERSION\n"
+"POT-Creation-Date: 2016-12-22 10:43+0000\n"
+"PO-Revision-Date: 2016-12-22 16:11+0100\n"
+"Language-Team: LANGUAGE TEAM <EMAIL@ADDRESS>\n"
+"Language: pt_PT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: \n"
+"X-Generator: Poedit 1.8.11\n"
+
+msgctxt "Page slug"
+msgid "thankspopup"
+msgstr "thankspopup"
+
+msgid "Sending..."
+msgstr "Envio de..."
+
+msgctxt "Page slug"
+msgid "rating"
+msgstr "classificação"
+
+msgctxt "Page slug"
+msgid "rapidview"
+msgstr "rapidview"
+
+msgid "Read more"
+msgstr "Leia mais"
+
+msgid "Read less"
+msgstr "Leia mais"
+
+msgid "Error, please try again"
+msgstr "Erro, por favor tente novamente"
+
+msgctxt "Page slug"
+msgid "form"
+msgstr "formulário"
+
+msgid "Order by"
+msgstr "Ordenar por"
+
+msgid "Disappointing"
+msgstr "Decepcionantes"
+
+msgid "Okay"
+msgstr "Okey"
+
+msgid "Fair"
+msgstr "Justo"
+
+msgid "Very good"
+msgstr "Muito bom"
+
+msgid "Fabulous"
+msgstr "Fabulosa"
+
+msgid "Exceptional"
+msgstr "Excepcional"
+
+msgid "Show reviews from"
+msgstr "Mostrar comentários de"
+
+msgid "Write a Review"
+msgstr "Escrever um comentário"
+
+msgid "Stayed"
+msgstr "Ficou"
+
+msgid "Replied on %1s"
+msgstr "Respondeu em %1s"
+
+msgid "+"
+msgstr "+"
+
+msgid "-"
+msgstr "-"
+
+msgid "Ages of children"
+msgstr "Idade das crianças"
+
+msgid "%s available accommodations"
+msgstr "%s acomodações disponíveis"
+
+msgid "Real Estate"
+msgstr "Imóveis"
+
+msgid "Age of children"
+msgstr "Idade das crianças"
+
+msgid "Filter by"
+msgstr "Filtrar por"
+
+msgctxt "Page slug"
+msgid "my-account"
+msgstr "a minha conta"
+
+msgctxt "Page title"
+msgid "My Account"
+msgstr "Minha conta"
+
+msgctxt "Page slug"
+msgid "cartdetails"
+msgstr "cartdetails"
+
+msgctxt "Page title"
+msgid "Cart Details"
+msgstr "Detalhes do carrinho"
+
+msgid "Cart details"
+msgstr "Detalhes do carrinho"
+
+msgid "Display the user's Cart link in the sidebar."
+msgstr "Exibir o link do carrinho do usuário na barra lateral."
+
+msgid "BookingFor Cart"
+msgstr "Carrinho BookingFor"
+
+msgid "A Search box for multimerchant, monomerchant and sell on."
+msgstr "Para multimerchant, monomerchant e vender em uma caixa de pesquisa."
+
+msgid "Activities"
+msgstr "Atividades"
+
+msgid "Search Type"
+msgstr "Tipo de pesquisa"
+
+msgid "Multimerchant"
+msgstr "Multimerchant"
+
+msgid "Monomerchant"
+msgstr "Monomerchant"
+
+msgid "Tab"
+msgstr "Guia"
+
+msgid "Block Months"
+msgstr "Meses de bloco"
+
+msgid "Disable Days"
+msgstr "Desabilitar o dias"
+
+msgid "Merchant category"
+msgstr "Categoria de comerciante"
+
+msgid "Product category"
+msgstr "Categoria de produto"
+
+msgid "Displays horizontally"
+msgstr "Exibe horizontalmente"
+
+msgid "Group by condominium"
+msgstr "Agrupar por condomínio"
+
+msgid "Fields Visibility"
+msgstr "Visibilidade de campos"
+
+msgid "Map Button"
+msgstr "Botão mapa"
+
+msgid "Selected Nights"
+msgstr "Noites selecionadas"
+
+msgid "Date Range"
+msgstr "Intervalo de datas"
+
+msgid "Childrens"
+msgstr "Para crianças"
+
+msgid "Only Online Booking"
+msgstr "Reservas somente Online"
+
+msgid "Senior"
+msgstr "Senior"
+
+msgid "Floor Area"
+msgstr "Área de piso"
+
+msgid "BedRooms"
+msgstr "Quartos"
+
+msgid "Baths"
+msgstr "Banhos"
+
+msgid "Only New"
+msgstr "Somente novos"
+
+msgid "Services list"
+msgstr "Lista de serviços"
+
+msgid "A Search box. (DISMISSED)"
+msgstr "Uma caixa de pesquisa. (INDEFERIDO)"
+
+msgid "BookingFor Search (DISMISSED)"
+msgstr "Pesquisa de BookingFor (INDEFERIDO)"
+
+msgid "A Search on Sell box. (DISMISSED)"
+msgstr "Uma pesquisa na caixa de venda. (INDEFERIDO)"
+
+msgid "BookingFor Search On Sell (DISMISSED)"
+msgstr "Pesquisa de BookingFor em vender (INDEFERIDO)"
+
+msgid "Your Cart is empty! "
+msgstr "Seu carrinho está vazio! "
+
+msgid "Are you sure?"
+msgstr "Tem certeza?"
+
+msgid "Discount"
+msgstr "Desconto"
+
+msgid "Subtotal"
+msgstr "Subtotal"
+
+msgid "I agree to the conditions"
+msgstr "Aceito as condições"
+
+msgid "I accept personal data treatment"
+msgstr "Eu aceito o tratamento de dados pessoais"
+
+msgid "I accept additional purposes"
+msgstr "Aceito efeitos adicionais"
+
+msgid "Cart Not enabled! "
+msgstr "Carrinho não está habilitado! "
+
+msgid "Personal data treatment"
+msgstr "Tratamento de dados pessoais"
+
+msgid "Additional purposes"
+msgstr "Efeitos adicionais"
+
+msgid "You need to be loggedin in order to access this page."
+msgstr "Você precisa ser loggedin para acessar esta página."
+
+msgid "Reservations"
+msgstr "Reservas"
+
+msgid "Social Network"
+msgstr "Rede social"
+
+msgid "Personal Informations"
+msgstr "Informações pessoais"
+
+msgid "Settings"
+msgstr "Configurações"
+
+msgid "Give your social profiles"
+msgstr "Dê a seus perfis sociais"
+
+msgid "Your profile"
+msgstr "Seu perfil"
+
+msgid "Connect with your account via your social networks , one less password to remember!"
+msgstr "Conectar-se com a sua conta através de suas redes sociais, um menos senha para lembrar!"
+
+msgid "This information is used to automatically fill in your details and book more quickly. We do not share it publicly."
+msgstr "Esta informação é usada para automaticamente preencha os seus dados e reservar o mais rapidamente. Nós não compartilhá-lo publicamente."
+
+msgid "Date of birth"
+msgstr "Data de nascimento"
+
+msgid "Gender"
+msgstr "Sexo"
+
+msgid "Male"
+msgstr "Macho"
+
+msgid "Language"
+msgstr "Língua"
+
+msgid "Female"
+msgstr "Fêmea"
+
+msgid "Zip Code"
+msgstr "Código Postal"
+
+msgid "State/Province"
+msgstr "Estado/província"
+
+msgid "Reservation number"
+msgstr "Número de reserva"
+
+msgid "Cancel Booking"
+msgstr "Cancelar reserva"
+
+msgid "Booking Detail"
+msgstr "Detalhes da reserva"
+
+msgid "You want to change your password? Click on the button below and we'll send you an email with a link to reset it."
+msgstr "Você deseja alterar sua senha? Clique no botão abaixo e enviaremos um e-mail com um link para redefini-la."
+
+msgid "Change your password"
+msgstr "Alterar sua senha"
+
+msgid "Choose how often you want to receive offers and suggestions, do not miss the best offers!"
+msgstr "Escolha quantas vezes deseja receber ofertas e sugestões, não perca as melhores ofertas!"
+
+msgid "Receive newsletter"
+msgstr "Receber newsletter"
+
+msgid "I do not care"
+msgstr "Eu não me importo"
+
+msgid "Fetching Reservation Details"
+msgstr "Buscando os detalhes da reserva"
+
+msgid " Years"
+msgstr " Anos"
+
+msgid "adults"
+msgstr "adultos"
+
+msgid "Back to list"
+msgstr "Voltar à lista"
+
+msgid "children"
+msgstr "crianças"
+
+msgid "Total Price"
+msgstr "Preço total"
+
+msgid "My Cart"
+msgstr "Meu carrinho"
+
+msgid "Days"
+msgstr "Dias"
+
+msgid "Continue shopping"
+msgstr "Continuar comprando"
+
+msgid "You can't acquire resources from another merchant."
+msgstr "Você não pode adquirir recursos de outro comerciante."
+
+msgid "Please, select a day"
+msgstr "Por favor, selecione um dia"
+
+msgid "Circle"
+msgstr "Círculo"
+
+msgid "BFI Custom Merchants Links"
+msgstr "Links de comerciantes personalizado BFI"
+
+msgid "This is a demo store for testing purposes &mdash; no orders shall be fulfilled."
+msgstr "Esta é uma loja de demonstração para fins de teste &mdash; sem ordens serão cumpridas."
+
+msgid "Search Results: &ldquo;%s&rdquo;"
+msgstr "Resultados da pesquisa: \"%s\""
+
+msgid "&nbsp;&ndash; Page %s"
+msgstr "– Página %s"
+
+msgctxt "Page slug"
+msgid "search-availability"
+msgstr "Pesquisar disponibilidade"
+
+msgctxt "slug"
+msgid "search-availability"
+msgstr "Pesquisar disponibilidade"
+
+msgctxt "default-slug"
+msgid "search-availability"
+msgstr "Pesquisar disponibilidade"
+
+msgctxt "Page title"
+msgid "Search Availability"
+msgstr "Pesquisar disponibilidade"
+
+msgctxt "Page slug"
+msgid "properties-for-sale"
+msgstr "Propriedades para venda"
+
+msgctxt "Page title"
+msgid "Search Properties for sale"
+msgstr "Pesquisar imóveis para venda"
+
+msgctxt "Page slug"
+msgid "merchantdetails"
+msgstr "merchantdetails"
+
+msgctxt "slug"
+msgid "merchantdetails"
+msgstr "merchantdetails"
+
+msgctxt "Page title"
+msgid "Merchant Details"
+msgstr "Detalhes de comerciante"
+
+msgctxt "Page slug"
+msgid "accommodation-details"
+msgstr "Alojamento-detalhes"
+
+msgctxt "slug"
+msgid "accommodation-details"
+msgstr "Alojamento-detalhes"
+
+msgctxt "Page title"
+msgid "Accommodation Details"
+msgstr "Detalhes do alojamento"
+
+msgctxt "Page slug"
+msgid "onsell-details"
+msgstr "onsell-detalhes"
+
+msgctxt "slug"
+msgid "onsell-details"
+msgstr "onsell-detalhes"
+
+msgctxt "Page title"
+msgid "On Sell Details"
+msgstr "Detalhes de venda"
+
+msgctxt "Page slug"
+msgid "orders"
+msgstr "ordens"
+
+msgctxt "Page title"
+msgid "Order Details"
+msgstr "Detalhes do pedido"
+
+msgctxt "Page slug"
+msgid "payment"
+msgstr "pagamento"
+
+msgctxt "Page title"
+msgid "Payment Details"
+msgstr "Detalhes de pagamento"
+
+msgctxt "slug"
+msgid "merchantlist"
+msgstr "merchantlist"
+
+msgid "Merchant list pages"
+msgstr "Páginas de lista mercante"
+
+msgid "Merchant list page"
+msgstr "Página lista mercante"
+
+msgctxt "Admin menu name"
+msgid "Merchant list"
+msgstr "Lista de comerciante"
+
+msgid "Add Merchant list page"
+msgstr "Adicionar página de lista de comerciante"
+
+msgid "Add New Merchant list page"
+msgstr "Adicionar página de lista de novo mercante"
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Edit Merchant list page"
+msgstr "Editar a página de lista de comerciante"
+
+msgid "New Merchant list page"
+msgstr "Nova página de lista de comerciante"
+
+msgid "View Merchant list page"
+msgstr "Página exibição de lista de comerciante"
+
+msgid "Search Merchant list page"
+msgstr "Página de lista de comerciante de pesquisa"
+
+msgid "No Merchant list page found"
+msgstr "Nenhuma página de lista de comerciante encontrada"
+
+msgid "No Merchant list page found in trash"
+msgstr "Nenhuma página de lista de comerciante encontrada no lixo"
+
+msgid "Parent Merchant list page"
+msgstr "Página de lista de comerciante de pai"
+
+msgid "Insert into Merchant list page"
+msgstr "Inserir na página de lista de comerciante"
+
+msgid "Uploaded to this Merchant list page"
+msgstr "Enviados para esta página de lista de comerciante"
+
+msgid "Filter Merchant list pages"
+msgstr "Filtrar as páginas de lista de comerciante"
+
+msgid "Merchant list pages navigation"
+msgstr "Navegação de páginas de lista mercante"
+
+msgid "This is where you can add new Merchant list page."
+msgstr "Isto é onde você pode adicionar a nova página de lista de comerciante."
+
+msgid "Merchant details"
+msgstr "Detalhes de comerciante"
+
+msgid "Accomodation details"
+msgstr "Detalhes do alojamento"
+
+msgid "Order details"
+msgstr "Detalhes do pedido"
+
+msgid "On Sell details"
+msgstr "Detalhes de venda"
+
+msgid "behavior.calendar"
+msgstr "Behavior.Calendar"
+
+msgid "behavior.tooltip"
+msgstr "Behavior.ToolTip"
+
+msgid "date"
+msgstr "Data"
+
+msgid "JLIB_HTML_CALENDAR"
+msgstr "JLIB_HTML_CALENDAR"
+
+msgid "image"
+msgstr "imagem"
+
+msgid "Autentication Mode"
+msgstr "Modo de autenticação"
+
+msgid "Categories"
+msgstr "Categorias"
+
+msgid "Merchant category filter"
+msgstr "Filtro de categorias mercante"
+
+msgid "Merchant Rating filter"
+msgstr "Filtro de classificação de comerciante"
+
+msgid "All"
+msgstr "Todos os"
+
+msgid "Cities"
+msgstr "Cidades"
+
+msgid "BookingFor Permalinks"
+msgstr "BookingFor Permalinks"
+
+msgid "BookingFor search result page"
+msgstr "Página de resultado de pesquisa de BookingFor"
+
+msgid "BookingFor Merchant details page"
+msgstr "Página de detalhes do comerciante BookingFor"
+
+msgid "BookingFor Accommodation details page"
+msgstr "Página de detalhes do residencial BookingFor"
+
+msgid "BookingFor On Sell details page"
+msgstr "BookingFor em vender a página de detalhes"
+
+msgid "BookingFor Merchant List page"
+msgstr "Página de lista de comerciante BookingFor"
+
+msgid "These settings control the permalinks used specifically for BookingFor."
+msgstr "Essas configurações controlam o permalinks usado especificamente para BookingFor."
+
+msgid "Default"
+msgstr "Padrão"
+
+msgid "Search Availability base"
+msgstr "Pesquisar base de disponibilidade"
+
+msgid "Custom Base"
+msgstr "Base personalizada"
+
+msgid "Enter a custom base to use. A base <strong>must</strong> be set or WordPress will use default instead."
+msgstr "Entra numa base personalizada para usar. Uma base de <strong> deve </strong> ser definido ou WordPress usará padrão em vez disso."
+
+msgctxt "default-slug"
+msgid "searchavailability"
+msgstr "searchavailability"
+
+msgid "If you like <strong>BookingFor</strong> please leave us a %s&#9733;&#9733;&#9733;&#9733;&#9733;%s rating. A huge thank you from Bookingfor in advance!"
+msgstr "Se você quiser <strong> BookingFor </strong> por favor nos deixe um %s &#9733; &#9733; &#9733; &#9733; &#9733; %s classificação. Um enorme Obrigado de Bookingfor com antecedência!"
+
+msgid "Thanks"
+msgstr "Obrigado"
+
+msgid "Thank you for selling with BookingFor."
+msgstr "Obrigado por vender com BookingFor."
+
+msgid "Save changes"
+msgstr "Salvar as alterações"
+
+msgid "There was some issue posting your review. Please try back later."
+msgstr "Houve algum problema postando seu comentário. Por favor, tente mais tarde."
+
+msgid "Your review was succesfully posted."
+msgstr "Seu comentário foi com êxito Postado."
+
+msgid "&resourceId="
+msgstr "& resourceId ="
+
+msgid "index.php?option=com_bookingforconnector&view=onsellunit&resourceId="
+msgstr "index.php?option=com_bookingforconnector&View=onsellunit&ResourceId="
+
+msgid "index.php?view=payment&actionmode=activa&payedOrderId="
+msgstr "index.php?view=Payment&actionmode=activa&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=setefi&payedOrderId="
+msgstr "index.php?view=Payment&actionmode=Setefi&payedOrderId="
+
+msgid "A details merchant box."
+msgstr "Uma caixa de comerciante de detalhes."
+
+msgid "BookingFor details merchant box"
+msgstr "BookingFor caixa de comerciante de detalhes"
+
+msgid "Title"
+msgstr "Título"
+
+msgid "A Carousel list of Merchants."
+msgstr "Uma lista de carrossel de comerciantes."
+
+msgid "BookingFor Merchants"
+msgstr "Comerciantes de BookingFor"
+
+msgid "Tags"
+msgstr "Etiquetas"
+
+msgid "Items per page"
+msgstr "Itens por página"
+
+msgid "Max items"
+msgstr "Itens de Max"
+
+msgid "Max description characters"
+msgstr "Caracteres de descrição de Max"
+
+msgid "A Filter box."
+msgstr "Uma caixa de filtro."
+
+msgid "BookingFor Search Filters"
+msgstr "Filtros de pesquisa de BookingFor"
+
+msgid "A Search box."
+msgstr "Uma caixa de pesquisa."
+
+msgid "BookingFor Search"
+msgstr "Pesquisa de BookingFor"
+
+msgid "A Search on Sell box."
+msgstr "Uma pesquisa na caixa de venda."
+
+msgid "BookingFor Search On Sell"
+msgstr "Pesquisa de BookingFor na venda"
+
+msgid "Request for Information"
+msgstr "Pedido de informações"
+
+msgid "Name"
+msgstr "Nome"
+
+msgid "Mandatory"
+msgstr "Obrigatório"
+
+msgid "Surname"
+msgstr "Sobrenome"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Phone"
+msgstr "Telefone"
+
+msgid "Address"
+msgstr "Endereço"
+
+msgid "Cap"
+msgstr "Cap"
+
+msgid "City"
+msgstr "Cidade"
+
+msgid "Provincia"
+msgstr "Provincia"
+
+msgid "Check-in"
+msgstr "Seleção-in"
+
+msgid "Check-out"
+msgstr "De check-out"
+
+msgid "Persons"
+msgstr "Pessoas"
+
+msgid "Special Requests"
+msgstr "Pedidos especiais"
+
+msgid "Personal data's treatment policy"
+msgstr "Política de tratamento de dados pessoais"
+
+msgid "I agree to the personal data's treatment policy"
+msgstr "Concordo com a política de tratamento de dados pessoais"
+
+msgid "Send"
+msgstr "Enviar"
+
+msgctxt "Page slug"
+msgid "contactspopup"
+msgstr "contactspopup"
+
+msgctxt "Page slug"
+msgid "mapspopup"
+msgstr "mapspopup"
+
+msgctxt "Page slug"
+msgid "resources"
+msgstr "recursos"
+
+msgctxt "Page slug"
+msgid "onsellunits"
+msgstr "onsellunits"
+
+msgctxt "Page slug"
+msgid "offers"
+msgstr "oferece"
+
+msgctxt "Page slug"
+msgid "offer"
+msgstr "oferta"
+
+msgctxt "Page slug"
+msgid "thanks"
+msgstr "Obrigado"
+
+msgctxt "Page slug"
+msgid "errors"
+msgstr "erros de"
+
+msgctxt "Page slug"
+msgid "packages"
+msgstr "pacotes"
+
+msgctxt "Page slug"
+msgid "package"
+msgstr "pacote"
+
+msgctxt "Page slug"
+msgid "reviews"
+msgstr "Comentários"
+
+msgctxt "Page slug"
+msgid "review"
+msgstr "revisão"
+
+msgctxt "Page slug"
+msgid "redirect"
+msgstr "redirecionamento"
+
+msgctxt "Page slug"
+msgid "inforequestpopup"
+msgstr "inforequestpopup"
+
+msgid "List"
+msgstr "Lista"
+
+msgid "Grid"
+msgstr "Grade"
+
+msgid "Vetrina"
+msgstr "Vetrina"
+
+msgid "Top"
+msgstr "Início"
+
+msgid "New!"
+msgstr "Novo!"
+
+msgid "Show phone"
+msgstr "Mostrar telefone"
+
+msgid "Request info"
+msgstr "Pedido de informação"
+
+msgid "Rooms"
+msgstr "Quartos"
+
+msgid "m&sup2;"
+msgstr "m ²"
+
+msgid "Contact Agent"
+msgstr "Agente de contato"
+
+msgid "New ad"
+msgstr "Novo anúncio"
+
+msgid "&laquo;"
+msgstr "&laquo;"
+
+msgid "&raquo;"
+msgstr "&raquo;"
+
+msgid "Page"
+msgstr "Página de vídeo"
+
+msgid "Would you like to leave your review?"
+msgstr "Gostaria de deixar seu comentário?"
+
+msgid "Score from %s reviews"
+msgstr "Pontuação das %s de clientes"
+
+msgid "Guest Rating"
+msgstr "Classificação dos hóspedes"
+
+msgid "No results available"
+msgstr "Nenhum resultado disponível"
+
+msgid "Order"
+msgstr "Ordem"
+
+msgid "Payment"
+msgstr "Pagamento"
+
+msgid "Sort By:"
+msgstr "Ordenar por:"
+
+msgid "Price"
+msgstr "Preço"
+
+msgid "Offers"
+msgstr "Oferece"
+
+msgid "Only %d available"
+msgstr "Apenas %d disponível"
+
+msgid "Available"
+msgstr "Disponível"
+
+msgid "Treatment"
+msgstr "Tratamento"
+
+msgid "Total for %d night/s"
+msgstr "Total de %d noite/s"
+
+msgid "Book Now"
+msgstr "Reserve agora"
+
+msgid "More Information"
+msgstr "Mais informações"
+
+msgid "Offer %d%%"
+msgstr "Oferecer %d%%"
+
+msgid "Show More"
+msgstr "Mostrar mais"
+
+msgid "Show Less"
+msgstr "Mostrar menos"
+
+msgid "%s Results  found from %s for %s nigth(s)"
+msgstr "%s resultados encontraram do %s para %s nigth(s)"
+
+msgid "Lowest price first"
+msgstr "Menor preço primeiro"
+
+msgid "Review score"
+msgstr "Classificação da crítica"
+
+msgid "Best offers"
+msgstr "Melhores ofertas"
+
+msgid " Offer "
+msgstr " Oferta "
+
+msgid "Meals"
+msgstr "Refeições"
+
+msgid "SHOW ALL"
+msgstr "MOSTRAR TODOS"
+
+msgid "Facility contacts data"
+msgstr "Dados de contacto de instalação"
+
+msgid "OPS, some errors occurred! Please try again later."
+msgstr "OPS, ocorreram alguns erros! Por favor, tente novamente mais tarde."
+
+msgid "Show All"
+msgstr "Mostrar todos"
+
+msgid "Reviews"
+msgstr "Comentários"
+
+msgid "Would you like to be the first to write a review?"
+msgstr "Gostaria de ser o primeiro a escrever uma resenha?"
+
+msgid "Poor"
+msgstr "Pobre"
+
+msgid "Average"
+msgstr "Média"
+
+msgid "Pleasant"
+msgstr "Agradável"
+
+msgid "Good"
+msgstr "Bom"
+
+msgid "Excellent"
+msgstr "Excelente"
+
+msgid "All reviewers"
+msgstr "Todos os comentadores"
+
+msgid "Solo travellers"
+msgstr "Viajantes individuais"
+
+msgid "Groups"
+msgstr "Grupos de"
+
+msgid "Young couplet"
+msgstr "Dístico jovem"
+
+msgid "Mature couples"
+msgstr "Casais maduros"
+
+msgid "Families with young children"
+msgstr "Famílias com crianças pequenas"
+
+msgid "Family with older children"
+msgstr "Família com filhos mais velhos"
+
+msgid "Based on %1$s Reviews."
+msgstr "Baseado em %1$s comentários."
+
+msgid "Staff"
+msgstr "Pessoal"
+
+msgid "Services"
+msgstr "Serviços"
+
+msgid "Clean"
+msgstr "Limpar"
+
+msgid "Comfort"
+msgstr "Conforto"
+
+msgid "Value for Money"
+msgstr "Valor para o dinheiro"
+
+msgid "Score filter"
+msgstr "Filtro de Pontuação"
+
+msgid "Review"
+msgstr "Revisão"
+
+msgid "Reviewed"
+msgstr "Revista"
+
+msgid "Period Stay"
+msgstr "Estadia de período"
+
+msgid "Reference"
+msgstr "Referência"
+
+msgid "Review certified by %1$s"
+msgstr "Revisão certificada pela %1$s"
+
+msgid "+ Details"
+msgstr "+ Detalhes"
+
+msgid "- Details"
+msgstr "-Detalhes"
+
+msgid "%s has responded to this review"
+msgstr "%s respondeu a esta avaliação"
+
+msgid "No Reviews Found."
+msgstr "Sem comentários encontrados."
+
+msgid "Details"
+msgstr "Detalhes"
+
+msgid "Media"
+msgstr "Meios de comunicação"
+
+msgid "Description"
+msgstr "Descrição"
+
+msgid "Map"
+msgstr "Mapa"
+
+msgid "Booking"
+msgstr "Reserva"
+
+msgid "View Services"
+msgstr "Serviços de visualização"
+
+msgid "No Results Found"
+msgstr "Nenhum resultado encontrado"
+
+msgid "%s available offers"
+msgstr "%s ofertas disponíveis"
+
+msgid "Read More"
+msgstr "Leia mais"
+
+msgid "Read Less"
+msgstr "Leia mais"
+
+msgid "%s available holiday packages"
+msgstr "%s pacotes de férias disponíveis"
+
+msgid "please wait..."
+msgstr "Aguarde..."
+
+msgid "Type of traveller"
+msgstr "Tipo de viajante"
+
+msgid "Country"
+msgstr "País"
+
+msgid "E-mail"
+msgstr "Correio electrónico"
+
+msgid "Confirm E-mail"
+msgstr "Confirmar E-mail"
+
+msgid "When did you travel?"
+msgstr "Quando você viajou?"
+
+msgid "Value for money"
+msgstr "Valor para o dinheiro"
+
+msgid "Valuation"
+msgstr "AvaliaÃ § ã £"
+
+msgid "List of the facility's positive points"
+msgstr "Lista dos pontos positivos da facilidade"
+
+msgid "List of the facility's negative points"
+msgstr "Lista dos pontos negativos da instalação"
+
+msgid "I agree to the personal datas treatment policy:"
+msgstr "Concordo com a política de tratamento de dados pessoais:"
+
+msgid "Privacy policy"
+msgstr "Política de privacidade"
+
+msgid "I accept"
+msgstr "Eu aceito"
+
+msgid "I certify that this review is based on my own experience and is my genuine opinion of this accommodation, and that I have no personal or business relationship with this establishment, and have not been offered any incentive or payment originating from the establishment to write this review. I understand that Bibione.com has a zero-tolerance policy on fake reviews."
+msgstr "Certifico que esta avaliação baseia-se na minha própria experiência e é a minha verdadeira opinião sobre este alojamento, e que não têm nenhuma relação pessoal ou empresarial com este estabelecimento e não ter sido oferecido qualquer incentivo ou pagamento proveniente do estabelecimento para escrever esta resenha. Eu entendo que o Bibione.com tem uma política de tolerância zero em comentários falsos."
+
+msgid "send"
+msgstr "Enviar"
+
+msgid "Availability"
+msgstr "Disponibilidade"
+
+msgid "Check-out "
+msgstr "De check-out "
+
+msgid "Nights"
+msgstr "Noites"
+
+msgid "Adults "
+msgstr "Adultos "
+
+msgid "Seniors "
+msgstr "Idosos "
+
+msgid "Children"
+msgstr "Crianças"
+
+msgid "Calculate"
+msgstr "Calcular"
+
+msgid "Children Ages"
+msgstr "Crianças de idades"
+
+msgid "Accommodation"
+msgstr "Alojamento"
+
+msgid "Conditions"
+msgstr "Condições"
+
+msgid "Price for %d nights"
+msgstr "Preço para %d noites"
+
+msgid "Reservation"
+msgstr "Reserva"
+
+msgid "No results available for the submitted data"
+msgstr "Não há resultados disponíveis para os dados apresentados"
+
+msgid "Offer"
+msgstr "Oferta"
+
+msgid "Show all accommodations"
+msgstr "Mostrar todas as acomodações"
+
+msgid "We are processing your request"
+msgstr "Estamos processando sua solicitação"
+
+msgid "Please be patient"
+msgstr "Por favor, seja paciente"
+
+msgid "Thank you for having chosen us."
+msgstr "Obrigado por ter nos escolhido."
+
+msgid "A-Z"
+msgstr "A-Z"
+
+msgid "Z-A"
+msgstr "Z-A"
+
+msgid "On sale"
+msgstr "À venda"
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "Floor area"
+msgstr "Área de piso"
+
+msgid "Province"
+msgstr "Província"
+
+msgid "Area"
+msgstr "Área"
+
+msgid "Last update"
+msgstr "Última atualização"
+
+msgid "Floor"
+msgstr "Piso"
+
+msgid "Ground floor"
+msgstr "Piso térreo"
+
+msgid "Top floor"
+msgstr "Piso superior"
+
+msgid "Attic"
+msgstr "Sótão"
+
+msgid "Multiple levels"
+msgstr "Vários níveis"
+
+msgid "ND"
+msgstr "ND"
+
+msgid "Condition"
+msgstr "Condição"
+
+msgid "New"
+msgstr "Novo"
+
+msgid "Bathrooms"
+msgstr "Casas de banho"
+
+msgid "Heating"
+msgstr "Aquecimento"
+
+msgid "Autonomous"
+msgstr "Autónoma"
+
+msgid "Communal"
+msgstr "Comunais"
+
+msgid "Pay per use"
+msgstr "Pay-per-use"
+
+msgid "Box Auto"
+msgstr "Caixa automático"
+
+msgid "Parking space"
+msgstr "Garagem/Estacionamento"
+
+msgid "Energy efficiency class"
+msgstr "Classe de eficiência energética"
+
+msgid "not set"
+msgstr "Não definido"
+
+msgid "Nondescript"
+msgstr "Anódino"
+
+msgid "Free property"
+msgstr "Propriedade livre."
+
+msgid "Under evaluation"
+msgstr "Sob avaliação"
+
+msgid "IPE"
+msgstr "IPE"
+
+msgid "Yes"
+msgstr "Sim"
+
+msgid "Real estate agency collaboration"
+msgstr "Colaboração de agências imobiliárias"
+
+msgid "Facility"
+msgstr "Instalação"
+
+msgid "External order ID"
+msgstr "ID de ordem externa"
+
+msgid "This field is required."
+msgstr "Este campo é obrigatório."
+
+msgid "Correct format: dd/mm/yyyy"
+msgstr "Formato correto: dd/mm/aaaa"
+
+msgid "Booking reference"
+msgstr "Referência de reserva"
+
+msgid "Client code"
+msgstr "Código do cliente"
+
+msgid "Check-in must be great than Check-out"
+msgstr "Seleção-in deve ser grande do que o Check-out"
+
+msgid "Please insert a valid email address!"
+msgstr "Por favor, insira um endereço de e-mail válido!"
+
+msgid "Rejected order"
+msgstr "Ordem rejeitada"
+
+msgid "Period"
+msgstr "Período"
+
+msgid "Check-In %1s Check-Out %2s"
+msgstr "Check-In %1s de Check-Out %2s"
+
+msgid "People"
+msgstr "Pessoas"
+
+msgid "Web Check-in"
+msgstr "Web Check-in"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "&euro; %d"
+msgstr "&euro; %d"
+
+msgid "Deposit total"
+msgstr "Total de depósito"
+
+msgid "Status"
+msgstr "Estatuto"
+
+msgid "Order sent to bank"
+msgstr "Ordem enviados para o banco"
+
+msgid "Pay"
+msgstr "Pagar"
+
+msgid "Waiting to confirm"
+msgstr "Esperando para confirmar"
+
+msgid "Payment attempt was not successful. Try again"
+msgstr "Tentativa de pagamento não foi bem sucedida. Tentar novamente"
+
+msgid "Payed order"
+msgstr "Ordem pago"
+
+msgid "Order by credit card guarantee"
+msgstr "Ordenar por garantia de cartão de crédito"
+
+msgid "Credit card details"
+msgstr "Detalhes de cartão de crédito"
+
+msgid "Holder"
+msgstr "Titular da"
+
+msgid "Number"
+msgstr "Número"
+
+msgid "Valid until"
+msgstr "Válido até"
+
+msgid "Change data"
+msgstr "Alterar dados"
+
+msgid "Month (MM)"
+msgstr "Mês (MM)"
+
+msgid "Year (YY)"
+msgstr "Ano (YY)"
+
+msgid "%1s will not charge anything to your credit card. Your credit card details are only requested in order to guarantee your booking."
+msgstr "%1s não irá cobrar nada para o seu cartão de crédito. Detalhes do seu cartão de crédito são solicitados somente para garantir a sua reserva."
+
+msgid "Other payments"
+msgstr "Outros pagamentos"
+
+msgid "Date"
+msgstr "Data"
+
+msgid "Amount"
+msgstr "Quantidade"
+
+msgid "Payment refused"
+msgstr "Pagamento recusado"
+
+msgid "New payment"
+msgstr "Novo pagamento"
+
+msgid "It 'requires a further amount for payments"
+msgstr "-' Requer um montante suplementar para pagamentos"
+
+msgid "Please insert a correct amount, it should be this format: xxx.xx (please use dot for deciaml prices)"
+msgstr "Por favor, insira a quantidade correta, ele deve estar neste formato: xxx (por favor, use o ponto para deciaml os preços)"
+
+msgid "Thank you: payment process successfully completed"
+msgstr "Obrigado: processo de pagamento concluído com êxito"
+
+msgid "Print"
+msgstr "Impressão"
+
+msgid "Payment process not successfully completed"
+msgstr "Processo de pagamento não foi bem sucedido"
+
+msgid "Payment process not successfully completed and has been deleted"
+msgstr "Processo de pagamento não com êxito concluído e foi excluído"
+
+msgid "Some problems occured durint payment process, please contact merchant if you are sure that your payment process completed"
+msgstr "Alguns problemas ocorreram durint processo de pagamento, por favor contacte o comerciante se tiver a certeza de que seu processo de pagamento concluído"
+
+msgid "Error inserting data"
+msgstr "Erro de inserção de dados"
+
+msgid "Order doesn't exist"
+msgstr "Não existe ordem"
+
+msgid "Deposit does not exist"
+msgstr "Não existe depósito"
+
+msgid "At this moment you cannot do payments."
+msgstr "Neste momento você não pode fazer os pagamentos."
+
+msgid "index.php?view=payment&actionmode=error&payedOrderId="
+msgstr "index.php?view=Payment&actionmode=Error&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=activaServer&payedOrderId="
+msgstr "index.php?view=Payment&actionmode=activaServer&payedOrderId="
+
+msgid "index.php?view=orders"
+msgstr "index.php?view=Orders"
+
+msgid "index.php?view=payment&actionmode=bnlpositivity&payedOrderId="
+msgstr "index.php?view=Payment&actionmode=bnlpositivity&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=keyclient&payedOrderId="
+msgstr "index.php?view=Payment&actionmode=keyclient&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=keyclient2014&payedOrderId="
+msgstr "index.php?view=Payment&actionmode=keyclient2014&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=pagoonline&payedOrderId="
+msgstr "index.php?view=Payment&actionmode=pagoonline&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=pagoonline&payedOrderId=donation"
+msgstr "index.php?view=Payment&actionmode=pagoonline&payedOrderId=donation"
+
+msgid "index.php?view=payment&actionmode=errordonation"
+msgstr "index.php?view=Payment&actionmode=errordonation"
+
+msgid "index.php?view=payment&actionmode=errordonation&payedOrderId="
+msgstr "index.php?view=Payment&actionmode=errordonation&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=setefiServer&payedOrderId="
+msgstr "index.php?view=Payment&actionmode=setefiServer&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=virtualpay&payedOrderId="
+msgstr "index.php?view=Payment&actionmode=virtualpay&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=virtualpay&payedOrderId=donation"
+msgstr "index.php?view=Payment&actionmode=virtualpay&payedOrderId=donation"
+
+msgid "index.php?view=payment&actionmode=wspayform&payedOrderId="
+msgstr "index.php?view=Payment&actionmode=wspayform&payedOrderId="
+
+msgid "Enter your details"
+msgstr "Introduza os seus dados"
+
+msgid "Reenter email"
+msgstr "Redigite o e-mail"
+
+msgid "Your Address"
+msgstr "Seu endereço"
+
+msgid "Postal Code"
+msgstr "Código postal"
+
+msgid "Note"
+msgstr "Nota"
+
+msgid "Your estimated time of arrival"
+msgstr "Sua hora prevista de chegada"
+
+msgid "I don't know"
+msgstr "Eu não sei"
+
+msgid "Password"
+msgstr "Senha"
+
+msgid "Payment method"
+msgstr "Método de pagamento"
+
+msgid "Please choose a payment method"
+msgstr "Por favor, escolha um método de pagamento"
+
+msgid "Total deposit : €"
+msgstr "Total de depósito: €"
+
+msgid "Good to know"
+msgstr "É bom saber"
+
+msgid "Info"
+msgstr "Informação"
+
+msgid "I agree to conditions"
+msgstr "Aceito condições"
+
+msgid "I agree"
+msgstr "Aceito"
+
+msgid "Almost done"
+msgstr "Quase pronto"
+
+msgid "comment"
+msgstr "Comentário"
+
+msgid "Book now"
+msgstr "Reserve agora"
+
+msgid "Energy Class"
+msgstr "Classe de eficiência energética"
+
+msgid "nondescript"
+msgstr "anódino"
+
+msgid "free property"
+msgstr "Propriedade livre."
+
+msgid "A+"
+msgstr "A +"
+
+msgid "A"
+msgstr "A"
+
+msgid "B"
+msgstr "B"
+
+msgid "C"
+msgstr "C"
+
+msgid "D"
+msgstr "D"
+
+msgid "E"
+msgstr "E"
+
+msgid "F"
+msgstr "F"
+
+msgid "G"
+msgstr "G"
+
+msgid "EPI Value"
+msgstr "Valor EPI"
+
+msgid "Smart offer"
+msgstr "Oferta inteligente"
+
+msgid "Attention!"
+msgstr "Atenção!"
+
+msgid "It 's not possible to insert your own review"
+msgstr "Não é possível inserir seu próprio comentário"
+
+msgid "nonexistent order"
+msgstr "Não existe ordem"
+
+msgid "Order with already a Review"
+msgstr "Encomendar com já uma revisão"
+
+msgid "nonexistent order or to which it is not possible to associate a review"
+msgstr "Não existe ordem ou para a qual não é possível associar uma revisão"
+
+msgid "Order not related at this resource"
+msgstr "Ordem não relacionado a este recurso"
+
+msgid "Order make before the date to make a review"
+msgstr "Ordem fazer antes da data para fazer uma revisão"
+
+msgid "Search"
+msgstr "Pesquisa"
+
+msgid "Persons min:%1$d max:%2$d"
+msgstr "Pessoas min: %1$d max: %2$d"
+
+msgid "Alternative accommodations"
+msgstr "Acomodações alternativas"
+
+msgid "Qt."
+msgstr "Qt."
+
+msgid "Select"
+msgstr "Selecione"
+
+msgid "We're processing your request"
+msgstr "Estamos a processar seu pedido"
+
+msgid "No result available"
+msgstr "Nenhum resultado disponível"
+
+msgid "Leatest ads"
+msgstr "Anúncios de leatest"
+
+msgid "To rent"
+msgstr "Para alugar"
+
+msgid "Web site"
+msgstr "Web site"
+
+msgid "Accomodation"
+msgstr "Alojamento"
+
+msgid "On Sell Houses"
+msgstr "Na venda de casas"
+
+msgid "Holiday Packages"
+msgstr "Pacotes de férias"
+
+msgid "Destination"
+msgstr "Destino"
+
+msgid "Booking online"
+msgstr "Reservas online"
+
+msgid "Destination, property name or address"
+msgstr "Destino, o nome da propriedade ou o endereço"
+
+msgid "Enter a destination"
+msgstr "Insira um destino"
+
+msgid "Tipology"
+msgstr "Tipologia"
+
+msgid "Adults"
+msgstr "Adultos"
+
+msgid "Show only online booking"
+msgstr "Mostrar apenas a reserva on-line"
+
+msgid "Show map"
+msgstr "Mostrar mapa"
+
+msgid "Search filters"
+msgstr "Filtros de pesquisa"
+
+msgid "Booking type"
+msgstr "Tipo de reserva"
+
+msgid "Ratings"
+msgstr "Classificações"
+
+msgid "Quality"
+msgstr "Qualidade"
+
+msgid "Bedrooms"
+msgstr "Quartos"
+
+msgid "or more bedrooms"
+msgstr "ou mais quartos"
+
+msgid "Club Hotel"
+msgstr "Club Hotel"
+
+msgid "Merchant's facility"
+msgstr "Instalação do comerciante"
+
+msgid ">3"
+msgstr "> 3"
+
+msgid "Find your property"
+msgstr "Procure a sua propriedade"
+
+msgid "Contract"
+msgstr "Contrato"
+
+msgid "All province"
+msgstr "Toda província"
+
+msgid "from"
+msgstr "De"
+
+msgid "to"
+msgstr "Para"
+
+msgid "Floor area m&sup2;"
+msgstr "M ² de área de piso"
+
+msgid "Only new building"
+msgstr "Só o edifício novo"
+
+msgid "Please select"
+msgstr "Por favor selecione"
+
+msgid "Please enter a integer number"
+msgstr "Por favor, digite um número inteiro"
+
+msgid "Draw area"
+msgstr "Área de desenho"
+
+msgid "Reset"
+msgstr "Redefinir"
+
+msgid "Submit"
+msgstr "Enviar"
+
+msgid "Click on map and choose your area."
+msgstr "Clique no mapa e escolha a sua área."
+
+msgid "Your holiday"
+msgstr "Suas férias"
+
+msgid "Seniores"
+msgstr "Seniores"
+
+msgid "Years"
+msgstr "Anos"
+
+msgid "Total price"
+msgstr "Preço total"
+
+msgid "Deposit"
+msgstr "Depósito"

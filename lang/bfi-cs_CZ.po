@@ -1,0 +1,1635 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: VERSION\n"
+"POT-Creation-Date: 2016-12-22 10:43+0000\n"
+"PO-Revision-Date: 2016-12-22 16:10+0100\n"
+"Language-Team: LANGUAGE TEAM <EMAIL@ADDRESS>\n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Last-Translator: \n"
+"X-Generator: Poedit 1.8.11\n"
+
+msgctxt "Page slug"
+msgid "thankspopup"
+msgstr "thankspopup"
+
+msgid "Sending..."
+msgstr "Probíhá odesílání..."
+
+msgctxt "Page slug"
+msgid "rating"
+msgstr "hodnocení"
+
+msgctxt "Page slug"
+msgid "rapidview"
+msgstr "rapidview"
+
+msgid "Read more"
+msgstr "Přečtěte si více"
+
+msgid "Read less"
+msgstr "Číst méně"
+
+msgid "Error, please try again"
+msgstr "Chyba, prosím zkuste to znovu"
+
+msgctxt "Page slug"
+msgid "form"
+msgstr "formulář"
+
+msgid "Order by"
+msgstr "Seřadit podle"
+
+msgid "Disappointing"
+msgstr "Zklamání"
+
+msgid "Okay"
+msgstr "OK"
+
+msgid "Fair"
+msgstr "Veletrh"
+
+msgid "Very good"
+msgstr "Velmi dobře"
+
+msgid "Fabulous"
+msgstr "Skvělé"
+
+msgid "Exceptional"
+msgstr "Naprosto výjimečné"
+
+msgid "Show reviews from"
+msgstr "Ukázat recenze z"
+
+msgid "Write a Review"
+msgstr "Napsat recenzi"
+
+msgid "Stayed"
+msgstr "Zůstali"
+
+msgid "Replied on %1s"
+msgstr "Odpověděl na %1s"
+
+msgid "+"
+msgstr "+"
+
+msgid "-"
+msgstr "-"
+
+msgid "Ages of children"
+msgstr "Věk dětí"
+
+msgid "%s available accommodations"
+msgstr "%s ubytovacích kapacit"
+
+msgid "Real Estate"
+msgstr "Nemovitosti"
+
+msgid "Age of children"
+msgstr "Věk dětí"
+
+msgid "Filter by"
+msgstr "Filtrovat podle"
+
+msgctxt "Page slug"
+msgid "my-account"
+msgstr "Můj účet"
+
+msgctxt "Page title"
+msgid "My Account"
+msgstr "Můj účet"
+
+msgctxt "Page slug"
+msgid "cartdetails"
+msgstr "cartdetails"
+
+msgctxt "Page title"
+msgid "Cart Details"
+msgstr "Detail košíku"
+
+msgid "Cart details"
+msgstr "Detail košíku"
+
+msgid "Display the user's Cart link in the sidebar."
+msgstr "Zobrazte uživatele vozíku odkaz v postranním panelu."
+
+msgid "BookingFor Cart"
+msgstr "BookingFor vozík"
+
+msgid "A Search box for multimerchant, monomerchant and sell on."
+msgstr "Vyhledávací pole pro multimerchant, monomerchant a prodáváme na."
+
+msgid "Activities"
+msgstr "Aktivity"
+
+msgid "Search Type"
+msgstr "Typ hledání"
+
+msgid "Multimerchant"
+msgstr "Multimerchant"
+
+msgid "Monomerchant"
+msgstr "Monomerchant"
+
+msgid "Tab"
+msgstr "Záložka"
+
+msgid "Block Months"
+msgstr "Blok měsíce"
+
+msgid "Disable Days"
+msgstr "Zakázat dny"
+
+msgid "Merchant category"
+msgstr "Obchodní kategorie"
+
+msgid "Product category"
+msgstr "Kategorie produktů"
+
+msgid "Displays horizontally"
+msgstr "Zobrazí vodorovně"
+
+msgid "Group by condominium"
+msgstr "Seskupit podle Kondominium"
+
+msgid "Fields Visibility"
+msgstr "Pole viditelnosti"
+
+msgid "Map Button"
+msgstr "Tlačítko Mapa"
+
+msgid "Selected Nights"
+msgstr "Vybrané večery"
+
+msgid "Date Range"
+msgstr "Časové období"
+
+msgid "Childrens"
+msgstr "Dětské"
+
+msgid "Only Online Booking"
+msgstr "Pouze on-line rezervace"
+
+msgid "Senior"
+msgstr "Senior"
+
+msgid "Floor Area"
+msgstr "Podlahová plocha"
+
+msgid "BedRooms"
+msgstr "Ložnice"
+
+msgid "Baths"
+msgstr "Lázně"
+
+msgid "Only New"
+msgstr "Pouze nové"
+
+msgid "Services list"
+msgstr "Seznam služeb"
+
+msgid "A Search box. (DISMISSED)"
+msgstr "Vyhledávací pole. (ZRUŠIT)"
+
+msgid "BookingFor Search (DISMISSED)"
+msgstr "BookingFor Search (ODVOLÁN)"
+
+msgid "A Search on Sell box. (DISMISSED)"
+msgstr "Hledání na prodej box. (ZRUŠIT)"
+
+msgid "BookingFor Search On Sell (DISMISSED)"
+msgstr "BookingFor hledání na prodej (ODVOLÁN)"
+
+msgid "Your Cart is empty! "
+msgstr "Váš košík je prázdný! "
+
+msgid "Are you sure?"
+msgstr "Opravdu?"
+
+msgid "Discount"
+msgstr "Sleva"
+
+msgid "Subtotal"
+msgstr "Mezisoučet"
+
+msgid "I agree to the conditions"
+msgstr "Souhlasím s podmínkami"
+
+msgid "I accept personal data treatment"
+msgstr "Přijímám zpracování osobních údajů"
+
+msgid "I accept additional purposes"
+msgstr "Přijímám další účely"
+
+msgid "Cart Not enabled! "
+msgstr "Vozík není povolen! "
+
+msgid "Personal data treatment"
+msgstr "Zpracování osobních údajů"
+
+msgid "Additional purposes"
+msgstr "Další účely"
+
+msgid "You need to be loggedin in order to access this page."
+msgstr "Musíte být loggedin, aby přístup k této stránce."
+
+msgid "Reservations"
+msgstr "Rezervace"
+
+msgid "Social Network"
+msgstr "Sociální síť"
+
+msgid "Personal Informations"
+msgstr "Osobní informace"
+
+msgid "Settings"
+msgstr "Nastavení"
+
+msgid "Give your social profiles"
+msgstr "Dejte své profily v sociálních sítích"
+
+msgid "Your profile"
+msgstr "Váš profil"
+
+msgid "Connect with your account via your social networks , one less password to remember!"
+msgstr "Spojte se s vaším účtem prostřednictvím sociálních sítí, méně pamatovat jediné heslo!"
+
+msgid "This information is used to automatically fill in your details and book more quickly. We do not share it publicly."
+msgstr "Tyto informace slouží k automaticky vyplnit své údaje a rezervujte rychleji. Nesdílíme veřejně."
+
+msgid "Date of birth"
+msgstr "Datum narození"
+
+msgid "Gender"
+msgstr "Pohlaví"
+
+msgid "Male"
+msgstr "Muž"
+
+msgid "Language"
+msgstr "Jazyk"
+
+msgid "Female"
+msgstr "Žena"
+
+msgid "Zip Code"
+msgstr "PSČ"
+
+msgid "State/Province"
+msgstr "Stát/provincie"
+
+msgid "Reservation number"
+msgstr "Číslo rezervace"
+
+msgid "Cancel Booking"
+msgstr "Zrušit rezervaci"
+
+msgid "Booking Detail"
+msgstr "Detail rezervace"
+
+msgid "You want to change your password? Click on the button below and we'll send you an email with a link to reset it."
+msgstr "Chcete změnit své heslo? Klikněte na tlačítko níže a my vám pošleme e-mail s odkazem na resetování."
+
+msgid "Change your password"
+msgstr "Změna hesla"
+
+msgid "Choose how often you want to receive offers and suggestions, do not miss the best offers!"
+msgstr "Zvolte, jak často chcete dostávat nabídky a návrhy, nenechte si ujít nejlepší nabídky!"
+
+msgid "Receive newsletter"
+msgstr "Odebírat zpravodaj"
+
+msgid "I do not care"
+msgstr "Je mi to fuk"
+
+msgid "Fetching Reservation Details"
+msgstr "Okouzlující detaily rezervace"
+
+msgid " Years"
+msgstr " Roky"
+
+msgid "adults"
+msgstr "dospělí"
+
+msgid "Back to list"
+msgstr "Zpět na seznam novinek"
+
+msgid "children"
+msgstr "děti"
+
+msgid "Total Price"
+msgstr "Celková cena"
+
+msgid "My Cart"
+msgstr "Můj košík"
+
+msgid "Days"
+msgstr "Dny"
+
+msgid "Continue shopping"
+msgstr "Pokračovat v nákupu"
+
+msgid "You can't acquire resources from another merchant."
+msgstr "Nelze získat prostředky od jiného obchodníka."
+
+msgid "Please, select a day"
+msgstr "Vyberte den"
+
+msgid "Circle"
+msgstr "Kruh"
+
+msgid "BFI Custom Merchants Links"
+msgstr "BFI vlastní obchodníci odkazy"
+
+msgid "This is a demo store for testing purposes &mdash; no orders shall be fulfilled."
+msgstr "Toto je demo obchodu pro účely testování &mdash; žádné objednávky musí být splněny."
+
+msgid "Search Results: &ldquo;%s&rdquo;"
+msgstr "Výsledky hledání: \"%s\""
+
+msgid "&nbsp;&ndash; Page %s"
+msgstr "– Page %s"
+
+msgctxt "Page slug"
+msgid "search-availability"
+msgstr "Hledat dostupnost"
+
+msgctxt "slug"
+msgid "search-availability"
+msgstr "Hledat dostupnost"
+
+msgctxt "default-slug"
+msgid "search-availability"
+msgstr "Hledat dostupnost"
+
+msgctxt "Page title"
+msgid "Search Availability"
+msgstr "Hledat dostupnost"
+
+msgctxt "Page slug"
+msgid "properties-for-sale"
+msgstr "vlastnosti pro prodej"
+
+msgctxt "Page title"
+msgid "Search Properties for sale"
+msgstr "Vyhledávání nemovitostí na prodej"
+
+msgctxt "Page slug"
+msgid "merchantdetails"
+msgstr "merchantdetails"
+
+msgctxt "slug"
+msgid "merchantdetails"
+msgstr "merchantdetails"
+
+msgctxt "Page title"
+msgid "Merchant Details"
+msgstr "Obchodní detaily"
+
+msgctxt "Page slug"
+msgid "accommodation-details"
+msgstr "ubytování detaily"
+
+msgctxt "slug"
+msgid "accommodation-details"
+msgstr "ubytování detaily"
+
+msgctxt "Page title"
+msgid "Accommodation Details"
+msgstr "Podrobnosti ubytování"
+
+msgctxt "Page slug"
+msgid "onsell-details"
+msgstr "onsell detaily"
+
+msgctxt "slug"
+msgid "onsell-details"
+msgstr "onsell detaily"
+
+msgctxt "Page title"
+msgid "On Sell Details"
+msgstr "Na prodej detaily"
+
+msgctxt "Page slug"
+msgid "orders"
+msgstr "objednávky"
+
+msgctxt "Page title"
+msgid "Order Details"
+msgstr "Rozpis objednávek"
+
+msgctxt "Page slug"
+msgid "payment"
+msgstr "platba"
+
+msgctxt "Page title"
+msgid "Payment Details"
+msgstr "Detaily platby"
+
+msgctxt "slug"
+msgid "merchantlist"
+msgstr "merchantlist"
+
+msgid "Merchant list pages"
+msgstr "Obchodní seznam stránek"
+
+msgid "Merchant list page"
+msgstr "Stránka se seznamem obchodních"
+
+msgctxt "Admin menu name"
+msgid "Merchant list"
+msgstr "Obchodní seznam"
+
+msgid "Add Merchant list page"
+msgstr "Přidat stránku seznamu obchodníka"
+
+msgid "Add New Merchant list page"
+msgstr "Přidat stránku seznamu nového obchodníka"
+
+msgid "Edit"
+msgstr "Úpravy"
+
+msgid "Edit Merchant list page"
+msgstr "Upravit stránku seznamu obchodníka"
+
+msgid "New Merchant list page"
+msgstr "Nová stránka seznamu obchodníka"
+
+msgid "View Merchant list page"
+msgstr "Stránka se seznamem zobrazení obchodníka"
+
+msgid "Search Merchant list page"
+msgstr "Stránka se seznamem hledání obchodníka"
+
+msgid "No Merchant list page found"
+msgstr "Stránka se seznamem žádný obchodník Nalezeno"
+
+msgid "No Merchant list page found in trash"
+msgstr "Stránka se seznamem žádný obchodník v koši"
+
+msgid "Parent Merchant list page"
+msgstr "Stránka se seznamem nadřazené obchodník"
+
+msgid "Insert into Merchant list page"
+msgstr "Vložit do stránky se seznamem obchodníka"
+
+msgid "Uploaded to this Merchant list page"
+msgstr "Nahrané na této stránce se seznamem obchodníka"
+
+msgid "Filter Merchant list pages"
+msgstr "Filtrovat seznam stránek obchodníka"
+
+msgid "Merchant list pages navigation"
+msgstr "Obchodní seznam stránky navigace"
+
+msgid "This is where you can add new Merchant list page."
+msgstr "To je, kde můžete přidat nové stránky se seznamem obchodníka."
+
+msgid "Merchant details"
+msgstr "Obchodní detaily"
+
+msgid "Accomodation details"
+msgstr "Podrobnosti ubytování"
+
+msgid "Order details"
+msgstr "Rozpis objednávek"
+
+msgid "On Sell details"
+msgstr "Na prodej detaily"
+
+msgid "behavior.calendar"
+msgstr "Behavior.Calendar"
+
+msgid "behavior.tooltip"
+msgstr "Behavior.ToolTip"
+
+msgid "date"
+msgstr "Datum"
+
+msgid "JLIB_HTML_CALENDAR"
+msgstr "JLIB_HTML_CALENDAR"
+
+msgid "image"
+msgstr "obrázek"
+
+msgid "Autentication Mode"
+msgstr "Autentizace režim"
+
+msgid "Categories"
+msgstr "Kategorie"
+
+msgid "Merchant category filter"
+msgstr "Obchodní kategorie filtr"
+
+msgid "Merchant Rating filter"
+msgstr "Obchodní filtr hodnocení"
+
+msgid "All"
+msgstr "Všechny"
+
+msgid "Cities"
+msgstr "Města"
+
+msgid "BookingFor Permalinks"
+msgstr "BookingFor Permalinks"
+
+msgid "BookingFor search result page"
+msgstr "BookingFor stránky"
+
+msgid "BookingFor Merchant details page"
+msgstr "Stránka Podrobnosti BookingFor obchodníka"
+
+msgid "BookingFor Accommodation details page"
+msgstr "Stránka Podrobnosti o BookingFor ubytování"
+
+msgid "BookingFor On Sell details page"
+msgstr "Stránka Podrobnosti BookingFor na prodej"
+
+msgid "BookingFor Merchant List page"
+msgstr "Stránka se seznamem obchodníka BookingFor"
+
+msgid "These settings control the permalinks used specifically for BookingFor."
+msgstr "Toto nastavení řídí permalinks určených pro BookingFor."
+
+msgid "Default"
+msgstr "Výchozí"
+
+msgid "Search Availability base"
+msgstr "Hledat dostupnost základny"
+
+msgid "Custom Base"
+msgstr "Vlastní základny"
+
+msgid "Enter a custom base to use. A base <strong>must</strong> be set or WordPress will use default instead."
+msgstr "Zadejte vlastní základ použít. Základna <strong> musí </strong> být nastavena nebo WordPress bude používat výchozí místo."
+
+msgctxt "default-slug"
+msgid "searchavailability"
+msgstr "searchavailability"
+
+msgid "If you like <strong>BookingFor</strong> please leave us a %s&#9733;&#9733;&#9733;&#9733;&#9733;%s rating. A huge thank you from Bookingfor in advance!"
+msgstr "Pokud se vám líbí <strong> BookingFor </strong> prosím, nechte nás %s &#9733; &#9733; &#9733; &#9733; &#9733; %s hodnocení. Obrovské poděkování od Bookingfor dopředu!"
+
+msgid "Thanks"
+msgstr "Dík"
+
+msgid "Thank you for selling with BookingFor."
+msgstr "Děkujeme vám za prodej s BookingFor."
+
+msgid "Save changes"
+msgstr "Uložit změny"
+
+msgid "There was some issue posting your review. Please try back later."
+msgstr "Tam byl nějaký problém váš zájem. Zkuste to prosím zpět později."
+
+msgid "Your review was succesfully posted."
+msgstr "Vážená paní Danielo byla úspěšně zaúčtována."
+
+msgid "&resourceId="
+msgstr "& resourceId ="
+
+msgid "index.php?option=com_bookingforconnector&view=onsellunit&resourceId="
+msgstr "index.php?Option=com_bookingforconnector&View=onsellunit&ResourceID="
+
+msgid "index.php?view=payment&actionmode=activa&payedOrderId="
+msgstr "index.php?View=Payment&actionmode=Activa&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=setefi&payedOrderId="
+msgstr "index.php?View=Payment&actionmode=setefi&payedOrderId="
+
+msgid "A details merchant box."
+msgstr "Obchodní pole podrobností."
+
+msgid "BookingFor details merchant box"
+msgstr "BookingFor podrobnosti obchodní box"
+
+msgid "Title"
+msgstr "Titul"
+
+msgid "A Carousel list of Merchants."
+msgstr "Kolotoč seznam obchodníků."
+
+msgid "BookingFor Merchants"
+msgstr "BookingFor obchodníci"
+
+msgid "Tags"
+msgstr "Značky"
+
+msgid "Items per page"
+msgstr "Položek na stránku"
+
+msgid "Max items"
+msgstr "Max položky"
+
+msgid "Max description characters"
+msgstr "Max popis postavy"
+
+msgid "A Filter box."
+msgstr "Pole filtru."
+
+msgid "BookingFor Search Filters"
+msgstr "BookingFor vyhledávací filtry"
+
+msgid "A Search box."
+msgstr "Vyhledávací pole."
+
+msgid "BookingFor Search"
+msgstr "BookingFor hledání"
+
+msgid "A Search on Sell box."
+msgstr "Hledání na prodej box."
+
+msgid "BookingFor Search On Sell"
+msgstr "BookingFor hledání na prodej"
+
+msgid "Request for Information"
+msgstr "Žádost o informace"
+
+msgid "Name"
+msgstr "Jméno"
+
+msgid "Mandatory"
+msgstr "Povinné"
+
+msgid "Surname"
+msgstr "Příjmení"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Address"
+msgstr "Adresa"
+
+msgid "Cap"
+msgstr "Víčko"
+
+msgid "City"
+msgstr "Město"
+
+msgid "Provincia"
+msgstr "Provincia"
+
+msgid "Check-in"
+msgstr "Vrácení se změnami"
+
+msgid "Check-out"
+msgstr "Check-out"
+
+msgid "Persons"
+msgstr "Osob"
+
+msgid "Special Requests"
+msgstr "Speciální požadavky"
+
+msgid "Personal data's treatment policy"
+msgstr "Osobní údaje léčby politika"
+
+msgid "I agree to the personal data's treatment policy"
+msgstr "Souhlasím s osobních údajů léčby"
+
+msgid "Send"
+msgstr "Odeslat"
+
+msgctxt "Page slug"
+msgid "contactspopup"
+msgstr "contactspopup"
+
+msgctxt "Page slug"
+msgid "mapspopup"
+msgstr "mapspopup"
+
+msgctxt "Page slug"
+msgid "resources"
+msgstr "zdroje"
+
+msgctxt "Page slug"
+msgid "onsellunits"
+msgstr "onsellunits"
+
+msgctxt "Page slug"
+msgid "offers"
+msgstr "nabídky"
+
+msgctxt "Page slug"
+msgid "offer"
+msgstr "nabídka"
+
+msgctxt "Page slug"
+msgid "thanks"
+msgstr "Dík"
+
+msgctxt "Page slug"
+msgid "errors"
+msgstr "chyby"
+
+msgctxt "Page slug"
+msgid "packages"
+msgstr "balíčky"
+
+msgctxt "Page slug"
+msgid "package"
+msgstr "balíček"
+
+msgctxt "Page slug"
+msgid "reviews"
+msgstr "hodnocení"
+
+msgctxt "Page slug"
+msgid "review"
+msgstr "recenze"
+
+msgctxt "Page slug"
+msgid "redirect"
+msgstr "přesměrování"
+
+msgctxt "Page slug"
+msgid "inforequestpopup"
+msgstr "inforequestpopup"
+
+msgid "List"
+msgstr "Seznam"
+
+msgid "Grid"
+msgstr "Mřížka"
+
+msgid "Vetrina"
+msgstr "Vetrina"
+
+msgid "Top"
+msgstr "Nahoru"
+
+msgid "New!"
+msgstr "Novinka!"
+
+msgid "Show phone"
+msgstr "Zobrazit telefon"
+
+msgid "Request info"
+msgstr "Žádost o informace"
+
+msgid "Rooms"
+msgstr "Pokoje"
+
+msgid "m&sup2;"
+msgstr "m²"
+
+msgid "Contact Agent"
+msgstr "Obraťte se na zástupce"
+
+msgid "New ad"
+msgstr "Nová reklama"
+
+msgid "&laquo;"
+msgstr "&laquo;"
+
+msgid "&raquo;"
+msgstr "&raquo;"
+
+msgid "Page"
+msgstr "Stránka"
+
+msgid "Would you like to leave your review?"
+msgstr "Chcete váš zájem?"
+
+msgid "Score from %s reviews"
+msgstr "Hodnocení: %s hodnocení"
+
+msgid "Guest Rating"
+msgstr "Hodnocení klientů"
+
+msgid "No results available"
+msgstr "Nejsou k dispozici žádné výsledky."
+
+msgid "Order"
+msgstr "Pořadí"
+
+msgid "Payment"
+msgstr "Platba"
+
+msgid "Sort By:"
+msgstr "Seřadit podle:"
+
+msgid "Price"
+msgstr "Cena"
+
+msgid "Offers"
+msgstr "Nabídky"
+
+msgid "Only %d available"
+msgstr "Pouze %d k dispozici."
+
+msgid "Available"
+msgstr "K dispozici"
+
+msgid "Treatment"
+msgstr "Léčba"
+
+msgid "Total for %d night/s"
+msgstr "Celkem pro %d noc/s"
+
+msgid "Book Now"
+msgstr "Zarezervujte si teď"
+
+msgid "More Information"
+msgstr "Další informace"
+
+msgid "Offer %d%%"
+msgstr "Nabídka %d%%"
+
+msgid "Show More"
+msgstr "Zobrazit více"
+
+msgid "Show Less"
+msgstr "Zobrazit méně"
+
+msgid "%s Results  found from %s for %s nigth(s)"
+msgstr "%s nalezeny výsledky z %s pro %s nigth(s)"
+
+msgid "Lowest price first"
+msgstr "Od nejnižší ceny"
+
+msgid "Review score"
+msgstr "Průměrné hodnocení"
+
+msgid "Best offers"
+msgstr "Nejlepší nabídky"
+
+msgid " Offer "
+msgstr " Nabídka "
+
+msgid "Meals"
+msgstr "Jídla"
+
+msgid "SHOW ALL"
+msgstr "ZOBRAZIT VŠE"
+
+msgid "Facility contacts data"
+msgstr "Zařízení kontakty"
+
+msgid "OPS, some errors occurred! Please try again later."
+msgstr "OPS, došlo k chybám. Opakujte akci později."
+
+msgid "Show All"
+msgstr "Zobrazit vše"
+
+msgid "Reviews"
+msgstr "Hodnocení"
+
+msgid "Would you like to be the first to write a review?"
+msgstr "Chcete být první, kdo napíše recenzi?"
+
+msgid "Poor"
+msgstr "Špatné"
+
+msgid "Average"
+msgstr "Průměr"
+
+msgid "Pleasant"
+msgstr "Příjemné"
+
+msgid "Good"
+msgstr "Dobré"
+
+msgid "Excellent"
+msgstr "Vynikající"
+
+msgid "All reviewers"
+msgstr "Všichni hodnotící"
+
+msgid "Solo travellers"
+msgstr "Osamělí cestovatelé"
+
+msgid "Groups"
+msgstr "Skupiny"
+
+msgid "Young couplet"
+msgstr "Mladá dvojverší"
+
+msgid "Mature couples"
+msgstr "Starší páry"
+
+msgid "Families with young children"
+msgstr "Rodiny s malými dětmi"
+
+msgid "Family with older children"
+msgstr "Rodina se staršími dětmi"
+
+msgid "Based on %1$s Reviews."
+msgstr "Na základě %1$s hodnocení."
+
+msgid "Staff"
+msgstr "Personál"
+
+msgid "Services"
+msgstr "Služby"
+
+msgid "Clean"
+msgstr "Vyčistit"
+
+msgid "Comfort"
+msgstr "Pohodlí"
+
+msgid "Value for Money"
+msgstr "Hodnota za peníze"
+
+msgid "Score filter"
+msgstr "Filtr skóre"
+
+msgid "Review"
+msgstr "Recenze"
+
+msgid "Reviewed"
+msgstr "Recenze"
+
+msgid "Period Stay"
+msgstr "Období pobytu"
+
+msgid "Reference"
+msgstr "Referenční"
+
+msgid "Review certified by %1$s"
+msgstr "Ověřené recenze %1$s"
+
+msgid "+ Details"
+msgstr "+ Podrobnosti"
+
+msgid "- Details"
+msgstr "-Detaily"
+
+msgid "%s has responded to this review"
+msgstr "%s má odpověděl na tuto recenzi."
+
+msgid "No Reviews Found."
+msgstr "Žádné hodnocení Nenalezeno."
+
+msgid "Details"
+msgstr "Podrobnosti"
+
+msgid "Media"
+msgstr "Média"
+
+msgid "Description"
+msgstr "Popis"
+
+msgid "Map"
+msgstr "Mapa"
+
+msgid "Booking"
+msgstr "Rezervace"
+
+msgid "View Services"
+msgstr "Zobrazit služby"
+
+msgid "No Results Found"
+msgstr "Nebyly nalezeny žádné výsledky"
+
+msgid "%s available offers"
+msgstr "%s k dispozici nabídky"
+
+msgid "Read More"
+msgstr "Přečtěte si více"
+
+msgid "Read Less"
+msgstr "Číst méně"
+
+msgid "%s available holiday packages"
+msgstr "%s k dispozici zájezdy"
+
+msgid "please wait..."
+msgstr "Počkejte prosím..."
+
+msgid "Type of traveller"
+msgstr "Typ cestovatele"
+
+msgid "Country"
+msgstr "Země"
+
+msgid "E-mail"
+msgstr "E-mailová"
+
+msgid "Confirm E-mail"
+msgstr "Potvrdit E-mail"
+
+msgid "When did you travel?"
+msgstr "Kdy jste se cestovat?"
+
+msgid "Value for money"
+msgstr "Hodnota za peníze"
+
+msgid "Valuation"
+msgstr "Ocenění"
+
+msgid "List of the facility's positive points"
+msgstr "Seznam zařízení na pozitivní bodů"
+
+msgid "List of the facility's negative points"
+msgstr "Seznam zařízení na záporné body"
+
+msgid "I agree to the personal datas treatment policy:"
+msgstr "Souhlasím se zásady léčby osobní údaje:"
+
+msgid "Privacy policy"
+msgstr "Zásady ochrany osobních údajů"
+
+msgid "I accept"
+msgstr "Souhlasím"
+
+msgid "I certify that this review is based on my own experience and is my genuine opinion of this accommodation, and that I have no personal or business relationship with this establishment, and have not been offered any incentive or payment originating from the establishment to write this review. I understand that Bibione.com has a zero-tolerance policy on fake reviews."
+msgstr "Potvrzuji, že tato recenze vychází z mé vlastní zkušenosti a je můj skutečný názor tohoto ubytování a že nemají žádné osobní nebo obchodní vztah s tohoto zařízení a nenabídla motivaci ani platby pocházející z provozovny napsat tuto recenzi. Chápu, že Bibione.com má politiku nulové tolerance na falešné hodnocení."
+
+msgid "send"
+msgstr "Odeslat"
+
+msgid "Availability"
+msgstr "Dostupnost"
+
+msgid "Check-out "
+msgstr "Check-out "
+
+msgid "Nights"
+msgstr "Nocí"
+
+msgid "Adults "
+msgstr "Dospělí "
+
+msgid "Seniors "
+msgstr "Senioři "
+
+msgid "Children"
+msgstr "Děti"
+
+msgid "Calculate"
+msgstr "Výpočet"
+
+msgid "Children Ages"
+msgstr "Děti ve věku"
+
+msgid "Accommodation"
+msgstr "Ubytování"
+
+msgid "Conditions"
+msgstr "Podmínky"
+
+msgid "Price for %d nights"
+msgstr "Cena pro %d nights"
+
+msgid "Reservation"
+msgstr "Rezervace"
+
+msgid "No results available for the submitted data"
+msgstr "Žádné výsledky k dispozici za odeslaná data"
+
+msgid "Offer"
+msgstr "Nabídka"
+
+msgid "Show all accommodations"
+msgstr "Zobrazit další ubytování"
+
+msgid "We are processing your request"
+msgstr "Váš požadavek se zpracovává"
+
+msgid "Please be patient"
+msgstr "Prosím, buďte trpěliví"
+
+msgid "Thank you for having chosen us."
+msgstr "Děkujeme vám za nás."
+
+msgid "A-Z"
+msgstr "A-Z"
+
+msgid "Z-A"
+msgstr "Z-A"
+
+msgid "On sale"
+msgstr "Na prodej"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Floor area"
+msgstr "Podlahová plocha"
+
+msgid "Province"
+msgstr "Provincie"
+
+msgid "Area"
+msgstr "Plocha"
+
+msgid "Last update"
+msgstr "Poslední aktualizace:"
+
+msgid "Floor"
+msgstr "Podlaha"
+
+msgid "Ground floor"
+msgstr "Přízemí"
+
+msgid "Top floor"
+msgstr "Horní patro"
+
+msgid "Attic"
+msgstr "Attic"
+
+msgid "Multiple levels"
+msgstr "Více úrovní"
+
+msgid "ND"
+msgstr "ND"
+
+msgid "Condition"
+msgstr "Podmínka"
+
+msgid "New"
+msgstr "Nové"
+
+msgid "Bathrooms"
+msgstr "Koupelny"
+
+msgid "Heating"
+msgstr "Topení"
+
+msgid "Autonomous"
+msgstr "Autonomní"
+
+msgid "Communal"
+msgstr "Komunální"
+
+msgid "Pay per use"
+msgstr "Platit za použití"
+
+msgid "Box Auto"
+msgstr "Box Auto"
+
+msgid "Parking space"
+msgstr "Parkovací místo"
+
+msgid "Energy efficiency class"
+msgstr "Třída energetické účinnosti"
+
+msgid "not set"
+msgstr "není nastaveno"
+
+msgid "Nondescript"
+msgstr "Nepopsatelná"
+
+msgid "Free property"
+msgstr "Volné ubytování"
+
+msgid "Under evaluation"
+msgstr "Podle hodnocení"
+
+msgid "IPE"
+msgstr "IPE"
+
+msgid "Yes"
+msgstr "Ano"
+
+msgid "Real estate agency collaboration"
+msgstr "Realitní agentura spolupráce"
+
+msgid "Facility"
+msgstr "Zařízení"
+
+msgid "External order ID"
+msgstr "Externí kód"
+
+msgid "This field is required."
+msgstr "Toto pole je požadováno."
+
+msgid "Correct format: dd/mm/yyyy"
+msgstr "Správný formát: dd/mm/rrrr"
+
+msgid "Booking reference"
+msgstr "Číslo rezervace"
+
+msgid "Client code"
+msgstr "Kód klienta"
+
+msgid "Check-in must be great than Check-out"
+msgstr "Check-in musí být skvělé než Check-out"
+
+msgid "Please insert a valid email address!"
+msgstr "Prosím vložte platnou emailovou adresu!"
+
+msgid "Rejected order"
+msgstr "Odmítnutí objednávky"
+
+msgid "Period"
+msgstr "Období"
+
+msgid "Check-In %1s Check-Out %2s"
+msgstr "Check-In %1s Check-Out %2s"
+
+msgid "People"
+msgstr "Lidé"
+
+msgid "Web Check-in"
+msgstr "Web Check-in"
+
+msgid "Total"
+msgstr "Celkem"
+
+msgid "&euro; %d"
+msgstr "&euro; %d"
+
+msgid "Deposit total"
+msgstr "Vklad celkem"
+
+msgid "Status"
+msgstr "Stav"
+
+msgid "Order sent to bank"
+msgstr "Objednávky odeslané do banky"
+
+msgid "Pay"
+msgstr "Platit"
+
+msgid "Waiting to confirm"
+msgstr "Čekání na potvrzení"
+
+msgid "Payment attempt was not successful. Try again"
+msgstr "Platební pokus nebyl úspěšný. Zkuste to znovu"
+
+msgid "Payed order"
+msgstr "Uhradit objednávku"
+
+msgid "Order by credit card guarantee"
+msgstr "Seřadit podle garance kreditní kartou"
+
+msgid "Credit card details"
+msgstr "Podrobnosti o kreditní kartě"
+
+msgid "Holder"
+msgstr "Držitel"
+
+msgid "Number"
+msgstr "Číslo"
+
+msgid "Valid until"
+msgstr "Platné do"
+
+msgid "Change data"
+msgstr "Změnit data"
+
+msgid "Month (MM)"
+msgstr "Měsíc (MM)"
+
+msgid "Year (YY)"
+msgstr "Rok (RR)"
+
+msgid "%1s will not charge anything to your credit card. Your credit card details are only requested in order to guarantee your booking."
+msgstr "%1s neúčtuje nic na vaši kreditní kartu. Údaje o kreditní kartě jsou požadovány pouze pro zaručení vaší rezervace."
+
+msgid "Other payments"
+msgstr "Ostatní platby"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Amount"
+msgstr "Množství"
+
+msgid "Payment refused"
+msgstr "Platba odmítnuta"
+
+msgid "New payment"
+msgstr "Nová platba"
+
+msgid "It 'requires a further amount for payments"
+msgstr "To \"vyžaduje dodatečná částka pro platby"
+
+msgid "Please insert a correct amount, it should be this format: xxx.xx (please use dot for deciaml prices)"
+msgstr "Prosím vložte správnou částku, by měl být tento formát: xxx.xx (použijte tečku za deciaml ceny)"
+
+msgid "Thank you: payment process successfully completed"
+msgstr "Děkuji: platební proces úspěšně dokončen"
+
+msgid "Print"
+msgstr "Tisk"
+
+msgid "Payment process not successfully completed"
+msgstr "Platební proces úspěšně dokončen"
+
+msgid "Payment process not successfully completed and has been deleted"
+msgstr "Proces platby není úspěšně dokončena a byla odstraněna"
+
+msgid "Some problems occured durint payment process, please contact merchant if you are sure that your payment process completed"
+msgstr "Durint platební proces došlo k problémům, prosím kontaktujte obchodníka, pokud jste si jisti, že vaše platební proces dokončen"
+
+msgid "Error inserting data"
+msgstr "Chyba při vkládání dat"
+
+msgid "Order doesn't exist"
+msgstr "Objednávka neexistuje"
+
+msgid "Deposit does not exist"
+msgstr "Záloha neexistuje"
+
+msgid "At this moment you cannot do payments."
+msgstr "V tomto okamžiku nelze provést platby."
+
+msgid "index.php?view=payment&actionmode=error&payedOrderId="
+msgstr "index.php?View=Payment&actionmode=Error&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=activaServer&payedOrderId="
+msgstr "index.php?View=Payment&actionmode=activaServer&payedOrderId="
+
+msgid "index.php?view=orders"
+msgstr "index.php?View=Orders"
+
+msgid "index.php?view=payment&actionmode=bnlpositivity&payedOrderId="
+msgstr "index.php?View=Payment&actionmode=bnlpositivity&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=keyclient&payedOrderId="
+msgstr "index.php?View=Payment&actionmode=keyclient&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=keyclient2014&payedOrderId="
+msgstr "index.php?View=Payment&actionmode=keyclient2014&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=pagoonline&payedOrderId="
+msgstr "index.php?View=Payment&actionmode=pagoonline&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=pagoonline&payedOrderId=donation"
+msgstr "index.php?View=Payment&actionmode=pagoonline&payedOrderId=Donation"
+
+msgid "index.php?view=payment&actionmode=errordonation"
+msgstr "index.php?View=Payment&actionmode=errordonation"
+
+msgid "index.php?view=payment&actionmode=errordonation&payedOrderId="
+msgstr "index.php?View=Payment&actionmode=errordonation&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=setefiServer&payedOrderId="
+msgstr "index.php?View=Payment&actionmode=setefiServer&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=virtualpay&payedOrderId="
+msgstr "index.php?View=Payment&actionmode=virtualpay&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=virtualpay&payedOrderId=donation"
+msgstr "index.php?View=Payment&actionmode=virtualpay&payedOrderId=Donation"
+
+msgid "index.php?view=payment&actionmode=wspayform&payedOrderId="
+msgstr "index.php?View=Payment&actionmode=wspayform&payedOrderId="
+
+msgid "Enter your details"
+msgstr "Zadejte své údaje"
+
+msgid "Reenter email"
+msgstr "Zadejte znovu email"
+
+msgid "Your Address"
+msgstr "Vaše adresa"
+
+msgid "Postal Code"
+msgstr "Poštovní směrovací číslo"
+
+msgid "Note"
+msgstr "Poznámka:"
+
+msgid "Your estimated time of arrival"
+msgstr "Odhadovaný čas příjezdu"
+
+msgid "I don't know"
+msgstr "Nevím"
+
+msgid "Password"
+msgstr "Heslo"
+
+msgid "Payment method"
+msgstr "Způsob platby"
+
+msgid "Please choose a payment method"
+msgstr "Vyberte si prosím způsob platby"
+
+msgid "Total deposit : €"
+msgstr "Celkový vklad: €"
+
+msgid "Good to know"
+msgstr "Je dobré vědět"
+
+msgid "Info"
+msgstr "Informace"
+
+msgid "I agree to conditions"
+msgstr "Souhlasím s podmínkami"
+
+msgid "I agree"
+msgstr "Souhlasím"
+
+msgid "Almost done"
+msgstr "Téměř hotovo"
+
+msgid "comment"
+msgstr "komentář"
+
+msgid "Book now"
+msgstr "Zarezervujte si teď"
+
+msgid "Energy Class"
+msgstr "Energetická třída"
+
+msgid "nondescript"
+msgstr "nepopsatelná"
+
+msgid "free property"
+msgstr "volné ubytování"
+
+msgid "A+"
+msgstr "A +"
+
+msgid "A"
+msgstr "A"
+
+msgid "B"
+msgstr "B"
+
+msgid "C"
+msgstr "C"
+
+msgid "D"
+msgstr "D"
+
+msgid "E"
+msgstr "E"
+
+msgid "F"
+msgstr "F"
+
+msgid "G"
+msgstr "G"
+
+msgid "EPI Value"
+msgstr "EPI hodnota"
+
+msgid "Smart offer"
+msgstr "Smart nabídka"
+
+msgid "Attention!"
+msgstr "Pozor!"
+
+msgid "It 's not possible to insert your own review"
+msgstr "Není možné vložit vlastní recenzi"
+
+msgid "nonexistent order"
+msgstr "neexistující objednávky"
+
+msgid "Order with already a Review"
+msgstr "Objednat se již recenze"
+
+msgid "nonexistent order or to which it is not possible to associate a review"
+msgstr "neexistující objednávky nebo na které není možné přidružit recenze"
+
+msgid "Order not related at this resource"
+msgstr "Objednávky, které se nevztahují na tento prostředek"
+
+msgid "Order make before the date to make a review"
+msgstr "Pořadí se před datum, aby recenze"
+
+msgid "Search"
+msgstr "Hledat"
+
+msgid "Persons min:%1$d max:%2$d"
+msgstr "Osoby min: %1$d max: %2$d"
+
+msgid "Alternative accommodations"
+msgstr "Alternativní ubytování"
+
+msgid "Qt."
+msgstr "QT."
+
+msgid "Select"
+msgstr "Vybrat"
+
+msgid "We're processing your request"
+msgstr "Jsme při zpracování vašeho požadavku"
+
+msgid "No result available"
+msgstr "Žádné výsledky k dispozici."
+
+msgid "Leatest ads"
+msgstr "Leatest reklamy"
+
+msgid "To rent"
+msgstr "K pronájmu"
+
+msgid "Web site"
+msgstr "Webový server"
+
+msgid "Accomodation"
+msgstr "Ubytování"
+
+msgid "On Sell Houses"
+msgstr "Na prodej domy"
+
+msgid "Holiday Packages"
+msgstr "Prázdninové balíčky"
+
+msgid "Destination"
+msgstr "Cíl"
+
+msgid "Booking online"
+msgstr "Rezervace online"
+
+msgid "Destination, property name or address"
+msgstr "Určení, název vlastnosti nebo adresa"
+
+msgid "Enter a destination"
+msgstr "Zadání cíle"
+
+msgid "Tipology"
+msgstr "Typ ubytování"
+
+msgid "Adults"
+msgstr "Dospělí"
+
+msgid "Show only online booking"
+msgstr "Zobrazit pouze on-line rezervace"
+
+msgid "Show map"
+msgstr "Ukázat mapu"
+
+msgid "Search filters"
+msgstr "Vyhledávací filtry"
+
+msgid "Booking type"
+msgstr "Typ rezervace"
+
+msgid "Ratings"
+msgstr "Hodnocení"
+
+msgid "Quality"
+msgstr "Kvalita"
+
+msgid "Bedrooms"
+msgstr "Ložnice"
+
+msgid "or more bedrooms"
+msgstr "nebo více pokojů"
+
+msgid "Club Hotel"
+msgstr "Club Hotel"
+
+msgid "Merchant's facility"
+msgstr "Obchodní zařízení"
+
+msgid ">3"
+msgstr "Video 3"
+
+msgid "Find your property"
+msgstr "Najít nemovitost"
+
+msgid "Contract"
+msgstr "Smlouva"
+
+msgid "All province"
+msgstr "Všechny provincie"
+
+msgid "from"
+msgstr "od"
+
+msgid "to"
+msgstr "do"
+
+msgid "Floor area m&sup2;"
+msgstr "Podlahové plochy m²"
+
+msgid "Only new building"
+msgstr "Jen novostavby"
+
+msgid "Please select"
+msgstr "Zvolte prosím"
+
+msgid "Please enter a integer number"
+msgstr "Zadejte celé číslo."
+
+msgid "Draw area"
+msgstr "Nakreslit oblast"
+
+msgid "Reset"
+msgstr "Obnovit"
+
+msgid "Submit"
+msgstr "Odeslat"
+
+msgid "Click on map and choose your area."
+msgstr "Klikněte na mapu a vyberte si oblast."
+
+msgid "Your holiday"
+msgstr "Vaše dovolená"
+
+msgid "Seniores"
+msgstr "Senioři"
+
+msgid "Years"
+msgstr "Roky"
+
+msgid "Total price"
+msgstr "Celková cena"
+
+msgid "Deposit"
+msgstr "Vklad"

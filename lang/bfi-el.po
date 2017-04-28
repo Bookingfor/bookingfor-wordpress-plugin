@@ -1,0 +1,1635 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: VERSION\n"
+"POT-Creation-Date: 2016-12-22 10:43+0000\n"
+"PO-Revision-Date: 2016-12-22 16:10+0100\n"
+"Language-Team: LANGUAGE TEAM <EMAIL@ADDRESS>\n"
+"Language: el_GR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: \n"
+"X-Generator: Poedit 1.8.11\n"
+
+msgctxt "Page slug"
+msgid "thankspopup"
+msgstr "thankspopup"
+
+msgid "Sending..."
+msgstr "Αποστολή..."
+
+msgctxt "Page slug"
+msgid "rating"
+msgstr "Βαθμολογία"
+
+msgctxt "Page slug"
+msgid "rapidview"
+msgstr "γρήγορη ματιά "
+
+msgid "Read more"
+msgstr "Διαβάστε περισσότερα"
+
+msgid "Read less"
+msgstr "Διαβάστε λιγότερα"
+
+msgid "Error, please try again"
+msgstr "Λάθος, παρακαλώ προσπαθήστε ξανά"
+
+msgctxt "Page slug"
+msgid "form"
+msgstr "φόρμα"
+
+msgid "Order by"
+msgstr "Παραγγελία από"
+
+msgid "Disappointing"
+msgstr "Απογοητευτικό"
+
+msgid "Okay"
+msgstr "Εντάξει"
+
+msgid "Fair"
+msgstr "Δίκαιη"
+
+msgid "Very good"
+msgstr "Πολύ καλά"
+
+msgid "Fabulous"
+msgstr "Θαυμάσιο"
+
+msgid "Exceptional"
+msgstr "Άριστο"
+
+msgid "Show reviews from"
+msgstr "Εμφάνιση σχολίων από"
+
+msgid "Write a Review"
+msgstr "Γράψτε μια κριτική"
+
+msgid "Stayed"
+msgstr "Μείνει"
+
+msgid "Replied on %1s"
+msgstr "Απάντησε στις %1s"
+
+msgid "+"
+msgstr "+"
+
+msgid "-"
+msgstr "-"
+
+msgid "Ages of children"
+msgstr "Ηλικίες των παιδιών"
+
+msgid "%s available accommodations"
+msgstr "%s διαθέσιμα καταλύματα"
+
+msgid "Real Estate"
+msgstr "Ακίνητη περιουσία"
+
+msgid "Age of children"
+msgstr "Ηλικία των παιδιών"
+
+msgid "Filter by"
+msgstr "Φιλτραρισμα Κατα"
+
+msgctxt "Page slug"
+msgid "my-account"
+msgstr "ο λογαριασμός μου"
+
+msgctxt "Page title"
+msgid "My Account"
+msgstr "Ο λογαριασμός μου"
+
+msgctxt "Page slug"
+msgid "cartdetails"
+msgstr "καλάθιΠερισσότερα"
+
+msgctxt "Page title"
+msgid "Cart Details"
+msgstr "Καλάθι λεπτομέρειες"
+
+msgid "Cart details"
+msgstr "Καλάθι λεπτομέρειες"
+
+msgid "Display the user's Cart link in the sidebar."
+msgstr "Εμφάνιση του χρήστη καλάθι σύνδεση στο sidebar."
+
+msgid "BookingFor Cart"
+msgstr "BookingFor καλάθι"
+
+msgid "A Search box for multimerchant, monomerchant and sell on."
+msgstr "Ένα πλαίσιο αναζήτησης για multimerchant, monomerchant και να πωλούν σε."
+
+msgid "Activities"
+msgstr "Δραστηριότητες"
+
+msgid "Search Type"
+msgstr "Τύπος αναζήτησης"
+
+msgid "Multimerchant"
+msgstr "Multimerchant"
+
+msgid "Monomerchant"
+msgstr "Monomerchant"
+
+msgid "Tab"
+msgstr "Καρτέλα"
+
+msgid "Block Months"
+msgstr "Μπλόκο μήνες"
+
+msgid "Disable Days"
+msgstr "Απενεργοποίηση ημέρες"
+
+msgid "Merchant category"
+msgstr "Κατηγορία εμπόρων"
+
+msgid "Product category"
+msgstr "Κατηγορία προϊόντος"
+
+msgid "Displays horizontally"
+msgstr "Εμφανίζει οριζόντια"
+
+msgid "Group by condominium"
+msgstr "Ομάδα από συγκυριαρχία"
+
+msgid "Fields Visibility"
+msgstr "Ορατότητα πεδίων"
+
+msgid "Map Button"
+msgstr "Κουμπί χάρτη."
+
+msgid "Selected Nights"
+msgstr "Επιλεγμένες βραδιές"
+
+msgid "Date Range"
+msgstr "Εύρος ημερομηνιών"
+
+msgid "Childrens"
+msgstr "Παιδικά"
+
+msgid "Only Online Booking"
+msgstr "Μόνο Online κράτησης"
+
+msgid "Senior"
+msgstr "Ανώτερος"
+
+msgid "Floor Area"
+msgstr "Περιοχή πατωμάτων"
+
+msgid "BedRooms"
+msgstr "Υπνοδωμάτια"
+
+msgid "Baths"
+msgstr "Λουτρά"
+
+msgid "Only New"
+msgstr "Μόνο νέα"
+
+msgid "Services list"
+msgstr "Λίστα υπηρεσιών"
+
+msgid "A Search box. (DISMISSED)"
+msgstr "Ένα πλαίσιο αναζήτησης. (ΑΠΟΡΡΊΦΘΗΚΕ)"
+
+msgid "BookingFor Search (DISMISSED)"
+msgstr "BookingFor Αναζήτηση (ΑΠΟΡΡΊΦΘΗΚΕ)"
+
+msgid "A Search on Sell box. (DISMISSED)"
+msgstr "Μια αναζήτηση στο πλαίσιο πώλησης. (ΑΠΟΡΡΊΦΘΗΚΕ)"
+
+msgid "BookingFor Search On Sell (DISMISSED)"
+msgstr "BookingFor αναζήτηση για πώληση (ΑΠΟΡΡΊΦΘΗΚΕ)"
+
+msgid "Your Cart is empty! "
+msgstr "Το καλάθι σας είναι άδειο! "
+
+msgid "Are you sure?"
+msgstr "Είσαι σίγουρος?"
+
+msgid "Discount"
+msgstr "Έκπτωση"
+
+msgid "Subtotal"
+msgstr "Μερικό σύνολο"
+
+msgid "I agree to the conditions"
+msgstr "Συμφωνώ με τους όρους"
+
+msgid "I accept personal data treatment"
+msgstr "Δέχομαι την επεξεργασία δεδομένων προσωπικού χαρακτήρα"
+
+msgid "I accept additional purposes"
+msgstr "Δέχομαι επιπρόσθετους σκοπούς"
+
+msgid "Cart Not enabled! "
+msgstr "Το καλάθι δεν ενεργοποιηθεί! "
+
+msgid "Personal data treatment"
+msgstr "Επεξεργασία δεδομένων προσωπικού χαρακτήρα"
+
+msgid "Additional purposes"
+msgstr "Επιπρόσθετους σκοπούς"
+
+msgid "You need to be loggedin in order to access this page."
+msgstr "Θα πρέπει να είναι loggedin προκειμένου να αποκτήσετε πρόσβαση σε αυτήν τη σελίδα."
+
+msgid "Reservations"
+msgstr "Κρατήσεις"
+
+msgid "Social Network"
+msgstr "Κοινωνικό δίκτυο"
+
+msgid "Personal Informations"
+msgstr "ΠΡΟΣΩΠΙΚΕΣ ΠΛΗΡΟΦΟΡΙΕΣ"
+
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+
+msgid "Give your social profiles"
+msgstr "Δώστε προφίλ σας"
+
+msgid "Your profile"
+msgstr "Το προφίλ σας"
+
+msgid "Connect with your account via your social networks , one less password to remember!"
+msgstr "Συνδεθείτε με το λογαριασμό σας μέσω των κοινωνικών δικτύων σας, να θυμηθείτε έναν κωδικό πρόσβασης λιγότερο!"
+
+msgid "This information is used to automatically fill in your details and book more quickly. We do not share it publicly."
+msgstr "Αυτές οι πληροφορίες χρησιμοποιούνται για να αυτόματα να συμπληρώσετε τα στοιχεία σας και κάντε κράτηση πιο γρήγορα. Δεν συμμεριζόμαστε το δημόσια."
+
+msgid "Date of birth"
+msgstr "Ημερομηνία γέννησης"
+
+msgid "Gender"
+msgstr "Των δύο φύλων"
+
+msgid "Male"
+msgstr "Αρσενικό"
+
+msgid "Language"
+msgstr "Γλώσσα"
+
+msgid "Female"
+msgstr "Θηλυκό"
+
+msgid "Zip Code"
+msgstr "Ταχυδρομικός κώδικας"
+
+msgid "State/Province"
+msgstr "Πολιτεία/Επαρχία"
+
+msgid "Reservation number"
+msgstr "Αριθμός κράτησης"
+
+msgid "Cancel Booking"
+msgstr "Ακύρωση κράτησης"
+
+msgid "Booking Detail"
+msgstr "Λεπτομέρειες κράτησης"
+
+msgid "You want to change your password? Click on the button below and we'll send you an email with a link to reset it."
+msgstr "Θέλετε να αλλάξετε τον κωδικό πρόσβασής σας; Κάντε κλικ στο κουμπί παρακάτω και θα σας στείλουμε ένα email με ένα σύνδεσμο για να τον επαναφέρετε."
+
+msgid "Change your password"
+msgstr "Αλλαγή κωδικού πρόσβασης"
+
+msgid "Choose how often you want to receive offers and suggestions, do not miss the best offers!"
+msgstr "Επιλέξτε πόσο συχνά θέλετε να λάβετε τις προσφορές και προτάσεις, μην χάσετε τις καλύτερες προσφορές!"
+
+msgid "Receive newsletter"
+msgstr "Λάβετε το ενημερωτικό δελτίο"
+
+msgid "I do not care"
+msgstr "Δεν με νοιάζει"
+
+msgid "Fetching Reservation Details"
+msgstr "Θελκτικός στοιχεία κράτησης"
+
+msgid " Years"
+msgstr " Χρόνια"
+
+msgid "adults"
+msgstr "ενήλικες"
+
+msgid "Back to list"
+msgstr "Πίσω στη λίστα"
+
+msgid "children"
+msgstr "τα παιδιά"
+
+msgid "Total Price"
+msgstr "Συνολική τιμή"
+
+msgid "My Cart"
+msgstr "Το καλάθι μου"
+
+msgid "Days"
+msgstr "Ημέρες"
+
+msgid "Continue shopping"
+msgstr "Συνεχίστε τις αγορές"
+
+msgid "You can't acquire resources from another merchant."
+msgstr "Δεν μπορείτε να αποκτήσετε πόρους από άλλον έμπορο."
+
+msgid "Please, select a day"
+msgstr "Παρακαλούμε, επιλέξτε μια μέρα"
+
+msgid "Circle"
+msgstr "Κύκλος"
+
+msgid "BFI Custom Merchants Links"
+msgstr "BFI προσαρμοσμένη Merchants συνδέσεις"
+
+msgid "This is a demo store for testing purposes &mdash; no orders shall be fulfilled."
+msgstr "Αυτό είναι ένα demo κατάστημα για δοκιμαστικούς σκοπούς &mdash;; δεν υπάρχουν παραγγελίες πρέπει να πληρούνται."
+
+msgid "Search Results: &ldquo;%s&rdquo;"
+msgstr "Αποτελέσματα αναζήτησης:&ldquo;%s&rdquo;"
+
+msgid "&nbsp;&ndash; Page %s"
+msgstr "&nbsp;&ndash; Σελίδα %s"
+
+msgctxt "Page slug"
+msgid "search-availability"
+msgstr "Αναζήτηση διαθεσιμότητας"
+
+msgctxt "slug"
+msgid "search-availability"
+msgstr "Αναζήτηση διαθεσιμότητας"
+
+msgctxt "default-slug"
+msgid "search-availability"
+msgstr "Αναζήτηση διαθεσιμότητας"
+
+msgctxt "Page title"
+msgid "Search Availability"
+msgstr "Αναζήτηση διαθεσιμότητας"
+
+msgctxt "Page slug"
+msgid "properties-for-sale"
+msgstr "καταλύματα-προς πώληση"
+
+msgctxt "Page title"
+msgid "Search Properties for sale"
+msgstr "Αναζήτηση καταλυμάτων προς πώληση"
+
+msgctxt "Page slug"
+msgid "merchantdetails"
+msgstr "merchantdetails"
+
+msgctxt "slug"
+msgid "merchantdetails"
+msgstr "merchantdetails"
+
+msgctxt "Page title"
+msgid "Merchant Details"
+msgstr "Merchant Details"
+
+msgctxt "Page slug"
+msgid "accommodation-details"
+msgstr "διαμονή-λεπτομέρειες"
+
+msgctxt "slug"
+msgid "accommodation-details"
+msgstr "διαμονή-λεπτομέρειες"
+
+msgctxt "Page title"
+msgid "Accommodation Details"
+msgstr "Λεπτομέρειες διαμονής"
+
+msgctxt "Page slug"
+msgid "onsell-details"
+msgstr "onsell-λεπτομέρειες"
+
+msgctxt "slug"
+msgid "onsell-details"
+msgstr "onsell-λεπτομέρειες"
+
+msgctxt "Page title"
+msgid "On Sell Details"
+msgstr "Σχετικά με τις λεπτομέρειες της πώλησης"
+
+msgctxt "Page slug"
+msgid "orders"
+msgstr "παραγγελίες"
+
+msgctxt "Page title"
+msgid "Order Details"
+msgstr "Λεπτομέρειες παραγγελίας"
+
+msgctxt "Page slug"
+msgid "payment"
+msgstr "πληρωμή"
+
+msgctxt "Page title"
+msgid "Payment Details"
+msgstr "Λεπτομέρειες πληρωμής"
+
+msgctxt "slug"
+msgid "merchantlist"
+msgstr "merchantlist"
+
+msgid "Merchant list pages"
+msgstr "Σελίδες Merchant  λίστα"
+
+msgid "Merchant list page"
+msgstr "Σελίδα λίστα εμπόρων"
+
+msgctxt "Admin menu name"
+msgid "Merchant list"
+msgstr "Λίστα Merchant"
+
+msgid "Add Merchant list page"
+msgstr "Προσθέστε σελίδα λίστα Merchant"
+
+msgid "Add New Merchant list page"
+msgstr "Προσθέστε νέο Merchant σελίδα λιστας"
+
+msgid "Edit"
+msgstr "Επεξεργασία"
+
+msgid "Edit Merchant list page"
+msgstr "Επεξεργαστείτε τη σελίδα λίστα Merchant"
+
+msgid "New Merchant list page"
+msgstr "Νέα σελίδα λίστα Merchant"
+
+msgid "View Merchant list page"
+msgstr "Προβολή Merchant σελίδα λιστας"
+
+msgid "Search Merchant list page"
+msgstr "Αναζήτηση Merchant σελίδα λιστας"
+
+msgid "No Merchant list page found"
+msgstr "Δεν βρέθηκε καμία σελίδα λίστα Merchant "
+
+msgid "No Merchant list page found in trash"
+msgstr "Καμία σελίδα λίστα Merchant βρέθηκε στα σκουπίδια"
+
+msgid "Parent Merchant list page"
+msgstr "Γονική Merchant λίστα σελίδας"
+
+msgid "Insert into Merchant list page"
+msgstr "Εισαγάγετε στη λίστα της σελίδας Merchant"
+
+msgid "Uploaded to this Merchant list page"
+msgstr "Ανέβηκε σε αυτή τη σελίδα λίστα Merchant"
+
+msgid "Filter Merchant list pages"
+msgstr "Φίλτρο Merchant σε σελίδα λίστας "
+
+msgid "Merchant list pages navigation"
+msgstr "Πλοήγηση σελίδων λίστας Merchant"
+
+msgid "This is where you can add new Merchant list page."
+msgstr "Αυτό είναι όπου μπορείτε να προσθέσετε νέα σελίδα λίστας Merchant."
+
+msgid "Merchant details"
+msgstr "Λεπτομέρειες Merchant"
+
+msgid "Accomodation details"
+msgstr "Λεπτομέρειες διαμονής"
+
+msgid "Order details"
+msgstr "Λεπτομέρειες παραγγελίας"
+
+msgid "On Sell details"
+msgstr "Σχετικά με τις λεπτομέρειες της πώλησης"
+
+msgid "behavior.calendar"
+msgstr "Behavior.Calendar"
+
+msgid "behavior.tooltip"
+msgstr "Behavior.tooltip"
+
+msgid "date"
+msgstr "ημερομηνία"
+
+msgid "JLIB_HTML_CALENDAR"
+msgstr "JLIB_HTML_CALENDAR"
+
+msgid "image"
+msgstr "εικόνα"
+
+msgid "Autentication Mode"
+msgstr " Autentication Mode"
+
+msgid "Categories"
+msgstr "Κατηγορίες"
+
+msgid "Merchant category filter"
+msgstr "Φίλτρο κατηγορίας Merchant"
+
+msgid "Merchant Rating filter"
+msgstr "Merchant φίλτρο χαρακτηρισμού"
+
+msgid "All"
+msgstr "Όλα "
+
+msgid "Cities"
+msgstr "Πόλεις"
+
+msgid "BookingFor Permalinks"
+msgstr "BookingFor Permalinks"
+
+msgid "BookingFor search result page"
+msgstr "BookingFor σελίδα αποτελεσμάτων αναζήτησης"
+
+msgid "BookingFor Merchant details page"
+msgstr "Στη σελίδα λεπτομερειών BookingFor Merchant"
+
+msgid "BookingFor Accommodation details page"
+msgstr "Σελίδα λεπτομερειών BookingFor καταλύματα"
+
+msgid "BookingFor On Sell details page"
+msgstr "BookingFor για πώληση σελίδα λεπτομερειών"
+
+msgid "BookingFor Merchant List page"
+msgstr "BookingFor Merchant λίστα σελίδα"
+
+msgid "These settings control the permalinks used specifically for BookingFor."
+msgstr "Αυτές οι ρυθμίσεις ελέγχουν το permalinks χρησιμοποιούνται ειδικά για BookingFor."
+
+msgid "Default"
+msgstr "Προεπιλογή"
+
+msgid "Search Availability base"
+msgstr "Αναζήτηση βάση διαθεσιμότητας"
+
+msgid "Custom Base"
+msgstr "Προσαρμοσμένη βάση"
+
+msgid "Enter a custom base to use. A base <strong>must</strong> be set or WordPress will use default instead."
+msgstr "Για να εισαγάγετε μια προσαρμοσμένη βάση να χρησιμοποιήσετε. Μια βάση <strong> πρέπει να </strong> είναι ρυθμισμένος ή WordPress θα χρησιμοποιήσει την προεπιλεγμένη αντί."
+
+msgctxt "default-slug"
+msgid "searchavailability"
+msgstr "searchavailability"
+
+msgid "If you like <strong>BookingFor</strong> please leave us a %s&#9733;&#9733;&#9733;&#9733;&#9733;%s rating. A huge thank you from Bookingfor in advance!"
+msgstr "Αν σας αρέσει <strong>BookingFor  </strong>παρακαλώ αφήστε μας ένα %s&#9733;&#9733;&#9733;&#9733;&#9733;%s βαθμολογίας. Ένα τεράστιο ευχαριστώ από Bookingfor εκ των προτέρων!"
+
+msgid "Thanks"
+msgstr "Ευχαριστώ"
+
+msgid "Thank you for selling with BookingFor."
+msgstr "Σας ευχαριστούμε για την πώληση με BookingFor."
+
+msgid "Save changes"
+msgstr "Αποθηκεύστε τις αλλαγές"
+
+msgid "There was some issue posting your review. Please try back later."
+msgstr "Υπήρχε κάποιο θέμα απόσπαση κριτική σας. Παρακαλούμε δοκιμάστε ξανά αργότερα."
+
+msgid "Your review was succesfully posted."
+msgstr "Κριτική σας ήταν καταχωρήθηκε επιτυχώς."
+
+msgid "&resourceId="
+msgstr "& resourceId ="
+
+msgid "index.php?option=com_bookingforconnector&view=onsellunit&resourceId="
+msgstr "index.php?Option=com_bookingforconnector&View=onsellunit&resourceId="
+
+msgid "index.php?view=payment&actionmode=activa&payedOrderId="
+msgstr "index.php?View=Payment&actionmode=Activa&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=setefi&payedOrderId="
+msgstr "index.php?View=Payment&actionmode=setefi&payedOrderId="
+
+msgid "A details merchant box."
+msgstr "Ένα κουτί Merchant λεπτομέρειες."
+
+msgid "BookingFor details merchant box"
+msgstr "BookingFor στοιχεία κουτιού merchant"
+
+msgid "Title"
+msgstr "Τίτλος"
+
+msgid "A Carousel list of Merchants."
+msgstr "Λίστα Merchants με εναλλασσόμενες εικόνες."
+
+msgid "BookingFor Merchants"
+msgstr "BookingFor Merchants"
+
+msgid "Tags"
+msgstr "Ετικέτες"
+
+msgid "Items per page"
+msgstr "Αντικείμενα ανά σελίδα"
+
+msgid "Max items"
+msgstr "Max στοιχεία"
+
+msgid "Max description characters"
+msgstr "Χαρακτήρες περιγραφής Max"
+
+msgid "A Filter box."
+msgstr "Ένα κουτί φίλτρου."
+
+msgid "BookingFor Search Filters"
+msgstr "Φίλτρα αναζήτησης BookingFor"
+
+msgid "A Search box."
+msgstr "Ένα πλαίσιο αναζήτησης."
+
+msgid "BookingFor Search"
+msgstr "Αναζήτηση BookingFor"
+
+msgid "A Search on Sell box."
+msgstr "Μια αναζήτηση στο πλαίσιο πώλησης."
+
+msgid "BookingFor Search On Sell"
+msgstr "BookingFor αναζήτηση για πώληση"
+
+msgid "Request for Information"
+msgstr "Αίτημα για πληροφορίες"
+
+msgid "Name"
+msgstr "Όνομα"
+
+msgid "Mandatory"
+msgstr "Υποχρεωτική"
+
+msgid "Surname"
+msgstr "Επώνυμο"
+
+msgid "Email"
+msgstr "Ηλεκτρονικό ταχυδρομείο"
+
+msgid "Phone"
+msgstr "Τηλέφωνο"
+
+msgid "Address"
+msgstr "Διεύθυνση"
+
+msgid "Cap"
+msgstr "Τκ"
+
+msgid "City"
+msgstr "Πόλη"
+
+msgid "Provincia"
+msgstr "Επαρχία "
+
+msgid "Check-in"
+msgstr "Check in"
+
+msgid "Check-out"
+msgstr "Check out"
+
+msgid "Persons"
+msgstr "Άτομα"
+
+msgid "Special Requests"
+msgstr "Ειδικά αιτήματα"
+
+msgid "Personal data's treatment policy"
+msgstr "Πολιτική προσωπικών δεδομένων της θεραπείας"
+
+msgid "I agree to the personal data's treatment policy"
+msgstr "Συμφωνώ για τα προσωπικά δεδομένα του πολιτική αγωγή"
+
+msgid "Send"
+msgstr "Αποστολή"
+
+msgctxt "Page slug"
+msgid "contactspopup"
+msgstr "contactspopup"
+
+msgctxt "Page slug"
+msgid "mapspopup"
+msgstr "mapspopup"
+
+msgctxt "Page slug"
+msgid "resources"
+msgstr "πόροι"
+
+msgctxt "Page slug"
+msgid "onsellunits"
+msgstr "onsellunits"
+
+msgctxt "Page slug"
+msgid "offers"
+msgstr "Προσφορές"
+
+msgctxt "Page slug"
+msgid "offer"
+msgstr "προσφορά"
+
+msgctxt "Page slug"
+msgid "thanks"
+msgstr "Ευχαριστώ"
+
+msgctxt "Page slug"
+msgid "errors"
+msgstr "σφάλματα"
+
+msgctxt "Page slug"
+msgid "packages"
+msgstr "Πακέτα διακοπών"
+
+msgctxt "Page slug"
+msgid "package"
+msgstr "πακέτο"
+
+msgctxt "Page slug"
+msgid "reviews"
+msgstr "σχόλια"
+
+msgctxt "Page slug"
+msgid "review"
+msgstr "Αναθεώρηση"
+
+msgctxt "Page slug"
+msgid "redirect"
+msgstr "Ανακατεύθυνση"
+
+msgctxt "Page slug"
+msgid "inforequestpopup"
+msgstr "inforequestpopup"
+
+msgid "List"
+msgstr "Λίστα"
+
+msgid "Grid"
+msgstr "Πλέγμα"
+
+msgid "Vetrina"
+msgstr "Κοινωνικά"
+
+msgid "Top"
+msgstr "Κορυφή"
+
+msgid "New!"
+msgstr "Νέα!"
+
+msgid "Show phone"
+msgstr "Εμφάνιση τηλεφώνου"
+
+msgid "Request info"
+msgstr "Αίτηση για πληροφορίες"
+
+msgid "Rooms"
+msgstr "Δωμάτια"
+
+msgid "m&sup2;"
+msgstr "m²"
+
+msgid "Contact Agent"
+msgstr "Επικοινωνήστε με το πρακτορείο"
+
+msgid "New ad"
+msgstr "Νέα αγγελία"
+
+msgid "&laquo;"
+msgstr "&laquo;"
+
+msgid "&raquo;"
+msgstr "&raquo;"
+
+msgid "Page"
+msgstr "Σελίδα"
+
+msgid "Would you like to leave your review?"
+msgstr "Θα θέλατε να αφήσετε την κριτική σας;"
+
+msgid "Score from %s reviews"
+msgstr "Βαθμολογία από %s κριτικές"
+
+msgid "Guest Rating"
+msgstr "Βαθμολογία επισκεπτών"
+
+msgid "No results available"
+msgstr "Δεν υπάρχουν διαθέσιμα αποτελέσματα"
+
+msgid "Order"
+msgstr "Παραγγελία"
+
+msgid "Payment"
+msgstr "Πληρωμή"
+
+msgid "Sort By:"
+msgstr "Ταξινόμηση κατά:"
+
+msgid "Price"
+msgstr "Τιμή"
+
+msgid "Offers"
+msgstr "Προσφορές"
+
+msgid "Only %d available"
+msgstr "Μόνο %d διαθέσιμο"
+
+msgid "Available"
+msgstr "Διαθέσιμο"
+
+msgid "Treatment"
+msgstr "Θεραπεία"
+
+msgid "Total for %d night/s"
+msgstr "Συνολικά για %d νύχτες"
+
+msgid "Book Now"
+msgstr "Κάντε κράτηση τώρα"
+
+msgid "More Information"
+msgstr "Περισσότερες πληροφορίες"
+
+msgid "Offer %d%%"
+msgstr "Προσφέρουν %d%%"
+
+msgid "Show More"
+msgstr "Εμφάνιση περισσοτέρων"
+
+msgid "Show Less"
+msgstr "Εμφάνιση λιγότερων"
+
+msgid "%s Results  found from %s for %s nigth(s)"
+msgstr "%s αποτελέσματα βρέθηκαν από %s για %s nigth(s)"
+
+msgid "Lowest price first"
+msgstr "Αύξουσα τιμή"
+
+msgid "Review score"
+msgstr "Βαθμολογία σχολίων"
+
+msgid "Best offers"
+msgstr "Καλύτερες προσφορές"
+
+msgid " Offer "
+msgstr " Προσφορά "
+
+msgid "Meals"
+msgstr "Γεύματα"
+
+msgid "SHOW ALL"
+msgstr "ΕΜΦΆΝΙΣΗ ΌΛΩΝ"
+
+msgid "Facility contacts data"
+msgstr "Εγκατάσταση δεδομένων Επαφών"
+
+msgid "OPS, some errors occurred! Please try again later."
+msgstr "OPS, παρουσιάστηκαν μερικά σφάλματα! Παρακαλούμε δοκιμάστε ξανά αργότερα."
+
+msgid "Show All"
+msgstr "Εμφάνιση όλων"
+
+msgid "Reviews"
+msgstr "Σχόλια"
+
+msgid "Would you like to be the first to write a review?"
+msgstr "Θα θέλατε να είναι ο πρώτος που θα γράψει μια κριτική;"
+
+msgid "Poor"
+msgstr "Κακή"
+
+msgid "Average"
+msgstr "Κατά μέσο όρο"
+
+msgid "Pleasant"
+msgstr "Ευχάριστο"
+
+msgid "Good"
+msgstr "Καλό"
+
+msgid "Excellent"
+msgstr "Θαυμάσιο"
+
+msgid "All reviewers"
+msgstr "Όλοι"
+
+msgid "Solo travellers"
+msgstr "Μεμονωμένα άτομα"
+
+msgid "Groups"
+msgstr "Ομάδες"
+
+msgid "Young couplet"
+msgstr "Νέοι δίστιχο"
+
+msgid "Mature couples"
+msgstr "Ώριμα ζευγάρια"
+
+msgid "Families with young children"
+msgstr "Οικογένειες με μικρά παιδιά"
+
+msgid "Family with older children"
+msgstr "Οικογένεια με μεγάλα παιδιά"
+
+msgid "Based on %1$s Reviews."
+msgstr "Βάσει %1$s κριτικές."
+
+msgid "Staff"
+msgstr "Το προσωπικό του ξενοδοχείου"
+
+msgid "Services"
+msgstr "Υπηρεσίες"
+
+msgid "Clean"
+msgstr "Καθαρίστε"
+
+msgid "Comfort"
+msgstr "Άνεση"
+
+msgid "Value for Money"
+msgstr "Αξία για τα χρήματα"
+
+msgid "Score filter"
+msgstr "Βαθμολογία φίλτρο"
+
+msgid "Review"
+msgstr "Αναθεώρηση"
+
+msgid "Reviewed"
+msgstr "Η κριτική έγινε:"
+
+msgid "Period Stay"
+msgstr "Περίοδος διαμονής"
+
+msgid "Reference"
+msgstr "Αναφορά"
+
+msgid "Review certified by %1$s"
+msgstr "Αναθεώρηση πιστοποιημένο από %1$s"
+
+msgid "+ Details"
+msgstr "+ Καταχώρηση"
+
+msgid "- Details"
+msgstr "-Λεπτομέρειες"
+
+msgid "%s has responded to this review"
+msgstr "%s έχει απαντήσει σε αυτή την κριτική"
+
+msgid "No Reviews Found."
+msgstr "Δεν βρέθηκαν αξιολογήσεις."
+
+msgid "Details"
+msgstr "Λεπτομέρειες"
+
+msgid "Media"
+msgstr "Μέσα μαζικής ενημέρωσης"
+
+msgid "Description"
+msgstr "Περιγραφή"
+
+msgid "Map"
+msgstr "Χάρτης"
+
+msgid "Booking"
+msgstr "Κράτηση"
+
+msgid "View Services"
+msgstr "Προβολή υπηρεσιών"
+
+msgid "No Results Found"
+msgstr "Δεν βρέθηκαν αποτελέσματα"
+
+msgid "%s available offers"
+msgstr "%s διαθέσιμες προσφορές"
+
+msgid "Read More"
+msgstr "Διαβάστε περισσότερα"
+
+msgid "Read Less"
+msgstr "Διαβάστε λιγότερα"
+
+msgid "%s available holiday packages"
+msgstr "%s διαθέσιμα: Πακέτα διακοπών"
+
+msgid "please wait..."
+msgstr "Παρακαλώ περίμενε..."
+
+msgid "Type of traveller"
+msgstr "Τύπος ταξιδιώτη"
+
+msgid "Country"
+msgstr "Χώρα"
+
+msgid "E-mail"
+msgstr "Ηλεκτρονικού ταχυδρομείου"
+
+msgid "Confirm E-mail"
+msgstr "Επιβεβαίωση E-mail"
+
+msgid "When did you travel?"
+msgstr "Πότε ταξιδέψατε;"
+
+msgid "Value for money"
+msgstr "Αξία για τα χρήματα"
+
+msgid "Valuation"
+msgstr "Αποτίμηση"
+
+msgid "List of the facility's positive points"
+msgstr "Λίστα με τα θετικά σημεία της διευκόλυνσης"
+
+msgid "List of the facility's negative points"
+msgstr "Λίστα με τα αρνητικά σημεία της διευκόλυνσης"
+
+msgid "I agree to the personal datas treatment policy:"
+msgstr "Συμφωνώ με την πολιτική αγωγή προσωπική datas:"
+
+msgid "Privacy policy"
+msgstr "Πολιτική προστασίας προσωπικών δεδομένων"
+
+msgid "I accept"
+msgstr "Αποδέχομαι"
+
+msgid "I certify that this review is based on my own experience and is my genuine opinion of this accommodation, and that I have no personal or business relationship with this establishment, and have not been offered any incentive or payment originating from the establishment to write this review. I understand that Bibione.com has a zero-tolerance policy on fake reviews."
+msgstr "Βεβαιώνω ότι αυτή η αναθεώρηση είναι με βάση τη δική μου εμπειρία είναι γνήσιο γνώμη μου για αυτό το κατάλυμα, και ότι δεν έχουν καμία προσωπική ή επαγγελματική σχέση με αυτή την εγκατάσταση, και δεν έχουν προσφερθεί κάθε κίνητρο ή πληρωμών που προέρχονται από τη σύσταση να γράψω αυτό το επανεξετάσει. Καταλαβαίνω ότι Bibione.com έχει μια πολιτική μηδενικής ανοχής όσον αφορά τις πλαστές κριτικές."
+
+msgid "send"
+msgstr "Αποστολή"
+
+msgid "Availability"
+msgstr "Διαθεσιμότητα"
+
+msgid "Check-out "
+msgstr "Check out "
+
+msgid "Nights"
+msgstr "Νύχτες"
+
+msgid "Adults "
+msgstr "Ενήλικες "
+
+msgid "Seniors "
+msgstr "Seniors "
+
+msgid "Children"
+msgstr "Τα παιδιά"
+
+msgid "Calculate"
+msgstr "Υπολογισμός"
+
+msgid "Children Ages"
+msgstr "Ηλικίες παιδιών"
+
+msgid "Accommodation"
+msgstr "Διαμονή"
+
+msgid "Conditions"
+msgstr "Προϋποθέσεις"
+
+msgid "Price for %d nights"
+msgstr "Τιμή για το %d νύχτες"
+
+msgid "Reservation"
+msgstr "Κράτηση"
+
+msgid "No results available for the submitted data"
+msgstr "Δεν υπάρχουν αποτελέσματα που είναι διαθέσιμες για τα υποβληθέντα δεδομένα"
+
+msgid "Offer"
+msgstr "Προσφορά"
+
+msgid "Show all accommodations"
+msgstr "Δείτε όλα τα καταλύματα"
+
+msgid "We are processing your request"
+msgstr "Επεξεργαζόμαστε το αίτημά σας"
+
+msgid "Please be patient"
+msgstr "Παρακαλώ να είστε υπομονετικοί"
+
+msgid "Thank you for having chosen us."
+msgstr "Σας ευχαριστούμε για την επιλογή μας."
+
+msgid "A-Z"
+msgstr "Α-Ω"
+
+msgid "Z-A"
+msgstr "Ω-Α"
+
+msgid "On sale"
+msgstr "Για την πώληση"
+
+msgid "Type"
+msgstr "Τύπος"
+
+msgid "Floor area"
+msgstr "Περιοχή πατωμάτων"
+
+msgid "Province"
+msgstr "Επαρχία"
+
+msgid "Area"
+msgstr "Περιοχή"
+
+msgid "Last update"
+msgstr "Τελευταία ενημέρωση"
+
+msgid "Floor"
+msgstr "Πάτωμα"
+
+msgid "Ground floor"
+msgstr "Ισόγειο"
+
+msgid "Top floor"
+msgstr "Επάνω όροφος"
+
+msgid "Attic"
+msgstr "Σοφίτα"
+
+msgid "Multiple levels"
+msgstr "Πολλαπλά επίπεδα"
+
+msgid "ND"
+msgstr "ND"
+
+msgid "Condition"
+msgstr "Κατάσταση"
+
+msgid "New"
+msgstr "Νέα"
+
+msgid "Bathrooms"
+msgstr "Μπάνια"
+
+msgid "Heating"
+msgstr "Θέρμανση"
+
+msgid "Autonomous"
+msgstr "Αυτόνομη"
+
+msgid "Communal"
+msgstr "Κοινόχρηστη"
+
+msgid "Pay per use"
+msgstr "Αμοιβών ανά χρήση"
+
+msgid "Box Auto"
+msgstr "Αυτόματο κιβώτιο"
+
+msgid "Parking space"
+msgstr "Χώρος στάθμευσης"
+
+msgid "Energy efficiency class"
+msgstr "Κλάση ενεργειακής απόδοσης"
+
+msgid "not set"
+msgstr "δεν έχει οριστεί"
+
+msgid "Nondescript"
+msgstr "Αλλόκοτος"
+
+msgid "Free property"
+msgstr "Δωρεάν το κατάλυμα"
+
+msgid "Under evaluation"
+msgstr "Υπό αξιολόγηση"
+
+msgid "IPE"
+msgstr "IPE"
+
+msgid "Yes"
+msgstr "Ναι"
+
+msgid "Real estate agency collaboration"
+msgstr "Μεσιτικό γραφείο συνεργασία"
+
+msgid "Facility"
+msgstr "Εγκατάσταση"
+
+msgid "External order ID"
+msgstr "Εξωτερικές Παραγγελίες ID"
+
+msgid "This field is required."
+msgstr "Αυτό το πεδίο είναι υποχρεωτικό."
+
+msgid "Correct format: dd/mm/yyyy"
+msgstr "Σωστή μορφή: dd/mm/yyyy"
+
+msgid "Booking reference"
+msgstr "Κωδικός κράτησης"
+
+msgid "Client code"
+msgstr "Κωδικός πελάτη"
+
+msgid "Check-in must be great than Check-out"
+msgstr "Check-in θα πρέπει να είναι μεγάλη από το Check-out"
+
+msgid "Please insert a valid email address!"
+msgstr "Παρακαλώ εισάγετε μια έγκυρη διεύθυνση email!"
+
+msgid "Rejected order"
+msgstr "Απορριφθείσα διαταγή"
+
+msgid "Period"
+msgstr "Περίοδος"
+
+msgid "Check-In %1s Check-Out %2s"
+msgstr "Check-In %1s Check Out %2s"
+
+msgid "People"
+msgstr "Άτομα"
+
+msgid "Web Check-in"
+msgstr "Web Check-in"
+
+msgid "Total"
+msgstr "Σύνολο"
+
+msgid "&euro; %d"
+msgstr "&euro; %d"
+
+msgid "Deposit total"
+msgstr "Σύνολο καταθέσεων"
+
+msgid "Status"
+msgstr "Κατάσταση"
+
+msgid "Order sent to bank"
+msgstr "Παραγγελία αποσταλεί στην Τράπεζα"
+
+msgid "Pay"
+msgstr "Πληρώσει"
+
+msgid "Waiting to confirm"
+msgstr "Αναμονή για επιβεβαίωση"
+
+msgid "Payment attempt was not successful. Try again"
+msgstr "Πληρωμή απόπειρα δεν ήταν επιτυχής. Δοκίμασε ξανά"
+
+msgid "Payed order"
+msgstr "Πλήρωσα παραγγελίας"
+
+msgid "Order by credit card guarantee"
+msgstr "Παραγγείλετε από πιστωτική κάρτα ως εγγύηση"
+
+msgid "Credit card details"
+msgstr "Στοιχεία πιστωτικής κάρτας"
+
+msgid "Holder"
+msgstr "Κάτοχος"
+
+msgid "Number"
+msgstr "Αριθμός"
+
+msgid "Valid until"
+msgstr "Ισχύει μέχρι"
+
+msgid "Change data"
+msgstr "Αλλαγή δεδομένων"
+
+msgid "Month (MM)"
+msgstr "Μήνα (MM)"
+
+msgid "Year (YY)"
+msgstr "Έτος (ΥΥ)"
+
+msgid "%1s will not charge anything to your credit card. Your credit card details are only requested in order to guarantee your booking."
+msgstr "%1s δεν θα χρεώσουμε τίποτα στην πιστωτική σας κάρτα. Τα στοιχεία της πιστωτικής κάρτας σας ζητείται μόνο για εγγύηση της κράτησής σας."
+
+msgid "Other payments"
+msgstr "Άλλες πληρωμές"
+
+msgid "Date"
+msgstr "Ημερομηνία"
+
+msgid "Amount"
+msgstr "Ποσό"
+
+msgid "Payment refused"
+msgstr "Άρνηση πληρωμής"
+
+msgid "New payment"
+msgstr "Νέα πληρωμή"
+
+msgid "It 'requires a further amount for payments"
+msgstr "Το «απαιτεί ένα περαιτέρω ποσό για πληρωμές"
+
+msgid "Please insert a correct amount, it should be this format: xxx.xx (please use dot for deciaml prices)"
+msgstr "Παρακαλώ εισάγετε μια σωστή ποσότητα, θα πρέπει να είναι σε αυτήν τη μορφή: xxx.xx (παρακαλούμε χρησιμοποιήστε τελεία για τις deciaml τιμές)"
+
+msgid "Thank you: payment process successfully completed"
+msgstr "Σας ευχαριστώ: ολοκληρώθηκε με επιτυχία η διαδικασία πληρωμής"
+
+msgid "Print"
+msgstr "Εκτύπωση"
+
+msgid "Payment process not successfully completed"
+msgstr "Διαδικασία πληρωμής δεν με επιτυχία ολοκληρώθηκε"
+
+msgid "Payment process not successfully completed and has been deleted"
+msgstr "Διαδικασία πληρωμής δεν με επιτυχία ολοκληρώθηκε και έχει διαγραφεί"
+
+msgid "Some problems occured durint payment process, please contact merchant if you are sure that your payment process completed"
+msgstr "Παρουσιάστηκαν κάποια προβλήματα διαδικασία πληρωμής κατά το χρονικό, παρακαλούμε επικοινωνήστε με έμπορο, εάν είστε βέβαιοι ότι ολοκληρώθηκε η διαδικασία της πληρωμής σας"
+
+msgid "Error inserting data"
+msgstr "Σφάλμα κατά την εισαγωγή δεδομένων"
+
+msgid "Order doesn't exist"
+msgstr "Δεν υπάρχει σειρά"
+
+msgid "Deposit does not exist"
+msgstr "Κατάθεση δεν υπάρχει"
+
+msgid "At this moment you cannot do payments."
+msgstr "Αυτή τη στιγμή δεν μπορείτε να κάνετε πληρωμές."
+
+msgid "index.php?view=payment&actionmode=error&payedOrderId="
+msgstr "index.php?View=Payment&actionmode=Error&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=activaServer&payedOrderId="
+msgstr "index.php?View=Payment&actionmode=activaServer&payedOrderId="
+
+msgid "index.php?view=orders"
+msgstr "index.php?View=Orders"
+
+msgid "index.php?view=payment&actionmode=bnlpositivity&payedOrderId="
+msgstr "index.php?View=Payment&actionmode=bnlpositivity&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=keyclient&payedOrderId="
+msgstr "index.php?View=Payment&actionmode=keyclient&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=keyclient2014&payedOrderId="
+msgstr "index.php?View=Payment&actionmode=keyclient2014&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=pagoonline&payedOrderId="
+msgstr "index.php?View=Payment&actionmode=pagoonline&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=pagoonline&payedOrderId=donation"
+msgstr "index.php?View=Payment&actionmode=pagoonline&payedOrderId=donation"
+
+msgid "index.php?view=payment&actionmode=errordonation"
+msgstr "index.php?View=Payment&actionmode=errordonation"
+
+msgid "index.php?view=payment&actionmode=errordonation&payedOrderId="
+msgstr "index.php?View=Payment&actionmode=errordonation&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=setefiServer&payedOrderId="
+msgstr "index.php?View=Payment&actionmode=setefiServer&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=virtualpay&payedOrderId="
+msgstr "index.php?View=Payment&actionmode=virtualpay&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=virtualpay&payedOrderId=donation"
+msgstr "index.php?View=Payment&actionmode=virtualpay&payedOrderId=donation"
+
+msgid "index.php?view=payment&actionmode=wspayform&payedOrderId="
+msgstr "index.php?View=Payment&actionmode=wspayform&payedOrderId="
+
+msgid "Enter your details"
+msgstr "Εισάγετε τα στοιχεία σας"
+
+msgid "Reenter email"
+msgstr "Εισάγετε ξανά το email"
+
+msgid "Your Address"
+msgstr "Τη διεύθυνσή σας"
+
+msgid "Postal Code"
+msgstr "Ταχυδρομικός κώδικας"
+
+msgid "Note"
+msgstr "Σημείωση"
+
+msgid "Your estimated time of arrival"
+msgstr "Αναμενόμενη ώρα άφιξης σας"
+
+msgid "I don't know"
+msgstr "Δεν ξέρω"
+
+msgid "Password"
+msgstr "Κωδικό πρόσβασης"
+
+msgid "Payment method"
+msgstr "Μέθοδος πληρωμής"
+
+msgid "Please choose a payment method"
+msgstr "Παρακαλώ επιλέξτε μια μέθοδο πληρωμής"
+
+msgid "Total deposit : €"
+msgstr "Σύνολο καταθέσεων: €"
+
+msgid "Good to know"
+msgstr "Καλό είναι να γνωρίζετε"
+
+msgid "Info"
+msgstr "Πληροφορίες"
+
+msgid "I agree to conditions"
+msgstr "Συμφωνώ με προϋποθέσεις"
+
+msgid "I agree"
+msgstr "Συμφωνώ"
+
+msgid "Almost done"
+msgstr "Σχεδόν τελείωσε "
+
+msgid "comment"
+msgstr "σχόλιο"
+
+msgid "Book now"
+msgstr "Κάντε κράτηση τώρα"
+
+msgid "Energy Class"
+msgstr "Ενεργειακή κλάση"
+
+msgid "nondescript"
+msgstr "Αλλόκοτος"
+
+msgid "free property"
+msgstr "δωρεάν το κατάλυμα"
+
+msgid "A+"
+msgstr "A +"
+
+msgid "A"
+msgstr "Α"
+
+msgid "B"
+msgstr "Β"
+
+msgid "C"
+msgstr "C"
+
+msgid "D"
+msgstr "Δ"
+
+msgid "E"
+msgstr "Ε"
+
+msgid "F"
+msgstr "F"
+
+msgid "G"
+msgstr "G"
+
+msgid "EPI Value"
+msgstr "EPI αξία"
+
+msgid "Smart offer"
+msgstr "Έξυπνη Προσφορά"
+
+msgid "Attention!"
+msgstr "Προσοχή!"
+
+msgid "It 's not possible to insert your own review"
+msgstr "Δεν είναι δυνατό να εισαγάγετε τη δική σας κριτική"
+
+msgid "nonexistent order"
+msgstr "ανύπαρκτη παραγγελία"
+
+msgid "Order with already a Review"
+msgstr "Παραγγείλετε με ήδη μια αναθεώρηση"
+
+msgid "nonexistent order or to which it is not possible to associate a review"
+msgstr "ανύπαρκτη παραγγελία ή για την οποία δεν είναι δυνατόν να συσχετίσετε μια αναθεώρηση"
+
+msgid "Order not related at this resource"
+msgstr "Παραγγελία δεν συνδέονται σε αυτόν τον πόρο"
+
+msgid "Order make before the date to make a review"
+msgstr "Τάξη κάνει πριν από την ημερομηνία για να κάνει μια ανασκόπηση"
+
+msgid "Search"
+msgstr "Αναζήτηση"
+
+msgid "Persons min:%1$d max:%2$d"
+msgstr "Πρόσωπα min: %1$d max: %2$d"
+
+msgid "Alternative accommodations"
+msgstr "Εναλλακτικών καταλύματα"
+
+msgid "Qt."
+msgstr "QT."
+
+msgid "Select"
+msgstr "Επιλέξτε"
+
+msgid "We're processing your request"
+msgstr " Επεξεργαζόμαστε το αίτημα σας"
+
+msgid "No result available"
+msgstr "Κανένα αποτέλεσμα διαθέσιμο"
+
+msgid "Leatest ads"
+msgstr "Leatest αγγελίες"
+
+msgid "To rent"
+msgstr "Προς ενοικίαση"
+
+msgid "Web site"
+msgstr "Τοποθεσία Web"
+
+msgid "Accomodation"
+msgstr "Διαμονή"
+
+msgid "On Sell Houses"
+msgstr "Για πώληση σπίτια"
+
+msgid "Holiday Packages"
+msgstr "Πακέτα διακοπών"
+
+msgid "Destination"
+msgstr "Προορισμός"
+
+msgid "Booking online"
+msgstr "Κράτηση online"
+
+msgid "Destination, property name or address"
+msgstr "Προορισμού, όνομα ιδιότητας ή διεύθυνση"
+
+msgid "Enter a destination"
+msgstr "Εισάγετε έναν προορισμό"
+
+msgid "Tipology"
+msgstr "Τύπος"
+
+msgid "Adults"
+msgstr "Ενήλικες"
+
+msgid "Show only online booking"
+msgstr "Εμφάνιση μόνο online κράτησης"
+
+msgid "Show map"
+msgstr "Εμφάνιση χάρτη"
+
+msgid "Search filters"
+msgstr "Φίλτρα αναζήτησης"
+
+msgid "Booking type"
+msgstr "Τύπος κράτησης"
+
+msgid "Ratings"
+msgstr "Αξιολογήσεις"
+
+msgid "Quality"
+msgstr "Ποιότητα"
+
+msgid "Bedrooms"
+msgstr "Υπνοδωμάτια"
+
+msgid "or more bedrooms"
+msgstr "ή περισσότερα υπνοδωμάτια"
+
+msgid "Club Hotel"
+msgstr "Club Hotel"
+
+msgid "Merchant's facility"
+msgstr "Εγκατάσταση εμπόρου"
+
+msgid ">3"
+msgstr "> 3"
+
+msgid "Find your property"
+msgstr "Βρείτε την ιδιοκτησία σας"
+
+msgid "Contract"
+msgstr "Σύμβαση"
+
+msgid "All province"
+msgstr "Κάθε επαρχία"
+
+msgid "from"
+msgstr "από"
+
+msgid "to"
+msgstr "για να"
+
+msgid "Floor area m&sup2;"
+msgstr "Ορόφου περιοχή m²"
+
+msgid "Only new building"
+msgstr "Μόνο νέο κτίριο"
+
+msgid "Please select"
+msgstr "Παρακαλώ επιλέξτε"
+
+msgid "Please enter a integer number"
+msgstr "Παρακαλώ εισάγετε ένα ακέραιο αριθμό"
+
+msgid "Draw area"
+msgstr "Επιστήσω την περιοχή"
+
+msgid "Reset"
+msgstr "Επαναφορά"
+
+msgid "Submit"
+msgstr "Υποβάλουν"
+
+msgid "Click on map and choose your area."
+msgstr "Κάντε κλικ στο χάρτη και επιλέξτε την περιοχή σας."
+
+msgid "Your holiday"
+msgstr "Οι διακοπές σας"
+
+msgid "Seniores"
+msgstr "Seniores"
+
+msgid "Years"
+msgstr "Χρόνια"
+
+msgid "Total price"
+msgstr "Συνολική τιμή"
+
+msgid "Deposit"
+msgstr "Κατάθεση"

@@ -1,30 +1,44 @@
-=== Bookingfor ===
-Contributors: Bookingfor.com
-Tags: booking, reservation, hotel, rent
-Requires at least: 4.0
-Tested up to: 4.6
-Stable tag: 2.5
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+# BookingFor Wordpress plugin - V.2
+Wordpress plugin repo for Bookingfor. BookingFor wordpress plugin is a free and open source web-based booking plugin for reservation multi hotel and multi merchant booking based on the service bookingfor. You must have a bookingfor subscription to use this open source booking plugin.
 
-BookingFor is a multi merchant web-based booking system.
+# This release is currently maintained and supported
 
-== Description ==
-BookingFor is a multi merchant web-based booking system. With Bookingfor you or your merchant can centralize reservations, accept online payments and track inventory.
-You must have a bookingfor subscription to use this open source booking extension.
+# Setup
+1. install Bookingfor Plugin;<br/>
+3. configure Bookingfor Plugin with your Subscription code, Bookingfor Apikey and Google Maps ApiKey;<br/>
+5. add Bookingfor widgets.<br/>
+6. enjoy!<br />
 
-== Installation ==
-1. install Bookingfor Plugin;
-2. configure Bookingfor Plugin with your Subscription code, Bookingfor Apikey and Google Maps ApiKey;
-3. add Bookingfor widgets.
+# Requirements
+PHP 5.5 +<br/>
+cURL 7.30 +<br/>
+OpenSSL 1.0.1 +<br/>
+Bookingfor v.7.x.x
 
-== Requirements ==
-PHP 5.5 +
-cURL 7.30 +
-OpenSSL 1.0.1 +
+# Compatibility
+Polylang v. 1.9.x<br/>
+WPML v. 3.3<br/><br/>
+Supported theme: <br/>
+twentyseventeen<br/>
+twentysixteen<br/>
+twentyfifteen<br/>
+Compatible but not supported:<br/>
+genesis<br/>
+royal <br/>
+saladmag 
 
-== Compatibility ==
-Wpml, Polylang, Bookingfor v.7.x.x
+# Shortcode
+[bookingfor_merchants category=1019 rating=4]
 
-== Changelog ==
-http://www.bookingfor.com/changelog
+[bookingfor_resources]
+
+[bookingfor_onsells]
+
+[bookingfor_onsells order=asc]
+
+[bookingfor_tag tagid=7]
+
+[bookingfor_merchantscarousel tags=1,32]
+
+# Translations
+To help in translation http://translate.bookingfor.com/collaboration/

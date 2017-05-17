@@ -171,14 +171,14 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 //-->
 </script>
 
-<div class="bfi_content">	
+<div class="bfi_content bfi-hideonextra">	
 	
 	<?php if($reviewcount>0){ ?>
-	<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>10">
+	<div class="bfi-row">
+		<div class="bfi-col-md-10">
 	<?php } ?>
-			<div class="bfi-title-name hideonextra"><?php echo  $resourceName?> - <span><?php echo  $merchantName?></span></div>
-			<div class="bfi-address hideonextra">
+			<div class="bfi-title-name bfi-hideonextra"><?php echo  $resourceName?> - <span class="bfi-cursor"><?php echo  $merchantName?></span></div>
+			<div class="bfi-address bfi-hideonextra">
 				<i class="fa fa-map-marker fa-1"></i> <span class="street-address"><?php echo $indirizzo ?></span>, <span class="postal-code "><?php echo  $cap ?></span> <span class="locality"><?php echo $comune ?></span>, <span class="region"><?php echo  $stato ?></span>
 				<?php if (($showResourceMap)) :?><a class="bfi-map-link" rel="#resource_map"><?php echo _e('Map' , 'bfi') ?></a><?php endif; ?>
 			</div>	
@@ -186,7 +186,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 		$totalreviewavg = BFCHelper::convertTotal($reviewavg);
 		?>
 		</div>	
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>2 bfi-cursor" id="bfi-avgreview">
+		<div class="bfi-col-md-2 bfi-cursor" id="bfi-avgreview">
 			<div class="bfi-avgreview-top"><?php echo $rating_text['merchants_reviews_text_value_'.$totalreviewavg]; ?> <?php echo number_format($reviewavg, 1); ?></div>
 			<div class="bfi-reviewcount-top"><?php echo $reviewcount; ?> <?php _e('Reviews', 'bfi') ?></div>
 		</div>	
@@ -194,7 +194,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 	<?php } ?>
 	<div class="bfi-clearboth"></div>
 <!-- Navigation -->	
-	<ul class="bfi-menu-top hideonextra">
+	<ul class="bfi-menu-top bfi-hideonextra">
 		<li ><a rel=".resourcecontainer-gallery"><?php echo  _e('Media' , 'bfi') ?></a></li>
 		<?php if (!empty($resourceDescription)):?><li><a rel=".bfi-description-data"><?php echo  _e('Description', 'bfi') ?></a></li><?php endif; ?>
 		<?php if($isportal): ?><li ><a rel=".bfi-merchant-simple"><?php echo  _e('Host' , 'bfi') ?></a></li>
@@ -203,16 +203,16 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 	</ul>
 </div>
 
-<div class="resourcecontainer-gallery hideonextra">
+<div class="resourcecontainer-gallery bfi-hideonextra">
 	<?php  include('resource-gallery.php');  ?>
 </div>
 
 <div class="bfi_content">	
-	<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> hideonextra">
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>8 bfi-description-data">
+	<div class="bfi-row bfi-hideonextra">
+		<div class="bfi-col-md-8 bfi-description-data">
 			<?php echo $resourceDescription ?>		
 		</div>	
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>4">
+		<div class="bfi-col-md-4">
 			<div class=" bfi-feature-data">
 				<strong><?php _e('In short', 'bfi') ?></strong>
 				<?php if(isset($resource->Area) && $resource->Area>0  ): ?><?php _e('Floor area', 'bfi') ?>: <?php echo $resource->Area ?> m&sup2; <br /><?php endif ?>
@@ -228,8 +228,8 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 				<table class="bfi-table bfi-table-striped bfi-resourcetablefeature">
 					<tr>
 						<?php if(isset($resource->EnergyClass) && $resource->EnergyClass>0): ?>
-						<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>"><?php _e('Energy Class', 'bfi'); ?>:</td>
-						<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3" <?php if(!isset($resource->EpiValue)) {echo "colspan=\"3\"";}?>>
+						<td class="bfi-col-md-"><?php _e('Energy Class', 'bfi'); ?>:</td>
+						<td class="bfi-col-md-3" <?php if(!isset($resource->EpiValue)) {echo "colspan=\"3\"";}?>>
 							<div class="energyClass energyClass<?php echo $resource->EnergyClass?>">
 							<?php 
 								switch ($resource->EnergyClass) {
@@ -251,8 +251,8 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 						</td>
 						<?php endif ?>
 						<?php if(isset($resource->EpiValue) && $resource->EpiValue>0): ?>
-						<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>"><?php _e('EPI Value', 'bfi'); ?>:</td>
-						<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>" <?php if(!isset($resource->EnergyClass)) {echo "colspan=\"3\"";}?>><?php echo $resource->EpiValue?> <?php echo $resource->EpiUnit?></td>
+						<td class="bfi-col-md-"><?php _e('EPI Value', 'bfi'); ?>:</td>
+						<td class="bfi-col-md-" <?php if(!isset($resource->EnergyClass)) {echo "colspan=\"3\"";}?>><?php echo $resource->EpiValue?> <?php echo $resource->EpiUnit?></td>
 						<?php endif ?>
 					</tr>
 				</table>
@@ -284,8 +284,10 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 	<?php  include(BFI()->plugin_path().'/templates/merchant_small_details.php');  ?>
 
 <?php if (($showResourceMap)) :?>
+<div class="bfi-content-map bfi-hideonextra">
 <br /><br />
 <div id="resource_map" style="width:100%;height:350px"></div>
+</div>
 	<script type="text/javascript">
 	<!--
 		var mapUnit;
@@ -341,10 +343,10 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 	</script>
 <?php endif; ?>
 
-<br>
-<br>
 <?php if ($reviewcount>0):?>
-	<div class="bfi-ratingslist">
+<br>
+<br>
+	<div class="bfi-ratingslist bfi-hideonextra">
 	<?php
 		$summaryRatings = 0;
 		$ratings = null;
@@ -375,6 +377,9 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 		});
 		jQuery('#bfi-avgreview').click(function() {
 			jQuery('html, body').animate({ scrollTop: jQuery(".bfi-ratingslist").offset().top }, 2000);
+		});
+		jQuery('.bfi-title-name span').click(function() {
+			jQuery('html, body').animate({ scrollTop: jQuery(".bfi-merchant-simple").offset().top }, 2000);
 		});
 
 		var rateplansTags = [];

@@ -2,14 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VERSION\n"
 "POT-Creation-Date: 2017-04-27 13:13+0000\n"
-"PO-Revision-Date: 2017-04-27 13:13+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2017-05-03 14:44+0200\n"
 "Language-Team: LANGUAGE TEAM <EMAIL@ADDRESS>\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: \n"
+"X-Generator: Poedit 1.8.11\n"
 
 msgid "This is a demo store for testing purposes &mdash; no orders shall be fulfilled."
 msgstr "Si tratta di un negozio demo per scopi di test &mdash; nessun ordine devono essere adempiuto."
@@ -1060,7 +1061,7 @@ msgid "Ages of children"
 msgstr "Età bambini"
 
 msgid "on"
-msgstr "on"
+msgstr "il"
 
 #, php-format
 msgid "We preset your children's ages to %s years old - but if you enter their actual ages, you might be able to find a better price."
@@ -1630,19 +1631,19 @@ msgstr "Totale per"
 
 #, php-format
 msgid " %d day/s"
-msgstr "%d giorno/i"
+msgstr " %d giorno/i"
 
 #, php-format
 msgid " %d night/s"
-msgstr "%d notte/i"
+msgstr " %d notte/i"
 
 #, php-format
 msgid " %d hour/s"
-msgstr "%d ora/e"
+msgstr " %d ora/e"
 
 #, php-format
 msgid " %d minute/s"
-msgstr "%d minuto/i"
+msgstr " %d minuto/i"
 
 msgid "From"
 msgstr "Da"
@@ -1774,7 +1775,7 @@ msgid "Star rating"
 msgstr "Stelle"
 
 msgid "Property facility"
-msgstr "Servizi disponibili"
+msgstr "Servizi struttura"
 
 msgid "Booking type"
 msgstr "Tipologia di prenotazione"
@@ -1793,4 +1794,3 @@ msgstr "La tua vacanza"
 
 msgid "Total price"
 msgstr "Prezzo totale"
-

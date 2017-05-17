@@ -81,15 +81,15 @@ $merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], nu
 	?>
 	<?php if (isset($summaryRatings)): ?>
 	<div class="bfi-rating-container">
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 bfi-text-center">
+		<div class="bfi-row">
+			<div class="bfi-col-md-3 bfi-text-center">
 				<div class="bfi-rating_valuation">
 					<div class="bfi-rating-title"><?php echo $rating_text['merchants_reviews_text_value_'.$totalInt]; ?></div>
 					<div class="bfi-rating-value"><?php echo  $total; ?></div>
 					<div class="bfi-rating-based"><?php printf( __( 'Based on %1$s Reviews.'  , 'bfi'), $summaryRatings->Count ); ?></div>
 				</div>
 			</div>
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>4">
+			<div class="bfi-col-md-4">
 				<br />
 				<div class="bfi-rating-title_desc"><?php _e('Staff', 'bfi'); ?> <span class="bfi-pull-right"><?php echo number_format((float)$summaryRatings->AValue1, 1, '.', ''); ?></span></div>
 				<div class="bfi-progress">
@@ -104,9 +104,9 @@ $merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], nu
 					<div class="bfi-progress-bar" style="width: <?php echo  $val3; ?>%"></div>
 				</div>
 			</div>
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>1">
+			<div class="bfi-col-md-1">
 			</div>
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>4">
+			<div class="bfi-col-md-4">
 				<br />
 				<div class="bfi-rating-title_desc"><?php _e('Comfort', 'bfi'); ?> <span class="bfi-pull-right"><?php echo number_format((float)$summaryRatings->AValue4, 1, '.', ''); ?></span></div>
 				<div class="bfi-progress">
@@ -191,8 +191,8 @@ $merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], nu
 				}
 			}
 			?>
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> bfi-rating-list">
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>2 ">
+			<div class="bfi-row bfi-rating-list">
+				<div class="bfi-col-md-2 ">
 					<strong><?php echo  $rating->Name; ?></strong><br />
 					<?php echo $location; ?><br />
 					<?php 
@@ -219,14 +219,14 @@ $merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], nu
 					<?php endif; ?>
 						<br />
 				</div>
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>10 ">
+				<div class="bfi-col-md-10 ">
 					<div class=" arrow_box ">
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-							<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>6">
+						<div class="bfi-row">
+							<div class="bfi-col-md-6">
 								<div class="bfi-rating-value_small"><?php echo  $rating->Total; ?></div>
 								<div class="bfi-rating-title_small"><?php echo $rating_text['merchants_reviews_text_value_'.$t]; ?></div>
 							</div>
-							<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>6 com_bookingforconnector_rating_date_small ">
+							<div class="bfi-col-md-6 com_bookingforconnector_rating_date_small ">
 								<div class="bfi-pull-right" ><?php echo  $creationDateLabel?></div>
 								<?php if (!empty($rating->Label) && !empty($rating->OrderId)) :?>
 									<div class="com_bookingforconnector_rating_sign-check bfi-pull-right" ><?php printf( __( 'Review certified by %1$s', 'bfi' ), $rating->Label ); ?></div>

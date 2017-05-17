@@ -102,8 +102,8 @@ if($contact_data != NULL) {
 		<p><?php _e('This information is used to automatically fill in your details and book more quickly. We do not share it publicly.', 'bfi') ?></p>
 		<form method="post" id="resourcedetailsrequest" class="form-validate" action="<?php echo $formRoute; ?>">
 			<div class="guest-form-details">
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
+				<div class="bfi-row">
+					<div class="bfi-col-md-6">
 						<div class="form-group">
 							<label for="name"><?php _e('Name', 'bfi') ?>:</label>
 							<input name="form[Name]" value="<?php print $name; ?>" type="text" class="form-control" id="name">
@@ -128,7 +128,7 @@ if($contact_data != NULL) {
 							</select>
 						</div>
 					</div>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
+					<div class="bfi-col-md-6">
 						<div class="form-group">
 							<label for="address"><?php _e('Address', 'bfi') ?></label>
 							<input name="form[Address]" value="<?php print $address; ?>" type="text" class="form-control" id="address">
@@ -263,16 +263,16 @@ if($contact_data != NULL) {
      $listsId[]= $merchantId;
    ?>
 <div class="reservation-list">
-	<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> reservation-detail">
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>10">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>4 reservation-slider">
+	<div class="bfi-row reservation-detail">
+		<div class="bfi-col-md-10">
+			<div class="bfi-col-md-4 reservation-slider">
 				<div id="com_bookingforconnector-search-merchant-carousel<?php echo $merchantId ."_".$order->OrderId; ?>" class="carousel">
 					<div class="carousel-inner" role="listbox">
 						<div class="item active"><img src="<?php echo $merchantImageUrl; ?>"></div>
 					</div>
 				</div>
 			</div>
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>8 reservation-content">
+			<div class="bfi-col-md-8 reservation-content">
 				<h2>
 					<?php print $mrcName; ?> <span id="merchant_rating<?php echo $merchantId ."_".$order->OrderId; ?>" class="com_bookingforconnector-item-rating"></span>	  
 				<h2>
@@ -285,7 +285,7 @@ if($contact_data != NULL) {
 			</div>
 		</div>
 		<!-- Reservation left -->
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>2 reserv-right">
+		<div class="bfi-col-md-2 reserv-right">
 			<div class="checkin-time">
 				<p><?php _e('Check-in', 'bfi') ?></p>
 				<p>
@@ -328,7 +328,7 @@ if($contact_data != NULL) {
 		</div>
 	<!-- Reservation right -->
 	</div>
-	<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12 reservation-booking">
+	<div class="bfi-col-md-12 reservation-booking">
 		<a href="#" class="booking-detail" rel="<?php print $order->OrderId; ?>" id="booking-detail-<?php print $order->OrderId; ?>"><?php _e('Booking Detail', 'bfi') ?></a> 
 		<?php if($dateCheckin < $now) { ?>
 		<a href="#" class="cancel-booking"><?php _e('Cancel Booking', 'bfi') ?></a> 
@@ -344,7 +344,7 @@ if($contact_data != NULL) {
 
 		<!--pagination-->
 		<?php if($orderCount > 5) { ?>
-		  <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12 pagination_main">
+		  <div class="bfi-col-md-12 pagination_main">
 			<ul class="pagination">
 				<li><a href="#">«</a></li>
 			<?php
@@ -391,10 +391,10 @@ if($contact_data != NULL) {
 			<h3>Newsletter</h3>
 
 			<p><?php _e('Choose how often you want to receive offers and suggestions, do not miss the best offers!', 'bfi') ?></p>
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>4 newsletter-booking">
+			<div class="bfi-col-md-4 newsletter-booking">
 				<a href="mailto:<?php echo $email ?>" class="email-newsletter"><?php echo $email ?></a>
 			</div>
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>8 newsletter-radio">
+			<div class="bfi-col-md-8 newsletter-radio">
 				<div class="radio">
 					<label><input type="radio" name="optradio" selected><?php _e('Receive newsletter', 'bfi') ?></label>
 				</div>

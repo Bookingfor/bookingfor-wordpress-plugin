@@ -84,68 +84,68 @@ if(empty($order->DepositAmount)){
 		<div class="social-networks personal-networks">
 			<h3><?php _e('Personal Informations', 'bfi') ?></h3>
 			<h5><?php _e('Your profile', 'bfi') ?></h5>
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php _e('Name', 'bfi') ?>
+			<div class="bfi-row">
+				<div class="bfi-col-md-3 "><?php _e('Name', 'bfi') ?>
 				</div>	
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php echo $firstName;?>
+				<div class="bfi-col-md-3 "><?php echo $firstName;?>
 				</div>	
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php _e('Surname', 'bfi') ?>
+				<div class="bfi-col-md-3 "><?php _e('Surname', 'bfi') ?>
 				</div>	
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php echo $lastName;?>
+				<div class="bfi-col-md-3 "><?php echo $lastName;?>
 				</div>	
 			</div>	
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php _e('Email', 'bfi') ?>
+			<div class="bfi-row">
+				<div class="bfi-col-md-3 "><?php _e('Email', 'bfi') ?>
 				</div>	
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php echo $email;?>
+				<div class="bfi-col-md-3 "><?php echo $email;?>
 				</div>
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php _e('Phone', 'bfi') ?>
+				<div class="bfi-col-md-3 "><?php _e('Phone', 'bfi') ?>
 				</div>	
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php echo $phone;?>
+				<div class="bfi-col-md-3 "><?php echo $phone;?>
 				</div>
 				
 			</div>	
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php _e('Address', 'bfi') ?>
+			<div class="bfi-row">
+				<div class="bfi-col-md-3 "><?php _e('Address', 'bfi') ?>
 				</div>	
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php echo $address;?>
+				<div class="bfi-col-md-3 "><?php echo $address;?>
 				</div>	
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php _e('City', 'bfi') ?>
+				<div class="bfi-col-md-3 "><?php _e('City', 'bfi') ?>
 				</div>	
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php echo $city;?>
+				<div class="bfi-col-md-3 "><?php echo $city;?>
 				</div>	
 			</div>	
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php _e('Country', 'bfi') ?>
+			<div class="bfi-row">
+				<div class="bfi-col-md-3 "><?php _e('Country', 'bfi') ?>
 				</div>	
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php echo $nation;?>
+				<div class="bfi-col-md-3 "><?php echo $nation;?>
 				</div>	
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php _e('State/Province', 'bfi') ?>
+				<div class="bfi-col-md-3 "><?php _e('State/Province', 'bfi') ?>
 				</div>	
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php echo $province;?>
+				<div class="bfi-col-md-3 "><?php echo $province;?>
 				</div>	
 			</div>	
 		</div>	
 	</div>	
 	<div id="tabs-2" class="tabcontainer">
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php _e('Booking reference', 'bfi') ?>
+		<div class="bfi-row">
+			<div class="bfi-col-md-3 "><?php _e('Booking reference', 'bfi') ?>
 			</div>	
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php echo $order->OrderId;?>
+			<div class="bfi-col-md-3 "><?php echo $order->OrderId;?>
 			</div>	
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php _e('External order ID', 'bfi') ?>
+			<div class="bfi-col-md-3 "><?php _e('External order ID', 'bfi') ?>
 			</div>	
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php echo $order->ExternalId;?>
+			<div class="bfi-col-md-3 "><?php echo $order->ExternalId;?>
 			</div>	
 		</div>	
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php _e('Deposit total', 'bfi') ?>
+		<div class="bfi-row">
+			<div class="bfi-col-md-3 "><?php _e('Deposit total', 'bfi') ?>
 			</div>	
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php echo $order->DepositAmount ;?>
+			<div class="bfi-col-md-3 "><?php echo $order->DepositAmount ;?>
 			</div>	
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php _e('Total', 'bfi') ?>
+			<div class="bfi-col-md-3 "><?php _e('Total', 'bfi') ?>
 			</div>	
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php echo $order->TotalAmount;?>
+			<div class="bfi-col-md-3 "><?php echo $order->TotalAmount;?>
 			</div>	
 		</div>	
 	<?php if ($ArchivedAsSpam) :?>
@@ -192,26 +192,26 @@ if(empty($order->DepositAmount)){
 
 					?>
 						<?php _e('Credit card details', 'bfi') ?><br /><br />
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">   
-							<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
+						<div class="bfi-row">   
+							<div class="bfi-col-md-6">
 								<span><?php _e('Type', 'bfi') ?>: </span>
 								<?php echo $cc->Type; ?>
 							</div><!--/span-->
-							<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
+							<div class="bfi-col-md-6">
 								<span><?php _e('Holder', 'bfi') ?>: </span>
 								<?php echo $cc->Name; ?>
 							</div><!--/span-->
 						</div>
 						
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">   
-							<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
+						<div class="bfi-row">   
+							<div class="bfi-col-md-6">
 								<span><?php _e('Number', 'bfi') ?>: </span>
 								<?php 
 //									echo 'xxxx-xxxx-xxxx-' . substr($cc->Number, -4) ; 
 									echo $cc->Number;
 							 ?>
 							</div><!--/span-->
-							<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
+							<div class="bfi-col-md-6">
 								<span><?php _e('Valid until', 'bfi') ?>: </span>
 								<?php echo $cc->ExpiryMonth; ?>/<?php echo $cc->ExpiryYear; ?>
 							</div><!--/span-->
@@ -280,22 +280,22 @@ if(empty($order->DepositAmount)){
 													$currDiff = $currCheckOut->diff($currCheckIn);
 												?>
 													<div class="bfi-timeperiod " >
-														<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> ">
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 bfi-title"><?php _e('Check-in', 'bfi') ?>
+														<div class="bfi-row ">
+															<div class="bfi-col-md-3 bfi-title"><?php _e('Check-in', 'bfi') ?>
 															</div>	
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
-															</div>	
-														</div>	
-														<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> ">
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 bfi-title"><?php _e('Check-out', 'bfi') ?>
-															</div>	
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+															<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
 															</div>	
 														</div>	
-														<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php _e('Total', 'bfi') ?>:
+														<div class="bfi-row ">
+															<div class="bfi-col-md-3 bfi-title"><?php _e('Check-out', 'bfi') ?>
 															</div>	
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->d + 1; ?></span> <?php _e('days', 'bfi') ?>
+															<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+															</div>	
+														</div>	
+														<div class="bfi-row">
+															<div class="bfi-col-md-3 "><?php _e('Total', 'bfi') ?>:
+															</div>	
+															<div class="bfi-col-md-9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->d + 1; ?></span> <?php _e('days', 'bfi') ?>
 															</div>	
 														</div>	
 													</div>
@@ -311,22 +311,22 @@ if(empty($order->DepositAmount)){
 													$currDiff = $currCheckOut->diff($currCheckIn);
 												?>
 													<div class="bfi-timeperiod " >
-														<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> ">
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 bfi-title"><?php _e('Check-in', 'bfi') ?>
+														<div class="bfi-row ">
+															<div class="bfi-col-md-3 bfi-title"><?php _e('Check-in', 'bfi') ?>
 															</div>	
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
-															</div>	
-														</div>	
-														<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> ">
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 bfi-title"><?php _e('Check-out', 'bfi') ?>
-															</div>	
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+															<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
 															</div>	
 														</div>	
-														<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php _e('Total', 'bfi') ?>:
+														<div class="bfi-row ">
+															<div class="bfi-col-md-3 bfi-title"><?php _e('Check-out', 'bfi') ?>
 															</div>	
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->d; ?></span> <?php _e('nights', 'bfi') ?>
+															<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+															</div>	
+														</div>	
+														<div class="bfi-row">
+															<div class="bfi-col-md-3 "><?php _e('Total', 'bfi') ?>:
+															</div>	
+															<div class="bfi-col-md-9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->d; ?></span> <?php _e('nights', 'bfi') ?>
 															</div>	
 														</div>	
 													</div>
@@ -342,22 +342,22 @@ if(empty($order->DepositAmount)){
 													$timeDuration = $currDiff->i + ($currDiff->h*60);
 												?>
 													<div class="bfi-timeperiod " >
-														<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> ">
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 bfi-title"><?php _e('Check-in', 'bfi') ?>
+														<div class="bfi-row ">
+															<div class="bfi-col-md-3 bfi-title"><?php _e('Check-in', 'bfi') ?>
 															</div>	
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
-															</div>	
-														</div>	
-														<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> ">
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 bfi-title"><?php _e('Check-out', 'bfi') ?>
-															</div>	
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+															<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
 															</div>	
 														</div>	
-														<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php _e('Total', 'bfi') ?>:
+														<div class="bfi-row ">
+															<div class="bfi-col-md-3 bfi-title"><?php _e('Check-out', 'bfi') ?>
 															</div>	
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->format('%h') ?></span> <?php _e('hours', 'bfi') ?>
+															<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+															</div>	
+														</div>	
+														<div class="bfi-row">
+															<div class="bfi-col-md-3 "><?php _e('Total', 'bfi') ?>:
+															</div>	
+															<div class="bfi-col-md-9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->format('%h') ?></span> <?php _e('hours', 'bfi') ?>
 															</div>	
 														</div>	
 													</div>
@@ -378,22 +378,22 @@ if(empty($order->DepositAmount)){
 
 												?>
 													<div class="bfi-timeslot ">
-														<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> ">
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 bfi-title"><?php _e('Check-in', 'bfi') ?>
+														<div class="bfi-row ">
+															<div class="bfi-col-md-3 bfi-title"><?php _e('Check-in', 'bfi') ?>
 															</div>	
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
-															</div>	
-														</div>	
-														<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> ">
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 bfi-title"><?php _e('Check-out', 'bfi') ?>
-															</div>	
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+															<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
 															</div>	
 														</div>	
-														<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php _e('Total', 'bfi') ?>:
+														<div class="bfi-row ">
+															<div class="bfi-col-md-3 bfi-title"><?php _e('Check-out', 'bfi') ?>
 															</div>	
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->format('%h') ?></span> <?php _e('hours', 'bfi') ?>
+															<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+															</div>	
+														</div>	
+														<div class="bfi-row">
+															<div class="bfi-col-md-3 "><?php _e('Total', 'bfi') ?>:
+															</div>	
+															<div class="bfi-col-md-9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->format('%h') ?></span> <?php _e('hours', 'bfi') ?>
 															</div>	
 														</div>	
 													</div>
@@ -448,10 +448,10 @@ if(empty($order->DepositAmount)){
  		}
 ?>
 
-					<form method="post" id="ccInformations" action="<?php echo $formRoute; ?>" style="display:none;" class="form-validate mailalertform borderbottom paymentoptions">
+					<form method="post" id="ccInformations" action="<?php echo $formRoute; ?>" style="display:none;" class="form-validate bfi-mailalertform borderbottom paymentoptions">
 							<h2><?php _e('Credit card details', 'bfi') ?></h2>
-										<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> com_bookingforconnector_resource-payment-form">   
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
+										<div class="bfi-row bfi-payment-form">   
+											<div class="bfi-col-md-6">
 												<label><?php _e('Type', 'bfi') ?> </label>
 												<select id="formcc_circuito" name="form[cc_circuito]" class="bfi_input_select">
 													<?php 
@@ -461,31 +461,31 @@ if(empty($order->DepositAmount)){
 													?> 
 												</select>
 											</div><!--/span-->
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
+											<div class="bfi-col-md-6">
 												<label><?php _e('Holder', 'bfi') ?> </label>
 												<input type="text" value="" size="50" name="form[cc_titolare]" id="cc_titolare" required  title="<?php _e('This field is required.', 'bfi') ?>">
 											</div><!--/span-->
 										</div>
 										
-										<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> com_bookingforconnector_resource-payment-form">   
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
+										<div class="bfi-row bfi-payment-form">   
+											<div class="bfi-col-md-6">
 												<label><?php _e('Number', 'bfi') ?> </label>
 												<input type="text" value="" size="50" maxlength="50" name="form[cc_numero]" id="cc_numero" required  title="<?php _e('This field is required.', 'bfi') ?>">
 											</div><!--/span-->
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
+											<div class="bfi-col-md-6">
 												<label><?php _e('Valid until', 'bfi') ?></label>
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">
-													<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3">
+												<div class="bfi-row">
+													<div class="bfi-col-md-3">
 														<?php _e('Month (MM)', 'bfi') ?>
 													</div><!--/span-->
-													<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6 ccdateinput">
-														<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>5"><input type="text" value="" size="2" maxlength="2" name="form[cc_mese]" id="cc_mese" required  title="<?php _e('This field is required.', 'bfi') ?>"></div>
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>2 " style="text-align:center;" >/</div>
-															<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>5"><input type="text" value="" size="2" maxlength="2" name="form[cc_anno]" id="cc_anno" required  title="<?php _e('This field is required.', 'bfi') ?>"></div>
+													<div class="bfi-col-md-6 ccdateinput">
+														<div class="bfi-row">
+															<div class="bfi-col-md-5"><input type="text" value="" size="2" maxlength="2" name="form[cc_mese]" id="cc_mese" required  title="<?php _e('This field is required.', 'bfi') ?>"></div>
+															<div class="bfi-col-md-2 " style="text-align:center;" >/</div>
+															<div class="bfi-col-md-5"><input type="text" value="" size="2" maxlength="2" name="form[cc_anno]" id="cc_anno" required  title="<?php _e('This field is required.', 'bfi') ?>"></div>
 														</div>
 													</div><!--/span-->
-													<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3">
+													<div class="bfi-col-md-3">
 														<?php _e('Year (YY)', 'bfi') ?>
 													</div><!--/span-->
 												</div><!--/row-->
@@ -493,20 +493,20 @@ if(empty($order->DepositAmount)){
 										</div>
 									
 									<br />
-									<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> ">   
-										  <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>2">
+									<div class="bfi-row ">   
+										  <div class="bfi-col-md-2">
 											 <?php echo $ssllogo ?>
 										  </div>
-										  <!-- <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>10">
+										  <!-- <div class="bfi-col-md-10">
 											  <?php echo sprintf(__('%1s will not charge anything to your credit card. Your credit card details are only requested in order to guarantee your booking.', 'bfi'),$sitename); ?>
 										  </div> -->
 									</div>
 							<input type="hidden" id="redirect" name="form[Redirect]" value="<?php echo $routeThanks;?>" />
 							<input type="hidden" id="redirecterror" name="form[Redirecterror]" value="<?php echo $routeThanksKo;?>" />
 							<input type="hidden" name="OrderId" value="<?php echo $order->OrderId; ?>" />
-							<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> bfi_footer-book" >
-								<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>10"></div>
-								<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>2 bfi_footer-send"><button type="submit" id="btnbfFormSubmit" ><?php _e('Send', 'bfi') ?></button></div>
+							<div class="bfi-row bfi_footer-book" >
+								<div class="bfi-col-md-10"></div>
+								<div class="bfi-col-md-2 bfi_footer-send"><button type="submit" id="btnbfFormSubmit" ><?php _e('Send', 'bfi') ?></button></div>
 							</div>
 </form>
 <script type="text/javascript">

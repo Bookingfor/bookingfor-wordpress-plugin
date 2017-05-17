@@ -8,8 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 $main_img = $images[0];
 $sub_images = array_slice($images, 1, 4);
 ?>
-<div class="com_bookingforconnector_resource-initialgallery nopadding <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">
-	<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12 com_bookingforconnector_resource-initialgallery-fullrow nopadding">
+<div class="com_bookingforconnector_resource-initialgallery nopadding bfi-row">
+	<div class="bfi-col-md-12 com_bookingforconnector_resource-initialgallery-fullrow nopadding">
 		<div class="launch-fullscreen">
 			<img src="<?php echo BFCHelper::getImageUrlResized($contextImg, $main_img['data'],'big')?>" alt="">
 		</div>

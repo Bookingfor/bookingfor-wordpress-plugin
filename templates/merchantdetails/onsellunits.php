@@ -48,14 +48,14 @@ var cultureCode = '<?php echo $language ?>';
 var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 //-->
 </script>
-<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-	<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMALL; ?>9 ">
+<div class="bfi-row">
+	<div class="bfi-col-xs-9 ">
 		<div class="bfi-search-title">
 			<?php echo sprintf(__('%s available accommodations', 'bfi'), $total) ?>
 		</div>
 	</div>	
 <?php if(!empty(COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY)){ ?>
-	<!-- <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMALL; ?>3 ">
+	<!-- <div class="bfi-col-xs-3 ">
 		<div class="bfi-search-view-maps ">
 		<span><?php _e('Map view', 'bfi') ?></span>
 		</div>	
@@ -75,7 +75,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 </div>
 
 <div class="bfi-clearfix"></div>
-<div id="bfi-list" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> bfi-list">
+<div id="bfi-list" class="bfi-row bfi-list">
 	<?php foreach ($resources as $resource){?>
 	<?php 
 		$resourceImageUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s6.jpeg";
@@ -118,15 +118,15 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 		}
 
 ?>
-	<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>6 bfi-item">
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> bfi-sameheight" >
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>3 bfi-img-container">
+	<div class="bfi-col-sm-6 bfi-item">
+		<div class="bfi-row bfi-sameheight" >
+			<div class="bfi-col-sm-3 bfi-img-container">
 				<a href="<?php echo $resourceRoute ?>?fromsearch=1" style='background: url("<?php echo $resourceImageUrl; ?>") center 25% / cover;'><img src="<?php echo $resourceImageUrl; ?>" class="bfi-img-responsive" /></a> 
 			</div>
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>9 bfi-details-container">
+			<div class="bfi-col-sm-9 bfi-details-container">
 				<!-- merchant details -->
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>" >
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>12">
+				<div class="bfi-row" >
+					<div class="bfi-col-sm-12">
 						<div class="bfi-item-title">
 							<a href="<?php echo $resourceRoute ?>" id="nameAnchor<?php echo $resource->ResourceId?>" target="_blank"><?php echo  $resource->Name ?></a> 
 							<span class="bfi-item-rating">
@@ -166,8 +166,8 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 				</div>
 				<div class="bfi-clearfix bfi-hr-separ"></div>
 				<!-- end merchant details -->
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>" >
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>5">
+				<div class="bfi-row" >
+					<div class="bfi-col-sm-5">
 						<?php if (isset($resource->Rooms) && $resource->Rooms>0):?>
 						<div class="bfi-icon-rooms">
 							<?php echo $resource->Rooms ?> <?php _e('Rooms', 'bfi') ?>
@@ -182,7 +182,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 						</div>
 						<?php endif; ?>
 					</div>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>4 bfi-pad0-10 bfi-text-right">
+					<div class="bfi-col-sm-4 bfi-pad0-10 bfi-text-right">
 						<?php if ($resource->Price != null && $resource->Price > 0 && isset($resource->IsReservedPrice) && $resource->IsReservedPrice!=1 ) :?>
 							<span class="bfi-price bfi-price-total bfi_<?php echo $currencyclass ?>"> <?php echo BFCHelper::priceFormat($resource->Price,0, ',', '.')?></span>
 						<?php else: ?>
@@ -190,7 +190,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 						<?php endif; ?>
 					
 					</div>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>3 bfi-text-right">
+					<div class="bfi-col-sm-3 bfi-text-right">
 							<a href="<?php echo $resourceRoute ?>" class="bfi-item-btn-details"><?php echo _e('Details' , 'bfi')?></a>
 					</div>
 				</div>
@@ -250,8 +250,8 @@ jQuery('#list-view').click(function() {
 	jQuery('.bfi-view-changer-selected').html(jQuery(this).html());
 	jQuery('#bfi-list').removeClass('bfi-grid-group')
 	jQuery('#bfi-list .bfi-item').addClass('list-group-item')
-	jQuery('#bfi-list .bfi-img-container').addClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>3')
-	jQuery('#bfi-list .bfi-details-container').addClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>9')
+	jQuery('#bfi-list .bfi-img-container').addClass('bfi-col-sm-3')
+	jQuery('#bfi-list .bfi-details-container').addClass('bfi-col-sm-9')
 
 	localStorage.setItem('display', 'list');
 });
@@ -260,8 +260,8 @@ jQuery('#grid-view').click(function() {
 	jQuery('.bfi-view-changer-selected').html(jQuery(this).html());
 	jQuery('#bfi-list').addClass('bfi-grid-group')
 	jQuery('#bfi-list .bfi-item').removeClass('list-group-item')
-	jQuery('#bfi-list .bfi-img-container').removeClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>3')
-	jQuery('#bfi-list .bfi-details-container').removeClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>9')
+	jQuery('#bfi-list .bfi-img-container').removeClass('bfi-col-sm-3')
+	jQuery('#bfi-list .bfi-details-container').removeClass('bfi-col-sm-9')
 	localStorage.setItem('display', 'grid');
 });
 	jQuery('#bfi-list .bfi-item').addClass('grid-group-item')
@@ -415,8 +415,8 @@ function getAjaxInformations(){
 	
 jQuery(document).ready(function() {
 	getAjaxInformations();
-	jQuery('.mod_bookingformaps-static,.bfi-search-view-maps').click(function() {
-		jQuery( "#mod_bookingformaps-popup" ).dialog({
+	jQuery('.bfi-maps-static,.bfi-search-view-maps').click(function() {
+		jQuery( "#bfi-maps-popup" ).dialog({
 			open: function( event, ui ) {
 				openGoogleMapSearch();
 			},

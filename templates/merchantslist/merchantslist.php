@@ -82,7 +82,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 </div>
 
 <div class="bfi-clearfix"></div>
-<div id="bfi-list" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> bfi-list">
+<div id="bfi-list" class="bfi-row bfi-list">
 	<?php $listResourceIds = array(); ?>  
 	<?php foreach ($merchants as $merchant): ?>
 		<?php 
@@ -130,15 +130,15 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 		?>
 
 
-	<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>6 bfi-item">
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> bfi-sameheight" >
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>3 bfi-img-container">
+	<div class="bfi-col-sm-6 bfi-item">
+		<div class="bfi-row bfi-sameheight" >
+			<div class="bfi-col-sm-3 bfi-img-container">
 				<a href="<?php echo $routeMerchant ?>?fromsearch=1" style='background: url("<?php echo $merchantImageUrl; ?>") center 25% / cover;'><img src="<?php echo $merchantImageUrl; ?>" class="bfi-img-responsive" /></a> 
 			</div>
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>9 bfi-details-container">
+			<div class="bfi-col-sm-9 bfi-details-container">
 				<!-- merchant details -->
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>" >
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>10">
+				<div class="bfi-row" >
+					<div class="bfi-col-sm-10">
 						<div class="bfi-item-title">
 							<a href="<?php echo $routeMerchant ?>?fromsearch=1" id="nameAnchor<?php echo $merchant->MerchantId?>" target="_blank"><?php echo  $merchantName ?></a> 
 							<span class="bfi-item-rating">
@@ -155,7 +155,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 						<div class="bfi-mrcgroup" id="bfitags<?php echo $merchant->MerchantId; ?>"></div>
 						<div class="bfi-description"><?php echo $merchantDescription ?></div>
 					</div>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>2 bfi-text-right">
+					<div class="bfi-col-sm-2 bfi-text-right">
 						<?php if ($isportal && ($merchant->RatingsContext ==1 || $merchant->RatingsContext ==3)):?>
 								<div class="bfi-avg">
 								<?php if ($merchant->MrcAVGCount>0){
@@ -229,8 +229,8 @@ jQuery('#list-view').click(function() {
 	jQuery('.bfi-view-changer-selected').html(jQuery(this).html());
 	jQuery('#bfi-list').removeClass('bfi-grid-group')
 	jQuery('#bfi-list .bfi-item').addClass('list-group-item')
-	jQuery('#bfi-list .bfi-img-container').addClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>3')
-	jQuery('#bfi-list .bfi-details-container').addClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>9')
+	jQuery('#bfi-list .bfi-img-container').addClass('bfi-col-sm-3')
+	jQuery('#bfi-list .bfi-details-container').addClass('bfi-col-sm-9')
 
 	localStorage.setItem('display', 'list');
 });
@@ -239,8 +239,8 @@ jQuery('#grid-view').click(function() {
 	jQuery('.bfi-view-changer-selected').html(jQuery(this).html());
 	jQuery('#bfi-list').addClass('bfi-grid-group')
 	jQuery('#bfi-list .bfi-item').removeClass('list-group-item')
-	jQuery('#bfi-list .bfi-img-container').removeClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>3')
-	jQuery('#bfi-list .bfi-details-container').removeClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>9')
+	jQuery('#bfi-list .bfi-img-container').removeClass('bfi-col-sm-3')
+	jQuery('#bfi-list .bfi-details-container').removeClass('bfi-col-sm-9')
 	localStorage.setItem('display', 'grid');
 });
 	jQuery('#bfi-list .bfi-item').addClass('grid-group-item')
@@ -440,8 +440,8 @@ function getlist(){
 jQuery(document).ready(function() {
 	getAjaxInformations();
 <?php if(!isset($nopopupmap)):  ?>
-	jQuery('.mod_bookingformaps-static,.bfi-search-view-maps').click(function() {
-		jQuery( "#mod_bookingformaps-popup" ).dialog({
+	jQuery('.bfi-maps-static,.bfi-search-view-maps').click(function() {
+		jQuery( "#bfi-maps-popup" ).dialog({
 			open: function( event, ui ) {
 				openGoogleMapSearch();
 			},

@@ -384,6 +384,10 @@ $filtersRating = array();
 $filtersAvg = array();
 $filtersZones = array();
 $filtersTags = array();
+$filtersRatingCount = array();
+$filtersAvgCount = array();
+$filtersZonesCount = array();
+$filtersTagsCount = array();
 
 
 if (isset($isMerchantResults) && $isMerchantResults){
@@ -419,6 +423,9 @@ echo $before_widget;
 	<input type="hidden"  name="filter_order_Dir" class= "filterOrderDirection"id="filter_order_Dir_filter" value="asc">
 <div id="bfi-filtertoggle">
 	<?php if (isset($filtersPrice) &&  is_array($filtersPrice) && count($filtersPrice)>$minvaluetoshow ) { 
+		//invert order filter price:
+		$filtersPrice = array_reverse($filtersPrice);
+	
 	$filtersValueArr = explode ("|",$filtersPriceValue);
 	?>
 		<div>
@@ -640,7 +647,7 @@ echo $before_widget;
 </div>
 <br />
 <?php if(BFI()->isSearchPage() && !empty(COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY)){ ?>
-<div class="mod_bookingformaps-static">
+<div class="bfi-maps-static">
 	<span class="showmap"><?php _e('Show map', 'bfi') ?></span>
 	<img alt="Map" src="https://maps.google.com/maps/api/staticmap?center=<?php echo COM_BOOKINGFORCONNECTOR_GOOGLE_POSY?>,<?php echo COM_BOOKINGFORCONNECTOR_GOOGLE_POSX?>&amp;zoom=11&amp;size=400x250&key=<?php echo COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY ?>&" style="max-width: 100%;" />
 </div>

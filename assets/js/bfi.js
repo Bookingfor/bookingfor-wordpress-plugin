@@ -1,5 +1,5 @@
 var bookingfor = new function() {
-    this.version = "3.0.0";
+    this.version = "3.0.1";
 	this.bsVersion = ( typeof jQuery.fn.typeahead !== 'undefined' ? 2 : 3 );
     this.offersLoaded = [];
 
@@ -744,10 +744,15 @@ function bfi_getcompleterateplansstaybyrateplanid($el) {
 		if(currValue!="0"){
 			var extraValue = currResId + ":1"; // + currValue;
 			if(currAvailabilityType =="2"){
-				var currSelectData = $el.closest("tr").find(".bfi-timeperiod").first();				
+				var currSelectData = jQuery(this).closest("tr").find(".bfi-timeperiod").first();				
 				
 				extraValue += ":" + currSelectData.attr("data-checkin") + currSelectData.attr("data-timeminstart") + ":" + currSelectData.attr("data-duration") + "::::"
 			}
+			if(currAvailabilityType =="3"){
+				var currSelectData = jQuery(this).closest("tr").find(".bfi-timeslot").first();	
+				extraValue += ":::" + currSelectData.attr("data-timeslotid")  + ":" + currSelectData.attr("data-timeslotstart") + ":" + currSelectData.attr("data-timeslotend") + ":" + currSelectData.attr("data-checkin") + "::::"
+			}
+
 			extrasselect.push(extraValue);
 		}
 	});

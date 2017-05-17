@@ -545,14 +545,14 @@ $tabActive = "";
 				<?php } //$showAccomodations ?>
 				<?php if($showDateRange){ ?>
 				<div class="bfi_showdaterange bfi_container">
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> flexalignend ">
-							<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>5 <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMALL ?>5">
+					<div class="bfi-row bfi-flexalignend ">
+							<div class="bfi-col-md-5 bfi-col-xs-5">
 								<label><?php _e('Check-in' , 'bfi' ); ?></label>
 								<div class="dateone lastdate dateone_div checking-container">
 									<input name="checkin" type="hidden" value="<?php echo $checkin->format('d/m/Y'); ?>" id="<?php echo $checkinId; ?>" />
 								</div>
 							</div>
-							<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>5 <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMALL ?>5" id="divcheckoutsearch<?php echo $currModID ?>">
+							<div class="bfi-col-md-5 bfi-col-xs-5" id="divcheckoutsearch<?php echo $currModID ?>">
 								<label><?php _e('Check-out' , 'bfi' ); ?></label>
 								<div class="dateone lastdate lastdate_div">
 									<input type="hidden" name="checkout" value="<?php echo $checkout->format('d/m/Y'); ?>" id="<?php echo $checkoutId; ?>" />
@@ -560,7 +560,7 @@ $tabActive = "";
 							</div>
 
 							
-							<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>2 <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMALL ?>2" id="divcalendarnightsearch<?php echo $currModID ?>">
+							<div class="bfi-col-md-2 bfi-col-xs-2" id="divcalendarnightsearch<?php echo $currModID ?>">
 								<div class="calendarnight" id="calendarnight<?php echo $durationId ?>"><?php echo $duration->format('%a') ?></div>
 								
 								<div class="calendarnightlabel">
@@ -576,8 +576,8 @@ $tabActive = "";
 
 				<?php if($showAdult){?>
 					<div class="bfi_showperson bfi_container">
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> form-group">
-							<div class="bfi_showadult <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>4"><!-- Adults -->
+						<div class="bfi-row form-group">
+							<div class="bfi_showadult bfi-col-md-4"><!-- Adults -->
 								<label><?php _e('Adults', 'bfi'); ?></label>
 								<select name="adults" onchange="quoteChanged<?php echo $currModID ?>();" class="inputmini" style="display:inline-block !important;">
 									<?php
@@ -588,7 +588,7 @@ $tabActive = "";
 								</select>
 							</div>
 						<?php if($showSenior){?>
-							<div class="bfi_showsenior <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>4"><!-- Seniores -->
+							<div class="bfi_showsenior bfi-col-md-4"><!-- Seniores -->
 								<label><?php _e('Seniores', 'bfi'); ?></label>
 								<select  name="seniores" onchange="quoteChanged<?php echo $currModID ?>();" class="inputmini" style="display:inline-block !important;">
 									<?php
@@ -600,7 +600,7 @@ $tabActive = "";
 							</div>
 						<?php }?>
 						<?php if($showChildren){?>
-							<div class="bfi_showchildren <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>4" id="mod_bookingforsearch-children<?php echo $currModID ?>"  class="col-sm-4"><!-- n childrens -->
+							<div class="bfi_showchildren bfi-col-md-4" id="mod_bookingforsearch-children<?php echo $currModID ?>"  class="col-sm-4"><!-- n childrens -->
 								<label><?php _e('Children', 'bfi'); ?></label>
 								<select name="children" onchange="quoteChanged<?php echo $currModID ?>();" class="inputmini" style="display:inline-block !important;">
 									<?php
@@ -707,9 +707,9 @@ $tabActive = "";
 				<div class="bfi-pull-right" style="cursor:pointer;color:red">&nbsp;<i class="fa fa-times-circle" aria-hidden="true" onclick="jQuery('#bfi_lblchildrenages<?php echo $currModID ?>').webuiPopover('destroy');"></i></div>
 				<?php echo sprintf(__('We preset your children\'s ages to %s years old - but if you enter their actual ages, you might be able to find a better price.', 'bfi'),COM_BOOKINGFORCONNECTOR_CHILDRENSAGE) ?>
 			</div>
-			<input type="hidden" name="availabilitytype" class="resbynighthd" value="1" id="hdAvailabilityType<?php echo $checkoutId; ?>" /><br />
-			<input type="hidden" name="itemtypes" class="itemtypeshd" value="0" id="hdItemTypes<?php echo $checkoutId; ?>" /><br />
-			<input type="hidden" name="groupresulttype" class="groupresulttypehd" value="1" id="hdSearchGroupby<?php echo $checkoutId; ?>" /><br />
+			<input type="hidden" name="availabilitytype" class="resbynighthd" value="1" id="hdAvailabilityType<?php echo $checkoutId; ?>" />
+			<input type="hidden" name="itemtypes" class="itemtypeshd" value="0" id="hdItemTypes<?php echo $checkoutId; ?>" />
+			<input type="hidden" name="groupresulttype" class="groupresulttypehd" value="1" id="hdSearchGroupby<?php echo $checkoutId; ?>" />
 
 		</form>
 				   
@@ -718,7 +718,7 @@ $tabActive = "";
 <?php if(!empty($tablistRealEstate)): ?>
 		<div id="bfisearchselling<?php echo $currModID ?>" class="tab-pane fade <?php echo (empty($tablistResources)) ?"active in": "" ?>">
 		<form action="<?php echo $url_page_RealEstate; ?>" method="get" id="searchformonsellunit<?php echo $currModID ?>" class=" ">			
-			<div  id="searchBlock<?php echo $currModID ?>" class="bfi_form_<?php echo $showdirection?"horizontal":"vertical"; ?> <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">
+			<div  id="searchBlock<?php echo $currModID ?>" class="bfi_form_<?php echo $showdirection?"horizontal":"vertical"; ?> bfi-row">
 				<?php if($showContract){ ?>
 				<div class="bfi_contracttypeid bfi_container" >
 					<label><?php _e('Contract', 'bfi') ?></label>
@@ -759,11 +759,11 @@ $tabActive = "";
 				<?php if($showMaxPrice){ ?>
 				<div class="bfi_price bfi_container">
 					<label><?php _e('Price', 'bfi') ?></label>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">   
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6 <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>6">
+					<div class="bfi-row">   
+						<div class="bfi-col-md-6 bfi-col-sm-6">
 							<input name="pricemin" type="text" placeholder="<?php _e('from', 'bfi') ?>" value="<?php echo $pricemin;?>" class="inputtext" > 
 						</div><!--/span-->
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6 <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>6">
+						<div class="bfi-col-md-6 bfi-col-sm-6">
 							<input name="pricemax" type="text" placeholder="<?php _e('to', 'bfi') ?>" value="<?php echo $pricemax;?>"  class="inputtext" > 
 						</div><!--/span-->
 					</div>
@@ -772,11 +772,11 @@ $tabActive = "";
 				<?php if($showMinFloor){ ?>
 				<div class="bfi_floor_area  bfi_container">
 					<label><?php _e('Floor area m&sup2;', 'bfi') ?></label>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">   
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6 <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>6">
+					<div class="bfi-row">   
+						<div class="bfi-col-md-6 bfi-col-sm-6">
 							<input name="areamin" type="text" placeholder="<?php _e('from', 'bfi') ?>" value="<?php echo $areamin;?>" class="inputtext" > 
 						</div><!--/span-->
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6 <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>6">
+						<div class="bfi-col-md-6 bfi-col-sm-6">
 							<input name="areamax" type="text" placeholder="<?php _e('to', 'bfi') ?>" value="<?php echo $areamax;?>" class="inputtext" > 
 						</div><!--/span-->
 					</div>
@@ -785,11 +785,11 @@ $tabActive = "";
 				<?php if($showBedRooms){ ?>
 				<div class="bfi_bedrooms  bfi_container">
 					<label><?php _e('Bedrooms', 'bfi') ?></label>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">   
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6 <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>6">
+					<div class="bfi-row">   
+						<div class="bfi-col-md-6 bfi-col-sm-6">
 					<input name="bedroomsmin" type="text" placeholder="<?php _e('from', 'bfi') ?>" value="<?php echo $bedroomsmin;?>" class="inputtext" > 
 						</div><!--/span-->
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6 <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>6">
+						<div class="bfi-col-md-6 bfi-col-sm-6">
 					<input name="bedroomsmax" type="text" placeholder="<?php _e('to', 'bfi') ?>" value="<?php echo $bedroomsmax;?>" class="inputtext" > 
 						</div><!--/span-->
 					</div>
@@ -798,11 +798,11 @@ $tabActive = "";
 				<?php if($showRooms){ ?>
 				<div class="bfi_rooms  bfi_container">
 					<label><?php _e('Rooms', 'bfi') ?></label>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">   
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6 <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>6">
+					<div class="bfi-row">   
+						<div class="bfi-col-md-6 bfi-col-sm-6">
 					<input name="roomsmin" type="text" placeholder="<?php _e('from', 'bfi') ?>" value="<?php echo $roomsmin;?>" class="inputtext" > 
 						</div><!--/span-->
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6 <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>6">
+						<div class="bfi-col-md-6 bfi-col-sm-6">
 					<input name="roomsmax" type="text" placeholder="<?php _e('to', 'bfi') ?>" value="<?php echo $roomsmax;?>" class="inputtext" > 
 						</div><!--/span-->
 					</div>
@@ -823,9 +823,9 @@ $tabActive = "";
 				<?php if (isset($listServices) && $showServicesList) :?>
 				<?php  $countServ=0;?>
 				<div class="bfi_listservices  bfi_container">
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">   
+					<div class="bfi-row">   
 						<?php foreach ($listServices as $singleService):?>
-							<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
+							<div class="bfi-col-md-6">
 							<?php $checked = '';
 								if (isset($filtersServices) &&  is_array($filtersServices) && in_array($singleService->ServiceId,$filtersServices)){
 									$checked = ' checked="checked"';
@@ -836,7 +836,7 @@ $tabActive = "";
 						<?php  $countServ++;
 						if($countServ%2==0):?>
 					</div>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">	
+					<div class="bfi-row">	
 						<?php endif ?>
 
 						<?php endforeach; ?>
@@ -845,8 +845,8 @@ $tabActive = "";
 				<?php endif ?>
 				<?php if($showOnlyNew){ ?>
 				<div class="bfi_isnewbuilding  bfi_container">  
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">   
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
+					<div class="bfi-row">   
+						<div class="bfi-col-md-6">
 							<label class="checkbox"><input type="checkbox" name="isnewbuilding" value="1" <?php echo $isnewbuilding ?> /><?php _e('Only new building', 'bfi') ?></label>
 						</div>
 					</div>
@@ -973,11 +973,11 @@ function getBottomPosition(elm){
 
 function resizeZoneTitle(){
 	if(jQuery(window).width()>=600){
-		jQuery('#row-zones .<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3').css("line-height",jQuery('#row-zones .<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>9').height()+"px");
-		jQuery('#row-zones .<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3 label').css("line-height",jQuery('#row-zones .<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>9').height()+"px");
+		jQuery('#row-zones .bfi-col-md-3').css("line-height",jQuery('#row-zones .bfi-col-md-9').height()+"px");
+		jQuery('#row-zones .bfi-col-md-3 label').css("line-height",jQuery('#row-zones .bfi-col-md-9').height()+"px");
 	} else{
-		jQuery('#row-zones .<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3').css("line-height","");
-		jQuery('#row-zones .<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3 label').css("line-height","");
+		jQuery('#row-zones .bfi-col-md-3').css("line-height","");
+		jQuery('#row-zones .bfi-col-md-3 label').css("line-height","");
 	}
 			jQuery("#zonePopup<?php echo $currModID ?>").css({
 				left:jQuery("#searchBlock<?php echo $currModID ?>").offset().left-jQuery("#searchBlock<?php echo $currModID ?>").offset().left+15
@@ -1234,14 +1234,14 @@ var methods = {
 	<div id="divBFSSell" style="width:100%; height:400px; display:none;">
 		<div style="width:100%; height:50px; position:relative;">
 			<?php _e('Draw area', 'bfi') ?>
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>"> 
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6 <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>6">
+			<div class="bfi-row"> 
+				<div class="bfi-col-md-6 bfi-col-sm-6">
 					<ul class="nav nav-pills">
 						<li><a class="btn select-figure" id="btndrawpoligon" onclick="javascript: drawPoligon()"><?php _e('Area', 'bfi') ?></a></li>
 						<li><a class="btn select-figure" id="btndrawcircle" onclick="javascript: drawCircle()"><?php _e('Circle', 'bfi') ?></a></li>
 					</ul>				
 				</div><!--/span-->
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6 <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>6 text-right">
+				<div class="bfi-col-md-6 bfi-col-sm-6 text-right">
 					<input type="text" id="addresssearch" placeholder="<?php _e('Search', 'bfi') ?>" />
 					<div id="btnCompleta" class="input-prepend input-append" style="display:none;">
 						<a class="btn btn-delete" id="btndelete" href="javascript: void(0);" ><?php _e('Reset', 'bfi') ?></a>

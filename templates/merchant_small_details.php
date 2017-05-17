@@ -51,11 +51,11 @@ if(BFI()->isResourceOnSellPage()){
 }
 
 ?>
-<div class=" hideonextra">
+<div class=" bfi-hideonextra">
 	<br />
 	<div class=" bfi-border">
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> bfi-merchant-simple hideonextra">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>4">
+		<div class="bfi-row bfi-merchant-simple bfi-hideonextra">
+			<div class="bfi-col-md-4">
 					<div class="bfi-vcard-name">
 						<a <?php if($isportal) { ?> href="<?php echo $route?>"<?php } ?>><?php echo  $merchant->Name?></a>
 						<span class="bfi-vcard-star-rating">
@@ -64,11 +64,11 @@ if(BFI()->isResourceOnSellPage()){
 						<?php } ?>
 						</span>
 					</div>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> ">
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>5 ">
+					<div class="bfi-row ">
+						<div class="bfi-col-md-5 ">
 							<div class="bfi-vcard-logo"><a <?php if($isportal) { ?> href="<?php echo $route?>"<?php } ?>><img src="<?php echo $merchantLogo?>" /></a></div>	
 						</div>
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>7 bfi-pad0-10">
+						<div class="bfi-col-md-7 bfi-pad0-10">
 							
 							<span class="street-address"><?php echo $mrcindirizzo ?></span>, <span class="postal-code "><?php echo $mrccap ?></span> <span class="locality"><?php echo $mrccomune ?></span> <span class="state">, <?php echo $mrcstate ?></span><br />
 							<div class="bfi-height10"></div>
@@ -86,7 +86,7 @@ if(BFI()->isResourceOnSellPage()){
 							<a class="boxedpopup bfi-btn bfi-btn-blue" href="<?php echo $uriMerchantInfoRequest?>" style="width: 100%;"><?php echo  _e('Request info' , 'bfi') ?></a>
 					</div>
 			</div>	
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>8 bfi-pad10">
+			<div class="bfi-col-md-8 bfi-pad10">
 				<ul class="bfi-menu-small">
 				<?php if($isportal) { ?>
 					<?php if ($merchant->HasResources):?>

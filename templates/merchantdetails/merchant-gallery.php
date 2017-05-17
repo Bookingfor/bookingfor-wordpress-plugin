@@ -6,25 +6,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 $images = array();
 
 if(!empty($merchant->ImageData)) {
-  foreach(explode(', ', $merchant->ImageData) as $image) {
-    if (!empty($image)){
-      $images[] = array('type' => 'image', 'data' => $image);
-    }
-  }
+	foreach(explode(', ', $merchant->ImageData) as $image) {
+		if (!empty($image)){
+			$images[] = array('type' => 'image', 'data' => $image);
+		}
+	}
 }
 if(!empty($merchant->PlanimetryData)) {
-foreach(explode(',', $merchant->PlanimetryData) as $image) {
-  if (!empty($image)){
-    $images[] =  array('type' => 'planimetry', 'data' => $image);
-  }
-}
+	foreach(explode(',', $merchant->PlanimetryData) as $image) {
+		if (!empty($image)){
+			$images[] =  array('type' => 'planimetry', 'data' => $image);
+		}
+	}
 }
 if(!empty($merchant->VideoData)) {	
-foreach(explode(',', $merchant->VideoData) as $image) {
-  if (!empty($image)){
-    $images[] =  array('type' => 'video', 'data' => $image);
-  }
-}
+	foreach(explode(',', $merchant->VideoData) as $image) {
+		if (!empty($image)){
+			$images[] =  array('type' => 'video', 'data' => $image);
+		}
+	}
 }
 ?>
 <?php if (count ($images)>0){ ?>
@@ -39,36 +39,10 @@ if ($rating>9 )
 $reviewavg = isset($merchant->Avg) ? $merchant->Avg->Average : 0;
 $reviewcount = isset($merchant->Avg) ? $merchant->Avg->Count : 0;
 ?>
-<div class="com_bookingforconnector_resource-initialgallery nopadding <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">
-	<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12 com_bookingforconnector_resource-initialgallery-fullrow nopadding">
+<div class="com_bookingforconnector_resource-initialgallery nopadding bfi-row">
+	<div class="bfi-col-md-12 com_bookingforconnector_resource-initialgallery-fullrow nopadding">
 		<div class="launch-fullscreen">
 			<img src="<?php echo BFCHelper::getImageUrlResized('merchant', $main_img['data'],'big')?>" alt="">
-		</div>
-		<div class="caption">
-			<?php
-			if ($isportal && $merchant->RatingsContext != NULL && ($merchant->RatingsContext ==1 || $merchant->RatingsContext ==3) && !empty($merchant->Avg)) {
-				$reviewavg = $merchant->Avg->Average;
-				$reviewcount = $merchant->Avg->Count;
-				if($reviewcount>0){
-			?>
-				<div class="ratingdiv">
-					<div class="avgreview">
-						<?php echo number_format($reviewavg, 1); ?>
-					</div>
-					<div class="reviewcount">
-						<i class="fa fa-comments-o" aria-hidden="true"></i> <?php echo $reviewcount; ?> <?php _e('Reviews', 'bfi') ?>
-					</div>
-				</div>
-				<?php } else { ?>
-					<div class="ratingdiv">
-						<div class="noreviewtext">
-							<?php _e('Would you like to be the first to write a review?', 'bfi') ?>
-						</div>
-					</div>
-				<?php 
-				} 
-			}
-			?>
 		</div>
 	</div>
 </div>
@@ -110,7 +84,6 @@ if(!empty($totalsub_images)){
 		</tr>
 	</table>
 </div>
-
 <script type="text/javascript">
 <!--
 jQuery(document).ready(function() {

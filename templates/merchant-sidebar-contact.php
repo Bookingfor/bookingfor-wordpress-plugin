@@ -38,14 +38,14 @@ if(COM_BOOKINGFORCONNECTOR_MONTHINCALENDAR==1){
 		<span href="" class="opencontactform"><?php _e('Request for Information', 'bfi') ?></span>
 	<?php } ?>	
 
-	<div class="mod_bookingforconnector-contacts" style="display:<?php echo $formdisplay ?>">
+	<div class="bfi-contacts" style="display:<?php echo $formdisplay ?>">
 		<h2 >
             
 		<!-- <span class="bfi_merchantdetails-rating bfi_merchantdetails-rating<?php //echo $merchant->Rating; ?>">
 			<span class="bfi_merchantdetails-ratingText">Rating <?php //echo $merchant->Rating; ?></span>
 		</span>  -->
 	</h2>
-	<div align="center" class="com_bookingforconnector_merchantdetails-contacts">
+	<div align="center" class="bfi-form-contacts">
 		<form method="post" id="<?php echo $idform ?>" class="form-validate merchantdetailscontacts" action="<?php echo $formRoute; ?>" novalidate="novalidate">
 			<div class="bfi_form-field">
 				<div class="bfi_form-title"><?php _e('Request for Information', 'bfi'); ?></div>
@@ -151,12 +151,12 @@ if(empty($maxCapacityPaxes)) {
  ?>
 <?php endif;  ?>
 		<?php if ($merchant->HasResources && $layout !== 'onsellunits' && $layout !== 'onsellunit' && $currentView !== 'onsellunit'):?>
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">   
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6 bfi-inline-field-right">
+				<div class="bfi-row">   
+					<div class="bfi-col-md-6 bfi-inline-field-right">
 						<div class="bfi-inline-field"><label><?php _e('Check-in', 'bfi'); ?> </label></div>
 						<input type="text" name="form[CheckIn]" id="<?php echo $checkinId ?>" value="<?php echo $checkin->format('d/m/Y') ?>" class="ui-datepicker-simple" />	
 					</div>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6 bfi-inline-field-left">
+					<div class="bfi-col-md-6 bfi-inline-field-left">
 						<div class="bfi-inline-field"><label><?php _e('Check-out', 'bfi'); ?></label></div>
 						<input type="text" name="form[CheckOut]" id="<?php echo $checkoutId ?>" value="<?php echo $checkout->format('d/m/Y') ?>" class="ui-datepicker-simple" />	
 					</div>
@@ -165,7 +165,7 @@ if(empty($maxCapacityPaxes)) {
                 
 					<div class="bfi-inline-field-pers"><label><?php _e('Persons', 'bfi') ?> </label></div>
 						<div class="bfi_form_txt">
-                       <!-- <select name="form[Totpersons]" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>4">-->
+                       <!-- <select name="form[Totpersons]" class="bfi-col-md-4">-->
                         <select name="form[Totpersons]" class="bfi_input_select">
 					<?php
 					foreach (range($minCapacityPaxes, $maxCapacityPaxes) as $number) {
@@ -177,31 +177,31 @@ if(empty($maxCapacityPaxes)) {
 		<?php endif ?>	
 
 		
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-            <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>12" style="padding:0;">
+		<div class="bfi-row">
+            <div class="bfi-col-md-12" style="padding:0;">
               <textarea name="form[note]" style="height:200px;"  placeholder="<?php _e('Special Requests', 'bfi'); ?>"></textarea>    
             </div>
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12" style="display:none;">
+			<div class="bfi-col-md-12" style="display:none;">
 				<br />
 				<label id="mbfcPrivacyTitle"><?php _e('Personal data treatment', 'bfi') ?></label>
-				<textarea id="mbfcPrivacyText" name="form[privacy]" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12" style="height:200px;" readonly ><?php echo $privacy ?></textarea>    
+				<textarea id="mbfcPrivacyText" name="form[privacy]" class="bfi-col-md-12" style="height:200px;" readonly ><?php echo $privacy ?></textarea>    
 			</div>
         </div>
 			
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-             <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12 checkbox-wrapper">
+		<div class="bfi-row">
+             <div class="bfi-col-md-12 bfi-checkbox-wrapper">
 		 	   <input name="form[accettazione]" id="agree" aria-invalid="true" aria-required="true" type="checkbox" required title="<?php _e('Mandatory', 'bfi') ?>">
 			   <label  class="agreeprivacy"><?php _e('I accept personal data treatment', 'bfi') ?></label>
 			</div>
         </div>
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>" style="display:none;">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12">
+		<div class="bfi-row" style="display:none;">
+			<div class="bfi-col-md-12">
 				<label id="mbfcAdditionalPurposeTitle"><?php _e('Additional purposes', 'bfi') ?></label>
-				<textarea id="mbfcAdditionalPurposeText" name="form[additionalPurpose]" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12" style="height:200px;" readonly ><?php echo $additionalPurpose ?></textarea>    
+				<textarea id="mbfcAdditionalPurposeText" name="form[additionalPurpose]" class="bfi-col-md-12" style="height:200px;" readonly ><?php echo $additionalPurpose ?></textarea>    
 			</div>
 		</div><!--/row-->
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>" style="display:<?php echo empty($additionalPurpose)?"none":"";?>">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12 checkbox-wrapper">
+		<div class="bfi-row" style="display:<?php echo empty($additionalPurpose)?"none":"";?>">
+			<div class="bfi-col-md-12 bfi-checkbox-wrapper">
 				<input name="form[accettazioneadditionalPurpose]" id="agreeadditionalPurpose" aria-invalid="true" aria-required="true" required type="checkbox" title="<?php _e('Mandatory', 'bfi') ?>">
 				<label class="agreeprivacy"><?php _e('I accept additional purposes', 'bfi') ?></label>
 			</div>
@@ -267,7 +267,7 @@ if(empty($maxCapacityPaxes)) {
 
 			jQuery(".opencontactform").click(function(e) {
 				jQuery(this).hide();
-				jQuery(".mod_bookingforconnector-contacts").slideDown("slow",function() {
+				jQuery(".bfi-contacts").slideDown("slow",function() {
 					if (jQuery.prototype.masonry){
 						jQuery('.main-siderbar, .main-siderbar1').masonry('reload');
 					}

@@ -111,7 +111,7 @@
             if(showServices){
 				jQuery(".bfi-menu-booking a:eq(1)").addClass("bfi-menu-small-active"); //set menu to "Extra service"
 				jQuery(".bfi-table-resources").not( ".bfi-table-selectableprice" ).hide();
-                jQuery(".hideonextra").hide();
+                jQuery(".bfi-hideonextra").hide();
                 jQuery(".div-selectableprice").show();
                 if (typeof daysToEnableTimeSlot !== 'undefined' && typeof strAlternativeDateToSearch !== 'undefined' && typeof initDatepickerTimeSlot !== 'undefined' && jQuery.isFunction(initDatepickerTimeSlot)) {
                     initDatepickerTimeSlot();

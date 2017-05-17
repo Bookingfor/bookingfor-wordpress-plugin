@@ -55,22 +55,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 	  
 	  <!--reservation-bookig-detail-->
       <div class="reservation-bookig-detail" id="booking-detail-form">
-         <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> booking-header">
-            <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6 headline">
+         <div class="bfi-row booking-header">
+            <div class="bfi-col-md-6 headline">
                <?php _e('Booking Detail', 'bfi') ?>
             </div>
-            <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6 backlist">
+            <div class="bfi-col-md-6 backlist">
                <a href="#" class="btn btn-primary"><?php _e('Back to list', 'bfi') ?> <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
             </div>
          </div>
          <!--booking-header-->
-         <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12 booking-filled-detail">
+         <div class="bfi-col-md-12 booking-filled-detail">
             <div class="top_headings-title">
-               <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12 headline">
+               <div class="bfi-col-md-12 headline">
                   <?php print $mrcName; ?> <span class="bookingformerchantdetails-rating StarRating-<?php echo $merchantId; ?>"></span>	  
                </div>
                <div class="check-out-title">
-                  <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6 checkout-box ">
+                  <div class="bfi-col-md-6 checkout-box ">
                     <i class="fa fa-calendar" aria-hidden="true"></i> <?php _e('Check-in', 'bfi') ?> <?php print date_i18n('D',$dateCheckin->getTimestamp()); ?> <?php print $dateCheckin->format('d'); ?> 
 					<?php if($ShowTimeSlot) {
 						$startHour = new DateTime("2000-01-01 0:0:00.1"); 
@@ -95,7 +95,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<?php print $dateCheckin->format('Y'); ?>
                   </div>
 			<?php if(!$ShowTimeSlot && empty($order_resource_summary[0]->CheckInTime)) : ?>
-                  <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6  checkout-box">
+                  <div class="bfi-col-md-6  checkout-box">
                      <i class="fa fa-calendar" aria-hidden="true"></i> <?php _e('Check-out', 'bfi') ?> <?php print date_i18n('D',$dateCheckout->getTimestamp()); ?> 
 					 <?php print $dateCheckout->format('d'); ?> 
 					 <?php print date_i18n('M',$dateCheckout->getTimestamp()); ?> 
@@ -115,10 +115,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 								
 				?>
 				<h4><?php echo $order_resource_item->ResName; ?></h4>
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">
+				<div class="bfi-row">
 					<?php foreach($accomodations as $accomodation) { ?>
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>9"><?php echo $accomodation->Name; ?></div>
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"> € <?php echo $accomodation->TotalPrice; ?></div>
+						<div class="bfi-col-md-9"><?php echo $accomodation->Name; ?></div>
+						<div class="bfi-col-md-3"> € <?php echo $accomodation->TotalPrice; ?></div>
 					<?php } ?>
 				</div>
 				<br />
@@ -126,11 +126,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
             <div class="total-heading-title">
                <h4><?php _e('Total Price', 'bfi') ?>:</h4>
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>9 total_content-title button-total">
+				<div class="bfi-row">
+					<div class="bfi-col-md-9 total_content-title button-total">
 					<!-- <button class="btn btn-default">		 Offer%</button> -->
 					</div>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3 total_content-title"> € <?php print $accomodation_total; ?></div>
+					<div class="bfi-col-md-3 total_content-title"> € <?php print $accomodation_total; ?></div>
 				</div>
             </div>
          </div>
@@ -140,45 +140,45 @@ if ( ! defined( 'ABSPATH' ) ) {
             <div class="guest-heading-title">
                <h4>Total Price:</h4>
             </div>
-            <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3 guest_content-left">
+            <div class="bfi-col-md-3 guest_content-left">
                Guest n°1:
             </div>
-            <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>9 guest_content-right"><a href="#">Alessandra Viaro</a></div>
-            <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12 guest_content-left">
+            <div class="bfi-col-md-9 guest_content-right"><a href="#">Alessandra Viaro</a></div>
+            <div class="bfi-col-md-12 guest_content-left">
                Guest n°1:
             </div>
             <div class="guest-form-details">
-               <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6 guest_input-left">
+               <div class="bfi-col-md-6 guest_input-left">
                   <div class="form-group">
                      <label for="usr">Name:</label>
                      <input type="text" class="form-control" id="name">
                   </div>
                </div>
-               <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6 guest_input-right">
+               <div class="bfi-col-md-6 guest_input-right">
                   <div class="form-group">
                      <label for="usr">Date of birth:</label>
                      <input type="text" class="form-control" id="country">
                   </div>
                </div>
-               <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6 guest_input-left">
+               <div class="bfi-col-md-6 guest_input-left">
                   <div class="form-group">
                      <label for="usr">Surname:</label>
                      <input type="text" class="form-control" id="usr">
                   </div>
                </div>
-               <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6 guest_input-right">
+               <div class="bfi-col-md-6 guest_input-right">
                   <div class="form-group">
                      <label for="usr">Birth place:</label>
                      <input type="text" class="form-control" id="usr">
                   </div>
                </div>
-               <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6 guest_input-left">
+               <div class="bfi-col-md-6 guest_input-left">
                   <div class="form-group">
                      <label for="usr">Gender:</label>
                      <input type="text" class="form-control" id="gender">
                   </div>
                </div>
-               <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6 guest_input-right">
+               <div class="bfi-col-md-6 guest_input-right">
                   <div class="form-group">
                      <label for="usr">Country:</label>
                      <input type="text" class="form-control" id="country">

@@ -41,7 +41,7 @@ if(!isset($_GET['task'])) {
     $searchmodel = new BookingForConnectorModelSearch;
 		
 $pars = BFCHelper::getSearchParamsSession();
-$filterinsession = BFCHelper::getFilterSearchParamsSession();
+$filterinsession = null;
 
 $items =  array();
 $total = 0;
@@ -51,10 +51,14 @@ if (isset($pars['checkin']) && isset($pars['checkout'])){
 	$now = new DateTime();
 	$checkin = isset($pars['checkin']) ? $pars['checkin'] : new DateTime();
 	$checkout = isset($pars['checkout']) ? $pars['checkout'] : new DateTime();
+
+	$availabilitytype = isset($pars['availabilitytype']) ? $pars['availabilitytype'] : "1";
 	
-	if ($checkin == $checkout || $checkin->diff($checkout)->format("%a") <0 || $checkin < $now ){
+	$availabilitytype = explode(",",$availabilitytype);
+	if (($checkin == $checkout && (!in_array("0",$availabilitytype) && !in_array("2",$availabilitytype)&& !in_array("3",$availabilitytype) ) ) || $checkin->diff($checkout)->format("%a") <0 || $checkin < $now ){
 		$nodata = true;
 	}else{
+		$filterinsession = BFCHelper::getFilterSearchParamsSession();
 		$items = $searchmodel->getItems(false, false, $start,COM_BOOKINGFORCONNECTOR_ITEMPERPAGE);
 		
 		$items = is_array($items) ? $items : array();
@@ -302,19 +306,14 @@ if(COM_BOOKINGFORCONNECTOR_CRITEOENABLED){
     	$model =  new BookingForConnectorModelMerchantDetails;
       $merchant = $model->getItem($merchant_id);
       $output = '<div class="com_bookingforconnector_map_merchantdetails" style="display:block;height:150px;overflow:auto; width: 300px;">
-	<div class="com_bookingforconnector_merchantdetails com_bookingforconnector_merchantdetails-t257">
-		<h3 style="margin:0;" class="com_bookingforconnector_merchantdetails-name"><a class="com_bookingforconnector_merchantdetails-nameAnchor" href="'.$base_url.'/merchant-details/merchantdetails/'.$merchant->MerchantId.'-'.seoUrl($merchant->Name).'">'.$merchant->Name.'</a> 
-			<br/><span class="bfi_merchantdetails-rating bfi_merchantdetails-rating'.$merchant->Rating.'">
-				<span class="bfi_merchantdetails-ratingText">Rating '.$merchant->Rating.'</span>
-			</span>
-		</h3>
-		<div class="com_bookingforconnector_merchantdetails-contacts" style="display:none;">
-			<h3>'.__('Facility contacts data', 'bfi').'</h3>
-			<div>'.__('Phone', 'bfi').': <br/>
-			<!-- Fax: --> </div>
-		</div>
-	</div>
-</div>';    
+					<div class="com_bookingforconnector_merchantdetails com_bookingforconnector_merchantdetails-t257">
+						<h3 style="margin:0;" class="com_bookingforconnector_merchantdetails-name"><a class="com_bookingforconnector_merchantdetails-nameAnchor" href="'.$base_url.'/merchant-details/merchantdetails/'.$merchant->MerchantId.'-'.seoUrl($merchant->Name).'">'.$merchant->Name.'</a> 
+							<br/><span class="bfi_merchantdetails-rating bfi_merchantdetails-rating'.$merchant->Rating.'">
+								<span class="bfi_merchantdetails-ratingText">Rating '.$merchant->Rating.'</span>
+							</span>
+						</h3>
+					</div>
+				</div>';    
     die($output);
     }
     else if($task == 'getmarketinforesource') {
@@ -324,19 +323,14 @@ if(COM_BOOKINGFORCONNECTOR_CRITEOENABLED){
       $resource = $model->getItem($resource_id);
 	$merchant = $resource->Merchant;
       $output = '<div class="com_bookingforconnector_map_merchantdetails" style="display:block;height:150px;overflow:auto; width: 300px;">
-	<div class="com_bookingforconnector_merchantdetails com_bookingforconnector_merchantdetails-t257">
-		<h3 style="margin:0;" class="com_bookingforconnector_merchantdetails-name"><a class="com_bookingforconnector_merchantdetails-nameAnchor" href="'.$base_url.'/accommodation-details/resource/'.$resource->ResourceId.'-'.seoUrl($resource->Name).'">'.$resource->Name.'</a> 
-			<br/><span class="bfi_merchantdetails-rating bfi_merchantdetails-rating'.$merchant->Rating.'">
-				<span class="bfi_merchantdetails-ratingText">Rating '.$merchant->Rating.'</span>
-			</span>
-		</h3>
-		<div class="com_bookingforconnector_merchantdetails-contacts" style="display:none;">
-			<h3>'.__('Facility contacts data', 'bfi').'</h3>
-			<div>'.__('Phone', 'bfi').': <br/>
-			Fax: </div>
-		</div>
-	</div>
-</div>';    
+					<div class="com_bookingforconnector_merchantdetails com_bookingforconnector_merchantdetails-t257">
+						<h3 style="margin:0;" class="com_bookingforconnector_merchantdetails-name"><a class="com_bookingforconnector_merchantdetails-nameAnchor" href="'.$base_url.'/accommodation-details/resource/'.$resource->ResourceId.'-'.seoUrl($resource->Name).'">'.$resource->Name.'</a> 
+							<br/><span class="bfi_merchantdetails-rating bfi_merchantdetails-rating'.$merchant->Rating.'">
+								<span class="bfi_merchantdetails-ratingText">Rating '.$merchant->Rating.'</span>
+							</span>
+						</h3>
+					</div>
+				</div>';    
     die($output);    	
     }
     else if($task == 'getmarketinforesourceonsell') {

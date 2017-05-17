@@ -16,6 +16,12 @@ $merchantdetails_page = get_post( bfi_get_page_id( 'merchantdetails' ) );
 $url_merchant_page = get_permalink( $merchantdetails_page->ID );
 $routeMerchant = $url_merchant_page . $merchant->MerchantId.'-'.BFI()->seoUrl($merchant->Name);
 
+$fromSearch =  BFCHelper::getVar('fromsearch','0');
+
+if(!empty($fromSearch)){
+	$routeMerchant .= "/?fromsearch=1";
+}
+
 ?>
 
 <div class="mapdetails">

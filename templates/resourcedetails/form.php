@@ -302,12 +302,12 @@ if(!empty($bookingTypes)){
 	$bookingTypesDescArray = array();
 	foreach($bookingTypes as $bt)
 	{
-		$currDesc = BFCHelper::getLanguage($bt->Name, $language) . "<div class='ccdescr'>" . BFCHelper::getLanguage($bt->Description, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')) . "</div>";
+		$currDesc = BFCHelper::getLanguage($bt->Name, $language) . "<div class='bfi-ccdescr'>" . BFCHelper::getLanguage($bt->Description, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')) . "</div>";
 		if($bt->AcquireCreditCardData && !empty($bt->Data)){
 
 			$ccimgages = explode("|", $bt->Data);
 			$cCCTypeList = array();
-			$currDesc .= "<div class='ccimages'>";
+			$currDesc .= "<div class='bfi-ccimages'>";
 			foreach($ccimgages as $ccimgage){
 				$currDesc .= '<i class="fa fa-cc-' . strtolower($ccimgage) . '" title="'. $ccimgage .'"></i>&nbsp;&nbsp;';
 				$cCCTypeList[$ccimgage] = $ccimgage; // JHTML::_('select.option', $ccimgage, $ccimgage);
@@ -486,12 +486,12 @@ if(!empty($bookingTypes)){
 ?>
 	<?php if (!empty($order) && !empty($order->Resources)):?>
 
-<div class="com_bookingforconnector_resource-payment-form">
+<div class="bfi-payment-form">
 <div class="bf-title-book"><?php _e('Enter your details', 'bfi') ?></div>
 <form method="post" id="resourcedetailsrequest" class="form-validate" action="<?php echo $formRoute; ?>">
-	<div class="mailalertform">
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
+	<div class="bfi-mailalertform">
+		<div class="bfi-row">
+			<div class="bfi-col-md-6">
 			<div >
 				<label><?php _e('Name', 'bfi'); ?> *</label>
 				<input type="text" value="<?php echo $current_user->user_login ; ?>" size="50" name="form[Name]" id="Name" required  title="<?php _e('This field is required.', 'bfi') ?>">
@@ -586,10 +586,10 @@ if(!empty($bookingTypes)){
 				</div><!--/span-->
 			</div>
 	    </div>
-	    <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
+	    <div class="bfi-col-md-6">
 	         <div >
               <label><?php _e('Note', 'bfi'); ?></label>
-              <textarea name="form[note]" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12" style="height:104px;" ></textarea>    
+              <textarea name="form[note]" class="bfi-col-md-12" style="height:104px;" ></textarea>    
             </div>
 			<div >
 				<label><?php _e('Phone', 'bfi'); ?> *</label>
@@ -642,26 +642,26 @@ if(!empty($bookingTypes)){
 		</div>
 	</div>
 <!-- VIEW_ORDER_PAYMENTMETHOD -->
-	<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12 paymentoptions" style="display:none;" id="bookingTypesContainer">
+	<div class="bfi-row">
+		<div class="bfi-col-md-12 paymentoptions" style="display:none;" id="bookingTypesContainer">
 			<h2><?php _e('Payment method', 'bfi') ?></h2>
 			<p><?php _e('Please choose a payment method', 'bfi') ?></p>
 			<?php  foreach ($bookingTypesoptions as $key => $value) { ?>
 				<label for="form[bookingType]<?php echo $key ?>" id="form[bookingType]<?php echo $key ?>-lbl" class="radio">	
-					<input type="radio" name="form[bookingType]" id="form[bookingType]<?php echo $key ?>" value="<?php echo $key ?>" <?php echo $bookingTypedefault == $key ? 'checked="checked"' : "";  ?>  ><?php echo $value ?><div class="ccdescr"></div>
+					<input type="radio" name="form[bookingType]" id="form[bookingType]<?php echo $key ?>" value="<?php echo $key ?>" <?php echo $bookingTypedefault == $key ? 'checked="checked"' : "";  ?>  ><?php echo $value ?><div class="bfi-ccdescr"></div>
 				</label>
 			<?php } ?>
 		</div>
 	</div>
-	<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">
+	<div class="bfi-row">
 
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12 paymentoptions" id="bookingTypesDescriptionContainer">
+		<div class="bfi-col-md-12 paymentoptions" id="bookingTypesDescriptionContainer">
 			<h2 id="bookingTypeTitle"></h2>
 			<span id="bookingTypeDesc"></span>
 		</div>
 	</div>
- 		<!--<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>" id="totaldepositrequested">
-            <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>12">
+ 		<!--<div class="bfi-row" id="totaldepositrequested">
+            <div class="bfi-col-md-12">
               <br>
               <?php _e('Total deposit : €', 'bfi'); ?>
 			  <span class="totaldeposit" id="totaldeposit"><?php echo BFCHelper::priceFormat($deposit); ?></span> 
@@ -674,8 +674,8 @@ if(!empty($bookingTypes)){
 
 <div style="display:none;" id="ccInformations" class="borderbottom">
 		<h2><?php _e('Credit card details', 'bfi') ?></h2>
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">   
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
+		<div class="bfi-row">   
+			<div class="bfi-col-md-6">
 				<label><?php _e('Type', 'bfi') ?> </label>
 					<select id="formcc_circuito" name="form[cc_circuito]" class="bfi_input_select">
 						<?php 
@@ -685,41 +685,41 @@ if(!empty($bookingTypes)){
 						?> 
 					</select>
 			</div>
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
+			<div class="bfi-col-md-6">
 				<label><?php _e('Holder', 'bfi') ?> </label>
 				<input type="text" value="" size="50" name="form[cc_titolare]" id="cc_titolare" required  title="<?php _e('This field is required.', 'bfi') ?>">
 			</div>
 		</div>
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">   
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
+		<div class="bfi-row">   
+			<div class="bfi-col-md-6">
 				<label><?php _e('Number', 'bfi') ?> </label>
 				<input type="text" value="" size="50" maxlength="50" name="form[cc_numero]" id="cc_numero" required  title="<?php _e('This field is required.', 'bfi') ?>">
 			</div>
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
+			<div class="bfi-col-md-6">
 				<label><?php _e('Valid until', 'bfi') ?></label>
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3">
+				<div class="bfi-row">
+					<div class="bfi-col-md-3">
 						<?php _e('Month (MM)', 'bfi') ?>
 					</div><!--/span-->
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6 ccdateinput">
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">
-							<input type="text" value="" size="2" maxlength="2" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>5" name="form[cc_mese]" id="cc_mese" required  title="<?php _e('This field is required.', 'bfi') ?>">
-							<span class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>2 " style="text-align:center;" >/</span>
-							<input type="text" value="" size="2" maxlength="2" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>5" name="form[cc_anno]" id="cc_anno" required  title="<?php _e('This field is required.', 'bfi') ?>">
+					<div class="bfi-col-md-6 ccdateinput">
+						<div class="bfi-row">
+							<input type="text" value="" size="2" maxlength="2" class="bfi-col-md-5" name="form[cc_mese]" id="cc_mese" required  title="<?php _e('This field is required.', 'bfi') ?>">
+							<span class="bfi-col-md-2 " style="text-align:center;" >/</span>
+							<input type="text" value="" size="2" maxlength="2" class="bfi-col-md-5" name="form[cc_anno]" id="cc_anno" required  title="<?php _e('This field is required.', 'bfi') ?>">
 						</div>
 					</div><!--/span-->
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3">
+					<div class="bfi-col-md-3">
 						<?php _e('Year (YY)', 'bfi') ?>
 					</div><!--/span-->
 				</div><!--/row-->
 			</div>
 		</div>
 		<br />
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> ">   
-			  <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>2">
+		<div class="bfi-row ">   
+			  <div class="bfi-col-md-2">
 				 <?php echo $ssllogo ?>
 			  </div>
-			  <!-- <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>10">
+			  <!-- <div class="bfi-col-md-10">
 				  <?php echo sprintf(__('%1s will not charge anything to your credit card. Your credit card details are only requested in order to guarantee your booking.', 'bfi'),$sitename); ?>
 			  </div> -->
 		</div>
@@ -729,24 +729,24 @@ if(!empty($bookingTypes)){
 <?php 
 if($merchant->AcceptanceCheckIn != "-" && $merchant->AcceptanceCheckOut != "-" && !empty($merchant->OtherDetails) ){
 ?>
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> ">   
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12 infomerchant" >
+		<div class="bfi-row ">   
+			<div class="bfi-col-md-12 infomerchant" >
 				<h2><?php _e('Good to know', 'bfi') ?></h2>
 				<br />
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> borderbottom padding20px0">
+				<div class="bfi-row borderbottom padding20px0">
 					<?php if($merchant->AcceptanceCheckIn != "-"){ ?>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>2"><b><?php _e('Check-in', 'bfi') ?></b>&nbsp;</div>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>4"><?php echo $merchant->AcceptanceCheckIn ?></div>
+					<div class="bfi-col-md-2"><b><?php _e('Check-in', 'bfi') ?></b>&nbsp;</div>
+					<div class="bfi-col-md-4"><?php echo $merchant->AcceptanceCheckIn ?></div>
 					<?php } ?>
 					<?php if($merchant->AcceptanceCheckOut != "-"){ ?>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>2"><b><?php _e('Check-out', 'bfi') ?></b>&nbsp;</div>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>4"><?php echo $merchant->AcceptanceCheckOut ?></div>
+					<div class="bfi-col-md-2"><b><?php _e('Check-out', 'bfi') ?></b>&nbsp;</div>
+					<div class="bfi-col-md-4"><?php echo $merchant->AcceptanceCheckOut ?></div>
 					<?php } ?>
 				</div>
 				<?php if(!empty($merchant->OtherDetails) ){ ?>
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> borderbottom padding20px0">
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>1"><b><?php _e('Info', 'bfi') ?></b></div>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>11 applyshorten"><?php echo BFCHelper::getLanguage($merchant->OtherDetails, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags'))  ?></div>
+				<div class="bfi-row borderbottom padding20px0">
+					<div class="bfi-col-md-1"><b><?php _e('Info', 'bfi') ?></b></div>
+					<div class="bfi-col-md-11 applyshorten"><?php echo BFCHelper::getLanguage($merchant->OtherDetails, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags'))  ?></div>
 				</div>
 					<?php } ?>
 			</div>
@@ -754,25 +754,25 @@ if($merchant->AcceptanceCheckIn != "-" && $merchant->AcceptanceCheckOut != "-" &
 <?php 
 }
 ?>
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12 checkbox-wrapper">
+		<div class="bfi-row">
+			<div class="bfi-col-md-12 bfi-checkbox-wrapper">
 				<input name="form[accettazionepolicy]" class="checkbox" id="agreepolicy" aria-invalid="true" aria-required="true" type="checkbox" required title="<?php _e('Mandatory', 'bfi') ?>">
-				<label class="shownextelement"><?php _e('I agree to the conditions', 'bfi') ?></label>
-				<textarea name="form[policy]" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php echo $policy ?></textarea>
+				<label class="bfi-shownextelement"><?php _e('I agree to the conditions', 'bfi') ?></label>
+				<textarea name="form[policy]" class="bfi-col-md-12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php echo $policy ?></textarea>
 			</div>
 		</div>
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12 checkbox-wrapper">
+		<div class="bfi-row">
+			<div class="bfi-col-md-12 bfi-checkbox-wrapper">
 					<input name="form[accettazione]" class="checkbox" id="agree" aria-invalid="true" aria-required="true" type="checkbox" required title="<?php _e('Mandatory', 'bfi') ?>">
-					<label class="shownextelement"><?php _e('I accept personal data treatment', 'bfi') ?></label>
-					<textarea name="form[privacy]" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php echo $privacy ?></textarea>    
+					<label class="bfi-shownextelement"><?php _e('I accept personal data treatment', 'bfi') ?></label>
+					<textarea name="form[privacy]" class="bfi-col-md-12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php echo $privacy ?></textarea>    
 			</div>
 		</div>
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>" style="display:<?php echo empty($additionalPurpose)?"none":"";?>">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12 checkbox-wrapper">
+		<div class="bfi-row" style="display:<?php echo empty($additionalPurpose)?"none":"";?>">
+			<div class="bfi-col-md-12 bfi-checkbox-wrapper">
 				<input name="form[accettazioneadditionalPurpose]" class="checkbox" id="agreeadditionalPurpose" aria-invalid="true" aria-required="true" required type="checkbox" title="<?php _e('Mandatory', 'bfi') ?>">
-				<label class="shownextelement"><?php _e('I accept additional purposes', 'bfi') ?></label>
-				<textarea name="form[additionalPurpose]" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php echo $additionalPurpose ?></textarea>    
+				<label class="bfi-shownextelement"><?php _e('I accept additional purposes', 'bfi') ?></label>
+				<textarea name="form[additionalPurpose]" class="bfi-col-md-12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php echo $additionalPurpose ?></textarea>    
 			</div>
 		</div>
 
@@ -798,9 +798,9 @@ if($merchant->AcceptanceCheckIn != "-" && $merchant->AcceptanceCheckOut != "-" &
 
 		</div>
 
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> bf-footer-book" >
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>10 " style="padding-top: 10px !important; padding-left: 20px !important;"><?php _e('Almost done', 'bfi') ?></div>
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>2 "><button type="submit" id="btnbfFormSubmit" style="display:none;"><?php _e('Send', 'bfi') ?></button></div>
+		<div class="bfi-row bf-footer-book" >
+			<div class="bfi-col-md-10 " style="padding-top: 10px !important; padding-left: 20px !important;"><?php _e('Almost done', 'bfi') ?></div>
+			<div class="bfi-col-md-2 "><button type="submit" id="btnbfFormSubmit" style="display:none;"><?php _e('Send', 'bfi') ?></button></div>
 		</div>
 
 <?php
@@ -875,7 +875,7 @@ jQuery(function($)
 			jQuery("#btnbfFormSubmit").show();
 
 
-			$(".shownextelement").click(function(){
+			$(".bfi-shownextelement").click(function(){
 				$(this).next().toggle();
 			});
 			

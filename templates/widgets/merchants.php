@@ -76,13 +76,13 @@ if ( $title ) {
 			}
 		?>
 			<div class="com_bookingforconnector-item-col" >
-				<div class="com_bookingforconnector-search-merchant com_bookingforconnector-item  <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>" style="height:100%">
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>" >
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12"><a href="<?php echo $routeMerchant?>"><img src="<?php echo $currMerchantImageUrl; ?>" class="img-responsive center-block" /></a>
+				<div class="com_bookingforconnector-search-merchant com_bookingforconnector-item  bfi-row" style="height:100%">
+					<div class="bfi-row" >
+						<div class="bfi-col-md-12"><a href="<?php echo $routeMerchant?>"><img src="<?php echo $currMerchantImageUrl; ?>" class="bfi-img-responsive center-block" /></a>
 						</div>
 					</div>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>" >
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?><?php //echo $rating > 0 ? "4" : "12" ?>12" style="padding: 10px!important;">
+					<div class="bfi-row" >
+						<div class="bfi-col-md-<?php //echo $rating > 0 ? "4" : "12" ?>12" style="padding: 10px!important;">
 						<a class="com_bookingforconnector-search-merchant-name-anchor" style="font-weight:bold;color:black; font-size: 16px; color:#08c;" href="<?php echo $routeMerchant ?>" id="nameAnchor<?php echo $merchant->MerchantId?>"><?php echo  $merchant->Name ?></a> 
 							<!-- <label class="com_bookingforconnector-search-merchant-name-anchor" style="font-weight:bold; color:#08c; font-size:14px;text-transform: uppercase;width: 100%;"><?php echo $merchant->MainCategoryName?> -->
 						<?php if($rating > 0): ?>
@@ -94,19 +94,19 @@ if ( $title ) {
 						<?php endif; ?></label>
 						</div>
 					</div>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> bfi-hide" >
-						<div class="bfi_merchant-description <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12" style="padding-left: 10px!important;padding-right: 10px!important;">
+					<div class="bfi-row bfi-hide" >
+						<div class="bfi_merchant-description bfi-col-md-12" style="padding-left: 10px!important;padding-right: 10px!important;">
 							<a class="com_bookingforconnector-search-merchant-name-anchor" style="font-weight:bold;color:black; font-size: 16px;" href="<?php echo $routeMerchant ?>" id="nameAnchor<?php echo $merchant->MerchantId?>"><?php echo  $merchant->Name ?></a> 
 						</div>
 					</div>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>" >
-						<div class="bfi_merchant-description <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12" style="padding: 10px!important;" id="descr<?php echo $merchant->MerchantId?>"><?php echo BFCHelper::shorten_string($merchant->Description, $descmaxchars);?></div>
+					<div class="bfi-row" >
+						<div class="bfi_merchant-description bfi-col-md-12" style="padding: 10px!important;" id="descr<?php echo $merchant->MerchantId?>"><?php echo BFCHelper::shorten_string($merchant->Description, $descmaxchars);?></div>
 					</div>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> secondarysection">
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>1  secondarysectionitem">
+					<div class="bfi-row secondarysection">
+						<div class="bfi-col-md-1  secondarysectionitem">
 							&nbsp;
 						</div>
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>11  secondarysectionitem" style="padding: 10px!important;">
+						<div class="bfi-col-md-11  secondarysectionitem" style="padding: 10px!important;">
 								<a href="<?php echo $routeMerchant?>" class="bfi-pull-right"><?php _e('Details', 'bfi') ?></a>
 						</div>
 					</div>

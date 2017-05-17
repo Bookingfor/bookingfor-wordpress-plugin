@@ -24,6 +24,19 @@ $posy = COM_BOOKINGFORCONNECTOR_GOOGLE_POSY;
 $startzoom = COM_BOOKINGFORCONNECTOR_GOOGLE_STARTZOOM;
 $googlemapsapykey = COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY;
 
+$rating_text = array('merchants_reviews_text_value_0' => __('Very poor', 'bfi'),
+						'merchants_reviews_text_value_1' => __('Poor', 'bfi'),   
+						'merchants_reviews_text_value_2' => __('Disappointing', 'bfi'),
+						'merchants_reviews_text_value_3' => __('Fair', 'bfi'),
+						'merchants_reviews_text_value_4' => __('Okay', 'bfi'),
+						'merchants_reviews_text_value_5' => __('Pleasant', 'bfi'),  
+						'merchants_reviews_text_value_6' => __('Good', 'bfi'),
+						'merchants_reviews_text_value_7' => __('Very good', 'bfi'),  
+						'merchants_reviews_text_value_8' => __('Fabulous', 'bfi'), 
+						'merchants_reviews_text_value_9' => __('Exceptional', 'bfi'),  
+						'merchants_reviews_text_value_10' => __('Exceptional', 'bfi'),                                 
+					);
+
 
 $merchantRules ='';
 if(!empty($merchant->Rules)){
@@ -46,6 +59,10 @@ $showMap = (($resourceLat != null) && ($resourceLon !=null) );
 
 $modelmerchant =  new BookingForConnectorModelMerchantDetails;
 
+$indirizzo = isset($merchant->AddressData->Address)?$merchant->AddressData->Address:"";
+$cap = isset($merchant->AddressData->ZipCode)?$merchant->AddressData->ZipCode:""; 
+$comune = isset($merchant->AddressData->CityName)?$merchant->AddressData->CityName:"";
+$stato = isset($merchant->AddressData->StateName)?$merchant->AddressData->StateName:"";
 
 //	$modelResource = new BookingForConnectorModelResource;
 //	$images = array();
@@ -92,6 +109,14 @@ $payload["url"] = ($isportal)? $routeMerchant: $base_url;
 if (!empty($merchant->LogoUrl)){
 	$payload["logo"] = "https:".BFCHelper::getImageUrlResized('merchant',$merchant->LogoUrl, 'logobig');
 }
+$rating = $merchant->Rating;
+if ($rating>9 )
+{
+	$rating = $rating/10;
+} 
+$reviewavg = isset($merchant->Avg) ? $merchant->Avg->Average : 0;
+$reviewcount = isset($merchant->Avg) ? $merchant->Avg->Count : 0;
+
 ?>
 <script type="application/ld+json">// <![CDATA[
 <?php echo json_encode($payload); ?>
@@ -103,15 +128,31 @@ var cultureCode = '<?php echo $language ?>';
 var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 //-->
 </script>
-
-	<h2 class="bfi_merchant-name"><?php echo  $merchant->Name?> 
-		<span class="com_bookingforconnector_resource-merchant-rating">
-		  <?php for($i = 0; $i < $merchant->Rating; $i++) { ?>
-		  <i class="fa fa-star"></i>
-		  <?php } ?>
-		</span>
-	</h2>
-
+	<?php if($reviewcount>0){ ?>
+	<div class="bfi-row">
+		<div class="bfi-col-md-10">
+	<?php } ?>
+		<div class="bfi-title-name bfi-hideonextra"><?php echo  $merchant->Name?>
+			<span class="com_bookingforconnector_resource-merchant-rating">
+				<?php for($i = 0; $i < $rating; $i++) { ?>
+				<i class="fa fa-star"></i>
+				<?php } ?>
+			</span>
+		</div>
+		<div class="bfi-address bfi-hideonextra">
+			<i class="fa fa-map-marker fa-1"></i> <span class="street-address"><?php echo $indirizzo ?></span>, <span class="postal-code "><?php echo  $cap ?></span> <span class="locality"><?php echo $comune ?></span>, <span class="region"><?php echo  $stato ?></span>
+			<?php if (($showMap)) :?><a class="bfi-map-link" rel="#merchant_map"><?php echo _e('Map' , 'bfi') ?></a><?php endif; ?>
+		</div>	
+	<?php if($reviewcount>0){ 
+		$totalreviewavg = BFCHelper::convertTotal($reviewavg);
+		?>
+		</div>	
+		<div class="bfi-col-md-2 bfi-cursor" id="bfi-avgreview">
+			<div class="bfi-avgreview-top"><?php echo $rating_text['merchants_reviews_text_value_'.$totalreviewavg]; ?> <?php echo number_format($reviewavg, 1); ?></div>
+			<div class="bfi-reviewcount-top"><?php echo $reviewcount; ?> <?php _e('Reviews', 'bfi') ?></div>
+		</div>	
+	</div>	
+	<?php } ?>
 <div class="clear"></div>
 
 <div class="com_bookingforconnector_merchantdetails<?php echo BFCHelper::showMerchantRatingByCategoryId($merchant->MerchantTypeId)?>">
@@ -130,11 +171,11 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 		<?php  include('merchant-gallery.php');  ?>
 	</div>
     	<hr>
-	<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>8 bfi-description-data">
+	<div class="bfi-row">
+		<div class="bfi-col-md-8 bfi-description-data">
 			<?php echo  BFCHelper::getLanguage($merchant->Description, $language, null, array( 'striptags'=>'striptags', 'bbcode'=>'bbcode','ln2br'=>'ln2br')) ?>		
 		</div>	
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>4">
+		<div class="bfi-col-md-4">
 			<div class=" bfi-feature-data">
 				<strong><?php _e('In short', 'bfi') ?></strong>
 				<div id="bfi-merchant-tags"></div>
@@ -160,8 +201,8 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 	}
 	?>	
 	<?php if (!empty($services) && count($services ) > 0):?>
-		<div><?php echo  _e('Facility','bfi') ?></div>
-		<div>
+		<div class="bfi-facility"><?php echo  _e('Facility','bfi') ?></div>
+		<div class="bfi-facility-list">
 			<?php 
 			$count=0;
 			?>
@@ -301,11 +342,15 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 	}
 	
 jQuery(function($) {
-	jQuery('.bfi-menu-top li a').click(function(e) {
+	jQuery('.bfi-menu-top li a,.bfi-map-link').click(function(e) {
 		e.preventDefault();
 		jQuery('html, body').animate({ scrollTop: jQuery(jQuery(this).attr("rel")).offset().top }, 2000);
 	});
 	
+	jQuery('#bfi-avgreview').click(function() {
+		jQuery('html, body').animate({ scrollTop: jQuery(".bfi-ratingslist").offset().top }, 2000);
+	});
+
 	var  pagelist = "<?php echo $routeSearch; ?>";	
 	  jQuery("#divcalculator").load(pagelist, function() {
 	});

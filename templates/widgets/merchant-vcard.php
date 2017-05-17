@@ -220,17 +220,6 @@ if ( $title ) {
 //-->
 </script>
 
-<?php
-
-if(preg_match("/"._x('form', 'Page slug', 'bfi' )."/",$_SERVER['REQUEST_URI'])){
-  
-include(BFI()->plugin_path().'/templates/widgets/sidebarpaymentform.php');
-	  
-
- }  ?>
-
-
-<!-- end  of sidebar for payment form login widghet  -->
 <?php if(!preg_match("/form/",$_SERVER['REQUEST_URI'])){ ?>
 
 <div class="mod_bookingforconnector<?php echo $moduleclass_sfx ?> ">
@@ -270,9 +259,9 @@ include(BFI()->plugin_path().'/templates/widgets/sidebarpaymentform.php');
 	</ul>
 
 	<?php if (!empty($resourceLat) && !empty($resourceLon)) :?>
-		<div class="mod_bookingforconnector_merchantdetails-map" id="map_canvas" style="width:100%; height:250px">
+		<div class="bfi-merchantdetails-map" id="map_canvas" style="width:100%; height:250px">
 			<a class="lightboxlink" onclick='javascript:openGoogleMapBF();' href="javascript:void(0)">
-					<img src="//maps.googleapis.com/maps/api/staticmap?center=<?php echo $resourceLat?>,<?php echo $resourceLon?>&zoom=14&size=260x250&markers=color:blue%7C<?php echo $resourceLat?>,<?php echo $resourceLon?>&key=<?php echo $googlemapsapykey ?>" class="img-responsive" />
+					<img src="//maps.googleapis.com/maps/api/staticmap?center=<?php echo $resourceLat?>,<?php echo $resourceLon?>&zoom=14&size=260x250&markers=color:blue%7C<?php echo $resourceLat?>,<?php echo $resourceLon?>&key=<?php echo $googlemapsapykey ?>" class="bfi-img-responsive" />
 			</a>
 		</div>
 		<div id="map_canvasBF" style="width:100%; height:400px; display:none;"></div>

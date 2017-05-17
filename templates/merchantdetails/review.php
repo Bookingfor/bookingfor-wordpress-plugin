@@ -61,7 +61,7 @@ $idrecaptcha = uniqid("bfirecaptcha");
 
 <div class="clear"></div>
 
-<form action="<?php echo $base_url ?>/bfi-api/v1/task/?task=sendRating&simple=1" method="post" class="form-horizontal" id="formRating" >
+<form action="<?php echo $base_url ?>/bfi-api/v1/task/?task=sendRating&simple=1" method="post" class="bfi-form-horizontal" id="formRating" >
 	<input type="hidden" id="merchantid" name="merchantid" value="<?php echo $merchant_id; ?>">
 	<input type="hidden" id="cultureCode" name="cultureCode" value="<?php echo $GLOBALS['bfi_lang']; ?>">
 	<input type="hidden" id="hashorder" name="hashorder" value="">
@@ -71,18 +71,18 @@ $idrecaptcha = uniqid("bfirecaptcha");
 	<input type="hidden" id="redirecterror" name="Redirecterror" value="<?php echo $routeThanksKo;?>" />
 	
 	<div class="com_bookingforconnector_rating">
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">   
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>6">
+		<div class="bfi-row">   
+			<div class="bfi-col-md-6">
 				<label><?php _e('Name', 'bfi') ?></label>
-				<input name="name" type="text" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>12" placeholder="" value="">    
+				<input name="name" type="text" class="bfi-col-md-12" placeholder="" value="">    
 			</div><!--/span-->
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>6">
+			<div class="bfi-col-md-6">
 				<label><?php _e('City', 'bfi') ?></label>
-				<input name="city" type="text" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>12 " placeholder="" value="">   
+				<input name="city" type="text" class="bfi-col-md-12 " placeholder="" value="">   
 			</div><!--/span-->
 		</div><!--/row-->
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>6">
+		<div class="bfi-row">
+			<div class="bfi-col-md-6">
 				<label><?php _e('Type of traveller', 'bfi'); ?></label>
 				<select id="typologyid" name="typologyid">
 					<option value="1"><?php _e('Solo travellers', 'bfi'); ?></option>
@@ -93,9 +93,9 @@ $idrecaptcha = uniqid("bfirecaptcha");
 					<option value="6"><?php _e('Family with older children', 'bfi'); ?></option>
 				</select>
 			</div><!--/span-->
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>6">
+			<div class="bfi-col-md-6">
 				<label><?php _e('Country', 'bfi'); ?></label>
-				<select id="nation" name="nation" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>12">
+				<select id="nation" name="nation" class="bfi-col-md-12">
 							<option value="AR">Argentina</option>
 							<option value="AM">Armenia</option>
 							<option value="AU">Australia</option>
@@ -159,18 +159,18 @@ $idrecaptcha = uniqid("bfirecaptcha");
 				</select>
 			</div><!--/span-->
 		</div><!--/row-->                              
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>6">
+		<div class="bfi-row">
+			<div class="bfi-col-md-6">
 				<label><?php _e('E-mail', 'bfi'); ?>*</label>
-				<input name="email" id="email" type="text" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>12 " placeholder="email" value="" required="required">    
+				<input name="email" id="email" type="text" class="bfi-col-md-12 " placeholder="email" value="" required="required">    
 			</div>
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>6">
+			<div class="bfi-col-md-6">
 				<label><?php _e('Confirm E-mail', 'bfi') ?>*</label>
-				<input name="email2" id="email2" type="text" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>12 " placeholder="email" value="" required="required">    
+				<input name="email2" id="email2" type="text" class="bfi-col-md-12 " placeholder="email" value="" required="required">    
 			</div><!--/span-->
 		</div><!--/row-->
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>12">
+		<div class="bfi-row">
+			<div class="bfi-col-md-12">
 				<label><?php _e('When did you travel?', 'bfi') ?></label>
 				<select id="checkin" name="checkin">
 					<?php foreach ($listDateArray as $itemKey=>$itemValue):?>
@@ -181,8 +181,8 @@ $idrecaptcha = uniqid("bfirecaptcha");
 		</div><!--/row-->                              
 
 		<br>
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>4">
+		<div class="bfi-row">
+			<div class="bfi-col-md-4">
 				<?php _e('Staff', 'bfi'); ?>:
 					<input type="hidden" id="hfvalue1" name="hfvalue1" value="6">
 					<span id="starscap1">6</span><br />
@@ -225,7 +225,7 @@ $idrecaptcha = uniqid("bfirecaptcha");
 					<input title="9" type="radio" value="9" name="pulizia" class="starswrapper3">
 					<input title="10" type="radio" value="10" name="pulizia" class="starswrapper3">
 			</div>
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>4">
+			<div class="bfi-col-md-4">
 				<?php _e('Comfort', 'bfi'); ?>:
 					<input type="hidden" id="hfvalue4" name="hfvalue4" value="6">
 					<span id="starscap4">6</span><br />
@@ -254,7 +254,7 @@ $idrecaptcha = uniqid("bfirecaptcha");
 					<input title="9" type="radio" value="9" name="rapporto" class="starswrapper5">
 					<input title="10" type="radio" value="10" name="rapporto" class="starswrapper5">
 			</div>
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>4 bfi-text-center">
+			<div class="bfi-col-md-4 bfi-text-center">
 				<div class="bfi-rating_valuation">
 					<div ><?php _e('Valuation', 'bfi'); ?></div>
 					<div class="bfi-rating-value" id="totale">6</div>
@@ -264,40 +264,40 @@ $idrecaptcha = uniqid("bfirecaptcha");
 		</div>
 
 		<br>
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>12">
+		<div class="bfi-row">
+			<div class="bfi-col-md-12">
 				<label><?php _e("List of the facility's positive points", 'bfi'); ?> </label>
-				<textarea name="pregi" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>12" style="height:200px;"></textarea>    
+				<textarea name="pregi" class="bfi-col-md-12" style="height:200px;"></textarea>    
 			</div>
 		</div>
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>12">
+		<div class="bfi-row">
+			<div class="bfi-col-md-12">
 				<label><?php _e("List of the facility's negative points", 'bfi'); ?> </label>
-				<textarea name="difetti" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>12" style="height:200px;"></textarea>    
+				<textarea name="difetti" class="bfi-col-md-12" style="height:200px;"></textarea>    
 			</div>
 		</div>
 			  
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>" style="display:none;">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12">
+		<div class="bfi-row" style="display:none;">
+			<div class="bfi-col-md-12">
 				<label id="mbfcPrivacyTitle"><?php _e('Personal data treatment', 'bfi') ?></label>
-				<textarea id="mbfcPrivacyText" name="form[privacy]" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12" style="height:200px;" readonly ><?php echo $privacy ?></textarea>    
+				<textarea id="mbfcPrivacyText" name="form[privacy]" class="bfi-col-md-12" style="height:200px;" readonly ><?php echo $privacy ?></textarea>    
 			</div>
 		</div><!--/row-->
 
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-             <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12 checkbox-wrapper">
+		<div class="bfi-row">
+             <div class="bfi-col-md-12 bfi-checkbox-wrapper">
 		 	     <input name="form[accettazione]" id="agree" aria-invalid="true" aria-required="true" type="checkbox" required title="<?php _e('Mandatory', 'bfi') ?>">
 			     <label  class="agreeprivacy"><?php _e('I accept personal data treatment', 'bfi') ?></label>
 			</div>
 		</div><!--/row-->
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>" style="display:none;">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12">
+		<div class="bfi-row" style="display:none;">
+			<div class="bfi-col-md-12">
 				<label id="mbfcAdditionalPurposeTitle"><?php _e('Additional purposes', 'bfi') ?></label>
-				<textarea id="mbfcAdditionalPurposeText" name="form[additionalPurpose]" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12" style="height:200px;" readonly ><?php echo $additionalPurpose ?></textarea>    
+				<textarea id="mbfcAdditionalPurposeText" name="form[additionalPurpose]" class="bfi-col-md-12" style="height:200px;" readonly ><?php echo $additionalPurpose ?></textarea>    
 			</div>
 		</div><!--/row-->
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>" style="display:<?php echo empty($additionalPurpose)?"none":"";?>">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12 checkbox-wrapper">
+		<div class="bfi-row" style="display:<?php echo empty($additionalPurpose)?"none":"";?>">
+			<div class="bfi-col-md-12 bfi-checkbox-wrapper">
 				<input name="form[accettazioneadditionalPurpose]" id="agreeadditionalPurpose" aria-invalid="true" aria-required="true" required type="checkbox" title="<?php _e('Mandatory', 'bfi') ?>">
 				<label class="agreeadditionalPurpose"><?php _e('I accept additional purposes', 'bfi') ?></label>
 			</div>
@@ -306,15 +306,15 @@ $idrecaptcha = uniqid("bfirecaptcha");
 		<?php bfi_display_captcha($idrecaptcha);  ?>
 <div id="recaptcha-error-<?php echo $idrecaptcha ?>" style="display:none"><?php _e('Mandatory', 'bfi') ?></div>
 		   
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>12 checkbox-wrapper">
+		<div class="bfi-row">
+			<div class="bfi-col-md-12 bfi-checkbox-wrapper">
 				<input type="checkbox" value="true" name="privacyrating" id="privacyrating" required="required">
 				<label for="privacyrating"><?php echo sprintf( __('I certify that this review is based on my own experience and is my genuine opinion of this accommodation, and that I have no personal or business relationship with this establishment, and have not been offered any incentive or payment originating from the establishment to write this review. I understand that %s has a zero-tolerance policy on fake reviews.', 'bfi'),$sitename); ?></label>    
 			</div>
 		</div>
 
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>12">
+		<div class="bfi-row">
+			<div class="bfi-col-md-12">
 				<button type="submit" class="btn btn-info"><?php _e('send', 'bfi'); ?></button>
 			</div>
 		</div><!--/row-->

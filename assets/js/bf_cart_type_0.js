@@ -191,7 +191,7 @@
 
             if(showServices){
                 jQuery(".bfi-table-resources").hide();
-                jQuery(".hideonextra").hide();
+                jQuery(".bfi-hideonextra").hide();
                 jQuery(".div-selectableprice").show();
                 if (typeof daysToEnableTimeSlot !== 'undefined' && typeof strAlternativeDateToSearch !== 'undefined' && typeof initDatepickerTimeSlot !== 'undefined' && jQuery.isFunction(initDatepickerTimeSlot)) {
                     initDatepickerTimeSlot();

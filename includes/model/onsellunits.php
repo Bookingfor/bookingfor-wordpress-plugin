@@ -955,9 +955,9 @@ class BookingForConnectorModelOnSellUnits
 		
 //		$input = JFactory::getApplication()->input;
 //		$show_latest = $input->get( 'show_latest' );  // show_latest
-		if ($show_latest) {
-			$this->params['show_latest'] = $show_latest;
-		}
+//		if ($show_latest) {
+//			$this->params['show_latest'] = $show_latest;
+//		}
 		
 //		return parent::populateState($filter_order, $filter_order_Dir);
 	}

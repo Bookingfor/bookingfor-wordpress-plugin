@@ -284,7 +284,10 @@ function getcompleterateplansstaybyidPerTime(resourceId, currdDlrooms) {
 //    var currTr = jQuery('#bfi-timeperiod-'+resourceId);
     var currTr = jQuery(bfi_currTRselected).find(".bfi-timeperiod");
     
+	currTr.find(".bfi-hide").removeClass("bfi-hide");
+	
 	var currContainer = jQuery("#bfimodaltimeperiod");
+
 
 	var currFromDate =currContainer.find(".ChkAvailibilityFromDateTimePeriod").first();
     var currentTimeStart = currContainer.find(".selectpickerTimePeriodStart option:selected");

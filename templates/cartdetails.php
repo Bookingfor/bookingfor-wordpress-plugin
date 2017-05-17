@@ -305,7 +305,7 @@ if(!empty($MerchantDetail->AcceptanceCheckIn) && !empty($MerchantDetail->Accepta
 	$tmpAcceptanceCheckIns = explode('-', $tmpAcceptanceCheckIn);
 	$tmpAcceptanceCheckOuts = explode('-', $tmpAcceptanceCheckOut);	
 	list($mrcAcceptanceCheckInHours,$mrcAcceptanceCheckInMins,$mrcAcceptanceCheckInSecs) = explode(':',$tmpAcceptanceCheckIns[0].":1");
-	list($mrcAcceptanceCheckOutHours,$mrcAcceptanceCheckOutMins,$mrcAcceptanceCheckOutSecs) = explode(':',$tmpAcceptanceCheckOuts[0].":1");
+	list($mrcAcceptanceCheckOutHours,$mrcAcceptanceCheckOutMins,$mrcAcceptanceCheckOutSecs) = explode(':',$tmpAcceptanceCheckOuts[1].":1");
 }
 
 ?>
@@ -369,7 +369,7 @@ if(!empty($MerchantDetail->AcceptanceCheckIn) && !empty($MerchantDetail->Accepta
 								
 								$countPaxes = $res->PaxNumber;
 
-//								$nchs = array_slice($itm->SearchModel->ChildAges,0,$nch);
+								$nchs = array_slice($nchs,0,$nch);
 								$resource = $resourceDetail[$res->ResourceId];  //$modelMerchant->getItem($merchant_id);	 
 															
 								$routeResource = $url_resource_page . $resource->ResourceId .'-'.BFI()->seoUrl($resource->Name);
@@ -419,22 +419,22 @@ if(!empty($MerchantDetail->AcceptanceCheckIn) && !empty($MerchantDetail->Accepta
 										$currDiff = $currCheckOutFull->diff($currCheckInFull);
 									?>
 										<div class="bfi-timeperiod " >
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> ">
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 bfi-title"><?php _e('Check-in', 'bfi') ?>
+											<div class="bfi-row ">
+												<div class="bfi-col-md-3 bfi-title"><?php _e('Check-in', 'bfi') ?>
 												</div>	
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
-												</div>	
-											</div>	
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> ">
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 bfi-title"><?php _e('Check-out', 'bfi') ?>
-												</div>	
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+												<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> <?php _e('from', 'bfi') ?> <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
 												</div>	
 											</div>	
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php _e('Total', 'bfi') ?>:
+											<div class="bfi-row ">
+												<div class="bfi-col-md-3 bfi-title"><?php _e('Check-out', 'bfi') ?>
 												</div>	
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->d + 1; ?></span> <?php _e('days', 'bfi') ?>
+												<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> <?php _e('until', 'bfi') ?> <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+												</div>	
+											</div>	
+											<div class="bfi-row">
+												<div class="bfi-col-md-3 "><?php _e('Total', 'bfi') ?>:
+												</div>	
+												<div class="bfi-col-md-9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->d + 1; ?></span> <?php _e('days', 'bfi') ?>
 												</div>	
 											</div>	
 										</div>
@@ -462,22 +462,22 @@ if(!empty($MerchantDetail->AcceptanceCheckIn) && !empty($MerchantDetail->Accepta
 										$currDiff = $currCheckOutFull->diff($currCheckInFull);
 									?>
 										<div class="bfi-timeperiod " >
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> ">
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 bfi-title"><?php _e('Check-in', 'bfi') ?>
+											<div class="bfi-row ">
+												<div class="bfi-col-md-3 bfi-title"><?php _e('Check-in', 'bfi') ?>
 												</div>	
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
-												</div>	
-											</div>	
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> ">
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 bfi-title"><?php _e('Check-out', 'bfi') ?>
-												</div>	
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+												<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> <?php _e('from', 'bfi') ?> <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
 												</div>	
 											</div>	
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php _e('Total', 'bfi') ?>:
+											<div class="bfi-row ">
+												<div class="bfi-col-md-3 bfi-title"><?php _e('Check-out', 'bfi') ?>
 												</div>	
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->d; ?></span> <?php _e('nights', 'bfi') ?>
+												<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> <?php _e('until', 'bfi') ?> <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+												</div>	
+											</div>	
+											<div class="bfi-row">
+												<div class="bfi-col-md-3 "><?php _e('Total', 'bfi') ?>:
+												</div>	
+												<div class="bfi-col-md-9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->d; ?></span> <?php _e('nights', 'bfi') ?>
 												</div>	
 											</div>	
 										</div>
@@ -493,22 +493,22 @@ if(!empty($MerchantDetail->AcceptanceCheckIn) && !empty($MerchantDetail->Accepta
 										$timeDuration = $currDiff->i + ($currDiff->h*60);
 									?>
 										<div class="bfi-timeperiod " >
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> ">
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 bfi-title"><?php _e('Check-in', 'bfi') ?>
+											<div class="bfi-row ">
+												<div class="bfi-col-md-3 bfi-title"><?php _e('Check-in', 'bfi') ?>
 												</div>	
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
-												</div>	
-											</div>	
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> ">
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 bfi-title"><?php _e('Check-out', 'bfi') ?>
-												</div>	
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+												<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
 												</div>	
 											</div>	
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php _e('Total', 'bfi') ?>:
+											<div class="bfi-row ">
+												<div class="bfi-col-md-3 bfi-title"><?php _e('Check-out', 'bfi') ?>
 												</div>	
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->format('%h') ?></span> <?php _e('hours', 'bfi') ?>
+												<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+												</div>	
+											</div>	
+											<div class="bfi-row">
+												<div class="bfi-col-md-3 "><?php _e('Total', 'bfi') ?>:
+												</div>	
+												<div class="bfi-col-md-9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->format('%h') ?></span> <?php _e('hours', 'bfi') ?>
 												</div>	
 											</div>	
 										</div>
@@ -529,22 +529,22 @@ if(!empty($MerchantDetail->AcceptanceCheckIn) && !empty($MerchantDetail->Accepta
 
 									?>
 										<div class="bfi-timeslot ">
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> ">
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 bfi-title"><?php _e('Check-in', 'bfi') ?>
+											<div class="bfi-row ">
+												<div class="bfi-col-md-3 bfi-title"><?php _e('Check-in', 'bfi') ?>
 												</div>	
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
-												</div>	
-											</div>	
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> ">
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 bfi-title"><?php _e('Check-out', 'bfi') ?>
-												</div>	
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+												<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
 												</div>	
 											</div>	
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php _e('Total', 'bfi') ?>:
+											<div class="bfi-row ">
+												<div class="bfi-col-md-3 bfi-title"><?php _e('Check-out', 'bfi') ?>
 												</div>	
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->format('%h') ?></span> <?php _e('hours', 'bfi') ?>
+												<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+												</div>	
+											</div>	
+											<div class="bfi-row">
+												<div class="bfi-col-md-3 "><?php _e('Total', 'bfi') ?>:
+												</div>	
+												<div class="bfi-col-md-9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->format('%h') ?></span> <?php _e('hours', 'bfi') ?>
 												</div>	
 											</div>	
 										</div>
@@ -807,36 +807,88 @@ if($res->IncludedMeals >-1){
                                 </tr>
 								<?php if(!empty($res->ExtraServices)) { 
 									foreach($res->ExtraServices as $sdetail) {					
-									$resourceExtraService = $resourceDetail[$sdetail->PriceId];  //$modelMerchant->getItem($merchant_id);	 
+									$resourceExtraService = $resourceDetail[$sdetail->PriceId]; 
 								 ?>	
-                                        <tr>
+                                        <tr class="bfi-cart-extra">
                                             <td>
-                                                <div style="margin-left:10px;">
-                                                    &nbsp;-&nbsp;
-                                                   <?php echo  $resourceExtraService->Name ?>
+													<div class="bfi-item-title">
+														<?php echo  $resourceExtraService->Name ?>
+													</div>
 													<?php 
-													if (isset($sdetail->TimeSlotId) && $sdetail->TimeSlotId > 0)
-													{									
-														$TimeSlotDate = new DateTime($sdetail->TimeSlotDate); 
-														$startHour = new DateTime("2000-01-01 0:0:00.1"); 
-														$endHour = new DateTime("2000-01-01 0:0:00.1"); 
-														$startHour->add(new DateInterval('PT' . $sdetail->TimeSlotStart . 'M'));
-														$endHour->add(new DateInterval('PT' . $sdetail->TimeSlotEnd . 'M'));
-													?>
-														<?php echo $TimeSlotDate->format('d/m/Y') ?> (<?php echo  $startHour->format('H:i') ?> - <?php echo  $endHour->format('H:i') ?>)
-													<?php 
-													}
 													if (!empty($sdetail->CheckInTime) && !empty($sdetail->TimeDuration) && $sdetail->TimeDuration>0)
 													{
-														$startHour = DateTime::createFromFormat("YmdHis", $sdetail->CheckInTime);
-														$endHour = DateTime::createFromFormat("YmdHis", $sdetail->CheckInTime);
-														$endHour->add(new DateInterval('PT' . $sdetail->TimeDuration . 'M'));
+														$currCheckIn = DateTime::createFromFormat("YmdHis", $sdetail->CheckInTime);
+														$currCheckOut = DateTime::createFromFormat("YmdHis", $sdetail->CheckInTime);
+														$currCheckOut->add(new DateInterval('PT' . $sdetail->TimeDuration . 'M'));
+														$currDiff = $currCheckOut->diff($currCheckIn);
+														$timeDuration = $currDiff->i + ($currDiff->h*60);
+//														$startHour = DateTime::createFromFormat("YmdHis", $sdetail->CheckInTime);
+//														$endHour = DateTime::createFromFormat("YmdHis", $sdetail->CheckInTime);
+//														$endHour->add(new DateInterval('PT' . $sdetail->TimeDuration . 'M'));
 													?>
-														<?php echo $startHour->format('d/m/Y') ?> (<?php echo  $startHour->format('H:i') ?> - <?php echo  $endHour->format('H:i') ?>)
+														<div class="bfi-timeperiod " >
+															<div class="bfi-row ">
+																<div class="bfi-col-md-3 bfi-title"><?php _e('Check-in', 'bfi') ?>
+																</div>	
+																<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
+																</div>	
+															</div>	
+															<div class="bfi-row ">
+																<div class="bfi-col-md-3 bfi-title"><?php _e('Check-out', 'bfi') ?>
+																</div>	
+																<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+																</div>	
+															</div>	
+															<div class="bfi-row">
+																<div class="bfi-col-md-3 "><?php _e('Total', 'bfi') ?>:
+																</div>	
+																<div class="bfi-col-md-9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->format('%h') ?></span> <?php _e('hours', 'bfi') ?>
+																</div>	
+															</div>	
+														</div>
 													<?php 
 													}
+													if (isset($sdetail->TimeSlotId) && $sdetail->TimeSlotId > 0)
+													{									
+														$currCheckIn = new DateTime($sdetail->TimeSlotDate); 
+														$currCheckOut = clone $currCheckIn;
+														$currCheckIn->setTime(0,0,1);
+														$currCheckOut->setTime(0,0,1);
+														$currCheckIn->add(new DateInterval('PT' . $sdetail->TimeSlotStart . 'M'));
+														$currCheckOut->add(new DateInterval('PT' . $sdetail->TimeSlotEnd . 'M'));
+
+														$currDiff = $currCheckOut->diff($currCheckIn);
+
+//														$TimeSlotDate = new DateTime($sdetail->TimeSlotDate); 
+//														$startHour = new DateTime("2000-01-01 0:0:00.1"); 
+//														$endHour = new DateTime("2000-01-01 0:0:00.1"); 
+//														$startHour->add(new DateInterval('PT' . $sdetail->TimeSlotStart . 'M'));
+//														$endHour->add(new DateInterval('PT' . $sdetail->TimeSlotEnd . 'M'));
 													?>
-                                                </div>
+														<div class="bfi-timeslot ">
+															<div class="bfi-row ">
+																<div class="bfi-col-md-3 bfi-title"><?php _e('Check-in', 'bfi') ?>
+																</div>	
+																<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
+																</div>	
+															</div>	
+															<div class="bfi-row ">
+																<div class="bfi-col-md-3 bfi-title"><?php _e('Check-out', 'bfi') ?>
+																</div>	
+																<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+																</div>	
+															</div>	
+															<div class="bfi-row">
+																<div class="bfi-col-md-3 "><?php _e('Total', 'bfi') ?>:
+																</div>	
+																<div class="bfi-col-md-9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->format('%h') ?></span> <?php _e('hours', 'bfi') ?>
+																</div>	
+															</div>	
+														</div>
+													<?php 
+													}
+
+													?>
                                             </td>
                                             <td><!-- paxes --></td>
                                             <td class="text-nowrap">
@@ -923,12 +975,12 @@ if(!empty($bookingTypes)){
 	$bookingTypesDescArray = array();
 	foreach($bookingTypes as $bt)
 	{
-		$currDesc = BFCHelper::getLanguage($bt->Name, $language) . "<div class='ccdescr'>" . BFCHelper::getLanguage($bt->Description, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')) . "</div>";
+		$currDesc = BFCHelper::getLanguage($bt->Name, $language) . "<div class='bfi-ccdescr'>" . BFCHelper::getLanguage($bt->Description, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')) . "</div>";
 		if($bt->AcquireCreditCardData && !empty($bt->Data)){
 
 			$ccimgages = explode("|", $bt->Data);
 			$cCCTypeList = array();
-			$currDesc .= "<div class='ccimages'>";
+			$currDesc .= "<div class='bfi-ccimages'>";
 			foreach($ccimgages as $ccimgage){
 				$currDesc .= '<i class="fa fa-cc-' . strtolower($ccimgage) . '" title="'. $ccimgage .'"></i>&nbsp;&nbsp;';
 				$cCCTypeList[$ccimgage] = $ccimgage; // JHTML::_('select.option', $ccimgage, $ccimgage);
@@ -989,12 +1041,12 @@ if(!empty($bookingTypes)){
 }
 
 ?>
-<div class="com_bookingforconnector_resource-payment-form">
+<div class="bfi-payment-form">
 <div class="bf-title-book"><?php _e('Enter your details', 'bfi') ?></div>
 <form method="post" id="resourcedetailsrequest" class="form-validate" action="<?php echo $formRoute; ?>">
-	<div class="mailalertform">
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
+	<div class="bfi-mailalertform">
+		<div class="bfi-row">
+			<div class="bfi-col-md-6">
 			<div class="bfi-clearfix">
 				<label><?php _e('Name', 'bfi'); ?> *</label>
 				<input type="text" value="<?php echo $current_user->user_login ; ?>" size="50" name="form[Name]" id="Name" required  title="<?php _e('This field is required.', 'bfi') ?>">
@@ -1089,10 +1141,10 @@ if(!empty($bookingTypes)){
 				</div><!--/span-->
 			</div>
 	    </div>
-	    <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
+	    <div class="bfi-col-md-6">
 	         <div >
               <label><?php _e('Note', 'bfi'); ?></label>
-              <textarea name="form[note]" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12" style="height:104px;" ></textarea>    
+              <textarea name="form[note]" class="bfi-col-md-12" style="height:104px;" ></textarea>    
             </div>
 			<div >
 				<label><?php _e('Phone', 'bfi'); ?> *</label>
@@ -1166,8 +1218,8 @@ if(!empty($bookingTypes)){
 
 <div style="display:none;" id="ccInformations" class="borderbottom paymentoptions">
 		<h2><?php _e('Credit card details', 'bfi') ?></h2>
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">   
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
+		<div class="bfi-row">   
+			<div class="bfi-col-md-6">
 				<label><?php _e('Type', 'bfi') ?> </label>
 					<select id="formcc_circuito" name="form[cc_circuito]" class="bfi_input_select">
 						<?php 
@@ -1177,38 +1229,38 @@ if(!empty($bookingTypes)){
 						?> 
 					</select>
 			</div>
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
+			<div class="bfi-col-md-6">
 				<label><?php _e('Holder', 'bfi') ?> </label>
 				<input type="text" value="" size="50" name="form[cc_titolare]" id="cc_titolare" required  title="<?php _e('This field is required.', 'bfi') ?>">
 			</div>
 		</div>
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> com_bookingforconnector_resource-payment-form">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
+		<div class="bfi-row bfi-payment-form">
+			<div class="bfi-col-md-6">
 				<label><?php _e('Number', 'bfi') ?> </label>
 				<input type="text" value="" size="50" maxlength="50" name="form[cc_numero]" id="cc_numero" required  title="<?php _e('This field is required.', 'bfi') ?>">
 			</div>
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
+			<div class="bfi-col-md-6">
 				<label><?php _e('Valid until', 'bfi') ?></label>
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3">
+				<div class="bfi-row">
+					<div class="bfi-col-md-3">
 						<?php _e('Month (MM)', 'bfi') ?>
 					</div><!--/span-->
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6 ccdateinput">
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">
-							<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>5"><input type="text" value="" size="2" maxlength="2" name="form[cc_mese]" id="cc_mese" required  title="<?php _e('This field is required.', 'bfi') ?>"></div>
-							<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>2 " style="text-align:center;" >/</div>
-							<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>5"><input type="text" value="" size="2" maxlength="2" name="form[cc_anno]" id="cc_anno" required  title="<?php _e('This field is required.', 'bfi') ?>"></div>
+					<div class="bfi-col-md-6 ccdateinput">
+						<div class="bfi-row">
+							<div class="bfi-col-md-5"><input type="text" value="" size="2" maxlength="2" name="form[cc_mese]" id="cc_mese" required  title="<?php _e('This field is required.', 'bfi') ?>"></div>
+							<div class="bfi-col-md-2 " style="text-align:center;" >/</div>
+							<div class="bfi-col-md-5"><input type="text" value="" size="2" maxlength="2" name="form[cc_anno]" id="cc_anno" required  title="<?php _e('This field is required.', 'bfi') ?>"></div>
 						</div>
 					</div><!--/span-->
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3">
+					<div class="bfi-col-md-3">
 						<?php _e('Year (YY)', 'bfi') ?>
 					</div><!--/span-->
 				</div><!--/row-->
 			</div>
 		</div>
 		<br />
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> ">   
-			  <div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>2">
+		<div class="bfi-row ">   
+			  <div class="bfi-col-md-2">
 				 <?php echo $ssllogo ?>
 			  </div>
 		</div>
@@ -1326,30 +1378,30 @@ if(!empty( $policy )){
 }
 ?>
 
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12 checkbox-wrapper">
+			<div class="bfi-row">
+				<div class="bfi-col-md-12 bfi-checkbox-wrapper">
 					<div class="bfi_accept">
 					<input name="form[accettazionepolicy]" class="checkbox" id="agreepolicy" aria-invalid="true" aria-required="true" type="checkbox" required title="<?php _e('Mandatory', 'bfi') ?>"></div>
-					<label class="shownextelement"><?php _e('I agree to the conditions', 'bfi') ?></label>
-					<textarea name="form[policy]" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php echo $policyHelp ?>
+					<label class="bfi-shownextelement"><?php _e('I agree to the conditions', 'bfi') ?></label>
+					<textarea name="form[policy]" class="bfi-col-md-12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php echo $policyHelp ?>
 
 <?php echo $currPolicy->Description; ?></textarea>
 				</div>
 			</div>
 		<?php } ?>
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12 checkbox-wrapper">
+		<div class="bfi-row">
+			<div class="bfi-col-md-12 bfi-checkbox-wrapper">
 					<div class="bfi_accept">
                     <input name="form[accettazione]" class="checkbox" id="agree" aria-invalid="true" aria-required="true" type="checkbox" required title="<?php _e('Mandatory', 'bfi') ?>"></div>
-					<label class="shownextelement"><?php _e('I accept personal data treatment', 'bfi') ?></label>
-					<textarea name="form[privacy]" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php echo $privacy ?></textarea>    
+					<label class="bfi-shownextelement"><?php _e('I accept personal data treatment', 'bfi') ?></label>
+					<textarea name="form[privacy]" class="bfi-col-md-12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php echo $privacy ?></textarea>    
 			</div>
 		</div>
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>" style="display:<?php echo empty($additionalPurpose)?"none":"";?>">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12 checkbox-wrapper">
+		<div class="bfi-row" style="display:<?php echo empty($additionalPurpose)?"none":"";?>">
+			<div class="bfi-col-md-12 bfi-checkbox-wrapper">
 				<div class="bfi_accept"><input name="form[accettazioneadditionalPurpose]" class="checkbox" id="agreeadditionalPurpose" aria-invalid="true" aria-required="false" type="checkbox" title="<?php _e('Mandatory', 'bfi') ?>"></div>
-				<label class="shownextelement"><?php _e('I accept additional purposes', 'bfi') ?></label>
-				<textarea name="form[additionalPurpose]" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php echo $additionalPurpose ?></textarea>    
+				<label class="bfi-shownextelement"><?php _e('I accept additional purposes', 'bfi') ?></label>
+				<textarea name="form[additionalPurpose]" class="bfi-col-md-12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php echo $additionalPurpose ?></textarea>    
 			</div>
 		</div>
 
@@ -1377,9 +1429,9 @@ if(!empty( $policy )){
 
 		</div>
 
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> bfi_footer-book" >
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>10"></div>
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>2 bfi_footer-send"><button type="submit" id="btnbfFormSubmit" style="display:none;"><?php _e('Send', 'bfi') ?></button></div>
+		<div class="bfi-row bfi_footer-book" >
+			<div class="bfi-col-md-10"></div>
+			<div class="bfi-col-md-2 bfi_footer-send"><button type="submit" id="btnbfFormSubmit" style="display:none;"><?php _e('Send', 'bfi') ?></button></div>
 		</div>
 
 <?php
@@ -1436,7 +1488,7 @@ jQuery(function($)
 			jQuery("#btnbfFormSubmit").show();
 
 
-			$(".shownextelement").click(function(){
+			$(".bfi-shownextelement").click(function(){
 				$(this).next().toggle();
 			});
 			

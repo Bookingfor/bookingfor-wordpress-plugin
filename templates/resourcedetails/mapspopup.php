@@ -26,6 +26,11 @@ $uri = $url_resource_page.$resource->ResourceId.'-'.BFI()->seoUrl($resourceName)
 $isportal = COM_BOOKINGFORCONNECTOR_ISPORTAL;
 $showdata = COM_BOOKINGFORCONNECTOR_SHOWDATA;
 
+$fromSearch =  BFCHelper::getVar('fromsearch','0');
+
+if(!empty($fromSearch)){
+	$uri .= "/?fromsearch=1";
+}
 
 $indirizzo = "";
 $cap = "";

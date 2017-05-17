@@ -999,7 +999,20 @@ class BookingForConnectorModelResource
 		return $rateplan;
 	}
 
-	public function GetRelatedResourceStays($merchantId,$relatedProductid,$excludedIds,$checkin,$duration,$paxages,$variationPlanId,$language="" ) {
+	public function GetRelatedResourceStays($merchantId,$relatedProductid,$excludedIds,$checkin,$duration,$paxages,$variationPlanId,$language="" ) {				
+		$newpaxages = array();
+		foreach ($paxages as $age) {
+			if ($age >= BFCHelper::$defaultAdultsAge) {
+				if ($age >= BFCHelper::$defaultSenioresAge) {
+					array_push($newpaxages, $age.":".bfiAgeType::$Seniors );
+				} else {
+					array_push($newpaxages, $age.":".bfiAgeType::$Adult);
+				}
+			} else {
+				array_push($newpaxages, $age.":".bfiAgeType::$Reduced);
+			}
+		}
+
 		$options = array(
 				'path' =>  $this->urlGetRelatedResourceStays,
 				'data' => array(
@@ -1015,7 +1028,8 @@ class BookingForConnectorModelResource
 //					'checkin' => '\'' . $checkin->format('YmdHis') . '\'',
 					'checkin' => '\'' . $checkin->format('Ymd') . '\'',
 					'duration' => $duration,
-					'paxages' => '\'' . implode('|',$paxages) . '\'',
+//					'paxages' => '\'' . implode('|',$paxages) . '\'',
+					'paxages' => '\'' . implode('|',$newpaxages) . '\'',
 					'paxes' => count($paxages),
 					'getRelatedProducts' => 0,
 					'$format' => 'json'
@@ -1046,13 +1060,26 @@ class BookingForConnectorModelResource
 	}
 
 	public function GetCompleteRatePlansStayWP($resourceId,$checkin,$duration,$paxages,$selectablePrices,$packages,$pricetype,$ratePlanId,$variationPlanId,$language="",$merchantBookingTypeId = "", $getAllResults=false ) {
+		$newpaxages = array();
+		foreach ($paxages as $age) {
+			if ($age >= BFCHelper::$defaultAdultsAge) {
+				if ($age >= BFCHelper::$defaultSenioresAge) {
+					array_push($newpaxages, $age.":".bfiAgeType::$Seniors );
+				} else {
+					array_push($newpaxages, $age.":".bfiAgeType::$Adult);
+				}
+			} else {
+				array_push($newpaxages, $age.":".bfiAgeType::$Reduced);
+			}
+		}
 		$options = array(
 				'path' =>  $this->urlCompleteStayRatePlan,
 				'data' => array(
 					'resourceId' => $resourceId,
 					'checkin' => '\'' . $checkin->format('YmdHis') . '\'',
 					'duration' => $duration,
-					'paxages' => '\'' . implode('|',$paxages) . '\'',
+//					'paxages' => '\'' . implode('|',$paxages) . '\'',
+					'paxages' => '\'' . implode('|',$newpaxages) . '\'',
 					'$format' => 'json'
 				)
 			);

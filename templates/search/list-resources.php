@@ -65,8 +65,8 @@ $onlystay =  true;
 
 ?>
 
-<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-	<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMALL; ?>9 ">
+<div class="bfi-row">
+	<div class="bfi-col-xs-9 ">
 		<div class="bfi-search-title">
 			<?php echo sprintf( __('Found %s results', 'bfi'),$totalResult ) ?>
 		</div>
@@ -75,7 +75,7 @@ $onlystay =  true;
 		</div>
 	</div>	
 <?php if(!empty(COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY)){ ?>
-	<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMALL; ?>3 ">
+	<div class="bfi-col-xs-3 ">
 		<div class="bfi-search-view-maps ">
 		<span><?php _e('Map view', 'bfi') ?></span>
 		</div>	
@@ -107,7 +107,7 @@ $onlystay =  true;
 
 
 <div class="bfi-clearfix"></div>
-<div id="bfi-list" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> bfi-list">
+<div id="bfi-list" class="bfi-row bfi-list">
 	<?php foreach ($results as $resource):?>
 		<?php 
 		$resourceImageUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s6.jpeg";
@@ -188,15 +188,15 @@ $onlystay =  true;
 //				$merchantLogoUrl =  BFCHelper::getImageUrlResized('merchant',$resource->LogoUrl, 'logomedium');
 //			}
 	?>
-	<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>6 bfi-item">
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> bfi-sameheight" >
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>3 bfi-img-container">
+	<div class="bfi-col-sm-6 bfi-item">
+		<div class="bfi-row bfi-sameheight" >
+			<div class="bfi-col-sm-3 bfi-img-container">
 				<a href="<?php echo $resourceRoute ?>?fromsearch=1" style='background: url("<?php echo $resourceImageUrl; ?>") center 25% / cover;'><img src="<?php echo $resourceImageUrl; ?>" class="bfi-img-responsive" /></a> 
 			</div>
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>9 bfi-details-container">
+			<div class="bfi-col-sm-9 bfi-details-container">
 				<!-- merchant details -->
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>" >
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>10">
+				<div class="bfi-row" >
+					<div class="bfi-col-sm-10">
 						<div class="bfi-item-title">
 							<a href="<?php echo $resourceRoute ?>?fromsearch=1" id="nameAnchor<?php echo $resource->ResourceId?>" target="_blank"><?php echo  $resourceName ?></a> 
 							<span class="bfi-item-rating">
@@ -221,7 +221,7 @@ $onlystay =  true;
 						</div>
 						<div class="bfi-mrcgroup" id="bfitags<?php echo $resource->ResourceId; ?>"></div>
 					</div>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>2 bfi-text-right">
+					<div class="bfi-col-sm-2 bfi-text-right">
 						<?php if ($isportal && ($resource->RatingsContext ==2 || $resource->RatingsContext ==3)):?>
 								<div class="bfi-avg">
 								<?php if ($resource->ResAVGCount>0){
@@ -240,8 +240,8 @@ $onlystay =  true;
 				<div class="bfi-clearfix bfi-hr-separ"></div>
 				<!-- end merchant details -->
 				<!-- resource details -->
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>" >
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>7">
+				<div class="bfi-row" >
+					<div class="bfi-col-sm-6">
 						<?php if ($resource->MaxPaxes>0):?>
 							<div class="bfi-icon-paxes">
 								<i class="fa fa-user"></i> 
@@ -255,7 +255,7 @@ $onlystay =  true;
 						<?php endif; ?>
 						<?php echo ($resource->AvailabilityType ==0 || $resource->AvailabilityType ==1) ? $resource->ResCategoryName: ""; ?>
 					</div>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>3 bfi-pad0-10">
+					<div class="bfi-col-sm-3 bfi-pad0-10">
 						<?php if (!$resource->IsCatalog && $onlystay ){ ?>
 							<div class="bfi-availability">
 							<?php if ($resource->Availability < 4): ?>
@@ -264,7 +264,7 @@ $onlystay =  true;
 							</div>
 						<?php } ?>
 					</div>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>2 bfi-text-right">
+					<div class="bfi-col-sm-3 bfi-text-right">
 						<?php if (!$resource->IsCatalog && $onlystay ){ 
 														
 							if($resource->IncludedMeals >-1){
@@ -296,11 +296,11 @@ $onlystay =  true;
 
 				<?php if (!$resource->IsCatalog && $onlystay ){ ?>
 				<!-- price details -->
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>" >
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>4 bfi-text-right bfi-pad0-10">
+				<div class="bfi-row" >
+					<div class="bfi-col-sm-4 bfi-text-right bfi-pad0-10">
 					<?php echo sprintf(__('Price for %s person' ,'bfi'),$totPerson) ?>
 					</div>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>5 bfi-text-right bfi-pad0-10">
+					<div class="bfi-col-sm-5 bfi-text-right bfi-pad0-10">
 							<div class="bfi-gray-highlight">
 							<?php 
 								$currCheckIn = DateTime::createFromFormat('Y-m-d\TH:i:s',$resource->AvailabilityDate);
@@ -342,11 +342,11 @@ $onlystay =  true;
 							?>
 							</div>
 							<?php if ($resource->Price < $resource->TotalPrice){ ?>
-							<span class="bfi-discounted-price bfi-discounted-price-total bfi_<?php echo $currencyclass ?> bfi-cursor" rel="<?php echo $resource->SimpleDiscountIds ?>"><?php echo BFCHelper::priceFormat($resource->TotalPrice,2, ',', '.')  ?> <i class="fa fa-question-circle" aria-hidden="true"></i></span>
+							<span class="bfi-discounted-price bfi-discounted-price-total bfi_<?php echo $currencyclass ?> bfi-cursor" rel="<?php echo $resource->SimpleDiscountIds ?>"><?php echo BFCHelper::priceFormat($resource->TotalPrice,2, ',', '.')  ?><span class="bfi-no-line-through">&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></span></span>
 							<?php } ?>
 							<span class="bfi-price bfi-price-total bfi_<?php echo $currencyclass ?> <?php echo ($resource->Price < $resource->TotalPrice)?"bfi-red":"" ?>"  ><?php echo BFCHelper::priceFormat($resource->Price,2, ',', '.') ?></span>
 					</div>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>3 bfi-text-right">
+					<div class="bfi-col-sm-3 bfi-text-right">
 						<?php if ($resource->Price > 0){ ?>
 								<a href="<?php echo $resourceRoute ?>" class=" bfi-item-btn-details <?php echo $btnClass ?> "><?php echo $btnText ?></a>
 						<?php }else{ ?>
@@ -374,8 +374,8 @@ jQuery('#list-view').click(function() {
 	jQuery('.bfi-view-changer-selected').html(jQuery(this).html());
 	jQuery('#bfi-list').removeClass('bfi-grid-group')
 	jQuery('#bfi-list .bfi-item').addClass('list-group-item')
-	jQuery('#bfi-list .bfi-img-container').addClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>3')
-	jQuery('#bfi-list .bfi-details-container').addClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>9')
+	jQuery('#bfi-list .bfi-img-container').addClass('bfi-col-sm-3')
+	jQuery('#bfi-list .bfi-details-container').addClass('bfi-col-sm-9')
 
 	localStorage.setItem('display', 'list');
 });
@@ -384,8 +384,8 @@ jQuery('#grid-view').click(function() {
 	jQuery('.bfi-view-changer-selected').html(jQuery(this).html());
 	jQuery('#bfi-list').addClass('bfi-grid-group')
 	jQuery('#bfi-list .bfi-item').removeClass('list-group-item')
-	jQuery('#bfi-list .bfi-img-container').removeClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>3')
-	jQuery('#bfi-list .bfi-details-container').removeClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM ?>9')
+	jQuery('#bfi-list .bfi-img-container').removeClass('bfi-col-sm-3')
+	jQuery('#bfi-list .bfi-details-container').removeClass('bfi-col-sm-9')
 	localStorage.setItem('display', 'grid');
 });
 	jQuery('#bfi-list .bfi-item').addClass('grid-group-item')
@@ -553,8 +553,8 @@ var offersLoaded = []
 jQuery(document).ready(function() {
 	getAjaxInformations();
 
-	jQuery('.mod_bookingformaps-static,.bfi-search-view-maps').click(function() {
-		jQuery( "#mod_bookingformaps-popup" ).dialog({
+	jQuery('.bfi-maps-static,.bfi-search-view-maps').click(function() {
+		jQuery( "#bfi-maps-popup" ).dialog({
 			open: function( event, ui ) {
 				openGoogleMapSearch();
 			},
@@ -616,7 +616,7 @@ jQuery(document).ready(function() {
 			if (val.Resource.XGooglePos == '' || val.Resource.YGooglePos == '' || val.Resource.XGooglePos == null || val.Resource.YGooglePos == null)
 				return true;
 
-			var url = "<?php echo $url_resource_page; ?>" + val.Resource.ResourceId + '-' + val.Resource.ResourceName + '/mapspopup';
+			var url = "<?php echo $url_resource_page; ?>" + val.Resource.ResourceId + '-' + val.Resource.ResourceName + '/mapspopup?fromsearch=1';
 //			console.log(url);
 //			var marker = new google.maps.Marker({
 //				position: new google.maps.LatLng(val.Resource.XGooglePos, val.Resource.YGooglePos),

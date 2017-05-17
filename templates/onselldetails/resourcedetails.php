@@ -162,11 +162,11 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 	</div>
 
 <div class="bfi_content">	
-	<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> hideonextra">
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>8 bfi-description-data">
+	<div class="bfi-row bfi-hideonextra">
+		<div class="bfi-col-md-8 bfi-description-data">
 			<?php echo $resourceDescription ?>		
 		</div>	
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>4">
+		<div class="bfi-col-md-4">
 			<div class=" bfi-feature-data">
 				<strong><?php _e('In short', 'bfi') ?></strong>
 				<?php if(isset($resource->Area) && $resource->Area>0  ): ?><?php _e('Floor area', 'bfi') ?>: <?php echo $resource->Area ?> m&sup2; <br /><?php endif ?>
@@ -187,10 +187,10 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 
 	<table class="bfi-table bfi-table-striped bfi-resourcetablefeature ">
 		<tr>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php _e('Contract', 'bfi') ?>:</td>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php echo  $contractType?></td>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php _e('Price', 'bfi') ?></td>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3">
+			<td class="bfi-col-md-3"><?php _e('Contract', 'bfi') ?>:</td>
+			<td class="bfi-col-md-3"><?php echo  $contractType?></td>
+			<td class="bfi-col-md-3"><?php _e('Price', 'bfi') ?></td>
+			<td class="bfi-col-md-3">
 			<?php if ($resource->Price != null && $resource->Price > 0 && isset($resource->IsReservedPrice) && $resource->IsReservedPrice!=1 ) :?>
 						 <span class="bfi_<?php echo $currencyclass ?>"> <?php echo BFCHelper::priceFormat($resource->Price,0, ',', '.')?></span>
 			<?php else: ?>
@@ -199,26 +199,26 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 			</td>
 		</tr>
 		<tr>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php _e('Type', 'bfi') ?>:</td>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php echo  $typeName?></td>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php _e('Floor area', 'bfi') ?> (m&sup2;)</td>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php echo $resource->Area?></td>
+			<td class="bfi-col-md-3"><?php _e('Type', 'bfi') ?>:</td>
+			<td class="bfi-col-md-3"><?php echo  $typeName?></td>
+			<td class="bfi-col-md-3"><?php _e('Floor area', 'bfi') ?> (m&sup2;)</td>
+			<td class="bfi-col-md-3"><?php echo $resource->Area?></td>
 		</tr>
 		<tr>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php _e('Province', 'bfi') ?>:</td>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php echo  $location?></td>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php _e('Rooms', 'bfi') ?>:</td>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php echo $resource->Rooms?></td>
+			<td class="bfi-col-md-3"><?php _e('Province', 'bfi') ?>:</td>
+			<td class="bfi-col-md-3"><?php echo  $location?></td>
+			<td class="bfi-col-md-3"><?php _e('Rooms', 'bfi') ?>:</td>
+			<td class="bfi-col-md-3"><?php echo $resource->Rooms?></td>
 		</tr>
 		<tr>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php _e('Area', 'bfi') ?>:</td>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php echo  $zone?></td>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php _e('Last update', 'bfi') ?>:</td>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php echo $dateUpdate?></td>
+			<td class="bfi-col-md-3"><?php _e('Area', 'bfi') ?>:</td>
+			<td class="bfi-col-md-3"><?php echo  $zone?></td>
+			<td class="bfi-col-md-3"><?php _e('Last update', 'bfi') ?>:</td>
+			<td class="bfi-col-md-3"><?php echo $dateUpdate?></td>
 		</tr>
 		<tr>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php _e('Floor', 'bfi') ?>:</td>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3">
+			<td class="bfi-col-md-3"><?php _e('Floor', 'bfi') ?>:</td>
+			<td class="bfi-col-md-3">
 				<?php 
 					if($resource->Floor >0){
 						echo $resource->Floor ."&#176;";
@@ -235,25 +235,34 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 				
 				?>
 			</td>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php _e('Condition', 'bfi') ?>:</td>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php 
-				echo ( 
-					( $resource->IsNewBuilding ) ? __('New', 'bfi'): 
-						(empty($resource->Status)? __('ND', 'bfi') : $resource->Status)
-					);
+			<td class="bfi-col-md-3"><?php _e('Condition', 'bfi') ?>:</td>
+			<td class="bfi-col-md-3"><?php 
+					if($resource->IsNewBuilding){
+						_e('New', 'bfi');
+					}else{
+						switch ($resource->Status) {
+							case 1: _e('To be refurbished', 'bfi'); break;
+							case 2: _e('Good', 'bfi'); break;
+							case 3: _e('Excellent', 'bfi'); break;
+							case 4: _e('Refurbished', 'bfi'); break;
+							case 5: _e('Habitable', 'bfi'); break;
+							default: _e('ND', 'bfi'); break;
+						}
+					}
+
 			?></td>
 		</tr>
 		<tr>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php _e('Bathrooms', 'bfi') ?>:</td>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3">
+			<td class="bfi-col-md-3"><?php _e('Bathrooms', 'bfi') ?>:</td>
+			<td class="bfi-col-md-3">
 				<?php echo (($resource->Baths >-1 )? $resource->Baths : __('ND', 'bfi') ) ?>
 			</td>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3">&nbsp;</td>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3">&nbsp;</td>
+			<td class="bfi-col-md-3">&nbsp;</td>
+			<td class="bfi-col-md-3">&nbsp;</td>
 		</tr>
 		<tr>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php _e('Heating', 'bfi') ?>:</td>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3">
+			<td class="bfi-col-md-3"><?php _e('Heating', 'bfi') ?>:</td>
+			<td class="bfi-col-md-3">
 				<?php
 					switch ($resource->CentralizedHeating) {
 						case 0: _e('Autonomous', 'bfi'); break;
@@ -263,8 +272,8 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 					}
 				?>
 			</td>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php _e('Box Auto', 'bfi') ?>:</td>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php 
+			<td class="bfi-col-md-3"><?php _e('Box Auto', 'bfi') ?>:</td>
+			<td class="bfi-col-md-3"><?php 
 				if(!isset($resource->Garages) && !isset($resource->ParkingPlaces)){
 					_e('ND', 'bfi');
 				}else{
@@ -285,8 +294,8 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 		<?php if((isset($resource->EnergyClass) && $resource->EnergyClass>0 ) || (isset($resource->EpiValue) && $resource->EpiValue>0 ) ): ?>
 		<tr>
 			<?php if(isset($resource->EnergyClass) && $resource->EnergyClass>0): ?>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php _e('Energy efficiency class', 'bfi') ?>:</td>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3" <?php if(!isset($resource->EpiValue)) {echo "colspan=\"3\"";}?>>
+			<td class="bfi-col-md-3"><?php _e('Energy efficiency class', 'bfi') ?>:</td>
+			<td class="bfi-col-md-3" <?php if(!isset($resource->EpiValue)) {echo "colspan=\"3\"";}?>>
 				<div class="energyClass energyClass<?php echo $resource->EnergyClass?>">
 				<?php 
 					switch ($resource->EnergyClass) {
@@ -308,8 +317,8 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 			</td>
 			<?php endif ?>
 			<?php if(isset($resource->EpiValue) && $resource->EpiValue>0): ?>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php _e('IPE', 'bfi') ?>:</td>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3" <?php if(!isset($resource->EnergyClass)) {echo "colspan=\"3\"";}?>><?php echo $resource->EpiValue?> <?php echo $resource->EpiUnit?></td>
+			<td class="bfi-col-md-3"><?php _e('IPE', 'bfi') ?>:</td>
+			<td class="bfi-col-md-3" <?php if(!isset($resource->EnergyClass)) {echo "colspan=\"3\"";}?>><?php echo $resource->EpiValue?> <?php echo $resource->EpiUnit?></td>
 			<?php endif ?>
 		</tr>
 		<?php endif ?>
@@ -319,8 +328,8 @@ echo ("<tr>\n");
 $i = 0;
 foreach($resource->Services as $service) {
 ?>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php echo BFCHelper::getLanguage($service->Name, $language) ?>:</td>
-			<td class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3"><?php _e('Yes', 'bfi') ?></td>
+			<td class="bfi-col-md-3"><?php echo BFCHelper::getLanguage($service->Name, $language) ?>:</td>
+			<td class="bfi-col-md-3"><?php _e('Yes', 'bfi') ?></td>
 <?php
     if ($i % 2 === 1) {
         echo("</tr>\n<tr>");

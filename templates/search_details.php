@@ -371,9 +371,9 @@ $listDayTS = array();
 <!-- form fields -->
 <h4 class="titleform"><?php _e('Availability', 'bfi') ?>
 <?php if($CartMultimerchantEnabled) { ?>
-	<div class="bfi-pull-right"><a href="<?php echo $url_cart_page ?>" class="bookingfor-shopping-cart"><?php _e('My Cart', 'bfi') ?></a></div>
+	<div class="bfi-pull-right"><a href="<?php echo $url_cart_page ?>" class="bookingfor-shopping-cart"><?php _e('Cart', 'bfi') ?></a></div>
 	<div class="bfi-hide" id="bfimodalcart">
-		<div class="bfi-title"><?php _e('My Cart', 'bfi') ?></div>
+		<div class="bfi-title"><?php _e('Cart', 'bfi') ?></div>
 		<div class="bfi-body"><!-- <?php _e('Add to cart', 'bfi') ?> --></div>
 		<div class="bfi-footer">
 			<div class="btn btn-secondary" onclick="jQuery('.bookingfor-shopping-cart').webuiPopover('destroy');"><?php _e('Continue shopping', 'bfi') ?></div>
@@ -384,11 +384,11 @@ $listDayTS = array();
 <div class="bfi-clearfix"></div>
 </h4>
 <form id="calculatorForm" action="<?php echo $formRoute?>" method="POST" class="bfi_resource-calculatorForm bfi_resource-calculatorTable ">
-	<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> bfi_resource-calculatorForm-mandatory nopadding">
-			<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> nopadding">
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> flexalignend nopadding">
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>5 <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMALL ?>5" id="calcheckin">      
+	<div class="bfi-row bfi_resource-calculatorForm-mandatory nopadding">
+			<div class="bfi-row nopadding">
+				<div class="bfi-col-md-6">
+					<div class="bfi-row bfi-flexalignend nopadding">
+						<div class="bfi-col-md-5 bfi-col-xs-5" id="calcheckin">      
 
 							<span class="fieldLabel"><?php echo _e('Check-in','bfi') ?>:</span>
 							<div class="dateone lastdate dateone_div checking-container">
@@ -398,7 +398,7 @@ $listDayTS = array();
 								$checkintext = '"<div class=\'buttoncalendar checkinBooking\'><div class=\'dateone day\'><span>'.$checkin->format("d").'</span></div><div class=\'dateone daterwo monthyear\'><p>'.date_i18n('D',$checkin->getTimestamp()).'<br />'.date_i18n('M',$checkin->getTimestamp()).' '.$checkin->format("Y").'  </p></div></div>"';
 							?>					
 						</div>
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>5 <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMALL ?>5 <?php echo ($ProductAvailabilityType == 3 || $ProductAvailabilityType == 2)? "bfi-hide " : " "  ?>" id="calcheckout">
+						<div class="bfi-col-md-5 bfi-col-xs-5 <?php echo ($ProductAvailabilityType == 3 || $ProductAvailabilityType == 2)? "bfi-hide " : " "  ?>" id="calcheckout">
 							<span class="fieldLabel"><?php echo _e('Check-out ','bfi') ?>:</span>
 							<div class="lastdate dateone lastdatecheckout dateone_div checking-container ">
 							<input type="hidden" name="checkout" value="<?php echo $checkout->format('d/m/Y'); ?>" id="<?php echo $checkoutId; ?>" readonly="readonly"/>
@@ -407,14 +407,14 @@ $listDayTS = array();
 								$checkouttext = '"<div class=\'buttoncalendar checkoutBooking\'><div class=\'dateone day\'><span>'.$checkout->format("d").'</span></div><div class=\'dateone daterwo monthyear\'><p>'.date_i18n('D',$checkout->getTimestamp()).'<br />'.date_i18n('M',$checkout->getTimestamp()).' '.$checkout->format("Y").'  </p></div></div>"';
 							?>
 						</div>
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>2 <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMALL ?>2 <?php echo ($ProductAvailabilityType == 3 || $ProductAvailabilityType == 2)? "bfi-hide " : " "  ?>">
+						<div class="bfi-col-md-2 bfi-col-xs-2 <?php echo ($ProductAvailabilityType == 3 || $ProductAvailabilityType == 2)? "bfi-hide " : " "  ?>">
 							<div class="calendarnight" id="durationdays"><?php echo $duration ?></div><div class="calendarnightlabel"><?php echo $ProductAvailabilityType == 1 ? __('Nights' , 'bfi' ) : __('Days' , 'bfi' )  ?></div>
 						</div>
 					</div>
 				</div>
-				<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
-					<div class="bfi_search-resources <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> nopadding">
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3 <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMALL ?>4 bfi_resource-calculatorForm-adult">
+				<div class="bfi-col-md-6">
+					<div class="bfi_search-resources bfi-row nopadding">
+						<div class="bfi-col-md-3 bfi-col-xs-4 bfi_resource-calculatorForm-adult">
 							<label><?php echo _e('Adults ','bfi') ?>:</label><br />
 							<select id="adultscalculator" name="adults" onchange="quoteCalculatorChanged();" class="inputmini">
 								<?php
@@ -424,7 +424,7 @@ $listDayTS = array();
 								?>
 							</select>
 						</div>
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3 <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMALL ?>4 bfi_resource-calculatorForm-senior" >
+						<div class="bfi-col-md-3 bfi-col-xs-4 bfi_resource-calculatorForm-senior" >
 							<label><?php echo _e('Seniors ','bfi') ?>:</label><br />
 							<select id="seniorescalculator" name="seniors" onchange="quoteCalculatorChanged();" class="inputmini">
 								<?php
@@ -434,7 +434,7 @@ $listDayTS = array();
 								?>
 							</select>
 						</div>
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3 <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMALL ?>4 bfi_resource-calculatorForm-children">
+						<div class="bfi-col-md-3 bfi-col-xs-4 bfi_resource-calculatorForm-children">
 							<label><?php echo  _e('Children','bfi') ?>:</label><br />
 							<select id="childrencalculator" name="children" onchange="quoteCalculatorChanged();" class="inputmini">
 								<?php
@@ -444,7 +444,7 @@ $listDayTS = array();
 								?>
 							</select>
 						</div>
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>3 <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMALL ?>4 ">
+						<div class="bfi-col-md-3 bfi-col-xs-4 ">
 							<a href="javascript:calculateQuote()"id="calculateButton" class="calculateButton3 <?php echo $btnSearchclass ?>" ><?php echo _e('Search','bfi') ?> </a>
 						</div>
 					</div>
@@ -452,7 +452,7 @@ $listDayTS = array();
 			</div>
 			<div class="<?php //echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> bfi_resource-calculatorForm-childrenages" style="display:none;">
 				<span class="fieldLabel" style="display:inline"><?php  echo _e('Ages of children','bfi')  ?>:</span>
-				<span class="fieldLabel" style="display:inline" id="bfi_lblchildrenagesatcalculator"><?php echo _e('on', 'bfi') . " " .$checkout->format("d"). " " .$checkout->format("M"). " " . $checkout->format("Y") ?></span><br />
+				<span class="fieldLabel" style="display:inline" id="bfi_lblchildrenagesatcalculator"><?php echo _e('on', 'bfi') . " " .$checkout->format("d"). " " . date_i18n('M',$checkout->getTimestamp()) . " " . $checkout->format("Y") ?></span><br />
 				<select id="childages1" name="childages1" onchange="quoteCalculatorChanged();" class="inputmini" style="display: none;">
 					<option value="<?php echo COM_BOOKINGFORCONNECTOR_CHILDRENSAGE ?>" ></option>
 					<?php
@@ -801,22 +801,22 @@ foreach($allResourceId as $resId) {
 											data-timeminend="<?php echo $currCheckOut->format('His') ?>"
 											data-duration="<?php echo $timeDuration ?>"
 										>
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> ">
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 bfi-title"><?php _e('Check-in', 'bfi') ?>
+											<div class="bfi-row ">
+												<div class="bfi-col-md-3 bfi-title"><?php _e('Check-in', 'bfi') ?>
 												</div>	
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
-												</div>	
-											</div>	
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> ">
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 bfi-title"><?php _e('Check-out', 'bfi') ?>
-												</div>	
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+												<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
 												</div>	
 											</div>	
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php _e('Total', 'bfi') ?>:
+											<div class="bfi-row ">
+												<div class="bfi-col-md-3 bfi-title"><?php _e('Check-out', 'bfi') ?>
 												</div>	
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->format('%h') ?></span> <?php _e('hours', 'bfi') ?>
+												<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+												</div>	
+											</div>	
+											<div class="bfi-row">
+												<div class="bfi-col-md-3 "><?php _e('Total', 'bfi') ?>:
+												</div>	
+												<div class="bfi-col-md-9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->format('%h') ?></span> <?php _e('hours', 'bfi') ?>
 												</div>	
 											</div>	
 										</div>
@@ -847,22 +847,22 @@ foreach($allResourceId as $resId) {
 										<div class="bfi-timeslot bfi-cursor" id="bfi-timeslot-<?php echo $res->ResourceId ?>" data-resid="<?php echo $res->ResourceId ?>" data-checkin="<?php echo $currCheckIn->format('Ymd') ?>"
 										data-timeslotid="<?php echo $currDatesTimeSlot[0]->ProductId ?>" data-timeslotstart="<?php echo $currDatesTimeSlot[0]->TimeSlotStart ?>" data-timeslotend="<?php echo $currDatesTimeSlot[0]->TimeSlotEnd ?>"
 										>
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> ">
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 bfi-title"><?php _e('Check-in', 'bfi') ?>
+											<div class="bfi-row ">
+												<div class="bfi-col-md-3 bfi-title"><?php _e('Check-in', 'bfi') ?>
 												</div>	
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
-												</div>	
-											</div>	
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> ">
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 bfi-title"><?php _e('Check-out', 'bfi') ?>
-												</div>	
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+												<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
 												</div>	
 											</div>	
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php _e('Total', 'bfi') ?>:
+											<div class="bfi-row ">
+												<div class="bfi-col-md-3 bfi-title"><?php _e('Check-out', 'bfi') ?>
 												</div>	
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->format('%h') ?></span> <?php _e('hours', 'bfi') ?>
+												<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+												</div>	
+											</div>	
+											<div class="bfi-row">
+												<div class="bfi-col-md-3 "><?php _e('Total', 'bfi') ?>:
+												</div>	
+												<div class="bfi-col-md-9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->format('%h') ?></span> <?php _e('hours', 'bfi') ?>
 												</div>	
 											</div>	
 										</div>
@@ -1317,22 +1317,22 @@ $currDiffString = "-";
 
 									?>
 										<div class="bfi-timeperiod bfi-cursor" id="bfi-timeperiod-<?php echo $selPrice->RelatedProductId ?>" data-resid="<?php echo $selPrice->RelatedProductId ?>" data-checkin="<?php echo $currCheckIn->format('Ymd') ?>">
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> ">
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 bfi-title"><?php _e('Check-in', 'bfi') ?>
+											<div class="bfi-row ">
+												<div class="bfi-col-md-3 bfi-title"><?php _e('Check-in', 'bfi') ?>
 												</div>	
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo $currCheckInString; ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckInHour; ?></span>
-												</div>	
-											</div>	
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> ">
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 bfi-title"><?php _e('Check-out', 'bfi') ?>
-												</div>	
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php  echo $currCheckOutString; ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOutHour; ?></span>
+												<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo $currCheckInString; ?></span> <span class="bfi-hide">-</span> <span class="bfi-time-checkin-hours bfi-hide"><?php echo $currCheckInHour; ?></span>
 												</div>	
 											</div>	
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php _e('Total', 'bfi') ?>:
+											<div class="bfi-row ">
+												<div class="bfi-col-md-3 bfi-title"><?php _e('Check-out', 'bfi') ?>
 												</div>	
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiffString; ?></span> <?php _e('hours', 'bfi') ?>
+												<div class="bfi-col-md-9 bfi-time bfi-text-right bfi-hide"><span class="bfi-time-checkout"><?php  echo $currCheckOutString; ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOutHour; ?></span>
+												</div>	
+											</div>	
+											<div class="bfi-row">
+												<div class="bfi-col-md-3 "><?php _e('Total', 'bfi') ?>:
+												</div>	
+												<div class="bfi-col-md-9 bfi-text-right bfi-hide"><span class="bfi-total-duration"><?php echo $currDiffString; ?></span> <?php _e('hours', 'bfi') ?>
 												</div>	
 											</div>	
 										</div>
@@ -1360,23 +1360,25 @@ $currDiffString = "-";
 										$res->Availability = $currDatesTimeSlot[0]->Availability ;
 
 									?>
-										<div class="bfi-timeslot bfi-cursor" id="bfi-timeslot-<?php echo $selPrice->RelatedProductId?>" data-resid="<?php echo $selPrice->RelatedProductId?>" data-checkin="<?php echo $currCheckIn->format('Ymd') ?>">
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> ">
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 bfi-title"><?php _e('Check-in', 'bfi') ?>
+										<div class="bfi-timeslot bfi-cursor" id="bfi-timeslot-<?php echo $selPrice->RelatedProductId?>" data-resid="<?php echo $selPrice->RelatedProductId?>" data-checkin="<?php echo $currCheckIn->format('Ymd') ?>"
+										data-timeslotid="<?php echo $currDatesTimeSlot[0]->ProductId ?>" data-timeslotstart="<?php echo $currDatesTimeSlot[0]->TimeSlotStart ?>" data-timeslotend="<?php echo $currDatesTimeSlot[0]->TimeSlotEnd ?>"
+										>
+											<div class="bfi-row ">
+												<div class="bfi-col-md-3 bfi-title"><?php _e('Check-in', 'bfi') ?>
 												</div>	
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
-												</div>	
-											</div>	
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?> ">
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 bfi-title"><?php _e('Check-out', 'bfi') ?>
-												</div>	
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+												<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
 												</div>	
 											</div>	
-											<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW; ?>">
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>3 "><?php _e('Total', 'bfi') ?>:
+											<div class="bfi-row ">
+												<div class="bfi-col-md-3 bfi-title"><?php _e('Check-out', 'bfi') ?>
 												</div>	
-												<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL; ?>9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->format('%h') ?></span> <?php _e('hours', 'bfi') ?>
+												<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+												</div>	
+											</div>	
+											<div class="bfi-row">
+												<div class="bfi-col-md-3 "><?php _e('Total', 'bfi') ?>:
+												</div>	
+												<div class="bfi-col-md-9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->format('%h') ?></span> <?php _e('hours', 'bfi') ?>
 												</div>	
 											</div>	
 										</div>
@@ -1503,8 +1505,8 @@ var allStays = <?php echo json_encode($allRatePlans) ?>;
 		month1 = ('0' + d1[1]).slice(-2);
 		month2 = ('0' + d2[1]).slice(-2);
 		if (typeof Intl == 'object' && typeof Intl.NumberFormat == 'function') {
-			month1 = from.toLocaleString("<?php echo substr($language,0,2); ?>", { month: "short" });              
-			month2 = to.toLocaleString("<?php echo substr($language,0,2); ?>", { month: "short" });            
+			month1 = from.toLocaleString(localeSetting, { month: "short" });              
+			month2 = to.toLocaleString(localeSetting, { month: "short" });            
 		}
 
 		diff  = new Date(to - from),
@@ -2295,6 +2297,11 @@ window.criteo_q.push(
 								var currSelectData = jQuery(this).closest("tr").find(".bfi-timeperiod").first();				
 								extraValue += ":" + currSelectData.attr("data-checkin") + currSelectData.attr("data-timeminstart") + ":" + currSelectData.attr("data-duration") + "::::"
 							}
+							if(currPriceAvailabilityType =="3"){
+								var currSelectData = jQuery(this).closest("tr").find(".bfi-timeslot").first();	
+								extraValue += ":::" + currSelectData.attr("data-timeslotid")  + ":" + currSelectData.attr("data-timeslotstart") + ":" + currSelectData.attr("data-timeslotend") + ":" + currSelectData.attr("data-checkin") + "::::"
+							}
+
 							var currExtraService = {
 								Value:extraValue,
 								PriceId: currPriceId,
@@ -2315,6 +2322,8 @@ window.criteo_q.push(
 								currExtraService.TimeSlotId = currTr.attr("data-timeslotid");
 								currExtraService.TimeSlotStart = currTr.attr("data-timeslotstart");
 								currExtraService.TimeSlotEnd = currTr.attr("data-timeslotend");
+								var currDateint =  currTr.attr("data-checkin");
+								currExtraService.TimeSlotDate = currDateint.substr(6,2) + "/" + currDateint.substr(4,2) + "/" + currDateint.substr(0,4);
 							}
 
 							currResourceRequest.ExtraServices.push(currExtraService);

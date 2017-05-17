@@ -2,7 +2,7 @@
 /*
 Plugin Name: BookingFor
 Description: BookingFor integration Code for Wordpress
-Version: 3.0.0
+Version: 3.0.1
 Author: BookingFor
 Author URI: http://www.bookingfor.com/
 */
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'BookingFor' ) ) :
 final class BookingFor {
 	
-	public $version = '3.0.0';
+	public $version = '3.0.1';
 	public $currentOrder = null;
 	
 	protected static $_instance = null;
@@ -63,12 +63,7 @@ final class BookingFor {
 		do_action( 'bookingfor_loaded' );
 	}
 
-	private function define_constants() {
-		$bootstrapRow = "bfi-row ";
-		$bootstrapCol = "bfi-col-md-";
-		$bootstrapColSmall = "bfi-col-xs-";
-		$bootstrapColMedium = "bfi-col-sm-";
-		
+	private function define_constants() {		
 		$subscriptionkey= get_option('bfi_subscription_key', '');
 		$apikey= get_option('bfi_api_key', '');
 		$form_key= get_option('bfi_form_key', '');
@@ -115,10 +110,6 @@ final class BookingFor {
 
 		$this->define( 'BFI_VERSION', $this->version );
 		$this->define( 'COM_BOOKINGFORCONNECTOR_MONTHINCALENDAR', $nMonthinCalendar );
-		$this->define( 'COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW', $bootstrapRow );
-		$this->define( 'COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL',$bootstrapCol );
-		$this->define( 'COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMEDIUM', $bootstrapColMedium );
-		$this->define( 'COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COLSMALL', $bootstrapColSmall );
 		$subscriptionkey = strtolower($subscriptionkey);
 		if(strpos($subscriptionkey,'https://') !== false){
 			$subscriptionkey = str_replace("https://", "", $subscriptionkey);

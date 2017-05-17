@@ -165,7 +165,7 @@ function bfi_generator_tag( $gen, $type ) {
 									callAnalyticsEEc("", "", (jQuery(this).attr("id") == "grid-view" ? "GridView" : "ListView"), null, "changeView", "View&Sort");
 								}
 							});
-							jQuery("body").on("click", ".com_bookingforconnector-sort-item", function(e){
+							jQuery("body").on("click", ".bfi-sort-item", function(e){
 								if(e.originalEvent) {
 									var listname = "OrderBy";
 									var sortType = "";

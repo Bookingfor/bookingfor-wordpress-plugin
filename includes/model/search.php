@@ -111,9 +111,9 @@ class BookingForConnectorModelSearch
 			}
 			
 			if(empty($duration)){
-				$duration = 1;
+				$duration = 0;
 			}
-			if ((isset($checkin)) && (isset($duration) && $duration > 0)) {
+			if ((isset($checkin))) {
 				$options['data']['checkin'] = '\'' . $checkin->format('Ymd') . '\'';
 				$options['data']['duration'] = $duration;
 			}
@@ -148,8 +148,23 @@ class BookingForConnectorModelSearch
 				$options['data']['paxes'] = $persons;
 				if (isset($paxages)) {
 					$options['data']['paxages'] = '\'' . implode('|',$paxages) . '\'';
+					// ciclo per aggiungere i dati
+					$newpaxages = array();
+					foreach ($paxages as $age) {
+						if ($age >= BFCHelper::$defaultAdultsAge) {
+							if ($age >= BFCHelper::$defaultSenioresAge) {
+								array_push($newpaxages, $age.":".bfiAgeType::$Seniors );
+							} else {
+								array_push($newpaxages, $age.":".bfiAgeType::$Adult);
+							}
+						} else {
+							array_push($newpaxages, $age.":".bfiAgeType::$Reduced);
+						}
+					}
+
+					$options['data']['paxages'] = '\'' . implode('|',$newpaxages) . '\'';
 				}else{
-					$px = array_fill(0,$persons,BFCHelper::$defaultAdultsAge);
+					$px = array_fill(0,$persons,BFCHelper::$defaultAdultsAge.":".bfiAgeType::$Adult);
 					$options['data']['paxages'] = '\'' . implode('|',$px) . '\'';
 				}
 			}
@@ -236,16 +251,16 @@ class BookingForConnectorModelSearch
 				$options['data']['tagids'] = BFCHelper::getQuotedString(str_replace("|",",",$filters['tags'])) ;
 			}
 			if(!empty( $filters['rooms'] )){
-				$options['data']['rooms'] = BFCHelper::getQuotedString(str_replace("|",",",$filters['rooms'])) ;
+				$options['data']['bedRooms'] = BFCHelper::getQuotedString(str_replace("|",",",$filters['rooms'])) ;
 			}
 			if(!empty( $filters['paymodes'] )){
-				if (strpos($filters['paymodes'],"freecancellation")) {
+				if (strpos($filters['paymodes'],"freecancellation")!== FALSE) {
 					$options['data']['freeCancellation'] = 1 ;
 				}
-				if (strpos($filters['paymodes'],"freepayment")) {
+				if (strpos($filters['paymodes'],"freepayment")!== FALSE) {
 					$options['data']['payOnArrival'] = 1 ;
 				}
-				if (strpos($filters['paymodes'],"freecc")) {
+				if (strpos($filters['paymodes'],"freecc")!== FALSE) {
 					$options['data']['freeDeposit'] = 1 ;
 				}
 			}
@@ -330,6 +345,8 @@ class BookingForConnectorModelSearch
 				$filtersenabled = json_decode($results->FiltersString);
 				$params['merchantResults'] = ($results->GroupResultType==1);
 				$params['condominiumsResults'] = ($results->GroupResultType==2);
+				$merchantResults = $params['merchantResults'];
+				$condominiumsResults = $params['condominiumsResults'];
 			}
 			BFCHelper::setSearchParamsSession($params);
 			if($newsearch == "1"){
@@ -358,9 +375,9 @@ class BookingForConnectorModelSearch
 				
 				if ($merchantResults) {
 					$val->MerchantId = $result->MerchantId; 
-					$val->XGooglePos = $result->XGooglePos;
-					$val->YGooglePos = $result->YGooglePos;
-					$val->MerchantName = BFCHelper::getSlug($result->Name);
+					$val->XGooglePos = $result->MrcLat;
+					$val->YGooglePos = $result->MrcLng;
+					$val->MerchantName = BFCHelper::getSlug($result->MrcName);
 				}
 				elseif ($condominiumsResults){
 					$val->Resource = new StdClass;

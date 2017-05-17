@@ -540,6 +540,7 @@ function bfi_help_tip( $tip, $allow_html = false ) {
 		$tmpCurrencyExchanges = BFCHelper::getCurrencyExchanges();
 		if (isset($tmpCurrencyExchanges[$selectedCurrency]) ) {
 			BFCHelper::setSession('currentcurrency', $selectedCurrency , 'com_bookingforconnector');
+			$tmpCurrentCurrency = $selectedCurrency;
 		}
 		return $tmpCurrentCurrency;
 	}

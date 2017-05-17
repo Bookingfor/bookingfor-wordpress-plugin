@@ -197,7 +197,7 @@ $googlemapsapykey = COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY;
 	
 	?>
 <div class="bfi-clearboth"></div>
-<div id="mod_bookingformaps-popup"></div>
+<div id="bfi-maps-popup"></div>
 
 <script type="text/javascript">
 <!--
@@ -223,7 +223,7 @@ $googlemapsapykey = COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY;
 					center: myLatlngsearch,
 					mapTypeId: google.maps.MapTypeId.ROADMAP
 				}
-			mapSearch = new google.maps.Map(document.getElementById("mod_bookingformaps-popup"), myOptions);
+			mapSearch = new google.maps.Map(document.getElementById("bfi-maps-popup"), myOptions);
 			loadMarkers();
 		}
 		
@@ -243,8 +243,8 @@ $googlemapsapykey = COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY;
 
 
 	function loadMarkers() {
-		var isVisible = jQuery('#mod_bookingformaps-popup').is(":visible");
-		 bookingfor.waitSimpleBlock(jQuery('#mod_bookingformaps-popup'));
+		var isVisible = jQuery('#bfi-maps-popup').is(":visible");
+		 bookingfor.waitSimpleBlock(jQuery('#bfi-maps-popup'));
 		if (mapSearch != null && !markersLoaded && isVisible) {
 			if (typeof oms !== 'object'){
 				jQuery.getScript("<?php echo BFI()->plugin_url() ?>/assets/js/oms.js", function(data, textStatus, jqxhr) {
@@ -278,7 +278,7 @@ $googlemapsapykey = COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY;
 									mapSearch.fitBounds(bounds);
 								}
 								markersLoaded = true;
-								jQuery(jQuery('#mod_bookingformaps-popup')).unblock();
+								jQuery(jQuery('#bfi-maps-popup')).unblock();
 						},'json');
 					}
 					markersLoading = true;
@@ -302,8 +302,8 @@ $googlemapsapykey = COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY;
 	}
 
 	function showMarker(extId) {
-		if(jQuery( "#mod_bookingformaps-popup").length ){
-			jQuery( "#mod_bookingformaps-popup" ).dialog({
+		if(jQuery( "#bfi-maps-popup").length ){
+			jQuery( "#bfi-maps-popup" ).dialog({
 				open: function( event, ui ) {
 					openGoogleMapSearch();
 					if(!markersLoaded) {
@@ -312,7 +312,7 @@ $googlemapsapykey = COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY;
 					}
 					jQuery(oms.getMarkers()).each(function() {
 						if (this.extId != extId) return true; 
-//						var offset = jQuery('#mod_bookingformaps-popup').offset();
+//						var offset = jQuery('#bfi-maps-popup').offset();
 //						jQuery('html, body').scrollTop(offset.top-20);
 						showMarkerInfo(this);
 						return false;

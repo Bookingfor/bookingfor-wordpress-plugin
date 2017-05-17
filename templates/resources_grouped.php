@@ -79,7 +79,7 @@ $url_resource_page = get_permalink( $accommodationdetails_page->ID );
 
 
 <div class="bfi-clearfix"></div>
-<div class="com_bookingforconnector-search-merchants com_bookingforconnector-items <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> com_bookingforconnector-list">
+<div class="com_bookingforconnector-search-merchants com_bookingforconnector-items bfi-row com_bookingforconnector-list">
 <?php 
 
 $counterj = 0 ;
@@ -127,11 +127,11 @@ $listResourceIdsByMerchant = array();
 ?>
 
 
-	<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12 com_bookingforconnector-item-col">
-		<div class="com_bookingforconnector-search-merchant com_bookingforconnector-item  <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>" >
+	<div class="bfi-col-md-12 com_bookingforconnector-item-col">
+		<div class="com_bookingforconnector-search-merchant com_bookingforconnector-item  bfi-row" >
 			<div class="mrcgroup" id="bfcmerchantgroup<?php echo $merchant->MerchantId; ?>"><span class="bfcmerchantgroup"></span></div>
-			<div class="com_bookingforconnector-item-details  <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>" >
-				<div class="com_bookingforconnector-search-merchant-carousel com_bookingforconnector-item-carousel <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>4">
+			<div class="com_bookingforconnector-item-details  bfi-row" >
+				<div class="com_bookingforconnector-search-merchant-carousel com_bookingforconnector-item-carousel bfi-col-md-4">
 					<div id="com_bookingforconnector-search-merchant-carousel<?php echo $merchant->MerchantId; ?>" class="carousel" >
 						<div class="carousel-inner" role="listbox">
 							<div class="item active"><img src="<?php echo $merchantImageUrl; ?>"></div>
@@ -141,7 +141,7 @@ $listResourceIdsByMerchant = array();
 						<?php endif; ?>
 					</div>
 				</div>
-						<div class="com_bookingforconnector-item-primary <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6">
+						<div class="com_bookingforconnector-item-primary bfi-col-md-6">
 							<div class="bfi_item-primary-name">
 								<a class="namelist" href="<?php echo $routeMerchant ?>" id="nameAnchor<?php echo $merchant->MerchantId?>"><?php echo  $merchant->Name ?></a> 
 								<span class="com_bookingforconnector-search-merchant-rating com_bookingforconnector-item-rating">
@@ -197,7 +197,7 @@ $listResourceIdsByMerchant = array();
 						</div>
 
 						<?php if($isportal): ?>
-							<div class="bfi-item-secondary-logo <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>2">
+							<div class="bfi-item-secondary-logo bfi-col-md-2">
 								<a class="bfi_logo-list" href="<?php echo $routeMerchant ?>"><img class="com_bookingforconnector-logo" src="<?php echo $merchantLogo; ?>" id="bfi_logo-list-<?php echo $merchant->MerchantId?>" /></a>
 							</div>
 						<?php endif; ?>
@@ -228,9 +228,9 @@ $listResourceIdsByMerchant = array();
 				?>
 				<?php if($count == $maxItemsView):?>
 				<?php $maxviewExceeded = TRUE; ?>	
-					<div id="showallresource<?php echo $merchant->MerchantId?>" style="display:none;" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12">
+					<div id="showallresource<?php echo $merchant->MerchantId?>" style="display:none;" class="bfi-col-md-12">
 				<?php endif; ?>
-					<div class="com_bookingforconnector-search-resource-details com_bookingforconnector-item-secondary <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>" style="padding-top: 10px !important;padding-bottom: 10px !important;">
+					<div class="com_bookingforconnector-search-resource-details com_bookingforconnector-item-secondary bfi-row" style="padding-top: 10px !important;padding-bottom: 10px !important;">
 				<?php 
 					$resourceName = BFCHelper::getLanguage($resource->ResName, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
 					//$currUriresource = $uri.'&resourceId=' . $resource->ResourceId . ':' . BFCHelper::getSlug($resourceName);
@@ -260,13 +260,13 @@ $listResourceIdsByMerchant = array();
 							<a href="<?php echo $resourceRoute?>"><?php echo $resourceName; ?></a>
 							<?php if ($resource->PercentVariation<0): ?><div class="specialoffer variationlabel" rel="<?php echo  $resource->SimpleDiscountIds ?>"  rel1="<?php echo  $resource->ResourceId ?>" ><?php echo $resource->PercentVariation ?>% <?php  _e(' Offer ' , 'bfi'); ?> <i class="fa fa-angle-down" aria-hidden="true"></i></div><?php endif; ?>
 						</div>
-						<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12 divoffers" id="divoffers<?php echo  $resource->ResourceId ?>" style="display:none ;">
+						<div class="bfi-col-md-12 divoffers" id="divoffers<?php echo  $resource->ResourceId ?>" style="display:none ;">
 								<i class="fa fa-spinner fa-spin fa-fw margin-bottom"></i>
 								<span class="sr-only">Loading...</span>
 						</div>
 						<div class="bfi-clearfix"></div>
-					<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> secondarysection" >
-								<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>5 com_bookingforconnector-item-secondary-section-1 secondarysectionitem">	 
+					<div class="bfi-row secondarysection" >
+								<div class="bfi-col-md-5 com_bookingforconnector-item-secondary-section-1 secondarysectionitem">	 
 									<div class="com_bookingforconnector-search-resource-paxes com_bookingforconnector-item-secondary-paxes">
 										<i class="fa fa-user"></i>
 										<?php if ($resource->MinPaxes == $resource->MaxPaxes):?>
@@ -293,7 +293,7 @@ $listResourceIdsByMerchant = array();
 
 									<?php endif; ?>
 								</div>
-								<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>5 com_bookingforconnector-item-secondary-section-2 secondarysectionitem">
+								<div class="bfi-col-md-5 com_bookingforconnector-item-secondary-section-2 secondarysectionitem">
 									<?php if (!$resource->IsCatalog && $resource->Price > 0): ?>
 										<div class="com_bookingforconnector-search-grouped-resource-details-price com_bookingforconnector-item-secondary-price">
 											<span class="bfi-gray-highlight"><?php echo sprintf(__('Total for %d night/s' ,'bfi'),$resource->Days) ?></span>
@@ -310,7 +310,7 @@ $listResourceIdsByMerchant = array();
 										</div>
 									<?php endif; ?>
 								</div>
-								<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>2 secondarysectionitem">
+								<div class="bfi-col-md-2 secondarysectionitem">
 									<?php if ($resource->Price > 0): ?>
 											<a href="<?php echo $resourceRoute ?>" class=" bfi-item-secondary-more <?php echo $btnClass ?> "><?php echo $btnText ?></a>
 									<?php else: ?>
@@ -324,7 +324,7 @@ $listResourceIdsByMerchant = array();
 	<?php endforeach; ?>
 	 <?php if($maxviewExceeded == TRUE) : ?>
 	 </div>
-	<div class="com_bookingforconnector-search-resource-details-showmax <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12"><a onclick="showallresource('#showallresource<?php echo $merchant->MerchantId?>',this,'<?php echo implode(',',$listResourceIdsByMerchant) ?>')" style="padding-left:10px;"> <i class="icon-plus "></i><?php echo _e('SHOW ALL' , 'bfi') ?></a></div>
+	<div class="com_bookingforconnector-search-resource-details-showmax bfi-col-md-12"><a onclick="showallresource('#showallresource<?php echo $merchant->MerchantId?>',this,'<?php echo implode(',',$listResourceIdsByMerchant) ?>')" style="padding-left:10px;"> <i class="icon-plus "></i><?php echo _e('SHOW ALL' , 'bfi') ?></a></div>
 	 <?php endif; ?>	
 	
 					<div class="discount-box" style="display:<?php if($discount < 0) { ?>block<?php }else{ ?>none<?php } ?>;">
@@ -343,12 +343,12 @@ jQuery('#list-view').click(function() {
 	jQuery(this).addClass('active');
 	jQuery('.com_bookingforconnector-items').removeClass('com_bookingforconnector-grid');
 	jQuery('.com_bookingforconnector-items').addClass('com_bookingforconnector-list');
-	jQuery('.com_bookingforconnector-items > div').removeClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6').addClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12');
-	jQuery('.com_bookingforconnector-item-carousel').addClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>4');
-	jQuery('.com_bookingforconnector-item-primary').addClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6');
-	jQuery('.com_bookingforconnector-item-secondary-section-1').removeClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>4').addClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>5');
-	jQuery('.com_bookingforconnector-item-secondary-section-2').removeClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>4').addClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>5');
-	jQuery('.com_bookingforconnector-item-secondary-section-3').removeClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>4').addClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>2');
+	jQuery('.com_bookingforconnector-items > div').removeClass('bfi-col-md-6').addClass('bfi-col-md-12');
+	jQuery('.com_bookingforconnector-item-carousel').addClass('bfi-col-md-4');
+	jQuery('.com_bookingforconnector-item-primary').addClass('bfi-col-md-6');
+	jQuery('.com_bookingforconnector-item-secondary-section-1').removeClass('bfi-col-md-4').addClass('bfi-col-md-5');
+	jQuery('.com_bookingforconnector-item-secondary-section-2').removeClass('bfi-col-md-4').addClass('bfi-col-md-5');
+	jQuery('.com_bookingforconnector-item-secondary-section-3').removeClass('bfi-col-md-4').addClass('bfi-col-md-2');
 	localStorage.setItem('display', 'list');
 });
 
@@ -357,12 +357,12 @@ jQuery('#grid-view').click(function() {
 	jQuery(this).addClass('active');
 	jQuery('.com_bookingforconnector-items').removeClass('com_bookingforconnector-list');
 	jQuery('.com_bookingforconnector-items').addClass('com_bookingforconnector-grid');
-	jQuery('.com_bookingforconnector-items > div').removeClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>12').addClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6');
-	jQuery('.com_bookingforconnector-item-carousel').removeClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>4');
-	jQuery('.com_bookingforconnector-item-primary').removeClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6');
-	jQuery('.com_bookingforconnector-item-secondary-section-1').removeClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>5').addClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>4');
-	jQuery('.com_bookingforconnector-item-secondary-section-2').removeClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>5').addClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>4');
-	jQuery('.com_bookingforconnector-item-secondary-section-3').removeClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>2').addClass('<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>4');
+	jQuery('.com_bookingforconnector-items > div').removeClass('bfi-col-md-12').addClass('bfi-col-md-6');
+	jQuery('.com_bookingforconnector-item-carousel').removeClass('bfi-col-md-4');
+	jQuery('.com_bookingforconnector-item-primary').removeClass('bfi-col-md-6');
+	jQuery('.com_bookingforconnector-item-secondary-section-1').removeClass('bfi-col-md-5').addClass('bfi-col-md-4');
+	jQuery('.com_bookingforconnector-item-secondary-section-2').removeClass('bfi-col-md-5').addClass('bfi-col-md-4');
+	jQuery('.com_bookingforconnector-item-secondary-section-3').removeClass('bfi-col-md-2').addClass('bfi-col-md-4');
 	localStorage.setItem('display', 'grid');
 });
 
@@ -665,8 +665,8 @@ var rateplansLoaded = []
 jQuery(document).ready(function() {
 	getAjaxInformations();
 
-	jQuery('.mod_bookingformaps-static').click(function() {
-		jQuery( "#mod_bookingformaps-popup" ).dialog({
+	jQuery('.bfi-maps-static').click(function() {
+		jQuery( "#bfi-maps-popup" ).dialog({
 			open: function( event, ui ) {
 				openGoogleMapSearch();
 			},

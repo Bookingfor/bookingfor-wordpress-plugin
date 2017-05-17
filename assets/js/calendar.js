@@ -57,7 +57,7 @@ jQuery(document).ready(function() {
         }
     }, 100);
 
-    jQuery(".mod_bookingforsearch .flexalignend").hover(function(){
+    jQuery(".mod_bookingforsearch .bfi-flexalignend").hover(function(){
         jQuery(".ui-datepicker-trigger").click(function() {
             jQuery("#ui-datepicker-div").css("top", jQuery(this).offset().top + calTopCorr + "px");
             jQuery(".ui-datepicker-trigger").each(function() {

@@ -83,7 +83,7 @@ get_header( 'searchonsell' ); ?>
     $output = '';
     $output = $output. '</div>
     </div>
-    <div id="mappa" class="tabcontent">		
+    <div id="mappa" class="bfi-tabcontent">		
     <div id="map_canvassearch" class="searchmap" style="width:100%; min-height:400px"></div>
     </div>';
   	$currURL = esc_url( get_permalink() ); 

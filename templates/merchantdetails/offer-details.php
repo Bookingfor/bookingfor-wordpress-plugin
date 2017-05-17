@@ -75,9 +75,9 @@ $privacy = BFCHelper::GetPrivacy($language);
 
 		</div>
 		<?php if (!empty($offer->Description)):?>
-	<div class="bfi-description-data <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">
-			<h4 class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>2"><?php echo  _e('Description') ?></h4>
-		<div class="bfi-description-data <?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>10">
+	<div class="bfi-description-data bfi-row">
+			<h4 class="bfi-col-md-2"><?php echo  _e('Description') ?></h4>
+		<div class="bfi-description-data bfi-col-md-10">
 			<?php echo $offer->Description ?>		
 			</div>
 		</div>

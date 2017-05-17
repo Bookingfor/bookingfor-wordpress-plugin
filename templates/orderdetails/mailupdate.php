@@ -26,12 +26,12 @@ $base_url = get_site_url(null,'', $usessl ? "https" : null);
 
 ?>
 	<div class="container-fluid">  
-	<form action="<?php echo  $route ?>" method="post" class="form-horizontal" id="formEmail">
-		<div class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?>">   
+	<form action="<?php echo  $route ?>" method="post" class="bfi-form-horizontal" id="formEmail">
+		<div class="bfi-row">   
 			<div class="control-group">
 				<div class="controls">
 					<label><?php _e('Email', 'bfi'); ?></label>
-					<input name="email" type="text" class="<?php echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_COL ?>6" placeholder="email" value="<?php echo $email;?>" >    
+					<input name="email" type="text" class="bfi-col-md-6" placeholder="email" value="<?php echo $email;?>" >    
 					<input type="hidden" id="actionform" name="actionform" value="insertemail" />
 					<input type="hidden" name="orderId" value="<?php echo $order->OrderId;?>" />
 					<button type="submit" class="button"><?php _e('Send', 'bfi') ?></button>

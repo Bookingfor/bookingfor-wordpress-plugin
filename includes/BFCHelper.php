@@ -18,6 +18,17 @@ if ( ! class_exists( 'bfi_Meal' ) ) {
 		// etc. }
 	}
 }
+if ( ! class_exists( 'bfiAgeType' ) ) {
+	
+	class bfiAgeType {     
+		public static $Adult = 0;
+		public static $Seniors = 1;
+		public static $Reduced = 2;
+	
+
+		// etc. }
+	}
+}
 
 if ( ! class_exists( 'BFCHelper' ) ) :
 
@@ -1326,6 +1337,7 @@ class BFCHelper {
 	public static function getSearchParamsSession() {
 		$sessionkey = 'search.params';
 		$pars = isset($_SESSION[$sessionkey]) ? $_SESSION[$sessionkey] : array();
+		$pars = unserialize(serialize($pars));
 		return $pars;
 	}
 	
@@ -1337,6 +1349,7 @@ class BFCHelper {
 	public static function getFilterSearchParamsSession() {
 		$sessionkey = 'search.filterparams';
 		$paramsfilters = isset($_SESSION[$sessionkey]) ? $_SESSION[$sessionkey] : array();
+		$paramsfilters = unserialize(serialize($paramsfilters));
 		return $paramsfilters;
 	}
 

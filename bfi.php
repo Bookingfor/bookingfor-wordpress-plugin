@@ -6,8 +6,8 @@ Version: 3.0.1
 Author: BookingFor
 Author URI: http://www.bookingfor.com/
 */
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
 
 //defined( 'ABSPATH' ) or die( 'Plugin file cannot be accessed directly.' );
 if ( ! defined( 'ABSPATH' ) ) {

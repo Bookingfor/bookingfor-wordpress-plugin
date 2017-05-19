@@ -269,10 +269,10 @@ if ($ProductAvailabilityType == 2)
 	$duration = $checkin->diff($checkout)->format('%a');
 }
 
-if ($ProductAvailabilityType== 0)
-{
-	$duration +=1; 
-}
+//if ($ProductAvailabilityType== 0)
+//{
+//	$duration +=1; 
+//}
 
 $dateStringCheckin =  $checkin->format('d/m/Y');
 $dateStringCheckout =  $checkout->format('d/m/Y');

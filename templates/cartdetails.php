@@ -50,7 +50,7 @@ if (isset($_POST['hdnOrderData']) && isset($_POST['hdnPolicyIds'])  ) {
 		if ($res->AvailabilityType == 3)
 		{
 			
-			$currCheckIn = DateTime::createFromFormat("d/m/Y", $res->FromDate);
+			$currCheckIn = DateTime::createFromFormat("Ymd", $res->FromDate);
 			$currCheckOut = clone $currCheckIn;
 			$currCheckIn->setTime(0,0,1);
 			$currCheckOut->setTime(0,0,1);

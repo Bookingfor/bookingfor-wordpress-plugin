@@ -58,6 +58,7 @@ function bfi_selecttimeslot(currEl){
 	var currCheckouthours =currTr.find(".bfi-time-checkout-hours").first();
 	var currduration =currTr.find(".bfi-total-duration").first();
 	currTr.attr("data-checkin",jQuery.datepicker.formatDate("yymmdd", mcurrFromDate));
+	currTr.attr("data-checkin-ext",jQuery.datepicker.formatDate("dd/mm/yy", mcurrFromDate));
 	currCheckin.html(jQuery.datepicker.formatDate("D d M yy", mcurrFromDate));
 	currCheckinhours.html(currSelect[0]);
 	currCheckout.html(jQuery.datepicker.formatDate("D d M yy", mcurrFromDate));

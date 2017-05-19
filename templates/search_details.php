@@ -845,7 +845,7 @@ foreach($allResourceId as $resId) {
 										$res->Availability = $currDatesTimeSlot[0]->Availability ;
 
 									?>
-										<div class="bfi-timeslot bfi-cursor" id="bfi-timeslot-<?php echo $res->ResourceId ?>" data-resid="<?php echo $res->ResourceId ?>" data-checkin="<?php echo $currCheckIn->format('Ymd') ?>"
+										<div class="bfi-timeslot bfi-cursor" id="bfi-timeslot-<?php echo $res->ResourceId ?>" data-resid="<?php echo $res->ResourceId ?>" data-checkin="<?php echo $currCheckIn->format('Ymd') ?>" data-checkin-ext="<?php echo $currCheckIn->format('d/m/Y') ?>"
 										data-timeslotid="<?php echo $currDatesTimeSlot[0]->ProductId ?>" data-timeslotstart="<?php echo $currDatesTimeSlot[0]->TimeSlotStart ?>" data-timeslotend="<?php echo $currDatesTimeSlot[0]->TimeSlotEnd ?>"
 										>
 											<div class="bfi-row ">
@@ -2281,6 +2281,7 @@ window.criteo_q.push(
 					}
 					if(currAvailabilityType==3){
 						var currTr = jQuery("#bfi-timeslot-"+currResId);
+						currResourceRequest.FromDate = (sendtocart==0)?currTr.attr('data-checkin'):currTr.attr('data-checkin-ext');
 						currResourceRequest.TimeSlotId = currTr.attr("data-timeslotid");
 						currResourceRequest.TimeSlotStart = currTr.attr("data-timeslotstart");
 						currResourceRequest.TimeSlotEnd = currTr.attr("data-timeslotend");

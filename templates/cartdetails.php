@@ -47,6 +47,16 @@ if (isset($_POST['hdnOrderData']) && isset($_POST['hdnPolicyIds'])  ) {
 			$currCheckOut = DateTime::createFromFormat("YmdHis", $res->CheckInTime);
 			$currCheckOut->add(new DateInterval('PT' . $res->TimeDuration . 'M'));
 		}		
+		if ($res->AvailabilityType == 3)
+		{
+			
+			$currCheckIn = DateTime::createFromFormat("d/m/Y", $res->FromDate);
+			$currCheckOut = clone $currCheckIn;
+			$currCheckIn->setTime(0,0,1);
+			$currCheckOut->setTime(0,0,1);
+			$currCheckIn->add(new DateInterval('PT' . $res->TimeSlotStart . 'M'));
+			$currCheckOut->add(new DateInterval('PT' . $res->TimeSlotEnd . 'M'));
+		}		
 		$currStayConfiguration = array("productid"=>$res->ResourceId,"price"=>$res->TotalAmount,"start"=>$currCheckIn->format("Y-m-d\TH:i:s"),"end"=> $currCheckOut->format("Y-m-d\TH:i:s"));
 		$listStayConfigurations[] = $currStayConfiguration;
 	}
@@ -518,7 +528,7 @@ if(!empty($MerchantDetail->AcceptanceCheckIn) && !empty($MerchantDetail->Accepta
 									if ($res->AvailabilityType == 3)
 									{
 
-										$currCheckIn = DateTime::createFromFormat("YmdHis", $res->CheckInTime);
+										$currCheckIn = new DateTime($res->FromDate);										
 										$currCheckOut = clone $currCheckIn;
 										$currCheckIn->setTime(0,0,1);
 										$currCheckOut->setTime(0,0,1);

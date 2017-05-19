@@ -37,7 +37,7 @@ $merchant_id = get_query_var( 'merchant_id', 0 );
 	$sendAnalytics = true;
 	$layoutcriteo = "";
 	
-	$cartType = $merchant->CartType;
+	$cartType = 1; //$merchant->CartType;
 
 	switch ( $layout) {
 		case _x( 'resources', 'Page slug', 'bfi' ):

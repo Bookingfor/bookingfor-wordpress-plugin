@@ -135,7 +135,7 @@ $allServiceIds = array();
 		$cartdetails_page = get_post( bfi_get_page_id( 'cartdetails' ) );
 		$url_cart_page = get_permalink( $cartdetails_page->ID );
 		if($usessl){
-			$url_cart_page = str_replace( 'https:', 'http:', $url_cart_page );
+			$url_cart_page = str_replace( 'http:', 'https:', $url_cart_page );
 		}
 
 		$cartId= isset($currCart->CartId)?$currCart->CartId:0;
@@ -203,7 +203,7 @@ $allServiceIds = array();
 			$cartdetails_page = get_post( bfi_get_page_id( 'cartdetails' ) );
 			$url_cart_page = get_permalink( $cartdetails_page->ID );
 			if($usessl){
-				$url_cart_page = str_replace( 'https:', 'http:', $url_cart_page );
+				$url_cart_page = str_replace( 'http:', 'https:', $url_cart_page );
 			}
 			wp_redirect($url_cart_page);
 			exit;
@@ -249,7 +249,7 @@ $allServiceIds = array();
 					<th><div><?php _e('Host', 'bfi') ?></div></th>
 					<th><?php _e('Information', 'bfi') ?></th>
 					<th><div><?php _e('Min', 'bfi') ?><br /><?php _e('Max', 'bfi') ?></div></th>
-					<th ><div><?php _e('Price', 'bfi') ?></div></th>
+					<th><div><?php _e('Price', 'bfi') ?></div></th>
 					<th><div><?php _e('Options', 'bfi') ?></div></th>
 					<th><div><?php _e('Qt.', 'bfi') ?></div></th>
 				</tr>
@@ -935,8 +935,6 @@ $totalRequest = $totalWithVariation;
 	</div>	
 
 <br />
-	<div class="bf-summary-cart">
-				<div class="bf-summary-header">
 
 		<?php
 //---------------------FORM

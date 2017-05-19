@@ -61,7 +61,7 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST' && $layout==  _x('form', 'Page slug', '
 	$merchants = array();
 	$merchants[] = $resource->MerchantId;
 	$merchant = $resource->Merchant;
-	$cartType = $merchant->CartType;
+	$cartType = 1; //$merchant->CartType;
 	$currencyclass = bfi_get_currentCurrency();
 
 

@@ -11,7 +11,7 @@ if(COM_BOOKINGFORCONNECTOR_MONTHINCALENDAR==1){
 </style>
 <?php
 }
-$cartType = $merchant->CartType;
+$cartType = 1; //$merchant->CartType;
 $currentCartConfiguration = null;
 
 $ProductAvailabilityType = 1;
@@ -91,12 +91,13 @@ if(!empty($resourceId)){
 //echo "</pre>";
 
 //if($usessl){
-//	$formRouteBook = str_replace( 'https:', 'http:', $formRouteBook );
+//	$formRouteBook = str_replace( 'http:', 'https:', $formRouteBook );
 //}
 
 //$formOrderRouteBook = $formRouteBook ;
+
 if($usessl){
-	$url_cart_page = str_replace( 'https:', 'http:', $url_cart_page );
+	$url_cart_page = str_replace( 'http:', 'https:', $url_cart_page );
 }
 
 $formOrderRouteBook = $url_cart_page;
@@ -2307,8 +2308,8 @@ window.criteo_q.push(
 								PriceId: currPriceId,
 								CalculatedQt: currValue,
 								ResourceId: currResId, 
-								TotalDiscounted:  jQuery(this).attr('data-baseprice'),
-								TotalAmount:  jQuery(this).attr('data-basetotalprice'),
+								TotalDiscounted: (sendtocart==0)?parseFloat(jQuery(this).attr('data-baseprice'))*currValue:jQuery(this).attr('data-baseprice'), 
+								TotalAmount:  (sendtocart==0)?parseFloat(jQuery(this).attr('data-basetotalprice'))*currValue:jQuery(this).attr('data-basetotalprice'), 
 							}
 							if(currPriceAvailabilityType==2){
 								var currTr = jQuery("#bfi-timeperiod-"+currPriceId);

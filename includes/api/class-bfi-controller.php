@@ -1051,7 +1051,7 @@ class BFI_Controller {
 		$url_cart_page = get_permalink( $cartdetails_page->ID );
 		$usessl = COM_BOOKINGFORCONNECTOR_USESSL;
 		if($usessl){
-			$url_cart_page = str_replace( 'https:', 'http:', $url_cart_page );
+			$url_cart_page = str_replace( 'http:', 'https:', $url_cart_page );
 		}
 
 		if(!empty($CartOrderId && !empty($cartId) )){

@@ -309,8 +309,10 @@ if(!empty($fromSearch)){
 if(!empty($resourceId) && is_array($allRatePlans) && count($allRatePlans)>0){
 	$defaultRatePlans =  array_values(array_filter($allRatePlans, function($p) use ($resourceId) {return $p->ResourceId == $resourceId ;})); // c#: allRatePlans.Where(p => p.ResourceId == resId);
 	usort($defaultRatePlans, "BFCHelper::bfi_sortResourcesRatePlans");
+	
 	$allRatePlans = array_slice($allRatePlans, 0, 5);
 	$allRatePlans = array_merge($allRatePlans, $defaultRatePlans);
+	$allRatePlans = array_unique($allRatePlans, SORT_REGULAR);
 	if(is_array($defaultRatePlans)){
 		$defaultRatePlan =  reset($defaultRatePlans);
 	}

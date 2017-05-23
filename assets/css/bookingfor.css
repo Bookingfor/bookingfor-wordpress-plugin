@@ -7156,6 +7156,7 @@ margin-left: -10px !important;
 	background-color: #f7f7f7;
 }
 .bfi-img-searchdetails{
-	display:block;
+	display:block !important;
 	max-width: 100% !important;
+	border:0 !important;
 }

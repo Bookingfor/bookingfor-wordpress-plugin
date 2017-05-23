@@ -164,11 +164,11 @@ function form($instance) {
 	$unitCategoriesSelectedActivities = ( ! empty( $instance['unitcategoriesactivities'] ) ) ? $instance['unitcategoriesactivities'] : array();
 	$unitCategoriesSelectedRealEstate = ( ! empty( $instance['unitcategoriesrealestate'] ) ) ? $instance['unitcategoriesrealestate'] : array();
 
-	$availabilityTypesSelectedBooking = ( ! empty( $instance['availabilitytypesbooking'] ) ) ? $instance['availabilitytypesbooking'] : array();
-	$availabilityTypesSelectedAvailability = ( ! empty( $instance['availabilitytypesactivities'] ) ) ? $instance['availabilitytypesactivities'] : array();
+	$availabilityTypesSelectedBooking = ( ! empty( $instance['availabilitytypesbooking'] ) ) ? $instance['availabilitytypesbooking'] : array(1);
+	$availabilityTypesSelectedAvailability = ( ! empty( $instance['availabilitytypesactivities'] ) ) ? $instance['availabilitytypesactivities'] : array(2,3);
 
-	$itemTypesSelectedBooking = ( ! empty( $instance['itemtypesbooking'] ) ) ? $instance['itemtypesbooking'] : array();
-	$itemTypesSelectedActivities = ( ! empty( $instance['itemtypesactivities'] ) ) ? $instance['itemtypesactivities'] : array();
+	$itemTypesSelectedBooking = ( ! empty( $instance['itemtypesbooking'] ) ) ? $instance['itemtypesbooking'] : array(0);
+	$itemTypesSelectedActivities = ( ! empty( $instance['itemtypesactivities'] ) ) ? $instance['itemtypesactivities'] : array(1);
 	
 	$groupBySelectedBooking = ( ! empty( $instance['groupbybooking'] ) ) ? $instance['groupbybooking'] : array();
 	$groupBySelectedActivities = ( ! empty( $instance['groupbyactivities'] ) ) ? $instance['groupbyactivities'] : array();
@@ -520,14 +520,14 @@ function form($instance) {
 		  $instance['unitcategoriesactivities'] = ! empty( $new_instance[ 'unitcategoriesactivities' ] ) &&  in_array(2,$instance['tablistSelected']) ? esc_sql( $new_instance['unitcategoriesactivities'] ) : "";
 		  $instance['unitcategoriesrealestate'] = ! empty( $new_instance[ 'unitcategoriesrealestate' ] ) &&  in_array(3,$instance['tablistSelected']) ? esc_sql( $new_instance['unitcategoriesrealestate'] ) : "";
 
-		  $instance['availabilitytypesbooking'] = ! empty( $new_instance[ 'availabilitytypesbooking' ] ) &&  in_array(0,$instance['tablistSelected']) ? esc_sql( $new_instance['availabilitytypesbooking'] ) : "";
-		  $instance['availabilitytypesactivities'] = ! empty( $new_instance[ 'availabilitytypesactivities' ] ) &&  in_array(2,$instance['tablistSelected']) ? esc_sql( $new_instance['availabilitytypesactivities'] ) : "";
+		  $instance['availabilitytypesbooking'] = ! empty( $new_instance[ 'availabilitytypesbooking' ] ) && is_array($instance['tablistSelected']) &&  in_array(0,$instance['tablistSelected']) ? esc_sql( $new_instance['availabilitytypesbooking'] ) : "";
+		  $instance['availabilitytypesactivities'] = ! empty( $new_instance[ 'availabilitytypesactivities' ] ) && is_array($instance['tablistSelected']) &&  in_array(2,$instance['tablistSelected']) ? esc_sql( $new_instance['availabilitytypesactivities'] ) : "";
 
-		  $instance['itemtypesbooking'] = ! empty( $new_instance[ 'itemtypesbooking' ] ) &&  in_array(0,$instance['tablistSelected']) ? esc_sql( $new_instance['itemtypesbooking'] ) : "";
-		  $instance['itemtypesactivities'] = ! empty( $new_instance[ 'itemtypesactivities' ] ) &&  in_array(2,$instance['tablistSelected']) ? esc_sql( $new_instance['itemtypesactivities'] ) : "";
+		  $instance['itemtypesbooking'] = ! empty( $new_instance[ 'itemtypesbooking' ] )  && is_array($instance['tablistSelected']) &&  in_array(0,$instance['tablistSelected']) ? esc_sql( $new_instance['itemtypesbooking'] ) : "";
+		  $instance['itemtypesactivities'] = ! empty( $new_instance[ 'itemtypesactivities' ] )  && is_array($instance['tablistSelected']) &&  in_array(2,$instance['tablistSelected']) ? esc_sql( $new_instance['itemtypesactivities'] ) : "";
 
-		  $instance['groupbybooking'] = ! empty( $new_instance[ 'groupbybooking' ] ) &&  in_array(0,$instance['tablistSelected']) ? esc_sql( $new_instance['groupbybooking'] ) : "";
-		  $instance['groupbyactivities'] = ! empty( $new_instance[ 'groupbyactivities' ] ) &&  in_array(2,$instance['tablistSelected']) ? esc_sql( $new_instance['groupbyactivities'] ) : "";
+		  $instance['groupbybooking'] = ! empty( $new_instance[ 'groupbybooking' ] ) && is_array($instance['tablistSelected']) &&  in_array(0,$instance['tablistSelected']) ? esc_sql( $new_instance['groupbybooking'] ) : "";
+		  $instance['groupbyactivities'] = ! empty( $new_instance[ 'groupbyactivities' ] ) && is_array($instance['tablistSelected']) &&   in_array(2,$instance['tablistSelected']) ? esc_sql( $new_instance['groupbyactivities'] ) : "";
 
 		  $instance['showdirection'] =! empty( $new_instance[ 'showdirection' ] ) ? 1 : 0;
 		  $instance['showLocation'] = ! empty( $new_instance[ 'showLocation' ] ) ? 1 : 0;

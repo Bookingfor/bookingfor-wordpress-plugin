@@ -639,10 +639,10 @@ if(!empty($allResourceId)){
 <?php 
 			if(!empty($resource->ImageUrl)){
 				$resourceImageUrl = BFCHelper::getImageUrlResized('resources',$resource->ImageUrl, 'small');
-			}
 ?>
-<img src="<?php echo $resourceImageUrl; ?>" class="bfi-img-searchdetails" />
+<a class="bfi-link-searchdetails" onclick="bfiGoToTop()" href="<?php echo $currUriresource ?>"><img src="<?php echo $resourceImageUrl; ?>" class="bfi-img-searchdetails" /></a>
 <?php 
+			}
 					$listServices = array();
 					if(!empty($resource->ResServiceIdList)){
 						$listServices = explode(",", $resource->ResServiceIdList);
@@ -790,11 +790,11 @@ foreach($allResourceId as $resId) {
 <?php 
 			if(!empty($res->ImageUrl)){
 				$resourceImageUrl = BFCHelper::getImageUrlResized('resources',$res->ImageUrl, 'small');
-			}
 ?>
-<img src="<?php echo $resourceImageUrl; ?>" class="bfi-img-searchdetails" />
+<a  class="bfi-link-searchdetails" href="<?php echo $formRouteSingle ?>" <?php echo ($resId == $resourceId)? 'onclick="bfiGoToTop()"' :  'target="_blank"' ; ?> ><img src="<?php echo $resourceImageUrl; ?>" class="bfi-img-searchdetails" /></a>
 					<br />
 								<?php
+			}
 /*-----------scelta date e ore--------------------*/	
 									if ($res->AvailabilityType == 2)
 									{

@@ -81,7 +81,10 @@ class BookingForConnectorModelSearch
 		$cultureCode = $params['cultureCode'];
 		
 		$filters = $params['filters'];
-		
+//				$filtersselected = BFCHelper::getFilterSearchParamsSession();
+		if(empty($filters)){
+			$filters = BFCHelper::getFilterSearchParamsSession();		
+		}
 		$resourceName = $params['resourceName'].'';
 		$refid = $params['refid'].'';
 		if (!empty($refid) or !empty($resourceName))  {
@@ -460,13 +463,13 @@ class BookingForConnectorModelSearch
         
 	public function getItems($ignorePagination = false, $jsonResult = false, $start = 0, $count = 20) {
 		
-		if(!empty($_POST['filter_order']) ){
+		if(!empty($_REQUEST['filter_order']) ){
 			
 		$items = $this->getSearchResults(
 			$start,
 			$count,
-            $_POST['filter_order'],
-			$_POST['filter_order_Dir'],
+            $_REQUEST['filter_order'],
+			$_REQUEST['filter_order_Dir'],
 			$ignorePagination,
 			$jsonResult
 		);

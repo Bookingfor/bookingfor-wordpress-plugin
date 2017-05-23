@@ -309,6 +309,8 @@ if(!empty($fromSearch)){
 if(!empty($resourceId) && is_array($allRatePlans) && count($allRatePlans)>0){
 	$defaultRatePlans =  array_values(array_filter($allRatePlans, function($p) use ($resourceId) {return $p->ResourceId == $resourceId ;})); // c#: allRatePlans.Where(p => p.ResourceId == resId);
 	usort($defaultRatePlans, "BFCHelper::bfi_sortResourcesRatePlans");
+	$allRatePlans = array_slice($allRatePlans, 0, 5);
+	$allRatePlans = array_merge($allRatePlans, $defaultRatePlans);
 	if(is_array($defaultRatePlans)){
 		$defaultRatePlan =  reset($defaultRatePlans);
 	}
@@ -633,6 +635,13 @@ if(!empty($allResourceId)){
 			<tr>
 				<td>
 					<a class="bfi-resname" onclick="bfiGoToTop()" href="<?php echo $currUriresource ?>"><?php echo $resource->Name; ?></a>
+
+<?php 
+			if(!empty($resource->ImageUrl)){
+				$resourceImageUrl = BFCHelper::getImageUrlResized('resources',$resource->ImageUrl, 'small');
+			}
+?>
+<img src="<?php echo $resourceImageUrl; ?>" class="bfi-img-searchdetails" />
 <?php 
 					$listServices = array();
 					if(!empty($resource->ResServiceIdList)){
@@ -778,6 +787,12 @@ foreach($allResourceId as $resId) {
 			<tr >
 				<td rowspan="<?php echo $nRowSpan ?>">
 					<a  class="bfi-resname" href="<?php echo $formRouteSingle ?>" <?php echo ($resId == $resourceId)? 'onclick="bfiGoToTop()"' :  'target="_blank"' ; ?> ><?php echo $res->ResName; ?></a>
+<?php 
+			if(!empty($res->ImageUrl)){
+				$resourceImageUrl = BFCHelper::getImageUrlResized('resources',$res->ImageUrl, 'small');
+			}
+?>
+<img src="<?php echo $resourceImageUrl; ?>" class="bfi-img-searchdetails" />
 					<br />
 								<?php
 /*-----------scelta date e ore--------------------*/	

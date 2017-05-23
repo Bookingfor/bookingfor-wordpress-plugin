@@ -74,9 +74,18 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 <div id="bfi-list" class="bfi-row bfi-list">
 	<?php foreach ($resources as $resource){?>
 	<?php 
-		$resource->ImageUrl = $resource->DefaultImg;
+		
 		$resourceImageUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s6.jpeg";
-
+		if(!empty( $resource->ResName )){
+			$resource->Name = $resource->ResName;
+		}
+		if(!empty( $resource->DefaultImg)){
+			$resource->ImageUrl = $resource->DefaultImg;
+		}
+		if(!empty( $resource->MrcName)){
+			$resource->MerchantName = $resource->MrcName;
+		}
+		
 		$resourceName = BFCHelper::getLanguage($resource->Name, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
 		$resourceDescription = ""; //BFCHelper::getLanguage($resource->Description, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
 

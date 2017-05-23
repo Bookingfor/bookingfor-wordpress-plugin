@@ -415,7 +415,7 @@ class bfi_Shortcodes {
 					$merchants = is_array($items) ? $items : array();
 					include(BFI()->plugin_path().'/templates/resources_grouped.php');
 				}else{
-					$results = is_array($items) ? $items : array();
+					$resources = is_array($items) ? $items : array();
 					include(BFI()->plugin_path().'/templates/resources.php');
 				}
 			}

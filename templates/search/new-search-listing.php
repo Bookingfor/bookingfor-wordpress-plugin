@@ -78,12 +78,64 @@ if( get_option('permalink_structure') ) {
     'add_args'        => false,
     'add_fragment'    => ''
   );
+
+
+
+global $bfi_query_arg;
+$bfi_query_arg = array();
+add_filter( 'get_pagenum_link', 'bfi_remove_date_get_pagenum_link',1 );
+function bfi_remove_date_get_pagenum_link( $url ) {
+	global $bfi_query_arg;
+	$checkinFromUrl = filter_input( INPUT_GET, 'checkin');
+	if(!empty($checkinFromUrl)){
+		$bfi_query_arg['checkin'] = rawurlencode($checkinFromUrl);
+		$url = remove_query_arg( 'checkin', $url );
+	}
+	$checkoutFromUrl = filter_input( INPUT_GET, 'checkout');
+	if(!empty($checkoutFromUrl)){
+		$bfi_query_arg['checkout'] = rawurlencode($checkoutFromUrl);
+		$url = remove_query_arg( 'checkout', $url );
+	}
+	
+	return  $url;
+}
+
 add_filter( 'paginate_links', function( $link )
 {
-    return  
-       filter_input( INPUT_GET, 'newsearch' )
-       ? remove_query_arg( 'newsearch', $link )
-       : $link;
+	global $bfi_query_arg;
+	$filter_order = filter_input( INPUT_POST, 'filter_order');
+	if(!empty($filter_order)){
+		$link = remove_query_arg( 'filter_order', $link );
+		$link = add_query_arg('filterorder' , $filter_order , $link);
+	}else{
+		$filter_order = filter_input( INPUT_GET, 'filter_order');
+		if(!empty($filter_order)){
+			$link = remove_query_arg( 'filter_order', $link );
+			$link = add_query_arg('filterorder' , $filter_order , $link);
+		}
+	}
+	$filter_order_dir = filter_input( INPUT_POST, 'filter_order_Dir');
+	if(!empty($filter_order_dir)){
+		$link = remove_query_arg( 'filter_order_Dir', $link );
+		$link = add_query_arg('filterorderdir' , $filter_order_dir , $link);
+	}else{
+		$filter_order_dir = filter_input( INPUT_GET, 'filter_order_Dir');
+		if(!empty($filter_order_dir)){
+			$link = remove_query_arg( 'filter_order_Dir', $link );
+			$link = add_query_arg('filterorderdir' , $filter_order_dir , $link);
+		}
+	}
+
+	if(!empty($bfi_query_arg)){
+		$link =  add_query_arg($bfi_query_arg , $link);
+	}
+
+	$link = filter_input( INPUT_GET, 'newsearch' ) ? remove_query_arg( 'newsearch', $link ) : $link;
+
+	$link = str_replace('filterorder=',"filter_order=",$link);
+	$link = str_replace('filterorderdir=',"filter_order_Dir=",$link);
+
+	return $link;
 } );
 
   $paginate_links = paginate_links($pagination_args);
@@ -196,7 +248,6 @@ $startzoom = COM_BOOKINGFORCONNECTOR_GOOGLE_STARTZOOM;
 $googlemapsapykey = COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY;
 	
 	?>
-<div class="bfi-clearboth"></div>
 <div id="bfi-maps-popup"></div>
 
 <script type="text/javascript">

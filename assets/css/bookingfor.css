@@ -468,6 +468,7 @@ a.namegrid:hover, a.namelist:hover {
 	width:100%;
 	margin-bottom:10px;
 	-webkit-appearance: none;
+	box-sizing: border-box;
 }
 .bfi-item-secondary-more:hover, .bfi-item-secondary-more-list:hover, .btn-secondary:hover,
 .bfi-item-secondary-more-list:focus, .bfi-item-secondary-more:focus, .btn-secondary:focus {
@@ -501,6 +502,7 @@ a.namegrid:hover, a.namelist:hover {
 	width:100%;
 	margin-bottom:10px;
 	-webkit-appearance: none;
+	box-sizing: border-box;
 }
 .btn-primary:hover, .btn-primary:focus {
     background-color: #616161;
@@ -769,7 +771,8 @@ a.namegrid:hover, a.namelist:hover {
 	text-decoration:none;
 	border-radius: 3px;
 	line-height:normal;
-	font-size:15px !important;;
+	font-size:15px !important;
+	box-sizing: border-box;
 }
 .bfi-smallbtn{
     display:inline-block;
@@ -4407,7 +4410,7 @@ display: block;
 	width:150px;
  }
 .inputmini {
-	width:50px !important;
+	width:75px !important;
 	height:30px;
 -webkit-appearance: none;
 float:none;
@@ -4690,14 +4693,15 @@ i.mce-i-bfi_panel:before {
 	margin:0 !important;
 	padding: 0px !important;
 }
-.mod_bookingforsearch .bfi-tabs li{
-    display: table-cell;
-    width: 1%;
+.mod_bookingforsearch .bfi-tabs li,
+.mod_bookingforsearch .ui-tabs .ui-tabs-nav li{
+    display: table-cell !important;
+    width: 1% !important;
 	background: #e0e0e0;
 	border: none !important;
 	color: #0895ff;
 	outline: none;
-	float: none;
+	float: none !important;
 }
 .mod_bookingforsearch .bfi-tabs li.ui-tabs-active{
 	background: #eee;
@@ -4762,6 +4766,11 @@ span.icon_marker{width: 13%;
     z-index: 100;
     background-size: 15px 20px;
     background-color: #ffffff;
+	-moz-appearance: menulist;
+    -o-appearance: menulist;
+    -webkit-appearance: menulist;
+    appearance: menulist;
+
 	}
 .bookingfor_title {
     text-align: center;
@@ -6413,6 +6422,11 @@ table th[class*="bfi-col-"] {
 	width:132px;
 	top:50px;
 }
+.bfi-table-resources > tbody > tr > td,
+.bfi-table-cart > tbody > tr > td {
+	text-align: left;
+}
+
 .bfi-table-resources > tbody > tr > td, .bfi-table-resources > tbody > tr > td > div,
 .bfi-table-cart > tbody > tr > td, .bfi-table-cart > tbody > tr > td > div
 {
@@ -6958,7 +6972,8 @@ margin-left: -10px !important;
     padding-left: 5px;
 }
 .bfi-filter-label{
-    overflow: hidden;
+    box-sizing: border-box;
+	overflow: hidden;
 	white-space: normal;
 	height:20px;
     top: 0px;
@@ -7139,4 +7154,8 @@ margin-left: -10px !important;
 }
 .bfi-cart-extra{
 	background-color: #f7f7f7;
+}
+.bfi-img-searchdetails{
+	display:block;
+	max-width: 100% !important;
 }

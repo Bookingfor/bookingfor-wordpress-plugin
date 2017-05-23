@@ -20,6 +20,7 @@ $checkout = BFCHelper::getStayParam('checkout', new DateTime());
 $checkinstr = $checkin->format("d") . " " . date_i18n('F',$checkin->getTimestamp()) . ' ' . $checkin->format("Y") ;
 $checkoutstr = $checkout->format("d") . " " . date_i18n('F',$checkout->getTimestamp()) . ' ' . $checkout->format("Y") ;
 $totalResult = count($results);
+$totalResult = $total;
 
 $language = $GLOBALS['bfi_lang'];
 $languageForm ='';
@@ -50,6 +51,9 @@ $resourceImageUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s6.jp
 $searchAvailability_page = get_post( bfi_get_page_id( 'searchavailability' ) );
 $formAction = get_permalink( $searchAvailability_page->ID );
 
+if(!empty($page)){
+	$formAction = str_replace('/page/'.$page."/","/",$formAction);
+}
 
 $merchantdetails_page = get_post( bfi_get_page_id( 'merchantdetails' ) );
 $url_merchant_page = get_permalink( $merchantdetails_page->ID );
@@ -255,7 +259,7 @@ $onlystay =  true;
 						<?php endif; ?>
 						<?php echo ($resource->AvailabilityType ==0 || $resource->AvailabilityType ==1) ? $resource->ResCategoryName: ""; ?>
 					</div>
-					<div class="bfi-col-sm-3 bfi-pad0-10">
+					<div class="bfi-col-sm-3 ">
 						<?php if (!$resource->IsCatalog && $onlystay ){ ?>
 							<div class="bfi-availability">
 							<?php if ($resource->Availability < 4): ?>
@@ -297,10 +301,10 @@ $onlystay =  true;
 				<?php if (!$resource->IsCatalog && $onlystay ){ ?>
 				<!-- price details -->
 				<div class="bfi-row" >
-					<div class="bfi-col-sm-4 bfi-text-right bfi-pad0-10">
+					<div class="bfi-col-sm-4 bfi-text-right ">
 					<?php echo sprintf(__('Price for %s person' ,'bfi'),$totPerson) ?>
 					</div>
-					<div class="bfi-col-sm-5 bfi-text-right bfi-pad0-10">
+					<div class="bfi-col-sm-5 bfi-text-right ">
 							<div class="bfi-gray-highlight">
 							<?php 
 								$currCheckIn = DateTime::createFromFormat('Y-m-d\TH:i:s',$resource->AvailabilityDate);

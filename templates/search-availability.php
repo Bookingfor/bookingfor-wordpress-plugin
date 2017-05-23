@@ -36,8 +36,8 @@ if(!isset($_GET['task'])) {
 
 	$page = bfi_get_current_page() ;
 	
-	$start = ($page - 1) * COM_BOOKINGFORCONNECTOR_ITEMPERPAGE;
-    
+	$start = ($page - 1) * COM_BOOKINGFORCONNECTOR_ITEMPERPAGE;			
+
     $searchmodel = new BookingForConnectorModelSearch;
 		
 $pars = BFCHelper::getSearchParamsSession();

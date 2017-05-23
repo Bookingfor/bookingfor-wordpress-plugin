@@ -56,7 +56,13 @@ $avg_text = array('-1' => __('Unrated', 'bfi'),
 					);
 
 
-$formAction = $_SERVER['REQUEST_URI'];
+$formAction = (isset($_SERVER['HTTPS']) ? "https" : "http") . ':' . (( $_SERVER['HTTPS']=='80' || $_SERVER['HTTPS']=='443' ) ? '' : $port) ."//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+$page = bfi_get_current_page() ;
+if(!empty($page)){
+	$formAction = str_replace('/page/'.$page."/","/",$formAction);
+}
+
 $formAction = filter_input( INPUT_GET, 'newsearch' )
        ? remove_query_arg( 'newsearch', $formAction )
        : $formAction;
@@ -670,7 +676,7 @@ function applyfilterdata(){
 
 	jQuery('.bfi-filter-label').bind('mouseenter', function(){
 		var $this = jQuery(this);
-		var divWidthBefore = $this.width();
+		var divWidthBefore = $this.width()+5;
 		$this.css('width','auto');
 		$this.css('white-space','nowrap');
 		var divWidth = $this.width();

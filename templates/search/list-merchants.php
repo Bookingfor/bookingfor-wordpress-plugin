@@ -19,7 +19,8 @@ $checkin = BFCHelper::getStayParam('checkin', new DateTime());
 $checkout = BFCHelper::getStayParam('checkout', new DateTime());
 $checkinstr = $checkin->format("d") . " " . date_i18n('F',$checkin->getTimestamp()) . ' ' . $checkin->format("Y") ;
 $checkoutstr = $checkout->format("d") . " " . date_i18n('F',$checkout->getTimestamp()) . ' ' . $checkout->format("Y") ;
-$totalResult = count($merchants);
+//$totalResult = count($merchants);
+$totalResult = $total;
 
 $language = $GLOBALS['bfi_lang'];
 $languageForm ='';
@@ -233,7 +234,7 @@ $listResourceIds = array();
 						<?php endif; ?>
 						<a href="<?php echo $resourceRoute?>" class="bfi-subitem-title"><?php echo $resourceName; ?></a>
 					</div>
-					<div class="bfi-col-sm-3 bfi-pad0-10">
+					<div class="bfi-col-sm-3 ">
 						<?php if (!$merchant->IsCatalog && $onlystay ){ ?>
 							<div class="bfi-availability">
 							<?php if ($merchant->Availability < 4): ?>
@@ -275,10 +276,10 @@ $listResourceIds = array();
 				<?php if (!$merchant->IsCatalog && $onlystay ){ ?>
 				<!-- price details -->
 				<div class="bfi-row" >
-					<div class="bfi-col-sm-5 bfi-text-right bfi-pad0-10">
+					<div class="bfi-col-sm-5 bfi-text-right ">
 					<?php echo sprintf(__('Price for %s person' ,'bfi'),$totPerson) ?>
 					</div>
-					<div class="bfi-col-sm-5 bfi-text-right bfi-pad0-10">
+					<div class="bfi-col-sm-5 bfi-text-right ">
 							<div class="bfi-gray-highlight">
 							<?php 
 								$currCheckIn = DateTime::createFromFormat('Y-m-d\TH:i:s',$merchant->AvailabilityDate);

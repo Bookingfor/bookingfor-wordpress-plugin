@@ -28,7 +28,7 @@ genesis (Agent Focused Pro)
 # Shortcode
 [bookingfor_merchants category=1019 rating=4]
 
-[bookingfor_resources]
+[bookingfor_resources categories=6,4]
 
 [bookingfor_onsells]
 

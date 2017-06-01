@@ -206,7 +206,7 @@ $listResourceIds = array();
 						<?php endif; ?>
 						<a href="<?php echo $resourceRoute?>" class="bfi-subitem-title"><?php echo $resourceName; ?></a>
 					</div>
-					<div class="bfi-col-sm-3 bfi-pad0-10">
+					<div class="bfi-col-sm-3">
 						<?php if (!$merchant->IsCatalog && $onlystay ){ ?>
 							<div class="bfi-availability">
 							<?php if ($merchant->Availability < 4): ?>
@@ -248,10 +248,10 @@ $listResourceIds = array();
 				<?php if (!$merchant->IsCatalog && $onlystay ){ ?>
 				<!-- price details -->
 				<div class="bfi-row" >
-					<div class="bfi-col-sm-5 bfi-text-right bfi-pad0-10">
+					<div class="bfi-col-sm-4 bfi-text-right">
 					<?php echo sprintf(__('Price for %s person' ,'bfi'),$totPerson) ?>
 					</div>
-					<div class="bfi-col-sm-5 bfi-text-right bfi-pad0-10">
+					<div class="bfi-col-sm-5 bfi-text-right">
 							<div class="bfi-gray-highlight">
 							<?php 
 								$currCheckIn = DateTime::createFromFormat('Y-m-d\TH:i:s',$merchant->AvailabilityDate);
@@ -297,7 +297,7 @@ $listResourceIds = array();
 							<?php } ?>
 							<span class="bfi-price bfi-price-total bfi_<?php echo $currencyclass ?>  <?php echo ($merchant->Price < $merchant->TotalPrice)?"bfi-red":"" ?>" ><?php echo BFCHelper::priceFormat($merchant->Price,2, ',', '.') ?></span>
 					</div>
-					<div class="bfi-col-sm-2 bfi-text-right">
+					<div class="bfi-col-sm-3 bfi-text-right">
 						<?php if ($merchant->Price > 0){ ?>
 								<a href="<?php echo $resourceRoute ?>" class=" bfi-item-btn-details <?php echo $btnClass ?> "><?php echo $btnText ?></a>
 						<?php }else{ ?>
@@ -349,10 +349,10 @@ if (localStorage.getItem('display')) {
 		jQuery('#grid-view').trigger('click');
 	}
 } else {
-	 if(typeof bfc_display === 'undefined') {
+	 if(typeof bfi_variable === 'undefined' || bfi_variable.bfi_defaultdisplay === 'undefined') {
 		jQuery('#list-view').trigger('click');
 	 } else {
-		if (bfc_display == '1') {
+		if (bfi_variable.bfi_defaultdisplay == '1') {
 			jQuery('#grid-view').trigger('click');
 		} else { 
 			jQuery('#list-view').trigger('click');

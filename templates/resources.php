@@ -51,7 +51,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 		</div>
 	</div>	
 <?php if(!empty(COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY)){ ?>
-	<div class="bfi-col-xs-3 ">
+	<div class="bfi-col-xs-3 bfi-hide">
 		<div class="bfi-search-view-maps ">
 		<span><?php _e('Map view', 'bfi') ?></span>
 		</div>	
@@ -151,7 +151,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 							<a href="javascript:void(0);" onclick="showMarker(<?php echo $resource->ResourceId?>)"><span id="address<?php echo $resource->ResourceId?>"></span></a>
 							<?php endif; ?>
 						</div>
-						<div class="bfi-mrcgroup" id="bfitags<?php echo $resource->MerchantId; ?>"></div>
+						<div class="bfi-mrcgroup" id="bfitags<?php echo $resource->ResourceId; ?>"></div>
 						<div class="bfi-description" id="descr<?php echo $resource->ResourceId?>"><?php echo $resourceDescription ?></div>
 					</div>
 				</div>
@@ -261,10 +261,10 @@ if (localStorage.getItem('display')) {
 		jQuery('#grid-view').trigger('click');
 	}
 } else {
-	 if(typeof bfc_display === 'undefined') {
+	 if(typeof bfi_variable === 'undefined' || bfi_variable.bfi_defaultdisplay === 'undefined') {
 		jQuery('#list-view').trigger('click');
 	 } else {
-		if (bfc_display == '1') {
+		if (bfi_variable.bfi_defaultdisplay == '1') {
 			jQuery('#grid-view').trigger('click');
 		} else { 
 			jQuery('#list-view').trigger('click');
@@ -292,7 +292,7 @@ function getAjaxInformations(){
 	if (!loaded)
 	{
 		loaded=true;
-		var queryMG = "task=getMerchantGroups";
+		var queryMG = "task=getResourceGroups";
 		jQuery.post(urlCheck, queryMG, function(data) {
 				if(data!=null){
 					jQuery.each(JSON.parse(data) || [], function(key, val) {

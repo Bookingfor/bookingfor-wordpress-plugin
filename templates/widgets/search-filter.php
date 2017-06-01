@@ -418,7 +418,7 @@ if (isset($isMerchantResults) && $isMerchantResults){
 $minvaluetoshow=1;
 echo $before_widget;
 ?>
-<div class="mod_bookingforsearchfilter">
+<div class="bfi-searchfilter">
 <h3><?php _e('Filter by', 'bfi'); ?></h3>
 <form action="<?php echo $formAction; ?>" method="post" id="searchformfilter" name="searchformfilter" >
 	<input type="hidden" value="<?php echo $searchid ?>" name="searchid">

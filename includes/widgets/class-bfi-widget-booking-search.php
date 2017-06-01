@@ -20,7 +20,7 @@ class BFI_Widget_Booking_Search extends WP_Widget {
 	 * Constructor.
 	 */
 	public function __construct() {
-		$this->widget_cssclass    = 'bookingfor widget_booking_search';
+		$this->widget_cssclass    = 'bfi-widget_booking_search';
 		$this->widget_description = __( 'A Search box for multimerchant, monomerchant and sell on.', 'bfi' );
 		$this->widget_id          = 'bookingfor_booking_search';
 		$this->widget_name        = __( 'BookingFor Search', 'bfi' );
@@ -134,6 +134,7 @@ function form($instance) {
 	$showdirection = ( ! empty( $instance['showdirection'] ) ) ? esc_attr($instance['showdirection']) : '0';
 	$showLocation = ( ! empty( $instance['showLocation'] ) ) ? esc_attr($instance['showLocation']) : '0';
 	$showMapIcon = ( ! empty( $instance['showMapIcon'] ) ) ? esc_attr($instance['showMapIcon']) : '0';
+	$showSearchText = ( ! empty( $instance['showSearchText'] ) ) ? esc_attr($instance['showSearchText']) : '0';
 	$showAccomodations = ( ! empty( $instance['showAccomodations'] ) ) ? esc_attr($instance['showAccomodations']) : '0';
 	$showDateRange = ( ! empty( $instance['showDateRange'] ) ) ? esc_attr($instance['showDateRange']) : '0';
 	$showAdult = ( ! empty( $instance['showAdult'] ) ) ? esc_attr($instance['showAdult']) : '0';
@@ -471,6 +472,7 @@ function form($instance) {
 
 	<h5><?php _e('Fields Visibility');?></h5>
 	<p>
+		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showSearchText'); ?>" value="1" <?php  echo ($showSearchText=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Search text', 'bfi'); ?></label><br />
 		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showLocation'); ?>" value="1" <?php  echo ($showLocation=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Destination', 'bfi'); ?></label><br />
 		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showMapIcon'); ?>" value="1" <?php  echo ($showMapIcon=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Map Button', 'bfi'); ?></label><br />
 		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showAccomodations'); ?>" value="1" <?php  echo ($showAccomodations=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Type', 'bfi'); ?></label><br />
@@ -532,6 +534,7 @@ function form($instance) {
 		  $instance['showdirection'] =! empty( $new_instance[ 'showdirection' ] ) ? 1 : 0;
 		  $instance['showLocation'] = ! empty( $new_instance[ 'showLocation' ] ) ? 1 : 0;
 		  $instance['showMapIcon'] = ! empty( $new_instance[ 'showMapIcon' ] ) ? 1 : 0;
+		  $instance['showSearchText'] = ! empty( $new_instance[ 'showSearchText' ] ) ? 1 : 0;
 		  $instance['showAccomodations'] = ! empty( $new_instance[ 'showAccomodations' ] ) ? 1 : 0;
 		  $instance['showDateRange'] = ! empty( $new_instance[ 'showDateRange' ] ) ? 1 : 0;
 		  $instance['showAdult'] = ! empty( $new_instance[ 'showAdult' ] ) ? 1 : 0;

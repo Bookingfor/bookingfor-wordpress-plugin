@@ -182,7 +182,7 @@ function updateTotalSelectablePeriod(currEl, updateQuote) {
     .remove()
     .end();
     var isSelectable = true;
-    var maxSelectable = 0
+    var maxSelectable = 0;
 
     var selectStart = dialogDiv.find(".selectpickerTimePeriodStart").first();
     var selectEnd = dialogDiv.find(".selectpickerTimePeriodEnd").first();
@@ -197,6 +197,7 @@ function updateTotalSelectablePeriod(currEl, updateQuote) {
             maxSelectable = currAvailability;
         }
     }
+	var singleMaxSelectable = Math.min(bfi_MaxQtSelectable, maxSelectable);
     if(isSelectable){
         currSel.show();
 //        jQuery("#btnBookNow").show();
@@ -229,17 +230,30 @@ function updateTotalSelectablePeriod(currEl, updateQuote) {
 //            }
 //            timeloadedItems[jQuery(currSel).attr("data-resid") + "-" + jQuery(currSel).attr("data-bindingproductid")] = true;
 //        } else {
-            var currentSelectedQt = parseInt(currentSelection);
-			if(currentSelectedQt == 0){currentSelectedQt = 1;}
-            for (var i = carttypeCorrector; i <= maxSelectable; i++) {
+			if(jQuery(".ddlrooms-" + resid).first().hasClass("ddlrooms-indipendent")){
+				jQuery.each(jQuery(".ddlrooms-" + resid), function(j, itm) {
+					jQuery(itm).find('option').remove();
+					jQuery(itm).attr("data-availability", maxSelectable);
+					for (var i = 0; i <= singleMaxSelectable; i++) {
                 var opt = jQuery('<option>').text(i).attr('value', i);
+						if (i == 0) { opt.attr("selected", "selected"); }
+						jQuery(itm).append(opt);
+					}
+				});
+			} else {
+				var currentSelectedQt = parseInt(currentSelection);
+				if(currentSelectedQt == 0){currentSelectedQt = 1;}
+				for (var i = carttypeCorrector; i <= maxSelectable; i++) {
+					var opt = jQuery('<option>').text(i).attr('value', i);
                 if (currentSelectedQt == i) { opt.attr("selected", "selected"); }
                 currSel.append(opt);
             }
+			}
 //           bfi_quoteCalculatorServiceChanged(currSel);
 //        }
 
     }else{
+		
         currSel.hide();
 //        jQuery("#btnBookNow").hide();
     }
@@ -327,13 +341,15 @@ function getcompleterateplansstaybyidPerTime(resourceId, currdDlrooms) {
 	currCheckouthours.html( bookingfor.pad(currentTimeEnd.attr("data-TimeMinEnd"), 6).replace(/(.{2})(.{2})(.{2})/,'$1:$2') );
 	currduration.html(duration/60);
 
-	if (currdDlrooms.hasClass("ddlrooms-indipendent")) // if is a extra...
+	if (jQuery(".ddlrooms-" + resourceId).first().hasClass("ddlrooms-indipendent")) // if is a extra...
 	{
+		var searchModel = jQuery('#calculatorForm').serializeObject();
 		var dataarray = jQuery('#calculatorForm').serializeArray();
 		dataarray.push({name: 'resourceId', value: resourceId});
 		dataarray.push({name: 'timeMinStart', value: currentTimeStart.attr("data-TimeMinStart")});
 		dataarray.push({name: 'timeMinEnd', value: currentTimeEnd.attr("data-TimeMinEnd")});
 		dataarray.push({name: 'CheckInTime', value: checkInTime});
+		dataarray.push({name: 'searchModel', value: searchModel});
 
 		dataarray.push({name: 'availabilitytype', value: 2});
 		dataarray.push({name: 'duration', value: duration});
@@ -350,9 +366,10 @@ function getcompleterateplansstaybyidPerTime(resourceId, currdDlrooms) {
 			if (result) {
 				if(result.length > 0)
 				{
+					jQuery.each(result, function(i, st) {
 					//debugger
-					currStay = result[0].SuggestedStay;
-					var currTrRateplan = jQuery("#data-id-" + resourceId + "-0");
+						currStay = st.SuggestedStay;
+						var currTrRateplan = jQuery("#data-id-" + resourceId + "-" + st.RatePlanId);
 					var currDivPrice = currTrRateplan.find(".bfi-price");
 					var currDivTotalPrice = currTrRateplan.find(".bfi-discounted-price");
 					var currDivPercentDiscount = currTrRateplan.find(".bfi-percent-discount");
@@ -384,6 +401,7 @@ function getcompleterateplansstaybyidPerTime(resourceId, currdDlrooms) {
 //					if (updateQuote) {
 						UpdateQuote();
 //					}
+					});
 
 				}
 			}

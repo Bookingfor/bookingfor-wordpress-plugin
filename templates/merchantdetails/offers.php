@@ -132,10 +132,10 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 			jQuery('#grid-view').trigger('click');
 		}
 	} else {
-		 if(typeof bfc_display === 'undefined') {
+	 if(typeof bfi_variable === 'undefined' || bfi_variable.bfi_defaultdisplay === 'undefined') {
 			jQuery('#list-view').trigger('click');
 		 } else {
-			if (bfc_display == '1') {
+			if (bfi_variable.bfi_defaultdisplay == '1') {
 				jQuery('#grid-view').trigger('click');
 			} else { 
 				jQuery('#list-view').trigger('click');

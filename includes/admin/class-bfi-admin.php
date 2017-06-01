@@ -326,6 +326,17 @@ class BFI_Admin {
 		<?php
 	}
 	
+	
+
+	public function display_bfi_defaultdisplaylist_key_element(){
+		?>
+		<select id="bfi_defaultdisplaylist_key" name="bfi_defaultdisplaylist_key">
+			<option value="0" <?php echo get_option('bfi_defaultdisplaylist_key',0) == 0 ? "selected" : "" ?>>List</option>
+			<option value="1" <?php echo get_option('bfi_defaultdisplaylist_key',1) == 1 ? "selected" : "" ?>>Grid</option>
+		</select>
+	<?php
+	}
+
 	public function display_bfi_googlerecaptcha_theme_key_element(){
 		?>
 		<select id="bfi_googlerecaptcha_theme_key" name="bfi_googlerecaptcha_theme_key">
@@ -472,6 +483,7 @@ class BFI_Admin {
 		add_settings_field("bfi_ssllogo_key", "Certificate logo",  array( $this, 'display_bfi_ssllogo_key_element'), "bfi-options", "section");
 		add_settings_field("bfi_itemperpage_key", "Item per page",  array( $this, 'display_bfi_itemperpage_key_element'), "bfi-options", "section");
 		add_settings_field("bfi_maxqtselectable_key", "Max selectable item",  array( $this, 'display_bfi_maxqtSelectable_key_element'), "bfi-options", "section");
+		add_settings_field("bfi_defaultdisplaylist_key", "Default list view",  array( $this, 'display_bfi_defaultdisplaylist_key_element'), "bfi-options", "section");
 
 
 		add_settings_field("bfi_isportal_key", "Multimerchant", array( $this, 'display_bfi_isportal_key_element'), "bfi-options", "section");
@@ -516,6 +528,7 @@ class BFI_Admin {
 		register_setting("section", "bfi_ssllogo_key");
 		register_setting("section", "bfi_itemperpage_key");
 		register_setting("section", "bfi_maxqtselectable_key");
+		register_setting("section", "bfi_defaultdisplaylist_key");
 		register_setting("section", "bfi_isportal_key");
 		register_setting("section", "bfi_showdata_key");
 //		register_setting("section", "bfi_bootstrapversion_key");

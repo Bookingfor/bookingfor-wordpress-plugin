@@ -25,7 +25,7 @@ class BookingForConnectorModelSearch
 	{
 		$this->helper = new wsQueryHelper(null, null);
 		$this->urlMasterTypologies = '/GetMasterTypologies';
-
+		$this->urlSearchResult = '/SearchResult';
 		$this->urlSearch = '/SearchAllLiteNew';
 	}
 
@@ -73,6 +73,12 @@ class BookingForConnectorModelSearch
 		$merchantId = $params['merchantId'];
 		$tags = isset($params['tags'])?$params['tags']:"";
 		$searchtypetab = $params['searchtypetab'];
+		$stateIds = $params['stateIds'];
+		$regionIds = $params['regionIds'];
+		$cityIds = $params['cityIds'];
+		$merchantIds = $params['merchantIds'];
+		$merchantTagIds = $params['merchantTagIds'];
+		$productTagIds = $params['productTagIds'];
 		
 		$availabilitytype = $params['availabilitytype'];
 		$itemtypes = $params['itemtypes'];
@@ -174,12 +180,12 @@ class BookingForConnectorModelSearch
 			
 //				$options['data']['pricetype'] = '\'' . 'rateplan' . '\'';
 
-			if (isset($locationzone) && $locationzone > 0) {
-				$options['data']['zoneId'] = $locationzone;
+			if (isset($locationzone) && $locationzone !='') {
+				$options['data']['zoneIds'] = '\''. $locationzone . '\'';
 			}
 			
 			if (!empty($tags)) {
-				$options['data']['tagids'] = '\''. $tags.'\'';
+				$options['data']['tagids'] = '\'' . $tags . '\'';
 			}				
 		}
 
@@ -197,6 +203,30 @@ class BookingForConnectorModelSearch
 		
 		if (isset($merchantId) && $merchantId > 0) {
 			$options['data']['merchantid'] = $merchantId;
+		}
+
+		if (isset($stateIds) && $stateIds !='') {
+			$options['data']['stateIds'] = '\'' . $stateIds. '\'';
+		}
+
+		if (isset($regionIds) && $regionIds !='') {
+			$options['data']['regionIds'] = '\'' . $regionIds. '\'';
+		}
+
+		if (isset($cityIds) && $cityIds !='') {
+			$options['data']['cityIds'] = '\'' . $cityIds. '\'';
+		}
+
+		if (isset($merchantIds) && $merchantIds !='') {
+			$options['data']['merchantsList'] = '\'' . $merchantIds. '\'';
+		}
+
+		if (isset($merchantTagIds) && $merchantTagIds !='') {
+			$options['data']['merchantTagsIds'] = '\'' . $merchantTagIds. '\'';
+		}
+
+		if (isset($productTagIds) && $productTagIds !='') {
+			$options['data']['tagids'] = '\'' . $productTagIds. '\'';
 		}
 
 
@@ -498,6 +528,39 @@ class BookingForConnectorModelSearch
 	//else {
 		return $items;
 	//	}
+	}
+	
+	public function SearchResult($term, $language, $limit) {
+		$options = array(
+			'path' => $this->urlSearchResult,
+			'data' => array(
+					'$format' => 'json',
+					'term' => BFCHelper::getQuotedString($term),
+					'cultureCode' =>  BFCHelper::getQuotedString($language),
+					'top' => 0,
+					'lite' => 1
+			)
+		);
+		
+		if (isset($limit) && $limit > 0) {
+			$options['data']['top'] = $limit;
+		}
+
+		$url = $this->helper->getQuery($options);
+
+		$results = array();
+
+		$r = $this->helper->executeQuery($url);
+		if (isset($r)) {
+			$res = json_decode($r);
+			if (!empty($res->d->SearchResult)){
+				$results = $res->d->SearchResult;
+			}elseif(!empty($res->d)){
+				$results = $res->d;
+			}
+		}
+		
+		return $results;
 	}
 }
 endif;

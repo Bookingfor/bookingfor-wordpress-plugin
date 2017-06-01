@@ -1,5 +1,5 @@
 var bookingfor = new function() {
-    this.version = "3.0.2";
+    this.version = "3.0.4";
 	this.bsVersion = ( typeof jQuery.fn.typeahead !== 'undefined' ? 2 : 3 );
     this.offersLoaded = [];
 
@@ -486,18 +486,26 @@ var bookingfor = new function() {
 		var resourceId = jQuery(currSelect).attr("data-resid");
 		if(jQuery(".ddlrooms-" + resourceId+"[data-isbookable='" + isbookable+"']").length>1){
 			var occupancyResource = bookingfor.getOccupancy(resourceId,isbookable);
-			var remainingResource = maxSelectable-occupancyResource;
+			var remainingResource = maxSelectable - occupancyResource;
 
 			jQuery(".ddlrooms-" + resourceId+"[data-isbookable='" + isbookable+"']").each(function () {
-				var selIndx = jQuery(this).find("option[value='"+remainingResource+"']").index();
+				var currentValue = parseInt(jQuery(this).val());
+				var maxValue = parseInt(jQuery(this).find("option:last-child").attr("value"));
+				if((currentValue + remainingResource) < maxValue) {
+					maxValue = currentValue + remainingResource;
+				}
+				var lastIndx = jQuery(this).find("option[value='" + maxValue + "']").index();
+				/*var currentIndex = jQuery(this).find("option:selected").index();
+				var maxIndex = lastIndx;
+				var selIndx = jQuery(this).find("option[value='" + remainingResource + "']").index();
 				var currSelect = jQuery(this).prop('selectedIndex');
 				if (currSelect > selIndx)
 				{
 					selIndx += currSelect ;
-				}
-				jQuery(this).find('option:lt(' + selIndx + ')').prop('disabled', false)
-				jQuery(this).find('option:gt(' + selIndx + ')').prop('disabled', true)
-				jQuery(this).find('option:eq(' + selIndx + ')').prop('disabled', false)
+				}*/
+				jQuery(this).find('option:lt(' + lastIndx + ')').prop('disabled', false);
+				jQuery(this).find('option:gt(' + lastIndx + ')').prop('disabled', true);
+				jQuery(this).find('option:eq(' + lastIndx + ')').prop('disabled', false);
 			});
 		}
 
@@ -861,10 +869,11 @@ function bfi_getcompleterateplansstaybyrateplanid($el) {
 						ddlroom.attr("data-price",bookingfor.priceFormat(cprice.DiscountedPrice, 2, '.', '') );
 						ddlroom.attr("data-totalprice",bookingfor.priceFormat(cprice.TotalPrice, 2, '.', '') );
 
-						curr_bfi_price.html(bookingfor.priceFormat(cprice.TotalPrice, 2, ',', '.') );
-						curr_bfi_discounted_price.html(bookingfor.priceFormat(cprice.DiscountedPrice, 2, ',', '.') );
+						curr_bfi_price.html(bookingfor.priceFormat(cprice.DiscountedPrice, 2, ',', '.') );
+						curr_bfi_discounted_price.html(bookingfor.priceFormat(cprice.TotalPrice, 2, ',', '.') );
 
-						if(cprice.DiscountedPrice == cprice.TotalPrice) {
+						if(cprice.DiscountedPrice >= cprice.TotalPrice) {
+							//curr_bfi_price.html(bookingfor.priceFormat(cprice.DiscountedPrice, 2, ',', '.') );
 							curr_bfi_price.removeClass("bfi-red");
 							curr_bfi_discounted_price.hide();
 							curr_percent_discount.hide();
@@ -873,7 +882,8 @@ function bfi_getcompleterateplansstaybyrateplanid($el) {
 							curr_bfi_discounted_price.show();
 							curr_percent_discount.show();
 							curr_percent_discount.attr("rel", cprice.SimpleDiscountIds);
-							curr_percent_discount.find(".bfi-percent").html(cprice.VariationPercent);
+							var variationPercent = cprice.TotalPrice > 0 ? parseInt(((cprice.DiscountedPrice - cprice.TotalPrice) * 100) / cprice.TotalPrice) : 0;
+							curr_percent_discount.find(".bfi-percent").html(variationPercent);
 						}
 					}
 				});
@@ -922,8 +932,13 @@ function bfi_updateQuoteService() {
 				jQuery(".bfi-price-total").html(bookingfor.number_format(bfi_totalQuote + currTotalServices, 2, ',', '.') );
 				jQuery(".bfi-discounted-price-total").html(bookingfor.number_format(bfi_totalQuoteDiscount + currTotalNotDiscoutedServices, 2, ',', '.') );
 				jQuery(".bfi-discounted-price-total").hide();
-				if((bfi_totalQuoteDiscount + currTotalNotDiscoutedServices)> (bfi_totalQuote + currTotalServices)){
-				jQuery(".bfi-discounted-price-total").show();
+				if((bfi_totalQuoteDiscount + currTotalNotDiscoutedServices)<= (bfi_totalQuote + currTotalServices)){
+					jQuery(".bfi-discounted-price-total").hide();
+					jQuery(".bfi-price-total").removeClass("bfi-red");
+				}else{
+					jQuery(".bfi-discounted-price-total").show();
+					jQuery(".bfi-price-total").addClass("bfi-red");
 				}
+
 
 }

@@ -1054,7 +1054,7 @@ class BFI_Controller {
 			$url_cart_page = str_replace( 'http:', 'https:', $url_cart_page );
 		}
 
-		if(!empty($CartOrderId && !empty($cartId) )){
+		if(!empty($CartOrderId) && !empty($cartId)){
 			$tmpUserId = bfi_get_userId();
 			$model = new BookingForConnectorModelOrders;
 			$currCart = $model->DeleteFromCartByExternalUser($tmpUserId, $language, $CartOrderId);
@@ -1088,6 +1088,24 @@ class BFI_Controller {
 		exit;
 	}
 
-
+	public function SearchByText() {
+		$return = '[]';
+		$term = stripslashes(BFCHelper::getVar("bfi_term"));
+		$maxresults = stripslashes(BFCHelper::getVar("bfi_maxresults"));
+		if(!isset($maxresults) || empty($maxresults)) {
+			$maxresults = 5;
+		} else {
+			$maxresults = (int)$maxresults;
+		}
+		$language = isset($_REQUEST['language']) ? $_REQUEST['language'] : '' ;
+		if(!empty($term)) {
+			$model = new BookingForConnectorModelSearch;
+			$results = $model->SearchResult($term, $language, $maxresults);
+			if(!empty($results)){
+				$return = json_encode($results);
+			}
+		}
+		echo $return;
+	}
 }
 endif;

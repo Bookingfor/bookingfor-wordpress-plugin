@@ -215,6 +215,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 		<div class="bfi-col-md-4">
 			<div class=" bfi-feature-data">
 				<strong><?php _e('In short', 'bfi') ?></strong>
+				<div class="bfiresourcegroups" id="bfitags" rel="<?php echo $resource->TagsIdList ?>"></div>
 				<?php if(isset($resource->Area) && $resource->Area>0  ): ?><?php _e('Floor area', 'bfi') ?>: <?php echo $resource->Area ?> m&sup2; <br /><?php endif ?>
 				<?php if ($resource->MaxCapacityPaxes>0):?>
 					<br />

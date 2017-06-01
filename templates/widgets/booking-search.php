@@ -161,8 +161,15 @@ $groupbycondominium = ( ! empty( $instance['groupbycondominium'] ) ) ? esc_attr(
 $showdirection = ( ! empty( $instance['showdirection'] ) ) ? esc_attr($instance['showdirection']) : '0';
 $showLocation = ( ! empty( $instance['showLocation'] ) ) ? esc_attr($instance['showLocation']) : '0';
 $showMapIcon = ( ! empty( $instance['showMapIcon'] ) ) ? esc_attr($instance['showMapIcon']) : '0';
+$showSearchText = ( ! empty( $instance['showSearchText'] ) ) ? esc_attr($instance['showSearchText']) : '0';
 $showAccomodations = ( ! empty( $instance['showAccomodations'] ) ) ? esc_attr($instance['showAccomodations']) : '0';
 $showDateRange = ( ! empty( $instance['showDateRange'] ) ) ? esc_attr($instance['showDateRange']) : '0';
+
+if($showSearchText) {
+	$showLocation = '0';
+	$showMapIcon = '0';
+	$showAccomodations = '0';
+}
 
 $showAdult = ( ! empty( $instance['showAdult'] ) ) ? esc_attr($instance['showAdult']) : '0';
 $showChildren = ( ! empty( $instance['showChildren'] ) ) ? esc_attr($instance['showChildren']) : '0';
@@ -519,6 +526,16 @@ $tabActive = "";
 <?php if(!empty($tablistResources)): ?>
         <div id="bfisearch<?php echo $currModID ?>" class="tab-pane fade active in">
 		<form action="<?php echo $url_page_Resources; ?>" method="get" id="searchform<?php echo $currModID ?>" class="bfi_form_<?php echo $showdirection?"horizontal":"vertical"; ?> ">
+				<?php if($showSearchText) { ?>
+					<div class="bfi_destination bfi_container">
+						<label><?php _e('Search text', 'bfi') ?></label>
+						<input type="text" id="searchtext<?php echo $currModID ?>" name="searchterm" class="inputtotal" />
+					</div>
+					<input type="hidden" value="" name="locationzone" />
+					<input type="hidden" value="" name="masterTypeId" />
+					<input type="hidden" value="" name="merchantCategoryId" />
+					<input type="hidden" value="" name="searchTermValue" />
+				<?php }//$showSearchText ?>
 				<?php if(!empty($zonesString) && $showLocation){ ?>
 					<div class="bfi_destination bfi_container">
 						<label><?php _e('Destination', 'bfi') ?></label>
@@ -577,8 +594,8 @@ $tabActive = "";
 				<?php if($showAdult){?>
 					<div class="bfi_showperson bfi_container">
 						<div class="bfi-row form-group">
-							<div class="bfi_showadult bfi-col-md-4"><!-- Adults -->
-								<label><?php _e('Adults', 'bfi'); ?></label>
+							<div class="bfi_showadult bfi-col-md-<?php echo ($showSenior)?"4":"6" ?> bfi-col-xs-<?php ($showSenior)?"4":"6" ?>"><!-- Adults -->
+								<label><?php _e('Adults', 'bfi'); ?></label><br />
 								<select name="adults" onchange="quoteChanged<?php echo $currModID ?>();" class="inputmini" style="display:inline-block !important;">
 									<?php
 									foreach (range(1, 10) as $number) {
@@ -588,8 +605,8 @@ $tabActive = "";
 								</select>
 							</div>
 						<?php if($showSenior){?>
-							<div class="bfi_showsenior bfi-col-md-4"><!-- Seniores -->
-								<label><?php _e('Seniores', 'bfi'); ?></label>
+							<div class="bfi_showsenior bfi-col-md-4 bfi-col-xs-4"><!-- Seniores -->
+								<label><?php _e('Seniores', 'bfi'); ?></label><br />
 								<select  name="seniores" onchange="quoteChanged<?php echo $currModID ?>();" class="inputmini" style="display:inline-block !important;">
 									<?php
 									foreach (range(0, 10) as $number) {
@@ -600,8 +617,8 @@ $tabActive = "";
 							</div>
 						<?php }?>
 						<?php if($showChildren){?>
-							<div class="bfi_showchildren bfi-col-md-4" id="mod_bookingforsearch-children<?php echo $currModID ?>"  class="col-sm-4"><!-- n childrens -->
-								<label><?php _e('Children', 'bfi'); ?></label>
+							<div class="bfi_showchildren bfi-col-md-<?php echo ($showSenior)?"4":"6" ?> bfi-col-xs-<?php ($showSenior)?"4":"6" ?>" id="mod_bookingforsearch-children<?php echo $currModID ?>"  class="col-sm-4"><!-- n childrens -->
+								<label><?php _e('Children', 'bfi'); ?></label><br />
 								<select name="children" onchange="quoteChanged<?php echo $currModID ?>();" class="inputmini" style="display:inline-block !important;">
 									<?php
 									foreach (range(0, 4) as $number) {
@@ -702,6 +719,12 @@ $tabActive = "";
 			<input type="hidden" value="<?php echo $points ?>" name="points" id="points" />
 			<input type="hidden" value="<?php echo $searchtypetab ?>" name="searchtypetab" id="searchtypetab<?php echo $currModID ?>" />
 			<input type="hidden" value="0" name="showmsgchildage" id="showmsgchildage<?php echo $currModID ?>"/>
+			<input type="hidden" value="" name="stateIds" />
+			<input type="hidden" value="" name="regionIds" />
+			<input type="hidden" value="" name="cityIds" />
+			<input type="hidden" value="" name="merchantIds" />
+			<input type="hidden" value="" name="merchantTagIds" />
+			<input type="hidden" value="" name="productTagIds" />
 			<div class="bfi-hide" id="bfi_childrenagesmsg<?php echo $currModID ?>">
 				<div style="line-height:0; height:0;"></div>
 				<div class="bfi-pull-right" style="cursor:pointer;color:red">&nbsp;<i class="fa fa-times-circle" aria-hidden="true" onclick="jQuery('#bfi_lblchildrenages<?php echo $currModID ?>').webuiPopover('destroy');"></i></div>
@@ -1158,9 +1181,13 @@ jQuery(function($)
 						msg1 = "<?php _e('We\'re processing your request', 'bfi') ?>";
 						msg2 = "<?php _e('Please be patient', 'bfi') ?>";
 						jQuery("#zonePopup<?php echo $currModID ?>").hide();
+						var isMacLike = navigator.platform.match(/(Mac|iPhone|iPod|iPad)/i)?true:false;
+						var isIOS = navigator.platform.match(/(iPhone|iPod|iPad)/i)?true:false;				
+						if(!isMacLike){
+							bookingfor.waitBlockUI(msg1, msg2,img1); 
+							jQuery("#BtnRealEstate<?php echo $currModID ?>").hide();
+						}
 
-						bookingfor.waitBlockUI(msg1, msg2,img1); 
-						jQuery("#BtnRealEstate<?php echo $currModID ?>").hide();
 						form.submit();
 				}
 
@@ -1530,6 +1557,14 @@ jQuery(function() {
 				validator.errorList[0].element.focus();
 			}
 		},
+		<?php if($showSearchText) { ?>
+		ignore: [],
+		rules: {
+			searchTermValue: {
+				required: true
+			}
+		},
+		<?php } ?>
 //		rules:
 //		{
 //			merchantCategoryId: {
@@ -1556,12 +1591,76 @@ jQuery(function() {
 		submitHandler: function(form) {
 				msg1 = "<?php _e('We\'re processing your request', 'bfi') ?>";
 				msg2 = "<?php _e('Please be patient', 'bfi') ?>";
-				bookingfor.waitBlockUI(msg1, msg2,img1); 
-				jQuery("#BtnResource<?php echo $currModID ?>").hide();
+				var isMacLike = navigator.platform.match(/(Mac|iPhone|iPod|iPad)/i)?true:false;
+				var isIOS = navigator.platform.match(/(iPhone|iPod|iPad)/i)?true:false;				
+				if(!isMacLike){
+					bookingfor.waitBlockUI(msg1, msg2,img1); 
+					jQuery("#BtnResource<?php echo $currModID ?>").hide();
+				}
 				form.submit();
 		}
 
 	});
+	
+	<?php if($showSearchText) { ?>
+
+	jQuery("#searchtext<?php echo $currModID ?>").autocomplete({
+        source: function( request, response ) {
+          jQuery.getJSON(urlCheck, {
+            task: "SearchByText",
+            bfi_term: request.term,
+			bfi_maxresults: 5
+          }, function(data) {
+			  if (data.length) {
+				response(data);
+			  } else {
+				  response([{
+					  Name: "<?php _e('No result available', 'bfi') ?>"
+				  }]);
+			  }
+		  });
+        },
+		/*response: function( event, ui ) {
+			jQuery(this).removeClass("ui-autocomplete-loading");
+		},*/
+		minLength: 2,
+		delay: 250,
+		select: function( event, ui ) {
+			var selectedVal = jQuery(event.srcElement).attr("data-value");
+			if (selectedVal.length) {
+				jQuery("#searchtext<?php echo $currModID ?>").closest("form").find("[name=stateIds],[name=regionIds],[name=cityIds],[name=locationzone],[name=merchantCategoryId],[name=masterTypeId],[name=merchantIds],[name=merchantTagIds],[name=productTagIds]").val("");
+				jQuery("#searchtext<?php echo $currModID ?>").closest("form").find("[name=searchTermValue]").val(selectedVal);
+				jQuery("#searchtext<?php echo $currModID ?>").closest("form").find("[name=" + selectedVal.split('|')[0] + "]").val(selectedVal.split('|')[1]);
+				event.preventDefault();
+				jQuery(this).val(ui.item.Name);
+			}
+			//log( "Selected: " + ui.item.value + " aka " + ui.item.id );
+		}
+	});
+	jQuery("#searchtext<?php echo $currModID ?>").data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+		var currentVal = "";
+		if (item.StateId) { currentVal = "stateIds|" + item.StateId; }
+		if (item.RegionId) { currentVal = "regionIds|" + item.RegionId; }
+		if (item.CityId) { currentVal = "cityIds|" + item.CityId; }
+		if (item.ZoneId) { currentVal = "locationzone|" + item.ZoneId; }
+		if (item.MerchantCategoryId) { currentVal = "merchantCategoryId|" + item.MerchantCategoryId; }
+		if (item.ProductCategoryId) { currentVal = "masterTypeId|" + item.ProductCategoryId; }
+		if (item.MerchantId) { currentVal = "merchantIds|" + item.MerchantId; }
+		if (item.MerchantTagId) { currentVal = "merchantTagIds|" + item.MerchantTagId; }
+		if (item.ProductTagId) { currentVal = "productTagIds|" + item.ProductTagId; }
+		
+		var text = item.Name;
+		if (item.StateId || item.RegionId || item.CityId || item.ZoneId) { text = '<i class="fa fa-map-marker"></i>&nbsp;' + text; }
+		if (item.MerchantCategoryId || item.ProductCategoryId || item.MerchantId) { text = '<i class="fa fa-building"></i>&nbsp;' + text; }
+		if (item.MerchantTagId || item.ProductTagId) { text = '<i class="fa fa-tag"></i>&nbsp;' + text; }
+		if (currentVal.length) {
+			return jQuery( "<li>" ).attr( "data-value", currentVal).html(text).appendTo(ul);
+		} else {
+			return jQuery( "<li>" ).attr( "data-value", "").html(text).addClass("ui-state-disabled").appendTo(ul);
+		}
+	};
+	<?php } ?>
+	
 	showhideCategories<?php echo $currModID ?>();
 	insertNight<?php echo $currModID ?>();
 	checkChildrenSearch<?php echo $currModID ?>(<?php echo $nch ?>,<?php echo $showChildrenagesmsg ?>);
@@ -1773,6 +1872,6 @@ function showhideCategories<?php echo $currModID ?>() {
 		insertNight<?php echo $currModID ?>();
 		showhideCategories<?php echo $currModID ?>();
     })
- 
+
 //-->
 </script>

@@ -256,11 +256,11 @@ $allServiceIds = array();
 		<table class="bfi-table bfi-table-bordered bfi-table-cart" style="margin-top: 20px;">
 			<thead>
 				<tr>
-					<th><div><?php _e('Host', 'bfi') ?></div></th>
 					<th><?php _e('Information', 'bfi') ?></th>
 					<th><div><?php _e('Min', 'bfi') ?><br /><?php _e('Max', 'bfi') ?></div></th>
-					<th><div><?php _e('Price', 'bfi') ?></div></th>
+					<th><div><?php _e('Unit price', 'bfi') ?></div></th>
 					<th><div><?php _e('Options', 'bfi') ?></div></th>
+					<th><div><?php _e('Price', 'bfi') ?></div></th>
 					<th><div><?php _e('Qt.', 'bfi') ?></div></th>
 				</tr>
 			</thead>
@@ -320,7 +320,7 @@ if(!empty($MerchantDetail->AcceptanceCheckIn) && !empty($MerchantDetail->Accepta
 
 ?>
 			<tr >
-				<td rowspan="<?php echo $nRowSpan ?>" class="bfi-merchant-cart">
+				<td colspan="6" class="bfi-merchant-cart">
 					<div class="bfi-item-title">
 						<a href="<?php echo $isportal?$routeMerchant:"#";?>" ><?php echo $MerchantDetail->Name?></a>
 						<span class="bfi-item-rating">
@@ -333,7 +333,6 @@ if(!empty($MerchantDetail->AcceptanceCheckIn) && !empty($MerchantDetail->Accepta
 					<span class="street-address"><?php echo $mrcindirizzo ?></span>, <span class="postal-code "><?php echo $mrccap ?></span> <span class="locality"><?php echo $mrccomune ?></span> <span class="state">, <?php echo $mrcstate ?></span><br />
 
 				</td>
-				<td colspan="5" style="padding:0;border:none;"></td>
 			</tr>
 <?php 
 
@@ -604,12 +603,12 @@ if(!empty($MerchantDetail->AcceptanceCheckIn) && !empty($MerchantDetail->Accepta
 										</div>
 									<?php endif; ?>
 									</td>
-                                    <td class="text-nowrap">
+                                    <td class="text-nowrap"><!-- Unit price -->
                                         <?php if ($res->TotalDiscounted < $res->TotalAmount) { ?>
-                                            <span class="text-nowrap bfi_strikethrough  bfi_<?php echo $currencyclass ?>"><?php echo BFCHelper::priceFormat($res->TotalAmount); ?></span>
+                                            <span class="text-nowrap bfi_strikethrough  bfi_<?php echo $currencyclass ?>"><?php echo BFCHelper::priceFormat($res->TotalAmount/$res->SelectedQt); ?></span>
                                         <?php } ?>
                                         <?php if ($res->TotalDiscounted > 0) { ?>
-                                            <span class="text-nowrap bfi-summary-body-resourceprice-total bfi_<?php echo $currencyclass ?>"><?php echo BFCHelper::priceFormat($res->TotalDiscounted); ?></span>
+                                            <span class="text-nowrap bfi-summary-body-resourceprice-total bfi_<?php echo $currencyclass ?>"><?php echo BFCHelper::priceFormat($res->TotalDiscounted/$res->SelectedQt); ?></span>
 
                                         <?php } ?>
                                     </td>
@@ -810,6 +809,15 @@ if($res->IncludedMeals >-1){
 
 <!-- end options  -->									
 									</td>
+                                    <td class="text-nowrap">
+                                        <?php if ($res->TotalDiscounted < $res->TotalAmount) { ?>
+                                            <span class="text-nowrap bfi_strikethrough  bfi_<?php echo $currencyclass ?>"><?php echo BFCHelper::priceFormat($res->TotalAmount); ?></span>
+                                        <?php } ?>
+                                        <?php if ($res->TotalDiscounted > 0) { ?>
+                                            <span class="text-nowrap bfi-summary-body-resourceprice-total bfi_<?php echo $currencyclass ?>"><?php echo BFCHelper::priceFormat($res->TotalDiscounted); ?></span>
+
+                                        <?php } ?>
+                                    </td>
                                     <td>
 										<?php echo $res->SelectedQt ?>
 											<form action="<?php echo $base_url ?>/bfi-api/v1/task/?task=DeleteFromCart" method="POST" style="display: inline-block;"><input type="hidden" name="bfi_CartOrderId" id="bfi_CartOrderId" value="<?php echo $res->CartOrderId ?>" /><input type="hidden" name="bfi_cartId" id="bfi_cartId" value="<?php echo $cartId ?>" /><button class="bfi_btn_delete" data-title="Delete" type="submit" name="remove_order" value="delete" onclick="return confirm('<?php _e('Are you sure?', 'bfi') ?>')">x</button></form>
@@ -901,6 +909,15 @@ if($res->IncludedMeals >-1){
 													?>
                                             </td>
                                             <td><!-- paxes --></td>
+                                            <td class="text-nowrap"><!-- Unit price -->
+                                                <?php if($sdetail->TotalDiscounted < $sdetail->TotalAmount){ ?>
+                                                    <span class="text-nowrap bfi_strikethrough  bfi_<?php echo $currencyclass ?>"><?php echo BFCHelper::priceFormat($sdetail->TotalAmount/$sdetail->CalculatedQt);?></span>
+                                                <?php } ?>
+                                                <?php if($sdetail->TotalDiscounted > 0){ ?>
+                                                    <span class="text-nowrap bfi-summary-body-resourceprice-total bfi_<?php echo $currencyclass ?>"><?php echo BFCHelper::priceFormat($sdetail->TotalDiscounted/$sdetail->CalculatedQt );?></span>
+                                                <?php } ?>
+                                            </td>
+                                            <td class="text-nowrap"> </td>
                                             <td class="text-nowrap">
                                                 <?php if($sdetail->TotalDiscounted < $sdetail->TotalAmount){ ?>
                                                     <span class="text-nowrap bfi_strikethrough  bfi_<?php echo $currencyclass ?>"><?php echo BFCHelper::priceFormat($sdetail->TotalAmount);?></span>
@@ -909,7 +926,6 @@ if($res->IncludedMeals >-1){
                                                     <span class="text-nowrap bfi-summary-body-resourceprice-total bfi_<?php echo $currencyclass ?>"><?php echo BFCHelper::priceFormat($sdetail->TotalDiscounted );?></span>
                                                 <?php } ?>
                                             </td>
-                                            <td class="text-nowrap"> </td>
                                             <td>
 												<?php echo $sdetail->CalculatedQt ?>
 											</td>

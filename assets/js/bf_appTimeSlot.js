@@ -96,6 +96,7 @@ function bfi_selecttimeslot(currEl){
 			jQuery(currOpt).attr("data-startdate", currTimeSlot.StartDate);
 			jQuery(currOpt).attr("data-timeslotstart", currTimeSlot.TimeSlotStart);
 			jQuery(currOpt).attr("data-timeslotend", currTimeSlot.TimeSlotEnd);
+			jQuery(currOpt).attr("data-availability", currTimeSlot.Availability);
 			currSel.append(currOpt);
 			currTimeSlotDisp[currTimeSlot.ProductId] = currTimeSlot.Availability;
 		});
@@ -126,11 +127,22 @@ function bfi_selecttimeslot(currEl){
                 currSel.append(opt);
             }
         } else {
+			jQuery.each(jQuery(".ddlrooms-" + resid), function(j, itm) {
+				jQuery(itm).find('option').remove();
+				jQuery(itm).attr("data-availability", currTimeSlotDisp[currentTime]);
+            for (var i = 0; i <= maxSelectable; i++) {
+                var opt = jQuery('<option>').text(i).attr('value', i);
+					if (i == 0) { opt.attr("selected", "selected"); }
+					jQuery(itm).append(opt);
+				}
+			});
+			/*
             for (var i = 0; i <= maxSelectable; i++) {
                 var opt = jQuery('<option>').text(i).attr('value', i);
                 if (currentSelection == i) { opt.attr("selected", "selected"); }
                 currSel.append(opt);
             }
+			*/
         }
 
 

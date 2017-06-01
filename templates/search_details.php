@@ -58,8 +58,30 @@ if(!empty($merchant->AcceptanceCheckIn) && !empty($merchant->AcceptanceCheckOut)
 	$tmpAcceptanceCheckOut=$merchant->AcceptanceCheckOut;
 	$tmpAcceptanceCheckIns = explode('-', $tmpAcceptanceCheckIn);
 	$tmpAcceptanceCheckOuts = explode('-', $tmpAcceptanceCheckOut);
-	list($mrcAcceptanceCheckInHours,$mrcAcceptanceCheckInMins,$mrcAcceptanceCheckInSecs) = explode(':',$tmpAcceptanceCheckIns[0].":1");
-	list($mrcAcceptanceCheckOutHours,$mrcAcceptanceCheckOutMins,$mrcAcceptanceCheckOutSecs) = explode(':',$tmpAcceptanceCheckOuts[0].":1");
+	
+	$correctAcceptanceCheckIns = $tmpAcceptanceCheckIns[0];
+	if(empty( $correctAcceptanceCheckIns )){
+		$correctAcceptanceCheckIns = $tmpAcceptanceCheckIns[1];
+	}
+	if(empty( $correctAcceptanceCheckIns )){
+		$correctAcceptanceCheckIns = "0:0";
+	}
+	$correctAcceptanceCheckOuts = $tmpAcceptanceCheckOuts[1];
+	if(empty( $correctAcceptanceCheckOuts )){
+		$correctAcceptanceCheckOuts = $tmpAcceptanceCheckOuts[0];
+	}
+	if(empty( $correctAcceptanceCheckOuts )){
+		$correctAcceptanceCheckOuts = "0:0";
+	}
+	if (strpos($correctAcceptanceCheckIns, ":") === false) {
+		$correctAcceptanceCheckIns .= ":0";
+	}
+	if (strpos($correctAcceptanceCheckOuts, ":") === false) {
+		$correctAcceptanceCheckOuts .= ":0";
+	}
+
+	list($mrcAcceptanceCheckInHours,$mrcAcceptanceCheckInMins,$mrcAcceptanceCheckInSecs) = explode(':',$correctAcceptanceCheckIns.":1");
+	list($mrcAcceptanceCheckOutHours,$mrcAcceptanceCheckOutMins,$mrcAcceptanceCheckOutSecs) = explode(':',$correctAcceptanceCheckOuts.":1");
 }
 
 $startDate = DateTime::createFromFormat('d/m/Y',BFCHelper::getStartDateByMerchantId($merchant->MerchantId));
@@ -310,7 +332,7 @@ if(!empty($resourceId) && is_array($allRatePlans) && count($allRatePlans)>0){
 	$defaultRatePlans =  array_values(array_filter($allRatePlans, function($p) use ($resourceId) {return $p->ResourceId == $resourceId ;})); // c#: allRatePlans.Where(p => p.ResourceId == resId);
 	usort($defaultRatePlans, "BFCHelper::bfi_sortResourcesRatePlans");
 	
-	$allRatePlans = array_slice($allRatePlans, 0, 5);
+	//$allRatePlans = array_slice($allRatePlans, 0, 5);
 	$allRatePlans = array_merge($allRatePlans, $defaultRatePlans);
 	$allRatePlans = array_unique($allRatePlans, SORT_REGULAR);
 	if(is_array($defaultRatePlans)){
@@ -1410,10 +1432,13 @@ $currDiffString = "-";
 					<td><!-- Min/Max -->
 					</td>
 					<td style="text-align:center;"><!-- price -->
+						<?php
+						$percentVariation = $selPrice->TotalAmount > 0 ? (int)((($selPrice->TotalDiscounted - $selPrice->TotalAmount) * 100) / $selPrice->TotalAmount) : 0;
+						?>
 						<div class="bfi-totalextrasselect" style="<?php echo ($selPrice->TotalDiscounted==0) ? "display:none;" : ""; ?>">
 							<div align="center">
-								<div class="bfi-percent-discount" style="<?php echo ($res->PercentVariation < 0 ? " display:block" : "display:none"); ?>" rel="<?php echo $SimpleDiscountIds ?>" rel1="<?php echo $res->ResourceId ?>">
-									<span class="bfi-percent"><?php echo $res->PercentVariation ?></span>% <i class="fa fa-question-circle bfi-cursor-helper" aria-hidden="true"></i>
+								<div class="bfi-percent-discount" style="<?php echo ($percentVariation < 0 ? " display:block" : "display:none"); ?>" rel="<?php echo $SimpleDiscountIds ?>" rel1="<?php echo $res->ResourceId ?>">
+									<span class="bfi-percent"><?php echo $percentVariation ?></span>% <i class="fa fa-question-circle bfi-cursor-helper" aria-hidden="true"></i>
 								</div>
 							</div>
 							<div data-value="<?php echo $selPrice->TotalAmount ?>" class="bfi-discounted-price bfi_<?php echo $currencyclass ?>" style="display:<?php echo ($selPrice->TotalDiscounted < $selPrice->TotalAmount)?"":"none"; ?>;"><?php echo BFCHelper::priceFormat($selPrice->TotalAmount) ?></div>
@@ -1879,6 +1904,9 @@ function checkDateBooking<?php echo $checkinId?>($, obj, selectedDate) {
 jQuery(document).ready(function() {
 
 	checkDateBooking<?php echo $checkinId; ?>(jQuery, jQuery('#<?php echo $checkinId?>'), jQuery('#<?php echo $checkinId?>').datepicker({ dateFormat: "dd/mm/yy" }).val()); 
+	<?php if(!empty($resourceId)) { ?>
+		getAjaxDate()
+	<?php } ?>
 
 });
 
@@ -2228,13 +2256,17 @@ window.criteo_q.push(
 <script type="text/javascript">
 <!--
 	var CartMultimerchantEnabled = <?php echo $CartMultimerchantEnabled  ? "true" : "false" ?>;
+	var bfi_currMerchantId = <?php echo $merchant->MerchantId ?>;
+	var bfi_currAdultsAge = <?php echo COM_BOOKINGFORCONNECTOR_ADULTSAGE ?>;
+	var bfi_currSenioresAge = <?php echo COM_BOOKINGFORCONNECTOR_SENIORESAGE ?>;
+
 	function BookNow() {
 //       debugger;
 		var sendtocart = 0;
 
 		var Order = { Resources: [], SearchModel: {}, TotalAmount: 0, TotalDiscountedAmount: 0 };
 		Order.SearchModel = jQuery('#calculatorForm').serializeObject();
-		Order.SearchModel.MerchantId = <?php echo $merchant->MerchantId ?>;
+		Order.SearchModel.MerchantId = bfi_currMerchantId;
 		Order.SearchModel.AdultCount = new Number(Order.SearchModel.adults || 0);
 		Order.SearchModel.ChildrenCount = new Number(Order.SearchModel.children || 0);
 		Order.SearchModel.SeniorCount = new Number(Order.SearchModel.seniors || 0);
@@ -2243,11 +2275,11 @@ window.criteo_q.push(
 		currPaxAges = new Array();
 		for (i=0;i<Order.SearchModel.AdultCount ; i++)	
 		{
-			currPaxAges.push(<?php echo COM_BOOKINGFORCONNECTOR_ADULTSAGE ?>);
+			currPaxAges.push(bfi_currAdultsAge);
 		}
 		for (i=0;i<Order.SearchModel.SeniorCount  ; i++)	
 		{
-			currPaxAges.push(<?php echo COM_BOOKINGFORCONNECTOR_SENIORESAGE ?>);
+			currPaxAges.push(bfi_currSenioresAge);
 		}
 		for (i=0;i<Order.SearchModel.ChildrenCount ; i++)	
 		{
@@ -2276,7 +2308,7 @@ window.criteo_q.push(
 						IncludedMeals: jQuery(this).attr('data-includedmeals'),
 						TouristTaxValue: jQuery(this).attr('data-touristtaxvalue'),
 						VATValue: jQuery(this).attr('data-vatvalue'),
-						MerchantId: <?php echo $merchant->MerchantId ?>,
+						MerchantId: bfi_currMerchantId,
 						RatePlanId: currRateplanId,
 						AvailabilityType:currAvailabilityType,
 						SelectedQt: 1,
@@ -2367,16 +2399,7 @@ window.criteo_q.push(
 
         if (Order.Resources.length > 0) {
 			FirstResourceId = Order.Resources[0].ResourceId;
-//			Order.SearchModel = jQuery('#calculatorForm').serializeObject();
-//			Order.SearchModel.MerchantId = <?php echo $merchant->MerchantId ?>;
-//			Order.SearchModel.AdultCount = Order.SearchModel.adults;
-//			Order.SearchModel.ChildrenCount = Order.SearchModel.children;
-//			Order.SearchModel.SeniorCount = Order.SearchModel.seniors;
-//			Order.SearchModel.ChildAges = [Order.SearchModel.childages1,Order.SearchModel.childages2,Order.SearchModel.childages3,Order.SearchModel.childages4,Order.SearchModel.childages5];
-
 			jQuery('#frm-order').html('');
-			
-//			if (CartMultimerchantEnabled && jQuery('.bookingfor-shopping-cart').length )
 			if(sendtocart==1)
 			{
 				jQuery('#frm-order').prepend('<input id=\"hdnOrderDataCart\" name=\"hdnOrderData\" type=\"hidden\" value=' + "'" + JSON.stringify(Order.Resources) + "'" + '\>');
@@ -2391,8 +2414,6 @@ window.criteo_q.push(
 		}else{
 			alert("Error, You must select a quantity!")
 		}
-
-            //jQuery('#frm-order > #hdnOrderData').remove();
 }
 
 

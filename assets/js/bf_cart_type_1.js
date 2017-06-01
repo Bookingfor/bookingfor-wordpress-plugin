@@ -17,8 +17,8 @@
 				var ddlroom = jQuery(obj).find(".ddlrooms");
 				var nRoom = parseInt(ddlroom.val());
 				var resId = jQuery(ddlroom).attr("data-resid");
-				var rate = parseFloat(jQuery(ddlroom).attr("data-price"));
 				var discountRate = parseFloat(jQuery(ddlroom).attr("data-totalprice"));
+				var rate = parseFloat(jQuery(ddlroom).attr("data-price"));
 				totalRooms += nRoom;
 				totalQuote += nRoom * rate;
 				totalQuoteDiscount += nRoom * discountRate;
@@ -49,7 +49,7 @@
 				}
 			}
 
-			if(bfi_totalQuoteDiscount == bfi_totalQuote){
+			if(bfi_totalQuoteDiscount <= bfi_totalQuote){
 				jQuery(".bfi-discounted-price-total").hide();
 				jQuery(".bfi-price-total").removeClass("bfi-red");
 			}else{

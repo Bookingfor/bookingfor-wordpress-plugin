@@ -2234,8 +2234,9 @@ class BFCHelper {
 							$order->DiscountedPrice = $stay->SuggestedStay->DiscountedPrice;
 							$order->RatePlanStay = $stay;
 							$order->CalculatedPricesDetails = json_decode($stay->CalculatedPricesString);
-							$order->SelectablePrices = json_decode($stay->CalculablePricesString);
-							$order->CalculatedPackages = json_decode($stay->PackagesString);
+							//$order->SelectablePrices = json_decode($stay->CalculablePricesString);
+							//$order->CalculatedPackages = json_decode($stay->PackagesString);
+							//$order->MerchantBookingTypesString = json_decode($stay->MerchantBookingTypesString);
 							$order->Variations = json_decode($stay->AllVariationsString);
 							$order->DiscountVariation = !empty($stay->Discount) ? $stay->Discount : null;
 							$order->SupplementVariation = !empty($stay->Supplement) ? $stay->Supplement : null;
@@ -2247,11 +2248,25 @@ class BFCHelper {
 							$order->ServiceConfiguration = $services;
 							$order->PolicyId = 0;							
 
-							if(isset($stay->Policy) && !empty($stay->Policy->PolicyId) ){
+							if(isset($stay->Policy) && !empty($stay->Policy->PolicyId)) {
 								$order->PolicyId = $stay->Policy->PolicyId;
 							}
-							if(isset($stay->Policy) && !empty($stay->Policy->PolicyId) ){
+							if(isset($stay->Policy) && !empty($stay->Policy->PolicyId)) {
 								$order->PolicyId = $stay->Policy->PolicyId;
+							}
+							
+							unset($order->RatePlanStay->CalculatedPricesString);
+							unset($order->RatePlanStay->CalculablePricesString);
+							unset($order->RatePlanStay->PackagesString);
+							unset($order->RatePlanStay->MerchantBookingTypesString);
+							unset($order->RatePlanStay->Policy);
+							unset($order->RatePlanStay->SuggestedStay);
+							unset($order->RatePlanStay->AllVariationsString);
+							
+							foreach($pr as $order->CalculatedPricesDetails) {
+								unset($pr->OriginalDays);
+								unset($pr->Days);
+								unset($pr->Variations);
 							}
 //							if($fromCart==0){
 //								$order->CheckIn = DateTime::createFromFormat('d/m/Y\TH:i:s', $resource->FromDate);

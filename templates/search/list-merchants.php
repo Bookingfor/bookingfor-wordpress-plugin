@@ -178,7 +178,7 @@ $listResourceIds = array();
 	<div class="bfi-col-sm-6 bfi-item">
 		<div class="bfi-row bfi-sameheight" >
 			<div class="bfi-col-sm-3 bfi-img-container">
-				<a href="<?php echo $routeMerchant ?>?fromsearch=1" style='background: url("<?php echo $merchantImageUrl; ?>") center 25% / cover;'><img src="<?php echo $merchantImageUrl; ?>" class="bfi-img-responsive" /></a> 
+				<a href="<?php echo $routeMerchant ?>?fromsearch=1" style='background: url("<?php echo $merchantImageUrl; ?>") center 25%;background-size: cover;' target="_blank"><img src="<?php echo $merchantImageUrl; ?>" class="bfi-img-responsive" /></a> 
 			</div>
 			<div class="bfi-col-sm-9 bfi-details-container">
 				<!-- merchant details -->
@@ -232,7 +232,7 @@ $listResourceIds = array();
 								<?php }?>
 							</div>
 						<?php endif; ?>
-						<a href="<?php echo $resourceRoute?>" class="bfi-subitem-title"><?php echo $resourceName; ?></a>
+						<a href="<?php echo $resourceRoute?>" class="bfi-subitem-title" target="_blank"><?php echo $resourceName; ?></a>
 					</div>
 					<div class="bfi-col-sm-3 ">
 						<?php if (!$merchant->IsCatalog && $onlystay ){ ?>
@@ -266,7 +266,7 @@ $listResourceIds = array();
 								}
 							}
 						} else {?>
-							<a href="<?php echo $resourceRoute ?>" class="bfi-item-btn-details"><?php echo _e('Request' , 'bfi')?></a>
+							<a href="<?php echo $resourceRoute ?>" class="bfi-item-btn-details" target="_blank"><?php echo _e('Request' , 'bfi')?></a>
 						<?php } ?>
 					</div>
 				</div>
@@ -276,7 +276,7 @@ $listResourceIds = array();
 				<?php if (!$merchant->IsCatalog && $onlystay ){ ?>
 				<!-- price details -->
 				<div class="bfi-row" >
-					<div class="bfi-col-sm-5 bfi-text-right ">
+					<div class="bfi-col-sm-4 bfi-text-right ">
 					<?php echo sprintf(__('Price for %s person' ,'bfi'),$totPerson) ?>
 					</div>
 					<div class="bfi-col-sm-5 bfi-text-right ">
@@ -325,11 +325,11 @@ $listResourceIds = array();
 							<?php } ?>
 							<span class="bfi-price bfi-price-total bfi_<?php echo $currencyclass ?>  <?php echo ($merchant->Price < $merchant->TotalPrice)?"bfi-red":"" ?>" ><?php echo BFCHelper::priceFormat($merchant->Price,2, ',', '.') ?></span>
 					</div>
-					<div class="bfi-col-sm-2 bfi-text-right">
+					<div class="bfi-col-sm-3 bfi-text-right">
 						<?php if ($merchant->Price > 0){ ?>
-								<a href="<?php echo $resourceRoute ?>" class=" bfi-item-btn-details <?php echo $btnClass ?> "><?php echo $btnText ?></a>
+								<a href="<?php echo $resourceRoute ?>" class=" bfi-item-btn-details <?php echo $btnClass ?> " target="_blank"><?php echo $btnText ?></a>
 						<?php }else{ ?>
-								<a href="<?php echo $resourceRoute ?>" class=" bfi-item-btn-details"><?php echo _e('Request' , 'bfi')?></a>
+								<a href="<?php echo $resourceRoute ?>" class=" bfi-item-btn-details" target="_blank"><?php echo _e('Request' , 'bfi')?></a>
 						<?php } ?>
 					</div>
 				</div>
@@ -377,10 +377,10 @@ if (localStorage.getItem('display')) {
 		jQuery('#grid-view').trigger('click');
 	}
 } else {
-	 if(typeof bfc_display === 'undefined') {
+	 if(typeof bfi_variable === 'undefined' || bfi_variable.bfi_defaultdisplay === 'undefined') {
 		jQuery('#list-view').trigger('click');
 	 } else {
-		if (bfc_display == '1') {
+		if (bfi_variable.bfi_defaultdisplay == '1') {
 			jQuery('#grid-view').trigger('click');
 		} else { 
 			jQuery('#list-view').trigger('click');

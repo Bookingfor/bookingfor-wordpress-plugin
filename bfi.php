@@ -2,7 +2,7 @@
 /*
 Plugin Name: BookingFor
 Description: BookingFor integration Code for Wordpress
-Version: 3.0.1
+Version: 3.0.4
 Author: BookingFor
 Author URI: http://www.bookingfor.com/
 */
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'BookingFor' ) ) :
 final class BookingFor {
 	
-	public $version = '3.0.2';
+	public $version = '3.0.3';
 	public $currentOrder = null;
 	
 	protected static $_instance = null;
@@ -97,6 +97,8 @@ final class BookingFor {
 		$bfi_childrensage_key = get_option('bfi_childrensage_key', 12);
 		$bfi_senioresage_key = get_option('bfi_senioresage_key', 65);
 		$bfi_maxqtSelectable_key = get_option('bfi_maxqtSelectable_key', 20);
+		$bfi_defaultdisplaylist_key = get_option('bfi_defaultdisplaylist_key', 0);
+		
 
 		$bfi_currentcurrency = get_option('bfi_currentcurrency_key', '');
 
@@ -162,6 +164,8 @@ final class BookingFor {
 
 		$this->define( 'COM_BOOKINGFORCONNECTOR_MAXQTSELECTABLE', $bfi_maxqtSelectable_key );
 		
+		$this->define( 'COM_BOOKINGFORCONNECTOR_DEFAULTDISPLAYLIST', $bfi_defaultdisplaylist_key );
+		
 		$this->define( 'COM_BOOKINGFORCONNECTOR_CARTMULTIMERCHANTENABLED', false );
 
 
@@ -186,7 +190,9 @@ final class BookingFor {
 		add_action( 'wp_logout', array( $this, 'bfi_EndSession' ) );
 		if ( $this->is_request( 'frontend' ) ) {
 			add_action( 'wp_enqueue_scripts', array( $this , 'bfi_load_scripts' ) ,1 ); // spostata priorità altrimenti sovrascrive template
-			add_action( 'wp_enqueue_scripts', array( $this , 'bfi_load_scripts_locale' ) );
+//			add_action( 'wp_enqueue_scripts', array( $this , 'bfi_load_scripts_locale' ) );
+			add_action ( 'wp_head', array( $this , 'bfi_js_variables' ) );
+
 		}
 		if ( $this->is_request( 'admin' ) ) {
 			add_action( 'admin_enqueue_scripts', array( $this , 'bfi_load_admin_scripts' ) );
@@ -357,6 +363,7 @@ final class BookingFor {
 		
 		wp_enqueue_script("jquery-effects-core");
 		wp_enqueue_script('jquery-ui-core');
+		wp_enqueue_script('jquery-ui-autocomplete');
 		wp_enqueue_script('jquery-ui-tabs');
 		wp_enqueue_script('jquery-ui-datepicker');
 		wp_enqueue_script('jquery-ui-dialog');
@@ -373,23 +380,37 @@ final class BookingFor {
 		if(!empty(COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLERECAPTCHAKEY)){
 			wp_enqueue_script('recaptchainit', plugins_url( 'assets/js/recaptcha.js', __FILE__ ),array(),$this->version);
 		}
-
 	}
-
-	public function bfi_load_scripts_locale(){
-		$bfi_variable = array( 
-			'bfi_urlCheck' =>  get_site_url() .'/bfi-api/v1/task',
-			'bfi_cultureCode' => $this->language,
-			'bfi_defaultcultureCode' => 'en-gb',
-			'defaultCurrency' => bfi_get_defaultCurrency(),
-			'currentCurrency' => bfi_get_currentCurrency(),
-			'CurrencyExchanges' => BFCHelper::getCurrencyExchanges(),
-			);
-		wp_localize_script( 'bfi', 'bfi_variable', $bfi_variable );
-		if(substr($this->language,0,2)!='en'){
-//			wp_enqueue_script('jquery-ui-datepicker_locale',plugins_url( 'assets/jquery-ui/i18n/datepicker-' . substr($this->language,0,2) . '.js', __FILE__ ));
-		}
+	public function bfi_js_variables(){ ?>
+	  <script type="text/javascript">
+		/* <![CDATA[ */
+		var bfi_variable = {
+			"bfi_urlCheck":<?php echo json_encode( get_site_url() .'/bfi-api/v1/task'); ?>,
+				"bfi_cultureCode":<?php echo json_encode($this->language); ?>,
+				"bfi_defaultcultureCode":"en-gb",
+				"defaultCurrency":<?php echo json_encode(bfi_get_defaultCurrency()); ?>,
+				"currentCurrency":<?php echo json_encode(bfi_get_currentCurrency()); ?>,
+				"CurrencyExchanges":<?php echo json_encode(BFCHelper::getCurrencyExchanges()); ?>,
+				"bfi_defaultdisplay":<?php echo json_encode(COM_BOOKINGFORCONNECTOR_DEFAULTDISPLAYLIST); ?>,
+			};
+		/* ]]> */
+	  </script><?php
 	}
+//	public function bfi_load_scripts_locale(){
+//		$bfi_variable = array( 
+//			'bfi_urlCheck' =>  get_site_url() .'/bfi-api/v1/task',
+//			'bfi_cultureCode' => $this->language,
+//			'bfi_defaultcultureCode' => 'en-gb',
+//			'defaultCurrency' => bfi_get_defaultCurrency(),
+//			'currentCurrency' => bfi_get_currentCurrency(),
+//			'CurrencyExchanges' => BFCHelper::getCurrencyExchanges(),
+//			'bfi_defaultdisplay'=>COM_BOOKINGFORCONNECTOR_DEFAULTDISPLAYLIST,
+//			);
+//		wp_localize_script( 'bfi', 'bfi_variable', $bfi_variable );
+//		if(substr($this->language,0,2)!='en'){
+////			wp_enqueue_script('jquery-ui-datepicker_locale',plugins_url( 'assets/jquery-ui/i18n/datepicker-' . substr($this->language,0,2) . '.js', __FILE__ ));
+//		}
+//	}
 
 	public function seoUrl($string) {
 		//Lower case everything
@@ -499,6 +520,7 @@ final class BookingFor {
 			'gr' => 'el-GR',
 			'fr' => 'fr-FR',
 			'es' => 'es-ES',
+			'hr' => 'hr-HR',
 			'en_GB' => 'en-GB',
 			'en-GB' => 'en-GB',
 			'en_US' => 'en-GB',
@@ -520,7 +542,9 @@ final class BookingFor {
 			'fr_FR' => 'fr-FR',
 			'fr-FR' => 'fr-FR',
 			'es_ES' => 'es-ES',
-			'es-ES' => 'es-ES'
+			'es-ES' => 'es-ES',
+			'hr_HR' => 'hr-HR',
+			'hr-HR' => 'hr-HR'
 		);
 		if(isset($lang_array[$lang])) {
 		  return $lang_array[$lang];

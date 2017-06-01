@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'BookingFor' ) ) :
 final class BookingFor {
 	
-	public $version = '3.0.3';
+	public $version = '3.0.4';
 	public $currentOrder = null;
 	
 	protected static $_instance = null;

@@ -529,7 +529,7 @@ $tabActive = "";
 				<?php if($showSearchText) { ?>
 					<div class="bfi_destination bfi_container">
 						<label><?php _e('Search text', 'bfi') ?></label>
-						<input type="text" id="searchtext<?php echo $currModID ?>" name="searchterm" class="inputtotal" />
+						<input type="text" id="searchtext<?php echo $currModID ?>" name="searchterm" class="inputtext " />
 					</div>
 					<input type="hidden" value="" name="locationzone" />
 					<input type="hidden" value="" name="masterTypeId" />
@@ -1178,6 +1178,8 @@ jQuery(function($)
 					jQuery(label).remove();
 			    },
 				submitHandler: function(form) {
+					var $form = jQuery(form);
+					if($form.valid()){
 						msg1 = "<?php _e('We\'re processing your request', 'bfi') ?>";
 						msg2 = "<?php _e('Please be patient', 'bfi') ?>";
 						jQuery("#zonePopup<?php echo $currModID ?>").hide();
@@ -1189,6 +1191,7 @@ jQuery(function($)
 						}
 
 						form.submit();
+					}
 				}
 
 		    });
@@ -1589,6 +1592,8 @@ jQuery(function() {
 			jQuery(label).remove();
 		},
 		submitHandler: function(form) {
+			var $form = jQuery(form);
+			if($form.valid()){
 				msg1 = "<?php _e('We\'re processing your request', 'bfi') ?>";
 				msg2 = "<?php _e('Please be patient', 'bfi') ?>";
 				var isMacLike = navigator.platform.match(/(Mac|iPhone|iPod|iPad)/i)?true:false;
@@ -1598,6 +1603,8 @@ jQuery(function() {
 					jQuery("#BtnResource<?php echo $currModID ?>").hide();
 				}
 				form.submit();
+			}
+
 		}
 
 	});

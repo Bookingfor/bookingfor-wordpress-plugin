@@ -462,28 +462,32 @@ $idrecaptcha = uniqid("bfirecaptcha");
 			    		//.text('ok!').addClass('valid')
 			    },
 			   submitHandler: function(form) {
-					if (typeof grecaptcha === 'object') {
-						var response = grecaptcha.getResponse(window.bfirecaptcha['<?php echo $idrecaptcha ?>']);
-						//recaptcha failed validation
-						if(response.length == 0) {
-							$('#recaptcha-error-<?php echo $idrecaptcha ?>').show();
-							return false;
+					var $form = jQuery(form);
+					if($form.valid()){
+						if (typeof grecaptcha === 'object') {
+							var response = grecaptcha.getResponse(window.bfirecaptcha['<?php echo $idrecaptcha ?>']);
+							//recaptcha failed validation
+							if(response.length == 0) {
+								$('#recaptcha-error-<?php echo $idrecaptcha ?>').show();
+								return false;
+							}
+							//recaptcha passed validation
+							else {
+								$('#recaptcha-error-<?php echo $idrecaptcha ?>').hide();
+							}					 
 						}
-						//recaptcha passed validation
-						else {
-							$('#recaptcha-error-<?php echo $idrecaptcha ?>').hide();
-						}					 
+						
+	//					jQuery('#formRating').ajaxSubmit({
+	//						beforeSubmit: function(arr, $form, options) {
+	//							jQuery('#msgKo').hide()
+	//							$form.toggle();
+	//						},
+	//						success:   processJson
+	//					}); 
+						 jQuery.blockUI();
+						 form.submit();
 					}
-					
-//					jQuery('#formRating').ajaxSubmit({
-//						beforeSubmit: function(arr, $form, options) {
-//							jQuery('#msgKo').hide()
-//							$form.toggle();
-//						},
-//						success:   processJson
-//					}); 
-					 jQuery.blockUI();
-					 form.submit();
+
 
 			   }
 		  });

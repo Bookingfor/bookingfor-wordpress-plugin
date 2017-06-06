@@ -939,40 +939,42 @@ jQuery(function($)
 					//label.closest('.control-group').removeClass('error');
 			    },
 				submitHandler: function(form) {
-					var $form = $(form);
-
-					if (typeof grecaptcha === 'object') {
-						var response = grecaptcha.getResponse(window.bfirecaptcha['<?php echo $idrecaptcha ?>']);
-						//recaptcha failed validation
-						if(response.length == 0) {
-							$('#recaptcha-error-<?php echo $idrecaptcha ?>').show();
-							return false;
+					var $form = jQuery(form);
+					if($form.valid()){
+						if (typeof grecaptcha === 'object') {
+							var response = grecaptcha.getResponse(window.bfirecaptcha['<?php echo $idrecaptcha ?>']);
+							//recaptcha failed validation
+							if(response.length == 0) {
+								$('#recaptcha-error-<?php echo $idrecaptcha ?>').show();
+								return false;
+							}
+							//recaptcha passed validation
+							else {
+								$('#recaptcha-error-<?php echo $idrecaptcha ?>').hide();
+							}					 
 						}
-						//recaptcha passed validation
-						else {
-							$('#recaptcha-error-<?php echo $idrecaptcha ?>').hide();
-						}					 
+						jQuery.blockUI({message: ''});
+						if ($form.data('submitted') === true) {
+							 return false;
+						} else {
+							// Mark it so that the next submit can be ignored
+							$form.data('submitted', true);
+							var svcTotal = 0;
+							
+							<?php if(COM_BOOKINGFORCONNECTOR_GAENABLED == 1 && !empty(COM_BOOKINGFORCONNECTOR_GAACCOUNT) && COM_BOOKINGFORCONNECTOR_EECENABLED == 1): ?>
+							callAnalyticsEEc("addProduct", allItems, "checkout", "", {
+								"step": 2,
+							});
+							
+							callAnalyticsEEc("addProduct", allItems, "checkout_option", "", {
+								"step": 2,
+								"option": selectedSystemType
+							});
+							<?php endif; ?>
+							form.submit();
+						}
 					}
-					jQuery.blockUI({message: ''});
-					if ($form.data('submitted') === true) {
-						 return false;
-					} else {
-						// Mark it so that the next submit can be ignored
-						$form.data('submitted', true);
-						var svcTotal = 0;
-						
-						<?php if(COM_BOOKINGFORCONNECTOR_GAENABLED == 1 && !empty(COM_BOOKINGFORCONNECTOR_GAACCOUNT) && COM_BOOKINGFORCONNECTOR_EECENABLED == 1): ?>
-						callAnalyticsEEc("addProduct", allItems, "checkout", "", {
-							"step": 2,
-						});
-						
-						callAnalyticsEEc("addProduct", allItems, "checkout_option", "", {
-							"step": 2,
-							"option": selectedSystemType
-						});
-						<?php endif; ?>
-						form.submit();
-					}
+
 				}
 
 			});

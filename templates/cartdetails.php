@@ -32,6 +32,7 @@ $CartMultimerchantEnabled = BFCHelper::getCartMultimerchantEnabled();
 $currCart = null;
 $totalOrder = 0;
 $listStayConfigurations = array();
+$dateTimeNow =  new DateTime();
 
 if (isset($_POST['hdnOrderData']) && isset($_POST['hdnPolicyIds'])  ) {
 	$policyByIds = $_POST['hdnPolicyIds'];
@@ -135,6 +136,7 @@ if(!$cartEmpty){
 //		$listStayConfigurations = array();
 $allResourceId = array();
 $allServiceIds = array();
+$allPolicyHelp = array();
 
 		$modelMerchant = new BookingForConnectorModelMerchantDetails;
 //		$modelResource = new BookingForConnectorModelResource;
@@ -649,10 +651,17 @@ if(!empty( $policy )){
 	if($policy->CanBeCanceled){
 		$currTimeBefore = "";
 		$currDateBefore = "";
-		if(!empty( $policy->CanBeCanceledCurrentTime )){
-				if(!empty( $policy->CancellationTime )){
-					$currDatePolicyparsed = BFCHelper::parseJsonDate($res->RatePlan->CheckIn, 'Y-m-d');
-					$currDatePolicy = DateTime::createFromFormat('Y-m-d',$currDatePolicyparsed);
+		$currDatePolicyparsed =  new DateTime();
+		if($cartId==0){
+			$currDatePolicyparsed = DateTime::createFromFormat('d/m/Y\TH:i:s', $res->FromDate);
+		}else{
+			$currDatePolicyparsed = new DateTime($res->FromDate);
+		}										
+
+		if($currDatePolicyparsed > $dateTimeNow){
+				if(!empty( $policy->CancellationTime )){					
+//					$currDatePolicyparsed = BFCHelper::parseJsonDate($res->RatePlan->CheckIn, 'Y-m-d');
+					$currDatePolicy = clone $currDatePolicyparsed;
 					switch (true) {
 						case strstr($policy->CancellationTime ,'d'):
 							$currTimeBefore = rtrim($policy->CancellationTime,"d") .' days';	
@@ -725,31 +734,34 @@ if(!empty( $policy )){
 	
 	}
 }
-$currMerchantBookingTypes = array();
+if(!empty($policyHelp)){
+	$allPolicyHelp[] = $resource->Name . ": " . $policyHelp;
+}
+//$currMerchantBookingTypes = array();
 $prepayment = "";
 $prepaymentHelp = "";
-
-if(!empty( $currRateplan->RatePlan->MerchantBookingTypesString )){
-	$currMerchantBookingTypes = json_decode($currRateplan->RatePlan->MerchantBookingTypesString);
-	$currBookingTypeId = $currRateplan->RatePlan->MerchantBookingTypeId;
-	$currMerchantBookingType = array_filter($currMerchantBookingTypes, function($bt) use($currBookingTypeId) {return $bt->BookingTypeId == $currBookingTypeId;});
-	if(count($currMerchantBookingType)>0){
-		if($currMerchantBookingType[0]->PayOnArrival){
-			$prepayment = __("Pay at the property – NO PREPAYMENT NEEDED", 'bfi');
-			$prepaymentHelp = __("No prepayment is needed.", 'bfi');
-		}
-		if($currMerchantBookingType[0]->AcquireCreditCardData){
-			$prepayment = "";
-			if($currMerchantBookingType[0]->DepositRelativeValue=="100%"){
-				$prepaymentHelp = __('You will be charged a prepayment of the total price at any time.', 'bfi');
-			}else if(strpos($currMerchantBookingType[0]->DepositRelativeValue, '%') !== false  ) {
-				$prepaymentHelp = sprintf(__('You will be charged a prepayment of %1$s of the total price at any time.', 'bfi'),$currMerchantBookingType[0]->DepositRelativeValue);
-			}else{
-				$prepaymentHelp = sprintf(__('You will be charged a prepayment of %1$s at any time.', 'bfi'),$currMerchantBookingType[0]->DepositRelativeValue);
-			}
-		}
-	}
-}
+//
+//if(!empty( $policy->MerchantBookingTypesString )){
+//	$currMerchantBookingTypes = json_decode($policy->MerchantBookingTypesString);
+//	$currBookingTypeId = $currRateplan->RatePlan->MerchantBookingTypeId;
+//	$currMerchantBookingType = array_filter($currMerchantBookingTypes, function($bt) use($currBookingTypeId) {return $bt->BookingTypeId == $currBookingTypeId;});
+//	if(count($currMerchantBookingType)>0){
+//		if($currMerchantBookingType[0]->PayOnArrival){
+//			$prepayment = __("Pay at the property – NO PREPAYMENT NEEDED", 'bfi');
+//			$prepaymentHelp = __("No prepayment is needed.", 'bfi');
+//		}
+//		if($currMerchantBookingType[0]->AcquireCreditCardData){
+//			$prepayment = "";
+//			if($currMerchantBookingType[0]->DepositRelativeValue=="100%"){
+//				$prepaymentHelp = __('You will be charged a prepayment of the total price at any time.', 'bfi');
+//			}else if(strpos($currMerchantBookingType[0]->DepositRelativeValue, '%') !== false  ) {
+//				$prepaymentHelp = sprintf(__('You will be charged a prepayment of %1$s of the total price at any time.', 'bfi'),$currMerchantBookingType[0]->DepositRelativeValue);
+//			}else{
+//				$prepaymentHelp = sprintf(__('You will be charged a prepayment of %1$s at any time.', 'bfi'),$currMerchantBookingType[0]->DepositRelativeValue);
+//			}
+//		}
+//	}
+//}
 
 
 
@@ -1303,10 +1315,10 @@ if(!empty( $policy )){
 			$currValue = $policy->CancellationBaseValue;
 			break;
 		case strstr($policy->CancellationBaseValue ,'d'):
-			$currValue = rtrim($policy->CancellationBaseValue,"d") .' days';
+			$currValue = sprintf(__(' %d day/s' ,'bfi'),rtrim($policy->CancellationBaseValue,"d"));
 			break;
 		case strstr($policy->CancellationBaseValue ,'n'):
-			$currValue = rtrim($policy->CancellationBaseValue,"n") .' days';
+			$currValue = sprintf(__(' %d day/s' ,'bfi'),rtrim($policy->CancellationBaseValue,"n"));
 			break;
 	}
 	$currValuebefore = $policy->CancellationValue;
@@ -1315,99 +1327,26 @@ if(!empty( $policy )){
 			$currValuebefore = $policy->CancellationValue;
 			break;
 		case strstr($policy->CancellationValue ,'d'):
-			$currValuebefore = rtrim($policy->CancellationValue,"d") .' days';
+			$currValuebefore = sprintf(__(' %d day/s' ,'bfi'),rtrim($policy->CancellationValue,"d"));
 			break;
 		case strstr($policy->CancellationValue ,'n'):
-			$currValuebefore = rtrim($policy->CancellationValue,"n") .' days';
+			$currValuebefore = sprintf(__(' %d day/s' ,'bfi'),rtrim($policy->CancellationValue,"n"));
 			break;
-	}
-	if($policy->CanBeCanceled){
-		$currTimeBefore = "";
-		$currDateBefore = "";
-		if(!empty( $policy->CanBeCanceledCurrentTime )){
-				if(!empty( $policy->CancellationTime )){
-					$currDatePolicyparsed = BFCHelper::parseJsonDate($res->RatePlan->CheckIn, 'Y-m-d');
-					$currDatePolicy = DateTime::createFromFormat('Y-m-d',$currDatePolicyparsed);
-					switch (true) {
-						case strstr($policy->CancellationTime ,'d'):
-							$currTimeBefore = rtrim($policy->CancellationTime,"d") .' days';	
-							$currDatePolicy->modify('-'. rtrim($policy->CancellationTime,"d") .' days'); 
-							break;
-						case strstr($policy->CancellationTime ,'h'):
-							$currTimeBefore = rtrim($policy->CancellationTime,"h") .' hours';	
-							$currDatePolicy->modify('-'. rtrim($policy->CancellationTime,"h") .' hours'); 
-							break;
-						case strstr($policy->CancellationTime ,'w'):
-							$currTimeBefore = rtrim($policy->CancellationTime,"w") .' weeks';	
-							$currDatePolicy->modify('-'. rtrim($policy->CancellationTime,"w") .' weeks'); 
-							break;
-						case strstr($policy->CancellationTime ,'m'):
-							$currTimeBefore = rtrim($policy->CancellationTime,"m") .' months';	
-							$currDatePolicy->modify('-'. rtrim($policy->CancellationTime,"m") .' months'); 
-							break;
-					}
-				}
-
-				if($policy->CancellationValue=="0" || $policy->CancellationValue=="0%"){
-					?>
-<!-- 					<div class="bfi-policy-green"><?php _e('Cancellation FREE', 'bfi') ?> -->
-					<?php 
-					if(!empty( $policy->CancellationTime )){
-//						echo '<br />'.__('until', 'bfi') ;
-//						echo ' '.$currDatePolicy->format("d").' '.date_i18n('M',$currDatePolicy->getTimestamp()).' '.$currDatePolicy->format("Y");
-						$policyHelp = sprintf(__('You may cancel free of charge until %1$s before arrival. You will be charged %2$s if you cancel in the %1$s before arrival.', 'bfi'),$currTimeBefore,$currValue);
-					}
-					?>
-					</div>
-					<?php 
-
-					
-				}else{
-				if($policy->CancellationBaseValue=="0%" || $policy->CancellationBaseValue=="0"){
-					?>
-					<!-- <div class="bfi-policy-green"><?php _e('Cancellation FREE', 'bfi') ?></div> -->
-					<?php 
-					$policyHelp = __('You may cancel free of charge until arrival.', 'bfi');
-				}else{
-					?>
-					<!-- <div class="bfi-policy-blue"><?php _e('Special conditions', 'bfi') ?></div> -->
-					<?php 
-					$policyHelp = sprintf(__('You may cancel with a charge of %3$s  until %1$s before arrival. You will be charged %2$s if you cancel in the %1$s before arrival.', 'bfi'),$currTimeBefore,$currValue,$currValuebefore);
-				}
-				}
-
-			
-		}else{
-				if($policy->CancellationBaseValue=="0%" || $policy->CancellationBaseValue=="0"){
-					?>
-					<!-- <div class="bfi-policy-green"><?php _e('Cancellation FREE', 'bfi') ?></div> -->
-					<?php 
-					$policyHelp = __('You may cancel free of charge until arrival.', 'bfi');
-				}else{
-					?>
-					<!-- <div class="bfi-policy-blue"><?php _e('Special conditions', 'bfi') ?></div> -->
-					<?php 
-					$policyHelp = sprintf(__('You will be charged %1$s if you cancel before arrival.', 'bfi'),$currValue);
-				}
-		}
-				
-	}else{ 
-		// no refundable
-		?>
-			<!-- <div class="bfi-policy-none"><?php _e('Non refundable', 'bfi') ?></div> -->
-		<?php 
-		$policyHelp = sprintf(__('You will be charged all if you cancel before arrival.', 'bfi'));
-	
 	}
 }
 ?>
-
 			<div class="bfi-row">
 				<div class="bfi-col-md-12 bfi-checkbox-wrapper">
 					<div class="bfi_accept">
 					<input name="form[accettazionepolicy]" class="checkbox" id="agreepolicy" aria-invalid="true" aria-required="true" type="checkbox" required title="<?php _e('Mandatory', 'bfi') ?>"></div>
 					<label class="bfi-shownextelement"><?php _e('I agree to the conditions', 'bfi') ?></label>
-					<textarea name="form[policy]" class="bfi-col-md-12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php echo $policyHelp ?>
+					<textarea name="form[policy]" class="bfi-col-md-12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php
+if (count($allPolicyHelp)>0) {
+	foreach ($allPolicyHelp as $key => $value) { 
+		echo ($key+1) . ") " . $value . "\r\n";
+	}
+}
+					?>
 
 <?php echo $currPolicy->Description; ?></textarea>
 				</div>
@@ -1577,39 +1516,40 @@ jQuery(function($)
 			    },
 				submitHandler: function(form) {
 					var $form = $(form);
-
-					if (typeof grecaptcha === 'object') {
-						var response = grecaptcha.getResponse(window.bfirecaptcha['<?php echo $idrecaptcha ?>']);
-						//recaptcha failed validation
-						if(response.length == 0) {
-							$('#recaptcha-error-<?php echo $idrecaptcha ?>').show();
-							return false;
+					if($form.valid()){
+						if (typeof grecaptcha === 'object') {
+							var response = grecaptcha.getResponse(window.bfirecaptcha['<?php echo $idrecaptcha ?>']);
+							//recaptcha failed validation
+							if(response.length == 0) {
+								$('#recaptcha-error-<?php echo $idrecaptcha ?>').show();
+								return false;
+							}
+							//recaptcha passed validation
+							else {
+								$('#recaptcha-error-<?php echo $idrecaptcha ?>').hide();
+							}					 
 						}
-						//recaptcha passed validation
-						else {
-							$('#recaptcha-error-<?php echo $idrecaptcha ?>').hide();
-						}					 
-					}
-					jQuery.blockUI({message: ''});
-					if ($form.data('submitted') === true) {
-						 return false;
-					} else {
-						// Mark it so that the next submit can be ignored
-						$form.data('submitted', true);
-						var svcTotal = 0;
-						
-						<?php if(COM_BOOKINGFORCONNECTOR_GAENABLED == 1 && !empty(COM_BOOKINGFORCONNECTOR_GAACCOUNT) && COM_BOOKINGFORCONNECTOR_EECENABLED == 1): ?>
-						callAnalyticsEEc("addProduct", allItems, "checkout", "", {
-							"step": 2,
-						});
-						
-						callAnalyticsEEc("addProduct", allItems, "checkout_option", "", {
-							"step": 2,
-							"option": selectedSystemType
-						});
-						<?php endif; ?>
-						form.submit();
-					}
+						jQuery.blockUI({message: ''});
+						if ($form.data('submitted') === true) {
+							 return false;
+						} else {
+							// Mark it so that the next submit can be ignored
+							$form.data('submitted', true);
+							var svcTotal = 0;
+							
+							<?php if(COM_BOOKINGFORCONNECTOR_GAENABLED == 1 && !empty(COM_BOOKINGFORCONNECTOR_GAACCOUNT) && COM_BOOKINGFORCONNECTOR_EECENABLED == 1): ?>
+							callAnalyticsEEc("addProduct", allItems, "checkout", "", {
+								"step": 2,
+							});
+							
+							callAnalyticsEEc("addProduct", allItems, "checkout_option", "", {
+								"step": 2,
+								"option": selectedSystemType
+							});
+							<?php endif; ?>
+							form.submit();
+						}					}
+
 				}
 
 			});

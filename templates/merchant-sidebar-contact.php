@@ -347,13 +347,15 @@ if(empty($maxCapacityPaxes)) {
 
 <?php }else{  ?>
 					var $form = $(form);
-					jQuery.blockUI({message: ''});
-					if ($form.data('submitted') === true) {
-						 return false;
-					} else {
-						// Mark it so that the next submit can be ignored
-						$form.data('submitted', true);
-						form.submit();
+					if($form.valid()){
+						jQuery.blockUI({message: ''});
+						if ($form.data('submitted') === true) {
+							 return false;
+						} else {
+							// Mark it so that the next submit can be ignored
+							$form.data('submitted', true);
+							form.submit();
+						}
 					}
 <?php }  ?>
 						}

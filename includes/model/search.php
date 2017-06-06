@@ -180,7 +180,7 @@ class BookingForConnectorModelSearch
 			
 //				$options['data']['pricetype'] = '\'' . 'rateplan' . '\'';
 
-			if (isset($locationzone) && $locationzone !='') {
+			if (isset($locationzone) && $locationzone !='' && $locationzone !='0') {
 				$options['data']['zoneIds'] = '\''. $locationzone . '\'';
 			}
 			

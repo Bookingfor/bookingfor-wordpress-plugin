@@ -651,33 +651,42 @@ if(!empty( $policy )){
 	if($policy->CanBeCanceled){
 		$currTimeBefore = "";
 		$currDateBefore = "";
-		$currDatePolicyparsed =  new DateTime();
+		$currDatePolicy =  new DateTime();
 		if($cartId==0){
-			$currDatePolicyparsed = DateTime::createFromFormat('d/m/Y\TH:i:s', $res->FromDate);
+			$currDatePolicy = DateTime::createFromFormat('d/m/Y\TH:i:s', $res->FromDate);
 		}else{
-			$currDatePolicyparsed = new DateTime($res->FromDate);
+			$currDatePolicy = new DateTime($res->FromDate);
 		}										
-
-		if($currDatePolicyparsed > $dateTimeNow){
+		if(!empty( $policy->CancellationTime )){		
+			switch (true) {
+				case strstr($policy->CancellationTime ,'d'):
+					$currDatePolicy->modify('-'. rtrim($policy->CancellationTime,"d") .' days'); 
+					break;
+				case strstr($policy->CancellationTime ,'h'):
+					$currDatePolicy->modify('-'. rtrim($policy->CancellationTime,"h") .' hours'); 
+					break;
+				case strstr($policy->CancellationTime ,'w'):
+					$currDatePolicy->modify('-'. rtrim($policy->CancellationTime,"w") .' weeks'); 
+					break;
+				case strstr($policy->CancellationTime ,'m'):
+					$currDatePolicy->modify('-'. rtrim($policy->CancellationTime,"m") .' months'); 
+					break;
+			}
+		}
+		if($currDatePolicy > $dateTimeNow){
 				if(!empty( $policy->CancellationTime )){					
-//					$currDatePolicyparsed = BFCHelper::parseJsonDate($res->RatePlan->CheckIn, 'Y-m-d');
-					$currDatePolicy = clone $currDatePolicyparsed;
 					switch (true) {
 						case strstr($policy->CancellationTime ,'d'):
 							$currTimeBefore = rtrim($policy->CancellationTime,"d") .' days';	
-							$currDatePolicy->modify('-'. rtrim($policy->CancellationTime,"d") .' days'); 
 							break;
 						case strstr($policy->CancellationTime ,'h'):
 							$currTimeBefore = rtrim($policy->CancellationTime,"h") .' hours';	
-							$currDatePolicy->modify('-'. rtrim($policy->CancellationTime,"h") .' hours'); 
 							break;
 						case strstr($policy->CancellationTime ,'w'):
 							$currTimeBefore = rtrim($policy->CancellationTime,"w") .' weeks';	
-							$currDatePolicy->modify('-'. rtrim($policy->CancellationTime,"w") .' weeks'); 
 							break;
 						case strstr($policy->CancellationTime ,'m'):
 							$currTimeBefore = rtrim($policy->CancellationTime,"m") .' months';	
-							$currDatePolicy->modify('-'. rtrim($policy->CancellationTime,"m") .' months'); 
 							break;
 					}
 				}

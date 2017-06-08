@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: VERSION\n"
-"POT-Creation-Date: 2017-04-27 13:13+0000\n"
-"PO-Revision-Date: 2017-04-27 13:13+0000\n"
+"POT-Creation-Date: 2017-06-07 07:10+0000\n"
+"PO-Revision-Date: 2017-06-07 07:10+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE TEAM <EMAIL@ADDRESS>\n"
 "Language: de_DE\n"
@@ -11,8 +11,45 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "BookingFor Cart Details page"
+msgstr "BookingFor-Warenkorbseite"
+
+msgctxt "slug"
+msgid "cartdetails"
+msgstr "Warenkorbdaten"
+
+msgctxt "Page slug"
+msgid "cartdetails"
+msgstr "Warenkorbdaten"
+
+msgid "Search text"
+msgstr "Suchtext"
+
+msgid "Unit price"
+msgstr "Einzelpreis"
+
+msgid "Cart"
+msgstr "Warenkorb"
+
+#, php-format
+msgid " %d week/s"
+msgstr " %d Woche(n)"
+
+#, php-format
+msgid " %d month/s"
+msgstr " %d Monat(e)"
+
+msgid "To be refurbished"
+msgstr "Renovierungsbedürftig"
+
+msgid "Habitable"
+msgstr "Bewohnbar"
+
+msgid "Refurbished"
+msgstr "Renoviert"
+
 msgid "This is a demo store for testing purposes &mdash; no orders shall be fulfilled."
-msgstr "Dies ist ein Demo-Shop für Testzwecke &mdash; keine Aufträge erfüllt werden."
+msgstr "Dies ist ein Demo-Shop für Testzwecke. &mdash; Es werden keine Aufträge ausgeführt."
 
 #, php-format
 msgid "Search Results: &ldquo;%s&rdquo;"
@@ -24,7 +61,7 @@ msgstr "&nbsp;&ndash; Seite %s"
 
 msgctxt "Page slug"
 msgid "search-availability"
-msgstr "Suche-Verfügbarkeit"
+msgstr "Verfügbarkeitssuche"
 
 msgctxt "slug"
 msgid "search-availability"
@@ -32,27 +69,27 @@ msgstr "Suche-Verfügbarkeit"
 
 msgctxt "default-slug"
 msgid "search-availability"
-msgstr "Suche-Verfügbarkeit"
+msgstr "Verfügbarkeitssuche"
 
 msgctxt "Page title"
 msgid "Search Availability"
-msgstr "Suche Verfügbarkeit"
+msgstr "Verfügbarkeit suchen"
 
 msgctxt "Page slug"
 msgid "properties-for-sale"
-msgstr "Properties for sale"
+msgstr "Verkäufliche Immobilien"
 
 msgctxt "Page title"
 msgid "Search Properties for sale"
-msgstr "Suche Immobilien zum Verkauf"
+msgstr "Verkäufliche Immobilien suchen"
 
 msgctxt "Page slug"
 msgid "merchantdetails"
-msgstr "merchantdetails"
+msgstr "Händlerdaten"
 
 msgctxt "slug"
 msgid "merchantdetails"
-msgstr "merchantdetails"
+msgstr "Händlerdaten"
 
 msgctxt "Page title"
 msgid "Merchant Details"
@@ -64,23 +101,23 @@ msgstr "Details der Unterkunft"
 
 msgctxt "slug"
 msgid "accommodation-details"
-msgstr "Details der Unterkunft"
+msgstr "Unterkunftdetails"
 
 msgctxt "Page title"
 msgid "Accommodation Details"
-msgstr "Informationen zur Unterkunft"
+msgstr "Details zur Unterkunft"
 
 msgctxt "Page slug"
 msgid "onsell-details"
-msgstr "Onsell-details"
+msgstr "Verkaufsdetails"
 
 msgctxt "slug"
 msgid "onsell-details"
-msgstr "Onsell-details"
+msgstr "Verkaufsdetails"
 
 msgctxt "Page title"
 msgid "On Sell Details"
-msgstr "Verkauf-Details"
+msgstr "Verkaufsdetails"
 
 msgctxt "Page slug"
 msgid "orders"
@@ -106,72 +143,68 @@ msgctxt "Page title"
 msgid "My Account"
 msgstr "Mein Konto"
 
-msgctxt "Page slug"
-msgid "cartdetails"
-msgstr "cartdetails"
-
 msgctxt "Page title"
 msgid "Cart Details"
-msgstr "Warenkorb Details"
+msgstr "Warenkorbdaten"
 
 msgctxt "slug"
 msgid "merchantlist"
-msgstr "merchantlist"
+msgstr "Händlerliste"
 
 msgid "Merchant list pages"
-msgstr "Händler Listenseiten"
+msgstr "Händlerlistenseiten"
 
 msgid "Merchant list page"
-msgstr "Händler Listenseite"
+msgstr "Händlerlistenseite"
 
 msgctxt "Admin menu name"
 msgid "Merchant list"
-msgstr "Händler Liste"
+msgstr "Händlerliste"
 
 msgid "Add Merchant list page"
-msgstr "Händler-Liste-Seite hinzufügen"
+msgstr "Händlerlistenseite hinzufügen"
 
 msgid "Add New Merchant list page"
-msgstr "Neue Händler-Liste-Seite hinzufügen"
+msgstr "Neue Händlerlistenseite hinzufügen"
 
 msgid "Edit"
 msgstr "Bearbeiten"
 
 msgid "Edit Merchant list page"
-msgstr "Händler Listenseite bearbeiten"
+msgstr "Händlerlistenseite bearbeiten"
 
 msgid "New Merchant list page"
-msgstr "Neue Händler-Liste-Seite"
+msgstr "Neue Händlerlistenseite"
 
 msgid "View Merchant list page"
-msgstr "Händler-Liste-Seite anzeigen"
+msgstr "Händlerlistenseite ansehen"
 
 msgid "Search Merchant list page"
-msgstr "Händler Liste Suchseite"
+msgstr "Händlerlistenseite suchen"
 
 msgid "No Merchant list page found"
-msgstr "Keine Händler-Liste-Seite gefunden"
+msgstr "Keine Händlerlistenseite gefunden"
 
 msgid "No Merchant list page found in trash"
-msgstr "Kein Händler Listenseite im Müll gefunden"
+msgstr "Kein Händlerlistenseite im Mülleimer gefunden"
 
 msgid "Parent Merchant list page"
-msgstr "Übergeordnete Händler Listenseite"
+msgstr "Übergeordnete Händlerlistenseite"
 
 msgid "Insert into Merchant list page"
-msgstr "Händler-Liste-Seite einfügen"
+msgstr "In Händlerlistenseite einfügen"
 
 msgid "Uploaded to this Merchant list page"
-msgstr "Auf dieser Händler-Liste-Seite hochgeladen"
+msgstr "Auf diese Händlerlistenseite hochgeladen"
 
 msgid "Filter Merchant list pages"
-msgstr "Händler Listenseiten zu filtern"
+msgstr "Händlerlistenseiten filtern"
 
 msgid "Merchant list pages navigation"
-msgstr "Händler Liste Seiten navigation"
+msgstr "Navigation der Händlerlistenseiten"
 
 msgid "This is where you can add new Merchant list page."
-msgstr "Dies ist, wo Sie neue Händler-Liste-Seite hinzufügen können."
+msgstr "Hier können Sie eine neue Händlerlistenseite hinzufügen."
 
 msgid "Merchant details"
 msgstr "Haendler details"
@@ -186,19 +219,19 @@ msgid "On Sell details"
 msgstr "Immobilie details"
 
 msgid "Cart details"
-msgstr "Warenkorb details"
+msgstr "Warenkorbdetails"
 
 msgid "Autentication Mode"
-msgstr "S-Modus"
+msgstr "Authentifizierungsmodus"
 
 msgid "Categories"
 msgstr "Kategorien"
 
 msgid "Merchant category filter"
-msgstr "Händler-Kategorie-filter"
+msgstr "Händlerkategorienfilter"
 
 msgid "Merchant Rating filter"
-msgstr "Händler-Bewertung-filter"
+msgstr "Händlerbewertungsfilter"
 
 msgid "All"
 msgstr "Alle"
@@ -207,41 +240,41 @@ msgid "Cities"
 msgstr "Städte"
 
 msgid "BookingFor Permalinks"
-msgstr "BookingFor Permalinks"
+msgstr "BookingFor-Permalinks"
 
 msgid "BookingFor search result page"
-msgstr "Suchergebnis-Seite BookingFor"
+msgstr "BookingFor-Suchergebnisseite"
 
 msgid "BookingFor Merchant details page"
-msgstr "BookingFor Merchant-Detailseite"
+msgstr "BookingFor-Händlerdatenseite"
 
 msgid "BookingFor Accommodation details page"
-msgstr "BookingFor Unterkunft Detailseite"
+msgstr "BookingFor-Detailseite der Unterkunft"
 
 msgid "BookingFor On Sell details page"
-msgstr "BookingFor auf verkaufen Detailseite"
+msgstr "BookingFor Verkaufsdetailseite"
 
 msgid "BookingFor Merchant List page"
-msgstr "BookingFor Kaufmann Listenseite"
+msgstr "BookingFor-Händlerlistenseite"
 
 msgid "These settings control the permalinks used specifically for BookingFor."
-msgstr "Diese Einstellungen steuern die Permalinks speziell für BookingFor verwendet."
+msgstr "Diese Einstellungen steuern die Permalinks, die speziell für BookingFor verwendet werden."
 
 msgid "Default"
 msgstr "Standard"
 
 msgid "Search Availability base"
-msgstr "Suche Verfügbarkeit Basis"
+msgstr "Verfügbarkeitsbasis suchen"
 
 msgid "Custom Base"
 msgstr "Benutzerdefinierte Basis"
 
 msgid "Enter a custom base to use. A base <strong>must</strong> be set or WordPress will use default instead."
-msgstr "Geben Sie eine benutzerdefinierte Basis zu verwenden. Eine Basis <strong> muss </strong> eingestellt werden oder WordPress wird stattdessen verwenden."
+msgstr "Geben Sie eine zu verwendende benutzerdefinierte Basis ein. Eine Basis <strong> muss </strong> festgelegt werden oder WordPress wird stattdessen den Standard verwenden."
 
 msgctxt "default-slug"
 msgid "searchavailability"
-msgstr "searchavailability"
+msgstr "Verfügbarkeitssuche"
 
 msgid "Euro"
 msgstr "Euro"
@@ -250,16 +283,16 @@ msgid "Kune"
 msgstr "Kune"
 
 msgid "U.S. dollar"
-msgstr "US-dollar"
+msgstr "US-Dollar"
 
 msgid "Japanese yen"
-msgstr "Japanischer yen"
+msgstr "Japanischer Yen"
 
 msgid "Canadian dollar"
-msgstr "Kanadischer dollar"
+msgstr "Kanadischer Dollar"
 
 msgid "Australian dollar"
-msgstr "Australischer dollar"
+msgstr "Australischer Dollar"
 
 msgid "Russian Ruble"
 msgstr "Russischer Rubel"
@@ -268,10 +301,10 @@ msgid "Czech koruna"
 msgstr "Tschechische Krone"
 
 msgid "Singapore dollar"
-msgstr "Singapur-dollar"
+msgstr "Singapur-Dollar"
 
 msgid "Pound sterling "
-msgstr "Pfund sterling "
+msgstr "Pfund Sterling "
 
 #, php-format
 msgid "If you like <strong>BookingFor</strong> please leave us a %s&#9733;&#9733;&#9733;&#9733;&#9733;%s rating. A huge thank you from Bookingfor in advance!"
@@ -281,10 +314,10 @@ msgid "Thanks"
 msgstr "Danke"
 
 msgid "Thank you for selling with BookingFor."
-msgstr "Ich danke Ihnen für den Verkauf mit BookingFor."
+msgstr "Vielen Dank, dass Sie mit BookingFor verkaufen."
 
 msgid "Save changes"
-msgstr "Speichern Sie die Änderungen"
+msgstr "Änderungen speichern"
 
 msgid "&resourceId="
 msgstr "&resourceId="
@@ -301,22 +334,22 @@ msgid "errors"
 msgstr "Fehler"
 
 msgid "Display the user's Cart link in the sidebar."
-msgstr "Der Benutzer Warenkorb-Link in der Seitenleiste angezeigt."
+msgstr "Warenkorb-Link des Benutzers in der Seitenleiste angezeigen."
 
 msgid "BookingFor Cart"
-msgstr "BookingFor Warenkorb"
+msgstr "BookingFor-Warenkorb"
 
 msgid "Title"
 msgstr "Titel"
 
 msgid "Display the user's currency switcher in the sidebar."
-msgstr "Des Benutzers Währung Switcher in der Seitenleiste angezeigt."
+msgstr "Währungswechsler des Benutzers in der Seitenleiste anzeigen."
 
 msgid "BookingFor currency switcher"
-msgstr "BookingFor Währung switcher"
+msgstr "BookingFor Währungswechsler"
 
 msgid "A Search box for multimerchant, monomerchant and sell on."
-msgstr "Ein Suchfeld für Multimerchant, Monomerchant und verkaufen auf."
+msgstr "Ein Suchfeld für Mehrfachhändler, Monohändler und Weiterverkauf."
 
 msgid "BookingFor Search"
 msgstr "BookingFor Suche"
@@ -334,10 +367,10 @@ msgid "Nights"
 msgstr "Nächte"
 
 msgid "Days"
-msgstr "Tagen"
+msgstr "Tage"
 
 msgid "Unit of times"
-msgstr "Einheit der Zeit"
+msgstr "Zeiteinheiten"
 
 msgid "Time slot"
 msgstr "Zeitfenster"
@@ -346,7 +379,7 @@ msgid "Resource"
 msgstr "Ressource"
 
 msgid "Merchant"
-msgstr "Kaufmann"
+msgstr "Händler"
 
 msgid "Condominium"
 msgstr "Eigentumswohnung"
@@ -355,16 +388,16 @@ msgid "Service"
 msgstr "Service"
 
 msgid "Tab"
-msgstr "Registerkarte \""
+msgstr "Registerkarte"
 
 msgid "Block Months"
-msgstr "Block-Monate"
+msgstr "Monate sperren"
 
 msgid "Disable Days"
-msgstr "Tage zu deaktivieren"
+msgstr "Tage deaktivieren"
 
 msgid "Merchant category"
-msgstr "Händler-Kategorie"
+msgstr "Händlerkategorie"
 
 msgid "Product category"
 msgstr "Produktkategorie"
@@ -373,22 +406,22 @@ msgid "Search availability for"
 msgstr "Suche Verfügbarkeit für"
 
 msgid "Items type"
-msgstr "Geben Sie Elemente"
+msgstr "Positionstyp"
 
 msgid "Default group by "
-msgstr "Standardgruppe von "
+msgstr "Standardgruppierung nach "
 
 msgid "Displays horizontally"
-msgstr "Zeigt horizontal"
+msgstr "Wird horizontal angezeigt"
 
 msgid "Fields Visibility"
-msgstr "Felder-Sichtbarkeit"
+msgstr "Feldersichtbarkeit"
 
 msgid "Destination"
 msgstr "Zone"
 
 msgid "Map Button"
-msgstr "Schaltfläche \"Karte\""
+msgstr "Schaltfläche „Karte“"
 
 msgid "Type"
 msgstr "Typ"
@@ -418,7 +451,7 @@ msgid "Price"
 msgstr "Preis"
 
 msgid "Floor Area"
-msgstr "Bodenfläche"
+msgstr "Grundfläche"
 
 msgid "BedRooms"
 msgstr "Schlafzimmer"
@@ -433,58 +466,58 @@ msgid "Only New"
 msgstr "Nur neue"
 
 msgid "Services list"
-msgstr "Dienstliste"
+msgstr "Dienstleistungsliste"
 
 msgid "A details merchant box."
-msgstr "Ein Händler Feld."
+msgstr "Ein Detail-Händlerfeld."
 
 msgid "BookingFor details merchant box"
-msgstr "BookingFor Händler Feld"
+msgstr "BookingFor Detail-Händlerfeld"
 
 msgid "A Carousel list of Merchants."
-msgstr "Ein Karussell-Liste der Händler."
+msgstr "Eine Karussell-Liste der Händler."
 
 msgid "BookingFor Merchants"
-msgstr "BookingFor Händler"
+msgstr "BookingFor-Händler"
 
 msgid "Tags"
 msgstr "Tags"
 
 msgid "Items per page"
-msgstr "Elemente pro Seite"
+msgstr "Positionen pro Seite"
 
 msgid "Max items"
-msgstr "Max-Elemente"
+msgstr "Maximale Positionen"
 
 msgid "Max description characters"
-msgstr "Max Beschreibung Zeichen"
+msgstr "Maximale Zeichen der Beschreibung"
 
 msgid "A Filter box."
-msgstr "Eine Filterbox."
+msgstr "Eine Filterfeld"
 
 msgid "BookingFor Search Filters"
-msgstr "BookingFor Suchfilter"
+msgstr "BookingFor-Suchfilter"
 
 msgid "Your Cart is empty! "
 msgstr "Ihr Warenkorb ist leer! "
 
 msgid "Secure booking. We protect your information"
-msgstr "Sichere Buchung. Wir schützen Ihre Daten"
+msgstr "Sichere Buchung. Wir beschützen Ihre Daten."
 
 msgid "Your reservation includes"
-msgstr "Ihre Buchung enthält"
+msgstr "Ihre Reservierung enthält"
 
 msgid "Host"
-msgstr "Host"
+msgstr "Gastgeber"
 
 msgid "Information"
 msgstr "Informationen"
 
 msgid "Min"
-msgstr "Min"
+msgstr "Min."
 
 msgid "Max"
-msgstr "Max"
+msgstr "Max."
 
 msgid "Options"
 msgstr "Optionen"
@@ -511,7 +544,7 @@ msgid "Total"
 msgstr "Gesamtbuchung"
 
 msgid "days"
-msgstr "Tagen"
+msgstr "Tage"
 
 msgid "nights"
 msgstr "Nächte"
@@ -523,10 +556,10 @@ msgid "Included"
 msgstr "Enthalten"
 
 msgid "VAT"
-msgstr "MWST"
+msgstr "MwSt"
 
 msgid "Not included"
-msgstr "Nicht im Lieferumfang enthalten"
+msgstr "Nicht enthalten"
 
 msgid "City tax per person per night."
 msgstr "Kurtaxe pro Person pro Nacht."
@@ -539,47 +572,47 @@ msgstr "bis"
 
 #, php-format
 msgid "You may cancel free of charge until %1$s before arrival. You will be charged %2$s if you cancel in the %1$s before arrival."
-msgstr "Sie können kündigen bis kostenlos %1$s vor Ankunft. Sie berechnet werden %2$s stornieren Sie in der %1$s vor Ankunft."
+msgstr "Sie können bis %1$s vor Ankunft kostenlos stornieren. Ihnen werden %2$s berechnet, wenn Sie %1$s vor Ankunft stornieren."
 
 msgid "You may cancel free of charge until arrival."
-msgstr "Sie können kündigen bis Ankunft kostenfrei."
+msgstr "Sie können bis zur Ankunft kostenfrei stornieren."
 
 msgid "Special conditions"
 msgstr "Besondere Bedingungen"
 
 #, php-format
 msgid "You may cancel with a charge of %3$s  until %1$s before arrival. You will be charged %2$s if you cancel in the %1$s before arrival."
-msgstr "Sie können kündigen, mit einer Gebühr von %3$s bis %1$s vor Ankunft. Sie berechnet werden %2$s stornieren Sie in der %1$s vor Ankunft."
+msgstr "Sie können mit einer Gebühr von %3$s bis %1$s vor der Ankunft stornieren. Ihnen werden %2$s berechnet, wenn Sie in den %1$s vor der Ankunft stornieren."
 
 #, php-format
 msgid "You will be charged %1$s if you cancel before arrival."
-msgstr "Sie berechnet werden %1$s Wenn Sie vor Ihrer Ankunft stornieren."
+msgstr "Ihnen werden %1$s berechnet, wenn Sie vor der Ankunft stornieren."
 
 msgid "Non refundable"
-msgstr "Nicht rückerstattbar"
+msgstr "Nicht erstattbar"
 
 msgid "You will be charged all if you cancel before arrival."
-msgstr "Sie werden alle aufgeladen werden, wenn Sie vor Ihrer Ankunft stornieren."
+msgstr "Ihnen wird alles berechnet, wenn Sie vor der Ankunft stornieren."
 
 msgid "Pay at the property – NO PREPAYMENT NEEDED"
-msgstr "Zahlen Sie in der Unterkunft – keine Anzahlung erforderlich"
+msgstr "Zahlen Sie in der Unterkunft. – KEINE VORAUSZAHLUNG ERFORDERLICH"
 
 msgid "No prepayment is needed."
-msgstr "Keine Vorauszahlung ist erforderlich."
+msgstr "Keine Vorauszahlung erforderlich."
 
 msgid "You will be charged a prepayment of the total price at any time."
-msgstr "Ihnen werden eine Vorauszahlung des Gesamtbetrags jederzeit berechnet."
+msgstr "Ihnen wird jederzeit eine Vorauszahlung des Gesamtpreises berechnet."
 
 #, php-format
 msgid "You will be charged a prepayment of %1$s of the total price at any time."
-msgstr "Sie berechnet werden, eine Vorauszahlung von %1$s des Gesamtpreises zu jeder Zeit."
+msgstr "Ihnen wird jederzeit eine Vorauszahlung von %1$s des Gesamtpreises."
 
 #, php-format
 msgid "You will be charged a prepayment of %1$s at any time."
-msgstr "Sie berechnet werden, eine Vorauszahlung von %1$s zu jeder Zeit."
+msgstr "Ihnen wird jederzeit eine Vorauszahlung von %1$s berechnet."
 
 msgid "There is no meal option with this room."
-msgstr "Es gibt keine Mahlzeit-Option mit diesem Raum."
+msgstr "Für dieses Zimmer gibt es keine Mahlzeiten-Option."
 
 msgid "Breakfast"
 msgstr "Frühstück"
@@ -606,10 +639,10 @@ msgid "Prepayment"
 msgstr "Vorauszahlung"
 
 msgid "Are you sure?"
-msgstr "Bist du sicher?"
+msgstr "Sind Sie sicher?"
 
 msgid "Enter your details"
-msgstr "Geben Sie Ihre Daten"
+msgstr "Geben Sie Ihre Details ein."
 
 msgid "Name"
 msgstr "Name"
@@ -687,13 +720,13 @@ msgid "Mandatory"
 msgstr "Es ist erforderlich"
 
 msgid "I agree to the conditions"
-msgstr "Ich stimme den Bedingungen"
+msgstr "Ich stimme den Bedingungen zu."
 
 msgid "I accept personal data treatment"
-msgstr "Ich akzeptiere die Verarbeitung personenbezogener Daten"
+msgstr "Ich akzeptiere die Verarbeitung personenbezogener Daten."
 
 msgid "I accept additional purposes"
-msgstr "Ich akzeptiere zusätzliche Zwecke"
+msgstr "Ich akzeptiere zusätzliche Zwecke."
 
 msgid "Send"
 msgstr "Senden"
@@ -702,7 +735,7 @@ msgid "Cart Not enabled! "
 msgstr "Warenkorb nicht aktiviert! "
 
 msgid "OPS, some errors occurred! Please try again later."
-msgstr "OPS, sind einige Fehler aufgetreten! Bitte versuchen Sie es später erneut."
+msgstr "Ups, einige Fehler sind aufgetreten! Bitte später erneut versuchen."
 
 msgid "Your search"
 msgstr "Ihre Suche"
@@ -711,7 +744,7 @@ msgid "Extra services"
 msgstr "Zusätzliche Leistungen"
 
 msgid "Insert your data"
-msgstr "Geben Sie Ihre Daten"
+msgstr "Geben Sie Ihre Daten ein."
 
 msgid "Confirm booking"
 msgstr "Buchung bestätigen"
@@ -720,7 +753,7 @@ msgid "Request for Information"
 msgstr "Unverbindliche Anfrage"
 
 msgid "Cap"
-msgstr "Kappe"
+msgstr "Obergrenze"
 
 msgid "Persons"
 msgstr "Personen"
@@ -735,7 +768,7 @@ msgid "Additional purposes"
 msgstr "Weitere Zwecke"
 
 msgid "Sending..."
-msgstr "Wird gesendet..."
+msgstr "Wird gesendet ..."
 
 msgctxt "Page slug"
 msgid "contactspopup"
@@ -775,15 +808,15 @@ msgstr "Paket"
 
 msgctxt "Page slug"
 msgid "reviews"
-msgstr "Bewertungen zu der Unterkunft"
+msgstr "Bewertungen"
 
 msgctxt "Page slug"
 msgid "review"
-msgstr "Überprüfen Sie"
+msgstr "Bewertung"
 
 msgctxt "Page slug"
 msgid "redirect"
-msgstr "umleiten"
+msgstr "Umleitung"
 
 msgid "Show phone"
 msgstr "Telefon anzeigen"
@@ -807,7 +840,7 @@ msgid "Good to know"
 msgstr "Nützliche Informationen"
 
 msgid "You need to be loggedin in order to access this page."
-msgstr "Du musst Loggedin sein, um diese Seite aufzurufen."
+msgstr "Sie müssen angemeldet sein, um diese Seite aufzurufen."
 
 msgid "Personal Informations"
 msgstr "Persönliche Informationen"
@@ -822,16 +855,16 @@ msgid "Social Network"
 msgstr "Soziales Netzwerk"
 
 msgid "Give your social profiles"
-msgstr "Geben Sie Ihre Social Media-Profile"
+msgstr "Geben Sie Ihre Profile auf sozialen Medien an."
 
 msgid "Connect with your account via your social networks , one less password to remember!"
-msgstr "Eine Verbindung mit Ihrem Konto über Ihre sozialen Netzwerke ein Passwort weniger zu merken!"
+msgstr "Verbinden Sie Ihr Konto über Ihre sozialen Netzwerke. Ein Passwort weniger zu merken!"
 
 msgid "Your profile"
 msgstr "Ihr Profil"
 
 msgid "This information is used to automatically fill in your details and book more quickly. We do not share it publicly."
-msgstr "Diese Informationen wird verwendet, um automatisch füllen Ihre Details und buchen Sie schnell. Wir teilen es nicht öffentlich."
+msgstr "Diese Informationen wird verwendet, um automatisch Ihre Details auszufüllen und schneller zu buchen. Wir teilen sie nicht öffentlich."
 
 msgid "Date of birth"
 msgstr "Geburtsdatum"
@@ -846,10 +879,10 @@ msgid "Female"
 msgstr "Weiblich"
 
 msgid "State/Province"
-msgstr "Bundesland/Kanton"
+msgstr "Bundesland/Provinz"
 
 msgid "Zip Code"
-msgstr "PLZ"
+msgstr "Postleitzahl"
 
 msgid "Language"
 msgstr "Sprache"
@@ -861,19 +894,19 @@ msgid "Reservation number"
 msgstr "Reservierungsnummer"
 
 msgid "Booking Detail"
-msgstr "Buchung Details"
+msgstr "Buchungsdetails"
 
 msgid "Cancel Booking"
 msgstr "Buchung stornieren"
 
 msgid "You want to change your password? Click on the button below and we'll send you an email with a link to reset it."
-msgstr "Sie möchten Ihr Passwort ändern? Klicken Sie auf den Button unten und wir schicken Ihnen eine e-Mail mit einem Link zum Zurücksetzen."
+msgstr "Sie möchten Ihr Passwort ändern? Klicken Sie unten auf den Button und wir schicken Ihnen eine E-Mail mit einem Link zum Zurücksetzen."
 
 msgid "Change your password"
 msgstr "Ändern Sie Ihr Passwort"
 
 msgid "Choose how often you want to receive offers and suggestions, do not miss the best offers!"
-msgstr "Wählen Sie, wie oft Sie Angebote und Anregungen erhalten möchten, verpassen Sie nicht die besten Angebote!"
+msgstr "Wählen Sie, wie oft Sie Angebote und Vorschläge erhalten möchten. Verpassen Sie nicht die besten Angebote!"
 
 msgid "Receive newsletter"
 msgstr "Newsletter erhalten"
@@ -882,10 +915,10 @@ msgid "I do not care"
 msgstr "Ist mir egal"
 
 msgid "Fetching Reservation Details"
-msgstr "Bezaubernde Reservierungsdetails"
+msgstr "Reservierungsdaten werden abgerufen"
 
 msgid "Please be patient"
-msgstr "Seien Sie bitte geduldig"
+msgstr "Bitte warten Sie einen Moment."
 
 msgctxt "Page slug"
 msgid "inforequestpopup"
@@ -903,10 +936,10 @@ msgstr "Bewertung"
 
 msgctxt "Page slug"
 msgid "rapidview"
-msgstr "rapidview"
+msgstr "Schnellansicht"
 
 msgid "Vetrina"
-msgstr "Lateranverträge"
+msgstr "Vitrine"
 
 msgid "Top"
 msgstr "Beste"
@@ -958,7 +991,7 @@ msgid "Order"
 msgstr "Ihre Reservierung"
 
 msgid "Error, please try again"
-msgstr "Fehler, bitte versuchen Sie es erneut"
+msgstr "Fehler, bitte erneut versuhen"
 
 msgid "Payment"
 msgstr "Bezahlung"
@@ -980,7 +1013,7 @@ msgstr "Gesamtpreis"
 
 msgctxt "Page slug"
 msgid "form"
-msgstr "Form"
+msgstr "Formular"
 
 #, php-format
 msgid "%s available accommodations"
@@ -1039,7 +1072,7 @@ msgid "My Cart"
 msgstr "Mein Warenkorb"
 
 msgid "Add to cart"
-msgstr "Add to cart"
+msgstr "In Warenkorb legen"
 
 msgid "Continue shopping"
 msgstr "Weiter einkaufen"
@@ -1064,7 +1097,7 @@ msgstr "auf"
 
 #, php-format
 msgid "We preset your children's ages to %s years old - but if you enter their actual ages, you might be able to find a better price."
-msgstr "Wir voreingestellt Ihre Kinder im Alter bis %s Jahre alt - aber wenn Sie ihre tatsächliche Alter eingeben, können Sie möglicherweise einen besseren Preis finden."
+msgstr "Wir haben das Alter Ihres Kindes auf %s Jahre voreingestellt. Wenn Sie jedoch das tatsächliche Alter eingeben, finden Sie möglicherweise bessere Angebote."
 
 msgid "Select"
 msgstr "Wählen"
@@ -1073,10 +1106,10 @@ msgid "Confirm your reservation"
 msgstr "Bestätigen Sie Ihre Reservierung"
 
 msgid "You can't acquire resources from another merchant."
-msgstr "Sie können nicht Ressourcen von einem anderen Händler zu erwerben."
+msgstr "Sie können keine Ressourcen von einem anderen Händler erwerben."
 
 msgid "selected items"
-msgstr "ausgewählte Elemente"
+msgstr "ausgewählte Positionen"
 
 msgid "Request Now"
 msgstr "Jetzt anfordern"
@@ -1086,11 +1119,11 @@ msgstr "Diese Unterkunft ist zu Ihren Reisedaten leider nicht verfügbar"
 
 #, php-format
 msgid "Persons min:%1$d max:%2$d"
-msgstr "Min. Personen: %1$d max: %2$d"
+msgstr "Personen min: %1$d max: %2$d"
 
 #, php-format
 msgid "Other %1$d choise"
-msgstr "Anderen %1$d Choise"
+msgstr "Andere %1$d Alternativen"
 
 msgid "Find other great offers!"
 msgstr "Finden Sie weitere tolle Angebote!"
@@ -1108,10 +1141,10 @@ msgid "selected services"
 msgstr "ausgewählte Dienstleistungen"
 
 msgid "Please, select a day"
-msgstr "Bitte wählen Sie einen Tag"
+msgstr "Bitte wählen Sie einen Tag."
 
 msgid "Change your details"
-msgstr "Ihre Angaben ändern"
+msgstr "Ihre Details ändern"
 
 msgid "Thank you for having chosen us."
 msgstr "Formular wurde erfolgreich abgegeben. Vielen Dank."
@@ -1254,7 +1287,7 @@ msgid "Read Less"
 msgstr "Weniger lesen"
 
 msgid "please wait..."
-msgstr "Bitte warten..."
+msgstr "Bitte warten ..."
 
 msgid "Type of traveller"
 msgstr "Reisetyp"
@@ -1282,7 +1315,7 @@ msgstr "Liste der Nachteile des Objekts"
 
 #, php-format
 msgid "I certify that this review is based on my own experience and is my genuine opinion of this accommodation, and that I have no personal or business relationship with this establishment, and have not been offered any incentive or payment originating from the establishment to write this review. I understand that %s has a zero-tolerance policy on fake reviews."
-msgstr "Ich bestätige, dass dieser Beitrag basiert auf meiner eigenen Erfahrung und ist meine wirkliche Meinung über diese Unterkunft und ich habe keine persönliche oder geschäftliche Beziehung mit dieser Einrichtung und eine Anreiz oder Zahlung aus der Einrichtung, um diese Bewertung zu schreiben nicht angeboten wurde. Ich verstehe, dass %s hat eine Null-Toleranz-Politik auf gefälschte Bewertungen."
+msgstr "Ich bestätige, dass dieser Beitrag auf meiner eigenen Erfahrung basiert und meine wirkliche Meinung über diese Unterkunft ist und ich keine persönliche oder geschäftliche Beziehung mit dieser Einrichtung habe und mir kein Anreiz oder eine Zahlung von der Einrichtung angebote wurde, um diese Bewertung zu schreiben. Ich verstehe, dass %s eine Null-Toleranz-Politik für gefälschte Rezensionen hat."
 
 msgid "send"
 msgstr "Anmeldung"
@@ -1345,7 +1378,7 @@ msgid "Autonomous"
 msgstr "Autonome"
 
 msgid "Communal"
-msgstr "Kommunale"
+msgstr "Gemeinschaftlich"
 
 msgid "Pay per use"
 msgstr "Pay-per-use"
@@ -1354,7 +1387,7 @@ msgid "Box Auto"
 msgstr "Garage"
 
 msgid "Parking space"
-msgstr "PKW-Stellplatz"
+msgstr "Parkplätze"
 
 msgid "Energy efficiency class"
 msgstr "Energie Klasse"
@@ -1363,25 +1396,25 @@ msgid "not set"
 msgstr "nicht festgelegt"
 
 msgid "Nondescript"
-msgstr "Unscheinbar"
+msgstr "Unauffällig"
 
 msgid "Free property"
-msgstr "Freies Eigentum"
+msgstr "Freies Anwesen"
 
 msgid "Under evaluation"
 msgstr "Unter Begutachtung"
 
 msgid "IPE"
-msgstr "IPE"
+msgstr "EEI"
 
 msgid "Yes"
 msgstr "Ja"
 
 msgid "Real estate agency collaboration"
-msgstr "Immobilien Agentur Zusammenarbeit"
+msgstr "Zusammenarbeit von Immobilienagenturen"
 
 msgid "External order ID"
-msgstr "Externen Bestell-ID"
+msgstr "Externe Bestell-ID"
 
 msgid "Correct format: dd/mm/yyyy"
 msgstr "Richtigen Format: dd/mm/yyyy"
@@ -1390,13 +1423,13 @@ msgid "Booking reference"
 msgstr "Buchungsnummer"
 
 msgid "Client code"
-msgstr "Client-code"
+msgstr "Kundencode"
 
 msgid "Check-in must be great than Check-out"
-msgstr "Check-in muss größer als Check-Out möglich"
+msgstr "Check-in muss größer als Check-Out sein"
 
 msgid "Please insert a valid email address!"
-msgstr "Bitte geben Sie eine gültige e-Mail Adresse!"
+msgstr "Bitte geben Sie eine gültige E-Mail-Adresse ein!"
 
 msgid "Rejected order"
 msgstr "Abgelehnte Bestellung"
@@ -1408,22 +1441,22 @@ msgid "Status"
 msgstr "Status"
 
 msgid "Order sent to bank"
-msgstr "Bestellung per Banküberweisung"
+msgstr "Auftrag an Bank gesendet"
 
 msgid "Pay"
-msgstr "Zahlen"
+msgstr "Bezahlen"
 
 msgid "Waiting to confirm"
-msgstr "Warten auf Bestätigung"
+msgstr "Bestätigung wird erwartet"
 
 msgid "Payment attempt was not successful. Try again"
-msgstr "Zahlung-Versuch war nicht erfolgreich. Wiederholen"
+msgstr "Zahlungsversuch war nicht erfolgreich. Erneut versuchen."
 
 msgid "Payed order"
 msgstr "Bezahlte Bestellung"
 
 msgid "Order by credit card guarantee"
-msgstr "Bestellen Sie per Kreditkarte als Garantie"
+msgstr "Per Kreditkartengarantie bestellen"
 
 msgid "Change data"
 msgstr "Daten ändern"
@@ -1439,7 +1472,7 @@ msgstr "Personen"
 
 #, php-format
 msgid "%1s will not charge anything to your credit card. Your credit card details are only requested in order to guarantee your booking."
-msgstr "%1s wird nicht alles von Ihrer Kreditkarte kostenlos. Ihre Kreditkartendaten werden nur angefordert, um Ihre Buchung zu garantieren."
+msgstr "%1s wird Ihrer Kreditkarte nichts belasten. Ihre Kreditkartendaten werden nur angefordert, um Ihre Buchung zu garantieren."
 
 msgid "Other payments"
 msgstr "Sonstige Zahlungen"
@@ -1457,10 +1490,10 @@ msgid "New payment"
 msgstr "Neue Zahlung"
 
 msgid "It 'requires a further amount for payments"
-msgstr "Es \"erfordert einen weiteren Betrag für Zahlungen"
+msgstr "Es ist ein weiterer Betrag für Zahlungen erforderlich."
 
 msgid "Please insert a correct amount, it should be this format: xxx.xx (please use dot for deciaml prices)"
-msgstr "Bitte legen Sie eine richtige Menge, es sollte dieses Format: xxx.xx (Bitte verwenden Sie Punkt für Deciaml Preise)"
+msgstr "Bitte geben Sie einen korrekten Betrag ein. Er sollte dieses Format haben: xxx.xx (Bitte ein Punkt für Dezimalpreise verwenden.)"
 
 msgid "Thank you: payment process successfully completed"
 msgstr "Danke: Zahlungsvorgang erfolgreich abgeschlossen"
@@ -1475,19 +1508,19 @@ msgid "Payment process not successfully completed and has been deleted"
 msgstr "Zahlungsvorgang nicht erfolgreich abgeschlossen und wurde gelöscht"
 
 msgid "Some problems occured durint payment process, please contact merchant if you are sure that your payment process completed"
-msgstr "Einige Probleme traten waehrend Zahlungsvorgang, bitte Händler kontaktieren, wenn Sie sicher sind, dass Ihre Zahlung abgeschlossen"
+msgstr "Einige Probleme traten wahrend des Zahlungsvorgangs auf. Bitte Händler kontaktieren, wenn Sie sicher sind, dass Ihre Zahlungsvorgang abgeschlossen wurde."
 
 msgid "Error inserting data"
 msgstr "Fehler beim Einfügen der Daten"
 
 msgid "Order doesn't exist"
-msgstr "Ordnung ist nicht vorhanden."
+msgstr "Die Bestellung ist nicht vorhanden."
 
 msgid "Deposit does not exist"
-msgstr "Kaution ist nicht vorhanden"
+msgstr "Anzahlung ist nicht vorhanden"
 
 msgid "At this moment you cannot do payments."
-msgstr "In diesem Moment nicht möglich Zahlungen."
+msgstr "Derzeit können Sie keine Zahlungen vornehmen."
 
 msgid "index.php?view=payment&actionmode=error&payedOrderId="
 msgstr "Index.PHP?View=Payment&actionmode=Error&payedOrderId="
@@ -1580,26 +1613,26 @@ msgid "Attention!"
 msgstr "Achtung!"
 
 msgid "It 's not possible to insert your own review"
-msgstr "Es ist nicht möglich, legen Ihre eigene Rezension"
+msgstr "Es ist nicht möglich, Ihre eigene Rezension hinzuzufügen."
 
 msgid "nonexistent order"
 msgstr "nicht vorhandene Bestellung"
 
 msgid "Order with already a Review"
-msgstr "Bestellen Sie mit bereits eine Überprüfung"
+msgstr "Bestellung mit bereits einer Rezension"
 
 msgid "nonexistent order or to which it is not possible to associate a review"
-msgstr "nicht vorhandene Bestellung oder bei denen es nicht möglich, einen Beitrag zu verbinden"
+msgstr "nicht vorhandene Bestellung oder bei der es nicht möglich ist, eine Rezension zuzuordnen"
 
 msgid "Order not related at this resource"
-msgstr "Auf diese Ressource nicht auftragsbezogene"
+msgstr "Die Bestellung ist nicht mit dieser Ressource verbunden."
 
 msgid "Order make before the date to make a review"
-msgstr "Bestellung zu machen, vor dem Datum eine Überprüfung stellen"
+msgstr "Sie können keine Rezension hinterlassen, wenn Ihr Bestelldatum in der Zukunft liegt."
 
 #, php-format
 msgid "Found %s results"
-msgstr "Gefunden %s Ergebnisse"
+msgstr "%s Ergebnisse gefunden"
 
 #, php-format
 msgid "From %s to %s"
@@ -1610,7 +1643,7 @@ msgstr "Anfrage"
 
 #, php-format
 msgid "%s reviews"
-msgstr "%s Bewertungen"
+msgstr "%s Rezensionen"
 
 msgid "Breakfast included"
 msgstr "Frühstück inbegriffen"
@@ -1630,22 +1663,22 @@ msgstr "Summe für"
 
 #, php-format
 msgid " %d day/s"
-msgstr " %d Tag/e"
+msgstr " %d Tag(e)"
 
 #, php-format
 msgid " %d night/s"
-msgstr " %d Nacht/s"
+msgstr " %d Nacht/Nächte"
 
 #, php-format
 msgid " %d hour/s"
-msgstr " %d Stunde/s"
+msgstr " %d Stunde(n)"
 
 #, php-format
 msgid " %d minute/s"
-msgstr " %d Minute/s"
+msgstr " %d Minute(n)"
 
 msgid "From"
-msgstr "Von"
+msgstr "Ab"
 
 msgid "No result available"
 msgstr "Kein Ergebnis verfügbar"
@@ -1675,7 +1708,7 @@ msgid "Show only online booking"
 msgstr "Nur Online-Buchung anzeigen"
 
 msgid "All province"
-msgstr "Alle Provinz"
+msgstr "Alle Provinzen"
 
 msgid "from"
 msgstr "Vom"
@@ -1696,7 +1729,7 @@ msgid "Please select"
 msgstr "Wählen"
 
 msgid "Please enter a integer number"
-msgstr "Bitte geben Sie eine ganze Zahl"
+msgstr "Bitte eine ganze Zahl eingeben."
 
 msgid "We're processing your request"
 msgstr "Wir bearbeiten Ihre Anfrage"
@@ -1711,7 +1744,7 @@ msgid "Reset"
 msgstr "Zurücksetzen"
 
 msgid "Click on map and choose your area."
-msgstr "Klicken Sie auf die Karte und wählen Sie einen Ort."
+msgstr "Auf Karte karte und Ihren Bereich auswählen."
 
 msgid "Holiday Packages"
 msgstr "Urlaubspakete"
@@ -1729,7 +1762,7 @@ msgid "All inclusive"
 msgstr "All-inclusive"
 
 msgid "Unrated"
-msgstr "Ohne Klassifizierung"
+msgstr "Unbewertet"
 
 msgid "1 star"
 msgstr "1 Stern"
@@ -1771,10 +1804,10 @@ msgid "Budget"
 msgstr "Budget"
 
 msgid "Star rating"
-msgstr "Anzahl der Sterne"
+msgstr "Sternebewertung"
 
 msgid "Property facility"
-msgstr "Immobilien facility"
+msgstr "Unterkunftsmöglichkeit"
 
 msgid "Booking type"
 msgstr "Booking typ"
@@ -1783,7 +1816,7 @@ msgid "Offer"
 msgstr "Angebot"
 
 msgid "Book with ease "
-msgstr "Buchen Sie mit Leichtigkeit "
+msgstr "Bequem buchen "
 
 msgid "Show map"
 msgstr "Karte anzeigen"

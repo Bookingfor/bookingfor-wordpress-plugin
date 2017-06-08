@@ -2358,8 +2358,8 @@ window.criteo_q.push(
 								PriceId: currPriceId,
 								CalculatedQt: currValue,
 								ResourceId: currResId, 
-								TotalDiscounted: (sendtocart==0)?parseFloat(jQuery(this).attr('data-baseprice'))*currValue:jQuery(this).attr('data-baseprice'), 
-								TotalAmount:  (sendtocart==0)?parseFloat(jQuery(this).attr('data-basetotalprice'))*currValue:jQuery(this).attr('data-basetotalprice'), 
+								TotalDiscounted: parseFloat(jQuery(this).attr('data-baseprice'))*currValue, 
+								TotalAmount:  parseFloat(jQuery(this).attr('data-basetotalprice'))*currValue, 
 							}
 							if(currPriceAvailabilityType==2){
 								var currTr = jQuery("#bfi-timeperiod-"+currPriceId);

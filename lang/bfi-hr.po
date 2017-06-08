@@ -1,0 +1,1784 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: VERSION\n"
+"POT-Creation-Date: 2017-05-31 13:45+0000\n"
+"PO-Revision-Date: 2017-05-31 15:58+0200\n"
+"Language-Team: LANGUAGE TEAM <EMAIL@ADDRESS>\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Last-Translator: \n"
+"X-Generator: Poedit 1.8.11\n"
+
+msgid "This is a demo store for testing purposes &mdash; no orders shall be fulfilled."
+msgstr "Ovo je demonstracija za potrebe testiranja &mdash; narudžba ne mora biti ispunjena."
+
+#, php-format
+msgid "Search Results: &ldquo;%s&rdquo;"
+msgstr "Rezultati pretraživanja: &ldquo;%s&rdquo;"
+
+#, php-format
+msgid "&nbsp;&ndash; Page %s"
+msgstr "&nbsp;&ndash; Stranica %s"
+
+msgctxt "Page slug"
+msgid "search-availability"
+msgstr "Dostupnost pretraživanja"
+
+msgctxt "slug"
+msgid "search-availability"
+msgstr "Dostupnost pretraživanja"
+
+msgctxt "default-slug"
+msgid "search-availability"
+msgstr "Dostupnost pretraživanja"
+
+msgctxt "Page title"
+msgid "Search Availability"
+msgstr "Dostupnost pretraživanja"
+
+msgctxt "Page slug"
+msgid "properties-for-sale"
+msgstr "Nekretnine za prodaju"
+
+msgctxt "Page title"
+msgid "Search Properties for sale"
+msgstr "Pronađite nekretnine za prodaju"
+
+msgctxt "Page slug"
+msgid "merchantdetails"
+msgstr "Trgovinski podaci"
+
+msgctxt "slug"
+msgid "merchantdetails"
+msgstr "trgovinski podaci"
+
+msgctxt "Page title"
+msgid "Merchant Details"
+msgstr "Detalji trgovca"
+
+msgctxt "Page slug"
+msgid "accommodation-details"
+msgstr "smjestaj-pojedinosti"
+
+msgctxt "slug"
+msgid "accommodation-details"
+msgstr "smjestaj-pojedinosti"
+
+msgctxt "Page title"
+msgid "Accommodation Details"
+msgstr "Detalji smještaja"
+
+msgctxt "Page slug"
+msgid "onsell-details"
+msgstr "Onsell-pojedinosti"
+
+msgctxt "slug"
+msgid "onsell-details"
+msgstr "onsell-pojedinosti"
+
+msgctxt "Page title"
+msgid "On Sell Details"
+msgstr "Na pojedinosti o prodaji"
+
+msgctxt "Page slug"
+msgid "orders"
+msgstr "Narudžbe"
+
+msgctxt "Page title"
+msgid "Order Details"
+msgstr "Detalji narudžbe"
+
+msgctxt "Page slug"
+msgid "payment"
+msgstr "plaćanje"
+
+msgctxt "Page title"
+msgid "Payment Details"
+msgstr "Pojedinosti o plaćanju"
+
+msgctxt "Page slug"
+msgid "my-account"
+msgstr "moj račun"
+
+msgctxt "Page title"
+msgid "My Account"
+msgstr "Moj račun"
+
+msgctxt "Page slug"
+msgid "cartdetails"
+msgstr "pojedinosti košarice"
+
+msgctxt "Page title"
+msgid "Cart Details"
+msgstr "Pojedinosti košarice"
+
+msgctxt "slug"
+msgid "merchantlist"
+msgstr "Trgovački popis"
+
+msgid "Merchant list pages"
+msgstr "Stranice popisa trgovca"
+
+msgid "Merchant list page"
+msgstr "Stranica popisa trgovca"
+
+msgctxt "Admin menu name"
+msgid "Merchant list"
+msgstr "Popis trgovaca"
+
+msgid "Add Merchant list page"
+msgstr "Dodaj stranicu popisa trgovca"
+
+msgid "Add New Merchant list page"
+msgstr "Dodaj novu stranicu popisa trgovca"
+
+msgid "Edit"
+msgstr "Uredi"
+
+msgid "Edit Merchant list page"
+msgstr "Uredi stranicu popisa trgovca"
+
+msgid "New Merchant list page"
+msgstr "Nova stranica popisa trgovca"
+
+msgid "View Merchant list page"
+msgstr "Prikaz stranice popisa trgovca"
+
+msgid "Search Merchant list page"
+msgstr "Pretraži stranicu popisa trgovca"
+
+msgid "No Merchant list page found"
+msgstr "Nije pronađena nijedna stranica popisa trgovca"
+
+msgid "No Merchant list page found in trash"
+msgstr "Nijedna stranica popisa trgovca nije pronađena u smeću"
+
+msgid "Parent Merchant list page"
+msgstr "Nadređena stranica popisa trgovca"
+
+msgid "Insert into Merchant list page"
+msgstr "Umetanje na stranicu popisa trgovca"
+
+msgid "Uploaded to this Merchant list page"
+msgstr "Preneseno na ovu stranicu popisa trgovca"
+
+msgid "Filter Merchant list pages"
+msgstr "Filtrirajte stranice popisa trgovca"
+
+msgid "Merchant list pages navigation"
+msgstr "Navigacija stranicama popisa trgovca"
+
+msgid "This is where you can add new Merchant list page."
+msgstr "Tu možete dodati novu stranicu popisa trgovca."
+
+msgid "Merchant details"
+msgstr "Pojedinosti trgovca"
+
+msgid "Accomodation details"
+msgstr "Pojedinosti smještaja"
+
+msgid "Order details"
+msgstr "Detalji narudžbe"
+
+msgid "On Sell details"
+msgstr "Na pojedinostima o prodaji"
+
+msgid "Cart details"
+msgstr "Pojedinosti košarice"
+
+msgid "Autentication Mode"
+msgstr "Način provjere autentičnosti"
+
+msgid "Categories"
+msgstr "Kategorije"
+
+msgid "Merchant category filter"
+msgstr "Filtar kategorije trgovca"
+
+msgid "Merchant Rating filter"
+msgstr "Filtar za ocjenjivanje trgovca"
+
+msgid "All"
+msgstr "Svi"
+
+msgid "Cities"
+msgstr "Gradovi"
+
+msgid "BookingFor Permalinks"
+msgstr "BookingFor Permalinks"
+
+msgid "BookingFor search result page"
+msgstr "BookingFor stranica rezultata pretraživanja"
+
+msgid "BookingFor Merchant details page"
+msgstr "BookingFor stranica s pojedinostima trgovca"
+
+msgid "BookingFor Accommodation details page"
+msgstr "BookingFor stranica s pojedinostima smještaja"
+
+msgid "BookingFor On Sell details page"
+msgstr "BookingFor na stranici s pojedinostima prodaje"
+
+msgid "BookingFor Merchant List page"
+msgstr "BookingFor stranica popisa trgovca"
+
+msgid "These settings control the permalinks used specifically for BookingFor."
+msgstr "Te postavke kontroliraju permalinks koji se koriste posebno za BookingFor."
+
+msgid "Default"
+msgstr "Zadano"
+
+msgid "Search Availability base"
+msgstr "Traži dostupnost baze"
+
+msgid "Custom Base"
+msgstr "Prilagođena baza"
+
+msgid "Enter a custom base to use. A base <strong>must</strong> be set or WordPress will use default instead."
+msgstr "Unesite prilagođenu bazu za upotrebu. Baza  <strong> mora biti postavljena </strong> ili će WordPress koristiti umjesto zadane."
+
+msgctxt "default-slug"
+msgid "searchavailability"
+msgstr "searchavailability"
+
+msgid "Euro"
+msgstr "Euro"
+
+msgid "Kune"
+msgstr "Kune"
+
+msgid "U.S. dollar"
+msgstr "Američki dolar"
+
+msgid "Japanese yen"
+msgstr "Japanski jen"
+
+msgid "Canadian dollar"
+msgstr "Kanadski dolar"
+
+msgid "Australian dollar"
+msgstr "Australski dolar"
+
+msgid "Russian Ruble"
+msgstr "Ruska rublja"
+
+msgid "Czech koruna"
+msgstr "Češka kruna"
+
+msgid "Singapore dollar"
+msgstr "Singapurski dolar"
+
+msgid "Pound sterling "
+msgstr "Funta"
+
+#, php-format
+msgid "If you like <strong>BookingFor</strong> please leave us a %s&#9733;&#9733;&#9733;&#9733;&#9733;%s rating. A huge thank you from Bookingfor in advance!"
+msgstr "Ako vam se sviđa <strong> BookingFor </strong> ostavite nam %s &#9733; &#9733; &#9733; &#9733; &#9733; %s ocjenu. Unaprijed veliko hvala od Bookingfor!"
+
+msgid "Thanks"
+msgstr "Hvala"
+
+msgid "Thank you for selling with BookingFor."
+msgstr "Hvala vam što prodajete s BookingFor."
+
+msgid "Save changes"
+msgstr "Spremi promjene"
+
+msgid "&resourceId="
+msgstr "&resourceId="
+
+msgid "index.php?option=com_bookingforconnector&view=onsellunit&resourceId="
+msgstr "index.php?option=com_bookingforconnector&view=onsellunit&resourceId="
+
+msgctxt "Page slug"
+msgid "thanks"
+msgstr "Hvala"
+
+msgctxt "Page slug"
+msgid "errors"
+msgstr "pogreške"
+
+msgid "Display the user's Cart link in the sidebar."
+msgstr "Prikaži u bočnoj traci poveznicu na košaricu korisnika."
+
+msgid "BookingFor Cart"
+msgstr "BookingFor košarica"
+
+msgid "Title"
+msgstr "Titula"
+
+msgid "Display the user's currency switcher in the sidebar."
+msgstr "Prikaži u bočnoj traci izmjenjivač korisničke valute."
+
+msgid "BookingFor currency switcher"
+msgstr "BookingFor izmjenjivač valuta "
+
+msgid "A Search box for multimerchant, monomerchant and sell on."
+msgstr "Traganje okvir za multimerchant, monomerchant i prodavati dalje."
+
+msgid "BookingFor Search"
+msgstr "BookingFor pretraživanje"
+
+msgid "Booking"
+msgstr "Rezerviranje"
+
+msgid "Activities"
+msgstr "Aktivnosti"
+
+msgid "Real Estate"
+msgstr "Nekretnina"
+
+msgid "Nights"
+msgstr "Noći"
+
+msgid "Days"
+msgstr "Dana"
+
+msgid "Unit of times"
+msgstr "Jedinica vremena"
+
+msgid "Time slot"
+msgstr "Termin"
+
+msgid "Resource"
+msgstr "Resurs"
+
+msgid "Merchant"
+msgstr "Trgovac"
+
+msgid "Condominium"
+msgstr "Stan koji je svojina stanara"
+
+msgid "Service"
+msgstr "Servis"
+
+msgid "Tab"
+msgstr "Kartica"
+
+msgid "Block Months"
+msgstr "Blok mjeseci"
+
+msgid "Disable Days"
+msgstr "Onemogući dane"
+
+msgid "Merchant category"
+msgstr "Kategorija trgovica"
+
+msgid "Product category"
+msgstr "Kategorija proizvoda"
+
+msgid "Search availability for"
+msgstr "Traži raspoloživost za"
+
+msgid "Items type"
+msgstr "Vrsta stavke"
+
+msgid "Default group by "
+msgstr "Zadanu skupinu po"
+
+msgid "Displays horizontally"
+msgstr "Prikazuje vodoravno"
+
+msgid "Fields Visibility"
+msgstr "Vidljivost polja"
+
+msgid "Destination"
+msgstr "Odredište"
+
+msgid "Map Button"
+msgstr "Gumb karta"
+
+msgid "Type"
+msgstr "Tip"
+
+msgid "Date Range"
+msgstr "Raspon datuma"
+
+msgid "Adults"
+msgstr "Odrasli"
+
+msgid "Childrens"
+msgstr "Dječji"
+
+msgid "Senior"
+msgstr "Stariji"
+
+msgid "Services"
+msgstr "Usluge"
+
+msgid "Only Online Booking"
+msgstr "Samo online rezervacija"
+
+msgid "Contract"
+msgstr "Ugovor"
+
+msgid "Price"
+msgstr "Cijena"
+
+msgid "Floor Area"
+msgstr "Površina"
+
+msgid "BedRooms"
+msgstr "Spavaće sobe"
+
+msgid "Rooms"
+msgstr "Sobe"
+
+msgid "Baths"
+msgstr "Kupaonice"
+
+msgid "Only New"
+msgstr "Samo novo"
+
+msgid "Services list"
+msgstr "Popis usluga"
+
+msgid "A details merchant box."
+msgstr "Okvir pojedinosti trgovca."
+
+msgid "BookingFor details merchant box"
+msgstr "BookingFor pojedinosti - trgovački okvir"
+
+msgid "A Carousel list of Merchants."
+msgstr "Popis trgovaca u obliku vrtuljka."
+
+msgid "BookingFor Merchants"
+msgstr "BookingFor trgovci"
+
+msgid "Tags"
+msgstr "Oznake"
+
+msgid "Items per page"
+msgstr "Stavki po stranici"
+
+msgid "Max items"
+msgstr "Maksimalni broj stavki"
+
+msgid "Max description characters"
+msgstr "Maksimalni broj znakova u opisu"
+
+msgid "A Filter box."
+msgstr "Filterskog okvir."
+
+msgid "BookingFor Search Filters"
+msgstr "BookingFor uvjeti pretraživanja"
+
+msgid "Your Cart is empty! "
+msgstr "Vaša košarica je prazna!"
+
+msgid "Secure booking. We protect your information"
+msgstr "Sigurna rezervacija. Štitimo vaše podatke"
+
+msgid "Your reservation includes"
+msgstr "Vaša rezervacija uključuje"
+
+msgid "Host"
+msgstr "Domaćin"
+
+msgid "Information"
+msgstr "Informacija"
+
+msgid "Min"
+msgstr "Min"
+
+msgid "Max"
+msgstr "Max"
+
+msgid "Options"
+msgstr "Opcije"
+
+msgid "Qt."
+msgstr "Kol."
+
+msgid "Seniores"
+msgstr "Stariji"
+
+msgid "Children"
+msgstr "Djeca"
+
+msgid "Years"
+msgstr "Godina"
+
+msgid "Check-in"
+msgstr "Prijava"
+
+msgid "Check-out"
+msgstr "Odjava"
+
+msgid "Total"
+msgstr "Ukupno"
+
+msgid "days"
+msgstr "dana"
+
+msgid "nights"
+msgstr "noći"
+
+msgid "hours"
+msgstr "sati"
+
+msgid "Included"
+msgstr "Uključen"
+
+msgid "VAT"
+msgstr "PDV"
+
+msgid "Not included"
+msgstr "Nije uključeno"
+
+msgid "City tax per person per night."
+msgstr "Boravišna pristojba po osobi za noć."
+
+msgid "Cancellation FREE"
+msgstr "Otkazivanje BESPLATNO"
+
+msgid "until"
+msgstr "do"
+
+#, php-format
+msgid "You may cancel free of charge until %1$s before arrival. You will be charged %2$s if you cancel in the %1$s before arrival."
+msgstr "Možete otkazati bez naknade do %1$s prije dolaska. Naplatit će vam se %2$s ako otkažete %1$s prije dolaska."
+
+msgid "You may cancel free of charge until arrival."
+msgstr "Besplatno možete otkazati do dolaska."
+
+msgid "Special conditions"
+msgstr "Posebni uvjeti"
+
+#, php-format
+msgid "You may cancel with a charge of %3$s  until %1$s before arrival. You will be charged %2$s if you cancel in the %1$s before arrival."
+msgstr "Možete otkazati s naplatom %3$s do %1$s prije dolaska. Naplatit će vam se %2$s ako otkažete %1$s prije dolaska."
+
+#, php-format
+msgid "You will be charged %1$s if you cancel before arrival."
+msgstr "Naplatit će vam se %1$s ako otkažete prije dolaska."
+
+msgid "Non refundable"
+msgstr "Nepovratna"
+
+msgid "You will be charged all if you cancel before arrival."
+msgstr "Naplatit će vam se sve ako otkažete prije dolaska."
+
+msgid "Pay at the property – NO PREPAYMENT NEEDED"
+msgstr "Platite u objektu - nije potreban avans"
+
+msgid "No prepayment is needed."
+msgstr "Nije potreban avans."
+
+msgid "You will be charged a prepayment of the total price at any time."
+msgstr "Bit će vam naplaćen avans od ukupne cijene u bilo kojem trenutku."
+
+#, php-format
+msgid "You will be charged a prepayment of %1$s of the total price at any time."
+msgstr "Bit će vam naplaćen avans %1$s od ukupne cijene u bilo kojem trenutku."
+
+#, php-format
+msgid "You will be charged a prepayment of %1$s at any time."
+msgstr "Bit će vam naplaćen avans %1$s u bilo kojem trenutku."
+
+msgid "There is no meal option with this room."
+msgstr "Ne postoji mogućnost obroka u ovoj sobi."
+
+msgid "Breakfast"
+msgstr "Doručak"
+
+msgid "Lunch"
+msgstr "Ručak"
+
+msgid "Dinner"
+msgstr "Večera"
+
+msgid "All Inclusive"
+msgstr "Sve uključeno"
+
+msgid "included"
+msgstr "uključen"
+
+msgid "Meals"
+msgstr "Obroci"
+
+msgid "Cancellation"
+msgstr "Otkazivanje"
+
+msgid "Prepayment"
+msgstr "plaćanje unaprijed"
+
+msgid "Are you sure?"
+msgstr "Jeste li sigurni?"
+
+msgid "Enter your details"
+msgstr "Unesite svoje podatke"
+
+msgid "Name"
+msgstr "Ime"
+
+msgid "This field is required."
+msgstr "Ovo polje je obavezno."
+
+msgid "Surname"
+msgstr "Prezime"
+
+msgid "Email"
+msgstr "E-pošta"
+
+msgid "Reenter email"
+msgstr "Ponovno unesite e-poštu"
+
+msgid "Address"
+msgstr "Adresa"
+
+msgid "Postal Code"
+msgstr "Poštanski broj"
+
+msgid "Country"
+msgstr "Zemlja"
+
+msgid "Note"
+msgstr "Bilješka"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Your estimated time of arrival"
+msgstr "Procijenjeno vrijeme vašeg dolaska"
+
+msgid "I don't know"
+msgstr "Ne znam"
+
+msgid "Password"
+msgstr "Lozinka"
+
+msgid "City"
+msgstr "Grad"
+
+msgid "Province"
+msgstr "Pokrajina"
+
+msgid "Payment method"
+msgstr "Način plaćanja"
+
+msgid "Please choose a payment method"
+msgstr "Odaberite način plaćanja"
+
+msgid "Deposit"
+msgstr "Depozit"
+
+msgid "Credit card details"
+msgstr "Podaci o kreditnoj kartici"
+
+msgid "Holder"
+msgstr "Vlasnik"
+
+msgid "Number"
+msgstr "Broj"
+
+msgid "Valid until"
+msgstr "Vrijedi do"
+
+msgid "Month (MM)"
+msgstr "Mjesec (MM)"
+
+msgid "Year (YY)"
+msgstr "Godina (GG)"
+
+msgid "Mandatory"
+msgstr "Obavezno"
+
+msgid "I agree to the conditions"
+msgstr "Slažem se s uvjetima"
+
+msgid "I accept personal data treatment"
+msgstr "Prihvaćam obradu osobnih podataka"
+
+msgid "I accept additional purposes"
+msgstr "Prihvaćam dodatne svrhe"
+
+msgid "Send"
+msgstr "Pošalji"
+
+msgid "Cart Not enabled! "
+msgstr "Košarica nije omogućena!"
+
+msgid "OPS, some errors occurred! Please try again later."
+msgstr "Pojavila se pogreška! Pokušajte ponovo kasnije."
+
+msgid "Your search"
+msgstr "Vaše pretraživanje"
+
+msgid "Extra services"
+msgstr "Dodatne usluge"
+
+msgid "Insert your data"
+msgstr "Umetnite podatke"
+
+msgid "Confirm booking"
+msgstr "Potvrda rezervacije"
+
+msgid "Request for Information"
+msgstr "Zahtjev za informiranje"
+
+msgid "Cap"
+msgstr "Kapa"
+
+msgid "Persons"
+msgstr "Osobe"
+
+msgid "Special Requests"
+msgstr "Posebne usluge"
+
+msgid "Personal data treatment"
+msgstr "Obrada osobnih podataka"
+
+msgid "Additional purposes"
+msgstr "Dodatne svrhe"
+
+msgid "Sending..."
+msgstr "Slanje ..."
+
+msgctxt "Page slug"
+msgid "contactspopup"
+msgstr "contactspopup"
+
+msgctxt "Page slug"
+msgid "mapspopup"
+msgstr "mapspopup"
+
+msgctxt "Page slug"
+msgid "thankspopup"
+msgstr "thankspopup"
+
+msgctxt "Page slug"
+msgid "resources"
+msgstr "resursi"
+
+msgctxt "Page slug"
+msgid "onsellunits"
+msgstr "onsellunits"
+
+msgctxt "Page slug"
+msgid "offers"
+msgstr "ponude"
+
+msgctxt "Page slug"
+msgid "offer"
+msgstr "ponuda"
+
+msgctxt "Page slug"
+msgid "packages"
+msgstr "paketi"
+
+msgctxt "Page slug"
+msgid "package"
+msgstr "paket"
+
+msgctxt "Page slug"
+msgid "reviews"
+msgstr "recenzije"
+
+msgctxt "Page slug"
+msgid "review"
+msgstr "recenzija"
+
+msgctxt "Page slug"
+msgid "redirect"
+msgstr "preusmjeriti"
+
+msgid "Show phone"
+msgstr "Prikaži broj telefona"
+
+msgid "Web site"
+msgstr "Web stranica"
+
+msgid "Request info"
+msgstr "Zahtjev za info"
+
+msgid "Proposals"
+msgstr "prijedlozi"
+
+msgid "Offers"
+msgstr "Ponude"
+
+msgid "Reviews"
+msgstr "Recenzije"
+
+msgid "Good to know"
+msgstr "Dobro je znati"
+
+msgid "You need to be loggedin in order to access this page."
+msgstr "Morate biti prijavljeni kako biste pristupili ovoj stranici."
+
+msgid "Personal Informations"
+msgstr "Osobni podaci"
+
+msgid "Reservations"
+msgstr "Rezervacije"
+
+msgid "Settings"
+msgstr "Postavke"
+
+msgid "Social Network"
+msgstr "Društvena mreža"
+
+msgid "Give your social profiles"
+msgstr "Dajte svoje društvene profile"
+
+msgid "Connect with your account via your social networks , one less password to remember!"
+msgstr "Povezivanje s računom putem društvenih mreža, jedna lozinka  manje za pamćenje!"
+
+msgid "Your profile"
+msgstr "Vaš profil"
+
+msgid "This information is used to automatically fill in your details and book more quickly. We do not share it publicly."
+msgstr "Ti podaci se koriste za automatsko popunjavanje vaših podataka i bržu rezervaciju. Nikad ih  javno ne dijelimo."
+
+msgid "Date of birth"
+msgstr "Datum rođenja"
+
+msgid "Gender"
+msgstr "Spol"
+
+msgid "Male"
+msgstr "Muški"
+
+msgid "Female"
+msgstr "Ženski"
+
+msgid "State/Province"
+msgstr "Država / provincija"
+
+msgid "Zip Code"
+msgstr "Poštanski broj"
+
+msgid "Language"
+msgstr "Jezik"
+
+msgid "Submit"
+msgstr "Pošalji"
+
+msgid "Reservation number"
+msgstr "Broj rezervacije"
+
+msgid "Booking Detail"
+msgstr "Detalj rezervacije"
+
+msgid "Cancel Booking"
+msgstr "Odustani od rezervacije"
+
+msgid "You want to change your password? Click on the button below and we'll send you an email with a link to reset it."
+msgstr "Želite li promijeniti svoju lozinku? Kliknite na gumb dolje i poslat ćemo vam e-poštu s vezom za ponovno postavljanje lozinke."
+
+msgid "Change your password"
+msgstr "Promjenite lozinku"
+
+msgid "Choose how often you want to receive offers and suggestions, do not miss the best offers!"
+msgstr "Odaberite koliko često želite primati ponude i prijedloge, ne propustite najbolje ponude!"
+
+msgid "Receive newsletter"
+msgstr "Primajte obavijesti"
+
+msgid "I do not care"
+msgstr "Ne zanima me"
+
+msgid "Fetching Reservation Details"
+msgstr "Dohvat pojedinosti o rezervaciji"
+
+msgid "Please be patient"
+msgstr "Molimo budite strpljivi"
+
+msgctxt "Page slug"
+msgid "inforequestpopup"
+msgstr "inforequestpopup"
+
+msgid "List"
+msgstr "Popis"
+
+msgid "Grid"
+msgstr "Rešetka"
+
+msgctxt "Page slug"
+msgid "rating"
+msgstr "ocjenjivanje"
+
+msgctxt "Page slug"
+msgid "rapidview"
+msgstr "rapidview"
+
+msgid "Vetrina"
+msgstr "Izlog"
+
+msgid "Top"
+msgstr "Vrh"
+
+msgid "New!"
+msgstr "Novo!"
+
+msgid "m&sup2;"
+msgstr "m²"
+
+msgid "Contact Agent"
+msgstr "Agent za kontakt"
+
+msgid "Details"
+msgstr "Pojedinosti"
+
+msgid "New ad"
+msgstr "Novi oglas"
+
+msgid "&laquo;"
+msgstr "&laquo;"
+
+msgid "&raquo;"
+msgstr "&raquo;"
+
+msgid "Page"
+msgstr "Stranica"
+
+msgid "Would you like to leave your review?"
+msgstr "Želite li ostaviti svoju recenziju?"
+
+#, php-format
+msgid "Score from %s reviews"
+msgstr "Ocjena od %s recenzija"
+
+msgid "Guest Rating"
+msgstr "Ocjene gostiju"
+
+msgid "Read more"
+msgstr "Pročitaj više"
+
+msgid "Read less"
+msgstr "Pročitaj manje"
+
+msgid "No results available"
+msgstr "Nema raspoloživih rezultata"
+
+msgid "Order"
+msgstr "Narudžba"
+
+msgid "Error, please try again"
+msgstr "Pogreška, pokušajte ponovno"
+
+msgid "Payment"
+msgstr "Plaćanje"
+
+msgid " Years"
+msgstr "Godina"
+
+msgid "Back to list"
+msgstr "Natrag na popis"
+
+msgid "adults"
+msgstr "odrasli"
+
+msgid "children"
+msgstr "djeca"
+
+msgid "Total Price"
+msgstr "Ukupna cijena"
+
+msgctxt "Page slug"
+msgid "form"
+msgstr "obrazac"
+
+#, php-format
+msgid "%s available accommodations"
+msgstr "%s dostupan smještaj"
+
+msgid "Map view"
+msgstr "Prikaz karte"
+
+#, php-format
+msgid "%s Results  found from %s for %s nigth(s)"
+msgstr "Pronađeno %s rezultata od %s za %s noći"
+
+msgid "Order by"
+msgstr "Sortiranje prema"
+
+msgid "Lowest price first"
+msgstr "Najprije najniža cijena "
+
+msgid "Review score"
+msgstr "Ocjena recenzije"
+
+msgid "Best offers"
+msgstr "Najbolja ponuda"
+
+msgid "Book Now"
+msgstr "Rezervirajte odmah"
+
+msgid " Offer "
+msgstr "Ponuda"
+
+#, php-format
+msgid "Only %d available"
+msgstr "Samo %d dostupno"
+
+msgid "Available"
+msgstr "Dostupno"
+
+#, php-format
+msgid "Total for %d night/s"
+msgstr "Ukupno za %d noć(i)"
+
+msgid "SHOW ALL"
+msgstr "PRIKAŽI SVE"
+
+#, php-format
+msgid "Offer %d%%"
+msgstr "Ponuda %d%%"
+
+msgid "Facility contacts data"
+msgstr "Podaci kontakta za objekt"
+
+msgid "Availability"
+msgstr "Dostupnost"
+
+msgid "My Cart"
+msgstr "Moja košarica"
+
+msgid "Add to cart"
+msgstr "Dodaj u košaricu"
+
+msgid "Continue shopping"
+msgstr "Nastaviti s kupovinom"
+
+msgid "Check-out "
+msgstr "Odjava"
+
+msgid "Adults "
+msgstr "Odrasli"
+
+msgid "Seniors "
+msgstr "Stariji"
+
+msgid "Search"
+msgstr "Traži"
+
+msgid "Ages of children"
+msgstr "Dob djece"
+
+msgid "on"
+msgstr "na"
+
+#, php-format
+msgid "We preset your children's ages to %s years old - but if you enter their actual ages, you might be able to find a better price."
+msgstr "Unaprijed je postavljena dob djece do %s  godina - ali ako unesete stvarnu dob svoje djece možda će vam biti ponuđena  bolja cijena."
+
+msgid "Select"
+msgstr "Izaberite"
+
+msgid "Confirm your reservation"
+msgstr "Potvrda rezervacije"
+
+msgid "You can't acquire resources from another merchant."
+msgstr "Ne možete stjecati sredstva od drugog trgovca."
+
+msgid "selected items"
+msgstr "odabrane stavke"
+
+msgid "Request Now"
+msgstr "Zatražite odmah"
+
+msgid "No results available for the submitted data"
+msgstr "Nema dostupnih podataka za dostavljene podatke"
+
+#, php-format
+msgid "Persons min:%1$d max:%2$d"
+msgstr "Osoba min: %1$d max: %2$d"
+
+#, php-format
+msgid "Other %1$d choise"
+msgstr "Ostalih %1$d ponuda"
+
+msgid "Find other great offers!"
+msgstr "Nađi druge velike ponude!"
+
+msgid "Booking Enquiry"
+msgstr "Upit za rezervaciju"
+
+msgid "Facility"
+msgstr "postrojenja"
+
+msgid "Select a period"
+msgstr "Odaberite razdoblje"
+
+msgid "selected services"
+msgstr "odabrane usluge"
+
+msgid "Please, select a day"
+msgstr "Molimo, odaberite jedan dan"
+
+msgid "Change your details"
+msgstr "Promijenite svoje podatke"
+
+msgid "Thank you for having chosen us."
+msgstr "Hvala vam što ste nas izabrali."
+
+msgid "Show All"
+msgstr "Pokaži sve"
+
+msgid "Would you like to be the first to write a review?"
+msgstr "Želite li biti prvi koji će napisati recenziju?"
+
+msgid "Very poor"
+msgstr "Vrlo slaba"
+
+msgid "Poor"
+msgstr "Slab"
+
+msgid "Disappointing"
+msgstr "Razočaravajući"
+
+msgid "Fair"
+msgstr "Prilično dobro"
+
+msgid "Okay"
+msgstr "U redu"
+
+msgid "Pleasant"
+msgstr "Ugodan"
+
+msgid "Good"
+msgstr "Dobar"
+
+msgid "Very good"
+msgstr "Vrlo dobro"
+
+msgid "Fabulous"
+msgstr "Nevjerojatano"
+
+msgid "Exceptional"
+msgstr "Izvrsno"
+
+msgid "All reviewers"
+msgstr "Svi recenzenti"
+
+msgid "Solo travellers"
+msgstr "Solo putnici"
+
+msgid "Groups"
+msgstr "Grupe"
+
+msgid "Young couplet"
+msgstr "Mladi parovi"
+
+msgid "Mature couples"
+msgstr "Zreli parovi"
+
+msgid "Families with young children"
+msgstr "Obitelji s malom djecom"
+
+msgid "Family with older children"
+msgstr "Obitelj sa starijom djecom"
+
+#, php-format
+msgid "Based on %1$s Reviews."
+msgstr "Temeljem %1$s recenzija."
+
+msgid "Staff"
+msgstr "Osoblje"
+
+msgid "Clean"
+msgstr "Čisto"
+
+msgid "Comfort"
+msgstr "Udobnost"
+
+msgid "Value for Money"
+msgstr "Vrijednost za novac"
+
+msgid "Show reviews from"
+msgstr "Prikaži recenzije od"
+
+msgid "Write a Review"
+msgstr "Napišite svoje mišljenje"
+
+msgid "Reviewed"
+msgstr "Recenzirano"
+
+msgid "Stayed"
+msgstr "Ostao"
+
+#, php-format
+msgid "Replied on %1s"
+msgstr "Odgovorio/la %1s"
+
+msgid "Reference"
+msgstr "Upućivanje"
+
+#, php-format
+msgid "Review certified by %1$s"
+msgstr "Recenzija potvrđena od %1$s"
+
+msgid "+"
+msgstr "+"
+
+msgid "-"
+msgstr "-"
+
+#, php-format
+msgid "%s has responded to this review"
+msgstr "%s je reagiralo na ovu recenziju"
+
+msgid "No Reviews Found."
+msgstr "Nema recenzija."
+
+msgid "Media"
+msgstr "Mediji"
+
+msgid "Description"
+msgstr "Opis"
+
+msgid "Map"
+msgstr "Karta"
+
+msgid "In short"
+msgstr "Ukratko"
+
+msgid "Share"
+msgstr "Podjeli"
+
+msgid "No Results Found"
+msgstr "Nema rezultata"
+
+#, php-format
+msgid "%s available offers"
+msgstr "%s dostupne ponude"
+
+msgid "Read More"
+msgstr "Pročitajte više"
+
+msgid "Read Less"
+msgstr "Pročitajte manje"
+
+msgid "please wait..."
+msgstr "pričekajte..."
+
+msgid "Type of traveller"
+msgstr "Vrsta putnika"
+
+msgid "E-mail"
+msgstr "E-pošta"
+
+msgid "Confirm E-mail"
+msgstr "Potvrdite e-poštu"
+
+msgid "When did you travel?"
+msgstr "Kada ste putovali?"
+
+msgid "Value for money"
+msgstr "Vrijednost za novac"
+
+msgid "Valuation"
+msgstr "Vrijednost"
+
+msgid "List of the facility's positive points"
+msgstr "Popis pozitivnih bodova objekta"
+
+msgid "List of the facility's negative points"
+msgstr "Popis negativnih bodova objekta"
+
+#, php-format
+msgid "I certify that this review is based on my own experience and is my genuine opinion of this accommodation, and that I have no personal or business relationship with this establishment, and have not been offered any incentive or payment originating from the establishment to write this review. I understand that %s has a zero-tolerance policy on fake reviews."
+msgstr "Potvrđujem da se ova recenzija temelji se na mom vlastitom iskustvu i prestavlja moje mišljenje o ovom smještaju te da nemam osobni ili poslovni odnos s ovom ustanovom, kako mi nisu ponudili nikakav poticaj ili plaćanje kako bih napisao/la ovu recenziju. Shvaćam kako %s ima politiku nulte tolerancije na lažne recenzije."
+
+msgid "send"
+msgstr "pošalji"
+
+msgid "A-Z"
+msgstr "A-Z"
+
+msgid "Z-A"
+msgstr "Z-A"
+
+msgid "comment"
+msgstr "komentar"
+
+msgid "To rent"
+msgstr "Iznajmiti"
+
+msgid "On sale"
+msgstr "Na prodaju"
+
+msgid "Floor area"
+msgstr "Površina kata"
+
+msgid "Area"
+msgstr "Područje"
+
+msgid "Last update"
+msgstr "Zadnje ažuriranje"
+
+msgid "Floor"
+msgstr "Kat"
+
+msgid "Ground floor"
+msgstr "Prizemlje"
+
+msgid "Top floor"
+msgstr "Najgornji kat"
+
+msgid "Attic"
+msgstr "Potkrovlje"
+
+msgid "Multiple levels"
+msgstr "Višestruki razinama"
+
+msgid "ND"
+msgstr "ND"
+
+msgid "Condition"
+msgstr "Stanje"
+
+msgid "New"
+msgstr "Novi"
+
+msgid "Bathrooms"
+msgstr "Kupaonice"
+
+msgid "Heating"
+msgstr "Grijanje"
+
+msgid "Autonomous"
+msgstr "Autonoman"
+
+msgid "Communal"
+msgstr "Komunalni"
+
+msgid "Pay per use"
+msgstr "Platiti po upotrebi"
+
+msgid "Box Auto"
+msgstr "Odjeljak za automobil"
+
+msgid "Parking space"
+msgstr "Parkirno mjesto"
+
+msgid "Energy efficiency class"
+msgstr "Razred energetske učinkovitosti"
+
+msgid "not set"
+msgstr "nespreman"
+
+msgid "Nondescript"
+msgstr "Neopisiv"
+
+msgid "Free property"
+msgstr "Besplatno"
+
+msgid "Under evaluation"
+msgstr "pod vrednovanja"
+
+msgid "IPE"
+msgstr "IPE"
+
+msgid "Yes"
+msgstr "Da"
+
+msgid "Real estate agency collaboration"
+msgstr "Agencija za nekretnine "
+
+msgid "External order ID"
+msgstr "ID vanjske narudžbe"
+
+msgid "Correct format: dd/mm/yyyy"
+msgstr "Ispravan oblik: dd/mm/gggg"
+
+msgid "Booking reference"
+msgstr "Referenca za rezervacije"
+
+msgid "Client code"
+msgstr "Kôd klijenta"
+
+msgid "Check-in must be great than Check-out"
+msgstr "Prijava mora biti veća od odjave"
+
+msgid "Please insert a valid email address!"
+msgstr "Molimo unesite ispravnu adresu e-pošte!"
+
+msgid "Rejected order"
+msgstr "Odbijen red"
+
+msgid "Deposit total"
+msgstr "Ukupan depozit"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Order sent to bank"
+msgstr "Nalog poslan banci"
+
+msgid "Pay"
+msgstr "Plati"
+
+msgid "Waiting to confirm"
+msgstr "Čekanje potvrde"
+
+msgid "Payment attempt was not successful. Try again"
+msgstr "Pokušaj plaćanja nije bio uspješan. Pokušajte ponovo"
+
+msgid "Payed order"
+msgstr "Platni nalog"
+
+msgid "Order by credit card guarantee"
+msgstr "Razvrstaj prema jamstvu kreditne kartice"
+
+msgid "Change data"
+msgstr "Promjena podataka"
+
+msgid "Accommodation"
+msgstr "Smještaj"
+
+msgid "Period"
+msgstr "Razdoblje"
+
+msgid "People"
+msgstr "Ljudi"
+
+#, php-format
+msgid "%1s will not charge anything to your credit card. Your credit card details are only requested in order to guarantee your booking."
+msgstr "%1s neće naplatiti ništa s vaše kreditne kartice. Podatke o kreditnoj kartici zatražili smo samo kako bismo zajamčili rezervaciju."
+
+msgid "Other payments"
+msgstr "Ostala plaćanja"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Amount"
+msgstr "Iznos"
+
+msgid "Payment refused"
+msgstr "Plaćanje odbijeno"
+
+msgid "New payment"
+msgstr "Novo plaćanje"
+
+msgid "It 'requires a further amount for payments"
+msgstr "To zahtijeva daljnji iznos za plaćanje"
+
+msgid "Please insert a correct amount, it should be this format: xxx.xx (please use dot for deciaml prices)"
+msgstr "Molim ubacite točan iznos, to bi trebao biti ovaj format: xxx.xx ( koristite točku za cijene sa decimalama)"
+
+msgid "Thank you: payment process successfully completed"
+msgstr "Hvala ti: proces plaćanja je uspješno završen"
+
+msgid "Print"
+msgstr "Ispis"
+
+msgid "Payment process not successfully completed"
+msgstr "Proces plaćanja nije uspješno završen"
+
+msgid "Payment process not successfully completed and has been deleted"
+msgstr "Proces plaćanje nije uspješno dovršen i stga je izbrisan"
+
+msgid "Some problems occured durint payment process, please contact merchant if you are sure that your payment process completed"
+msgstr "Neki problemi se dogodila proces durint plaćanje, obratite se trgovcu ako ste sigurni da je vaš postupak plaćanja završena"
+
+msgid "Error inserting data"
+msgstr "Pogreška pri umetanju podataka"
+
+msgid "Order doesn't exist"
+msgstr "Narudžba ne postoji"
+
+msgid "Deposit does not exist"
+msgstr "Depozit ne postoji"
+
+msgid "At this moment you cannot do payments."
+msgstr "U ovom trenutku ne možete vršiti plaćanja."
+
+msgid "index.php?view=payment&actionmode=error&payedOrderId="
+msgstr "index.php?view=payment&actionmode=error&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=activaServer&payedOrderId="
+msgstr "index.php?view=payment&actionmode=activaServer&payedOrderId="
+
+msgid "index.php?view=orders"
+msgstr "index.php?view=orders"
+
+msgid "index.php?view=payment&actionmode=bnlpositivity&payedOrderId="
+msgstr "index.php?view=payment&actionmode=bnlpositivity&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=keyclient&payedOrderId="
+msgstr "index.php?view=payment&actionmode=keyclient&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=keyclient2014&payedOrderId="
+msgstr "index.php?view=payment&actionmode=keyclient2014&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=pagoonline&payedOrderId="
+msgstr "index.php?view=payment&actionmode=pagoonline&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=pagoonline&payedOrderId=donation"
+msgstr "index.php?view=payment&actionmode=pagoonline&payedOrderId=donation"
+
+msgid "index.php?view=payment&actionmode=errordonation"
+msgstr "index.php?view=payment&actionmode=errordonation"
+
+msgid "index.php?view=payment&actionmode=virtualpay&payedOrderId="
+msgstr "index.php?view=payment&actionmode=virtualpay&payedOrderId="
+
+msgid "index.php?view=payment&actionmode=virtualpay&payedOrderId=donation"
+msgstr "index.php?view=payment&actionmode=virtualpay&payedOrderId=donation"
+
+msgid "Total deposit : €"
+msgstr "Ukupan depozit: €"
+
+msgid "Info"
+msgstr "Informacije"
+
+msgid "Almost done"
+msgstr "Uskoro gotovo"
+
+msgid "Book now"
+msgstr "Rezervirajte odmah"
+
+msgid "Min paxes"
+msgstr "min paxes"
+
+msgid "Max paxes"
+msgstr "Maks. paxes"
+
+msgid "Energy Class"
+msgstr "Energetski razred"
+
+msgid "nondescript"
+msgstr "neopisiv"
+
+msgid "free property"
+msgstr "besplatno"
+
+msgid "A+"
+msgstr "A +"
+
+msgid "B"
+msgstr "B"
+
+msgid "C"
+msgstr "C"
+
+msgid "D"
+msgstr "D"
+
+msgid "E"
+msgstr "E"
+
+msgid "F"
+msgstr "F"
+
+msgid "G"
+msgstr "G"
+
+msgid "EPI Value"
+msgstr "EPI vrijednost"
+
+msgid "Attention!"
+msgstr "Pažnja!"
+
+msgid "It 's not possible to insert your own review"
+msgstr "Nije moguće umetnuti recenziju"
+
+msgid "nonexistent order"
+msgstr "nepostojeći redoslijed"
+
+msgid "Order with already a Review"
+msgstr "Redoslijed prema postojećim recenzijama"
+
+msgid "nonexistent order or to which it is not possible to associate a review"
+msgstr "nepostojeći redoslijed ili nije moguće pridružiti recenziju"
+
+msgid "Order not related at this resource"
+msgstr "Redoslijed se ne odnosi na ovaj resurs"
+
+msgid "Order make before the date to make a review"
+msgstr "Redoslijed načinjen prije datuma za recenziranje"
+
+#, php-format
+msgid "Found %s results"
+msgstr "Nađeno %s rezultata"
+
+#, php-format
+msgid "From %s to %s"
+msgstr "Od %s do %s"
+
+msgid "Request"
+msgstr "Zahtjev"
+
+#, php-format
+msgid "%s reviews"
+msgstr "%s mišljenja"
+
+msgid "Breakfast included"
+msgstr "Doručak uključen"
+
+msgid "Half board"
+msgstr "Polupansion"
+
+msgid "Full board"
+msgstr "Puni pansion"
+
+#, php-format
+msgid "Price for %s person"
+msgstr "Cijena za %s osobu"
+
+msgid "Total for"
+msgstr "Ukupno za"
+
+#, php-format
+msgid " %d day/s"
+msgstr " %d dan(a)"
+
+#, php-format
+msgid " %d night/s"
+msgstr " %d noć(i)"
+
+#, php-format
+msgid " %d hour/s"
+msgstr " %d sat(i)"
+
+#, php-format
+msgid " %d minute/s"
+msgstr " %d minuta(a)"
+
+msgid "From"
+msgstr "Od"
+
+msgid "No result available"
+msgstr "Nema dostupnih rezultata"
+
+msgid "Leatest ads"
+msgstr "Najnoviji oglasi"
+
+msgid ">3"
+msgstr "> 3"
+
+msgid "Tipology"
+msgstr "Tipologija"
+
+msgid "Age of children"
+msgstr "Dob djece"
+
+msgid "Show only online booking"
+msgstr "Prikaži samo online rezervaciju"
+
+msgid "All province"
+msgstr "Sve pokrajine"
+
+msgid "from"
+msgstr "od"
+
+msgid "to"
+msgstr "do"
+
+msgid "Floor area m&sup2;"
+msgstr "Površina m&sup2;"
+
+msgid "Bedrooms"
+msgstr "Spavaće sobe"
+
+msgid "Only new building"
+msgstr "Samo nova zgrada"
+
+msgid "Please select"
+msgstr "Molimo izaberite"
+
+msgid "Please enter a integer number"
+msgstr "Unesite cijeli broj broj"
+
+msgid "We're processing your request"
+msgstr "Obrađujemo vaš zahtjev"
+
+msgid "Draw area"
+msgstr "Nacrtajte područje"
+
+msgid "Circle"
+msgstr "Krug"
+
+msgid "Reset"
+msgstr "Poništi"
+
+msgid "Click on map and choose your area."
+msgstr "Kliknite na kartu i odaberite vaše područje."
+
+msgid "Holiday Packages"
+msgstr "Paketi za odmor"
+
+msgid "Free cancellation"
+msgstr "Besplatno otkazivanje"
+
+msgid "No prepayment"
+msgstr "Nema plaćanja unaprijed"
+
+msgid "Book without credit card"
+msgstr "Rezervirajte bez kreditne kartice"
+
+msgid "All inclusive"
+msgstr "Sve uključeno"
+
+msgid "Unrated"
+msgstr "Neocijenjen"
+
+msgid "1 star"
+msgstr "1 zvjezdica"
+
+msgid "2 stars"
+msgstr "2 zvjezdice"
+
+msgid "3 stars"
+msgstr "3 zvjezdice"
+
+msgid "4 stars"
+msgstr "4 zvjezdice"
+
+msgid "5 stars"
+msgstr "5 zvjezdica"
+
+msgid "6 stars"
+msgstr "6 zvjezdica"
+
+msgid "7 stars"
+msgstr "7 zvjezdica"
+
+msgid "8 stars"
+msgstr "8 zvijezde"
+
+msgid "9 stars"
+msgstr "9 zvijezde"
+
+msgid "10 stars"
+msgstr "10 zvijezde"
+
+msgid "Smart offer"
+msgstr "Smart ponuda"
+
+msgid "Filter by"
+msgstr "Filtrirati prema"
+
+msgid "Budget"
+msgstr "Proračun"
+
+msgid "Star rating"
+msgstr "Ocjenjivanje zvjezdicama"
+
+msgid "Property facility"
+msgstr "Objekt u vlasništvu"
+
+msgid "Booking type"
+msgstr "Vrsta rezervacije"
+
+msgid "Offer"
+msgstr "Ponuda"
+
+msgid "Book with ease "
+msgstr "Rezervirajte s lakoćom"
+
+msgid "Show map"
+msgstr "Prikaži kartu"
+
+msgid "Your holiday"
+msgstr "Vaš odmor"
+
+msgid "Total price"
+msgstr "Ukupna cijena"

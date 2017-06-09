@@ -51,7 +51,7 @@ get_header( 'payment' );
 			//recupero quanti pagamenti sono stati effettuati
 						
 			$item->paymentCount =  BFCHelper::getTotalOrderPayments($item->order->OrderId);
-
+			$item->overrideAmount =	BFCHelper::getFloat('overrideAmount');
 			//sostituisco i dati dell'ordine da pagare con i dati passati e l'ordine con un suffisso in più
 			
 			/*$item = $this->get('Item');*/ 

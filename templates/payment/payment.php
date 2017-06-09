@@ -25,7 +25,7 @@ if (isset( $item->merchantPayment)){
 	$merchantPayment = $item->merchantPayment;
 	$paymentSystemId = $merchantPayment->PaymentSystemId;
 //	$paymentSystemRef = null;
-	$paymentSystemRef = strtolower($merchantPayment->PaymentSystemName);
+	$paymentSystemRef = strtolower($merchantPayment->PaymentSystemRefId);
 
 //	$actionmode =  $this->actionmode;
 //	$hasPayed = $this->hasPayed;

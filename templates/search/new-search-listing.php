@@ -202,6 +202,19 @@ add_filter( 'paginate_links', function( $link )
 					$nopopupmap=true;
 					include(BFI()->plugin_path().'/templates/merchantslist/merchantslist.php'); // merchant template
 				}else{
+					$merchantdetails_page = get_post( bfi_get_page_id( 'merchantdetails' ) );
+					$url_merchant_page = get_permalink( $merchantdetails_page->ID );
+					$merchants = BFCHelper::getMerchantsSearch(null,0,10,null,null);
+					foreach ($merchants as $merchant){
+						$routeMerchant = $url_merchant_page . $merchant->MerchantId.'-'.BFI()->seoUrl($merchant->Name);
+						$routeRating = $routeMerchant .'/'._x('reviews', 'Page slug', 'bfi' );
+						$routeRating = $routeMerchant .'/'._x('reviews', 'Page slug', 'bfi' );
+						$routeInfoRequest = $routeMerchant .'/'._x('contactspopup', 'Page slug', 'bfi' );
+?>
+							<a class="boxedpopup bfi-btn bfi-btn-blue" href="<?php echo $routeInfoRequest?>" style="width: 100%;"><?php echo  _e('Request info' , 'bfi') ?></a>
+
+<?php 
+					}
 				
 				}
 				?>

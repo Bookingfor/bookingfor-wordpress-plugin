@@ -521,6 +521,7 @@ final class BookingFor {
 			'fr' => 'fr-FR',
 			'es' => 'es-ES',
 			'hr' => 'hr-HR',
+			'nl' => 'nl-NL',
 			'en_GB' => 'en-GB',
 			'en-GB' => 'en-GB',
 			'en_US' => 'en-GB',
@@ -544,7 +545,9 @@ final class BookingFor {
 			'es_ES' => 'es-ES',
 			'es-ES' => 'es-ES',
 			'hr_HR' => 'hr-HR',
-			'hr-HR' => 'hr-HR'
+			'hr-HR' => 'hr-HR',
+			'nl-NL' => 'nl-NL',
+			'nl_NL' => 'nl-NL'
 		);
 		if(isset($lang_array[$lang])) {
 		  return $lang_array[$lang];

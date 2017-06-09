@@ -581,11 +581,12 @@ class BFCHelper {
 //		return $model->GetCondominiumsByIds($listsId,$language);
 //	}
 
-//	public static function getMerchantsSearch($text,$start,$limit,$order,$direction) {
+	public static function getMerchantsSearch($text,$start,$limit,$order,$direction) {
 //		JModelLegacy::addIncludePath(JPATH_ROOT. DIRECTORY_SEPARATOR .'components' . DIRECTORY_SEPARATOR . 'com_bookingforconnector'. DIRECTORY_SEPARATOR . 'models', 'BookingForConnectorModel');
 //		$model = JModelLegacy::getInstance('Merchants', 'BookingForConnectorModel');
-//		return $model->getMerchantsForSearch($text,$start,$limit,$order,$direction);
-//	}
+		$model = new BookingForConnectorModelMerchants;
+		return $model->getMerchantsForSearch($text,$start,$limit,$order,$direction);
+	}
 
 //	public static function getResourcesSearch($text,$start,$limit,$order,$direction) {
 //		JModelLegacy::addIncludePath(JPATH_ROOT. DIRECTORY_SEPARATOR .'components' . DIRECTORY_SEPARATOR . 'com_bookingforconnector'. DIRECTORY_SEPARATOR . 'models', 'BookingForConnectorModel');

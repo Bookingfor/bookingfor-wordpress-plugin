@@ -412,14 +412,14 @@ $merchant_id = get_query_var( 'merchant_id', 0 );
 
 			$resource_id = get_query_var( 'bfi_id', 0 );
 			$resourceType = get_query_var( 'bfi_name', 0 );
-if($resourceType == _x( 'accommodation-details', 'Page slug', 'bfi' )){
+if(!empty($resource_id) && $resourceType == _x( 'accommodation-details', 'Page slug', 'bfi' )){
 	$model = new BookingForConnectorModelResource;
 	$resource = $model->getItem($resource_id);
 	$currentView = 'resource';
 	$orderType = "c";
 	$task = "sendInforequest";
 }
-if($resourceType == _x( 'properties-for-sale', 'Page slug', 'bfi' )){
+if(!empty($resource_id) && $resourceType == _x( 'properties-for-sale', 'Page slug', 'bfi' )){
 	$model = new BookingForConnectorModelOnSellUnit;
 	$resource = $model->getItem($resource_id);
 	$currentView = 'onsellunit';

@@ -206,8 +206,9 @@ class BFI_setefiServerProcessor extends BFI_Payment{
 		global $base_url;
 
 		$url = get_site_url().'/payment/?actionmode=setefi&payedOrderId='.$msg.'&result='.$result;
-		header( 'Location: ' . $url  );
-		exit();
+		echo 'redirect=' . $url;
+//		header( 'Location: ' . $url  );
+		die();
 	
 	}
 	

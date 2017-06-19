@@ -56,11 +56,11 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 		$resourceImageUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s6.jpeg";
 		$resourceName = BFCHelper::getLanguage($resource->Name, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
 		$resourceDescription = BFCHelper::getLanguage($resource->Description, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
-		$currUriresource = $uri.$resource->ResourceId.'-'.BFI()->seoUrl($resourceName);
+		$currUriresource = $uri.$resource->VariationPlanId.'-'.BFI()->seoUrl($resourceName);
 		
-		$resourceRoute = $routeMerchant.'/'._x('offer', 'Page slug', 'bfi' ).'/'. $resource->OfferId . '-' . BFCHelper::getSlug($resourceName);
-		if(!empty($resource->ImageUrl)){
-			$resourceImageUrl = BFCHelper::getImageUrlResized('variationplans',$resource->ImageUrl, 'medium');
+		$resourceRoute = $routeMerchant.'/'._x('offer', 'Page slug', 'bfi' ).'/'. $resource->VariationPlanId . '-' . BFCHelper::getSlug($resourceName);
+		if(!empty($resource->DefaultImg)){
+			$resourceImageUrl = BFCHelper::getImageUrlResized('variationplans',$resource->DefaultImg, 'medium');
 		}
 
 			?>
@@ -74,7 +74,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 							<div class="bfi-row" >
 								<div class="bfi-col-sm-10">
 									<div class="bfi-item-title">
-										<a href="<?php echo $resourceRoute ?>" id="nameAnchor<?php echo $resource->ResourceId?>" target="_blank"><?php echo  $resource->ResName ?></a> 
+										<a href="<?php echo $resourceRoute ?>" id="nameAnchor<?php echo $resource->VariationPlanId?>" target="_blank"><?php echo  $resource->Name ?></a> 
 									</div>
 									<div class="bfi-description"><?php echo $resourceDescription ?></div>
 								</div>

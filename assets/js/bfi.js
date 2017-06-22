@@ -910,7 +910,7 @@ function bfi_updateQuoteService() {
 				var totalServices = 0;
 				var currTotalServices = 0;
 				var currTotalNotDiscoutedServices = 0;
-				jQuery(".ddlextras").each( function( index, element ){
+				jQuery(".ddlextras:visible").each( function( index, element ){
 					var nExtras = parseInt(jQuery(this).val());
 					if(nExtras>0)
 					{

@@ -914,11 +914,17 @@ function bfi_updateQuoteService() {
 					var nExtras = parseInt(jQuery(this).val());
 					if(nExtras>0)
 					{
+						var minSelectable =  parseInt(jQuery(this).find('option:first').val());
+
 						totalServices+=nExtras;
 						var currTr = jQuery(this).closest("tr");
 
 						currTotalServices += ( parseFloat( currTr.find(".bfi-price").html().replace(".","").replace(",",".")) * nExtras);
 						currTotalNotDiscoutedServices += ( parseFloat( currTr.find(".bfi-discounted-price").html().replace(".","").replace(",",".")) *nExtras);
+						if(minSelectable>0){
+							currTotalServices -= ( parseFloat( currTr.find(".bfi-price").html().replace(".","").replace(",",".")) * minSelectable);
+							currTotalNotDiscoutedServices -= ( parseFloat( currTr.find(".bfi-discounted-price").html().replace(".","").replace(",",".")) *minSelectable);
+						}
 					}
 				});
 

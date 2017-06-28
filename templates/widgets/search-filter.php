@@ -588,7 +588,7 @@ echo $before_widget;
 			</div>
 		</div>
 	<?php } ?>
-	<?php if (isset($filtersTags) &&  is_array($filtersTags) && count($filtersTags)>$minvaluetoshow) { 
+	<?php if (isset($filtersTags) &&  is_array($filtersTags)) { 
 	$filtersValueArr = explode ("|",$filtersTagsValue);
 	?>
 		<div>

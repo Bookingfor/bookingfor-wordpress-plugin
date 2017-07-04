@@ -319,6 +319,8 @@ if(empty($maxCapacityPaxes)) {
 							//label.closest('.control-group').removeClass('error');
 						},
 						submitHandler: function(form) {
+					var $form = $(form);
+					if($form.valid()){
 							if (typeof grecaptcha === 'object') {
 								var response = grecaptcha.getResponse(window.bfirecaptcha['<?php echo $idrecaptcha ?>']);
 //								var response = grecaptcha.getResponse();
@@ -346,8 +348,6 @@ if(empty($maxCapacityPaxes)) {
 					}); 
 
 <?php }else{  ?>
-					var $form = $(form);
-					if($form.valid()){
 						jQuery.blockUI({message: ''});
 						if ($form.data('submitted') === true) {
 							 return false;
@@ -356,9 +356,9 @@ if(empty($maxCapacityPaxes)) {
 							$form.data('submitted', true);
 							form.submit();
 						}
-					}
 <?php }  ?>
 						}
+					}
 
 					});
 				});

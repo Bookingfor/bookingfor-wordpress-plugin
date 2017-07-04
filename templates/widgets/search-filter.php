@@ -588,7 +588,7 @@ echo $before_widget;
 			</div>
 		</div>
 	<?php } ?>
-	<?php if (isset($filtersTags) &&  is_array($filtersTags)) { 
+	<?php if (isset($filtersTags) &&  is_array($filtersTags) && count($filtersTags)>0) { 
 	$filtersValueArr = explode ("|",$filtersTagsValue);
 	?>
 		<div>

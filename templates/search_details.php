@@ -477,7 +477,7 @@ $listDayTS = array();
 					</div>
 				</div>
 			</div>
-			<div class="<?php //echo COM_BOOKINGFORCONNECTOR_BOOTSTRAP_ROW ?> bfi_resource-calculatorForm-childrenages" style="display:none;">
+			<div bfi_resource-calculatorForm-childrenages" style="display:none;">
 				<span class="fieldLabel" style="display:inline"><?php  echo _e('Ages of children','bfi')  ?>:</span>
 				<span class="fieldLabel" style="display:inline" id="bfi_lblchildrenagesatcalculator"><?php echo _e('on', 'bfi') . " " .$checkout->format("d"). " " . date_i18n('M',$checkout->getTimestamp()) . " " . $checkout->format("Y") ?></span><br />
 				<select id="childages1" name="childages1" onchange="quoteCalculatorChanged();" class="inputmini" style="display: none;">
@@ -2375,6 +2375,12 @@ window.criteo_q.push(
 								currExtraService.TimeSlotEnd = currTr.attr("data-timeslotend");
 								var currDateint =  currTr.attr("data-checkin");
 								currExtraService.TimeSlotDate = currDateint.substr(6,2) + "/" + currDateint.substr(4,2) + "/" + currDateint.substr(0,4);
+							}
+
+							var minSelectable =  parseInt(jQuery(this).find('option:first').val());
+							if(minSelectable>0){
+								currResourceRequest.TotalDiscounted -= ( parseFloat(jQuery(this).attr('data-baseprice'))) * minSelectable;
+								currResourceRequest.TotalAmount -= ( parseFloat(jQuery(this).attr('data-basetotalprice'))) *minSelectable;
 							}
 
 							currResourceRequest.ExtraServices.push(currExtraService);

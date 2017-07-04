@@ -1112,12 +1112,12 @@ if(!empty($bookingTypes)){
 						
 			<div class="inputaddress" style="display:;">
 				<div >
-					<label><?php _e('Address', 'bfi'); ?> </label>
-					<input type="text" value="" size="50" name="form[Address]" id="Address"   title="<?php _e('This field is required.', 'bfi') ?>">
+					<label><?php _e('Address', 'bfi'); ?> *</label>
+					<input type="text" value="" size="50" name="form[Address]" id="Address" required  title="<?php _e('This field is required.', 'bfi') ?>">
 				</div><!--/span-->
 				<div >
-					<label><?php _e('Postal Code', 'bfi'); ?> </label>
-					<input type="text" value="" size="20" name="form[Cap]" id="Cap"   title="<?php _e('This field is required.', 'bfi') ?>">
+					<label><?php _e('Postal Code', 'bfi'); ?> *</label>
+					<input type="text" value="" size="20" name="form[Cap]" id="Cap" required  title="<?php _e('This field is required.', 'bfi') ?>">
 				</div><!--/span-->
 				<div >
 					<label><?php _e('Country', 'bfi'); ?> </label>
@@ -1232,12 +1232,12 @@ if(!empty($bookingTypes)){
 				<input type="password" value="<?php echo $current_user->user_email; ?>" size="50" name="form[Password]" id="Password"   title="">
 			</div><!--/span-->
 				<div >
-					<label><?php _e('City', 'bfi'); ?> </label>
-					<input type="text" value="" size="50" name="form[City]" id="City"   title="<?php _e('This field is required.', 'bfi') ?>">
+					<label><?php _e('City', 'bfi'); ?> *</label>
+					<input type="text" value="" size="50" name="form[City]" id="City" required  title="<?php _e('This field is required.', 'bfi') ?>">
 				</div><!--/span-->
 				<div >
-					<label><?php _e('Province', 'bfi'); ?> </label>
-					<input type="text" value="" size="20" name="form[Provincia]" id="Provincia"   title="<?php _e('This field is required.', 'bfi') ?>">
+					<label><?php _e('Province', 'bfi'); ?> *</label>
+					<input type="text" value="" size="20" name="form[Provincia]" id="Provincia" required  title="<?php _e('This field is required.', 'bfi') ?>">
 				</div><!--/span-->
 		</div>
 	</div>
@@ -1557,7 +1557,8 @@ jQuery(function($)
 							});
 							<?php endif; ?>
 							form.submit();
-						}					}
+						}
+					}
 
 				}
 

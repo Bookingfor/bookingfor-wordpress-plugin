@@ -46,7 +46,7 @@ class BookingForConnectorModelMerchants
 		$this->urlMerchantGroups = '/MerchantGroups';
 		$this->urlAllMerchants = '/Merchants';
 		$this->urlAllMerchantsCount = '/Merchants/$count';
-		$this->urlLocations = '/Cities'; //'/Locations';
+		$this->urlLocations = '/GeographicZones';//'/Cities'; //'/Locations';
 		$this->urlLocationZones = '/GeographicZones';//'/LocationZones';
 		$this->urlGetMerchantsByIds = '/GetMerchantsByIdsExt';
 		$this->urlCreateMerchantAndUser = '/CreateMerchantAndUser';

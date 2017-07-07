@@ -889,7 +889,13 @@ if($res->IncludedMeals >-1){
 													}
 													if (isset($sdetail->TimeSlotId) && $sdetail->TimeSlotId > 0)
 													{									
-														$currCheckIn = new DateTime($sdetail->TimeSlotDate); 
+//														$currCheckIn = new DateTime($sdetail->TimeSlotDate); 
+														if($cartId==0){
+															$currCheckIn = DateTime::createFromFormat('d/m/Y', $sdetail->TimeSlotDate);
+														}else{
+															$currCheckIn = new DateTime($sdetail->TimeSlotDate); 
+														}
+														
 														$currCheckOut = clone $currCheckIn;
 														$currCheckIn->setTime(0,0,1);
 														$currCheckOut->setTime(0,0,1);

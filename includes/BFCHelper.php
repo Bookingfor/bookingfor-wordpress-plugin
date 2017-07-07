@@ -1539,7 +1539,7 @@ class BFCHelper {
 			case 'paxages':
 				$adults = isset($_REQUEST['adults']) ? $_REQUEST['adults'] : self::$defaultAdultsQt;
 				$children = isset($_REQUEST['children']) ? $_REQUEST['children'] : 0;
-				$seniores = isset($_REQUEST['seniors']) ? $_REQUEST['seniors'] : 0;
+				$seniores = isset($_REQUEST['seniores']) ? $_REQUEST['seniores'] : 0;
 				if (($adults == null || $adults == '') && ($children == null || $children == '') && (isset($pars['paxages']) && $pars['paxages'] != null && $pars['paxages'] != '')) {
 					return array_slice($pars['paxages'],0);
 				}

@@ -453,7 +453,7 @@ $listDayTS = array();
 						</div>
 						<div class="bfi-col-md-3 bfi-col-xs-4 bfi_resource-calculatorForm-senior" >
 							<label><?php echo _e('Seniors ','bfi') ?>:</label><br />
-							<select id="seniorescalculator" name="seniors" onchange="quoteCalculatorChanged();" class="inputmini">
+							<select id="seniorescalculator" name="seniores" onchange="quoteCalculatorChanged();" class="inputmini">
 								<?php
 								foreach (range(0, 10) as $number) {
 									?> <option value="<?php echo $number ?>" <?php selected( $nse, $number ); ?>><?php echo $number ?></option><?php

@@ -162,7 +162,7 @@ class BookingForConnectorModelSearch
 					foreach ($paxages as $age) {
 						if ($age >= BFCHelper::$defaultAdultsAge) {
 							if ($age >= BFCHelper::$defaultSenioresAge) {
-								array_push($newpaxages, $age.":".bfiAgeType::$Seniors );
+								array_push($newpaxages, $age.":".bfiAgeType::$Seniors);
 							} else {
 								array_push($newpaxages, $age.":".bfiAgeType::$Adult);
 							}

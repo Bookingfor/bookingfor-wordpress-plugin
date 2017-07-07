@@ -477,7 +477,7 @@ $listDayTS = array();
 					</div>
 				</div>
 			</div>
-			<div bfi_resource-calculatorForm-childrenages" style="display:none;">
+			<div class="bfi_resource-calculatorForm-childrenages" style="display:none;">
 				<span class="fieldLabel" style="display:inline"><?php  echo _e('Ages of children','bfi')  ?>:</span>
 				<span class="fieldLabel" style="display:inline" id="bfi_lblchildrenagesatcalculator"><?php echo _e('on', 'bfi') . " " .$checkout->format("d"). " " . date_i18n('M',$checkout->getTimestamp()) . " " . $checkout->format("Y") ?></span><br />
 				<select id="childages1" name="childages1" onchange="quoteCalculatorChanged();" class="inputmini" style="display: none;">

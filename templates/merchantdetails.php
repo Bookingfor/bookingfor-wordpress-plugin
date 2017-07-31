@@ -377,7 +377,7 @@ $merchant_id = get_query_var( 'merchant_id', 0 );
 	$merchant = $model->getItem($merchant_id);	 
 	$currencyclass = bfi_get_currentCurrency();
 	$resourceId = 0;
-	
+	$condominiumId = 0;
 
 	if($task == 'getMerchantResources') {
 		if(!empty(BFCHelper::getVar('refreshcalc',''))){
@@ -391,6 +391,7 @@ $merchant_id = get_query_var( 'merchant_id', 0 );
 			$criteoConfig = BFCHelper::getCriteoConfiguration(2, $merchants);
 		}
 //		include(BFI()->plugin_path().'/templates/merchantdetails/search.php'); //merchant temp 
+		
 		include(BFI()->plugin_path().'/templates/search_details.php'); //merchant temp 
 		die($output);
 	} 

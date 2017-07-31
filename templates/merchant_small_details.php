@@ -58,50 +58,51 @@ if(BFI()->isResourceOnSellPage()){
 			<div class="bfi-col-md-4">
 					<div class="bfi-vcard-name">
 						<a <?php if($isportal) { ?> href="<?php echo $route?>"<?php } ?>><?php echo  $merchant->Name?></a>
-						<span class="bfi-vcard-star-rating">
+						<span class="bfi-item-rating">
 						<?php for($i = 0; $i < $merchant->Rating ; $i++) { ?>
 						  <i class="fa fa-star"></i>
 						<?php } ?>
 						</span>
 					</div>
 					<div class="bfi-row ">
-						<div class="bfi-col-md-5 ">
+						<div class="bfi-col-md-5 bfi-vcard-logo-box">
 							<div class="bfi-vcard-logo"><a <?php if($isportal) { ?> href="<?php echo $route?>"<?php } ?>><img src="<?php echo $merchantLogo?>" /></a></div>	
 						</div>
-						<div class="bfi-col-md-7 bfi-pad0-10">
+						<div class="bfi-col-md-7 bfi-pad0-10 bfi-street-address-block">
 							
-							<span class="street-address"><?php echo $mrcindirizzo ?></span>, <span class="postal-code "><?php echo $mrccap ?></span> <span class="locality"><?php echo $mrccomune ?></span> <span class="state">, <?php echo $mrcstate ?></span><br />
-							<div class="bfi-height10"></div>
-							<?php if($isportal) { ?>
-							<div class="bfi-text-center">
-								<span class="tel "><a  href="javascript:void(0);" onclick="bookingfor.getData(urlCheck,'merchantid=<?php echo $merchant->MerchantId?>&task=GetPhoneByMerchantId&language=' + cultureCode,this,'<?php echo  addslashes($merchant->Name) ?>','PhoneView')"  id="phone<?php echo $merchant->MerchantId?>" class="bfi-smallbtn"><?php _e('Show phone', 'bfi'); ?></a></span>
-								<?php if ($merchantSiteUrl != ''):?><span class="website"><a target="_blank" href="<?php echo $uriMerchantRedirect; ?>" class="bfi-smallbtn"><?php _e('Web site', 'bfi'); ?></a></span>
-								<?php endif;?>
-							</div>
-							<?php } ?>
+							<span class="bfi-street-address"><?php echo $mrcindirizzo ?></span>, <span class="postal-code "><?php echo $mrccap ?></span> <span class="locality"><?php echo $mrccomune ?></span> <span class="state">, <?php echo $mrcstate ?></span><br />
 						</div>
+						<?php if($isportal) { ?>
+							<div class="bfi-row bfi-text-center bfi-marchant-ref">
+								<div class="bfi-text-center">
+									<span class="tel "><a  href="javascript:void(0);" onclick="bookingfor.getData(urlCheck,'merchantid=<?php echo $merchant->MerchantId?>&task=GetPhoneByMerchantId&language=' + cultureCode,this,'<?php echo  addslashes($merchant->Name) ?>','PhoneView')"  id="phone<?php echo $merchant->MerchantId?>" class="bfi-btn bfi-alternative2"><?php _e('Show phone', 'bfi'); ?></a></span>
+									<?php if ($merchantSiteUrl != ''):?><span class="website"><a target="_blank" href="<?php echo $uriMerchantRedirect; ?>" class="bfi-btn bfi-alternative2"><?php _e('Web site', 'bfi'); ?></a></span>
+									<?php endif;?>
+								</div>
+							</div>
+						<?php } ?>
 					</div>			
 					<div class="bfi-height10"></div>
 					<div class="bfi-text-center">
-							<a class="boxedpopup bfi-btn bfi-btn-blue" href="<?php echo $uriMerchantInfoRequest?>" style="width: 100%;"><?php echo  _e('Request info' , 'bfi') ?></a>
+							<a class="boxedpopup bfi-btn bfi-alternative" href="<?php echo $uriMerchantInfoRequest?>" style="width: 100%;"><?php echo  _e('Request info' , 'bfi') ?></a>
 					</div>
 			</div>	
 			<div class="bfi-col-md-8 bfi-pad10">
 				<ul class="bfi-menu-small">
 				<?php if($isportal) { ?>
 					<?php if ($merchant->HasResources):?>
-						<li><a href="<?php echo $uriMerchantResources; ?>"><?php _e('Proposals', 'bfi'); ?></a></li>
+						<li><a href="<?php echo $uriMerchantResources; ?>" class="bfi-btn bfi-alternative3"><?php _e('Proposals', 'bfi'); ?></a></li>
 					<?php endif ?>
 					<?php if ($merchant->HasOnSellUnits):?>
-						<li><a href="<?php echo $uriMerchantOnsellunits; ?>"><?php _e('Real Estate', 'bfi'); ?></a></li>
+						<li><a href="<?php echo $uriMerchantOnsellunits; ?>" class="bfi-btn bfi-alternative3"><?php _e('Real Estate', 'bfi'); ?></a></li>
 					<?php endif ?>	
 					<?php if ($merchant->HasResources):?>
 						<?php if ($merchant->HasOffers || true):?>
-							<li><a href="<?php echo $uriMerchantOffers; ?>"><?php _e('Offers', 'bfi'); ?></a></li>
+							<li><a href="<?php echo $uriMerchantOffers; ?>" class="bfi-btn bfi-alternative3"><?php _e('Offers', 'bfi'); ?></a></li>
 						<?php endif ?>
 					<?php endif;?>
 					<?php if ($merchant->RatingsContext !== 0) :?>
-						<li><a href="<?php echo $uriMerchantRatings; ?>"><?php _e('Reviews', 'bfi'); ?></a></li>
+						<li><a href="<?php echo $uriMerchantRatings; ?>" class="bfi-btn bfi-alternative3"><?php _e('Reviews', 'bfi'); ?></a></li>
 					<?php endif ?>	
 				<?php } ?>
 				</ul>

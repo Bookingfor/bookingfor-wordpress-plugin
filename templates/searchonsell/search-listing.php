@@ -27,7 +27,7 @@ var urlCheck = "<?php echo $base_url ?>/bfi-api/v1/task";
 var cultureCode = '<?php echo $language ?>';
 //-->
 </script>
-<div id="bfcmerchantlist">
+<div id="bfi-merchantlist">
 	<div id="com_bookingforconnector-items-container-wrapper">
 		<?php if ($total > 0): ?>
 			<div class="com_bookingforconnector-items-container">
@@ -45,7 +45,7 @@ var cultureCode = '<?php echo $language ?>';
 <script type="text/javascript">
 <!--
 	function showResponse(responseText, statusText, xhr, $form)  { 
-		jQuery('#bfcmerchantlist').unblock();
+		jQuery('#bfi-merchantlist').unblock();
 		if(typeof getAjaxInformations === 'function' ) {
 			getAjaxInformations();
 		}
@@ -56,7 +56,7 @@ var cultureCode = '<?php echo $language ?>';
 			// Attach modal behavior to document
 			if (typeof(SqueezeBox) !== 'undefined'){
 				SqueezeBox.initialize({});
-				SqueezeBox.assign($$('#bfcmerchantlist  a.boxed'), { //change the divid (#contentarea) as to the div that you use for refreshing the content
+				SqueezeBox.assign($$('#bfi-merchantlist  a.boxed'), { //change the divid (#contentarea) as to the div that you use for refreshing the content
 					parse: 'rel'
 				});
 			}
@@ -66,8 +66,8 @@ var cultureCode = '<?php echo $language ?>';
 			}
 	}
 	function showError(responseText, statusText, xhr, $form)  { 
-		jQuery('#bfcmerchantlist').html('<?php echo __('No results available','bfi') ?>')
-		jQuery('#bfcmerchantlist').unblock();
+		jQuery('#bfi-merchantlist').html('<?php echo __('No results available','bfi') ?>')
+		jQuery('#bfi-merchantlist').unblock();
 	}
 
 //-->
@@ -109,7 +109,7 @@ $googlemapsapykey = COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY;
 			if (typeof google !== 'object' || typeof google.maps !== 'object'){
 				var script = document.createElement("script");
 				script.type = "text/javascript";
-				script.src = "https://maps.google.com/maps/api/js?key=<?php echo $googlemapsapykey ?>&callback=handleApiReadySearch";
+				script.src = "https://maps.google.com/maps/api/js?key=<?php echo $googlemapsapykey ?>&libraries=drawing,places&callback=handleApiReadySearch";
 				document.body.appendChild(script);
 			}else{
 				if (typeof mapSearch !== 'object' ){
@@ -196,6 +196,7 @@ $googlemapsapykey = COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY;
 				},
 				height: 500,
 				width: 800,
+				dialogClass: 'bfi-dialog bfi-dialog-map'
 			});
 		}
 	}

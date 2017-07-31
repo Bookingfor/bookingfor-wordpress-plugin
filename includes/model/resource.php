@@ -999,7 +999,7 @@ class BookingForConnectorModelResource
 		return $rateplan;
 	}
 
-	public function GetRelatedResourceStays($merchantId,$relatedProductid,$excludedIds,$checkin,$duration,$paxages,$variationPlanId,$language="" ) {				
+	public function GetRelatedResourceStays($merchantId,$relatedProductid,$excludedIds,$checkin,$duration,$paxages,$variationPlanId,$language="",$condominiumId ) {				
 		$newpaxages = array();
 		foreach ($paxages as $age) {
 			if ($age >= BFCHelper::$defaultAdultsAge) {
@@ -1041,7 +1041,10 @@ class BookingForConnectorModelResource
 		if (!empty($variationPlanId)) {
 			$options['data']['variationPlanIds'] = '\'' .$variationPlanId . '\'';
 		}
-			
+		if (!empty($condominiumId)) {
+			$options['data']['condominiumId'] = $condominiumId ;
+		}
+
 		$url = $this->helper->getQuery($options);
 		
 		$lstResult = new stdClass;
@@ -2136,6 +2139,9 @@ class BookingForConnectorModelResource
 		if ($resourceId==null) {
 			$resourceId = $_SESSION['search.params']['resourceId'];
 		}
+		if ($language==null) {
+			$language = $GLOBALS['bfi_lang'];
+		}
 		
 		$options = array(
 				'path' => $this->urlRating,
@@ -2143,7 +2149,7 @@ class BookingForConnectorModelResource
 //					'$filter' => 'ResourceId eq ' . $resourceId . ' and Enabled eq true',
 //					'$orderby' => 'CreationDate desc',
 //					'$format' => 'json'
-					'cultureCode' => BFCHelper::getQuotedString($language),
+					'Culturecode' => BFCHelper::getQuotedString($language),
 					'$format' => 'json'
 				)
 		);

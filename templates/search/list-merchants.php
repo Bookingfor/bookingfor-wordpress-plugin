@@ -37,7 +37,6 @@ $showdata = COM_BOOKINGFORCONNECTOR_SHOWDATA;
 $img = BFI()->plugin_url() . "/assets/images/default.png";
 $imgError = BFI()->plugin_url() . "/assets/images/default.png";
 
-$merchantLogo = BFI()->plugin_url() . "/assets/images/defaults/default-s1.jpeg";
 $merchantImageUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s6.jpeg";
 
 $merchantImagePath = BFCHelper::getImageUrlResized('merchant', "[img]",'medium');
@@ -62,6 +61,7 @@ $accommodationdetails_page = get_post( bfi_get_page_id( 'accommodationdetails' )
 $url_resource_page = get_permalink( $accommodationdetails_page->ID );
 
 ?>
+<div class="bfi-content">
 <div class="bfi-row">
 	<div class="bfi-col-xs-9 ">
 		<div class="bfi-search-title">
@@ -128,23 +128,15 @@ $listResourceIds = array();
 
 	$httpsPayment = $merchant->PaymentType;
 	
-	$counter = 0;
 	$merchantLat = $merchant->MrcLat;
 	$merchantLon = $merchant->MrcLng;
 	$showMerchantMap = (($merchantLat != null) && ($merchantLon !=null));
 	
-	$merchantLogo = BFI()->plugin_url() . "/assets/images/defaults/default-s1.jpeg";
 	$merchantImageUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s6.jpeg";
 	
-	if(!empty($merchant->LogoUrl)){
-		$merchantLogo = BFCHelper::getImageUrlResized('merchant',$merchant->LogoUrl, 'logomedium');
-		$merchantLogoError = BFCHelper::getImageUrl('merchant',$merchant->LogoUrl, 'logomedium');
-	}
 	if(!empty($merchant->MrcImageUrl)){
 		$merchantImageUrl = BFCHelper::getImageUrlResized('merchant',$merchant->MrcImageUrl, 'medium');
 	}
-
-	$routeRatingform = $routeMerchant._x('review', 'Page slug', 'bfi' );
 
 	$merchant->SimpleDiscountIds = "";
 	$merchant->DiscountIds = json_decode($merchant->DiscountIds);
@@ -158,10 +150,10 @@ $listResourceIds = array();
 	$bookingType = $merchant->BookingType;
 	$IsBookable = $merchant->IsBookable;
 	$btnText = __('Request','bfi');
-	$btnClass = "";
+	$btnClass = "bfi-alternative";
 	if ($IsBookable){
 		$btnText = __('Book Now','bfi');
-		$btnClass = "bfi-btn-bookable";
+		$btnClass = "";
 	}
 	$classofferdisplay = "";
 	if (($merchant->Price < $merchant->TotalPrice) || $merchant->IsOffer){
@@ -193,26 +185,24 @@ $listResourceIds = array();
 							</span>
 						</div>
 						<div class="bfi-item-address">
-							<?php if ($showMerchantMap):?>
+							<?php if ($showMerchantMap){?>
 							<a href="javascript:void(0);" onclick="showMarker(<?php echo $merchant->MerchantId?>)"><span id="address<?php echo $merchant->MerchantId?>"></span></a>
-							<?php endif; ?>
+							<?php } ?>
 						</div>
 						<div class="bfi-mrcgroup" id="bfitags<?php echo $merchant->MerchantId; ?>"></div>
 					</div>
 					<div class="bfi-col-sm-3 bfi-text-right">
-						<?php if ($isportal && ($merchant->RatingsContext ==1 || $merchant->RatingsContext ==3)):?>
+						<?php if ($isportal && ($merchant->RatingsContext ==1 || $merchant->RatingsContext ==3)){?>
 								<div class="bfi-avg">
 								<?php if ($merchant->MrcAVGCount>0){
 									$totalInt = BFCHelper::convertTotal(number_format((float)$merchant->MrcAVG, 1, '.', ''));
 
 									?>
-									<a class="bfi-avg-value" href="<?php echo $routeRating ?>" ><?php echo $rating_text['merchants_reviews_text_value_'.$totalInt] . " " . number_format((float)$merchant->MrcAVG, 1, '.', '') ?></a><br />
-									<a class="bfi-avg-count" href="<?php echo $routeRating ?>" ><?php echo sprintf(__('%s reviews' , 'bfi'),$merchant->MrcAVGCount) ?></a>
-								<?php }else{ ?>
-									<!-- <a class="bfi-avg-leaverating " href="<?php echo $routeRatingform ?>"><?php _e('Would you like to leave your review?', 'bfi') ?></a> -->
+									<a class="bfi-avg-value" href="<?php echo $routeMerchant ?>" target="_blank"><?php echo $rating_text['merchants_reviews_text_value_'.$totalInt] . " " . number_format((float)$merchant->MrcAVG, 1, '.', '') ?></a><br />
+									<a class="bfi-avg-count" href="<?php echo $routeMerchant ?>" target="_blank"><?php echo sprintf(__('%s reviews' , 'bfi'),$merchant->MrcAVGCount) ?></a>
 								<?php } ?>
 								</div>
-						<?php endif; ?>
+						<?php } ?>
 					</div>
 				</div>
 				<div class="bfi-clearfix bfi-hr-separ"></div>
@@ -237,9 +227,9 @@ $listResourceIds = array();
 					<div class="bfi-col-sm-3 ">
 						<?php if (!$merchant->IsCatalog && $onlystay ){ ?>
 							<div class="bfi-availability">
-							<?php if ($merchant->Availability < 4): ?>
+							<?php if ($merchant->Availability < 2){ ?>
 							  <span class="bfi-availability-low"><?php echo sprintf(__('Only %d available' , 'bfi'),$merchant->Availability) ?></span>
-							<?php endif; ?>
+							<?php } ?>
 							</div>
 						<?php } ?>
 					</div>
@@ -266,7 +256,7 @@ $listResourceIds = array();
 								}
 							}
 						} else {?>
-							<a href="<?php echo $resourceRoute ?>" class="bfi-item-btn-details" target="_blank"><?php echo _e('Request' , 'bfi')?></a>
+							<a href="<?php echo $resourceRoute ?>" class="bfi-btn <?php echo $btnClass ?>" target="_blank"><?php echo _e('Request' , 'bfi')?></a>
 						<?php } ?>
 					</div>
 				</div>
@@ -277,7 +267,9 @@ $listResourceIds = array();
 				<!-- price details -->
 				<div class="bfi-row" >
 					<div class="bfi-col-sm-4 bfi-text-right ">
+					<?php if ($merchant->MaxPaxes>0){?>
 					<?php echo sprintf(__('Price for %s person' ,'bfi'),$totPerson) ?>
+					<?php } ?>					
 					</div>
 					<div class="bfi-col-sm-5 bfi-text-right ">
 							<div class="bfi-gray-highlight">
@@ -327,9 +319,9 @@ $listResourceIds = array();
 					</div>
 					<div class="bfi-col-sm-3 bfi-text-right">
 						<?php if ($merchant->Price > 0){ ?>
-								<a href="<?php echo $resourceRoute ?>" class=" bfi-item-btn-details <?php echo $btnClass ?> " target="_blank"><?php echo $btnText ?></a>
+								<a href="<?php echo $resourceRoute ?>" class=" bfi-btn <?php echo $btnClass ?> " target="_blank"><?php echo $btnText ?></a>
 						<?php }else{ ?>
-								<a href="<?php echo $resourceRoute ?>" class=" bfi-item-btn-details" target="_blank"><?php echo _e('Request' , 'bfi')?></a>
+								<a href="<?php echo $resourceRoute ?>" class=" bfi-btn <?php echo $btnClass ?>" target="_blank"><?php echo _e('Request' , 'bfi')?></a>
 						<?php } ?>
 					</div>
 				</div>
@@ -337,7 +329,7 @@ $listResourceIds = array();
 				<!-- end price details -->
 				<?php } ?>
 			</div>
-			<div class="discount-box" style="display:<?php echo ($merchant->PercentVariation < 0)?"block":"none"; ?>;">
+			<div class="bfi-discount-box" style="display:<?php echo ($merchant->PercentVariation < 0)?"block":"none"; ?>;">
 				<?php echo sprintf(__('Offer %d%%' , 'bfi'), number_format($merchant->PercentVariation, 1)); ?>
 			</div>
 		</div>
@@ -348,48 +340,9 @@ $listResourceIds = array();
 
 	<?php endforeach; ?>
 </div>
+</div>
 <script type="text/javascript">
 <!--
-jQuery('#list-view').click(function() {
-	jQuery('.bfi-view-changer-selected').html(jQuery(this).html());
-	jQuery('#bfi-list').removeClass('bfi-grid-group')
-	jQuery('#bfi-list .bfi-item').addClass('list-group-item')
-	jQuery('#bfi-list .bfi-img-container').addClass('bfi-col-sm-3')
-	jQuery('#bfi-list .bfi-details-container').addClass('bfi-col-sm-9')
-
-	localStorage.setItem('display', 'list');
-});
-
-jQuery('#grid-view').click(function() {
-	jQuery('.bfi-view-changer-selected').html(jQuery(this).html());
-	jQuery('#bfi-list').addClass('bfi-grid-group')
-	jQuery('#bfi-list .bfi-item').removeClass('list-group-item')
-	jQuery('#bfi-list .bfi-img-container').removeClass('bfi-col-sm-3')
-	jQuery('#bfi-list .bfi-details-container').removeClass('bfi-col-sm-9')
-	localStorage.setItem('display', 'grid');
-});
-	jQuery('#bfi-list .bfi-item').addClass('grid-group-item')
-
-if (localStorage.getItem('display')) {
-	if (localStorage.getItem('display') == 'list') {
-		jQuery('#list-view').trigger('click');
-	} else {
-		jQuery('#grid-view').trigger('click');
-	}
-} else {
-	 if(typeof bfi_variable === 'undefined' || bfi_variable.bfi_defaultdisplay === 'undefined') {
-		jQuery('#list-view').trigger('click');
-	 } else {
-		if (bfi_variable.bfi_defaultdisplay == '1') {
-			jQuery('#grid-view').trigger('click');
-		} else { 
-			jQuery('#list-view').trigger('click');
-		}
-	}
-}
-
-
-
 
 //var urlCheck = "<?php echo $base_url ?>/bfi-api/v1/task";
 var listToCheck = "<?php echo implode(",", $listsId) ?>";
@@ -545,6 +498,7 @@ jQuery(document).ready(function() {
 			},
 			height: 500,
 			width: 800,
+			dialogClass: 'bfi-dialog bfi-dialog-map'
 		});
 	});
 	
@@ -572,7 +526,8 @@ jQuery(document).ready(function() {
 								placement:'auto-bottom',
 								dismissible:true,
 								trigger:'manual',
-								type:'html'
+								type:'html',
+								style:'bfi-webuipopover'
 							});
 							obj.webuiPopover('show');
 
@@ -601,7 +556,9 @@ jQuery(document).ready(function() {
 		jQuery.each(data, function(key, val) {
 			if (val.XGooglePos == '' || val.YGooglePos == '' || val.XGooglePos == null || val.YGooglePos == null)
 				return true;
-			var url = "<?php echo $url_merchant_page; ?>" + val.MerchantId + '-' + val.MerchantName + '/mapspopup?fromsearch=1';
+			var url = "<?php echo $formAction; ?>?merchantId=" + val.MerchantId+ '&task=getmarketinfomerchant';
+//			var url = "<?php echo $url_merchant_page; ?>" + val.MerchantId + '-' + val.MerchantName + '/mapspopup?fromsearch=1';
+
 //			url += '?format=raw&layout=map&merchantId=' + val.MerchantId;
 			
 			var marker = new google.maps.Marker({

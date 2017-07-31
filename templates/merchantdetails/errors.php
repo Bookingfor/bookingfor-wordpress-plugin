@@ -23,7 +23,11 @@ $formlabel = COM_BOOKINGFORCONNECTOR_FORM_KEY;
 
 
 ?>
+<div class="bfi-content">
 <br />
 		<div class="bfi-alert bfi-alert-danger">
 		 <?php _e('OPS, some errors occurred! Please try again later.', 'bfi') ?>
 		</div>
+<div class="bfi-clearboth"></div>
+<?php  include(BFI()->plugin_path().'/templates/merchant_small_details.php');  ?>
+</div>

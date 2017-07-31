@@ -141,17 +141,10 @@ class BookingForConnectorModelSearch
 //				}
 			}
 
-//			if ($searchtypetab==0 || $searchtypetab=="0") {
-//				$options['data']['itemTypeIds'] = '\'0\'';
-//			}
-//			if ($searchtypetab==1 || $searchtypetab=="1" ) {
-//				$options['data']['itemTypeIds'] = '\'1\'';
-//			}
-//			if ($searchtypetab==2 || $searchtypetab=="2" ) {
-//				$options['data']['itemTypeIds'] = '\'1\'';
-//				$options['data']['availabilityTypes'] = '\'2,3\'';
-//				$options['data']['duration'] = 1;
-//			}
+			$points = isset($params['points']) ? $params['points'] : '' ;
+			if (isset($points) && $points !='' && $cityId < -1) {
+				$options['data']['points'] = '\'' . $points. '\'';
+			}
 
 			if (isset($persons) && $persons > 0) {
 				$options['data']['paxes'] = $persons;
@@ -260,7 +253,15 @@ class BookingForConnectorModelSearch
 				$options['data']['ratingIds'] = BFCHelper::getQuotedString(str_replace("|",",",$filters['rating'])) ;
 			}
 			if(!empty( $filters['avg'] )){
-				$options['data']['avgIds'] = BFCHelper::getQuotedString(str_replace("|",",",$filters['avg'])) ;
+				if (isset($groupresulttype) ) {
+					if ($groupresulttype==1 ) { //onbly for merchants 
+						$options['data']['mrcAvgs'] = BFCHelper::getQuotedString(str_replace("|",",",$filters['avg'])) ;
+					}else{
+						$options['data']['resAvgs'] = BFCHelper::getQuotedString(str_replace("|",",",$filters['avg'])) ;
+					}
+				}else{
+					$options['data']['resAvgs'] = BFCHelper::getQuotedString(str_replace("|",",",$filters['avg'])) ;
+				}
 			}
 			if(!empty( $filters['meals'] )){
 				$options['data']['includedMeals'] = BFCHelper::getQuotedString(str_replace("|",",",$filters['meals'])) ;
@@ -414,10 +415,14 @@ class BookingForConnectorModelSearch
 				}
 				elseif ($condominiumsResults){
 					$val->Resource = new StdClass;
-					$val->Resource->ResourceId = $result->CondominiumId;
-					$val->Resource->XGooglePos = $result->XGooglePos;
-					$val->Resource->YGooglePos = $result->YGooglePos;
+					$val->Resource->CondominiumId = $result->CondominiumId;
+					$val->Resource->ResourceId = $result->ResourceId;
+					$val->Resource->XGooglePos = $result->ResLat;
+					$val->Resource->YGooglePos = $result->ResLng;
+					$val->Resource->ResourceName = BFCHelper::getSlug($result->ResName);
+					$val->Resource->Price = $result->Price;
 					
+					$val->Resource->strAddress =  $result->Address . " - " . $result->ZipCode ." - " . $result->CityName . " (".$result->RegionName.")";
 				}
 				else { 
 					$val->Resource = new StdClass;
@@ -426,8 +431,6 @@ class BookingForConnectorModelSearch
 					$val->Resource->YGooglePos = $result->ResLng;
 					$val->Resource->ResourceName = BFCHelper::getSlug($result->ResName);
 					$val->Resource->Price = $result->Price;
-					
-
 				}
 				$arr[] = $val;
 			}
@@ -530,15 +533,15 @@ class BookingForConnectorModelSearch
 	//	}
 	}
 	
-	public function SearchResult($term, $language, $limit) {
+	public function SearchResult($term, $language, $limit, $onlyLocations=0) {
 		$options = array(
 			'path' => $this->urlSearchResult,
 			'data' => array(
 					'$format' => 'json',
 					'term' => BFCHelper::getQuotedString($term),
+					'onlyLocations' => $onlyLocations,
 					'cultureCode' =>  BFCHelper::getQuotedString($language),
-					'top' => 0,
-					'lite' => 1
+					'top' => 0
 			)
 		);
 		

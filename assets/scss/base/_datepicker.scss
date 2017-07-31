@@ -1,0 +1,181 @@
+.bfi-datepicker {
+    background-color: $color13;
+	border-radius: $border-radius-base;
+	border: $color11 1px solid;
+	padding: 5px 0;
+	& button, & button:hover {
+		border: 0;
+		background-color: $color13;
+		min-width: 80px;
+		padding: 2px 2px 0 2px;
+		display: block;
+		width: 100%;
+		color: $color12;
+	}
+	& button:focus {
+		outline: none;
+	}
+	& .ui-datepicker-trigger div {
+		padding: 0 5px;
+	}
+}
+.bfi-widget_booking_search .bfi-datepicker button {
+	background-color: $color13;
+	padding: 0 4px 0 4px;
+	margin: 0;
+}
+#bfi-calculatorForm .bfi-datepicker {
+	background: $color14;
+	& button {
+		background: $color14;
+	}
+}
+#ui-datepicker-div.bfi-calendar{
+	&::before, &::after {
+		text-align: center;
+		width: auto;
+		background: $color14;
+		color: $color1;
+		font-size: $font-size-regular;
+		font-weight: $font-weight-bold;
+		padding: 7px;
+		display: block;
+	}
+	& .ui-state-default {
+		background: $color13;
+		border: 0;
+		color: $color1;
+	}
+	& .ui-datepicker-week-end .ui-state-default {
+		background: $color13;
+		border: 0;
+		color: $color12;
+	}
+	&::after {
+		content: attr(data-before);
+		font-size: $font-size-small;
+	}
+	& .ui-widget-header {
+		border: none;
+		background: $color13;
+		font-weight: normal;
+		color: $color12;
+		padding: 0;
+	}
+	&.ui-widget-content {
+		background: $color13;
+		padding: 0; 
+		color: $color12;
+		border: 1px solid #bababa;
+		border-radius: $border-radius-base;
+		-webkit-box-shadow: 0 2px 6px 1px rgba(0,0,0,0.3);
+		box-shadow: 0 2px 6px 1px rgba(0,0,0,0.3);
+		-webkit-transform: translate3d(0,0,0);
+		&:before {
+			content: '';
+			position: absolute;
+			width: 10px;
+			height: 10px;
+			background: $color13;
+			-webkit-box-shadow: inherit;
+			box-shadow: inherit;
+			z-index: -1;
+			top: -5px;
+			left: 14px;
+			margin-left: -5px;
+			-webkit-transform: scaleX(0.6) rotate(45deg);
+			-ms-transform: scaleX(0.6) rotate(45deg);
+			transform: scaleX(0.6) rotate(45deg);
+		}
+	}
+	& .ui-datepicker-today .ui-state-default {
+		background: $color13;
+		color: $color1;
+		font-weight: $font-weight-bold;
+	}
+	& .ui-state-highlight, & .ui-state-hover, & .ui-datepicker-week-end .ui-state-hover, & .date-selected .ui-state-default, & .date-end-selected .ui-state-default, & .date-start-selected .ui-state-default, & .date-end-selected .ui-state-default {
+		background: $color1;
+		color: $color13;
+		border: 0;
+	}
+	& .date-start-selected .ui-state-default {
+		border-radius: 3px 0 0 3px;
+	}
+	& .date-end-selected .ui-state-default {
+		border-radius: 0 3px 3px 0;
+	}
+	& tbody {
+		border: 0;
+	}
+	& .ui-datepicker-title {
+		font-size: $font-size-regular;
+	}
+	& .ui-datepicker-next, & .ui-datepicker-prev {
+		background: $color1;
+		border-radius: 50%;
+		width: 20px;
+		height: 20px;
+		text-align: center;
+		color: $color13;
+		top: 0;
+		cursor: pointer;
+		& .fa {
+			font-size: $font-size-large;
+		}
+	}
+	& .ui-datepicker-prev {
+		right: 1px;
+		& span {
+			margin-left: -5px;
+		}
+	}
+	& .ui-datepicker-next {
+		& span {
+			margin-left: -3px;
+		}
+	}
+	& .ui-datepicker-unselectable span {
+		text-decoration: line-through;
+	}
+	& .ui-datepicker-group {
+		padding: 5px;
+		background: $color13;
+	}
+}
+#ui-datepicker-div.bfi-checkin::before {
+    content: "Check In";
+}
+#ui-datepicker-div.bfi-checkout::before {
+    content: "Check Out";
+}
+.ui-datepicker {
+	&.bfi-calendar {
+		& table {
+		width: 100%;
+		font-size: $font-size-medium;
+		border-collapse: collapse;
+		margin: 0 0 .4em;
+		border: 0;
+		}
+		& td {
+			padding: 0;
+			& a, & span {
+				text-align: center;
+				padding: 5px;
+			}
+		}
+		& .ui-datepicker-prev span, & .ui-datepicker-next span {
+			top: 45%;
+		}
+		& .bfi-title {
+			text-align: center;
+			width: auto;
+			background: $color14;
+			color: $color1;
+			font-size: $font-size-regular;
+			font-weight: $font-weight-bold;
+			padding: 7px;
+			display: block;
+		}
+	}
+}

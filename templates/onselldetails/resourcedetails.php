@@ -22,6 +22,7 @@ $routeMerchant = $url_merchant_page . $merchant->MerchantId.'-'.BFI()->seoUrl($m
 $accommodationdetails_page = get_post( bfi_get_page_id( 'accommodationdetails' ) );
 $url_resource_page = get_permalink( $accommodationdetails_page->ID );
 $resourceName = BFCHelper::getLanguage($resource->Name, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
+$merchantName = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
 $resourceDescription = BFCHelper::getLanguage($resource->Description, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'striptags'=>'striptags'));
 $uri = $url_resource_page.$resource->ResourceId.'-'.BFI()->seoUrl($resourceName);
 
@@ -139,29 +140,29 @@ var cultureCode = '<?php echo $language ?>';
 var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 //-->
 </script>
-<div class="bfi_content">	
+<div class="bfi-content">	
 
-	<h2 class="bfi-title-name"><?php echo  $resourceName?> </h2>
+	<div class="bfi-title-name"><?php echo  $resourceName?> - <span class="bfi-cursor"><?php echo  $merchantName?></span></div>
 <?php if ($resource->IsAddressVisible) { ?>
 	<div class="bfi-address">
-				<i class="fa fa-map-marker fa-1"></i> <span class="street-address"><?php echo $indirizzo ?></span>, <span class="postal-code "><?php echo  $cap ?></span> <span class="locality"><?php echo $comune ?></span>, <span class="region"><?php echo  $stato ?></span>
-				<?php if (($showResourceMap)) :?><a class="bfi-map-link" rel="#resource_map"><?php echo _e('Map' , 'bfi') ?></a><?php endif; ?>
+				<i class="fa fa-map-marker fa-1"></i> <?php if (($showResourceMap)) {?><a class="bfi-map-link" rel="#resource_map"><?php } ?><span class="street-address"><?php echo $indirizzo ?></span>, <span class="postal-code "><?php echo  $cap ?></span> <span class="locality"><?php echo $comune ?></span>, <span class="region"><?php echo  $stato ?></span>
+				<?php if (($showResourceMap)) {?></a><?php } ?>
 	</div>	
 <?php } ?>
 	<div class="bfi-clearboth"></div>
 <!-- Navigation -->	
 	<ul class="bfi-menu-top">
-		<li><a rel=".resourcecontainer-gallery" data-toggle="tab"><?php echo  _e('Media' , 'bfi') ?></a></li>
+		<!-- <li><a rel=".bfi-resourcecontainer-gallery" data-toggle="tab"><?php echo  _e('Media' , 'bfi') ?></a></li> -->
 		<?php if (!empty($resourceDescription)):?><li><a rel=".bfi-description-data"><?php echo  _e('Description', 'bfi') ?></a></li><?php endif; ?>
 		<?php if($isportal): ?><li ><a rel=".bfi-merchant-simple"><?php echo  _e('Host' , 'bfi') ?></a></li><?php endif; ?>
 		<?php if (($showResourceMap)) :?><li><a rel="#resource_map"><?php echo _e('Map' , 'bfi') ?></a></li><?php endif; ?>
 	</ul>
 </div>
-	<div class="resourcecontainer-gallery">
+	<div class="bfi-resourcecontainer-gallery">
 		<?php  include('resource-gallery.php');  ?>
 	</div>
 
-<div class="bfi_content">	
+<div class="bfi-content">	
 	<div class="bfi-row bfi-hideonextra">
 		<div class="bfi-col-md-8 bfi-description-data">
 			<?php echo $resourceDescription ?>		
@@ -179,7 +180,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 				<?php endif ?>
 			</div>
 					<!-- AddToAny BEGIN -->
-					<a class="bfi-smallbtn bfi-sharebtn a2a_dd"  href="http://www.addtoany.com/share_save" ><i class="fa fa-share-alt"></i> <?php _e('Share', 'bfi') ?></a>
+					<a class="bfi-btn bfi-alternative2 bfi-pull-right a2a_dd"  href="http://www.addtoany.com/share_save" ><i class="fa fa-share-alt"></i> <?php _e('Share', 'bfi') ?></a>
 					<script async src="https://static.addtoany.com/menu/page.js"></script>
 					<!-- AddToAny END -->
 		</div>	
@@ -296,7 +297,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 			<?php if(isset($resource->EnergyClass) && $resource->EnergyClass>0): ?>
 			<td class="bfi-col-md-3"><?php _e('Energy efficiency class', 'bfi') ?>:</td>
 			<td class="bfi-col-md-3" <?php if(!isset($resource->EpiValue)) {echo "colspan=\"3\"";}?>>
-				<div class="energyClass energyClass<?php echo $resource->EnergyClass?>">
+				<div class="bfi-energyClass bfi-energyClass<?php echo $resource->EnergyClass?>">
 				<?php 
 					switch ($resource->EnergyClass) {
 						case 0: __('not set', 'bfi'); break;
@@ -365,10 +366,24 @@ echo("</tr>\n");
 					mapTypeId: google.maps.MapTypeId.ROADMAP
 				}
 			mapUnit = new google.maps.Map(document.getElementById("resource_map"), myOptions);
-			var marker = new google.maps.Marker({
-				  position: myLatlng,
-				  map: mapUnit
-			  });
+			if ('<?php echo $isMapMarkerVisible?>' == "1") {
+				var marker = new google.maps.Marker({
+					position: myLatlng,
+					map: mapUnit,
+					title: '<?php echo $resourcename?>'
+				});
+			}
+			else {
+				var circle = new google.maps.Circle({
+					strokeColor: "#FF0000",
+					strokeWeight: 2,
+					fillOpacity: 0,
+					center: myLatlng,
+					radius: 300, //in metri (1000m = 1Km)
+					map: mapUnit,
+					title: '<?php echo $resourcename?>'
+				});
+			}
 			redrawmap()
 		}
 
@@ -376,7 +391,7 @@ echo("</tr>\n");
 			if (typeof google !== 'object' || typeof google.maps !== 'object'){
 				var script = document.createElement("script");
 				script.type = "text/javascript";
-				script.src = "https://maps.google.com/maps/api/js?key=<?php echo $googlemapsapykey ?>&libraries=drawing&callback=handleApiReady";
+				script.src = "https://maps.google.com/maps/api/js?key=<?php echo $googlemapsapykey ?>&libraries=drawing,places&callback=handleApiReady";
 				document.body.appendChild(script);
 			}else{
 				if (typeof mapUnit !== 'object'){

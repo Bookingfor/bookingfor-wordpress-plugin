@@ -11,7 +11,7 @@
 			
 			jQuery(".bfi-book-now").hide();
 			jQuery(".bfi-request-now").hide();
-			jQuery(".bfi-item-secondary-more").hide();
+			jQuery(".bfi-btn-book-now").hide();
 
 			jQuery("tr[id^=data-id-]").each(function(index,obj){
 				var ddlroom = jQuery(obj).find(".ddlrooms");
@@ -41,10 +41,10 @@
 				jQuery(".bfi-book-now").show();
 				if (onlybookable==1)
 				{
-					jQuery(".bfi-item-secondary-more").show();
+					jQuery(".bfi-btn-book-now").show();
 					jQuery(".bfi-request-now").hide();
 				}else{
-					jQuery(".bfi-item-secondary-more").hide();
+					jQuery(".bfi-btn-book-now").hide();
 					jQuery(".bfi-request-now").show();
 				}
 			}
@@ -77,13 +77,17 @@
 
                     for (var i = 1; i <= currQtSelected; i++) {
 
-                        jQuery("#services-room-" + i + '-' + currResId + "-" + currRateplanId).find('.bfi-resname-extra').first().html(currTitle + ' ' + i);
+//                        jQuery("#services-room-" + i + '-' + currResId + "-" + currRateplanId).find('.bfi-resname-extra').first().html(currTitle + ' ' + i);
+                        jQuery("#services-room-" + i + '-' + currResId + "-" + currRateplanId).find('.bfi-resname-extra').first().html((noResources+1) + ') ' + currTitle);
                         
 						if(i!=jQuery(this).val() && jQuery("#services-room-" + i + '-' + currResId + "-" + currRateplanId).length ){
 
                             var nextservice = firstResourceServices.clone();
 
                             nextservice.attr('id',"services-room-" + (i + 1) + '-' + currResId + "-" + currRateplanId);
+							nextservice.find(".bfi-timeslot").attr('data-sourceid',"services-room-" + (i + 1) + '-' + currResId + "-" + currRateplanId);
+							nextservice.find(".ddlrooms").attr('data-sourceid',"services-room-" + (i + 1) + '-' + currResId + "-" + currRateplanId);
+
                             //nextservice.find('.ddlrooms').first();
                             nextservice.insertAfter("#services-room-" + i + '-' + currResId + "-" + currRateplanId);
                         }
@@ -94,13 +98,13 @@
                         {
                             showServices = true;
                             jQuery("#services-room-" + i + '-' + currResId + "-" + currRateplanId).show();
-                            if(noResources == 0)//show price and rooms text in last td
-                            {
-//                                jQuery("#services-room-" + i + '-' + currResId + "-" + currRateplanId).find('table').find('tr:first').find('th:last').html('Booking');
-                                jQuery("#services-room-" + i + '-' + currResId + "-" + currRateplanId).find('table').find('tr:eq(1)').find('td:last').find('div').show();
-                            }else{
-                                jQuery("#services-room-" + i + '-' + currResId + "-" + currRateplanId).find('table').find('tr:eq(1)').find('td:last').html("");
-							}
+//                            if(noResources == 0)//show price and rooms text in last td
+//                            {
+////                                jQuery("#services-room-" + i + '-' + currResId + "-" + currRateplanId).find('table').find('tr:first').find('th:last').html('Booking');
+//                                jQuery("#services-room-" + i + '-' + currResId + "-" + currRateplanId).find('table').find('tr:eq(1)').find('td:last').find('div').show();
+//                            }else{
+//                                jQuery("#services-room-" + i + '-' + currResId + "-" + currRateplanId).find('table').find('tr:eq(1)').find('td:last').html("");
+//							}
                             noResources++;
 
                         }
@@ -109,7 +113,7 @@
             });
 
             if(showServices){
-				jQuery(".bfi-menu-booking a:eq(1)").addClass("bfi-menu-small-active"); //set menu to "Extra service"
+				jQuery(".bfi-menu-booking a:eq(1)").removeClass(" bfi-alternative3"); //set menu to "Extra service"
 				jQuery(".bfi-table-resources").not( ".bfi-table-selectableprice" ).hide();
                 jQuery(".bfi-hideonextra").hide();
                 jQuery(".div-selectableprice").show();
@@ -131,6 +135,6 @@
             }
             else
             {
-                BookNow();
+                bookingfor.BookNow();
             }
         }

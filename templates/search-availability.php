@@ -5,30 +5,30 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $currencyclass = bfi_get_currentCurrency();
 
-if(!isset($_POST['format'])) {
+if(!isset($_GET['task'])) {
+	if(!isset($_POST['format'])) {
 
 
-get_header( 'searchavailability' ); ?>
+	get_header( 'searchavailability' ); ?>
+
+		<?php
+			/**
+			 * bookingfor_before_main_content hook.
+			 *
+			 * @hooked bookingfor_output_content_wrapper - 10 (outputs opening divs for the content)
+			 * @hooked bookingfor_breadcrumb - 20
+			 */
+			do_action( 'bookingfor_before_main_content' );
+		?>
+
+			<?php if ( apply_filters( 'bookingfor_show_page_title', true ) ) : ?>
+
+
+			<?php endif; ?>
+
 
 	<?php
-		/**
-		 * bookingfor_before_main_content hook.
-		 *
-		 * @hooked bookingfor_output_content_wrapper - 10 (outputs opening divs for the content)
-		 * @hooked bookingfor_breadcrumb - 20
-		 */
-		do_action( 'bookingfor_before_main_content' );
-	?>
-
-		<?php if ( apply_filters( 'bookingfor_show_page_title', true ) ) : ?>
-
-
-		<?php endif; ?>
-
-
-<?php
-}
-if(!isset($_GET['task'])) {
+	}
 //	if(!isset($_POST['format'])) {
 //		unset($_SESSION['search.filterparams']);
 		bfi_setSessionFromSubmittedData();
@@ -124,14 +124,14 @@ if(COM_BOOKINGFORCONNECTOR_CRITEOENABLED){
 //				$resIndex = 0;
 				$listName = "Resources Group List";
 				foreach($items as $itemkey => $itemValue) {
-					$obj = new stdClass();
-					$obj->Id = $itemValue->MerchantId . " - Merchant";
-					$obj->MerchantId = $itemValue->MerchantId;
-					$obj->Name = $itemValue->MrcName;
-					$obj->MrcCategoryName = $itemValue->MrcCategoryName;
-					$obj->MrcName = $itemValue->MrcName;
-					$obj->Position = $itemkey;
-					$totalItems[] = $obj;
+//					$obj = new stdClass();
+//					$obj->Id = $itemValue->MerchantId . " - Merchant";
+//					$obj->MerchantId = $itemValue->MerchantId;
+//					$obj->Name = $itemValue->MrcName;
+//					$obj->MrcCategoryName = $itemValue->MrcCategoryName;
+//					$obj->MrcName = $itemValue->MrcName;
+//					$obj->Position = $itemkey;
+//					$totalItems[] = $obj;
 					$objRes = new stdClass();
 					$objRes->Id = $itemValue->ResourceId . " - Resource";
 					$objRes->MerchantId = $itemValue->MerchantId;
@@ -146,29 +146,23 @@ if(COM_BOOKINGFORCONNECTOR_CRITEOENABLED){
 				$resIndex = 0;
 				$listName = "Resources Group List";
 				foreach($items as $mrckey => $mrcValue) {
-					$obj = new stdClass();
-					$obj->Id = $mrcValue->CondominiumId . " - Resource Group";
-					$obj->MerchantId = $mrcValue->MerchantId;
-					$obj->Name = $mrcValue->Name;
-					$obj->MrcCategoryName = $mrcValue->MrcCategoryName;
-					$obj->MrcName = $mrcValue->MerchantName;
-					$obj->Position = $mrckey;
-					$totalItems[] = $obj;
-					foreach($mrcValue->Resources as $resKey => $resValue) {
-						$objRes = new stdClass();
-						$objRes->Id = $resValue->ResourceId . " - Resource";
-						$objRes->GroupId = $mrcValue->CondominiumId;
-						$objRes->MerchantId = $mrcValue->MerchantId;
-						$objRes->Name = $resValue->ResName;
-						$objRes->MrcName = $mrcValue->Name;
-						$objRes->MrcCategoryName = $mrcValue->MrcCategoryName;
-						$objRes->Position = $resIndex;
-						if($resKey >= $maxItemsView) {
-							$objRes->ExcludeInitial = true;
-						}
-						$totalItems[] = $objRes;
-						$resIndex++;
-					}
+//					$obj = new stdClass();
+//					$obj->Id = $mrcValue->CondominiumId . " - Resource Group";
+//					$obj->MerchantId = $mrcValue->MerchantId;
+//					$obj->Name = $mrcValue->Name;
+//					$obj->MrcCategoryName = $mrcValue->MrcCategoryName;
+//					$obj->MrcName = $mrcValue->MerchantName;
+//					$obj->Position = $mrckey;
+//					$totalItems[] = $obj;
+					$objRes = new stdClass();
+					$objRes->Id = $itemValue->ResourceId . " - Resource";
+					$objRes->CondominiumId= $itemValue->CondominiumId;
+					$objRes->MerchantId = $itemValue->MerchantId;
+					$objRes->Name = $itemValue->ResName;
+					$objRes->MrcName = $itemValue->MrcName;
+					$objRes->MrcCategoryName = $itemValue->MrcCategoryName;
+					$objRes->Position = $itemkey;// $resIndex;
+					$totalItems[] = $objRes;
 				}
 			} else {
 				$listName = "Resources Search List";
@@ -222,26 +216,31 @@ if(COM_BOOKINGFORCONNECTOR_CRITEOENABLED){
 		
 		//event tracking	
 
+		include(BFI()->plugin_path().'/templates/search/search-listing.php');	  
 
-	if($_SESSION['search.params']['merchantResults']) {
-		$merchants = $items ;
-		include(BFI()->plugin_path().'/templates/search/new-search-listing.php');	  
-	} else {
-		$results = $items ;
-      
-//      echo "<pre>";
-//      echo BFI()->plugin_path();
-//      echo "</pre>";
-      
-//	  $resource_ids = array();
-//    
-//      foreach ($items as $resource) {
-//      $resource_ids[] = $resource->ResourceId;
-//      }
-//      $resource_ids = implode(',', $resource_ids);
-   //   echo '<div id="idsforajax" rel="'.$resource_ids.'"></div>';
-      include(BFI()->plugin_path().'/templates/search/new-search-listing.php');
-    }
+//	//if($_SESSION['search.params']['merchantResults']) {
+//	if($merchantResults) {
+//		$merchants = $items ;
+//		include(BFI()->plugin_path().'/templates/search/search-listing.php');	  
+//	} else if ($condominiumsResults) {
+//		$merchants = $items ;
+//		include(BFI()->plugin_path().'/templates/search/search-listing.php');	  
+//	} else {
+//		$results = $items ;
+//      
+////      echo "<pre>";
+////      echo BFI()->plugin_path();
+////      echo "</pre>";
+//      
+////	  $resource_ids = array();
+////    
+////      foreach ($items as $resource) {
+////      $resource_ids[] = $resource->ResourceId;
+////      }
+////      $resource_ids = implode(',', $resource_ids);
+//   //   echo '<div id="idsforajax" rel="'.$resource_ids.'"></div>';
+//      include(BFI()->plugin_path().'/templates/search/search-listing.php');
+//    }
 //    $output = '';
 //    $output = $output. '</div>
 //    </div>';
@@ -265,7 +264,7 @@ if(COM_BOOKINGFORCONNECTOR_CRITEOENABLED){
 //
 //  $paginate_links = paginate_links($pagination_args);
 //    if ($paginate_links) {
-//      echo "<nav class='custom-pagination'>";
+//      echo "<nav class='bfi-pagination'>";
 ////      echo "<span class='page-numbers page-num'>Page " . $page . " of " . $numpages . "</span> ";
 //      echo "<span class='page-numbers page-num'>".__('Page', 'bfi')." </span> ";
 //      print $paginate_links;
@@ -300,71 +299,104 @@ if(COM_BOOKINGFORCONNECTOR_CRITEOENABLED){
       echo $resources;
       die();
     }
-    else if($task == 'getmarketinfo') {
-    	$base_url = get_site_url();
-    	$merchant_id = $_GET['merchantId'];
-    	$model =  new BookingForConnectorModelMerchantDetails;
-      $merchant = $model->getItem($merchant_id);
-      $output = '<div class="com_bookingforconnector_map_merchantdetails" style="display:block;height:150px;overflow:auto; width: 300px;">
-					<div class="com_bookingforconnector_merchantdetails com_bookingforconnector_merchantdetails-t257">
-						<h3 style="margin:0;" class="com_bookingforconnector_merchantdetails-name"><a class="com_bookingforconnector_merchantdetails-nameAnchor" href="'.$base_url.'/merchant-details/merchantdetails/'.$merchant->MerchantId.'-'.seoUrl($merchant->Name).'">'.$merchant->Name.'</a> 
-							<br/><span class="bfi_merchantdetails-rating bfi_merchantdetails-rating'.$merchant->Rating.'">
-								<span class="bfi_merchantdetails-ratingText">Rating '.$merchant->Rating.'</span>
-							</span>
-						</h3>
+    else if($task == 'getmarketinfomerchant') {
+		$base_url = get_site_url();
+		$merchant_id = $_GET['merchantId'];
+		$model =  new BookingForConnectorModelMerchantDetails;
+		$merchant = $model->getItem($merchant_id);
+		$indirizzo = isset($merchant->AddressData->Address)?$merchant->AddressData->Address:"";
+		$cap = isset($merchant->AddressData->ZipCode)?$merchant->AddressData->ZipCode:""; 
+		$comune = isset($merchant->AddressData->CityName)?$merchant->AddressData->CityName:"";
+		$stato = isset($merchant->AddressData->StateName)?$merchant->AddressData->StateName:"";
+
+		$merchantdetails_page = get_post( bfi_get_page_id( 'merchantdetails' ) );
+		$url_merchant_page = get_permalink( $merchantdetails_page->ID );
+		
+		$output = '<div class="bfi-mapdetails">
+					<div class="bfi-item-title">
+						<a href="'.$url_merchant_page .$merchant_id .'-'.BFI()->seoUrl($merchant->Name).'?fromsearch=1" target="_blank">'.$merchant->Name.'</a> 
 					</div>
+					<div class="bfi-item-address"><span class="street-address">'.$indirizzo .'</span>, <span class="postal-code ">'.$cap .'</span> <span class="locality">'.$comune .'</span>, <span class="region">'.$stato .'</span></div>
 				</div>';    
     die($output);
     }
     else if($task == 'getmarketinforesource') {
-    	$base_url = get_site_url();
-    	$resource_id = $_GET['resourceId'];
-      $model = new BookingForConnectorModelResource;
-      $resource = $model->getItem($resource_id);
-	$merchant = $resource->Merchant;
-      $output = '<div class="com_bookingforconnector_map_merchantdetails" style="display:block;height:150px;overflow:auto; width: 300px;">
-					<div class="com_bookingforconnector_merchantdetails com_bookingforconnector_merchantdetails-t257">
-						<h3 style="margin:0;" class="com_bookingforconnector_merchantdetails-name"><a class="com_bookingforconnector_merchantdetails-nameAnchor" href="'.$base_url.'/accommodation-details/resource/'.$resource->ResourceId.'-'.seoUrl($resource->Name).'">'.$resource->Name.'</a> 
-							<br/><span class="bfi_merchantdetails-rating bfi_merchantdetails-rating'.$merchant->Rating.'">
-								<span class="bfi_merchantdetails-ratingText">Rating '.$merchant->Rating.'</span>
-							</span>
-						</h3>
+		$base_url = get_site_url();
+		$resource_id = $_GET['resourceId'];
+		$model = new BookingForConnectorModelResource;
+		$resource = $model->getItem($resource_id);
+		$merchant = $resource->Merchant;
+		$indirizzo = isset($resource->Address)?$resource->Address:"";
+		$cap = isset($resource->ZipCode)?$resource->ZipCode:""; 
+		$comune = isset($resource->CityName)?$resource->CityName:"";
+		$stato = isset($resource->StateName)?$resource->StateName:"";
+		
+		$accommodationdetails_page = get_post( bfi_get_page_id( 'accommodationdetails' ) );
+		$url_resource_page = get_permalink( $accommodationdetails_page->ID );
+
+		$output = '<div class="bfi-mapdetails">
+					<div class="bfi-item-title">
+						<a href="'.$url_resource_page .$resource_id .'-'.BFI()->seoUrl($resource->Name).'?fromsearch=1" target="_blank">'.$resource->Name.'</a> 
 					</div>
+					<div class="bfi-item-address"><span class="street-address">'.$indirizzo .'</span>, <span class="postal-code ">'.$cap .'</span> <span class="locality">'.$comune .'</span>, <span class="region">'.$stato .'</span></div>
+				</div>';    
+    die($output);    	
+    }
+    else if($task == 'getmarketinfocondominium') {
+		$base_url = get_site_url();
+		$resource_id = $_GET['resourceId'];
+		$model = new BookingForConnectorModelCondominiums;
+		$resource = $model->getCondominiumFromService($resource_id,$language);	 
+			
+		$indirizzo = isset($resource->Address)?$resource->Address:"";
+		$cap = isset($resource->ZipCode)?$resource->ZipCode:""; 
+		$comune = isset($resource->CityName)?$resource->CityName:"";
+		$stato = isset($resource->StateName)?$resource->StateName:"";
+		
+		$condominiumdetails_page = get_post( bfi_get_page_id( 'condominiumdetails' ) );
+		$url_condominium_page = get_permalink( $condominiumdetails_page->ID );
+		$routeCondominium = $url_condominium_page . $resource->CondominiumId.'-'.BFI()->seoUrl($resource->Name);
+
+		$output = '<div class="bfi-mapdetails">
+					<div class="bfi-item-title">
+						<a href="'.$routeCondominium.'?fromsearch=1" target="_blank">'.$resource->Name.'</a> 
+					</div>
+					<div class="bfi-item-address"><span class="street-address">'.$indirizzo .'</span>, <span class="postal-code ">'.$cap .'</span> <span class="locality">'.$comune .'</span>, <span class="region">'.$stato .'</span></div>
 				</div>';    
     die($output);    	
     }
     else if($task == 'getmarketinforesourceonsell') {
-    	$base_url = get_site_url();
-    	$resource_id = $_GET['resourceId'];
-      $model = new BookingForConnectorModelOnSellUnit;
-      $resource = $model->getItem($resource_id);
-      $merchant = $resource->Merchant;
-      $resource->Price = $resource->MinPrice;
-      $resourceName = BFCHelper::getLanguage($resource->Name, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
-      $resourceDescription = BFCHelper::getLanguage($resource->Description, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags'));
-      $zone = $resource->LocationZone;
-      $location = $resource->LocationName;
-      $contractType = ($resource->ContractType) ? 'contacttype1'  : 'contacttype';
+		$base_url = get_site_url();
+		$resource_id = $_GET['resourceId'];
+		$model = new BookingForConnectorModelOnSellUnit;
+		$resource = $model->getItem($resource_id);
+		$merchant = $resource->Merchant;
+		$resource->Price = $resource->MinPrice;
+		$resourceName = BFCHelper::getLanguage($resource->Name, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
+		$resourceDescription = BFCHelper::getLanguage($resource->Description, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags'));
+		$zone = $resource->LocationZone;
+		$location = $resource->LocationName;
+		$contractType = ($resource->ContractType) ? 'contacttype1'  : 'contacttype';
 
-//	   $img = "/images/default.png";
-//	   $imgError = "/images/default.png";
-	$img = plugins_url("images/default.png", dirname(__FILE__));
-	$imgError = plugins_url("images/default.png", dirname(__FILE__));
+		//	   $img = "/images/default.png";
+		//	   $imgError = "/images/default.png";
+		$img = plugins_url("images/default.png", dirname(__FILE__));
+		$imgError = plugins_url("images/default.png", dirname(__FILE__));
 
 
-      $route = '/merchant-details/sale/'.$resource_id.'-'.seoUrl($resource->Name);
-	   if ($resource->ImageUrl != ''){
+		$route = '/merchant-details/sale/'.$resource_id.'-'.seoUrl($resource->Name);
+		if ($resource->ImageUrl != ''){
 		  $img = BFCHelper::getImageUrlResized('onsellunits',$resource->ImageUrl , 'onsellunit_map_default');
 		  $imgError = BFCHelper::getImageUrl('onsellunits',$resource->ImageUrl , 'onsellunit_map_default');
-	   }elseif ($merchant->LogoUrl != ''){
+		}elseif ($merchant->LogoUrl != ''){
 		  $img = BFCHelper::getImageUrlResized('merchant',$merchant->LogoUrl, 'onsellunit_map_default');
 		  $imgError = BFCHelper::getImageUrl('merchant',$merchant->LogoUrl, 'onsellunit_map_default');
-       }
-      ob_start();
-      include('templates/onsellmapmarker.php');
-      $output = ob_get_contents();
-      ob_end_clean();
-      die($output);    	
+		}
+		ob_start();
+		include('templates/onsellmapmarker.php');
+		$output = ob_get_contents();
+		ob_end_clean();
+		die($output);    	
     }
   }
 

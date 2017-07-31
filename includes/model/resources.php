@@ -74,10 +74,15 @@ class BookingForConnectorModelResources
 		$params = $this->params;
 		
 		$categories = $params['categories'];
-		
 		if (!empty($categories)) {
 			$options['data']['productcategories'] =  BFCHelper::getQuotedString($categories);
 		}
+		
+		$condominiumid = $params['parentProductId'];
+		if (!empty($condominiumid)) {
+			$options['data']['parentProductId'] =  $condominiumid;
+		}
+
 //		$filter = '';
 //		// get only enabled merchants because disabled are of no use
 //		$this->helper->addFilter($filter, 'Enabled eq true', 'and');

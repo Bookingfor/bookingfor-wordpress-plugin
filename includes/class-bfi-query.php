@@ -59,6 +59,7 @@ class BFI_Query {
 		$this->query_vars = array(
 			// Checkout actions.
 			'merchantdetails'          => get_option( 'merchantdetails', 'merchantdetails' ),
+			'condominiumdetails'          => get_option( 'condominiumdetails', 'condominiumdetails' ),
 			'_api_controller'          => get_option( 'api_controller', 'api_controller' ),
 			'resourcedetails'          => get_option( 'resourcedetails', 'resourcedetails' ),
 			'orderdetails'          => get_option( 'orderdetails', 'orderdetails' ),
@@ -80,6 +81,9 @@ class BFI_Query {
 			case 'merchantdetails' :
 				$title = __( 'Merchant details', 'bfi' );
 			break;
+			case 'condominiumdetails' :
+				$title = __( 'Condominium details', 'bfi' );
+			break;
 			case 'resourcedetails' :
 				$title = __( 'Accomodation details', 'bfi' );
 			break;
@@ -87,7 +91,7 @@ class BFI_Query {
 				$title = __( 'Order details', 'bfi' );
 			break;
 			case 'payment' :
-				$title = __( 'Order details', 'bfi' );
+				$title = __( 'Order payment', 'bfi' );
 			break;
 			case 'onselldetails' :
 				$title = __( 'On Sell details', 'bfi' );
@@ -150,6 +154,35 @@ class BFI_Query {
 
 			}
 			
+			if ( 'condominiumdetails' == $key ) {
+
+				add_rewrite_tag( '%resource_id%',   '([^&]+)' );
+				add_rewrite_tag( '%resource_name%', '([^&]+)' );
+				add_rewrite_tag( '%bfi_layout%', '([^&]+)' );
+				add_rewrite_tag( '%bfi_id%', '([^&]+)' );
+				add_rewrite_tag( '%bfi_name%', '([^&]+)' );
+
+				$page_id   = bfi_get_page_id( 'condominiumdetails' ); 
+				$page_slug = get_post( $page_id )->post_name;
+				// e.g. /page-slug/my-endpoint/123/some-string/
+
+				add_rewrite_rule(
+					"^(?:[a-z]{2}/|){$page_slug}/([^/-]*)-([^/]*)?$",
+					'index.php?page_id=' . $page_id . '&resource_id=$matches[1]&resource_name=$matches[2]',
+					'top'
+				);
+				add_rewrite_rule(
+					"^(?:[a-z]{2}/|){$page_slug}/([^/-]*)-([^/]*)(?:/)([^/]*)?$",
+					'index.php?page_id=' . $page_id . '&resource_id=$matches[1]&resource_name=$matches[2]&bfi_layout=$matches[3]',
+					'top'
+				);
+				add_rewrite_rule(
+					"^(?:[a-z]{2}/|){$page_slug}/([^/-]*)-([^/]*)(?:/)([^/]*)/([^/-]*)-([^/]*)?$",
+					'index.php?page_id=' . $page_id . '&resource_id=$matches[1]&resource_name=$matches[2]&bfi_layout=$matches[3]&bfi_id=$matches[4]&bfi_name=$matches[5]',
+					'top'
+				);
+
+			}
 			if ( 'onselldetails' == $key ) {
 
 				add_rewrite_tag( '%resource_id%',   '([^&]+)' );

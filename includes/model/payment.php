@@ -17,6 +17,7 @@ class BookingForConnectorModelPayment {
 	private $urlCreateOrderPayment = null;
 	private $urlGetMerchantBookingTypes = null;
 	private $urlGetMerchantPayment = null;
+	private $urlGetLastOrderPayment = null;
 	private $params = null;
 			
 	private $helper = null;
@@ -33,8 +34,40 @@ class BookingForConnectorModelPayment {
 		$this->urlGetOrderPaymentsCount = '/OrderPayments/$count/';
 		$this->urlCreateOrderPayment = '/CreateOrderPayment';
 		$this->urlGetMerchantPayment = '/MerchantPayments(%d)';
-	}
+		$this->urlGetLastOrderPayment = '/GetLastOrderPayment';
 
+		
+	}
+	public function GetLastOrderPayment($orderid)
+	{	
+		$orderPayment= null;
+		if(!empty( $orderid )){
+			$data = array(
+					'orderid' => $orderid,
+					'$format' => 'json'
+			);
+			
+			$options = array(
+					'path' => $this->urlGetLastOrderPayment,
+					'data' => $data
+			);
+			
+			$url = $this->helper->getQuery($options);
+			
+			
+			$r = $this->helper->executeQuery($url);
+			if (isset($r)) {
+				$res = json_decode($r);
+				if (!empty($res->d->GetLastOrderPayment)){
+					$orderPayment = $res->d->GetLastOrderPayment;
+				}elseif(!empty($res->d)){
+					$orderPayment = $res->d;
+				}
+			}
+		}
+		return $orderPayment;
+	}
+		
 	public function getPaymentFromService($paymentsystemid)
 	{
 		$params = $this->params;

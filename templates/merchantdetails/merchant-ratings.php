@@ -21,13 +21,7 @@ $merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], nu
 
 ?>
 
-<div class="com_bookingforconnector_merchantdetails com_bookingforconnector_merchantdetails-t<?php echo  $merchant->MerchantTypeId?>">
-	<?php //echo JHTML::link(JRoute::_('index.php?option=com_bookingforconnector&view=merchantdetails&merchantId=' . $merchant->MerchantId . ':' . BFCHelper::getSlug($merchant->Name),true,-1), JTEXT::_('COM_BOOKINGFORCONNECTOR_MERCHANTS_VIEW_MERCHANTDETAILS_RATING_RETURN') ,array('class' => ' bfi-pull-right'));?>
-	<!--<h2 class="com_bookingforconnector_merchantdetails-name"><?php // echo  $merchantname?> 
-		<span class="bfi_merchantdetails-rating bfi_merchantdetails-rating<?php  // echo  $merchant->Rating ?>">
-			<span class="bfi_merchantdetails-ratingText">Rating <?php  // echo  $merchant->Rating ?></span>
-		</span>
-	</h2> -->
+<div >
 	<?php
    //$filters = $this->params['filters'];
    
@@ -103,7 +97,7 @@ $merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], nu
 					<input type="hidden" name="filter_order_Dir" value="">
 					<input type="hidden" name="searchid" value="-1">
 					<input type="hidden" name="limitstart" value="0">
-					<a href="<?php echo $routeMerchant; ?>/<?php echo _x('review', 'Page slug', 'bfi' ) ?>" class="btn btn-warning bfi-pull-right"><?php _e('Write a Review', 'bfi') ?></a>
+					<a href="<?php echo $routeMerchant; ?>/<?php echo _x('review', 'Page slug', 'bfi' ) ?>" class="bfi-btn bfi-alternative bfi-pull-right"><?php _e('Write a Review', 'bfi') ?></a>
 				</div>
 			</form>
 		<?php if ($ratings != null): ?>
@@ -186,12 +180,12 @@ $merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], nu
 					<?php endif; ?>
 						<br />
 				</div>
-				<div class="bfi-col-md-10 ">
-					<div class=" arrow_box ">
+				<div class="bfi-col-md-10">
+					<div class="bfi-arrow-box">
 						<div class="bfi-row">
 							<div class="bfi-col-md-6">
-								<div class="bfi-rating-value_small"><?php echo  $rating->Total; ?></div>
-								<div class="bfi-rating-title_small"><?php echo $rating_text['merchants_reviews_text_value_'.$t]; ?></div>
+								<div class="bfi-rating-value-small"><?php echo  $rating->Total; ?></div>
+								<div class="bfi-rating-title-small"><?php echo $rating_text['merchants_reviews_text_value_'.$t]; ?></div>
 							</div>
 							<div class="bfi-col-md-6 com_bookingforconnector_rating_date_small ">
 								<div class="bfi-pull-right" ><?php echo  $creationDateLabel?></div>
@@ -202,21 +196,18 @@ $merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], nu
 						</div>
 					</div>
 					
-					<div class=" rating_details ">
+					<div class="bfi-rating-details">
 					<?php if($rating->NotesData !="") :?>
-						<p > <span class="label label-info"><b><?php _e('+', 'bfi') ?></b></span>
+						<span class="label label-info"><b><?php _e('+', 'bfi') ?></b></span>
 						<span class="expander"><?php echo  stripslashes($rating->NotesData); ?></span>
-						</p>
-						<br />
 					<?php endif; ?>
 					<?php if($rating->NotesData1 !="") :?>
-						<p ><span class="label label-warning"><b><?php _e('-', 'bfi') ?></b></span>
-						<span class="expander"><?php echo  stripslashes($rating->NotesData1); ?></span>
-						</p>
+						<p><span class="label label-warning"><b><?php _e('-', 'bfi') ?></b></span>
+						<span class="expander"><?php echo  stripslashes($rating->NotesData1); ?></span></p>
 					<?php endif; ?>
 					</div>
 					<?php if (!empty($reply)) : ?>
-						<div class=" rating_details arrow_box_top">
+						<div class="bfi-rating-details bfi-arrow-box-top">
 							<div class="">
 							   <?php printf( __( '%s has responded to this review', 'bfi' ), $merchantname); ?>
 								<span class="com_bookingforconnector_rating_date_small bfi-pull-right"><?php echo  $replydateLabel?></span>
@@ -229,18 +220,27 @@ $merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], nu
 				</div>
 			</div>
 			<?php endforeach?>
+			<?php 
+			if($summaryRatings->Count >COM_BOOKINGFORCONNECTOR_ITEMPERPAGE){
+			?>
+			<div ><a href="<?php echo $routeMerchant; ?>/<?php echo _x('reviews', 'Page slug', 'bfi' ) ?>" class="bfi-btn bfi-alternative bfi-pull-right">all review</a></div>
+			<?php 
+				}
+			?>
+			
 		</div>	
 		<?php endif?>
 		<?php if ($ratings == null): ?>
-		<?php _e('No Reviews Found.'); ?>
+		<?php _e('No Reviews Found.', 'bfi'); ?>
 		<?php endif?>
 	</div>
 
 		<?php else:?>
+			<div><?php _e('No Reviews Found.', 'bfi'); ?></div>
 			<?php if ($merchant->RatingsContext !== 0 && $merchant->RatingsContext !== 2 && $merchant->RatingsType != 1) :?>
 				<div class="alert alert-block">
 					<?php _e('Would you like to be the first to write a review?', 'bfi'); ?>
-					<a href="<?php echo $routeMerchant;?>/<?php echo _x('review', 'Page slug', 'bfi' ) ?>" class="btn btn-info"><?php _e('Write a Review', 'bfi'); ?></a>
+					<a href="<?php echo $routeMerchant;?>/<?php echo _x('review', 'Page slug', 'bfi' ) ?>" class="bfi-btn bfi-alternative"><?php _e('Write a Review', 'bfi'); ?></a>
 				</div>
 			<?php endif?>	
 		<?php endif?>	

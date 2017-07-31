@@ -139,6 +139,11 @@ class BFI_Template_Loader {
 			$find[] = $file;
 			$find[] = BFI()->template_path() . $file;
 		}
+		if ( is_page( bfi_get_template_page_id( 'condominiumdetails' ) )) {
+			$file 	= 'condominiumdetails.php';
+			$find[] = $file;
+			$find[] = BFI()->template_path() . $file;
+		}
 		if ( is_page( bfi_get_template_page_id( 'accommodationdetails' ) )) {
 			$file 	= 'resourcedetails.php';
 			$find[] = $file;
@@ -158,12 +163,6 @@ class BFI_Template_Loader {
 			$file 	= 'payment.php';
 			$find[] = $file;
 			$find[] = BFI()->template_path() . $file;
-		}
-		if ( is_page( bfi_get_template_page_id( 'myaccount' ) )) {
-			$file 	= 'myaccount.php';
-			$find[] = $file;
-			$find[] = BFI()->template_path() . $file;
-
 		}
 		if ( is_page( bfi_get_template_page_id( 'cartdetails' ) )) {
 			$file 	= 'cartdetails.php';

@@ -35,7 +35,7 @@ if(COM_BOOKINGFORCONNECTOR_MONTHINCALENDAR==1){
 		$formdisplay = "";
 	}else{
 	?>
-		<span href="" class="opencontactform"><?php _e('Request for Information', 'bfi') ?></span>
+		<span href="" class="bfi-opencontactform bfi-btn bfi-alternative"><?php _e('Request for Information', 'bfi') ?></span>
 	<?php } ?>	
 
 	<div class="bfi-contacts" style="display:<?php echo $formdisplay ?>">
@@ -47,8 +47,13 @@ if(COM_BOOKINGFORCONNECTOR_MONTHINCALENDAR==1){
 	</h2>
 	<div align="center" class="bfi-form-contacts">
 		<form method="post" id="<?php echo $idform ?>" class="form-validate merchantdetailscontacts" action="<?php echo $formRoute; ?>" novalidate="novalidate">
-			<div class="bfi_form-field">
+			<div class="bfi-form-field">
 				<div class="bfi_form-title"><?php _e('Request for Information', 'bfi'); ?></div>
+				<?php if(isset($resource)) {?>		
+					<div class="">
+						<?php echo $resource->Name; ?>
+					</div><!--/span-->
+				<?php } ?>	
 				<div>
 					<input placeholder="<?php _e('Name', 'bfi'); ?> *" type="text" value="" size="50" name="form[Name]" id="Name" required="" title="<?php _e('Mandatory', 'bfi'); ?>" aria-required="true">
 				</div>
@@ -138,7 +143,7 @@ if(COM_BOOKINGFORCONNECTOR_MONTHINCALENDAR==1){
 						</select>
 					</div>
 <?php if(isset($resource)) :?>		
-					<div class="">
+					<div class="bfi-hide">
 						<?php echo $resource->Name; ?>
 					</div><!--/span-->
 				<input type="hidden" id="resourceId" name="form[resourceId]" value="<?php echo $resource->ResourceId;?>" > 
@@ -163,10 +168,10 @@ if(empty($maxCapacityPaxes)) {
 				</div>
                 
                 
-					<div class="bfi-inline-field-pers"><label><?php _e('Persons', 'bfi') ?> </label></div>
-						<div class="bfi_form_txt">
-                       <!-- <select name="form[Totpersons]" class="bfi-col-md-4">-->
-                        <select name="form[Totpersons]" class="bfi_input_select">
+				<div class="bfi-inline-field-pers"><label><?php _e('Persons', 'bfi') ?> </label></div>
+				<div class="bfi_form_txt">
+				   <!-- <select name="form[Totpersons]" class="bfi-col-md-4">-->
+					<select name="form[Totpersons]" class="bfi_input_select">
 					<?php
 					foreach (range($minCapacityPaxes, $maxCapacityPaxes) as $number) {
 						?> <option value="<?php echo $number ?>" <?php selected( 2, $number ); ?>><?php echo $number ?></option><?php
@@ -191,7 +196,7 @@ if(empty($maxCapacityPaxes)) {
 		<div class="bfi-row">
              <div class="bfi-col-md-12 bfi-checkbox-wrapper">
 		 	   <input name="form[accettazione]" id="agree" aria-invalid="true" aria-required="true" type="checkbox" required title="<?php _e('Mandatory', 'bfi') ?>">
-			   <label  class="agreeprivacy"><?php _e('I accept personal data treatment', 'bfi') ?></label>
+			   <label  class="bfi-agreeprivacy"><?php _e('I accept personal data treatment', 'bfi') ?></label>
 			</div>
         </div>
 		<div class="bfi-row" style="display:none;">
@@ -203,7 +208,7 @@ if(empty($maxCapacityPaxes)) {
 		<div class="bfi-row" style="display:<?php echo empty($additionalPurpose)?"none":"";?>">
 			<div class="bfi-col-md-12 bfi-checkbox-wrapper">
 				<input name="form[accettazioneadditionalPurpose]" id="agreeadditionalPurpose" aria-invalid="true" aria-required="true" required type="checkbox" title="<?php _e('Mandatory', 'bfi') ?>">
-				<label class="agreeprivacy"><?php _e('I accept additional purposes', 'bfi') ?></label>
+				<label class="bfi-agreeprivacy"><?php _e('I accept additional purposes', 'bfi') ?></label>
 			</div>
 		</div>
         
@@ -220,7 +225,7 @@ if(empty($maxCapacityPaxes)) {
 				<input type="hidden" id="label" name="form[label]" value="" />
 				<input type="hidden" id="redirect" name="form[Redirect]" value="<?php echo $routeThanks;?>" />
 				<input type="hidden" id="redirecterror" name="Redirecterror" value="<?php echo $routeThanksKo;?>" />
-			<div ><button type="submit" class="bfi_send-sx"><?php _e('Send', 'bfi') ?></button></div>
+			<div ><button type="submit" class="bfi-btn"><?php _e('Send', 'bfi') ?></button></div>
      
 		</div>
 </form>
@@ -245,10 +250,24 @@ if(empty($maxCapacityPaxes)) {
                 jQuery(function($) {
                     <?php echo $checkinId?> = function() { $("#<?php echo $checkinId?>").datepicker({
                         defaultDate: "+2d"
-                        ,changeMonth: true
-                        ,changeYear: true
                         ,dateFormat: "dd/mm/yy"
-                        , numberOfMonths: parseInt("<?php echo COM_BOOKINGFORCONNECTOR_MONTHINCALENDAR;?>"), minDate: '+0d', onClose: function(dateText, inst) { jQuery(this).attr("disabled", false); }, beforeShow: function(dateText, inst) { jQuery(this).attr("disabled", true); }, onSelect: function(date) { checkDate<?php echo $checkinId?>(jQuery, jQuery(this), date); }, changeMonth: false, changeYear: false
+                        , numberOfMonths: parseInt("<?php echo COM_BOOKINGFORCONNECTOR_MONTHINCALENDAR;?>")
+						, minDate: '+0d'
+						, onClose: function(dateText, inst) { jQuery(this).attr("disabled", false); }
+						, beforeShow: function(dateText, inst) { 
+							jQuery(this).attr("disabled", true);
+							jQuery(inst.dpDiv).addClass('bfi-calendar');
+							jQuery('#ui-datepicker-div').attr('data-before',"");
+							jQuery('#ui-datepicker-div').addClass("bfi-checkin");
+							jQuery('#ui-datepicker-div').removeClass("bfi-checkout");
+							setTimeout(function() {
+								jQuery("#ui-datepicker-div div.bfi-title").remove();
+								jQuery("#ui-datepicker-div").prepend( "<div class=\"bfi-title\">Check-in</div>" );
+							}, 1);
+							}
+						, onSelect: function(date) { checkDate<?php echo $checkinId?>(jQuery, jQuery(this), date); }
+						, changeMonth: false
+						, changeYear: false
                     })};
                     <?php echo $checkinId?>();
                 });
@@ -257,15 +276,28 @@ if(empty($maxCapacityPaxes)) {
                 jQuery(function($) {
                     <?php echo $checkoutId?> = function() { $("#<?php echo $checkoutId?>").datepicker({
                         defaultDate: "+2d"
-                        ,changeMonth: true
-                        ,changeYear: true
                         ,dateFormat: "dd/mm/yy"
-                        , numberOfMonths: parseInt("<?php echo COM_BOOKINGFORCONNECTOR_MONTHINCALENDAR;?>"), onClose: function(dateText, inst) { jQuery(this).attr("disabled", false); }, beforeShow: function(dateText, inst) { jQuery(this).attr("disabled", true); }, minDate: '+1d', changeMonth: false, changeYear: false
+                        , numberOfMonths: parseInt("<?php echo COM_BOOKINGFORCONNECTOR_MONTHINCALENDAR;?>")
+						, onClose: function(dateText, inst) { jQuery(this).attr("disabled", false); }
+						, beforeShow: function(dateText, inst) { 
+							jQuery(this).attr("disabled", true); 
+							jQuery(inst.dpDiv).addClass('bfi-calendar');
+							jQuery('#ui-datepicker-div').attr('data-before',"");
+							jQuery('#ui-datepicker-div').removeClass("bfi-checkin");
+							jQuery('#ui-datepicker-div').addClass("bfi-checkout");
+							setTimeout(function() {
+								jQuery("#ui-datepicker-div div.bfi-title").remove();
+								jQuery("#ui-datepicker-div").prepend( "<div class=\"bfi-title\">Check-out</div>" );
+							}, 1);
+							}
+						, minDate: '+1d'
+						, changeMonth: false
+						, changeYear: false
                     })};
                     <?php echo $checkoutId?>();
                 });
 
-			jQuery(".opencontactform").click(function(e) {
+			jQuery(".bfi-opencontactform").click(function(e) {
 				jQuery(this).hide();
 				jQuery(".bfi-contacts").slideDown("slow",function() {
 					if (jQuery.prototype.masonry){
@@ -274,20 +306,22 @@ if(empty($maxCapacityPaxes)) {
 				});
 			});
 
-			jQuery('.agreeprivacy').webuiPopover({
+			jQuery('.bfi-agreeprivacy').webuiPopover({
 				title : jQuery("#mbfcPrivacyTitle").html(),
 				content : jQuery("#mbfcPrivacyText").val(),
 				container: "body",
-				placement:"top"
+				placement:"top",
+				style:'bfi-webuipopover'
 			}); 
 			jQuery('.agreeadditionalPurpose').webuiPopover({
 				title : jQuery("#mbfcAdditionalPurposeTitle").html(),
 				content : jQuery("#mbfcAdditionalPurposeText").val(),
 				container: "body",
-				placement:"top"
+				placement:"top",
+				style:'bfi-webuipopover'
 			}); 
 			jQuery( window ).resize(function() {
-			  jQuery('.agreeprivacy').webuiPopover('hide');
+			  jQuery('.bfi-agreeprivacy').webuiPopover('hide');
 
 			});
 			jQuery( window ).resize(function() {
@@ -307,6 +341,7 @@ if(empty($maxCapacityPaxes)) {
 							}
 						},
 						//errorPlacement: function(error, element) { //just nothing, empty  },
+						errorClass: "bfi-error",
 						highlight: function(label) {
 							//$(label).removeClass('error').addClass('error');
 							//$(label).closest('.control-group').removeClass('error').addClass('error');
@@ -319,8 +354,6 @@ if(empty($maxCapacityPaxes)) {
 							//label.closest('.control-group').removeClass('error');
 						},
 						submitHandler: function(form) {
-					var $form = $(form);
-					if($form.valid()){
 							if (typeof grecaptcha === 'object') {
 								var response = grecaptcha.getResponse(window.bfirecaptcha['<?php echo $idrecaptcha ?>']);
 //								var response = grecaptcha.getResponse();
@@ -338,7 +371,8 @@ if(empty($maxCapacityPaxes)) {
             // Use Ajax to submit form data
 					$("#<?php echo $idform ?>").ajaxSubmit({
 						beforeSubmit: function(arr, $form, options) {
-							jQuery.blockUI({message: ''});
+							//jQuery.blockUI({message: ''});
+							bookingfor.waitBlockUI();
 							$("#<?php echo $idform ?>").html('<?php _e('Sending...', 'bfi') ?>');
 						},
 						success:    function(result) {
@@ -348,7 +382,10 @@ if(empty($maxCapacityPaxes)) {
 					}); 
 
 <?php }else{  ?>
-						jQuery.blockUI({message: ''});
+					var $form = $(form);
+					if($form.valid()){
+						//jQuery.blockUI({message: ''});
+						bookingfor.waitBlockUI();
 						if ($form.data('submitted') === true) {
 							 return false;
 						} else {
@@ -356,9 +393,9 @@ if(empty($maxCapacityPaxes)) {
 							$form.data('submitted', true);
 							form.submit();
 						}
+					}
 <?php }  ?>
 						}
-					}
 
 					});
 				});

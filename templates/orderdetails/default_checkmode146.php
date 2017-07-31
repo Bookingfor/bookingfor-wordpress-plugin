@@ -22,19 +22,28 @@ $date = new DateTime();
 var checkIn = null;
 jQuery(function($)
 		{
-			checkIn = function() { $("#checkIn").datepicker({
+			checkIn = function() { jQuery("#checkIn").datepicker({
 				defaultDate: "+2d"
 				,changeMonth: true
 				,changeYear: true
 				,dateFormat: "dd/mm/yy"
-				,beforeShow: function(input, inst) {$('#ui-datepicker-div').addClass('notranslate');}
-				, minDate: '+0d', onSelect: function(dateStr) { $("#formCheckMode").validate().element(this); }
+				,beforeShow: function(input, inst) {
+					jQuery('#ui-datepicker-div').addClass('notranslate');
+					jQuery(inst.dpDiv).addClass('bfi-calendar');
+					jQuery(inst.dpDiv).attr('data-before',"");
+					jQuery(inst.dpDiv).removeClass("bfi-checkin");
+					jQuery(inst.dpDiv).removeClass("bfi-checkout");
+					}
+				, minDate: '+0d'
+				, onSelect: function(dateStr) {
+					jQuery("#formCheckMode").validate().element(this);
+					}
 			})};
 			checkIn();
 			//fix Google Translator and datepicker
-			$('.ui-datepicker').addClass('notranslate');
+			jQuery('.ui-datepicker').addClass('notranslate');
 
-			$("#formCheckMode").validate(
+			jQuery("#formCheckMode").validate(
 		    {
 		        rules:
 		        {
@@ -54,6 +63,7 @@ jQuery(function($)
 		        		},
 		        	customerLastname: "<?php _e('This field is required.', 'bfi') ?>"
 				},
+				errorClass: "bfi-error",
 		        highlight: function(label) {
 //			    	$(label).closest('.control-group').removeClass('error').addClass('error');
 			    },

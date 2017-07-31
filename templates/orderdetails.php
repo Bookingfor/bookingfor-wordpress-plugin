@@ -11,10 +11,7 @@ $checkmode = get_query_var( 'checkmode', get_post_meta( $post->ID, 'checkmode', 
 $order = null;
 ?>
 <?php
-
-  if(!isset($_GET['task'])) {
-
-get_header( 'orderdetails' );
+	get_header( 'orderdetails' );
 ?>
  <?php
 		/**
@@ -35,22 +32,7 @@ get_header( 'orderdetails' );
 	
 	<h1 class="page-title"><?php _e('Order', 'bfi') ?></h1>
 <?php
-		$actionform = BFCHelper::getVar('actionform',"");
-		
-		if ($actionform=="login"){
-
-			$order = $model->getOrderFromService(); 
-		}
-		if ($actionform=="insertemail"){
-			$orderId = BFCHelper::getVar('orderId',"");
-			$email = BFCHelper::getVar('email',"");
-			$order = $model->updateEmail($orderId,$email); 
-			/*$item = "fet";*/
-		}
-
-	
 //	$checkmode = get_post_meta( $post->ID, 'checkmode', true );
-$route = "";
 $language = $GLOBALS['bfi_lang'];
 $languageForm ='';
 if(defined('ICL_LANGUAGE_CODE') &&  class_exists('SitePress')){
@@ -60,105 +42,20 @@ if(defined('ICL_LANGUAGE_CODE') &&  class_exists('SitePress')){
 		}
 }
 
+$route = str_replace("{language}", substr($language,0,2), COM_BOOKINGFORCONNECTOR_ORDERURL);
 
-?>
-<?php if (empty($order) && $checkmode!==0) :?>
-	<?php if ($actionform == "login") :?>
-		<div class="bfi-alert bfi-alert-danger">
-			<strong><?php _e('Error, please try again', 'bfi') ?></strong>
-		</div>
-	<?php endif; ?>
-		<form action="<?php echo  $route ?>" method="post" class="bfi-form-horizontal" id="formCheckMode">
-			<div class="bfi_form-field">		
+?>		<form action="<?php echo  $route ?>" method="post" class="bfi-form-vertical" id="formCheckMode" target="_blank">
+			<div class="bfi-form-field">		
 				<?php include(BFI()->plugin_path().'/templates/orderdetails/default_checkmode'.$checkmode.'.php'); // merchant template?>
-				<input type="hidden" id="cultureCode" name="cultureCode" value="<?echo $language;?>" />
+				<input type="hidden" id="cultureCode" name="cultureCode" value="<?php echo $language;?>" />
 				<input type="hidden" id="actionform" name="actionform" value="login" />
+				<input name="checkmode" type="hidden" value="<?php echo $checkmode;?>">
 				<div class="bfi-text-center" >
 					<br />
-					<button type="submit" class="bfi_send-sx"><?php _e('Send', 'bfi') ?></button>
+					<button type="submit" class="bfi-btn"><?php _e('Send', 'bfi') ?></button>
 				</div>
 			</div>
-		</form>
-<?php else: ?>
-<?php 
-	$email = "";
-	if(!empty($order)){
-		$email = BFCHelper::getItem($order->CustomerData, 'email')."";
-	}
- ?>
-	<?php if ($email===""):?>
-			<?php include(BFI()->plugin_path().'/templates/orderdetails/mailupdate.php'); ?>
-	<?php else: ?>
-		<?php if (!empty($order)) :?>
-			<?php include(BFI()->plugin_path().'/templates/orderdetails/order.php'); ?>
-		<?php endif; ?>
-	<?php endif; ?>
-	
-	
-	
-<?php endif; ?>
-		
-<?php
-
-	$layout = get_query_var( 'bfi_layout', '' );
-//	$model->setResourceId($resource_id);
-//	$model->setItemPerPage($num_per_page);
-
-
-	switch ( $layout) {
-//		case 'resources' :
-//			$resources = $model->getItems('',0, $merchant_id);
-//			$total = $model->getTotal();
-//			include(BFI()->plugin_path().'/templates/merchantdetails/resources.php'); // merchant template
-//		break;
-//		case 'offers' :
-//			$offers = $model->getItems('offers',0, $merchant_id);
-//			$total = $model->getTotal('offers');
-//			include(BFI()->plugin_path().'/templates/merchantdetails/offers.php'); // merchant template
-//		break;
-//		case 'offer' :
-//			$offerId = get_query_var( 'bfi_id', 0 );
-//			if(!empty($offerId)){
-//				$offer = $model->getMerchantOfferFromService($offerId);
-//				include(BFI()->plugin_path().'/templates/merchantdetails/offer-details.php'); // merchant template
-//			}
-//		break;
-//		case 'thanks' :
-//			include(BFI()->plugin_path().'/templates/merchantdetails/thanks.php'); // merchant template
-//		break;
-//		case 'errors' :
-//			include(BFI()->plugin_path().'/templates/merchantdetails/errors.php'); // merchant template
-//		break;
-//		case 'packages' :
-//			$packages = $model->getItems('packages',0, $merchant_id);
-//			$total = $model->getTotal('packages');
-//			include(BFI()->plugin_path().'/templates/merchantdetails/packages.php'); // merchant template
-//		break;
-//		case 'package' :
-//			$packageId = get_query_var( 'bfi_id', 0 );
-//			if(!empty($packageId)){
-//				$offer = $model->getMerchantPackageFromService($packageId);
-//				include(BFI()->plugin_path().'/templates/merchantdetails/package-details.php'); // merchant template
-//			}
-//		break;
-//		case 'reviews' :
-//			if(isset($_POST) && !empty($_POST)) {
-//				$_SESSION['ratings']['filters']['typologyid'] = $_POST['filters']['typologyid'];
-//			}
-//			$ratings = $model->getItems('ratings',0, $merchant_id);
-//			$total = $model->getTotal('ratings');
-//			$summaryRatings = $model->getMerchantRatingAverageFromService($merchant_id);
-//			include(BFI()->plugin_path().'/templates/merchantdetails/reviews.php'); // merchant template
-//		break;
-//		case 'review' :
-//			include(BFI()->plugin_path().'/templates/merchantdetails/review.php'); // merchant template
-//		break;
-		
-		default:
-//			include(BFI()->plugin_path().'/templates/resourcedetails/resourcedetails.php'); // merchant template
-	}
-
-?>
+		</form>		
 	<?php
 		/**
 		 * bookingfor_after_main_content hook.
@@ -176,12 +73,3 @@ if(defined('ICL_LANGUAGE_CODE') &&  class_exists('SitePress')){
 //		do_action( 'bookingfor_sidebar' );
 	?>
 <?php get_footer( 'orderdetails' ); ?>
-
-<?php
-  
-  }
-//  else {
-//    $task = $_GET['task'];
-
-//}
-?>

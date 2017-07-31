@@ -14,7 +14,8 @@ $actionmode = BFCHelper::getVar('actionmode',"");
 $model = new BookingForConnectorModelPayment;
 $model->populateState();
 
-$item = $model->getItem($orderid);
+//$item = $model->getItem($orderid);
+$lastPayment = $model->GetLastOrderPayment($orderid);
 $hasPayed = null;
 
 $language = $GLOBALS['bfi_lang'];
@@ -28,8 +29,6 @@ if(defined('ICL_LANGUAGE_CODE') &&  class_exists('SitePress')){
 
 ?>
 <?php
-
-  if(!isset($_GET['task'])) {
 
 get_header( 'payment' );
 ?>
@@ -46,143 +45,55 @@ get_header( 'payment' );
 	
 	<h1 class="page-title"><?php _e('Payment', 'bfi') ?></h1>
 <?php
-		if ($actionmode=="orderpayment"){
-			
-			//recupero quanti pagamenti sono stati effettuati
-						
-			$item->paymentCount =  BFCHelper::getTotalOrderPayments($item->order->OrderId);
-			$item->overrideAmount =	BFCHelper::getFloat('overrideAmount');
-			//sostituisco i dati dell'ordine da pagare con i dati passati e l'ordine con un suffisso in più
-			
-			/*$item = $this->get('Item');*/ 
-			/*$item = "fet";*/
-		}
- 	
+$cartdetails_page = get_post( bfi_get_page_id( 'cartdetails' ) );
+$url_cart_page = get_permalink( $cartdetails_page->ID );
+
+$redirect = $url_cart_page . _x('thanks', 'Page slug', 'bfi' );
+$redirecterror = $url_cart_page . _x('errors', 'Page slug', 'bfi' );
+
+$errorPayment = false;
+$invalidate=0;
+$errorCode ="0";
+
+if (empty($lastPayment) || $lastPayment->PaymentType!=3 || ($lastPayment->Status!=1 && $lastPayment->Status!=3 && $lastPayment->Status!=7 && $lastPayment->Status!=0 && $lastPayment->Status!=4 && $lastPayment->Status!=5 && $lastPayment->Status!=22 )) {
+    $errorPayment= true;
+	$errorCode ="1";
+
+}
+if($lastPayment->Status==1 ||$lastPayment->Status==3 || $lastPayment->Status==7 ){
+	$invalidate=1;
+}
+if ($lastPayment->Status==5 ) {
+    $errorPayment= true;
+	$errorCode ="2";
+}
+
 		
-		if ($actionmode!='' && $actionmode!='cancel' && $actionmode!='donation' && $actionmode!='orderpayment'){
+		$paymentUrl =  str_replace("{language}", substr($language,0,2), COM_BOOKINGFORCONNECTOR_PAYMENTURL).$orderid."/".$lastPayment->OrderPaymentId;
+		$typeMode="hidden";
 
 
-			$sandboxmode=false;
-			if(!empty($item) && !empty($item->merchantPayment)  && !empty($item->merchantPayment->SandboxMode)){
-				$sandboxmode=$item->merchantPayment->SandboxMode;
-
-			}
-
-			if ($item->order->Status!=5){
-				$hasPayed = bfi_processPayment($actionmode,$item,$sandboxmode);
-				/* eccezione per setefi che pretende un url di ritorno */
-				
-			}else {
-				//$hasPayed = true;
-				$hasPayed = bfi_processOrderPayment($actionmode,$item,$language,$sandboxmode);
-			}
-			/*
-			$link = '';
-			if ($hasPayed){
-			 	
-			}
-			$app = JFactory::getApplication();
-			$app->redirect($link, $msg);
-			*/
-		}
-				
-		if ($actionmode=='' && $actionmode!='donation'){
-			 if ($item->order->Status!=5){
-				 bfi_inizializePayment($orderid);
-			 }
-		}
-		if ($actionmode=='orderpaid'){
-			$trackorder = true;
-			$hasPayed= ($item->order->Status==5);
-		}
+	if ($errorPayment) {
+			$redirecterror .= '?errorCode='.$errorCode;
+			header( 'Location: ' . $redirecterror  );
+			exit();
+	}
 		
-		if(isset($trackorder) && $trackorder) {
-			$merchants = array();
-			$merchants[] = $item->order->MerchantId;
-
-			if(COM_BOOKINGFORCONNECTOR_CRITEOENABLED){
-				$criteoConfig = BFCHelper::getCriteoConfiguration(4, $merchants, $item->order->OrderId);
-				if(isset($criteoConfig) && isset($criteoConfig->enabled) && $criteoConfig->enabled && count($criteoConfig->merchants) > 0) {
-					echo '<script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script>';
-					echo '<script type="text/javascript"><!--
-					';
-					echo ('window.criteo_q = window.criteo_q || []; 
-					window.criteo_q.push( 
-						{ event: "setAccount", account: '. $criteoConfig->campaignid .'}, 
-						{ event: "setSiteType", type: "d" }, 
-						{ event: "setEmail", email: "" }, 
-						{ event: "trackTransaction", id: "'. $criteoConfig->transactionid .'",  item: ['. json_encode($criteoConfig->orderdetails) .'] }
-					);');
-					echo "//--></script>";
-
-	//				$document->addScript('//static.criteo.net/js/ld/ld.js');
-	//				$document->addScriptDeclaration('window.criteo_q = window.criteo_q || []; 
-	//				window.criteo_q.push( 
-	//					{ event: "setAccount", account: '. $criteoConfig->campaignid .'}, 
-	//					{ event: "setSiteType", type: "d" }, 
-	//					{ event: "setEmail", email: "" }, 
-	//					{ event: "trackTransaction", id: "'. $criteoConfig->transactionid .'",  item: ['. json_encode($criteoConfig->orderdetails) .'] }
-	//				);');
-				}				
-			}
-						
-
-			$listName = 'Resource List';
-			if(COM_BOOKINGFORCONNECTOR_GAENABLED == 1 && !empty(COM_BOOKINGFORCONNECTOR_GAACCOUNT) && COM_BOOKINGFORCONNECTOR_EECENABLED == 1) {
-				add_action('bfi_head', 'bfi_google_analytics_EEc', 10, 1);
-				do_action('bfi_head', $listName);
-
-//			$analyticsEnabled = $this->checkAnalytics("Sales Resource List");
-//			if($analyticsEnabled && $config->get('eecenabled', 0) == 1) {
-				$purchaseObject = new stdClass;
-				$purchaseObject->id = "" . $item->order->OrderId;
-				$purchaseObject->affiliation = "" . $item->order->Label;
-				$purchaseObject->revenue = "" . $item->order->TotalAmount;
-				$purchaseObject->tax = 0.00;
-				
-				$allobjects = array();
-				$svcTotal = 0;
-				
-				$allservices = array_values(array_filter(bfi_simpledom_load_string($order->NotesData)->xpath("//price"), function($prc) {
-					return (string)$prc->tag == "extrarequested";
-				}));
-				
-				foreach($allservices as $svc) {
-					$svcObj = new stdClass;
-					$svcObj->id = "" . (int)$svc->priceId . " - Service";
-					$svcObj->name = (string)$svc->name;
-					$svcObj->category = "Services";
-					$svcObj->brand = $item->Name;
-					$svcObj->variant = (string)BFCHelper::getItem($order->NotesData, 'nome', 'unita');
-					$svcObj->price = round((float)$svc->discountedamount / (int)$svc->quantity, 2);
-					$svcObj->quantity = (int)$svc->quantity;
-					$allobjects[] = $svcObj;
-					$svcTotal += (float)$svc->discountedamount;
-				}
-				
-				$mainObj = new stdClass;
-				$mainObj->id = "" . $item->order->RequestedItemId . " - Resource";
-				$mainObj->name = (string)BFCHelper::getItem($order->NotesData, 'nome', 'unita');
-				$mainObj->variant = (string)BFCHelper::getItem($order->NotesData, 'refid', 'rateplan');
-				$mainObj->category = $item->MainCategoryName;
-				$mainObj->brand = $item->Name;
-				$mainObj->price = $item->order->TotalAmount - $svcTotal;
-				$mainObj->quantity = 1;
-				
-				$allobjects[] = $mainObj;
-				echo '<script type="text/javascript"><!--
-				';
-				echo ('callAnalyticsEEc("addProduct", ' . json_encode($allobjects) . ', "checkout", "", {"step": 3,});
-					   callAnalyticsEEc("addProduct", ' . json_encode($allobjects) . ', "purchase", "", ' . json_encode($purchaseObject) . ');');
-				echo "//--></script>";
-
-					
-			}
-		}
-		
-		include(BFI()->plugin_path().'/templates/payment/payment.php'); // merchant template
-
 ?>
+Se non verrà rediretto alla pagina del pagamento entro pochi secondi, clicchi il pulsante seguente:<br />
+<form action="<?php echo $paymentUrl?>" method="post" id="bfi_paymentform">
+	<input id="urlok" name="urlok" type="<?php echo $typeMode ?>" title="urlok" value="<?php echo $redirect?>" />
+	<input id="urlko" name="urlko" type="<?php echo $typeMode ?>" title="urlko"  value="<?php echo $redirecterror ?>" />
+	<input id="invalidate" name="invalidate" type="<?php echo $typeMode ?>" title="urlok" value="<?php echo $invalidate?>" />
+	<input type="submit" value="Invia">
+</form>
+<script type="text/javascript">
+<!--
+		jQuery(function($) {
+			jQuery("#bfi_paymentform").submit();
+		});
+//-->
+</script>
 	<?php
 		/**
 		 * bookingfor_after_main_content hook.
@@ -200,11 +111,3 @@ get_header( 'payment' );
 //		do_action( 'bookingfor_sidebar' );
 	?>
 <?php get_footer( 'orderdetails' ); ?>
-
-<?php
-  
-//  }
-//  else {
-//    $task = $_GET['task'];
-}
-?>

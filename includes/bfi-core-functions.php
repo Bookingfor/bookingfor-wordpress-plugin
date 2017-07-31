@@ -80,8 +80,8 @@ function bfi_setSessionFromSubmittedData() {
 		'variationPlanId' => isset($_REQUEST['variationPlanId']) ? $_REQUEST['variationPlanId'] : '',
 		'gotCalculator' => isset($_REQUEST['gotCalculator']) ? $_REQUEST['gotCalculator'] : '',
 		'totalDiscounted' => isset($_SESSION['search.params']['totalDiscounted']) ? $_SESSION['search.params']['totalDiscounted'] : '',
-		'suggestedstay' => isset($_SESSION['search.params']['suggestedstay']) ? $_SESSION['search.params']['suggestedstay'] : ''
-
+		'suggestedstay' => isset($_SESSION['search.params']['suggestedstay']) ? $_SESSION['search.params']['suggestedstay'] : '',
+		'points' => BFCHelper::getVar('searchType')=="1" ? BFCHelper::getVar('points') : "",
 	);
 		
 	$_SESSION['search.params'] = $currParam;

@@ -50,7 +50,8 @@ jQuery(function($)
 			        	dateITA:"<?php _e('Correct format: dd/mm/yyyy', 'bfi') ?>"
 		        		}
 		        	},
-		        highlight: function(label) {
+		        errorClass: "bfi-error",
+				highlight: function(label) {
 //			    	$(label).closest('.control-group').removeClass('error').addClass('error');
 			    },
 			    success: function(label) {

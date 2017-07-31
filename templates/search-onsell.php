@@ -22,8 +22,6 @@ get_header( 'searchonsell' ); ?>
 
 		<?php if ( apply_filters( 'bookingfor_show_page_title', true ) ) : ?>
 
-			<h1 class="page-title"><?php bookingfor_page_title(); ?></h1>
-
 		<?php endif; ?>
 
 
@@ -113,7 +111,7 @@ add_filter( 'paginate_links', function( $link )
 
   $paginate_links = paginate_links($pagination_args);
     if ($paginate_links) {
-      echo "<nav class='custom-pagination'>";
+      echo "<nav class='bfi-pagination'>";
 //      echo "<span class='page-numbers page-num'>Page " . $page . " of " . $numpages . "</span> ";
       echo "<span class='page-numbers page-num'>".__('Page', 'bfi')." </span> ";
       print $paginate_links;

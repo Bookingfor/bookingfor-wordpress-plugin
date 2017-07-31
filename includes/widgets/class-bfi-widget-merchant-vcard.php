@@ -20,7 +20,7 @@ class BFI_Widget_Merchant_Vcard extends WP_Widget {
 	 * Constructor.
 	 */
 	public function __construct() {
-		$this->widget_cssclass    = 'bookingfor widget_merchant_vcard';
+		$this->widget_cssclass    = 'bfi-widget_merchant_vcard';
 		$this->widget_description = __( 'A details merchant box.', 'bfi' );
 		$this->widget_id          = 'bookingfor_merchant_vcard';
 		$this->widget_name        = __( 'BookingFor details merchant box', 'bfi' );

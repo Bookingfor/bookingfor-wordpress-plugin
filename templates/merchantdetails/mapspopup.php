@@ -25,8 +25,8 @@ if(!empty($fromSearch)){
 ?>
 
 <div class="mapdetails">
-<h2 class="bfi_merchant-name"><a class="com_bookingforconnector_merchantdetails-nameAnchor" href="<?php echo $routeMerchant ?>"><?php echo  $merchant->Name?></a>
-  <span class="com_bookingforconnector_resource-merchant-rating">
+<h2 class="bfi-title-name"><a class="com_bookingforconnector_merchantdetails-nameAnchor" href="<?php echo $routeMerchant ?>"><?php echo  $merchant->Name?></a>
+  <span class="bfi-item-rating">
   <?php for($i = 0; $i < $merchant->Rating; $i++) { ?>
     <i class="fa fa-star"></i>
   <?php } ?>

@@ -141,8 +141,9 @@ class BookingForConnectorModelMerchantDetails
 	public function getMerchantFromService($merchantId='') {
 		
 		if(empty($merchantId)){
-			$params = $this->getState('params');
-			$merchantId = $params['merchantId'];
+//			$params = $this->getState('params');
+//			$merchantId = $params['merchantId'];
+			return null;
 		}
 
 //		$layout = $params['layout'];

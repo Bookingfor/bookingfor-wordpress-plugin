@@ -32,6 +32,7 @@ jQuery(function($)
 		        	customerFirstname: "<?php _e('This field is required.', 'bfi') ?>",
 		        	customerLastname: "<?php _e('This field is required.', 'bfi') ?>"
 				},
+				errorClass: "bfi-error",
 		        highlight: function(label) {
 //			    	$(label).closest('.control-group').removeClass('error').addClass('error');
 			    },

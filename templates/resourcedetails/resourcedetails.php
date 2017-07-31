@@ -121,9 +121,11 @@ if(!empty($fromSearch)){
 
 $reviewavg = 0;
 $reviewcount = 0;
+$showReview = false;
 
 
 if ($merchant->RatingsContext != NULL && $merchant->RatingsContext > 0) {
+	$showReview = true;
 	if ($merchant->RatingsContext ==1 && !empty($merchant->Avg)) {
 		$reviewavg =  isset($merchant->Avg) ? $merchant->Avg->Average : 0;
 		$reviewcount =  isset($merchant->Avg) ? $merchant->Avg->Count : 0;
@@ -171,7 +173,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 //-->
 </script>
 
-<div class="bfi_content bfi-hideonextra">	
+<div class="bfi-content bfi-hideonextra">	
 	
 	<?php if($reviewcount>0){ ?>
 	<div class="bfi-row">
@@ -179,35 +181,35 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 	<?php } ?>
 			<div class="bfi-title-name bfi-hideonextra"><?php echo  $resourceName?> - <span class="bfi-cursor"><?php echo  $merchantName?></span></div>
 			<div class="bfi-address bfi-hideonextra">
-				<i class="fa fa-map-marker fa-1"></i> <span class="street-address"><?php echo $indirizzo ?></span>, <span class="postal-code "><?php echo  $cap ?></span> <span class="locality"><?php echo $comune ?></span>, <span class="region"><?php echo  $stato ?></span>
-				<?php if (($showResourceMap)) :?><a class="bfi-map-link" rel="#resource_map"><?php echo _e('Map' , 'bfi') ?></a><?php endif; ?>
+				<i class="fa fa-map-marker fa-1"></i> <?php if (($showResourceMap)) {?><a class="bfi-map-link" rel="#resource_map"><?php } ?><span class="street-address"><?php echo $indirizzo ?></span>, <span class="postal-code "><?php echo  $cap ?></span> <span class="locality"><?php echo $comune ?></span>, <span class="region"><?php echo  $stato ?></span>
+				<?php if (($showResourceMap)) {?></a><?php } ?>
 			</div>	
 	<?php if($reviewcount>0){ 
 		$totalreviewavg = BFCHelper::convertTotal($reviewavg);
 		?>
 		</div>	
-		<div class="bfi-col-md-2 bfi-cursor" id="bfi-avgreview">
-			<div class="bfi-avgreview-top"><?php echo $rating_text['merchants_reviews_text_value_'.$totalreviewavg]; ?> <?php echo number_format($reviewavg, 1); ?></div>
-			<div class="bfi-reviewcount-top"><?php echo $reviewcount; ?> <?php _e('Reviews', 'bfi') ?></div>
+		<div class="bfi-col-md-2 bfi-cursor bfi-avg bfi-text-right" id="bfi-avgreview">
+			<a href="#bfi-rating-container" class="bfi-avg-value"><?php echo $rating_text['merchants_reviews_text_value_'.$totalreviewavg]; ?> <?php echo number_format($reviewavg, 1); ?></a><br />
+			<a href="#bfi-rating-container" class="bfi-avg-count"><?php echo $reviewcount; ?> <?php _e('Reviews', 'bfi') ?></a>
 		</div>	
 	</div>	
 	<?php } ?>
-	<div class="bfi-clearboth"></div>
+	<div class="bfi-clearfix"></div>
 <!-- Navigation -->	
 	<ul class="bfi-menu-top bfi-hideonextra">
-		<li ><a rel=".resourcecontainer-gallery"><?php echo  _e('Media' , 'bfi') ?></a></li>
-		<?php if (!empty($resourceDescription)):?><li><a rel=".bfi-description-data"><?php echo  _e('Description', 'bfi') ?></a></li><?php endif; ?>
-		<?php if($isportal): ?><li ><a rel=".bfi-merchant-simple"><?php echo  _e('Host' , 'bfi') ?></a></li>
-		<?php if ($reviewcount>0):?><li><a rel=".bfi-ratingslist"><?php echo  _e('Reviews' , 'bfi') ?></a></li><?php endif; ?><?php endif; ?>
-		<?php if(!$resource->IsCatalog): ?><li class="book"><a rel="#divcalculator"><?php echo  _e('Book now' , 'bfi') ?></a></li><?php endif; ?>
+		<!-- <li ><a rel=".bfi-resourcecontainer-gallery"><?php echo  _e('Media' , 'bfi') ?></a></li> -->
+		<?php if (!empty($resourceDescription)){?><li><a rel=".bfi-description-data"><?php echo  _e('Description', 'bfi') ?></a></li><?php } ?>
+		<?php if($isportal){ ?><li ><a rel=".bfi-merchant-simple"><?php echo  _e('Host' , 'bfi') ?></a></li>
+		<?php if ($showReview){?><li><a rel=".bfi-ratingslist"><?php echo  _e('Reviews' , 'bfi') ?></a></li><?php } ?><?php } ?>
+		<?php if(!$resource->IsCatalog){ ?><li class="bfi-book"><a rel="#divcalculator"><?php echo  _e('Book now' , 'bfi') ?></a></li><?php } ?>
 	</ul>
 </div>
 
-<div class="resourcecontainer-gallery bfi-hideonextra">
+<div class="bfi-resourcecontainer-gallery bfi-hideonextra">
 	<?php  include('resource-gallery.php');  ?>
 </div>
 
-<div class="bfi_content">	
+<div class="bfi-content">	
 	<div class="bfi-row bfi-hideonextra">
 		<div class="bfi-col-md-8 bfi-description-data">
 			<?php echo $resourceDescription ?>		
@@ -216,22 +218,22 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 			<div class=" bfi-feature-data">
 				<strong><?php _e('In short', 'bfi') ?></strong>
 				<div class="bfiresourcegroups" id="bfitags" rel="<?php echo $resource->TagsIdList ?>"></div>
-				<?php if(isset($resource->Area) && $resource->Area>0  ): ?><?php _e('Floor area', 'bfi') ?>: <?php echo $resource->Area ?> m&sup2; <br /><?php endif ?>
-				<?php if ($resource->MaxCapacityPaxes>0):?>
+				<?php if(isset($resource->Area) && $resource->Area>0  ){ ?><?php _e('Floor area', 'bfi') ?>: <?php echo $resource->Area ?> m&sup2; <br /><?php } ?>
+				<?php if ($resource->MaxCapacityPaxes>0){?>
 					<br />
-					<?php if ($resource->MinCapacityPaxes<$resource->MaxCapacityPaxes):?>
+					<?php if ($resource->MinCapacityPaxes<$resource->MaxCapacityPaxes){?>
 						<?php _e('Min paxes', 'bfi') ?>: <?php echo $resource->MinCapacityPaxes ?><br />
-					<?php endif ?>
+					<?php } ?>
 					<?php _e('Max paxes', 'bfi') ?>: <?php echo $resource->MaxCapacityPaxes ?><br />
-				<?php endif ?>
-				<?php if((isset($resource->EnergyClass) && $resource->EnergyClass>0 ) || (isset($resource->EpiValue) && $resource->EpiValue>0 ) ): ?>
+				<?php } ?>
+				<?php if((isset($resource->EnergyClass) && $resource->EnergyClass>0 ) || (isset($resource->EpiValue) && $resource->EpiValue>0 ) ){ ?>
 				<!-- Table Details --><br />	
 				<table class="bfi-table bfi-table-striped bfi-resourcetablefeature">
 					<tr>
-						<?php if(isset($resource->EnergyClass) && $resource->EnergyClass>0): ?>
+						<?php if(isset($resource->EnergyClass) && $resource->EnergyClass>0){ ?>
 						<td class="bfi-col-md-"><?php _e('Energy Class', 'bfi'); ?>:</td>
 						<td class="bfi-col-md-3" <?php if(!isset($resource->EpiValue)) {echo "colspan=\"3\"";}?>>
-							<div class="energyClass energyClass<?php echo $resource->EnergyClass?>">
+							<div class="bfi-energyClass bfi-energyClass<?php echo $resource->EnergyClass?>">
 							<?php 
 								switch ($resource->EnergyClass) {
 									case 0: echo __('not set', 'bfi'); break;
@@ -250,17 +252,17 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 							?>
 							</div>
 						</td>
-						<?php endif ?>
-						<?php if(isset($resource->EpiValue) && $resource->EpiValue>0): ?>
-						<td class="bfi-col-md-"><?php _e('EPI Value', 'bfi'); ?>:</td>
+						<?php } ?>
+						<?php if(isset($resource->EpiValue) && $resource->EpiValue>0){ ?>
+						<td class="bfi-col-md-"><?php _e('EPI Value', 'bfi'); ?>{</td>
 						<td class="bfi-col-md-" <?php if(!isset($resource->EnergyClass)) {echo "colspan=\"3\"";}?>><?php echo $resource->EpiValue?> <?php echo $resource->EpiUnit?></td>
-						<?php endif ?>
+						<?php } ?>
 					</tr>
 				</table>
-				<?php endif ?>
+				<?php } ?>
 			</div>
 					<!-- AddToAny BEGIN -->
-					<a class="bfi-smallbtn bfi-sharebtn a2a_dd"  href="http://www.addtoany.com/share_save" ><i class="fa fa-share-alt"></i> <?php _e('Share', 'bfi') ?></a>
+					<a class="bfi-btn bfi-alternative2 bfi-pull-right a2a_dd"  href="http://www.addtoany.com/share_save" ><i class="fa fa-share-alt"></i> <?php _e('Share', 'bfi') ?></a>
 					<script async src="https://static.addtoany.com/menu/page.js"></script>
 					<!-- AddToAny END -->
 		</div>	
@@ -268,23 +270,24 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 
 
 	<div id="booknow">
-		<?php if(!$resource->IsCatalog): ?>
+		<?php if(!$resource->IsCatalog){ ?>
 			<!-- calc -->
 			<a name="calc"></a>
 			<div id="divcalculator">
 				<?php 
 				$resourceId = $resource->ResourceId;
+				$condominiumId = 0;
 
 				include(BFI()->plugin_path().'/templates/search_details.php'); //merchant temp ?>
 					
 
 			</div>
-		<?php endif; ?>
+		<?php } ?>
 	</div>
 	<div class="bfi-clearboth"></div>
 	<?php  include(BFI()->plugin_path().'/templates/merchant_small_details.php');  ?>
 
-<?php if (($showResourceMap)) :?>
+<?php if (($showResourceMap)) {?>
 <div class="bfi-content-map bfi-hideonextra">
 <br /><br />
 <div id="resource_map" style="width:100%;height:350px"></div>
@@ -314,7 +317,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 			if (typeof google !== 'object' || typeof google.maps !== 'object'){
 				var script = document.createElement("script");
 				script.type = "text/javascript";
-				script.src = "https://maps.google.com/maps/api/js?key=<?php echo $googlemapsapykey ?>&libraries=drawing&callback=handleApiReady";
+				script.src = "https://maps.google.com/maps/api/js?key=<?php echo $googlemapsapykey ?>&libraries=drawing,places&callback=handleApiReady";
 				document.body.appendChild(script);
 			}else{
 				if (typeof mapUnit !== 'object'){
@@ -342,11 +345,9 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 	//-->
 
 	</script>
-<?php endif; ?>
+<?php } ?>
 
-<?php if ($reviewcount>0):?>
-<br>
-<br>
+<?php if ($showReview){?>
 	<div class="bfi-ratingslist bfi-hideonextra">
 	<?php
 		$summaryRatings = 0;
@@ -366,9 +367,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 	?>
 		<?php include('resource-ratings.php'); ?>
 	</div>
-<?php endif; ?>	
-<br>
-<br>
+<?php } ?>	
 	<script type="text/javascript">
 	<!--
 	jQuery(function($) {

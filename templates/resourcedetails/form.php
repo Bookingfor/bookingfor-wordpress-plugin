@@ -697,21 +697,11 @@ if(!empty($bookingTypes)){
 			</div>
 			<div class="bfi-col-md-6">
 				<label><?php _e('Valid until', 'bfi') ?></label>
-				<div class="bfi-row">
-					<div class="bfi-col-md-3">
-						<?php _e('Month (MM)', 'bfi') ?>
-					</div><!--/span-->
-					<div class="bfi-col-md-6 ccdateinput">
-						<div class="bfi-row">
-							<input type="text" value="" size="2" maxlength="2" class="bfi-col-md-5" name="form[cc_mese]" id="cc_mese" required  title="<?php _e('This field is required.', 'bfi') ?>">
-							<span class="bfi-col-md-2 " style="text-align:center;" >/</span>
-							<input type="text" value="" size="2" maxlength="2" class="bfi-col-md-5" name="form[cc_anno]" id="cc_anno" required  title="<?php _e('This field is required.', 'bfi') ?>">
-						</div>
-					</div><!--/span-->
-					<div class="bfi-col-md-3">
-						<?php _e('Year (YY)', 'bfi') ?>
-					</div><!--/span-->
-				</div><!--/row-->
+				<div class="bfi-ccdateinput">
+						<span><?php _e('Month (MM)', 'bfi') ?></span> <span><input type="text" value="" size="2" maxlength="2" name="form[cc_mese]" id="cc_mese" required  title="<?php _e('This field is required.', 'bfi') ?>"></span>
+						/
+						<span><input type="text" value="" size="2" maxlength="2" name="form[cc_anno]" id="cc_anno" required  title="<?php _e('This field is required.', 'bfi') ?>"></span> <span><?php _e('Year (YY)', 'bfi') ?></span>
+				</div><!--/span-->
 			</div>
 		</div>
 		<br />
@@ -730,7 +720,7 @@ if(!empty($bookingTypes)){
 if($merchant->AcceptanceCheckIn != "-" && $merchant->AcceptanceCheckOut != "-" && !empty($merchant->OtherDetails) ){
 ?>
 		<div class="bfi-row ">   
-			<div class="bfi-col-md-12 infomerchant" >
+			<div class="bfi-col-md-12 bfi-infomerchant" >
 				<h2><?php _e('Good to know', 'bfi') ?></h2>
 				<br />
 				<div class="bfi-row borderbottom padding20px0">
@@ -927,9 +917,10 @@ jQuery(function($)
 //								.append( error );
 //				},
 //				errorElement: "span",
+				errorClass: "bfi-error",
 				highlight: function(label) {
-			    	$(label).removeClass('error').addClass('error');
-			    	$(label).closest('.control-group').removeClass('error').addClass('error');
+			    	$(label).removeClass('bfi-error').addClass('bfi-error');
+			    	$(label).closest('.control-group').removeClass('bfi-error').addClass('bfi-error');
 			    },
 			    success: function(label) {
 					//label.addClass("valid").text("Ok!");
@@ -953,7 +944,8 @@ jQuery(function($)
 								$('#recaptcha-error-<?php echo $idrecaptcha ?>').hide();
 							}					 
 						}
-						jQuery.blockUI({message: ''});
+//						jQuery.blockUI({message: ''});
+						bookingfor.waitBlockUI();
 						if ($form.data('submitted') === true) {
 							 return false;
 						} else {

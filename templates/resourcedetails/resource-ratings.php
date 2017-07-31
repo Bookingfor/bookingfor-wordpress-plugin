@@ -6,14 +6,7 @@ $merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], nu
 
 
 ?>
-
-<div class="com_bookingforconnector_merchantdetails com_bookingforconnector_merchantdetails-t<?php echo  $merchant->MerchantTypeId?>">
-	<?php //echo JHTML::link(JRoute::_('index.php?option=com_bookingforconnector&view=merchantdetails&merchantId=' . $merchant->MerchantId . ':' . BFCHelper::getSlug($merchant->Name),true,-1), JTEXT::_('COM_BOOKINGFORCONNECTOR_MERCHANTS_VIEW_MERCHANTDETAILS_RATING_RETURN') ,array('class' => ' bfi-pull-right'));?>
-	<!--<h2 class="com_bookingforconnector_merchantdetails-name"><?php // echo  $merchantname?> 
-		<span class="bfi_merchantdetails-rating bfi_merchantdetails-rating<?php  // echo  $merchant->Rating ?>">
-			<span class="bfi_merchantdetails-ratingText">Rating <?php  // echo  $merchant->Rating ?></span>
-		</span>
-	</h2> -->
+<div >
 	<?php
    //$filters = $this->params['filters'];
    
@@ -31,7 +24,7 @@ $merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], nu
    }
 	?>
 	<br /><br />
-	<?php if (isset($summaryRatings)): ?>
+	<?php if (isset($summaryRatings)){?>
 	<div class="bfi-rating-container">
 		<div class="bfi-row">
 			<div class="bfi-col-md-3 bfi-text-center">
@@ -89,13 +82,13 @@ $merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], nu
 					<input type="hidden" name="searchid" value="-1">
 					<input type="hidden" name="limitstart" value="0">
 					<?php if (($merchant->RatingsContext === 2 || $merchant->RatingsContext === 3 ) && ($merchant->RatingsType==0 || $merchant->RatingsType==2)) :?>
-						<a href="<?php echo $routeRating; ?>" class="btn btn-warning bfi-pull-right"><?php _e('Write a Review', 'bfi') ?></a>
+						<a href="<?php echo $routeRating; ?>" class="bfi-btn bfi-alternative bfi-pull-right"><?php _e('Write a Review', 'bfi') ?></a>
 					<?php endif; ?>
 			</form>
-		<?php if ($ratings != null): ?>
+		<?php if ($ratings != null){ ?>
 		<div class="bfi-merchantdetails-ratings">
 			<br />
-			<?php foreach($ratings as $rating): ?>
+			<?php foreach($ratings as $rating){ ?>
 			<?php 
 			$creationDateLabel = "";
 			if (isset($rating->CreationDate)) {
@@ -138,13 +131,13 @@ $merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], nu
 						echo $list[$rating->TypologyId] ;
 					}
 					?><br />
-					<?php if (!empty($rating->Label)) :?>
+					<?php if (!empty($rating->Label)) {?>
 						<br />
 						<div class="bfi-rating-lineheight">
 							<?php echo $checkInDateLabel; ?>
 						</div>
-					<?php endif; ?>
-					<?php if (!empty($rating->ResourceId)) :?>
+					<?php }; ?>
+					<?php if (!empty($rating->ResourceId)) {?>
 						<br />
 						<div class="bfi-rating-lineheight">
 							<?php _e('Reference', 'bfi'); ?><br />
@@ -154,40 +147,38 @@ $merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], nu
 							<a class="" href="<?php //echo $route ?>" id="nameAnchor<?php echo $rating->ResourceId?>"><?php echo  $resourceName ?></a>
 
 						</div>
-					<?php endif; ?>
+					<?php } ?>
 						<br />
 				</div>
 				<div class="bfi-col-md-10 ">
-					<div class=" arrow_box ">
+					<div class="bfi-arrow-box">
 						<div class="bfi-row">
 							<div class="bfi-col-md-6">
-								<div class="bfi-rating-value_small"><?php echo  $rating->Total; ?></div>
-								<div class="bfi-rating-title_small"><?php echo $rating_text['merchants_reviews_text_value_'.$t]; ?></div>
+								<div class="bfi-rating-value-small"><?php echo  $rating->Total; ?></div>
+								<div class="bfi-rating-title-small"><?php echo $rating_text['merchants_reviews_text_value_'.$t]; ?></div>
 							</div>
 							<div class="bfi-col-md-6 com_bookingforconnector_rating_date_small ">
 								<div class="bfi-pull-right" ><?php echo  $creationDateLabel?></div>
-								<?php if (!empty($rating->Label) && !empty($rating->OrderId))  :?>
+								<?php if (!empty($rating->Label) && !empty($rating->OrderId))  {?>
 									<div class="com_bookingforconnector_rating_sign-check bfi-pull-right" ><?php printf( __( 'Review certified by %1$s', 'bfi' ), $rating->Label ); ?></div>
-								<?php endif; ?>
+								<?php } ?>
 							</div>
 						</div>
 					</div>
 					
-					<div class=" rating_details ">
-					<?php if($rating->NotesData !="") :?>
-						<p > <span class="label label-info"><b><?php _e('+', 'bfi') ?></b></span>
+					<div class="bfi-rating-details">
+					<?php if($rating->NotesData !="") {?>
+						<span class="label label-info"><b><?php _e('+', 'bfi') ?></b></span>
 						<span class="expander"><?php echo  stripslashes($rating->NotesData); ?></span>
-						</p>
-						<br />
-					<?php endif; ?>
-					<?php if($rating->NotesData1 !="") :?>
+					<?php } ?>
+					<?php if($rating->NotesData1 !="") {?>
 						<p ><span class="label label-warning"><b><?php _e('-', 'bfi') ?></b></span>
 						<span class="expander"><?php echo  stripslashes($rating->NotesData1); ?></span>
 						</p>
-					<?php endif; ?>
+					<?php } ?>
 					</div>
-					<?php if (!empty($reply)) : ?>
-						<div class=" rating_details arrow_box_top">
+					<?php if (!empty($reply)) { ?>
+						<div class="bfi-rating-details bfi-arrow-box-top">
 							<div class="">
 							   <?php printf( __( '%s has responded to this review', 'bfi' ), $merchantname); ?>
 								<span class="com_bookingforconnector_rating_date_small bfi-pull-right"><?php echo  $replydateLabel?></span>
@@ -195,26 +186,28 @@ $merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], nu
 							<br />
 							<?php echo  $reply; ?>
 						</div>
-					<?php endif; //replies?>
+					<?php } //replies?>
 
 				</div>
 			</div>
-			<?php endforeach?>
+			<?php }?>
 		</div>	
-		<?php endif?>
-		<?php if ($ratings == null): ?>
-		<?php _e('No Reviews Found.'); ?>
-		<?php endif?>
+		<?php } ?>
+		<?php if ($ratings == null){ ?>
+		<?php _e('No Reviews Found.', 'bfi'); ?>
+		<?php }?>
 	</div>
 
-		<?php else:?>
-			<?php if (($merchant->RatingsContext === 2 || $merchant->RatingsContext === 3 ) && ($merchant->RatingsType==0 || $merchant->RatingsType==2)) :?>
+		<?php }else{?>
+			<div><?php _e('No Reviews Found.', 'bfi'); ?></div>
+
+			<?php if (($merchant->RatingsContext === 2 || $merchant->RatingsContext === 3 ) && ($merchant->RatingsType==0 || $merchant->RatingsType==2)) {?>
 				<div class="alert alert-block">
 					<?php _e('Would you like to be the first to write a review?', 'bfi'); ?>
-					<a href="<?php echo $routeRating;?>" class="btn btn-info"><?php _e('Write a Review', 'bfi'); ?></a>
+					<a href="<?php echo $routeRating;?>" class="bfi-btn bfi-alternative"><?php _e('Write a Review', 'bfi'); ?></a>
 				</div>
-			<?php endif?>	
-		<?php endif?>	
+			<?php } ?>	
+		<?php }?>	
 </div>
 <script type="text/javascript">
 jQuery(function($) {

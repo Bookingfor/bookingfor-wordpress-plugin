@@ -575,11 +575,12 @@ class BFCHelper {
 		return $model->getMerchantsByIds($listsId, $language);
 	}
 
-//	public static function GetCondominiumsByIds($listsId,$language='') {
+	public static function GetCondominiumsByIds($listsId,$language='') {
 //		JModelLegacy::addIncludePath(JPATH_ROOT. DIRECTORY_SEPARATOR .'components' . DIRECTORY_SEPARATOR . 'com_bookingforconnector'. DIRECTORY_SEPARATOR . 'models', 'BookingForConnectorModel');
 //		$model = JModelLegacy::getInstance('Condominiums', 'BookingForConnectorModel');
-//		return $model->GetCondominiumsByIds($listsId,$language);
-//	}
+		$model = new BookingForConnectorModelCondominiums;
+		return $model->GetCondominiumsByIds($listsId,$language);
+	}
 
 	public static function getMerchantsSearch($text,$start,$limit,$order,$direction) {
 //		JModelLegacy::addIncludePath(JPATH_ROOT. DIRECTORY_SEPARATOR .'components' . DIRECTORY_SEPARATOR . 'com_bookingforconnector'. DIRECTORY_SEPARATOR . 'models', 'BookingForConnectorModel');
@@ -837,9 +838,9 @@ class BFCHelper {
 		return $model->GetCompleteRatePlansStayWP($resourceId,$checkIn,$duration,$paxages,$selectablePrices,$packages,$pricetype,$rateplanId,$variationPlanId,$language,$merchantBookingTypeId, $getAllResults);
 	}
 	
-	public static function GetRelatedResourceStays($merchantId,$relatedProductid,$excludedIds,$checkin,$duration,$paxages,$variationPlanId,$language="" ){
+	public static function GetRelatedResourceStays($merchantId,$relatedProductid,$excludedIds,$checkin,$duration,$paxages,$variationPlanId,$language="",$condominiumId=0 ){
 		$model = new BookingForConnectorModelResource;
-		return $model->GetRelatedResourceStays($merchantId,$relatedProductid,$excludedIds,$checkin,$duration,$paxages,$variationPlanId,$language );
+		return $model->GetRelatedResourceStays($merchantId,$relatedProductid,$excludedIds,$checkin,$duration,$paxages,$variationPlanId,$language,$condominiumId );
 	}
 
 	public static function setRating(
@@ -1331,6 +1332,11 @@ class BFCHelper {
 		$pars['condominiumsResults'] = $params['condominiumsResults'];		
 		$pars['searchid'] = $params['searchid'];		
 		$pars['newsearch'] = $params['newsearch'];		
+		$pars['stateIds'] = $params['stateIds'];		
+		$pars['regionIds'] = $params['regionIds'];		
+		$pars['cityIds'] = $params['cityIds'];		
+		$pars['points'] = $params['points'];		
+				
 
 	   $_SESSION[$sessionkey] = $pars;
 	}
@@ -1697,6 +1703,87 @@ class BFCHelper {
 		}
 		return $strAges;
 	}
+	public static function getCustomerData($formData) {
+		if ($formData == null) {
+			$formData = $_POST['form'];
+		}
+
+				
+				$Firstname = isset($formData['Name'])?$formData['Name']:''; //
+				$Lastname = isset($formData['Surname'])?$formData['Surname']:''; // => $formData['Surname'],
+				$Email = isset($formData['Email'])?$formData['Email']:''; // => $formData['Email'],
+				$Address = isset($formData['Address'])?$formData['Address']:''; // => $formData['Address'],
+				$Zip = isset($formData['Cap'])?$formData['Cap']:''; // => $formData['Cap'],
+				$City = isset($formData['City'])?$formData['City']:''; // => $formData['City'],
+				$Country = isset($formData['Provincia'])?$formData['Provincia']:''; // => $formData['Provincia'],
+				$Nation = isset($formData['Nation'])?self::getOptionsFromSelect($formData, 'Nation'):''; // => self::getOptionsFromSelect($formData, 'Nation'),
+				$Phone = isset($formData['Phone'])?$formData['Phone']:''; // => $formData['Phone'],
+				$Fax = isset($formData['Fax'])?$formData['Fax']:''; // => $formData['Fax'],
+				$VatCode = isset($formData['VatCode'])?$formData['VatCode']:''; // => $formData['VatCode'],
+				$Culture = isset($formData['Culture'])?self::getOptionsFromSelect($formData, 'Culture'):''; // => self::getOptionsFromSelect($formData, 'Culture'),
+				$UserCulture = isset($formData['Culture'])?self::getOptionsFromSelect($formData, 'Culture'):''; // => self::getOptionsFromSelect($formData, 'Culture'),
+				$Culture = isset($formData['cultureCode'])?self::getOptionsFromSelect($formData, 'cultureCode'):$Culture; // => self::getOptionsFromSelect($formData, 'Culture'),
+				$UserCulture = isset($formData['cultureCode'])?self::getOptionsFromSelect($formData, 'cultureCode'):$UserCulture; // => self::getOptionsFromSelect($formData, 'Culture'),
+				$gender = isset($formData['Gender'])?self::getOptionsFromSelect($formData, 'Gender'):'';
+
+		$customerData = array(
+				'Firstname' => $Firstname,
+				'Lastname' => $Lastname,
+				'Email' => $Email,
+				'Address' => $Address,
+				'Zip' => $Zip,
+				'City' => $City,
+				'Country' => $Country,
+				'Nation' => $Nation,
+				'Phone' => $Phone,
+				'Fax' => $Fax,
+				'VatCode' => $VatCode,
+				'Culture' => $Culture,
+				'UserCulture' => $UserCulture,
+				'BirthDate' => isset($formData['Birthday']) ? DateTime::createFromFormat('d/m/Y', $formData['Birthday'])->format("Y-m-d"): null,
+				'Gender' => $gender,
+		);
+				
+		return $customerData;
+	}
+	public static function canAcquireCCData($formData) {
+		if ($formData == null) {
+			$formData = $_POST['form'];
+		}		
+		
+		if(!empty($formData['bookingType'])){
+			$bt = $formData['bookingType'];
+			if (is_array($bt)) { // if is an array (because it is sent using a select)
+				$bt = $bt[0]; // keep only the first value
+			}
+			if ($bt != '') { // need to check for acquire cc data
+				$btData = explode(':',$bt); // data is sent like 'ID:acquireccdata' -> '9:1' or '9:0' or '9:' (where zero is replaced by an empty char)
+				if (count($btData) > 1) { // we have more than one value so data sent is correct
+					if ($btData[1] != '') { // need to set mandatory for field credit card prefixed with 'cc_' (or other supplied prefix)
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
+	public static function getCCardData($formData) {
+		if ($formData == null) {
+			$formData = $_POST['form'];
+		}
+		
+		$ccData = array(
+				'Type' => self::getOptionsFromSelect($formData,'cc_circuito'),
+				'TypeId' => self::getOptionsFromSelect($formData,'cc_circuito'),
+				'Number' => $formData['cc_numero'],
+				'Name' => $formData['cc_titolare'],
+				'ExpiryMonth' => $formData['cc_mese'],
+				'ExpiryYear' => $formData['cc_anno']
+		);
+		
+		return $ccData;
+	}
 
 	public static function ConvertIntTimeToDate($timeMinEnd)
 	{
@@ -1739,6 +1826,25 @@ class BFCHelper {
 		$jinput = isset($_REQUEST[$string]) ? str_replace(",", ".", $_REQUEST[$string]) : $defaultValue;
 		
 		return floatval($jinput);
+	}
+	public static function getOptionsFromSelect($formData, $str){
+		if ($formData == null) {
+			$formData = $_POST['form'];
+		}
+
+		$aStr = isset($formData[$str])?$formData[$str]:null;
+		if(isset($aStr))
+		{
+			if (!is_array($aStr)) return $aStr;
+			$nStr = count($aStr);
+			if ($nStr==1){
+				return $aStr[0];
+			}else
+			{
+				return implode($aStr, ',');
+			}
+		}
+		return '';
 	}
 
 	public static function getSession($string, $defaultValue=null, $prefix ='') {

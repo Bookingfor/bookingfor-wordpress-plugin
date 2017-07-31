@@ -11,7 +11,7 @@
 			
 			jQuery(".bfi-book-now").hide();
 			jQuery(".bfi-request-now").hide();
-			jQuery(".bfi-item-secondary-more").hide();
+			jQuery(".bfi-btn-book-now").hide();
 
 			jQuery("tr[id^=data-id-]").each(function(index,obj){
 				var ddlroom = jQuery(obj).find(".ddlrooms");
@@ -41,10 +41,10 @@
 				jQuery(".bfi-book-now").show();
 				if (onlybookable==1)
 				{
-					jQuery(".bfi-item-secondary-more").show();
+					jQuery(".bfi-btn-book-now").show();
 					jQuery(".bfi-request-now").hide();
 				}else{
-					jQuery(".bfi-item-secondary-more").hide();
+					jQuery(".bfi-btn-book-now").hide();
 					jQuery(".bfi-request-now").show();
 				}
 			}
@@ -109,7 +109,7 @@
             });
 
             if(showServices){
-				jQuery(".bfi-menu-booking a:eq(1)").addClass("bfi-menu-small-active"); //set menu to "Extra service"
+				jQuery(".bfi-menu-booking a:eq(1)").removeClass(" bfi-alternative3"); //set menu to "Extra service"
 				jQuery(".bfi-table-resources").not( ".bfi-table-selectableprice" ).hide();
                 jQuery(".bfi-hideonextra").hide();
                 jQuery(".div-selectableprice").show();
@@ -131,6 +131,6 @@
             }
             else
             {
-                BookNow();
+                bookingfor.BookNow();
             }
         }

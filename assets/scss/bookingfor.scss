@@ -1,0 +1,24 @@
+/*!
+ * Bookingfor v7 (http://www.bookingfor.com)
+ * Copyright Ipertrade Srl.
+ */
+ 
+// Core variables and mixins
+@import 'base/_variables.scss';
+ 
+
+// Utility
+// Bootstrap 3.3.7 grid
+@import "vendor/bootstrap/_clearfix.scss";
+@import "vendor/bootstrap/_variables.scss";
+@import "vendor/bootstrap/mixins/_grid-framework.scss";
+@import "vendor/bootstrap/mixins/_grid.scss";
+@import "vendor/bootstrap/_grid.scss";
+@import "vendor/bootstrap/mixins/_alerts.scss";
+@import "vendor/bootstrap/_alerts.scss";
+
+// Core CSS
+@import 'base/_typography.scss';
+@import 'base/_base.scss';
+@import 'base/_buttons.scss';
+@import 'base/_datepicker.scss';

@@ -62,7 +62,19 @@ function initDatepickerTimePeriod() {
             return enableSpecificDatesTimePeriod(date, 1, daysToEnableTimePeriod[jQuery(this).attr("data-resid")]);
         },
         buttonText: strbuttonTextTimePeriod,
-        firstDay: 1
+        firstDay: 1,
+		beforeShow: function(dateText, inst) { 
+			jQuery(this).attr("disabled", true);
+			jQuery(inst.dpDiv).addClass('bfi-calendar');
+			jQuery(inst.dpDiv).attr('data-before',"");
+			jQuery(inst.dpDiv).removeClass("bfi-checkin");
+			jQuery(inst.dpDiv).removeClass("bfi-checkout");
+			setTimeout(function() {
+				jQuery("#ui-datepicker-div div.bfi-title").remove();
+				jQuery("#ui-datepicker-div").prepend( "<div class=\"bfi-title\">Check-in</div>" );
+			}, 1);
+		}
+
     });
 }
 
@@ -144,15 +156,15 @@ var updateOptTimePeriodRange = function (curSelStart, curSelEnd) {
 
                     var currOptEnd = jQuery('<option>').text(bookingfor.pad(newValEnd.getHours(), 2) + ":" + bookingfor.pad(newValEnd.getMinutes(), 2)).attr('value', currTimeSlot.ProductId);
                     jQuery(currOptEnd).attr("data-TimeMinEnd", currTimeSlot.TimeMinEnd);
-                    jQuery(currOptStart).attr("class", "hourdenabled");
-                    jQuery(currOptEnd).attr("class", "hourdenabled");
+                    jQuery(currOptStart).attr("class", "bfi-hourdenabled");
+                    jQuery(currOptEnd).attr("class", "bfi-hourdenabled");
                     jQuery(currOptEnd).attr("data-availability", currTimeSlot.Availability);
 
                     if (currTimeSlot.Availability == 0) {
                         jQuery(currOptStart).attr("disabled", "disabled");
                         jQuery(currOptEnd).attr("disabled", "disabled");
-                        jQuery(currOptStart).attr("class", "hourdisabled");
-                        jQuery(currOptEnd).attr("class", "hourdisabled");
+                        jQuery(currOptStart).attr("class", "bfi-hourdisabled");
+                        jQuery(currOptEnd).attr("class", "bfi-hourdisabled");
                     }
                     curSelStart.append(currOptStart);
                     curSelEnd.append(currOptEnd);
@@ -343,8 +355,8 @@ function getcompleterateplansstaybyidPerTime(resourceId, currdDlrooms) {
 
 	if (jQuery(".ddlrooms-" + resourceId).first().hasClass("ddlrooms-indipendent")) // if is a extra...
 	{
-		var searchModel = jQuery('#calculatorForm').serializeObject();
-		var dataarray = jQuery('#calculatorForm').serializeArray();
+		var searchModel = jQuery('#bfi-calculatorForm').serializeObject();
+		var dataarray = jQuery('#bfi-calculatorForm').serializeArray();
 		dataarray.push({name: 'resourceId', value: resourceId});
 		dataarray.push({name: 'timeMinStart', value: currentTimeStart.attr("data-TimeMinStart")});
 		dataarray.push({name: 'timeMinEnd', value: currentTimeEnd.attr("data-TimeMinEnd")});

@@ -45,21 +45,28 @@ var cultureCode = '<?php echo $language ?>';
 var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 //-->
 </script>
-
-<div class="bfi-row">
-	<div class="bfi-col-xs-9 ">
-		<div class="bfi-search-title">
-			<?php echo sprintf(__('%s available accommodations', 'bfi'), $total) ?>
-		</div>
-	</div>	
-<?php if(!empty(COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY)){ ?>
-	<!-- <div class="bfi-col-xs-3 ">
-		<div class="bfi-search-view-maps ">
-		<span><?php _e('Map view', 'bfi') ?></span>
+<div class="bfi-content">
+	<div class="bfi-row">
+		<div class="bfi-col-xs-9 ">
+			<div class="bfi-title-name bfi-hideonextra"><?php echo  $merchant->Name?>
+				<span class="bfi-item-rating">
+					<?php for($i = 0; $i < $merchant->Rating; $i++) { ?>
+					<i class="fa fa-star"></i>
+					<?php } ?>
+				</span>
+			</div>
+			<div class="bfi-search-title">
+				<?php echo sprintf(__('%s available accommodations', 'bfi'), $total) ?>
+			</div>
 		</div>	
-	</div>	 -->
-<?php } ?>
-</div>	
+	<?php if(!empty(COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY)){ ?>
+		<!-- <div class="bfi-col-xs-3 ">
+			<div class="bfi-search-view-maps ">
+			<span><?php _e('Map view', 'bfi') ?></span>
+			</div>	
+		</div>	 -->
+	<?php } ?>
+	</div>	
 <?php if ($total > 0){ ?>
 
 <div class="bfi-search-menu">
@@ -130,18 +137,18 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 							<?php if($isportal){ ?>
 							- <a href="<?php echo $routeMerchant?>" class="bfi-subitem-title"><?php echo $resource->MerchantName; ?></a>
 							<?php } ?>
-							<span class="bfi-subitem-rating">
+							<span class="bfi-item-rating">
 								<?php for($i = 0; $i < $ratingMrc; $i++) { ?>
 									<i class="fa fa-star"></i>
 								<?php } ?>	             
 							</span>
 						</div>
 						<div class="bfi-item-address">
-							<?php if ($showResourceMap):?>
+							<?php if ($showResourceMap){?>
 							<a href="javascript:void(0);" onclick="showMarker(<?php echo $resource->ResourceId?>)"><span id="address<?php echo $resource->ResourceId?>"></span></a>
-							<?php endif; ?>
+							<?php } ?>
 						</div>
-						<div class="bfi-mrcgroup" id="bfitags<?php echo $resource->MerchantId; ?>"></div>
+						<div class="bfi-mrcgroup" id="bfitags<?php echo $resource->ResourceId; ?>"></div>
 						<div class="bfi-description"><?php echo $resourceDescription ?></div>
 					</div>
 				</div>
@@ -150,7 +157,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 				<!-- resource details -->
 				<div class="bfi-row" >
 					<div class="bfi-col-sm-8">
-						<?php if ($resource->MaxPaxes>0):?>
+						<?php if ($resource->MaxPaxes>0){?>
 							<div class="bfi-icon-paxes">
 								<i class="fa fa-user"></i> 
 								<?php if ($resource->MaxPaxes==2){?>
@@ -160,11 +167,11 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 									<?php echo ($resource->MinPaxes != $resource->MaxPaxes)? $resource->MinPaxes . "-" : "" ?><?php echo  $resource->MaxPaxes ?>
 								<?php }?>
 							</div>
-						<?php endif; ?>
+						<?php } ?>
 					
 					</div>
 					<div class="bfi-col-sm-4 bfi-text-right">
-						<a href="<?php echo $resourceRoute ?>" class="bfi-item-btn-details"><?php echo _e('Details' , 'bfi')?></a>
+						<a href="<?php echo $resourceRoute ?>" class="bfi-btn"><?php echo _e('Details' , 'bfi')?></a>
 					</div>
 				</div>
 				<!-- end resource details -->
@@ -211,7 +218,7 @@ if( get_option('permalink_structure') ) {
 
   $paginate_links = paginate_links($pagination_args);
     if ($paginate_links) {
-      echo "<nav class='custom-pagination'>";
+      echo "<nav class='bfi-pagination'>";
 //      echo "<span class='page-numbers page-num'>Page " . $page . " of " . $numpages . "</span> ";
       echo "<span class='page-numbers page-num'>".__('Page', 'bfi')." </span> ";
       print $paginate_links;
@@ -225,7 +232,7 @@ if( get_option('permalink_structure') ) {
 jQuery('#list-view').click(function() {
 	jQuery('.bfi-view-changer-selected').html(jQuery(this).html());
 	jQuery('#bfi-list').removeClass('bfi-grid-group')
-	jQuery('#bfi-list .bfi-item').addClass('list-group-item')
+	jQuery('#bfi-list .bfi-item').addClass('bfi-list-group-item')
 	jQuery('#bfi-list .bfi-img-container').addClass('bfi-col-sm-3')
 	jQuery('#bfi-list .bfi-details-container').addClass('bfi-col-sm-9')
 
@@ -235,12 +242,12 @@ jQuery('#list-view').click(function() {
 jQuery('#grid-view').click(function() {
 	jQuery('.bfi-view-changer-selected').html(jQuery(this).html());
 	jQuery('#bfi-list').addClass('bfi-grid-group')
-	jQuery('#bfi-list .bfi-item').removeClass('list-group-item')
+	jQuery('#bfi-list .bfi-item').removeClass('bfi-list-group-item')
 	jQuery('#bfi-list .bfi-img-container').removeClass('bfi-col-sm-3')
 	jQuery('#bfi-list .bfi-details-container').removeClass('bfi-col-sm-9')
 	localStorage.setItem('display', 'grid');
 });
-	jQuery('#bfi-list .bfi-item').addClass('grid-group-item')
+	jQuery('#bfi-list .bfi-item').addClass('bfi-grid-group-item')
 
 if (localStorage.getItem('display')) {
 	if (localStorage.getItem('display') == 'list') {
@@ -266,6 +273,7 @@ var imgPathMG = "<?php echo BFCHelper::getImageUrlResized('tag','[img]', 'mercha
 var imgPathMGError = "<?php echo BFCHelper::getImageUrl('tag','[img]', 'merchant_merchantgroup') ?>";
 var cultureCodeMG = '<?php echo $language ?>';
 var defaultcultureCodeMG = '<?php echo BFCHelper::$defaultFallbackCode ?>';
+var strAddress = "[indirizzo] - [cap] - [comune] ([provincia])";
 
 var shortenOption = {
 		moreText: "<?php _e('Read more', 'bfi'); ?>",
@@ -280,7 +288,7 @@ function getAjaxInformations(){
 	if (!loaded)
 	{
 		loaded=true;
-		var queryMG = "task=getMerchantGroups";
+		var queryMG = "task=getResourceGroups";
 		jQuery.post(urlCheck, queryMG, function(data) {
 				if(data!=null){
 					jQuery.each(JSON.parse(data) || [], function(key, val) {
@@ -379,6 +387,7 @@ jQuery(document).ready(function() {
 			},
 			height: 500,
 			width: 800,
+			dialogClass: 'bfi-dialog bfi-dialog-map'
 		});
 	});
 
@@ -395,3 +404,6 @@ jQuery(document).ready(function() {
 	<?php _e('No results available', 'bfi') ?>
 </div>
 <?php } ?>
+	<div class="bfi-clearboth"></div>
+	<?php  include(BFI()->plugin_path().'/templates/merchant_small_details.php');  ?>
+</div>

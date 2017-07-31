@@ -19,7 +19,9 @@ $showdata = COM_BOOKINGFORCONNECTOR_SHOWDATA;
 $formlabel = COM_BOOKINGFORCONNECTOR_FORM_KEY;
 
 ?>
+<div class="bfi-content">	
 <br />
 <?php _e('Thank you for having chosen us.', 'bfi') ?>
 <br />
 <br />
+</div>	

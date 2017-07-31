@@ -36,6 +36,7 @@ jQuery(function($)
 		        	externalOrderId: "<?php _e('This field is required.', 'bfi') ?>",
 		            email: "<?php _e('This field is required.', 'bfi') ?>"
 		        },
+				errorClass: "bfi-error",
 		        highlight: function(label) {
 //			    	$(label).closest('.control-group').removeClass('error').addClass('error');
 			    },

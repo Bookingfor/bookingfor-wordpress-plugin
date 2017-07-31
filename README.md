@@ -38,5 +38,7 @@ genesis (Agent Focused Pro)
 
 [bookingfor_merchantscarousel tags=1,32]
 
+[bookingfor_resources condominiumid=2]
+
 # Translations
 To help in translation http://translate.bookingfor.com/collaboration/

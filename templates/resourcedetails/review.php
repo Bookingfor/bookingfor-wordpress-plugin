@@ -106,10 +106,17 @@ if (!empty($hashorder)){
 
 }
 $idrecaptcha = uniqid("bfirecaptcha");
+$resourceName = BFCHelper::getLanguage($resource->Name, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
+$merchantName = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
 
 ?>
-<?php if ($showForm) :?>
-<form action="<?php echo $base_url ?>/bfi-api/v1/task/?task=sendRating&simple=1" method="post" class="bfi-form-horizontal" id="formRating" >
+<div class="bfi-content">
+	<div class="bfi-title-name bfi-hideonextra"><?php echo  $resourceName?> - <span class="bfi-cursor"><?php echo  $merchantName?></span></div>
+
+<div class="clear"></div>
+
+<?php if ($showForm) {?>
+<form action="<?php echo $base_url ?>/bfi-api/v1/task/?task=sendRating&simple=1" method="post" id="formRating" >
 	<input type="hidden" id="hashorder" name="hashorder" value="<?php echo $hashorder ?>">
 	<input type="hidden" id="merchantid" name="merchantid" value="<?php echo $merchantId ?>">
 	<input type="hidden" id="resourceId" name="resourceId" value="<?php echo $resource->ResourceId  ?>">
@@ -118,7 +125,7 @@ $idrecaptcha = uniqid("bfirecaptcha");
 	<input type="hidden" id="redirect" name="Redirect" value="<?php echo $routeThanks;?>" />
 	<input type="hidden" id="redirecterror" name="Redirecterror" value="<?php echo $routeThanksKo;?>" />
 	
-	<div class="com_bookingforconnector_rating">
+	<div class="bfi-form-field">
 		<div class="bfi-row">   
 			<div class="bfi-col-md-6">
 				<label><?php _e('Name', 'bfi') ?></label>
@@ -234,73 +241,73 @@ $idrecaptcha = uniqid("bfirecaptcha");
 				<?php _e('Staff', 'bfi'); ?>:
 					<input type="hidden" id="hfvalue1" name="hfvalue1" value="6">
 					<span id="starscap1">6</span><br />
-					<input title="1" type="radio" value="1" name="personale" class="starswrapper1 required">
-					<input title="2" type="radio" value="2" name="personale" class="starswrapper1">
-					<input title="3" type="radio" value="3" name="personale" class="starswrapper1">
-					<input title="4" type="radio" value="4" name="personale" class="starswrapper1">
-					<input title="5" type="radio" value="5" name="personale" class="starswrapper1">
-					<input title="6" type="radio" checked value="6" name="personale" class="starswrapper1">
-					<input title="7" type="radio" value="7" name="personale" class="starswrapper1">
-					<input title="8" type="radio" value="8" name="personale" class="starswrapper1">
-					<input title="9" type="radio" value="9" name="personale" class="starswrapper1">
-					<input title="10" type="radio" value="10" name="personale" class="starswrapper1">
+					<input title="1" type="radio" value="1" name="personale" class="bfi-starreview starswrapper1 required">
+					<input title="2" type="radio" value="2" name="personale" class="bfi-starreview starswrapper1">
+					<input title="3" type="radio" value="3" name="personale" class="bfi-starreview starswrapper1">
+					<input title="4" type="radio" value="4" name="personale" class="bfi-starreview starswrapper1">
+					<input title="5" type="radio" value="5" name="personale" class="bfi-starreview starswrapper1">
+					<input title="6" type="radio" checked value="6" name="personale" class="bfi-starreview starswrapper1">
+					<input title="7" type="radio" value="7" name="personale" class="bfi-starreview starswrapper1">
+					<input title="8" type="radio" value="8" name="personale" class="bfi-starreview starswrapper1">
+					<input title="9" type="radio" value="9" name="personale" class="bfi-starreview starswrapper1">
+					<input title="10" type="radio" value="10" name="personale" class="bfi-starreview starswrapper1">
 				<br />
 				<?php _e('Services', 'bfi'); ?>:
 					<input type="hidden" id="hfvalue2" name="hfvalue2" value="6">
 					<span id="starscap2">6</span><br />
-					<input title="1" type="radio" value="1" name="servizi" class="starswrapper2 required">
-					<input title="2" type="radio" value="2" name="servizi" class="starswrapper2">
-					<input title="3" type="radio" value="3" name="servizi" class="starswrapper2">
-					<input title="4" type="radio" value="4" name="servizi" class="starswrapper2">
-					<input title="5" type="radio" value="5" name="servizi" class="starswrapper2">
-					<input title="6" type="radio" checked value="6" name="servizi" class="starswrapper2">
-					<input title="7" type="radio" value="7" name="servizi" class="starswrapper2">
-					<input title="8" type="radio" value="8" name="servizi" class="starswrapper2">
-					<input title="9" type="radio" value="9" name="servizi" class="starswrapper2">
-					<input title="10" type="radio" value="10" name="servizi" class="starswrapper2">
+					<input title="1" type="radio" value="1" name="servizi" class="bfi-starreview starswrapper2 required">
+					<input title="2" type="radio" value="2" name="servizi" class="bfi-starreview starswrapper2">
+					<input title="3" type="radio" value="3" name="servizi" class="bfi-starreview starswrapper2">
+					<input title="4" type="radio" value="4" name="servizi" class="bfi-starreview starswrapper2">
+					<input title="5" type="radio" value="5" name="servizi" class="bfi-starreview starswrapper2">
+					<input title="6" type="radio" checked value="6" name="servizi" class="bfi-starreview starswrapper2">
+					<input title="7" type="radio" value="7" name="servizi" class="bfi-starreview starswrapper2">
+					<input title="8" type="radio" value="8" name="servizi" class="bfi-starreview starswrapper2">
+					<input title="9" type="radio" value="9" name="servizi" class="bfi-starreview starswrapper2">
+					<input title="10" type="radio" value="10" name="servizi" class="bfi-starreview starswrapper2">
 				<br />
 				<?php _e('Clean', 'bfi'); ?>:
 					<input type="hidden" id="hfvalue3" name="hfvalue3" value="6">
 					<span id="starscap3">6</span><br />
-					<input title="1" type="radio" value="1" name="pulizia" class="starswrapper3 required">
-					<input title="2" type="radio" value="2" name="pulizia" class="starswrapper3">
-					<input title="3" type="radio" value="3" name="pulizia" class="starswrapper3">
-					<input title="4" type="radio" value="4" name="pulizia" class="starswrapper3">
-					<input title="5" type="radio" value="5" name="pulizia" class="starswrapper3">
-					<input title="6" type="radio" checked value="6" name="pulizia" class="starswrapper3">
-					<input title="7" type="radio" value="7" name="pulizia" class="starswrapper3">
-					<input title="8" type="radio" value="8" name="pulizia" class="starswrapper3">
-					<input title="9" type="radio" value="9" name="pulizia" class="starswrapper3">
-					<input title="10" type="radio" value="10" name="pulizia" class="starswrapper3">
+					<input title="1" type="radio" value="1" name="pulizia" class="bfi-starreview starswrapper3 required">
+					<input title="2" type="radio" value="2" name="pulizia" class="bfi-starreview starswrapper3">
+					<input title="3" type="radio" value="3" name="pulizia" class="bfi-starreview starswrapper3">
+					<input title="4" type="radio" value="4" name="pulizia" class="bfi-starreview starswrapper3">
+					<input title="5" type="radio" value="5" name="pulizia" class="bfi-starreview starswrapper3">
+					<input title="6" type="radio" checked value="6" name="pulizia" class="bfi-starreview starswrapper3">
+					<input title="7" type="radio" value="7" name="pulizia" class="bfi-starreview starswrapper3">
+					<input title="8" type="radio" value="8" name="pulizia" class="bfi-starreview starswrapper3">
+					<input title="9" type="radio" value="9" name="pulizia" class="bfi-starreview starswrapper3">
+					<input title="10" type="radio" value="10" name="pulizia" class="bfi-starreview starswrapper3">
 			</div>
 			<div class="bfi-col-md-4">
 				<?php _e('Comfort', 'bfi'); ?>:
 					<input type="hidden" id="hfvalue4" name="hfvalue4" value="6">
 					<span id="starscap4">6</span><br />
-					<input title="1" type="radio" value="1" name="comfort" class="starswrapper4 required">
-					<input title="2" type="radio" value="2" name="comfort" class="starswrapper4">
-					<input title="3" type="radio" value="3" name="comfort" class="starswrapper4">
-					<input title="4" type="radio" value="4" name="comfort" class="starswrapper4">
-					<input title="5" type="radio" value="5" name="comfort" class="starswrapper4">
-					<input title="6" type="radio" checked value="6" name="comfort" class="starswrapper4">
-					<input title="7" type="radio" value="7" name="comfort" class="starswrapper4">
-					<input title="8" type="radio" value="8" name="comfort" class="starswrapper4">
-					<input title="9" type="radio" value="9" name="comfort" class="starswrapper4">
-					<input title="10" type="radio" value="10" name="comfort" class="starswrapper4">
+					<input title="1" type="radio" value="1" name="comfort" class="bfi-starreview starswrapper4 required">
+					<input title="2" type="radio" value="2" name="comfort" class="bfi-starreview starswrapper4">
+					<input title="3" type="radio" value="3" name="comfort" class="bfi-starreview starswrapper4">
+					<input title="4" type="radio" value="4" name="comfort" class="bfi-starreview starswrapper4">
+					<input title="5" type="radio" value="5" name="comfort" class="bfi-starreview starswrapper4">
+					<input title="6" type="radio" checked value="6" name="comfort" class="bfi-starreview starswrapper4">
+					<input title="7" type="radio" value="7" name="comfort" class="bfi-starreview starswrapper4">
+					<input title="8" type="radio" value="8" name="comfort" class="bfi-starreview starswrapper4">
+					<input title="9" type="radio" value="9" name="comfort" class="bfi-starreview starswrapper4">
+					<input title="10" type="radio" value="10" name="comfort" class="bfi-starreview starswrapper4">
 				<br />
 				<?php _e('Value for money', 'bfi'); ?>:
 					<input type="hidden" id="hfvalue5" name="hfvalue5" value="6">
 					<span id="starscap5">6</span><br />
-					<input title="1" type="radio" value="1" name="rapporto" class="starswrapper5 required">
-					<input title="2" type="radio" value="2" name="rapporto" class="starswrapper5">
-					<input title="3" type="radio" value="3" name="rapporto" class="starswrapper5">
-					<input title="4" type="radio" value="4" name="rapporto" class="starswrapper5">
-					<input title="5" type="radio" value="5" name="rapporto" class="starswrapper5">
-					<input title="6" type="radio" checked value="6" name="rapporto" class="starswrapper5">
-					<input title="7" type="radio" value="7" name="rapporto" class="starswrapper5">
-					<input title="8" type="radio" value="8" name="rapporto" class="starswrapper5">
-					<input title="9" type="radio" value="9" name="rapporto" class="starswrapper5">
-					<input title="10" type="radio" value="10" name="rapporto" class="starswrapper5">
+					<input title="1" type="radio" value="1" name="rapporto" class="bfi-starreview starswrapper5 required">
+					<input title="2" type="radio" value="2" name="rapporto" class="bfi-starreview starswrapper5">
+					<input title="3" type="radio" value="3" name="rapporto" class="bfi-starreview starswrapper5">
+					<input title="4" type="radio" value="4" name="rapporto" class="bfi-starreview starswrapper5">
+					<input title="5" type="radio" value="5" name="rapporto" class="bfi-starreview starswrapper5">
+					<input title="6" type="radio" checked value="6" name="rapporto" class="bfi-starreview starswrapper5">
+					<input title="7" type="radio" value="7" name="rapporto" class="bfi-starreview starswrapper5">
+					<input title="8" type="radio" value="8" name="rapporto" class="bfi-starreview starswrapper5">
+					<input title="9" type="radio" value="9" name="rapporto" class="bfi-starreview starswrapper5">
+					<input title="10" type="radio" value="10" name="rapporto" class="bfi-starreview starswrapper5">
 			</div>
 			<div class="bfi-col-md-4 bfi-text-center">
 				<div class="bfi-rating_valuation">
@@ -334,7 +341,7 @@ $idrecaptcha = uniqid("bfirecaptcha");
 		<div class="bfi-row">
              <div class="bfi-col-md-12 bfi-checkbox-wrapper">
 		 	     <input name="form[accettazione]" class="checkbox" id="agree" aria-invalid="true" aria-required="true" type="checkbox" required title="<?php _e('Mandatory', 'bfi') ?>">
-			     <label  class="agreeprivacy"><?php _e('I accept personal data treatment', 'bfi') ?></label>
+			     <label  class="bfi-agreeprivacy"><?php _e('I accept personal data treatment', 'bfi') ?></label>
 			</div>
 		</div><!--/row-->
 		<div class="bfi-row" style="display:none;">
@@ -361,12 +368,12 @@ $idrecaptcha = uniqid("bfirecaptcha");
 
 		<div class="bfi-row">
 			<div class="bfi-col-md-12">
-				<button type="submit" class="btn btn-info"><?php _e('send', 'bfi'); ?></button>
+				<button type="submit" class="bfi-btn"><?php _e('send', 'bfi'); ?></button>
 			</div>
 		</div><!--/row-->
 	</div>
 </form>
-<?php else: ?>
+<?php }else{ ?>
 <div class="bfi-alert bfi-alert-danger" id="msgKo">
 	<center><h4><?php _e('Attention!', 'bfi') ?></h4> <?php _e('It \'s not possible to insert your own review', 'bfi') ?></center>
 	<div class="errorRatingReason">
@@ -392,7 +399,8 @@ $idrecaptcha = uniqid("bfirecaptcha");
 	</div>
 </div>
 
-<?php endif // $showform ?>   
+<?php } // $showform ?>   
+</div>
 <script type="text/javascript">
     	function setRating(field){
 	     jQuery('.starswrapper'+field).rating({
@@ -453,12 +461,13 @@ $idrecaptcha = uniqid("bfirecaptcha");
 		            email: "<?php _e('Mandatory', 'bfi') ?>",
 		            email2: "<?php _e('Mandatory', 'bfi') ?>"
 		        },
+				errorClass: "bfi-error",
 		        highlight: function(label) {
-			    	jQuery(label).closest('.control-group').removeClass('error').addClass('error');
+			    	jQuery(label).closest('.control-group').removeClass('bfi-error').addClass('bfi-error');
 			    },
 			    success: function(label) {
 			    	label
-			    		.closest('.control-group').removeClass('error').addClass('success');
+			    		.closest('.control-group').removeClass('bfi-error').addClass('success');
 			    		//.text('ok!').addClass('valid')
 			    },
 			   submitHandler: function(form) {
@@ -484,27 +493,30 @@ $idrecaptcha = uniqid("bfirecaptcha");
 	//						},
 	//						success:   processJson
 	//					}); 
-						 jQuery.blockUI();
+//						 jQuery.blockUI();
+						 bookingfor.waitBlockUI();
 						 form.submit();
 					}
 
 
 			   }
 		  });
-			jQuery('.agreeprivacy').webuiPopover({
+			jQuery('.bfi-agreeprivacy').webuiPopover({
 				title : jQuery("#mbfcPrivacyTitle").html(),
 				content : jQuery("#mbfcPrivacyText").val(),
 				container: "body",
-				placement:"top"
+				placement:"top",
+				style:'bfi-webuipopover'
 			}); 
 			jQuery('.agreeadditionalPurpose').webuiPopover({
 				title : jQuery("#mbfcAdditionalPurposeTitle").html(),
 				content : jQuery("#mbfcAdditionalPurposeText").val(),
 				container: "body",
-				placement:"top"
+				placement:"top",
+				style:'bfi-webuipopover'
 			}); 
 			jQuery( window ).resize(function() {
-			  jQuery('.agreeprivacy').webuiPopover('hide');
+			  jQuery('.bfi-agreeprivacy').webuiPopover('hide');
 
 			});
 			jQuery( window ).resize(function() {

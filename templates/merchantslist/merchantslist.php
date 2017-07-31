@@ -58,7 +58,7 @@ var cultureCode = '<?php echo $language ?>';
 var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 //-->
 </script>
-
+<div class="bfi-content">
 <div class="bfi-search-menu">
 	<form action="<?php echo $formAction; ?>" method="post" name="bookingforsearchForm" id="bookingforsearchFilterForm">
 			<input type="hidden" class="filterOrder" name="filter_order" value="<?php echo $filter_order ?>" />
@@ -100,7 +100,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 			$merchantLat = $merchant->XPos;
 			$merchantLon = $merchant->YPos;
 			$showMerchantMap = (($merchantLat != null) && ($merchantLon !=null));
-			
+			$showMerchantMap = false;
 			$merchantLogo = BFI()->plugin_url() . "/assets/images/defaults/default-s1.jpeg";
 			$merchantImageUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s6.jpeg";
 			
@@ -133,14 +133,14 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 	<div class="bfi-col-sm-6 bfi-item">
 		<div class="bfi-row bfi-sameheight" >
 			<div class="bfi-col-sm-3 bfi-img-container">
-				<a href="<?php echo $routeMerchant ?>?fromsearch=1" style='background: url("<?php echo $merchantImageUrl; ?>") center 25% / cover;'><img src="<?php echo $merchantImageUrl; ?>" class="bfi-img-responsive" /></a> 
+				<a href="<?php echo $routeMerchant ?>" style='background: url("<?php echo $merchantImageUrl; ?>") center 25% / cover;'><img src="<?php echo $merchantImageUrl; ?>" class="bfi-img-responsive" /></a> 
 			</div>
 			<div class="bfi-col-sm-9 bfi-details-container">
 				<!-- merchant details -->
 				<div class="bfi-row" >
 					<div class="bfi-col-sm-10">
 						<div class="bfi-item-title">
-							<a href="<?php echo $routeMerchant ?>?fromsearch=1" id="nameAnchor<?php echo $merchant->MerchantId?>" target="_blank"><?php echo  $merchantName ?></a> 
+							<a href="<?php echo $routeMerchant ?>" id="nameAnchor<?php echo $merchant->MerchantId?>" target="_blank"><?php echo  $merchantName ?></a> 
 							<span class="bfi-item-rating">
 								<?php for($i = 0; $i < $rating; $i++) { ?>
 									<i class="fa fa-star"></i>
@@ -148,9 +148,9 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 							</span>
 						</div>
 						<div class="bfi-item-address">
-							<?php if ($showMerchantMap):?>
-							<a href="javascript:void(0);" onclick="showMarker(<?php echo $merchant->MerchantId?>)"><span id="address<?php echo $merchant->MerchantId?>"></span></a>
-							<?php endif; ?>
+							<?php if ($showMerchantMap){?>
+							<a href="javascript:void(0);" onclick="showMarker(<?php echo $merchant->MerchantId?>)"><?php }?><span id="address<?php echo $merchant->MerchantId?>"></span><?php if ($showMerchantMap){?></a>
+							<?php } ?>
 						</div>
 						<div class="bfi-mrcgroup" id="bfitags<?php echo $merchant->MerchantId; ?>"></div>
 						<div class="bfi-description"><?php echo $merchantDescription ?></div>
@@ -174,14 +174,15 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 				<div class="bfi-clearfix bfi-hr-separ"></div>
 				<!-- end merchant details -->
 					<div class=" bfi-text-right">
-							<a href="<?php echo $routeMerchant ?>" class="bfi-item-btn-details"><?php echo _e('Details' , 'bfi')?></a>
+							<a href="<?php echo $routeMerchant ?>" class="bfi-btn"><?php echo _e('Details' , 'bfi')?></a>
 					</div>
-				<div class="bfi-clearfix"><br /></div>
+				<div class="bfi-clearfix"></div>
 			</div>
 		</div>
 	</div>
 		<?php $listsId[]= $merchant->MerchantId; ?>
 	<?php endforeach; ?>
+</div>
 </div>
 <?php
   
@@ -205,7 +206,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 
   $paginate_links = paginate_links($pagination_args);
     if ($paginate_links) {
-      echo "<nav class='custom-pagination'>";
+      echo "<nav class='bfi-pagination'>";
 //      echo "<span class='page-numbers page-num'>Page " . $page . " of " . $numpages . "</span> ";
       echo "<span class='page-numbers page-num'>".__('Page', 'bfi')." </span> ";
       print $paginate_links;
@@ -228,7 +229,7 @@ jQuery(document).ready(function() {
 jQuery('#list-view').click(function() {
 	jQuery('.bfi-view-changer-selected').html(jQuery(this).html());
 	jQuery('#bfi-list').removeClass('bfi-grid-group')
-	jQuery('#bfi-list .bfi-item').addClass('list-group-item')
+	jQuery('#bfi-list .bfi-item').addClass('bfi-list-group-item')
 	jQuery('#bfi-list .bfi-img-container').addClass('bfi-col-sm-3')
 	jQuery('#bfi-list .bfi-details-container').addClass('bfi-col-sm-9')
 
@@ -238,12 +239,12 @@ jQuery('#list-view').click(function() {
 jQuery('#grid-view').click(function() {
 	jQuery('.bfi-view-changer-selected').html(jQuery(this).html());
 	jQuery('#bfi-list').addClass('bfi-grid-group')
-	jQuery('#bfi-list .bfi-item').removeClass('list-group-item')
+	jQuery('#bfi-list .bfi-item').removeClass('bfi-list-group-item')
 	jQuery('#bfi-list .bfi-img-container').removeClass('bfi-col-sm-3')
 	jQuery('#bfi-list .bfi-details-container').removeClass('bfi-col-sm-9')
 	localStorage.setItem('display', 'grid');
 });
-	jQuery('#bfi-list .bfi-item').addClass('grid-group-item')
+	jQuery('#bfi-list .bfi-item').addClass('bfi-grid-group-item')
 
 if (localStorage.getItem('display')) {
 	if (localStorage.getItem('display') == 'list') {
@@ -267,7 +268,8 @@ if (localStorage.getItem('display')) {
 	jQuery('.inforequest').bind('click', function() {
 		var merchantid = jQuery(this).attr('rel');
 		var id = jQuery(this).attr('id');
-		jQuery.blockUI({ message: '<h2>Processing</h2>' }); 
+		bookingfor.waitBlockUI();
+//		jQuery.blockUI({ message: '<h2>Processing</h2>' }); 
 		var queryMG = '<?php echo $base_url; ?>/get-inforequest-form?merchantid='+merchantid;
 		jQuery.getJSON(queryMG, function(data) {
 			jQuery.unblockUI();
@@ -447,6 +449,7 @@ jQuery(document).ready(function() {
 			},
 			height: 500,
 			width: 800,
+			dialogClass: 'bfi-dialog bfi-dialog-map'
 		});
 	});
 <?php endif; ?>

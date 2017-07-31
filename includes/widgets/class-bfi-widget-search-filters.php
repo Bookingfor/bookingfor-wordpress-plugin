@@ -20,7 +20,7 @@ class BFI_Widget_Search_Filters extends WP_Widget {
 	 * Constructor.
 	 */
 	public function __construct() {
-		$this->widget_cssclass    = 'bookingfor widget_search_filters';
+		$this->widget_cssclass    = 'bfi-widget_search_filters';
 		$this->widget_description = __( 'A Filter box.', 'bfi' );
 		$this->widget_id          = 'bookingfor_search_filters';
 		$this->widget_name        = __( 'BookingFor Search Filters', 'bfi' );

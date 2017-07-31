@@ -56,6 +56,7 @@ $uri = $url_resource_page;
 $pars = BFCHelper::getSearchOnSellParamsSession();
 
 ?>
+<div class="bfi-content">
 <div class="bfi-row">
 	<div class="bfi-col-xs-9 ">
 		<div class="bfi-search-title">
@@ -81,7 +82,7 @@ $pars = BFCHelper::getSearchOnSellParamsSession();
 	<div class="bfi-results-sort">
 		<span class="bfi-sort-item"><?php echo _e('Order by' , 'bfi')?>:</span>
 		<span class="bfi-sort-item <?php echo $currSorting=="price|asc" ? "bfi-sort-item-active": "" ; ?>" rel="price|asc" ><?php echo _e('Lowest price first' , 'bfi'); ?></span>
-		<span class="bfi-sort-item <?php echo $currSorting=="created|desc" ? "bfi-sort-item-active": "" ; ?>" rel="created|desc" ><?php echo _e('Leatest ads' , 'bfi'); ?></span>
+		<span class="bfi-sort-item <?php echo $currSorting=="created|desc" ? "bfi-sort-item-active": "" ; ?>" rel="created|desc" ><?php echo _e('Latest ads' , 'bfi'); ?></span>
 	</div>
 	<div class="bfi-view-changer">
 		<div class="bfi-view-changer-selected"><?php echo _e('List' , 'bfi') ?></div>
@@ -162,7 +163,7 @@ $pars = BFCHelper::getSearchOnSellParamsSession();
 			<div class="bfi-col-sm-9 bfi-details-container">
 				<!-- merchant details -->
 				<div class="bfi-row" >
-					<div class="bfi-col-sm-10">
+					<div class="bfi-col-sm-12">
 						<div class="bfi-item-title">
 							<a href="<?php echo $resourceRoute ?>" id="nameAnchor<?php echo $resource->ResourceId?>" target="_blank"><?php echo  $resourceName?></a> 
 							<span class="bfi-item-rating">
@@ -171,8 +172,8 @@ $pars = BFCHelper::getSearchOnSellParamsSession();
 								<?php } ?>	             
 							</span>
 							<?php if($isportal) { ?>
-								- <a href="<?php echo $routeMerchant?>" class="bfi-subitem-title"><?php echo $resource->MrcName; ?></a>
-								<span class="bfi-subitem-rating">
+								- <a href="<?php echo $routeMerchant?>" class="bfi-subitem-title" target="_blank"><?php echo $resource->MrcName; ?></a>
+								<span class="bfi-item-rating">
 									<?php for($i = 0; $i < $ratingMrc; $i++) { ?>
 										<i class="fa fa-star"></i>
 									<?php } ?>	             
@@ -186,34 +187,19 @@ $pars = BFCHelper::getSearchOnSellParamsSession();
 							<?php endif; ?>
 						</div>
 						<div class="bfi-mrcgroup" id="bfitags<?php echo $resource->ResourceId; ?>"></div>
-						<span class="showcaseresource hidden" id="showcaseresource<?php echo $resource->ResourceId?>">
+						<span class="bfi-label-alternative2 bfi-hide" id="showcaseresource<?php echo $resource->ResourceId?>">
 							<?php _e('Vetrina', 'bfi') ?> 
 							<i class="fa fa-angle-double-up"></i>
 						</span>
-						<span class="topresource hidden" id="topresource<?php echo $resource->ResourceId?>">
+						<span class="bfi-label-alternative bfi-hide" id="topresource<?php echo $resource->ResourceId?>">
 							<?php _e('Top', 'bfi') ?>
 							<i class="fa fa-angle-up"></i>
 						</span>
-						<span class="newbuildingresource hidden" id="newbuildingresource<?php echo $resource->ResourceId?>">
+						<span class="bfi-label bfi-hide" id="newbuildingresource<?php echo $resource->ResourceId?>">
 							<?php _e('New!', 'bfi') ?>
 							<i class="fa fa-home"></i>
 						</span>
 
-					</div>
-					<div class="bfi-col-sm-2 bfi-text-right">
-						<?php if ($isportal && ($resource->RatingsContext ==2 || $resource->RatingsContext ==3)):?>
-								<div class="bfi-avg">
-								<?php if ($resource->ResAVGCount>0){
-									$totalInt = BFCHelper::convertTotal(number_format((float)$resource->ResAVG, 1, '.', ''));
-
-									?>
-									<a class="bfi-avg-value" href="<?php echo $routeRating ?>" ><?php echo $rating_text['merchants_reviews_text_value_'.$totalInt] . " " . number_format((float)$resource->ResAVG, 1, '.', '') ?></a><br />
-									<a class="bfi-avg-count" href="<?php echo $routeRating ?>" ><?php echo sprintf(__('%s reviews' , 'bfi'),$resource->ResAVGCount) ?></a>
-								<?php }else{ ?>
-									<!-- <a class="bfi-avg-leaverating " href="<?php echo $routeRatingform ?>"><?php _e('Would you like to leave your review?', 'bfi') ?></a> -->
-								<?php } ?>
-								</div>
-						<?php endif; ?>
 					</div>
 				</div>
 				<div class="bfi-clearfix bfi-hr-separ"></div>
@@ -244,25 +230,27 @@ $pars = BFCHelper::getSearchOnSellParamsSession();
 					
 					</div>
 					<div class="bfi-col-sm-3 bfi-text-right">
-							<a href="<?php echo $resourceRoute ?>" class="bfi-item-btn-details"><?php echo _e('Details' , 'bfi')?></a>
+							<a href="<?php echo $resourceRoute ?>" class="bfi-btn" target="_blank"><?php echo _e('Details' , 'bfi')?></a>
 					</div>
 				</div>
 				<div class="bfi-clearfix"></div>
 				<!-- end resource details -->
-				<div  class="ribbonnew hidden" id="ribbonnew<?php echo $resource->ResourceId?>"><?php _e('New ad', 'bfi') ?></div>
+				<div  class="ribbonnew bfi-hide" id="ribbonnew<?php echo $resource->ResourceId?>"><?php _e('New ad', 'bfi') ?></div>
 		</div>
+	</div>
 	</div>
 		<?php 
 		$listsId[]= $result->ResourceId;
 		?>
 	<?php endforeach; ?>
 </div>
+</div>
 <script type="text/javascript">
 <!--
 jQuery('#list-view').click(function() {
 	jQuery('.bfi-view-changer-selected').html(jQuery(this).html());
 	jQuery('#bfi-list').removeClass('bfi-grid-group')
-	jQuery('#bfi-list .bfi-item').addClass('list-group-item')
+	jQuery('#bfi-list .bfi-item').addClass('bfi-list-group-item')
 	jQuery('#bfi-list .bfi-img-container').addClass('bfi-col-sm-3')
 	jQuery('#bfi-list .bfi-details-container').addClass('bfi-col-sm-9')
 
@@ -272,12 +260,12 @@ jQuery('#list-view').click(function() {
 jQuery('#grid-view').click(function() {
 	jQuery('.bfi-view-changer-selected').html(jQuery(this).html());
 	jQuery('#bfi-list').addClass('bfi-grid-group')
-	jQuery('#bfi-list .bfi-item').removeClass('list-group-item')
+	jQuery('#bfi-list .bfi-item').removeClass('bfi-list-group-item')
 	jQuery('#bfi-list .bfi-img-container').removeClass('bfi-col-sm-3')
 	jQuery('#bfi-list .bfi-details-container').removeClass('bfi-col-sm-9')
 	localStorage.setItem('display', 'grid');
 });
-	jQuery('#bfi-list .bfi-item').addClass('grid-group-item')
+	jQuery('#bfi-list .bfi-item').addClass('bfi-grid-group-item')
 
 if (localStorage.getItem('display')) {
 	if (localStorage.getItem('display') == 'list') {
@@ -383,7 +371,7 @@ function getAjaxInformations(){
 					var isNew = jsDate > newFromDate;
 					if (isNew)
 						{
-							jQuery("#ribbonnew"+val.ResourceId).removeClass("hidden");
+							jQuery("#ribbonnew"+val.ResourceId).removeClass("bfi-hide");
 						}
 				}
 
@@ -395,22 +383,22 @@ function getAjaxInformations(){
 				/*Top seller*/
 				if (val.IsForeground)
 					{
-						jQuery("#topresource"+val.ResourceId).removeClass("hidden");
-//						jQuery("#borderimg"+val.ResourceId).addClass("hidden");
+						jQuery("#topresource"+val.ResourceId).removeClass("bfi-hide");
+//						jQuery("#borderimg"+val.ResourceId).addClass("bfi-hide");
 					}
 
 				/*Showcase seller*/
 				if (val.IsShowcase)
 					{
-						jQuery("#topresource"+val.ResourceId).addClass("hidden");
-						jQuery("#showcaseresource"+val.ResourceId).removeClass("hidden");
-						jQuery("#lensimg"+val.ResourceId).removeClass("hidden");
-//						jQuery("#borderimg"+val.ResourceId).addClass("hidden");
+						jQuery("#topresource"+val.ResourceId).addClass("bfi-hide");
+						jQuery("#showcaseresource"+val.ResourceId).removeClass("bfi-hide");
+						jQuery("#lensimg"+val.ResourceId).removeClass("bfi-hide");
+//						jQuery("#borderimg"+val.ResourceId).addClass("bfi-hide");
 					}
 				
 				/*Top seller*/
 				if(val.IsNewBuilding){
-					jQuery("#newbuildingresource"+val.ResourceId).removeClass("hidden");
+					jQuery("#newbuildingresource"+val.ResourceId).removeClass("bfi-hide");
 				}
 
 
@@ -464,6 +452,7 @@ jQuery(document).ready(function() {
 			},
 			height: 500,
 			width: 800,
+			dialogClass: 'bfi-dialog bfi-dialog-map'
 		});
 	});
 
@@ -473,12 +462,7 @@ jQuery(document).ready(function() {
 		var vals = rel.split("|"); 
 		jQuery('#bookingforsearchFilterForm .filterOrder').val(vals[0]);
 		jQuery('#bookingforsearchFilterForm .filterOrderDirection').val(vals[1]);
-
-		if(jQuery('#searchformfilter').length){
-			jQuery('#searchformfilter').submit();
-		}else{
-			jQuery('#bookingforsearchFilterForm').submit();
-		}
+		jQuery('#bookingforsearchFilterForm').submit();
 	})
 
 });

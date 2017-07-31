@@ -42,14 +42,14 @@ var cultureCode = '<?php echo $language ?>';
 var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 //-->
 </script>
-
+<div class="bfi-content">
 <div class="bfi-row">
 	<div class="bfi-col-xs-9 ">
 		<div class="bfi-search-title">
 			<?php echo sprintf(__('%s available accommodations', 'bfi'), $total) ?>
 		</div>
 	</div>	
-<?php if(!empty(COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY)){ ?>
+<?php if(false && !empty(COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY)){ ?>
 	<div class="bfi-col-xs-3 ">
 		<div class="bfi-search-view-maps ">
 		<span><?php _e('Map view', 'bfi') ?></span>
@@ -130,10 +130,10 @@ $listResourceIds = array();
 	$bookingType = $merchant->BookingType;
 	$IsBookable = $merchant->IsBookable;
 	$btnText = __('Request','bfi');
-	$btnClass = "";
+		$btnClass = "bfi-alternative";
 	if ($IsBookable){
 		$btnText = __('Book Now','bfi');
-		$btnClass = "bfi-btn-bookable";
+		$btnClass = "";
 	}
 	$classofferdisplay = "";
 	if (($merchant->Price < $merchant->TotalPrice) || $merchant->IsOffer){
@@ -238,7 +238,7 @@ $listResourceIds = array();
 								}
 							}
 						} else {?>
-							<a href="<?php echo $resourceRoute ?>" class="bfi-item-btn-details"><?php echo _e('Request' , 'bfi')?></a>
+							<a href="<?php echo $resourceRoute ?>" class="bfi-btn <?php echo $btnClass ?>" target="_blank"><?php echo _e('Request' , 'bfi')?></a>
 						<?php } ?>
 					</div>
 				</div>
@@ -249,7 +249,9 @@ $listResourceIds = array();
 				<!-- price details -->
 				<div class="bfi-row" >
 					<div class="bfi-col-sm-4 bfi-text-right">
+					<?php if ($merchant->MaxPaxes>0){?>
 					<?php echo sprintf(__('Price for %s person' ,'bfi'),$totPerson) ?>
+					<?php } ?>					
 					</div>
 					<div class="bfi-col-sm-5 bfi-text-right">
 							<div class="bfi-gray-highlight">
@@ -299,9 +301,9 @@ $listResourceIds = array();
 					</div>
 					<div class="bfi-col-sm-3 bfi-text-right">
 						<?php if ($merchant->Price > 0){ ?>
-								<a href="<?php echo $resourceRoute ?>" class=" bfi-item-btn-details <?php echo $btnClass ?> "><?php echo $btnText ?></a>
+								<a href="<?php echo $resourceRoute ?>" class=" bfi-btn <?php echo $btnClass ?> " target="_blank"><?php echo $btnText ?></a>
 						<?php }else{ ?>
-								<a href="<?php echo $resourceRoute ?>" class=" bfi-item-btn-details"><?php echo _e('Request' , 'bfi')?></a>
+								<a href="<?php echo $resourceRoute ?>" class=" bfi-btn <?php echo $btnClass ?>" target="_blank"><?php echo _e('Request' , 'bfi')?></a>
 						<?php } ?>
 					</div>
 				</div>
@@ -309,7 +311,7 @@ $listResourceIds = array();
 				<!-- end price details -->
 				<?php } ?>
 			</div>
-			<div class="discount-box" style="display:<?php echo ($merchant->PercentVariation < 0)?"block":"none"; ?>;">
+			<div class="bfi-discount-box" style="display:<?php echo ($merchant->PercentVariation < 0)?"block":"none"; ?>;">
 				<?php echo sprintf(__('Offer %d%%' , 'bfi'), number_format($merchant->PercentVariation, 1)); ?>
 			</div>
 		</div>
@@ -320,47 +322,48 @@ $listResourceIds = array();
 
 	<?php endforeach; ?>
 </div>
+</div>
 <script type="text/javascript">
 <!--
-jQuery('#list-view').click(function() {
-	jQuery('.bfi-view-changer-selected').html(jQuery(this).html());
-	jQuery('#bfi-list').removeClass('bfi-grid-group')
-	jQuery('#bfi-list .bfi-item').addClass('list-group-item')
-	jQuery('#bfi-list .bfi-img-container').addClass('bfi-col-sm-3')
-	jQuery('#bfi-list .bfi-details-container').addClass('bfi-col-sm-9')
+jQuery(document).ready(function() {
+	jQuery('#list-view').click(function() {
+		jQuery('.bfi-view-changer-selected').html(jQuery(this).html());
+		jQuery('#bfi-list').removeClass('bfi-grid-group')
+		jQuery('#bfi-list .bfi-item').addClass('bfi-list-group-item')
+		jQuery('#bfi-list .bfi-img-container').addClass('bfi-col-sm-3')
+		jQuery('#bfi-list .bfi-details-container').addClass('bfi-col-sm-9')
 
-	localStorage.setItem('display', 'list');
-});
+		localStorage.setItem('display', 'list');
+	});
 
-jQuery('#grid-view').click(function() {
-	jQuery('.bfi-view-changer-selected').html(jQuery(this).html());
-	jQuery('#bfi-list').addClass('bfi-grid-group')
-	jQuery('#bfi-list .bfi-item').removeClass('list-group-item')
-	jQuery('#bfi-list .bfi-img-container').removeClass('bfi-col-sm-3')
-	jQuery('#bfi-list .bfi-details-container').removeClass('bfi-col-sm-9')
-	localStorage.setItem('display', 'grid');
-});
-	jQuery('#bfi-list .bfi-item').addClass('grid-group-item')
+	jQuery('#grid-view').click(function() {
+		jQuery('.bfi-view-changer-selected').html(jQuery(this).html());
+		jQuery('#bfi-list').addClass('bfi-grid-group')
+		jQuery('#bfi-list .bfi-item').removeClass('bfi-list-group-item')
+		jQuery('#bfi-list .bfi-img-container').removeClass('bfi-col-sm-3')
+		jQuery('#bfi-list .bfi-details-container').removeClass('bfi-col-sm-9')
+		localStorage.setItem('display', 'grid');
+	});
+		jQuery('#bfi-list .bfi-item').addClass('bfi-grid-group-item')
 
-if (localStorage.getItem('display')) {
-	if (localStorage.getItem('display') == 'list') {
-		jQuery('#list-view').trigger('click');
-	} else {
-		jQuery('#grid-view').trigger('click');
-	}
-} else {
-	 if(typeof bfi_variable === 'undefined' || bfi_variable.bfi_defaultdisplay === 'undefined') {
-		jQuery('#list-view').trigger('click');
-	 } else {
-		if (bfi_variable.bfi_defaultdisplay == '1') {
-			jQuery('#grid-view').trigger('click');
-		} else { 
+	if (localStorage.getItem('display')) {
+		if (localStorage.getItem('display') == 'list') {
 			jQuery('#list-view').trigger('click');
+		} else {
+			jQuery('#grid-view').trigger('click');
+		}
+	} else {
+		 if(typeof bfi_variable === 'undefined' || bfi_variable.bfi_defaultdisplay === 'undefined') {
+			jQuery('#list-view').trigger('click');
+		 } else {
+			if (bfi_variable.bfi_defaultdisplay == '1') {
+				jQuery('#grid-view').trigger('click');
+			} else { 
+				jQuery('#list-view').trigger('click');
+			}
 		}
 	}
-}
-
-
+});
 
 
 //var urlCheck = "<?php echo $base_url ?>/bfi-api/v1/task";
@@ -517,6 +520,7 @@ jQuery(document).ready(function() {
 			},
 			height: 500,
 			width: 800,
+			dialogClass: 'bfi-dialog bfi-dialog-map'
 		});
 	});
 	
@@ -544,7 +548,8 @@ jQuery(document).ready(function() {
 								placement:'auto-bottom',
 								dismissible:true,
 								trigger:'manual',
-								type:'html'
+								type:'html',
+								style:'bfi-webuipopover'
 							});
 							obj.webuiPopover('show');
 

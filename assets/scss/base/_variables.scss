@@ -1,0 +1,86 @@
+//== Colors
+$color1: 	#0895FF; 
+$color2: 	#1565C0; 
+$color3: 	#5CC618; 
+$color4: 	#459512;
+$color5: 	#FF9800;
+$color6: 	#EF6C00;
+$color7: 	#FCB802;
+$color8: 	#F44336;
+$color9: 	#C62828;
+$color10: 	#EEEEEE;
+$color11: 	#E0E0E0;
+$color12: 	#616161;
+$color13: 	#FFFFFF;
+$color14: 	#E9F0FA;
+$color15: 	#F9F9F9;
+$color16: 	#AEAEAE;
+
+
+//== txt
+$link-primary: 			$color1;
+$link-secondary: 		$color2;
+$txt-primary: 			$color12;
+
+
+//== Padding e Radius
+$padding-base-vertical:		6px !default;
+$padding-base-horizontal:   12px !default;
+$border-radius-base:        4px !default;
+$line-height-base:        	1.428571429 !default; // 20/14
+
+
+//== btn
+$btn-default-color: 			$color13;
+$btn-default-bg:				$color5;
+$btn-default-border:			$color6;
+$btn-alternative-color: 		$color13;
+$btn-alternative-bg:			$color1;
+$btn-alternative-border:		$color2;
+$bfi-alternative2-color: 		$color1;
+$bfi-alternative2-bg:			$color13;
+$bfi-alternative2-border:		$color11;
+$bfi-alternative3-color: 		$color1;
+$bfi-alternative3-bg:			$color13;
+$bfi-alternative3-border:		$color11;
+$bfi-alternative3-color-hover:	$color13;
+$bfi-alternative3-bg-hover:		$color1;
+$bfi-alternative4-color: 		$color12;
+$bfi-alternative4-bg:			$color10;
+$bfi-alternative4-border:		$color11;
+$bfi-not-active-color: 			$color13;
+$bfi-not-active-bg:				$color11;
+$bfi-not-active-border:			$color12;
+$btn-border-radius-base:		$border-radius-base !default;
+$cursor-disabled:       		not-allowed !default;
+
+//== Alerts
+
+$state-success-text:             #3c763d !default;
+$state-success-bg:               #dff0d8 !default;
+$state-success-border:           darken(adjust-hue($state-success-bg, -10), 5%) !default;
+$state-info-text:                #31708f !default;
+$state-info-bg:                  #d9edf7 !default;
+$state-info-border:              darken(adjust-hue($state-info-bg, -10), 7%) !default;
+$state-warning-text:             #8a6d3b !default;
+$state-warning-bg:               #fcf8e3 !default;
+$state-warning-border:           darken(adjust-hue($state-warning-bg, -10), 5%) !default;
+$state-danger-text:              #a94442 !default;
+$state-danger-bg:                #f2dede !default;
+$state-danger-border:            darken(adjust-hue($state-danger-bg, -10), 5%) !default;
+
+$alert-padding:               15px !default;
+$alert-border-radius:         $border-radius-base !default;
+$alert-link-font-weight:      bold !default;
+$alert-success-bg:            $state-success-bg !default;
+$alert-success-text:          $state-success-text !default;
+$alert-success-border:        $state-success-border !default;
+$alert-info-bg:               $state-info-bg !default;
+$alert-info-text:             $state-info-text !default;
+$alert-info-border:           $state-info-border !default;
+$alert-warning-bg:            $state-warning-bg !default;
+$alert-warning-text:          $state-warning-text !default;
+$alert-warning-border:        $state-warning-border !default;
+$alert-danger-bg:             $state-danger-bg !default;
+$alert-danger-text:           $state-danger-text !default;
+$alert-danger-border:         $state-danger-border !default;

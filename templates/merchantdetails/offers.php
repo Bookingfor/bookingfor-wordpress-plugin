@@ -33,8 +33,15 @@ var cultureCode = '<?php echo $language ?>';
 var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 //-->
 </script>
-
+<div class="bfi-content">
 <div class="bfi-row">
+	<div class="bfi-title-name bfi-hideonextra"><?php echo  $merchant->Name?>
+		<span class="bfi-item-rating">
+			<?php for($i = 0; $i < $merchant->Rating; $i++) { ?>
+			<i class="fa fa-star"></i>
+			<?php } ?>
+		</span>
+	</div>
 		<div class="bfi-search-title">
 			<?php echo sprintf(__("%s available offers", 'bfi'), $total);?>
 		</div>
@@ -49,14 +56,14 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 	</div>
 </div>
 <div class="bfi-clearfix"></div>
-	<?php if ($offers != null): ?>
+	<?php if ($offers != null){ ?>
 		<div id="bfi-list" class="bfi-row bfi-list">
 			<?php foreach($offers as $resource){ ?>
 			<?php
 		$resourceImageUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s6.jpeg";
 		$resourceName = BFCHelper::getLanguage($resource->Name, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
 		$resourceDescription = BFCHelper::getLanguage($resource->Description, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
-		$currUriresource = $uri.$resource->VariationPlanId.'-'.BFI()->seoUrl($resourceName);
+//		$currUriresource = $uri.$resource->VariationPlanId.'-'.BFI()->seoUrl($resourceName);
 		
 		$resourceRoute = $routeMerchant.'/'._x('offer', 'Page slug', 'bfi' ).'/'. $resource->VariationPlanId . '-' . BFCHelper::getSlug($resourceName);
 		if(!empty($resource->DefaultImg)){
@@ -87,7 +94,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 								
 								</div>
 								<div class="bfi-col-sm-4 bfi-text-right">
-										<a href="<?php echo $resourceRoute ?>" class="bfi-item-btn-details"><?php echo _e('Details' , 'bfi')?></a>
+										<a href="<?php echo $resourceRoute ?>" class="bfi-btn" target="_blank"><?php echo _e('Details' , 'bfi')?></a>
 								</div>
 							</div>
 							<!-- end resource details -->
@@ -98,17 +105,20 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 				</div>
 			<?php } ?>
 		</div>
-	<?php else:?>
+	<?php }else{?>
 	<div class="bfi-noresults">
 		<?php _e('No Results Found', 'bfi'); ?>
 	</div>
-	<?php endif; ?>	
+	<?php } ?>	
+	<div class="bfi-clearboth"></div>
+	<?php  include(BFI()->plugin_path().'/templates/merchant_small_details.php');  ?>
+	</div>
 <script type="text/javascript">
 <!--
 	jQuery('#list-view').click(function() {
 		jQuery('.bfi-view-changer-selected').html(jQuery(this).html());
 		jQuery('#bfi-list').removeClass('bfi-grid-group')
-		jQuery('#bfi-list .bfi-item').addClass('list-group-item')
+		jQuery('#bfi-list .bfi-item').addClass('bfi-list-group-item')
 		jQuery('#bfi-list .bfi-img-container').addClass('bfi-col-sm-3')
 		jQuery('#bfi-list .bfi-details-container').addClass('bfi-col-sm-9')
 
@@ -118,12 +128,12 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 	jQuery('#grid-view').click(function() {
 		jQuery('.bfi-view-changer-selected').html(jQuery(this).html());
 		jQuery('#bfi-list').addClass('bfi-grid-group')
-		jQuery('#bfi-list .bfi-item').removeClass('list-group-item')
+		jQuery('#bfi-list .bfi-item').removeClass('bfi-list-group-item')
 		jQuery('#bfi-list .bfi-img-container').removeClass('bfi-col-sm-3')
 		jQuery('#bfi-list .bfi-details-container').removeClass('bfi-col-sm-9')
 		localStorage.setItem('display', 'grid');
 	});
-		jQuery('#bfi-list .bfi-item').addClass('grid-group-item')
+		jQuery('#bfi-list .bfi-item').addClass('bfi-grid-group-item')
 
 	if (localStorage.getItem('display')) {
 		if (localStorage.getItem('display') == 'list') {

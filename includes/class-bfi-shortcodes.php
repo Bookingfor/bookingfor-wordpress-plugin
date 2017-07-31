@@ -273,6 +273,7 @@ class bfi_Shortcodes {
 			'orderby'  => 'title',
 			'order'    => 'desc',
 			'categories' => '',  // Slugs
+			'condominiumid' => 0,  // Slugs
 		), $atts );
 
 //		if ( ! $atts['category'] ) {
@@ -289,6 +290,8 @@ class bfi_Shortcodes {
 		$currParam = $resourcesmodel->getParam();
 		$categories = !empty($atts['categories'])?$atts['categories']:'';
 		$currParam['categories'] = $categories;
+		$condominiumid = !empty($atts['condominiumid'])?$atts['condominiumid']:0;
+		$currParam['parentProductId'] = $condominiumid;
 		$resourcesmodel->setParam($currParam);
 
 		$total = $resourcesmodel->getTotal();

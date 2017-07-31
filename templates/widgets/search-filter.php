@@ -654,7 +654,7 @@ echo $before_widget;
 <br />
 <?php if(BFI()->isSearchPage() && !empty(COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY)){ ?>
 <div class="bfi-maps-static">
-	<span class="showmap"><?php _e('Show map', 'bfi') ?></span>
+	<span class="bfi-showmap"><?php _e('Show map', 'bfi') ?></span>
 	<img alt="Map" src="https://maps.google.com/maps/api/staticmap?center=<?php echo COM_BOOKINGFORCONNECTOR_GOOGLE_POSY?>,<?php echo COM_BOOKINGFORCONNECTOR_GOOGLE_POSX?>&amp;zoom=11&amp;size=400x250&key=<?php echo COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY ?>&" style="max-width: 100%;" />
 </div>
 <?php } ?>
@@ -663,7 +663,7 @@ echo $before_widget;
 <script type="text/javascript">
 ajaxFormAction = '<?php echo $formAction; ?>' + '';
 
-function applyfilterdata(){ 		
+function bfi_applyfilterdata(){ 		
 
 	jQuery("#bfi-filtertoggle .bfi-option-title ").click(function(){
 		jQuery(this).toggleClass("bfi-option-active");
@@ -718,65 +718,18 @@ function applyfilterdata(){
 				});
 		});
 
-//	jQuery('#searchformfilter').ajaxForm({
-//			target:     '#bfcmerchantlist',
-//			replaceTarget: true, 
-//			url:        ajaxFormAction, 
-//			beforeSerialize:function($form, options) {
-//				try
-//				{
-//					jQuery("#filter_order_filter").val(jQuery("#bookingforsearchFilterForm input[name='filter_order']").val());					
-//					jQuery("#filter_order_Dir_filter").val(jQuery("#bookingforsearchFilterForm input[name='filter_order_Dir']").val());	
-//					
-//				}
-//				catch (e)
-//				{
-//				}
-//				jQuery("input[name^='filters\\[']").val("");
-//
-//				jQuery("a.bfi-filter-active").each(function(){
-//					currValue = jQuery(this).attr("rel");
-//					currHiddenInput = jQuery("input[name='filters\\["+jQuery(this).attr("rel1")+"\\]']");
-//					currHiddenInput.val(currHiddenInput.val() + "|" + currValue);
-//				});
-//				jQuery("input[name^='filters\\[']").each(function(){
-//					jQuery(this).val(jQuery(this).val().substr(1));
-//				});
-//
-//
-//			},
-//			beforeSend: function() {
-//				jQuery('#bfcmerchantlist').block({
-//					message:"",
-//						overlayCSS: {backgroundColor: '#ffffff', opacity: 0.7}  
-//				}
-//				);
-//			},
-//			success: showResponse,
-//			error: showError
-//	});
-//		
-
 			jQuery('.bfi-filteroptions a').on('click',function() {
 				jQuery(this).toggleClass("bfi-filter-active");
 				jQuery(this).closest('form').submit();
 			});
-//			jQuery('.checkboxrooms').on('click',function() {
-//				jQuery('.checkboxrooms').not(this).prop('checked', false);  				
-//				updateHiddenValue('.checkboxrooms:checked','#filtersRoomsHidden')	
-//				jQuery(this).closest('form').submit();
-//			});
 	
 			if (jQuery.prototype.masonry){
 				jQuery('.main-siderbar, .main-siderbar1').masonry('reload');
 			}
-
-//		jQuery(".divtoggle").hide();
-//	});
 }
 
 jQuery(document).ready(function() {
-	applyfilterdata();
+	bfi_applyfilterdata();
 });  
 
 

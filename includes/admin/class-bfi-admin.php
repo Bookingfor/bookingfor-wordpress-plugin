@@ -253,6 +253,12 @@ class BFI_Admin {
 		<?php
 	}
 
+	public function display_bfi_sendtocart_key_element()
+	{
+		?>
+			<input type="checkbox" id="bfi_sendtocart_key" name="bfi_sendtocart_key" value="1" <?php checked(get_option('bfi_sendtocart_key',0), 1, true ); ?> />
+		<?php
+	}
 
 	public function display_bfi_bootstrapversion_key_element(){
 		?>
@@ -488,6 +494,8 @@ class BFI_Admin {
 
 		add_settings_field("bfi_isportal_key", "Multimerchant", array( $this, 'display_bfi_isportal_key_element'), "bfi-options", "section");
 		add_settings_field("bfi_showdata_key", "Show Descriptions on lists", array( $this, 'display_bfi_showdata_key_element'), "bfi-options", "section");
+		add_settings_field("bfi_sendtocart_key", "Send guest directly to cart", array( $this, 'display_bfi_sendtocart_key_element'), "bfi-options", "section");
+
 
 		add_settings_section("sectionmaps", "Maps Settings", null, "bfi-options");
 		add_settings_field("bfi_posx_key", "Longitude *",  array( $this, 'display_bfi_posx_key_element'), "bfi-options", "sectionmaps");
@@ -531,6 +539,8 @@ class BFI_Admin {
 		register_setting("section", "bfi_defaultdisplaylist_key");
 		register_setting("section", "bfi_isportal_key");
 		register_setting("section", "bfi_showdata_key");
+		register_setting("section", "bfi_sendtocart_key");
+		
 //		register_setting("section", "bfi_bootstrapversion_key");
 //		register_setting("section", "bfi_bootstrapinclude_key");		
 		

@@ -51,7 +51,7 @@ if (strpos($merchantSiteUrl,'?post')!==false ){
 		background-image:none;
 	}
 </style>
-
+<div class="bfi-content">
 <div style="text-align:center;">
 
 	<form method="<?php echo $metodForm?>" action="<?php echo $merchantSiteUrl?>" id="redirectfromsite" name="redirectfromsite">
@@ -74,4 +74,5 @@ if (typeof(ga) !== 'undefined') {
 </script>
 	</form>
 
+</div>
 </div>

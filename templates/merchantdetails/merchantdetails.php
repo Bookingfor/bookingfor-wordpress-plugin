@@ -116,7 +116,7 @@ if ($rating>9 )
 } 
 $reviewavg = isset($merchant->Avg) ? $merchant->Avg->Average : 0;
 $reviewcount = isset($merchant->Avg) ? $merchant->Avg->Count : 0;
-
+$resourceDescription = BFCHelper::getLanguage($merchant->Description, $language, null, array( 'striptags'=>'striptags', 'bbcode'=>'bbcode','ln2br'=>'ln2br')) ;
 ?>
 <script type="application/ld+json">// <![CDATA[
 <?php echo json_encode($payload); ?>
@@ -128,60 +128,59 @@ var cultureCode = '<?php echo $language ?>';
 var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 //-->
 </script>
+<div class="bfi-content bfi-hideonextra">
+
 	<?php if($reviewcount>0){ ?>
 	<div class="bfi-row">
 		<div class="bfi-col-md-10">
 	<?php } ?>
 		<div class="bfi-title-name bfi-hideonextra"><?php echo  $merchant->Name?>
-			<span class="com_bookingforconnector_resource-merchant-rating">
+			<span class="bfi-item-rating">
 				<?php for($i = 0; $i < $rating; $i++) { ?>
 				<i class="fa fa-star"></i>
 				<?php } ?>
 			</span>
 		</div>
 		<div class="bfi-address bfi-hideonextra">
-			<i class="fa fa-map-marker fa-1"></i> <span class="street-address"><?php echo $indirizzo ?></span>, <span class="postal-code "><?php echo  $cap ?></span> <span class="locality"><?php echo $comune ?></span>, <span class="region"><?php echo  $stato ?></span>
-			<?php if (($showMap)) :?><a class="bfi-map-link" rel="#merchant_map"><?php echo _e('Map' , 'bfi') ?></a><?php endif; ?>
+			<i class="fa fa-map-marker fa-1"></i> <?php if (($showMap)) :?><a class="bfi-map-link" rel="#merchant_map"><?php endif; ?><span class="street-address"><?php echo $indirizzo ?></span>, <span class="postal-code "><?php echo  $cap ?></span> <span class="locality"><?php echo $comune ?></span>, <span class="region"><?php echo  $stato ?></span>
+			<?php if (($showMap)) :?></a><?php endif; ?>
 		</div>	
 	<?php if($reviewcount>0){ 
 		$totalreviewavg = BFCHelper::convertTotal($reviewavg);
 		?>
 		</div>	
-		<div class="bfi-col-md-2 bfi-cursor" id="bfi-avgreview">
-			<div class="bfi-avgreview-top"><?php echo $rating_text['merchants_reviews_text_value_'.$totalreviewavg]; ?> <?php echo number_format($reviewavg, 1); ?></div>
-			<div class="bfi-reviewcount-top"><?php echo $reviewcount; ?> <?php _e('Reviews', 'bfi') ?></div>
+		<div class="bfi-col-md-2 bfi-cursor bfi-avg bfi-text-right" id="bfi-avgreview">
+			<a href="#bfi-rating-container" class="bfi-avg-value"><?php echo $rating_text['merchants_reviews_text_value_'.$totalreviewavg]; ?> <?php echo number_format($reviewavg, 1); ?></a><br />
+			<a href="#bfi-rating-container" class="bfi-avg-count"><?php echo $reviewcount; ?> <?php _e('Reviews', 'bfi') ?></a>
 		</div>	
 	</div>	
 	<?php } ?>
-<div class="clear"></div>
-
-<div class="com_bookingforconnector_merchantdetails<?php echo BFCHelper::showMerchantRatingByCategoryId($merchant->MerchantTypeId)?>">
+	<div class="bfi-clearfix"></div>
 	<ul class="bfi-menu-top">
-		<li><a rel=".resourcecontainer-gallery" data-toggle="tab"><?php echo  _e('Media' , 'bfi') ?></a></li>
+		<!-- <li><a rel=".bfi-resourcecontainer-gallery" data-toggle="tab"><?php echo  _e('Media' , 'bfi') ?></a></li> -->
        
 		<?php if (!empty($resourceDescription)):?><li ><a rel=".bfi-description-data"><?php echo  _e('Description', 'bfi') ?></a></li><?php endif; ?>
 		<?php if ($isportal && ($merchant->RatingsContext ==1 || $merchant->RatingsContext ==3)):?><li><a rel=".bfi-ratingslist"><?php echo  _e('Reviews' , 'bfi') ?></a></li><?php endif; ?>
 		<?php if (($showMap)) :?><li><a rel="#merchant_map"><?php echo _e('Map' , 'bfi') ?></a></li><?php endif; ?>
-		<?php if ($merchant->HasResources):?><li class="book"><a rel="#divcalculator" data-toggle="tab"><?php echo  _e('Booking' , 'bfi') ?></a></li><?php endif; ?>
+		<?php if ($merchant->HasResources):?><li class="bfi-book"><a rel="#divcalculator" data-toggle="tab"><?php echo  _e('Booking' , 'bfi') ?></a></li><?php endif; ?>
 	</ul>
-
-	<?php // echo  $this->loadTemplate('head'); ?>
+</div>
 	
-	<div class="resourcecontainer-gallery">
+	<div class="bfi-resourcecontainer-gallery">
 		<?php  include('merchant-gallery.php');  ?>
 	</div>
-    	<hr>
+<div class="bfi-content">
 	<div class="bfi-row">
 		<div class="bfi-col-md-8 bfi-description-data">
-			<?php echo  BFCHelper::getLanguage($merchant->Description, $language, null, array( 'striptags'=>'striptags', 'bbcode'=>'bbcode','ln2br'=>'ln2br')) ?>		
+			<?php echo $resourceDescription ?>		
 		</div>	
 		<div class="bfi-col-md-4">
-			<div class=" bfi-feature-data">
+			<div class="bfi-feature-data">
 				<strong><?php _e('In short', 'bfi') ?></strong>
 				<div id="bfi-merchant-tags"></div>
 			</div>
 				<!-- AddToAny BEGIN -->
-				<a class="bfi-smallbtn bfi-sharebtn a2a_dd"  href="http://www.addtoany.com/share_save" ><i class="fa fa-share-alt"></i> <?php _e('Share', 'bfi') ?></a>
+				<a class="bfi-btn bfi-alternative2 bfi-pull-right a2a_dd"  href="http://www.addtoany.com/share_save" ><i class="fa fa-share-alt"></i> <?php _e('Share', 'bfi') ?></a>
 				<script async src="https://static.addtoany.com/menu/page.js"></script>
 				<!-- AddToAny END -->
 		</div>	
@@ -248,7 +247,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 			if (typeof google !== 'object' || typeof google.maps !== 'object'){
 				var script = document.createElement("script");
 				script.type = "text/javascript";
-				script.src = "http://maps.google.com/maps/api/js?key=<?php echo $googlemapsapykey ?>&libraries=drawing&callback=handleApiReadyMerchant";
+				script.src = "http://maps.google.com/maps/api/js?key=<?php echo $googlemapsapykey ?>&libraries=drawing,places&callback=handleApiReadyMerchant";
 				document.body.appendChild(script);
 			}else{
 				if (typeof mapMerchant !== 'object'){
@@ -281,10 +280,10 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 
 
 <?php if ($merchant->RatingsContext ==1 || $merchant->RatingsContext ==3):?>
-	<br /><br />
 	<div class="bfi-ratingslist">
 	<?php
 		$summaryRatings = $modelmerchant->getMerchantRatingAverageFromService($merchant_id);
+		$modelmerchant->setItemPerPage(COM_BOOKINGFORCONNECTOR_ITEMPERPAGE);
 		$ratings = $modelmerchant->getItemsRating($merchant_id);
 		if ( false !== ( $temp_message = get_transient( 'temporary_message' ) )) :
 			echo $temp_message;

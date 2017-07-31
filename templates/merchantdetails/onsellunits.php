@@ -48,6 +48,7 @@ var cultureCode = '<?php echo $language ?>';
 var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 //-->
 </script>
+<div class="bfi-content">
 <div class="bfi-row">
 	<div class="bfi-col-xs-9 ">
 		<div class="bfi-search-title">
@@ -137,7 +138,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 							<?php if($isportal){ ?>
 							- <a href="<?php echo $routeMerchant?>" class="bfi-subitem-title"><?php echo $resource->MerchantName; ?></a>
 							<?php } ?>
-							<span class="bfi-subitem-rating">
+							<span class="bfi-item-rating">
 								<?php for($i = 0; $i < $ratingMrc; $i++) { ?>
 									<i class="fa fa-star"></i>
 								<?php } ?>	             
@@ -149,15 +150,15 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 							<?php endif; ?>
 						</div>
 						<div class="bfi-mrcgroup" id="bfitags<?php echo $resource->MerchantId; ?>"></div>
-						<span class="showcaseresource hidden" id="showcaseresource<?php echo $resource->ResourceId?>">
+						<span class="bfi-label-alternative2 bfi-hide" id="showcaseresource<?php echo $resource->ResourceId?>">
 							<?php _e('Vetrina', 'bfi') ?> 
 							<i class="fa fa-angle-double-up"></i>
 						</span>
-						<span class="topresource hidden" id="topresource<?php echo $resource->ResourceId?>">
+						<span class="bfi-label-alternative bfi-hide" id="topresource<?php echo $resource->ResourceId?>">
 							<?php _e('Top', 'bfi') ?>
 							<i class="fa fa-angle-up"></i>
 						</span>
-						<span class="newbuildingresource hidden" id="newbuildingresource<?php echo $resource->ResourceId?>">
+						<span class="bfi-label bfi-hide" id="newbuildingresource<?php echo $resource->ResourceId?>">
 							<?php _e('New!', 'bfi') ?>
 							<i class="fa fa-home"></i>
 						</span>
@@ -191,12 +192,12 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 					
 					</div>
 					<div class="bfi-col-sm-3 bfi-text-right">
-							<a href="<?php echo $resourceRoute ?>" class="bfi-item-btn-details"><?php echo _e('Details' , 'bfi')?></a>
+							<a href="<?php echo $resourceRoute ?>" class="bfi-btn"><?php echo _e('Details' , 'bfi')?></a>
 					</div>
 				</div>
 				<div class="bfi-clearfix"></div>
 				<!-- end resource details -->
-				<div  class="ribbonnew hidden" id="ribbonnew<?php echo $resource->ResourceId?>"><?php _e('New ad', 'bfi') ?></div>
+				<div  class="ribbonnew bfi-hide" id="ribbonnew<?php echo $resource->ResourceId?>"><?php _e('New ad', 'bfi') ?></div>
 			</div>
 		</div>
 	</div>
@@ -235,7 +236,7 @@ if( get_option('permalink_structure') ) {
 
   $paginate_links = paginate_links($pagination_args);
     if ($paginate_links) {
-      echo "<nav class='custom-pagination'>";
+      echo "<nav class='bfi-pagination'>";
 //      echo "<span class='page-numbers page-num'>Page " . $page . " of " . $numpages . "</span> ";
       echo "<span class='page-numbers page-num'>".__('Page', 'bfi')." </span> ";
       print $paginate_links;
@@ -249,7 +250,7 @@ if( get_option('permalink_structure') ) {
 jQuery('#list-view').click(function() {
 	jQuery('.bfi-view-changer-selected').html(jQuery(this).html());
 	jQuery('#bfi-list').removeClass('bfi-grid-group')
-	jQuery('#bfi-list .bfi-item').addClass('list-group-item')
+	jQuery('#bfi-list .bfi-item').addClass('bfi-list-group-item')
 	jQuery('#bfi-list .bfi-img-container').addClass('bfi-col-sm-3')
 	jQuery('#bfi-list .bfi-details-container').addClass('bfi-col-sm-9')
 
@@ -259,12 +260,12 @@ jQuery('#list-view').click(function() {
 jQuery('#grid-view').click(function() {
 	jQuery('.bfi-view-changer-selected').html(jQuery(this).html());
 	jQuery('#bfi-list').addClass('bfi-grid-group')
-	jQuery('#bfi-list .bfi-item').removeClass('list-group-item')
+	jQuery('#bfi-list .bfi-item').removeClass('bfi-list-group-item')
 	jQuery('#bfi-list .bfi-img-container').removeClass('bfi-col-sm-3')
 	jQuery('#bfi-list .bfi-details-container').removeClass('bfi-col-sm-9')
 	localStorage.setItem('display', 'grid');
 });
-	jQuery('#bfi-list .bfi-item').addClass('grid-group-item')
+	jQuery('#bfi-list .bfi-item').addClass('bfi-grid-group-item')
 
 if (localStorage.getItem('display')) {
 	if (localStorage.getItem('display') == 'list') {
@@ -371,7 +372,7 @@ function getAjaxInformations(){
 					var isNew = jsDate > newFromDate;
 					if (isNew)
 						{
-							jQuery("#ribbonnew"+val.ResourceId).removeClass("hidden");
+							jQuery("#ribbonnew"+val.ResourceId).removeClass("bfi-hide");
 						}
 				}
 
@@ -383,22 +384,22 @@ function getAjaxInformations(){
 				/*Top seller*/
 				if (val.IsForeground)
 					{
-						jQuery("#topresource"+val.ResourceId).removeClass("hidden");
-//						jQuery("#borderimg"+val.ResourceId).addClass("hidden");
+						jQuery("#topresource"+val.ResourceId).removeClass("bfi-hide");
+//						jQuery("#borderimg"+val.ResourceId).addClass("bfi-hide");
 					}
 
 				/*Showcase seller*/
 				if (val.IsShowcase)
 					{
-						jQuery("#topresource"+val.ResourceId).addClass("hidden");
-						jQuery("#showcaseresource"+val.ResourceId).removeClass("hidden");
-						jQuery("#lensimg"+val.ResourceId).removeClass("hidden");
-//						jQuery("#borderimg"+val.ResourceId).addClass("hidden");
+						jQuery("#topresource"+val.ResourceId).addClass("bfi-hide");
+						jQuery("#showcaseresource"+val.ResourceId).removeClass("bfi-hide");
+						jQuery("#lensimg"+val.ResourceId).removeClass("bfi-hide");
+//						jQuery("#borderimg"+val.ResourceId).addClass("bfi-hide");
 					}
 				
 				/*Top seller*/
 				if(val.IsNewBuilding){
-					jQuery("#newbuildingresource"+val.ResourceId).removeClass("hidden");
+					jQuery("#newbuildingresource"+val.ResourceId).removeClass("bfi-hide");
 				}
 
 
@@ -422,6 +423,7 @@ jQuery(document).ready(function() {
 			},
 			height: 500,
 			width: 800,
+			dialogClass: 'bfi-dialog bfi-dialog-map'
 		});
 	});
 
@@ -438,3 +440,6 @@ jQuery(document).ready(function() {
 	<?php _e('No results available', 'bfi') ?>
 </div>
 <?php } ?>
+	<div class="bfi-clearboth"></div>
+	<?php  include(BFI()->plugin_path().'/templates/merchant_small_details.php');  ?>
+</div>

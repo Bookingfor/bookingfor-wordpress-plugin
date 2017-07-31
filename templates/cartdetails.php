@@ -72,12 +72,14 @@ if (isset($_POST['hdnOrderData']) && isset($_POST['hdnPolicyIds'])  ) {
 $sessionBookingType = BFCHelper::getSession('hdnPolicyId', '', 'bfi-cart');
 $sessionOrderData = BFCHelper::getSession('hdnOrderData', '', 'bfi-cart');
 
+
 if (!empty($sessionBookingType) && !empty($sessionOrderData)  ) {
 	$bookingType = $sessionBookingType;
 	$hdnOrderData = $sessionOrderData;
 	$currCart= new stdClass;
 	$currCart->CartConfiguration = stripslashes('{"Resources":' .$hdnOrderData . ',"SearchModel":null,"PolicyId":'.$bookingType.',"TotalAmount":0.0,"TotalDiscountedAmount":0.0,"CartOrderId":null}');
 }
+
 
 
 if($CartMultimerchantEnabled && empty($currCart)){
@@ -119,7 +121,7 @@ if($CartMultimerchantEnabled){
 $cartEmpty=empty($currCart);
 $cartConfig = null;
 if(!$cartEmpty){
-	$cartConfig = json_decode(stripslashes($currCart->CartConfiguration));
+	$cartConfig = json_decode(($currCart->CartConfiguration));
 	if(isset($cartConfig->Resources) && count($cartConfig->Resources)>0){
 		$cartEmpty = false;
 	}else{
@@ -130,7 +132,7 @@ if(!$cartEmpty){
 
 //	if(empty($currCart) || (!empty($currCart) && ($currCart->CartConfiguration == '{}' ||  strpos($currCart->CartConfiguration,"[]")!==true ) )){
 	if($cartEmpty){
-		echo __('Your Cart is empty! ', 'bfi');
+		echo '<div class="bfi-content">'.__('Your Cart is empty! ', 'bfi').'</div>';
 	}else{
 //		$listPolicyIds = array();
 //		$listStayConfigurations = array();
@@ -242,6 +244,7 @@ $allPolicyHelp = array();
 		}
 
 ?>
+<div class="bfi-content">
 <div class="bfi-cart-title"><?php _e('Secure booking. We protect your information', 'bfi') ?></div>
 
 	<?php  include(BFI()->plugin_path().'/templates/menu_small_booking.php');  ?>
@@ -249,7 +252,7 @@ $allPolicyHelp = array();
 <!--
 	jQuery(function()
 	{
-		jQuery(".bfi-menu-booking a:eq(2)").addClass("bfi-menu-small-active");
+		jQuery(".bfi-menu-booking a:eq(2)").removeClass(" bfi-alternative3");
 	});
 //-->
 </script>
@@ -259,11 +262,11 @@ $allPolicyHelp = array();
 			<thead>
 				<tr>
 					<th><?php _e('Information', 'bfi') ?></th>
-					<th><div><?php _e('Min', 'bfi') ?><br /><?php _e('Max', 'bfi') ?></div></th>
-					<th><div><?php _e('Unit price', 'bfi') ?></div></th>
-					<th><div><?php _e('Options', 'bfi') ?></div></th>
+					<th><div><?php _e('For', 'bfi') ?></div></th>
 					<th><div><?php _e('Price', 'bfi') ?></div></th>
+					<th><div><?php _e('Options', 'bfi') ?></div></th>
 					<th><div><?php _e('Qt.', 'bfi') ?></div></th>
+					<th><div><?php _e('Total price', 'bfi') ?></div></th>
 				</tr>
 			</thead>
 <?php
@@ -384,12 +387,25 @@ if(!empty($MerchantDetail->AcceptanceCheckIn) && !empty($MerchantDetail->Accepta
 								$resource = $resourceDetail[$res->ResourceId];  //$modelMerchant->getItem($merchant_id);	 
 															
 								$routeResource = $url_resource_page . $resource->ResourceId .'-'.BFI()->seoUrl($resource->Name);
+								
+								$totalPricesExtraIncluded = 0;
+								$totalAmountPricesExtraIncluded = 0;
+								$pricesExtraIncluded = null;
+
+								if(!empty( $res->PricesExtraIncluded )){
+									$pricesExtraIncluded = json_decode($res->PricesExtraIncluded);
+									foreach($pricesExtraIncluded as $sdetail) {					
+										$totalPricesExtraIncluded +=$sdetail->TotalDiscounted;
+										$totalAmountPricesExtraIncluded +=$sdetail->TotalAmount;
+									}
+								}
+
 																
                             ?>
                                 <tr>
                                     <td>
-										<div class="bfi-item-title">
-											<a href="<?php echo $routeResource?>" ><?php echo $resource->Name ?></a>
+										<div class="bfi-resname">
+											<a href="<?php echo $routeResource?>" target="_blank"><?php echo $resource->Name ?></a>
 										</div>
 										<div class="bfi-cart-person">
 											<?php if ($nad > 0): ?><?php echo $nad ?> <?php _e('Adults', 'bfi') ?> <?php endif; ?>
@@ -400,13 +416,7 @@ if(!empty($MerchantDetail->AcceptanceCheckIn) && !empty($MerchantDetail->Accepta
 												, <?php echo $nch ?> <?php _e('Children', 'bfi') ?> (<?php echo implode(" ".__('Years', 'bfi') .', ',$nchs) ?> <?php _e('Years', 'bfi') ?> )
 											<?php endif; ?>
                                        </div>
-								<?php
-
-//echo "<pre>";
-//echo print_r($res);
-//echo "</pre>";
-////			
-								
+								<?php																
 								/*-----------checkin/checkout--------------------*/	
 									if ($res->AvailabilityType == 0 )
 									{
@@ -501,7 +511,7 @@ if(!empty($MerchantDetail->AcceptanceCheckIn) && !empty($MerchantDetail->Accepta
 										$currCheckOut = DateTime::createFromFormat("YmdHis", $res->CheckInTime);
 										$currCheckOut->add(new DateInterval('PT' . $res->TimeDuration . 'M'));
 										$currDiff = $currCheckOut->diff($currCheckIn);
-										$timeDuration = $currDiff->i + ($currDiff->h*60);
+										$timeDuration = $currDiff->h + ($currDiff->i/60);
 									?>
 										<div class="bfi-timeperiod " >
 											<div class="bfi-row ">
@@ -519,7 +529,7 @@ if(!empty($MerchantDetail->AcceptanceCheckIn) && !empty($MerchantDetail->Accepta
 											<div class="bfi-row">
 												<div class="bfi-col-md-3 "><?php _e('Total', 'bfi') ?>:
 												</div>	
-												<div class="bfi-col-md-9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->format('%h') ?></span> <?php _e('hours', 'bfi') ?>
+												<div class="bfi-col-md-9 bfi-text-right"><span class="bfi-total-duration"><?php echo $timeDuration ?></span> <?php _e('hours', 'bfi') ?>
 												</div>	
 											</div>	
 										</div>
@@ -593,24 +603,70 @@ if(!empty($MerchantDetail->AcceptanceCheckIn) && !empty($MerchantDetail->Accepta
 										
                                     </td>
 									<td><!-- Min/Max -->
-									<?php if ($res->MaxPaxes>0):?>
-										<div class="bfi-icon-paxes">
-											<i class="fa fa-user"></i> 
-											<?php if ($res->MaxPaxes==2){?>
-											<i class="fa fa-user"></i> 
-											<?php }?>
-											<?php if ($res->MaxPaxes>2){?>
-												<?php echo ($res->MinPaxes != $res->MaxPaxes)? $res->MinPaxes . "-" : "" ?><?php echo  $res->MaxPaxes ?>
-											<?php }?>
-										</div>
-									<?php endif; ?>
+									<?php 
+									if(!empty( $res->ComputedPaxes )){
+										$computedPaxes = explode("|", $res->ComputedPaxes);
+										$nadult =0;
+										$nsenior =0;
+										$nchild =0;
+										
+										foreach($computedPaxes as $computedPax) {
+											$currComputedPax =  explode(":", $computedPax."::::");
+											
+											if ($currComputedPax[3] == "0") {
+												$nadult += $currComputedPax[1];
+											}
+											if ($currComputedPax[3] == "1") {
+												$nsenior += $currComputedPax[1];
+											}
+											if ($currComputedPax[3] == "2") {
+												$nchild += $currComputedPax[1];
+											}
+										}
+
+										if ($nadult>0) {
+											?>
+											<div class="bfi-icon-paxes">
+												<i class="fa fa-user"></i> x <b><?php echo $nadult ?></b>
+											<?php 
+												if (($nsenior+$nchild)>0) {
+													?>
+													+ <br />
+														<span class="bfi-redux"><i class="fa fa-user"></i></span> x <b><?php echo ($nsenior+$nchild) ?></b>
+													<?php 
+													
+												}
+											?>
+											
+											</div>
+											
+											<?php 
+											
+										}
+
+
+									}else{
+									?>
+										
+										<?php if ($res->MaxPaxes>0){?>
+											<div class="bfi-icon-paxes">
+												<i class="fa fa-user"></i> 
+												<?php if ($res->MaxPaxes==2){?>
+												<i class="fa fa-user"></i> 
+												<?php }?>
+												<?php if ($res->MaxPaxes>2){?>
+													<?php echo ($res->MinPaxes != $res->MaxPaxes)? $res->MinPaxes . "-" : "" ?><?php echo  $res->MaxPaxes ?>
+												<?php }?>
+											</div>
+										<?php } ?>
+									<?php } ?>
 									</td>
                                     <td class="text-nowrap"><!-- Unit price -->
                                         <?php if ($res->TotalDiscounted < $res->TotalAmount) { ?>
-                                            <span class="text-nowrap bfi_strikethrough  bfi_<?php echo $currencyclass ?>"><?php echo BFCHelper::priceFormat($res->TotalAmount/$res->SelectedQt); ?></span>
+                                            <span class="text-nowrap bfi_strikethrough  bfi_<?php echo $currencyclass ?>"><?php echo BFCHelper::priceFormat(($res->TotalAmount - $totalAmountPricesExtraIncluded)/$res->SelectedQt); ?></span>
                                         <?php } ?>
                                         <?php if ($res->TotalDiscounted > 0) { ?>
-                                            <span class="text-nowrap bfi-summary-body-resourceprice-total bfi_<?php echo $currencyclass ?>"><?php echo BFCHelper::priceFormat($res->TotalDiscounted/$res->SelectedQt); ?></span>
+                                            <span class="text-nowrap bfi-summary-body-resourceprice-total bfi_<?php echo $currencyclass ?>"><?php echo BFCHelper::priceFormat(($res->TotalDiscounted - $totalPricesExtraIncluded)/$res->SelectedQt); ?></span>
 
                                         <?php } ?>
                                     </td>
@@ -830,28 +886,31 @@ if($res->IncludedMeals >-1){
 
 <!-- end options  -->									
 									</td>
-                                    <td class="text-nowrap">
-                                        <?php if ($res->TotalDiscounted < $res->TotalAmount) { ?>
-                                            <span class="text-nowrap bfi_strikethrough  bfi_<?php echo $currencyclass ?>"><?php echo BFCHelper::priceFormat($res->TotalAmount); ?></span>
-                                        <?php } ?>
-                                        <?php if ($res->TotalDiscounted > 0) { ?>
-                                            <span class="text-nowrap bfi-summary-body-resourceprice-total bfi_<?php echo $currencyclass ?>"><?php echo BFCHelper::priceFormat($res->TotalDiscounted); ?></span>
-
-                                        <?php } ?>
-                                    </td>
                                     <td>
 										<?php echo $res->SelectedQt ?>
-											<form action="<?php echo $base_url ?>/bfi-api/v1/task/?task=DeleteFromCart" method="POST" style="display: inline-block;"><input type="hidden" name="bfi_CartOrderId" id="bfi_CartOrderId" value="<?php echo $res->CartOrderId ?>" /><input type="hidden" name="bfi_cartId" id="bfi_cartId" value="<?php echo $cartId ?>" /><button class="bfi_btn_delete" data-title="Delete" type="submit" name="remove_order" value="delete" onclick="return confirm('<?php _e('Are you sure?', 'bfi') ?>')">x</button></form>
+                                    </td>
+                                    <td class="text-nowrap">
+                                        <?php if ($res->TotalDiscounted < $res->TotalAmount) { ?>
+                                            <span class="text-nowrap bfi_strikethrough  bfi_<?php echo $currencyclass ?>"><?php echo BFCHelper::priceFormat(($res->TotalAmount - $totalAmountPricesExtraIncluded)); ?></span>
+                                        <?php } ?>
+                                        <?php if ($res->TotalDiscounted > 0) { ?>
+                                            <span class="text-nowrap bfi-summary-body-resourceprice-total bfi_<?php echo $currencyclass ?>"><?php echo BFCHelper::priceFormat(($res->TotalDiscounted - $totalPricesExtraIncluded)); ?></span>
+
+                                        <?php } ?>
+											<form action="<?php echo $base_url ?>/bfi-api/v1/task/?task=DeleteFromCart" method="POST" style="display: inline-block;"><input type="hidden" name="bfi_CartOrderId" id="bfi_CartOrderId" value="<?php echo $res->CartOrderId ?>" /><input type="hidden" name="bfi_cartId" id="bfi_cartId" value="<?php echo $cartId ?>" /><button class="bfi-btn-delete" data-title="Delete" type="submit" name="remove_order" value="delete" onclick="return confirm('<?php _e('Are you sure?', 'bfi') ?>')">x</button></form>
 									</td>
                                 </tr>
-								<?php if(!empty($res->ExtraServices)) { 
-									foreach($res->ExtraServices as $sdetail) {					
-									$resourceExtraService = $resourceDetail[$sdetail->PriceId]; 
+
+
+								<?php if(!empty($res->PricesExtraIncluded)) { 
+									foreach($pricesExtraIncluded as $sdetail) {
+										$sdetailName = $sdetail->Name;
+										$sdetailName = substr($sdetailName, 0, strrpos($sdetailName, ' - '));
 								 ?>	
                                         <tr class="bfi-cart-extra">
                                             <td>
 													<div class="bfi-item-title">
-														<?php echo  $resourceExtraService->Name ?>
+														<?php echo  $sdetailName?>
 													</div>
 													<?php 
 													if (!empty($sdetail->CheckInTime) && !empty($sdetail->TimeDuration) && $sdetail->TimeDuration>0)
@@ -881,7 +940,7 @@ if($res->IncludedMeals >-1){
 															<div class="bfi-row">
 																<div class="bfi-col-md-3 "><?php _e('Total', 'bfi') ?>:
 																</div>	
-																<div class="bfi-col-md-9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->format('%h') ?></span> <?php _e('hours', 'bfi') ?>
+																<div class="bfi-col-md-9 bfi-text-right"><span class="bfi-total-duration"><?php echo $timeDuration ?></span> <?php _e('hours', 'bfi') ?>
 																</div>	
 															</div>	
 														</div>
@@ -889,13 +948,12 @@ if($res->IncludedMeals >-1){
 													}
 													if (isset($sdetail->TimeSlotId) && $sdetail->TimeSlotId > 0)
 													{									
-//														$currCheckIn = new DateTime($sdetail->TimeSlotDate); 
+														$currCheckIn = new DateTime(); 
 														if($cartId==0){
 															$currCheckIn = DateTime::createFromFormat('d/m/Y', $sdetail->TimeSlotDate);
 														}else{
 															$currCheckIn = new DateTime($sdetail->TimeSlotDate); 
 														}
-														
 														$currCheckOut = clone $currCheckIn;
 														$currCheckIn->setTime(0,0,1);
 														$currCheckOut->setTime(0,0,1);
@@ -945,6 +1003,9 @@ if($res->IncludedMeals >-1){
                                                 <?php } ?>
                                             </td>
                                             <td class="text-nowrap"> </td>
+                                            <td>
+												<?php echo $sdetail->CalculatedQt ?>
+											</td>
                                             <td class="text-nowrap">
                                                 <?php if($sdetail->TotalDiscounted < $sdetail->TotalAmount){ ?>
                                                     <span class="text-nowrap bfi_strikethrough  bfi_<?php echo $currencyclass ?>"><?php echo BFCHelper::priceFormat($sdetail->TotalAmount);?></span>
@@ -953,9 +1014,125 @@ if($res->IncludedMeals >-1){
                                                     <span class="text-nowrap bfi-summary-body-resourceprice-total bfi_<?php echo $currencyclass ?>"><?php echo BFCHelper::priceFormat($sdetail->TotalDiscounted );?></span>
                                                 <?php } ?>
                                             </td>
+                                        </tr>
+                            <?php 
+                                    } // foreach $svc
+                                } // if res->ExtraServices
+								 ?>	
+
+
+
+								<?php if(!empty($res->ExtraServices)) { 
+									foreach($res->ExtraServices as $sdetail) {					
+									$resourceExtraService = $resourceDetail[$sdetail->PriceId]; 
+								 ?>	
+                                        <tr class="bfi-cart-extra">
+                                            <td>
+													<div class="bfi-item-title">
+														<?php echo  $resourceExtraService->Name ?>
+													</div>
+													<?php 
+													if (!empty($sdetail->CheckInTime) && !empty($sdetail->TimeDuration) && $sdetail->TimeDuration>0)
+													{
+														$currCheckIn = DateTime::createFromFormat("YmdHis", $sdetail->CheckInTime);
+														$currCheckOut = DateTime::createFromFormat("YmdHis", $sdetail->CheckInTime);
+														$currCheckOut->add(new DateInterval('PT' . $sdetail->TimeDuration . 'M'));
+														$currDiff = $currCheckOut->diff($currCheckIn);
+														$timeDuration = $currDiff->h + ($currDiff->i/60);
+//														$startHour = DateTime::createFromFormat("YmdHis", $sdetail->CheckInTime);
+//														$endHour = DateTime::createFromFormat("YmdHis", $sdetail->CheckInTime);
+//														$endHour->add(new DateInterval('PT' . $sdetail->TimeDuration . 'M'));
+													?>
+														<div class="bfi-timeperiod " >
+															<div class="bfi-row ">
+																<div class="bfi-col-md-3 bfi-title"><?php _e('Check-in', 'bfi') ?>
+																</div>	
+																<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
+																</div>	
+															</div>	
+															<div class="bfi-row ">
+																<div class="bfi-col-md-3 bfi-title"><?php _e('Check-out', 'bfi') ?>
+																</div>	
+																<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+																</div>	
+															</div>	
+															<div class="bfi-row">
+																<div class="bfi-col-md-3 "><?php _e('Total', 'bfi') ?>:
+																</div>	
+																<div class="bfi-col-md-9 bfi-text-right"><span class="bfi-total-duration"><?php echo  $timeDuration ?></span> <?php _e('hours', 'bfi') ?>
+																</div>	
+															</div>	
+														</div>
+													<?php 
+													}
+													if (isset($sdetail->TimeSlotId) && $sdetail->TimeSlotId > 0)
+													{									
+														$currCheckIn = new DateTime(); 
+														if($cartId==0){
+															$currCheckIn = DateTime::createFromFormat('d/m/Y', $sdetail->TimeSlotDate);
+														}else{
+															$currCheckIn = new DateTime($sdetail->TimeSlotDate); 
+														}
+														$currCheckOut = clone $currCheckIn;
+														$currCheckIn->setTime(0,0,1);
+														$currCheckOut->setTime(0,0,1);
+														$currCheckIn->add(new DateInterval('PT' . $sdetail->TimeSlotStart . 'M'));
+														$currCheckOut->add(new DateInterval('PT' . $sdetail->TimeSlotEnd . 'M'));
+
+														$currDiff = $currCheckOut->diff($currCheckIn);
+
+//														$TimeSlotDate = new DateTime($sdetail->TimeSlotDate); 
+//														$startHour = new DateTime("2000-01-01 0:0:00.1"); 
+//														$endHour = new DateTime("2000-01-01 0:0:00.1"); 
+//														$startHour->add(new DateInterval('PT' . $sdetail->TimeSlotStart . 'M'));
+//														$endHour->add(new DateInterval('PT' . $sdetail->TimeSlotEnd . 'M'));
+													?>
+														<div class="bfi-timeslot ">
+															<div class="bfi-row ">
+																<div class="bfi-col-md-3 bfi-title"><?php _e('Check-in', 'bfi') ?>
+																</div>	
+																<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
+																</div>	
+															</div>	
+															<div class="bfi-row ">
+																<div class="bfi-col-md-3 bfi-title"><?php _e('Check-out', 'bfi') ?>
+																</div>	
+																<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
+																</div>	
+															</div>	
+															<div class="bfi-row">
+																<div class="bfi-col-md-3 "><?php _e('Total', 'bfi') ?>:
+																</div>	
+																<div class="bfi-col-md-9 bfi-text-right"><span class="bfi-total-duration"><?php echo $currDiff->format('%h') ?></span> <?php _e('hours', 'bfi') ?>
+																</div>	
+															</div>	
+														</div>
+													<?php 
+													}
+
+													?>
+                                            </td>
+                                            <td><!-- paxes --></td>
+                                            <td class="text-nowrap"><!-- Unit price -->
+                                                <?php if($sdetail->TotalDiscounted < $sdetail->TotalAmount){ ?>
+                                                    <span class="text-nowrap bfi_strikethrough  bfi_<?php echo $currencyclass ?>"><?php echo BFCHelper::priceFormat($sdetail->TotalAmount/$sdetail->CalculatedQt);?></span>
+                                                <?php } ?>
+                                                <?php if($sdetail->TotalDiscounted > 0){ ?>
+                                                    <span class="text-nowrap bfi-summary-body-resourceprice-total bfi_<?php echo $currencyclass ?>"><?php echo BFCHelper::priceFormat($sdetail->TotalDiscounted/$sdetail->CalculatedQt );?></span>
+                                                <?php } ?>
+                                            </td>
+                                            <td class="text-nowrap"> </td>
                                             <td>
 												<?php echo $sdetail->CalculatedQt ?>
 											</td>
+                                            <td class="text-nowrap">
+                                                <?php if($sdetail->TotalDiscounted < $sdetail->TotalAmount){ ?>
+                                                    <span class="text-nowrap bfi_strikethrough  bfi_<?php echo $currencyclass ?>"><?php echo BFCHelper::priceFormat($sdetail->TotalAmount);?></span>
+                                                <?php } ?>
+                                                <?php if($sdetail->TotalDiscounted > 0){ ?>
+                                                    <span class="text-nowrap bfi-summary-body-resourceprice-total bfi_<?php echo $currencyclass ?>"><?php echo BFCHelper::priceFormat($sdetail->TotalDiscounted );?></span>
+                                                <?php } ?>
+                                            </td>
                                         </tr>
                             <?php 
 								$totalWithVariation +=$sdetail->TotalDiscounted ;
@@ -1092,9 +1269,9 @@ if(!empty($bookingTypes)){
 }
 
 ?>
-<div class="bfi-payment-form">
+<div class="bfi-payment-form bfi-form-field">
 <div class="bf-title-book"><?php _e('Enter your details', 'bfi') ?></div>
-<form method="post" id="resourcedetailsrequest" class="form-validate" action="<?php echo $formRoute; ?>">
+<form method="post" id="bfi-resourcedetailsrequest" class="form-validate" action="<?php echo $formRoute; ?>">
 	<div class="bfi-mailalertform">
 		<div class="bfi-row">
 			<div class="bfi-col-md-6">
@@ -1118,12 +1295,12 @@ if(!empty($bookingTypes)){
 						
 			<div class="inputaddress" style="display:;">
 				<div >
-					<label><?php _e('Address', 'bfi'); ?> *</label>
-					<input type="text" value="" size="50" name="form[Address]" id="Address" required  title="<?php _e('This field is required.', 'bfi') ?>">
+					<label><?php _e('Address', 'bfi'); ?> </label>
+					<input type="text" value="" size="50" name="form[Address]" id="Address"   title="<?php _e('This field is required.', 'bfi') ?>">
 				</div><!--/span-->
 				<div >
-					<label><?php _e('Postal Code', 'bfi'); ?> *</label>
-					<input type="text" value="" size="20" name="form[Cap]" id="Cap" required  title="<?php _e('This field is required.', 'bfi') ?>">
+					<label><?php _e('Postal Code', 'bfi'); ?> </label>
+					<input type="text" value="" size="20" name="form[Cap]" id="Cap"   title="<?php _e('This field is required.', 'bfi') ?>">
 				</div><!--/span-->
 				<div >
 					<label><?php _e('Country', 'bfi'); ?> </label>
@@ -1238,17 +1415,17 @@ if(!empty($bookingTypes)){
 				<input type="password" value="<?php echo $current_user->user_email; ?>" size="50" name="form[Password]" id="Password"   title="">
 			</div><!--/span-->
 				<div >
-					<label><?php _e('City', 'bfi'); ?> *</label>
-					<input type="text" value="" size="50" name="form[City]" id="City" required  title="<?php _e('This field is required.', 'bfi') ?>">
+					<label><?php _e('City', 'bfi'); ?> </label>
+					<input type="text" value="" size="50" name="form[City]" id="City"   title="<?php _e('This field is required.', 'bfi') ?>">
 				</div><!--/span-->
 				<div >
-					<label><?php _e('Province', 'bfi'); ?> *</label>
-					<input type="text" value="" size="20" name="form[Provincia]" id="Provincia" required  title="<?php _e('This field is required.', 'bfi') ?>">
+					<label><?php _e('Province', 'bfi'); ?> </label>
+					<input type="text" value="" size="20" name="form[Provincia]" id="Provincia"   title="<?php _e('This field is required.', 'bfi') ?>">
 				</div><!--/span-->
 		</div>
 	</div>
 <!-- VIEW_ORDER_PAYMENTMETHOD -->
-		<div class="bfi-paymentoptions" style="display:none;" id="bookingTypesContainer">
+		<div class="bfi-paymentoptions" style="display:none;" id="bfi-bookingTypesContainer">
 			<h2><?php _e('Payment method', 'bfi') ?></h2>
 			<p><?php _e('Please choose a payment method', 'bfi') ?></p>
 			<?php  foreach ($bookingTypesoptions as $key => $value) { ?>
@@ -1257,7 +1434,7 @@ if(!empty($bookingTypes)){
 				</label>
 			<?php } ?>
 		</div>
-		<div class="bfi-paymentoptions" id="bookingTypesDescriptionContainer">
+		<div class="bfi-paymentoptions" id="bfi-bookingTypesDescriptionContainer">
 			<h2 id="bookingTypeTitle"></h2>
 			<span id="bookingTypeDesc"></span>
 			<div id="totaldepositrequested" class="bfi-pad0-10" style="display:none;">
@@ -1267,7 +1444,7 @@ if(!empty($bookingTypes)){
 		</div>
 		<div class="clear"></div>
 
-<div style="display:none;" id="ccInformations" class="borderbottom paymentoptions">
+<div style="display:none;" id="bfi-ccInformations" class="borderbottom paymentoptions">
 		<h2><?php _e('Credit card details', 'bfi') ?></h2>
 		<div class="bfi-row">   
 			<div class="bfi-col-md-6">
@@ -1292,21 +1469,11 @@ if(!empty($bookingTypes)){
 			</div>
 			<div class="bfi-col-md-6">
 				<label><?php _e('Valid until', 'bfi') ?></label>
-				<div class="bfi-row">
-					<div class="bfi-col-md-3">
-						<?php _e('Month (MM)', 'bfi') ?>
-					</div><!--/span-->
-					<div class="bfi-col-md-6 ccdateinput">
-						<div class="bfi-row">
-							<div class="bfi-col-md-5"><input type="text" value="" size="2" maxlength="2" name="form[cc_mese]" id="cc_mese" required  title="<?php _e('This field is required.', 'bfi') ?>"></div>
-							<div class="bfi-col-md-2 " style="text-align:center;" >/</div>
-							<div class="bfi-col-md-5"><input type="text" value="" size="2" maxlength="2" name="form[cc_anno]" id="cc_anno" required  title="<?php _e('This field is required.', 'bfi') ?>"></div>
-						</div>
-					</div><!--/span-->
-					<div class="bfi-col-md-3">
-						<?php _e('Year (YY)', 'bfi') ?>
-					</div><!--/span-->
-				</div><!--/row-->
+				<div class="bfi-ccdateinput">
+						<span><?php _e('Month (MM)', 'bfi') ?></span> <span><input type="text" value="" size="2" maxlength="2" name="form[cc_mese]" id="cc_mese" required  title="<?php _e('This field is required.', 'bfi') ?>"></span>
+						/
+						<span><input type="text" value="" size="2" maxlength="2" name="form[cc_anno]" id="cc_anno" required  title="<?php _e('This field is required.', 'bfi') ?>"></span> <span><?php _e('Year (YY)', 'bfi') ?></span>
+				</div><!--/span-->
 			</div>
 		</div>
 		<br />
@@ -1350,10 +1517,8 @@ if(!empty( $policy )){
 	}
 }
 ?>
-			<div class="bfi-row">
-				<div class="bfi-col-md-12 bfi-checkbox-wrapper">
-					<div class="bfi_accept">
-					<input name="form[accettazionepolicy]" class="checkbox" id="agreepolicy" aria-invalid="true" aria-required="true" type="checkbox" required title="<?php _e('Mandatory', 'bfi') ?>"></div>
+			<div class=" bfi-checkbox-wrapper">
+					<input name="form[accettazionepolicy]" class="checkbox" id="agreepolicy" aria-invalid="true" aria-required="true" type="checkbox" required title="<?php _e('Mandatory', 'bfi') ?>">
 					<label class="bfi-shownextelement"><?php _e('I agree to the conditions', 'bfi') ?></label>
 					<textarea name="form[policy]" class="bfi-col-md-12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php
 if (count($allPolicyHelp)>0) {
@@ -1364,23 +1529,17 @@ if (count($allPolicyHelp)>0) {
 					?>
 
 <?php echo $currPolicy->Description; ?></textarea>
-				</div>
-			</div>
-		<?php } ?>
-		<div class="bfi-row">
-			<div class="bfi-col-md-12 bfi-checkbox-wrapper">
-					<div class="bfi_accept">
-                    <input name="form[accettazione]" class="checkbox" id="agree" aria-invalid="true" aria-required="true" type="checkbox" required title="<?php _e('Mandatory', 'bfi') ?>"></div>
-					<label class="bfi-shownextelement"><?php _e('I accept personal data treatment', 'bfi') ?></label>
-					<textarea name="form[privacy]" class="bfi-col-md-12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php echo $privacy ?></textarea>    
-			</div>
 		</div>
-		<div class="bfi-row" style="display:<?php echo empty($additionalPurpose)?"none":"";?>">
-			<div class="bfi-col-md-12 bfi-checkbox-wrapper">
-				<div class="bfi_accept"><input name="form[accettazioneadditionalPurpose]" class="checkbox" id="agreeadditionalPurpose" aria-invalid="true" aria-required="false" type="checkbox" title="<?php _e('Mandatory', 'bfi') ?>"></div>
+		<?php } ?>
+		<div class=" bfi-checkbox-wrapper">
+				<input name="form[accettazione]" id="agree" aria-invalid="true" aria-required="true" type="checkbox" required title="<?php _e('Mandatory', 'bfi') ?>">
+				<label class="bfi-shownextelement"><?php _e('I accept personal data treatment', 'bfi') ?></label>
+				<textarea name="form[privacy]" class="bfi-col-md-12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php echo $privacy ?></textarea>    
+		</div>
+		<div class=" bfi-checkbox-wrapper">
+				<input name="form[accettazioneadditionalPurpose]" class="checkbox" id="agreeadditionalPurpose" aria-invalid="true" aria-required="false" type="checkbox" title="<?php _e('Mandatory', 'bfi') ?>">
 				<label class="bfi-shownextelement"><?php _e('I accept additional purposes', 'bfi') ?></label>
 				<textarea name="form[additionalPurpose]" class="bfi-col-md-12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php echo $additionalPurpose ?></textarea>    
-			</div>
 		</div>
 
 		<?php bfi_display_captcha($idrecaptcha);  ?>
@@ -1409,7 +1568,7 @@ if (count($allPolicyHelp)>0) {
 
 		<div class="bfi-row bfi_footer-book" >
 			<div class="bfi-col-md-10"></div>
-			<div class="bfi-col-md-2 bfi_footer-send"><button type="submit" id="btnbfFormSubmit" style="display:none;"><?php _e('Send', 'bfi') ?></button></div>
+			<div class="bfi-col-md-2 bfi_footer-send"><button type="submit" id="btnbfFormSubmit" class="bfi-btn" style="display:none;"><?php _e('Send', 'bfi') ?></button></div>
 		</div>
 
 <?php
@@ -1426,7 +1585,7 @@ var completeStay = <?php echo $currCart->CartConfiguration; ?>;
 var selectedSystemType = "<?php echo $selectedSystemType[0]->PaymentSystemRefId; ?>";
 jQuery(function($)
 		{
-			jQuery('.bfi-options-help i').webuiPopover({trigger:'hover',placement:'left-bottom'});
+			jQuery('.bfi-options-help i').webuiPopover({trigger:'hover',placement:'left-bottom',style:'bfi-webuipopover'});
 
 			var svcTotal = 0;
 			var allItems = jQuery.makeArray(jQuery.map(jQuery.grep(completeStay.Resources, function(svc) {
@@ -1473,7 +1632,7 @@ jQuery(function($)
 			<?php if(!empty($bookingTypesValues)) : ?>
 			bookingTypesValues = <?php echo json_encode($bookingTypesValues) ?>;// don't use quotes
 			<?php endif; ?>
-			$("#resourcedetailsrequest").validate(
+			$("#bfi-resourcedetailsrequest").validate(
 		    {
 				rules: {
 					"form[cc_mese]": {
@@ -1518,9 +1677,10 @@ jQuery(function($)
 //								.append( error );
 //				},
 //				errorElement: "span",
+				errorClass: "bfi-error",
 				highlight: function(label) {
-			    	$(label).removeClass('error').addClass('error');
-			    	$(label).closest('.control-group').removeClass('error').addClass('error');
+			    	$(label).removeClass('bfi-error').addClass('bfi-error');
+			    	$(label).closest('.control-group').removeClass('bfi-error').addClass('bfi-error');
 			    },
 			    success: function(label) {
 					//label.addClass("valid").text("Ok!");
@@ -1544,7 +1704,8 @@ jQuery(function($)
 								$('#recaptcha-error-<?php echo $idrecaptcha ?>').hide();
 							}					 
 						}
-						jQuery.blockUI({message: ''});
+						bookingfor.waitBlockUI();
+//						jQuery.blockUI({message: ''});
 						if ($form.data('submitted') === true) {
 							 return false;
 						} else {
@@ -1563,8 +1724,7 @@ jQuery(function($)
 							});
 							<?php endif; ?>
 							form.submit();
-						}
-					}
+						}					}
 
 				}
 
@@ -1575,12 +1735,12 @@ jQuery(function($)
 				checkBT();
 			});
 			var bookingTypeVal= $("input[name='form[bookingType]']");
-			var container = $('#bookingTypesContainer');
+			var container = $('#bfi-bookingTypesContainer');
 			if(bookingTypeVal.length>1 && container.length>0){
 					container.show();
 			}
 			function checkBT(){
-					var ccInfo = $('#ccInformations');
+					var ccInfo = $('#bfi-ccInformations');
 					if (ccInfo.length>0) {
 						try
 						{
@@ -1735,6 +1895,7 @@ jQuery(document).ready(function () {
 	//-->
 	</script>	
 </form>
+</div>		
 </div>		
 		<?php 
 				

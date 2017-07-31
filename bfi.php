@@ -2,7 +2,7 @@
 /*
 Plugin Name: BookingFor
 Description: BookingFor integration Code for Wordpress
-Version: 3.0.4
+Version: 3.1.0
 Author: BookingFor
 Author URI: http://www.bookingfor.com/
 */
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'BookingFor' ) ) :
 final class BookingFor {
 	
-	public $version = '3.0.4';
+	public $version = '3.1.0';
 	public $currentOrder = null;
 	
 	protected static $_instance = null;
@@ -79,6 +79,8 @@ final class BookingFor {
 
 		$isportal = get_option('bfi_isportal_key', 1);
 		$showdata = get_option('bfi_showdata_key', 1);
+		$sendtocart = get_option('bfi_sendtocart_key', 0);
+		
 		$usessl = get_option('bfi_usessl_key',0);
 		$ssllogo = get_option('bfi_ssllogo_key','');
 
@@ -118,10 +120,14 @@ final class BookingFor {
 			$subscriptionkey = str_replace(".bookingfor.com/modules/bookingfor/services/bookingservice.svc", "", $subscriptionkey);
 			$subscriptionkey = str_replace("/", "", $subscriptionkey);
 		}
+		$bfiBaseUrl = 'https://' . $subscriptionkey . '.bookingfor.com';
+
 		$this->define( 'COM_BOOKINGFORCONNECTOR_SUBSCRIPTION_KEY', $subscriptionkey );
 		$this->define( 'COM_BOOKINGFORCONNECTOR_API_KEY', $apikey );
 		$this->define( 'COM_BOOKINGFORCONNECTOR_FORM_KEY', $form_key );
-		$this->define( 'COM_BOOKINGFORCONNECTOR_WSURL', 'https://' . $subscriptionkey . '.bookingfor.com/modules/bookingfor/services/bookingservice.svc' );
+		$this->define( 'COM_BOOKINGFORCONNECTOR_WSURL', $bfiBaseUrl .'/modules/bookingfor/services/bookingservice.svc' );
+		$this->define( 'COM_BOOKINGFORCONNECTOR_ORDERURL', $bfiBaseUrl .'/Public/{language}/orderlogin' );
+		$this->define( 'COM_BOOKINGFORCONNECTOR_PAYMENTURL', $bfiBaseUrl .'/Public/{language}/payment/' );
 		$this->define( 'COM_BOOKINGFORCONNECTOR_CURRENTCURRENCY', $bfi_currentcurrency );
 		
 		$this->define( 'COM_BOOKINGFORCONNECTOR_IMGURL', $subscriptionkey . '/bookingfor/images' );
@@ -144,6 +150,8 @@ final class BookingFor {
 		
 		$this->define( 'COM_BOOKINGFORCONNECTOR_ISPORTAL', $isportal );
 		$this->define( 'COM_BOOKINGFORCONNECTOR_SHOWDATA', $showdata );
+		$this->define( 'COM_BOOKINGFORCONNECTOR_SENDTOCART', $sendtocart );
+		
 		$this->define( 'COM_BOOKINGFORCONNECTOR_USESSL', $usessl );
 		$this->define( 'COM_BOOKINGFORCONNECTOR_SSLLOGO', $ssllogo );
 
@@ -313,6 +321,7 @@ final class BookingFor {
 		include_once('includes/model/search.php' );
 		include_once('includes/model/resource.php' );
 		include_once('includes/model/resources.php' );
+		include_once('includes/model/condominiums.php' );
 		include_once('includes/model/ratings.php' );
 		include_once('includes/model/portal.php' );
 		include_once('includes/model/payment.php' );
@@ -324,11 +333,6 @@ final class BookingFor {
 		include_once('includes/model/onsellunits.php' );
 		include_once('includes/model/searchonsell.php' );
 		include_once('includes/model/tag.php');
-		include_once('includes/RSFormHelper.php' );	
-		include_once('includes/paymentHelper.php' );
-		include_once('includes/payments/paypalexpress.php');
-		include_once('includes/payments/setefi.php');
-		include_once('includes/payments/wspayform.php');
 	}
 
 
@@ -374,14 +378,21 @@ final class BookingFor {
 		wp_register_script('bfi', plugins_url( 'assets/js/bfi.js', __FILE__ ),array(),$this->version,true);
 		wp_enqueue_script('bfi');
 
-		wp_enqueue_script('bfisearchonsellunits', plugins_url( 'assets/js/bfsearchonsellunits.js', __FILE__ ),array(),$this->version);
-		wp_enqueue_script('bficalendar', plugins_url( 'assets/js/calendar.js', __FILE__ ),array(),$this->version,true);
+		wp_enqueue_script('bfisearchonmap', plugins_url( 'assets/js/bfisearchonmap.js', __FILE__ ),array(),$this->version);
+		wp_enqueue_script('bficalendar', plugins_url( 'assets/js/bfi_calendar.js', __FILE__ ),array(),$this->version,true);
 		
 		if(!empty(COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLERECAPTCHAKEY)){
 			wp_enqueue_script('recaptchainit', plugins_url( 'assets/js/recaptcha.js', __FILE__ ),array(),$this->version);
 		}
 	}
-	public function bfi_js_variables(){ ?>
+	public function bfi_js_variables(){
+		$cartdetails_page = get_post( bfi_get_page_id( 'cartdetails' ) );
+		$url_cart_page = get_permalink( $cartdetails_page->ID );
+		if($usessl){
+			$url_cart_page = str_replace( 'http:', 'https:', $url_cart_page );
+		}
+		
+		?>
 	  <script type="text/javascript">
 		/* <![CDATA[ */
 		var bfi_variable = {
@@ -392,6 +403,8 @@ final class BookingFor {
 				"currentCurrency":<?php echo json_encode(bfi_get_currentCurrency()); ?>,
 				"CurrencyExchanges":<?php echo json_encode(BFCHelper::getCurrencyExchanges()); ?>,
 				"bfi_defaultdisplay":<?php echo json_encode(COM_BOOKINGFORCONNECTOR_DEFAULTDISPLAYLIST); ?>,
+				"bfi_sendtocart":<?php echo json_encode(COM_BOOKINGFORCONNECTOR_SENDTOCART); ?>,			
+				"bfi_carturl":"<?php echo $url_cart_page; ?>",			
 			};
 		/* ]]> */
 	  </script><?php
@@ -428,6 +441,14 @@ final class BookingFor {
 		global $post;
 		$merchantdetails_page_id = bfi_get_template_page_id( 'merchantdetails' );
 		if (!empty($post) &&  $post->ID == $merchantdetails_page_id ){
+			return true;
+		}
+		return false;
+	}
+	public function isCondominiumPage(){
+		global $post;
+		$condominiumdetails_page_id = bfi_get_template_page_id( 'condominiumdetails' );
+		if (!empty($post) &&  $post->ID == $condominiumdetails_page_id ){
 			return true;
 		}
 		return false;

@@ -131,6 +131,13 @@ class BFI_Controller {
 		echo $return;      
 	
 	}
+	function GetCondominiumsByIds(){
+		$listsId=BFCHelper::getVar('ids');
+		$language=BFCHelper::getVar('language');
+		$return = BFCHelper::GetCondominiumsByIds($listsId,$language);
+		echo $return;      
+	
+	}
 	
 	function GetResourcesOnSellByIds(){
 		$listsId=BFCHelper::getVar('resourcesId');
@@ -203,40 +210,6 @@ class BFI_Controller {
 		exit;
 	}
 
-        function fetchOrderDetails(){
-          $orderId = $_GET['orderId'];
-          $model = new BookingForConnectorModelOrders;
-          $order = $model->GetOrderDetailsByExternalUser($orderId);
-          if(!empty($order)){
-			  ob_start();
-			  include(BFI()->plugin_path().'/templates/reservationdetails.php');
-			  $details = ob_get_contents();
-			  ob_end_clean();
-			  print $details;    
-		  }
-          exit;
-        }
-
-        function insertContact(){
-          $formData = $_POST['form'];
-          $customer = RSFormHelper::getCustomerData($formData);
-          $model = new BookingForConnectorModelOrders;
-          $model->insertContact($customer);
-          $my_account_page = get_post( bfi_get_page_id('myaccount'));
-	  $url_my_account_page = get_permalink($my_account_page->ID);
-          wp_redirect($url_my_account_page);
-        }
-
-        function updateContact(){
-          $formData = $_POST['form'];
-          $customer = RSFormHelper::getCustomerData($formData);
-          $model = new BookingForConnectorModelOrders;
-          $model->updateContact($customer);
-          $my_account_page = get_post( bfi_get_page_id( 'myaccount' ) );
-	  $url_my_account_page = get_permalink( $my_account_page->ID );
-          wp_redirect($url_my_account_page);
-        }
-
 	function sendOrder(){
 		$formData = $_POST['form'];
 		if(empty($formData)){
@@ -263,7 +236,7 @@ class BFI_Controller {
 //                    wp_set_current_user($user->ID);
 //                  }
 //                }
-		$customer = RSFormHelper::getCustomerData($formData);
+		$customer = BFCHelper::getCustomerData($formData);
 
 		$suggestedStay = json_decode(stripslashes($formData['staysuggested']));
 		$req = json_decode(stripslashes($formData['stayrequest']), true);
@@ -276,8 +249,8 @@ class BFI_Controller {
 		$otherData = "paxages:". str_replace("]", "" ,str_replace("[", "" , $req['paxages'] ))
 					."|"."checkin_eta_hour:".$formData['checkin_eta_hour'];
 		$ccdata = null;
-		if (RSFormHelper::canAcquireCCData($formData)) { 
-			$ccdata = json_encode(RSFormHelper::getCCardData($formData));
+		if (BFCHelper::canAcquireCCData($formData)) { 
+			$ccdata = json_encode(BFCHelper::getCCardData($formData));
 			$ccdata = BFCHelper::encrypt($ccdata);
 			}
 		$orderData =  BFCHelper::prepareOrderData($formData, $customer, $suggestedStay, $otherData, $ccdata);
@@ -363,7 +336,7 @@ class BFI_Controller {
 	function sendOffer(){
 		$formData = $_POST['form'];
 
-		$customer = RSFormHelper::getCustomerData($formData);
+		$customer = BFCHelper::getCustomerData($formData);
 		$suggestedStay = null;
 
 		$redirect = $formData['Redirect'];
@@ -373,7 +346,7 @@ class BFI_Controller {
 		// create otherData (string)
 		$otherData = 'offerId:'.$formData['offerId']."|"		
 					."persone:".$formData['persons']."|"
-					."accettazione:".RSFormHelper::getOptionsFromSelect($formData,'accettazione')."|"
+					."accettazione:".BFCHelper::getOptionsFromSelect($formData,'accettazione')."|"
 					."paxages:". implode(',',$paxages)."|"
 					."checkin_eta_hour:".$formData['checkin_eta_hour'];
 		
@@ -530,7 +503,7 @@ class BFI_Controller {
 		if(empty($formData)){
 		}
 		$ccdata = null;
-		$ccdata = json_encode(RSFormHelper::getCCardData($formData));
+		$ccdata = json_encode(BFCHelper::getCCardData($formData));
 		$ccdata = BFCHelper::encrypt($ccdata);
 
 		$orderId = BFCHelper::getVar('OrderId');
@@ -553,7 +526,7 @@ class BFI_Controller {
 	function sendOnSellrequest(){
 		$formData = $_POST['form'];
 
-		$customer = RSFormHelper::getCustomerData($formData);
+		$customer = BFCHelper::getCustomerData($formData);
 		$suggestedStay = null;
 		$redirect = $formData['Redirect'];
 		$redirecterror = $formData['Redirecterror'];
@@ -580,7 +553,7 @@ class BFI_Controller {
 				$otherData["onsellunitid:"] = "onsellunitid:" . $formData['resourceId'];
 		}
 		if (!empty($formData['accettazione']))  {
-				$otherData["accettazione:"] = "accettazione:" . RSFormHelper::getOptionsFromSelect($formData,'accettazione');
+				$otherData["accettazione:"] = "accettazione:" . BFCHelper::getOptionsFromSelect($formData,'accettazione');
 		}
 		
 				
@@ -642,13 +615,13 @@ class BFI_Controller {
 //		}else{
 
 
-		$customer = RSFormHelper::getCustomerData($formData);
+		$customer = BFCHelper::getCustomerData($formData);
 		$suggestedStay = null;
 		$redirect = $formData['Redirect'];
 		$redirecterror = $formData['Redirecterror'];
 		// create otherData (string)
-				$otherData = "persone:".RSFormHelper::getOptionsFromSelect($formData,'Totpersons')."|"
-					."accettazione:".RSFormHelper::getOptionsFromSelect($formData,'accettazione');
+				$otherData = "persone:".BFCHelper::getOptionsFromSelect($formData,'Totpersons')."|"
+					."accettazione:".BFCHelper::getOptionsFromSelect($formData,'accettazione');
 		// create SuggestedStay
 		$startDate = null;
 		$endDate = null;
@@ -745,15 +718,15 @@ class BFI_Controller {
 //			}
 //		}
 //		if($checkrecaptcha){
-		$customer = RSFormHelper::getCustomerData($formData);
+		$customer = BFCHelper::getCustomerData($formData);
 		$suggestedStay = null;
 		$redirect = $formData['Redirect'];
 		$redirecterror = $formData['Redirecterror'];
 		// create otherData (string)
-		$numAdults = RSFormHelper::getOptionsFromSelect($formData,'Totpersons');
+		$numAdults = BFCHelper::getOptionsFromSelect($formData,'Totpersons');
 		
 		$otherData = "persone:".$numAdults."|"
-			."accettazione:".RSFormHelper::getOptionsFromSelect($formData,'accettazione');
+			."accettazione:".BFCHelper::getOptionsFromSelect($formData,'accettazione');
 		// create SuggestedStay
 		$startDate = null;
 		$endDate = null;
@@ -859,7 +832,7 @@ class BFI_Controller {
 //		  }
 //		}
 
-		$customer = RSFormHelper::getCustomerData($formData);
+		$customer = BFCHelper::getCustomerData($formData);
 
 		$userNotes = $formData['note'];
 		$cultureCode = $formData['cultureCode'];
@@ -899,8 +872,8 @@ class BFI_Controller {
 //		$customerDatas = array($customerData);
 
 		$ccdata = null;
-		if (RSFormHelper::canAcquireCCData($formData)) { 
-			$ccdata = json_encode(RSFormHelper::getCCardData($formData));
+		if (BFCHelper::canAcquireCCData($formData)) { 
+			$ccdata = json_encode(BFCHelper::getCCardData($formData));
 			$ccdata = BFCHelper::encrypt($ccdata);
 			}
 
@@ -1045,7 +1018,6 @@ class BFI_Controller {
 	function DeleteFromCart(){
 		$return = null;
 		$CartOrderId = stripslashes(BFCHelper::getVar("bfi_CartOrderId"));
-		$cartId = stripslashes(BFCHelper::getVar("bfi_cartId"));
 		$language = isset($_REQUEST['language']) ? $_REQUEST['language'] : '' ;
 		$cartdetails_page = get_post( bfi_get_page_id( 'cartdetails' ) );
 		$url_cart_page = get_permalink( $cartdetails_page->ID );
@@ -1054,7 +1026,7 @@ class BFI_Controller {
 			$url_cart_page = str_replace( 'http:', 'https:', $url_cart_page );
 		}
 
-		if(!empty($CartOrderId) && !empty($cartId)){
+		if(!empty($CartOrderId)){
 			$tmpUserId = bfi_get_userId();
 			$model = new BookingForConnectorModelOrders;
 			$currCart = $model->DeleteFromCartByExternalUser($tmpUserId, $language, $CartOrderId);
@@ -1092,6 +1064,7 @@ class BFI_Controller {
 		$return = '[]';
 		$term = stripslashes(BFCHelper::getVar("bfi_term"));
 		$maxresults = stripslashes(BFCHelper::getVar("bfi_maxresults"));
+		$onlyLocations = stripslashes(BFCHelper::getVar("bfi_onlyLocations"));
 		if(!isset($maxresults) || empty($maxresults)) {
 			$maxresults = 5;
 		} else {
@@ -1100,7 +1073,7 @@ class BFI_Controller {
 		$language = isset($_REQUEST['language']) ? $_REQUEST['language'] : '' ;
 		if(!empty($term)) {
 			$model = new BookingForConnectorModelSearch;
-			$results = $model->SearchResult($term, $language, $maxresults);
+			$results = $model->SearchResult($term, $language, $maxresults, $onlyLocations);
 			if(!empty($results)){
 				$return = json_encode($results);
 			}

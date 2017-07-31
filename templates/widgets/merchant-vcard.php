@@ -222,13 +222,13 @@ if ( $title ) {
 
 <?php if(!preg_match("/form/",$_SERVER['REQUEST_URI'])){ ?>
 
-<div class="mod_bookingforconnector<?php echo $moduleclass_sfx ?> ">
-<div class="mod_bookingforconnector-inner">
-	<div class="mod_bookingforconnector-vcard-wrapper">
+<div class="bfi-modbookingforconnector <?php echo $moduleclass_sfx ?> ">
+<div class="bfi-mod-bookingforconnector-inner">
+	<div class="bfi-mod-bookingforconnector-vcard-wrapper">
 		<div class="bfi-vcard-logo"><a href="<?php echo $route?>"><img src="<?php echo $merchantLogo?>" /></a></div>	
-		<div class="bfi-vcard-name">
+		<div class="bfi-vcard-name bfi-text-center">
 			<a href="<?php echo $route?>"><?php echo  $merchant->Name?></a>
-			<div class="bfi-vcard-star-rating">
+			<div class="bfi-item-rating">
 			<?php for($i = 0; $i < $merchant->Rating ; $i++) { ?>
 			  <i class="fa fa-star"></i>
 			<?php } ?>
@@ -243,18 +243,18 @@ if ( $title ) {
 	</div>
 	<ul class="bfi-merchant-menu">
 		<?php if ($merchant->HasResources):?>
-			<li class="bfi-merchant-menu-item <?php echo ($layout == 'resources' || $layout == 'resource' || $currentView=='resource' ) ? 'active' : '' ?>"><a href="<?php echo $uriMerchantResources; ?>"><i class="fa " aria-hidden="true"></i> <?php _e('Proposals', 'bfi'); ?></a></li>
+			<li class="bfi-merchant-menu-item <?php echo ($layout == 'resources' || $layout == 'resource' || $currentView=='resource' ) ? 'active' : '' ?>"><a href="<?php echo $uriMerchantResources; ?>"><?php _e('Proposals', 'bfi'); ?></a></li>
 		<?php endif ?>
 		<?php if ($merchant->HasOnSellUnits):?>
-			<li class="bfi-merchant-menu-item <?php echo ($layout == 'onsellunits' || $layout == 'onsellunit') ? 'active' : '' ?>"><a href="<?php echo $uriMerchantOnsellunits; ?>"><i class="fa " aria-hidden="true"></i> <?php _e('Real Estate', 'bfi'); ?></a></li>
+			<li class="bfi-merchant-menu-item <?php echo ($layout == 'onsellunits' || $layout == 'onsellunit') ? 'active' : '' ?>"><a href="<?php echo $uriMerchantOnsellunits; ?>"><?php _e('Real Estate', 'bfi'); ?></a></li>
 		<?php endif ?>	
 		<?php if ($merchant->HasResources):?>
 			<?php if ($merchant->HasOffers || true):?>
-				<li class="bfi-merchant-menu-item <?php echo ($layout == 'offers' || $layout == 'offer') ? 'active' : '' ?>"><a href="<?php echo $uriMerchantOffers; ?>"><i class="fa " aria-hidden="true"></i> <?php _e('Offers', 'bfi'); ?></a></li>
+				<li class="bfi-merchant-menu-item <?php echo ($layout == 'offers' || $layout == 'offer') ? 'active' : '' ?>"><a href="<?php echo $uriMerchantOffers; ?>"><?php _e('Offers', 'bfi'); ?></a></li>
 			<?php endif ?>
 		<?php endif;?>
 		<?php if ($merchant->RatingsContext !== 0) :?>
-			<li class="bfi-merchant-menu-item <?php echo ($layout == 'ratings' || $layout == 'rating') ? 'active' : '' ?>"><a href="<?php echo $uriMerchantRatings; ?>"><i class="fa " aria-hidden="true"></i> <?php _e('Reviews', 'bfi'); ?></a></li>
+			<li class="bfi-merchant-menu-item <?php echo ($layout == 'ratings' || $layout == 'rating') ? 'active' : '' ?>"><a href="<?php echo $uriMerchantRatings; ?>"><?php _e('Reviews', 'bfi'); ?></a></li>
 		<?php endif ?>	
 	</ul>
 
@@ -305,7 +305,8 @@ function openGoogleMapBF() {
 					height:height,
 					width: width,
 					fluid: true, //new option
-					title: '<?php echo $merchant->Name; ?>'
+					title: '<?php echo $merchant->Name; ?>',
+				dialogClass: 'bfi-dialog bfi-dialog-map'
 				});
 			if (typeof google !== "undefined" || typeof google !== 'object' || typeof google.maps !== 'object'){
 				var script = document.createElement("script");

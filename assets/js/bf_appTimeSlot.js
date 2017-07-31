@@ -14,7 +14,19 @@ function initDatepickerTimeSlot() {
             return enableSpecificDatesTimeSlot(date, 1, daysToEnableTimeSlot[jQuery(this).attr("data-resid")]);
         },
         buttonText: strbuttonTextTimeSlot,
-        firstDay: 1
+        firstDay: 1,
+		beforeShow: function( input, inst){
+			jQuery(this).attr("disabled", true);
+			jQuery(inst.dpDiv).addClass('bfi-calendar');
+			jQuery(inst.dpDiv).attr('data-before',"");
+			jQuery(inst.dpDiv).removeClass("bfi-checkin");
+			jQuery(inst.dpDiv).removeClass("bfi-checkout");
+			setTimeout(function() {
+				jQuery("#ui-datepicker-div div.bfi-title").remove();
+				jQuery("#ui-datepicker-div").prepend( "<div class=\"bfi-title\">Check-in</div>" );
+			}, 1);
+
+		}
     });
 
 
@@ -39,6 +51,8 @@ function bfi_selecttimeslot(currEl){
 	var currTimeSlotId =currTimeSlotSelect.val();
     
 	var resourceId = currEl.getAttribute("data-resid");
+	var sourceId = currEl.getAttribute("data-sourceid");
+
     jQuery.unblockUI();
 	updateTotalSelectable(jQuery(currEl));
 	
@@ -51,7 +65,7 @@ function bfi_selecttimeslot(currEl){
 	var diffMs = (newValEnd - newValStart);
 	var duration =  Math.floor((diffMs/1000)/60/60);
 
-	var currTr = jQuery('#bfi-timeslot-'+resourceId);
+	var currTr = jQuery('.bfi-timeslot[data-sourceid="'+sourceId+'"]');
 	var currCheckin =currTr.find(".bfi-time-checkin").first();
 	var currCheckinhours =currTr.find(".bfi-time-checkin-hours").first();
 	var currCheckout =currTr.find(".bfi-time-checkout").first();
@@ -106,7 +120,12 @@ function bfi_selecttimeslot(currEl){
 		var currTr = currEl.closest("div.bfi-timeslot-change");
 		var resid = currEl.data("resid");
 		var rateplanid = currEl.data("rateplanid");
-		var currSel = jQuery("#ddlrooms-"+resid+"-"+rateplanid).first();
+//		var currSel = jQuery("#ddlrooms-"+resid+"-"+rateplanid).first();
+		
+//		var sourceId = currEl.data("sourceid");
+		var sourceId =  jQuery(currEl).attr("data-sourceid");
+
+		var currSel = jQuery('.ddlrooms[data-sourceid="'+sourceId+'"]').first();
 
         var currentSelection = currSel.val();
         //debugger;
@@ -119,19 +138,21 @@ function bfi_selecttimeslot(currEl){
 		var maxSelectable = Math.min(bfi_MaxQtSelectable,currTimeSlotDisp[currentTime]);
 
         var correction = 1;
-        if (jQuery(currSel).is('[class^="extrasselect"]')) {
-           currentSelection = parseInt(currentSelection.split(":")[1]);
+        if (jQuery(currSel).hasClass('ddlextras')) {
+//           currentSelection = parseInt(currentSelection.split(":")[1]);
            for (var i = 0; i <= maxSelectable; i++) {
-                var opt = $('<option>').text(i).attr('value', id + ":" + i + ":::" + currentTime + ":" + currentTimeOpt.attr("data-timeslotstart") + ":" + currentTimeOpt.attr("data-timeslotend") + ":" + currentTimeOpt.attr("data-startdate"));
-                if (currentSelection == i) { opt.attr("selected", "selected"); }
+                //var opt = jQuery('<option>').text(i).attr('value', id + ":" + i + ":::" + currentTime + ":" + currentTimeOpt.attr("data-timeslotstart") + ":" + currentTimeOpt.attr("data-timeslotend") + ":" + currentTimeOpt.attr("data-startdate"));
+				var opt = jQuery('<option>').text(i).attr('value', i);
+//                if (currentSelection == i) { opt.attr("selected", "selected"); }
+					if (i == 0) { opt.attr("selected", "selected"); }
                 currSel.append(opt);
             }
         } else {
 			jQuery.each(jQuery(".ddlrooms-" + resid), function(j, itm) {
 				jQuery(itm).find('option').remove();
 				jQuery(itm).attr("data-availability", currTimeSlotDisp[currentTime]);
-            for (var i = 0; i <= maxSelectable; i++) {
-                var opt = jQuery('<option>').text(i).attr('value', i);
+				for (var i = 0; i <= maxSelectable; i++) {
+					var opt = jQuery('<option>').text(i).attr('value', i);
 					if (i == 0) { opt.attr("selected", "selected"); }
 					jQuery(itm).append(opt);
 				}
@@ -145,9 +166,10 @@ function bfi_selecttimeslot(currEl){
 			*/
         }
 
+            UpdateQuote(); //set service price default value
+			bfi_updateQuoteService();
 
-        UpdateQuote();
-    }
+	}
 
     function enableSpecificDatesTimeSlot(date, offset, enableDays) {
         var month = date.getMonth() + 1;

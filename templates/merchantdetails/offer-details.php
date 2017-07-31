@@ -25,13 +25,13 @@ $formlabel = COM_BOOKINGFORCONNECTOR_FORM_KEY;
 $routeThanks = $routeMerchant .'/'. _x('thanks', 'Page slug', 'bfi' );
 $routeThanksKo = $routeMerchant .'/'. _x('errors', 'Page slug', 'bfi' );
 
-$privacy = BFCHelper::GetPrivacy($language);
+//$privacy = BFCHelper::GetPrivacy($language);
 
 ?>
-<div class="  com_bookingforconnector_merchantdetails com_bookingforconnector_merchantdetails-t<?php echo $merchant->MerchantTypeId?>">
+<div class="bfi-content">
 	<?php //include('merchant-head.php'); ?>
-	<?php if (!empty($offer)): ?>
-	<div class="com_bookingforconnector_merchantdetails-offers">
+	<?php if (!empty($offer)){ ?>
+	<div>
 		<?php
 			$offer->OfferId =  $offer->VariationPlanId;
 //			$offer->Price = $offer->Value;
@@ -51,16 +51,16 @@ $privacy = BFCHelper::GetPrivacy($language);
 
 			}
 		?>
-		<h2 class="bfi-title-name"><?php echo  $offer->Name?> </h2>
-		<div class="clear"></div>
+		<div class="bfi-title-name"><?php echo  $offer->Name?> </div>
+		<div class="bfi-clearfix "></div>
 	
 		<ul class="bfi-menu-top">
-			<li><a rel=".resourcecontainer-gallery"><?php echo  _e('Media' , 'bfi') ?></a></li>
-		<?php if (!empty($offer->Description)):?><li><a rel=".bfi-description-data" ><?php echo  _e('Description', 'bfi') ?></a></li><?php endif; ?>
-			<li class="book" ><a rel="#divcalculator"><?php echo  _e('Booking' , 'bfi') ?></a></li>
+			<!-- <li><a rel=".bfi-resourcecontainer-gallery"><?php echo  _e('Media' , 'bfi') ?></a></li> -->
+			<?php if (!empty($offer->Description)){?><li><a rel=".bfi-description-data" ><?php echo  _e('Description', 'bfi') ?></a></li><?php } ?>
+			<li class="bfi-book" ><a rel="#divcalculator"><?php echo  _e('Booking' , 'bfi') ?></a></li>
 		</ul>
 	
-		<div class="resourcecontainer-gallery">
+		<div class="bfi-resourcecontainer-gallery">
 			<?php 
 			$images = array();
 			$contextImg ="variationplans";
@@ -74,25 +74,28 @@ $privacy = BFCHelper::GetPrivacy($language);
 			<?php  include('gallery.php');  ?>
 
 		</div>
-		<?php if (!empty($offer->Description)):?>
-	<div class="bfi-description-data bfi-row">
-			<h4 class="bfi-col-md-2"><?php echo  _e('Description') ?></h4>
-		<div class="bfi-description-data bfi-col-md-10">
-			<?php echo $offer->Description ?>		
+		<?php if (!empty($offer->Description)){?>
+		<div class="bfi-description-data bfi-row">
+			<div class="bfi-description-data bfi-col-md-12">
+				<?php echo $offer->Description ?>		
 			</div>
 		</div>
-		<?php endif; ?>
-		<div class="clear"></div>
+		<?php } ?>
+		<div class="bfi-clearfix "></div>
 	
 		<a name="calc"></a>
 		<div id="divcalculator"><div style="padding:10px;text-align:center;"><i class="fa fa-spinner fa-spin fa-3x fa-fw margin-bottom"></i><span class="sr-only">Loading...</span></div></div>
 	</div>
 	
-	<?php else:?>
+	<?php }else{?>
 	<div class="com_bookingforconnector_merchantdetails-nooffers">
 		<?php echo _e('No Results Found', 'bfi'); ?>
 	</div>
-	<?php endif?>
+	<?php } ?>
+
+	<div class="bfi-clearboth"></div>
+	<?php  include(BFI()->plugin_path().'/templates/merchant_small_details.php');  ?>
+
 </div>
 <script type="text/javascript">
 <!--

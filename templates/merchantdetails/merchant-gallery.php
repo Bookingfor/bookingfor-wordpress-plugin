@@ -39,12 +39,8 @@ if ($rating>9 )
 $reviewavg = isset($merchant->Avg) ? $merchant->Avg->Average : 0;
 $reviewcount = isset($merchant->Avg) ? $merchant->Avg->Count : 0;
 ?>
-<div class="com_bookingforconnector_resource-initialgallery nopadding bfi-row">
-	<div class="bfi-col-md-12 com_bookingforconnector_resource-initialgallery-fullrow nopadding">
-		<div class="launch-fullscreen">
-			<img src="<?php echo BFCHelper::getImageUrlResized('merchant', $main_img['data'],'big')?>" alt="">
-		</div>
-	</div>
+<div class="bfi-launch-fullscreen">
+	<img src="<?php echo BFCHelper::getImageUrlResized('merchant', $main_img['data'],'big')?>" alt="">
 </div>
 <div class="bfi-table-responsive">
 <?php 
@@ -59,7 +55,7 @@ if(!empty($totalsub_images)){
 	$tdWidth = 100/$totalsub_images;
 }
 ?>	
-	<table class="bfi-table imgsmallgallery" style="<?php echo $widthtable ?>"> 
+	<table class="bfi-table bfi-imgsmallgallery" style="<?php echo $widthtable ?>"> 
 		<tr>
 <?php
 	foreach($sub_images as $sub_img) {
@@ -75,7 +71,7 @@ if(!empty($totalsub_images)){
 ?>
 			<td style="width:<?php echo $tdWidth ?>%;">
 				<img src="<?php echo $srcImage?>" alt="">
-				<div class="showall">
+				<div class="bfi-showall">
 					<i class="fa fa-search tour-search"></i><br />
 					<?php _e('Show All', 'bfi') ?>
 				</div>
@@ -88,7 +84,8 @@ if(!empty($totalsub_images)){
 <!--
 jQuery(document).ready(function() {
 
-	jQuery('.showall, .launch-fullscreen').magnificPopup({
+	jQuery('.bfi-showall, .bfi-launch-fullscreen').magnificPopup({
+		mainClass: 'bfi-gallery',
 		items: [
 		<?php foreach ($images as $image):?>
 		<?php if($image['type'] != 'video') { ?>

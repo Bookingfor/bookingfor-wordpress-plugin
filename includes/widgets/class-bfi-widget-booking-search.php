@@ -12,7 +12,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-if ( ! class_exists( 'BFI_Widget_Booking_Search' ) ) :
+if ( ! class_exists( 'BFI_Widget_Booking_Search' ) ) {
 
 class BFI_Widget_Booking_Search extends WP_Widget {
 
@@ -146,6 +146,11 @@ function form($instance) {
 	$showMinFloor = ( ! empty( $instance['showMinFloor'] ) ) ? esc_attr($instance['showMinFloor']) : '0';
 	$showContract = ( ! empty( $instance['showContract'] ) ) ? esc_attr($instance['showContract']) : '0';
 
+	$showSearchTextOnSell = ( ! empty( $instance['showSearchTextOnSell'] ) ) ? esc_attr($instance['showSearchTextOnSell']) : '0';
+	$showMapIconOnSell = ( ! empty( $instance['showMapIconOnSell'] ) ) ? esc_attr($instance['showMapIconOnSell']) : '0';
+	$showAccomodationsOnSell = ( ! empty( $instance['showAccomodationsOnSell'] ) ) ? esc_attr($instance['showAccomodationsOnSell']) : '0';
+
+
 	$showBedRooms = ( ! empty( $instance['showBedRooms'] ) ) ? esc_attr($instance['showBedRooms']) : '0';
 	$showRooms = ( ! empty( $instance['showRooms'] ) ) ? esc_attr($instance['showRooms']) : '0';
 	$showBaths = ( ! empty( $instance['showBaths'] ) ) ? esc_attr($instance['showBaths']) : '0';
@@ -178,6 +183,9 @@ function form($instance) {
 	<p>
 	<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title', 'wp_widget_plugin'); ?></label>
 	<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo ($instance)?esc_attr($instance['title']):''; ?>" />
+	</p>
+	<p class="bookingoptions">
+		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showdirection'); ?>" value="1" <?php  echo ($showdirection=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Displays horizontally', 'bfi'); ?></label>
 	</p>
 	<p>
 		<span class="bfitabselect"><?php _e('Tab', 'bfi'); ?></span><br />
@@ -225,10 +233,10 @@ function form($instance) {
             ?>
 		</label>
 	</p>
-	<?php if(!empty($merchantCategories) || !empty($unitCategories) || !empty($unitCategoriesRealEstate)):  ?>
+	<?php if(!empty($merchantCategories) || !empty($unitCategories) || !empty($unitCategoriesRealEstate)){  ?>
 	<p class="bfitabsearch0 widget-inside" >
-		<?php echo $tablist[0] ?><br />
-		<?php if(!empty($merchantCategories)):  ?>
+		<span class="bfi-titletab"><?php echo $tablist[0] ?></span><br />
+		<?php if(!empty($merchantCategories)){  ?>
 			<label for="<?php echo $this->get_field_id('merchantcategoriesbooking'); ?>"><?php _e('Merchant category', 'bfi'); ?>
 			<?php 
 				printf(
@@ -247,8 +255,8 @@ function form($instance) {
 				echo '</select>';
 				?>
 			</label>
-		<?php endif;  ?>
-		<?php if(!empty($unitCategories)):  ?>
+		<?php }  ?>
+		<?php if(!empty($unitCategories)){  ?>
 			<label for="<?php echo $this->get_field_id('unitcategoriesbooking'); ?>"><?php _e('Product category', 'bfi'); ?>
 			<?php 
 				printf(
@@ -267,7 +275,7 @@ function form($instance) {
 				echo '</select>';
 				?>
 			</label>
-		<?php endif;  ?>
+		<?php }  ?>
 		<label for="<?php echo $this->get_field_id('availabilitytypesbooking'); ?>"><?php _e('Search availability for', 'bfi'); ?>
 			<?php 
 				printf(
@@ -324,8 +332,8 @@ function form($instance) {
 		</label>
 	</p>
 	<p class="bfitabsearch2 widget-inside" >
-		<?php echo $tablist[2] ?><br />
-		<?php if(!empty($merchantCategories)):  ?>
+		<span class="bfi-titletab"><?php echo $tablist[2] ?></span><br />
+		<?php if(!empty($merchantCategories)){  ?>
 			<label for="<?php echo $this->get_field_id('merchantcategoriesactivities'); ?>"><?php _e('Merchant category', 'bfi'); ?>
 			<?php 
 				printf(
@@ -344,8 +352,8 @@ function form($instance) {
 				echo '</select>';
 				?>
 			</label>
-		<?php endif;  ?>
-		<?php if(!empty($unitCategories)):  ?>
+		<?php }  ?>
+		<?php if(!empty($unitCategories)){  ?>
 			<label for="<?php echo $this->get_field_id('unitcategoriesactivities'); ?>"><?php _e('Product category', 'bfi'); ?>
 			<?php 
 				printf(
@@ -364,7 +372,7 @@ function form($instance) {
 				echo '</select>';
 				?>
 			</label>
-		<?php endif;  ?>
+		<?php }  ?>
 		<label for="<?php echo $this->get_field_id('availabilitytypesactivities'); ?>"><?php _e('Search availability for', 'bfi'); ?>
 			<?php 
 				printf(
@@ -420,9 +428,25 @@ function form($instance) {
 				?>
 		</label>
 	</p>
+	<p class="bookingoptions">
+		<span><?php _e('Fields Visibility');?></span><br />
+		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showSearchText'); ?>" value="1" <?php  echo ($showSearchText=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Search text', 'bfi'); ?> <?php _e('(Merchants, Products, Tags, Merchants and Products Categories, Regions, States, Cities, Zones)', 'bfi') ?></label><br />
+		<?php _e('or');?><br />
+		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showLocation'); ?>" value="1" <?php  echo ($showLocation=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Destination', 'bfi'); ?></label><br />
+		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showMapIcon'); ?>" value="1" <?php  echo ($showMapIcon=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Map Button', 'bfi'); ?></label><br />
+		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showAccomodations'); ?>" value="1" <?php  echo ($showAccomodations=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Type', 'bfi'); ?></label><br />
+		<br />
+		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showDateRange'); ?>" value="1" <?php  echo ($showDateRange=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Date Range', 'bfi'); ?></label><br />
+		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showAdult'); ?>" value="1" <?php  echo ($showAdult=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Adults', 'bfi'); ?></label><br />
+		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showChildren'); ?>" value="1" <?php  echo ($showChildren=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Childrens', 'bfi'); ?></label><br />
+		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showSenior'); ?>" value="1" <?php  echo ($showSenior=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Senior', 'bfi'); ?></label><br />
+		<!-- <label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showServices'); ?>" value="1" <?php  echo ($showServices=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Services', 'bfi'); ?></label><br /> -->
+		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showOnlineBooking'); ?>" value="1" <?php  echo ($showOnlineBooking=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Only Online Booking', 'bfi'); ?></label>
+		<br /><br />
+	</p>
 	<p class="bfitabsearch3 widget-inside" >
-		<?php echo $tablist[3] ?><br />
-		<?php if(!empty($merchantCategories)):  ?>
+		<span class="bfi-titletab"><?php echo $tablist[3] ?></span><br />
+		<?php if(!empty($merchantCategories)){  ?>
 			<label for="<?php echo $this->get_field_id('merchantcategories'); ?>"><?php _e('Merchant category', 'bfi'); ?>
 			<?php 
 				printf(
@@ -441,8 +465,8 @@ function form($instance) {
 				echo '</select>';
 				?>
 			</label>
-		<?php endif;  ?>
-		<?php if(!empty($unitCategoriesRealEstate)):  ?>
+		<?php }  ?>
+		<?php if(!empty($unitCategoriesRealEstate)){  ?>
 			<label for="<?php echo $this->get_field_id('unitcategories'); ?>"><?php _e('Product category', 'bfi'); ?>
 			<?php 
 				printf(
@@ -461,34 +485,11 @@ function form($instance) {
 				echo '</select>';
 				?>
 			</label>
-		<?php endif;  ?>
-	</p>
-	<?php endif;  ?>
-
-
-	<p class="bookingoptions">
-		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showdirection'); ?>" value="1" <?php  echo ($showdirection=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Displays horizontally', 'bfi'); ?></label>
-	</p>
-
-	<h5><?php _e('Fields Visibility');?></h5>
-	<p>
-		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showSearchText'); ?>" value="1" <?php  echo ($showSearchText=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Search text', 'bfi'); ?> <?php _e('(Merchants, Products, Tags, Merchants and Products Categories, Regions, States, Cities, Zones)', 'bfi') ?></label><br />
-		<?php _e('or');?><br />
-		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showLocation'); ?>" value="1" <?php  echo ($showLocation=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Destination', 'bfi'); ?></label><br />
-		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showMapIcon'); ?>" value="1" <?php  echo ($showMapIcon=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Map Button', 'bfi'); ?></label><br />
-		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showAccomodations'); ?>" value="1" <?php  echo ($showAccomodations=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Type', 'bfi'); ?></label><br />
-	</p>
-	<p class="bookingoptions">
-		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showDateRange'); ?>" value="1" <?php  echo ($showDateRange=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Date Range', 'bfi'); ?></label><br />
-		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showAdult'); ?>" value="1" <?php  echo ($showAdult=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Adults', 'bfi'); ?></label><br />
-		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showChildren'); ?>" value="1" <?php  echo ($showChildren=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Childrens', 'bfi'); ?></label><br />
-		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showSenior'); ?>" value="1" <?php  echo ($showSenior=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Senior', 'bfi'); ?></label><br />
-		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showServices'); ?>" value="1" <?php  echo ($showServices=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Services', 'bfi'); ?></label><br />
-		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showOnlineBooking'); ?>" value="1" <?php  echo ($showOnlineBooking=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Only Online Booking', 'bfi'); ?></label>
-	</p>
-
-	<p class="realestateoptions">
+		<?php }  ?>
+		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showSearchTextOnSell'); ?>" value="1" <?php  echo ($showSearchTextOnSell=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Search text', 'bfi'); ?> <?php _e('(Regions, States, Cities, Zones)', 'bfi') ?></label><br />
+		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showMapIconOnSell'); ?>" value="1" <?php  echo ($showMapIconOnSell=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Map Button', 'bfi'); ?></label><br />
 		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showContract'); ?>" value="1" <?php  echo ($showContract=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Contract', 'bfi'); ?></label><br />
+		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showAccomodationsOnSell'); ?>" value="1" <?php  echo ($showAccomodationsOnSell=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Type', 'bfi'); ?></label><br />
 		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showMaxPrice'); ?>" value="1" <?php  echo ($showMaxPrice=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Price', 'bfi'); ?></label><br />
 		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showMinFloor'); ?>" value="1" <?php  echo ($showMinFloor=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Floor Area', 'bfi'); ?></label><br />
 		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showBedRooms'); ?>" value="1" <?php  echo ($showBedRooms=='1') ? 'checked="checked"' : ''; ?> /><?php _e('BedRooms', 'bfi'); ?></label><br />
@@ -496,6 +497,14 @@ function form($instance) {
 		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showBaths'); ?>" value="1" <?php  echo ($showBaths=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Baths', 'bfi'); ?></label><br />
 		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showOnlyNew'); ?>" value="1" <?php  echo ($showOnlyNew=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Only New', 'bfi'); ?></label><br />
 		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showServicesList'); ?>" value="1" <?php  echo ($showServicesList=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Services list', 'bfi'); ?></label><br />
+
+	</p>
+	<?php }  ?>
+
+
+
+
+	<p class="realestateoptions">
 	</p>
 
 	<?php
@@ -547,6 +556,10 @@ function form($instance) {
 		  $instance['showMinFloor'] = ! empty( $new_instance[ 'showMinFloor' ] ) ? 1 : 0;
 		  $instance['showContract'] = ! empty( $new_instance[ 'showContract' ] ) ? 1 : 0;
 		  
+
+		  $instance['showSearchTextOnSell'] = ! empty( $new_instance[ 'showSearchTextOnSell' ] ) ? 1 : 0;
+		  $instance['showMapIconOnSell'] = ! empty( $new_instance[ 'showMapIconOnSell' ] ) ? 1 : 0;
+		  $instance['showAccomodationsOnSell'] = ! empty( $new_instance[ 'showAccomodationsOnSell' ] ) ? 1 : 0;
 		  $instance['showBedRooms'] = ! empty( $new_instance[ 'showBedRooms' ] ) ? 1 : 0;
 		  $instance['showRooms'] = ! empty( $new_instance[ 'showRooms' ] ) ? 1 : 0;
 		  $instance['showBaths'] = ! empty( $new_instance[ 'showBaths' ] ) ? 1 : 0;
@@ -574,4 +587,4 @@ function form($instance) {
 //		$this->widget_end( $args );
 	}
 }
-endif;
+}

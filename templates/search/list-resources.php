@@ -68,7 +68,7 @@ $onlystay =  true;
 //}
 
 ?>
-
+<div class="bfi-content">
 <div class="bfi-row">
 	<div class="bfi-col-xs-9 ">
 		<div class="bfi-search-title">
@@ -112,9 +112,7 @@ $onlystay =  true;
 
 <div class="bfi-clearfix"></div>
 <div id="bfi-list" class="bfi-row bfi-list">
-	<?php foreach ($results as $resource):?>
-		<?php 
-		$resourceImageUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s6.jpeg";
+	<?php foreach ($results as $resource){
 
 		$resourceName = BFCHelper::getLanguage($resource->ResName, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
 
@@ -126,7 +124,7 @@ $onlystay =  true;
 		$currUriresource = $uri.$resource->ResourceId.'-'.BFI()->seoUrl($resourceName);
 		
 		$resourceRoute = $route = $currUriresource;
-		$routeRating = $routeRatingform = $currUriresource.'/'._x('rating', 'Page slug', 'bfi' );
+//		$routeRating = $routeRatingform = $currUriresource.'/'._x('reviews', 'Page slug', 'bfi' );
 //		$routeInfoRequest = $currUriresource.'/'._x('inforequestpopup', 'Page slug', 'bfi' );
 //		$routeRapidView = $currUriresource.'/'._x('rapidview', 'Page slug', 'bfi' );
 		
@@ -140,35 +138,31 @@ $onlystay =  true;
 		$IsBookable = 0;
 		
 		$availability = 0;
-		$ribbonofferdisplay = "hidden";
-		$classofferdisplay = "";
-		$stay = new StdClass;
-		$discount = 0;
-		$current_discount = 0;
 
-			$availability = $resource->Availability;
-			$bookingType = $resource->BookingType;
-			$IsBookable = $resource->IsBookable;
+		$availability = $resource->Availability;
+		$bookingType = $resource->BookingType;
+		$IsBookable = $resource->IsBookable;
 
-			$btnText = __('Request','bfi');
+		$btnText = __('Request','bfi');
+		$btnClass = "bfi-alternative";
+		if ($IsBookable){
+			$btnText = __('Book Now','bfi');
 			$btnClass = "";
-			if ($IsBookable){
-				$btnText = __('Book Now','bfi');
-				$btnClass = "bfi-btn-bookable";
-			}
+		}
 
-			if (($resource->Price < $resource->TotalPrice) || $resource->IsOffer){
-				$ribbonofferdisplay = "";
-				$classofferdisplay = "com_bookingforconnector_highlight";
-				
-			}
-			$resourceRoute .= "?fromsearch=1";
-			if (!empty($resource->RateplanId)){
-				 $resourceRoute .= "&pricetype=" . $resource->RateplanId;
-			}
-			if(!empty($resource->ImageUrl)){
-				$resourceImageUrl = BFCHelper::getImageUrlResized('resources',$resource->ImageUrl, 'medium');
-			}
+		$classofferdisplay = "";
+		if (($resource->Price < $resource->TotalPrice) || $resource->IsOffer){
+			$classofferdisplay = "bfi-highlight";
+			
+		}
+		$resourceRoute .= "?fromsearch=1";
+		if (!empty($resource->RateplanId)){
+			 $resourceRoute .= "&pricetype=" . $resource->RateplanId;
+		}
+		$resourceImageUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s6.jpeg";
+		if(!empty($resource->ImageUrl)){
+			$resourceImageUrl = BFCHelper::getImageUrlResized('resources',$resource->ImageUrl, 'medium');
+		}
 		
 //		$images = array($resourceImageUrl);
 		$resource->SimpleDiscountIds = "";
@@ -195,22 +189,22 @@ $onlystay =  true;
 	<div class="bfi-col-sm-6 bfi-item">
 		<div class="bfi-row bfi-sameheight" >
 			<div class="bfi-col-sm-3 bfi-img-container">
-				<a href="<?php echo $resourceRoute ?>?fromsearch=1" style='background: url("<?php echo $resourceImageUrl; ?>") center 25%;background-size: cover;' target="_blank"><img src="<?php echo $resourceImageUrl; ?>" class="bfi-img-responsive" /></a> 
+				<a href="<?php echo $resourceRoute ?>" style='background: url("<?php echo $resourceImageUrl; ?>") center 25%;background-size: cover;' target="_blank"><img src="<?php echo $resourceImageUrl; ?>" class="bfi-img-responsive" /></a> 
 			</div>
 			<div class="bfi-col-sm-9 bfi-details-container">
 				<!-- merchant details -->
 				<div class="bfi-row" >
 					<div class="bfi-col-sm-10">
 						<div class="bfi-item-title">
-							<a href="<?php echo $resourceRoute ?>?fromsearch=1" id="nameAnchor<?php echo $resource->ResourceId?>" target="_blank"><?php echo  $resourceName ?></a> 
+							<a href="<?php echo $resourceRoute ?>" id="nameAnchor<?php echo $resource->ResourceId?>" target="_blank"><?php echo  $resourceName ?></a> 
 							<span class="bfi-item-rating">
 								<?php for($i = 0; $i < $rating; $i++) { ?>
 									<i class="fa fa-star"></i>
 								<?php } ?>	             
 							</span>
 							<?php if($isportal) { ?>
-								- <a href="<?php echo $routeMerchant?>" class="bfi-subitem-title"><?php echo $resource->MrcName; ?></a>
-								<span class="bfi-subitem-rating">
+								- <a href="<?php echo $routeMerchant?>" class="bfi-subitem-title" target="_blank"><?php echo $resource->MrcName; ?></a>
+								<span class="bfi-item-rating">
 									<?php for($i = 0; $i < $ratingMrc; $i++) { ?>
 										<i class="fa fa-star"></i>
 									<?php } ?>	             
@@ -219,9 +213,9 @@ $onlystay =  true;
 							
 						</div>
 						<div class="bfi-item-address">
-							<?php if ($showResourceMap):?>
+							<?php if ($showResourceMap){?>
 							<a href="javascript:void(0);" onclick="showMarker(<?php echo $resource->ResourceId?>)"><span id="address<?php echo $resource->ResourceId?>"></span></a>
-							<?php endif; ?>
+							<?php } ?>
 						</div>
 						<div class="bfi-mrcgroup" id="bfitags<?php echo $resource->ResourceId; ?>"></div>
 					</div>
@@ -232,8 +226,8 @@ $onlystay =  true;
 									$totalInt = BFCHelper::convertTotal(number_format((float)$resource->ResAVG, 1, '.', ''));
 
 									?>
-									<a class="bfi-avg-value" href="<?php echo $routeRating ?>" ><?php echo $rating_text['merchants_reviews_text_value_'.$totalInt] . " " . number_format((float)$resource->ResAVG, 1, '.', '') ?></a><br />
-									<a class="bfi-avg-count" href="<?php echo $routeRating ?>" ><?php echo sprintf(__('%s reviews' , 'bfi'),$resource->ResAVGCount) ?></a>
+									<a class="bfi-avg-value" href="<?php echo $resourceRoute ?>" target="_blank"><?php echo $rating_text['merchants_reviews_text_value_'.$totalInt] . " " . number_format((float)$resource->ResAVG, 1, '.', '') ?></a><br />
+									<a class="bfi-avg-count" href="<?php echo $resourceRoute ?>" target="_blank"><?php echo sprintf(__('%s reviews' , 'bfi'),$resource->ResAVGCount) ?></a>
 								<?php }else{ ?>
 									<!-- <a class="bfi-avg-leaverating " href="<?php echo $routeRatingform ?>"><?php _e('Would you like to leave your review?', 'bfi') ?></a> -->
 								<?php } ?>
@@ -246,7 +240,7 @@ $onlystay =  true;
 				<!-- resource details -->
 				<div class="bfi-row" >
 					<div class="bfi-col-sm-6">
-						<?php if ($resource->MaxPaxes>0):?>
+						<?php if ($resource->MaxPaxes>0){?>
 							<div class="bfi-icon-paxes">
 								<i class="fa fa-user"></i> 
 								<?php if ($resource->MaxPaxes==2){?>
@@ -256,15 +250,15 @@ $onlystay =  true;
 									<?php echo ($resource->MinPaxes != $resource->MaxPaxes)? $resource->MinPaxes . "-" : "" ?><?php echo  $resource->MaxPaxes ?>
 								<?php }?>
 							</div>
-						<?php endif; ?>
+						<?php } ?>
 						<?php echo ($resource->AvailabilityType ==0 || $resource->AvailabilityType ==1) ? $resource->ResCategoryName: ""; ?>
 					</div>
 					<div class="bfi-col-sm-3 ">
 						<?php if (!$resource->IsCatalog && $onlystay ){ ?>
 							<div class="bfi-availability">
-							<?php if ($resource->Availability < 4): ?>
+							<?php if ($resource->Availability < 2){ ?>
 							  <span class="bfi-availability-low"><?php echo sprintf(__('Only %d available' , 'bfi'),$resource->Availability) ?></span>
-							<?php endif; ?>
+							<?php } ?>
 							</div>
 						<?php } ?>
 					</div>
@@ -291,7 +285,7 @@ $onlystay =  true;
 								}
 							}
 						} else {?>
-							<a href="<?php echo $resourceRoute ?>" class="bfi-item-btn-details"  target="_blank"><?php echo _e('Details' , 'bfi')?></a>
+							<a href="<?php echo $resourceRoute ?>" class="bfi-btn <?php echo $btnClass ?>" target="_blank"><?php echo _e('Details' , 'bfi')?></a>
 						<?php } ?>
 					</div>
 				</div>
@@ -302,7 +296,9 @@ $onlystay =  true;
 				<!-- price details -->
 				<div class="bfi-row" >
 					<div class="bfi-col-sm-4 bfi-text-right ">
+					<?php if ($resource->MaxPaxes>0){?>
 					<?php echo sprintf(__('Price for %s person' ,'bfi'),$totPerson) ?>
+					<?php } ?>					
 					</div>
 					<div class="bfi-col-sm-5 bfi-text-right ">
 							<div class="bfi-gray-highlight">
@@ -352,9 +348,9 @@ $onlystay =  true;
 					</div>
 					<div class="bfi-col-sm-3 bfi-text-right">
 						<?php if ($resource->Price > 0){ ?>
-								<a href="<?php echo $resourceRoute ?>" class=" bfi-item-btn-details <?php echo $btnClass ?> " target="_blank"><?php echo $btnText ?></a>
+								<a href="<?php echo $resourceRoute ?>" class=" bfi-btn <?php echo $btnClass ?> " target="_blank"><?php echo $btnText ?></a>
 						<?php }else{ ?>
-								<a href="<?php echo $resourceRoute ?>" class=" bfi-item-btn-details" target="_blank"><?php echo _e('Request' , 'bfi')?></a>
+								<a href="<?php echo $resourceRoute ?>" class=" bfi-btn <?php echo $btnClass ?>" target="_blank"><?php echo _e('Request' , 'bfi')?></a>
 						<?php } ?>
 					</div>
 				</div>
@@ -362,7 +358,7 @@ $onlystay =  true;
 				<!-- end price details -->
 				<?php } ?>
 			</div>
-			<div class="discount-box" style="display:<?php echo ($resource->PercentVariation < 0)?"block":"none"; ?>;">
+			<div class="bfi-discount-box" style="display:<?php echo ($resource->PercentVariation < 0)?"block":"none"; ?>;">
 				<?php echo sprintf(__('Offer %d%%' , 'bfi'), number_format($resource->PercentVariation, 1)); ?>
 			</div>
 		</div>
@@ -370,47 +366,11 @@ $onlystay =  true;
 	<?php 
 	$listsId[]= $resource->ResourceId;
 	?>
-<?php endforeach; ?>
+<?php } ?>
+</div>
 </div>
 <script type="text/javascript">
 <!--
-jQuery('#list-view').click(function() {
-	jQuery('.bfi-view-changer-selected').html(jQuery(this).html());
-	jQuery('#bfi-list').removeClass('bfi-grid-group')
-	jQuery('#bfi-list .bfi-item').addClass('list-group-item')
-	jQuery('#bfi-list .bfi-img-container').addClass('bfi-col-sm-3')
-	jQuery('#bfi-list .bfi-details-container').addClass('bfi-col-sm-9')
-
-	localStorage.setItem('display', 'list');
-});
-
-jQuery('#grid-view').click(function() {
-	jQuery('.bfi-view-changer-selected').html(jQuery(this).html());
-	jQuery('#bfi-list').addClass('bfi-grid-group')
-	jQuery('#bfi-list .bfi-item').removeClass('list-group-item')
-	jQuery('#bfi-list .bfi-img-container').removeClass('bfi-col-sm-3')
-	jQuery('#bfi-list .bfi-details-container').removeClass('bfi-col-sm-9')
-	localStorage.setItem('display', 'grid');
-});
-	jQuery('#bfi-list .bfi-item').addClass('grid-group-item')
-
-if (localStorage.getItem('display')) {
-	if (localStorage.getItem('display') == 'list') {
-		jQuery('#list-view').trigger('click');
-	} else {
-		jQuery('#grid-view').trigger('click');
-	}
-} else {
-	 if(typeof bfi_variable === 'undefined' || bfi_variable.bfi_defaultdisplay === 'undefined') {
-		jQuery('#list-view').trigger('click');
-	 } else {
-		if (bfi_variable.bfi_defaultdisplay == '1') {
-			jQuery('#grid-view').trigger('click');
-		} else { 
-			jQuery('#list-view').trigger('click');
-		}
-	}
-}
 
 //var urlCheck = "<?php echo $base_url ?>/bfi-api/v1/task";
 var listToCheck = "<?php echo implode(",", $listsId) ?>";
@@ -564,6 +524,7 @@ jQuery(document).ready(function() {
 			},
 			height: 500,
 			width: 800,
+			dialogClass: 'bfi-dialog bfi-dialog-map'
 		});
 	});
 
@@ -591,7 +552,8 @@ jQuery(document).ready(function() {
 								placement:'auto-bottom',
 								dismissible:true,
 								trigger:'manual',
-								type:'html'
+								type:'html',
+								style:'bfi-webuipopover'
 							});
 							obj.webuiPopover('show');
 
@@ -620,7 +582,8 @@ jQuery(document).ready(function() {
 			if (val.Resource.XGooglePos == '' || val.Resource.YGooglePos == '' || val.Resource.XGooglePos == null || val.Resource.YGooglePos == null)
 				return true;
 
-			var url = "<?php echo $url_resource_page; ?>" + val.Resource.ResourceId + '-' + val.Resource.ResourceName + '/mapspopup?fromsearch=1';
+			var url = "<?php echo $formAction; ?>?resourceId=" + val.Resource.ResourceId + '&task=getmarketinforesource';
+//			var url = "<?php echo $url_resource_page; ?>" + val.Resource.ResourceId + '-' + val.Resource.ResourceName + '/mapspopup?fromsearch=1';
 //			console.log(url);
 //			var marker = new google.maps.Marker({
 //				position: new google.maps.LatLng(val.Resource.XGooglePos, val.Resource.YGooglePos),

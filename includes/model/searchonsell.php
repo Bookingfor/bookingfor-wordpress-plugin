@@ -254,6 +254,27 @@ class BookingForConnectorModelSearchOnSell
 			$options['data']['points'] = '\'' . $points. '\'';
 		}
 
+		$stateIds = $params['stateIds'];
+		$regionIds = $params['regionIds'];
+		$cityIds = $params['cityIds'];
+		if (isset($params['locationzone']) ) {
+			$locationzone = $params['locationzone'];
+		}
+		if (isset($stateIds) && $stateIds !='') {
+			$options['data']['stateIds'] = '\'' . $stateIds. '\'';
+		}
+
+		if (isset($regionIds) && $regionIds !='') {
+			$options['data']['regionIds'] = '\'' . $regionIds. '\'';
+		}
+
+		if (isset($cityIds) && $cityIds !='') {
+			$options['data']['cityIds'] = '\'' . $cityIds. '\'';
+		}
+		if (isset($locationzone) && $locationzone !='' && $locationzone !='0') {
+			$options['data']['zoneIds'] = '\''. $locationzone . '\'';
+		}
+
 		$zoneIds = isset($params['zoneIds']) ? $params['zoneIds'] : array();
 		if (!empty($zoneIds) && !empty($cityId) ) {
 			$options['data']['zoneIds'] = '\'' . $zoneIds. '\'';
@@ -579,7 +600,10 @@ if (!empty($randomresult) && $randomresult == '1' && empty($ordering)){
 				'zoneId' => BFCHelper::getVar('zoneId',0),
 				'cityId' => BFCHelper::getVar('cityId',0),
 				'zoneIds' => BFCHelper::getVar('zoneIds'),
-//				'locationzone' => BFCHelper::getVar('locationzone'),
+				'stateIds' => BFCHelper::getVar('stateIds'),
+				'regionIds' => BFCHelper::getVar('regionIds'),
+				'cityIds' => BFCHelper::getVar('cityIds'),
+				'locationzone' => BFCHelper::getVar('locationzone'),
 				'contractTypeId' => BFCHelper::getVar('contractTypeId',0),
 				'areamin' => BFCHelper::getVar('areamin'),
 				'areamax' => BFCHelper::getVar('areamax'),

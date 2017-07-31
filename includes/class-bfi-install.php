@@ -61,6 +61,12 @@ class BFI_Install {
 					'content' => ''
 				)
 				,
+				'condominiumdetails' => array(
+					'name'    => _x( 'condominiumdetails', 'Page slug', 'bfi' ),
+					'title'   => _x( 'Condominium Details', 'Page title', 'bfi' ),
+					'content' => ''
+				)
+				,
 				'accommodationdetails' => array(
 					'name'    => _x( 'accommodation-details', 'Page slug', 'bfi' ),
 					'title'   => _x( 'Accommodation Details', 'Page title', 'bfi' ),
@@ -84,12 +90,6 @@ class BFI_Install {
 					'title'   => _x( 'Payment Details', 'Page title', 'bfi' ),
 					'content' => ''
 				),
-				'myaccount' => array(
-					'name'    => _x( 'my-account', 'Page slug', 'bfi' ),
-					'title'   => _x( 'My Account', 'Page title', 'bfi' ),
-					'content' => ''
-				)
-				,
 				'cartdetails' => array(
 					'name'    => _x( 'cartdetails', 'Page slug', 'bfi' ),
 					'title'   => _x( 'Cart Details', 'Page title', 'bfi' ),

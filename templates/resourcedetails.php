@@ -296,6 +296,7 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST' && $layout==  _x('form', 'Page slug', '
 		$output = '';
 		$merchant = $resource->Merchant;
 		$resourceId = $resource->ResourceId;
+		$condominiumId = 0;
 
 		include(BFI()->plugin_path().'/templates/search_details.php'); //merchant temp 
 		die($output);

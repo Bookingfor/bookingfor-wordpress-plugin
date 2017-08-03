@@ -1536,11 +1536,13 @@ if (count($allPolicyHelp)>0) {
 				<label class="bfi-shownextelement"><?php _e('I accept personal data treatment', 'bfi') ?></label>
 				<textarea name="form[privacy]" class="bfi-col-md-12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php echo $privacy ?></textarea>    
 		</div>
+<?php if(!empty($additionalPurpose)) { ?>
 		<div class=" bfi-checkbox-wrapper">
 				<input name="form[accettazioneadditionalPurpose]" class="checkbox" id="agreeadditionalPurpose" aria-invalid="true" aria-required="false" type="checkbox" title="<?php _e('Mandatory', 'bfi') ?>">
 				<label class="bfi-shownextelement"><?php _e('I accept additional purposes', 'bfi') ?></label>
 				<textarea name="form[additionalPurpose]" class="bfi-col-md-12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php echo $additionalPurpose ?></textarea>    
 		</div>
+<?php } ?>
 
 		<?php bfi_display_captcha($idrecaptcha);  ?>
 <div id="recaptcha-error-<?php echo $idrecaptcha ?>" style="display:none"><?php _e('Mandatory', 'bfi') ?></div>

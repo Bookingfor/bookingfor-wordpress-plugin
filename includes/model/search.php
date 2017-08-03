@@ -142,7 +142,7 @@ class BookingForConnectorModelSearch
 			}
 
 			$points = isset($params['points']) ? $params['points'] : '' ;
-			if (isset($points) && $points !='' && $cityId < -1) {
+			if (isset($points) && $points !='' ) {
 				$options['data']['points'] = '\'' . $points. '\'';
 			}
 
@@ -497,34 +497,29 @@ class BookingForConnectorModelSearch
 	public function getItems($ignorePagination = false, $jsonResult = false, $start = 0, $count = 20) {
 		
 		if(!empty($_REQUEST['filter_order']) ){
-			
-		$items = $this->getSearchResults(
-			$start,
-			$count,
-            $_REQUEST['filter_order'],
-			$_REQUEST['filter_order_Dir'],
-			$ignorePagination,
-			$jsonResult
-		);
+			$items = $this->getSearchResults(
+				$start,
+				$count,
+				$_REQUEST['filter_order'],
+				$_REQUEST['filter_order_Dir'],
+				$ignorePagination,
+				$jsonResult
+			);
 		}
 		else {
-			
-		
-		$items = $this->getSearchResults(
-			
-			$start,
-			$count,
-			'',
-			'',
-			$ignorePagination,
-			$jsonResult
-			
-			);
-			
-			
+			$items = $this->getSearchResults(
+				
+				$start,
+				$count,
+				'',
+				'',
+				$ignorePagination,
+				$jsonResult
+				
+				);
 		}
 		
-               // if(!empty($_POST['filter_order']) ){
+    // if(!empty($_POST['filter_order']) ){
 		
 	//	return $tempj;
 		//} 

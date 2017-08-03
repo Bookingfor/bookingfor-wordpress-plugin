@@ -162,38 +162,36 @@ if(!in_array($searchtypetab,$tablistSelected)){
 	$searchtypetab = -1;
 }
 
-$groupbycondominium = ( ! empty( $instance['groupbycondominium'] ) ) ? esc_attr($instance['groupbycondominium']) : '0';
+
 $showdirection = ( ! empty( $instance['showdirection'] ) ) ? esc_attr($instance['showdirection']) : '0';
-$showLocation = ( ! empty( $instance['showLocation'] ) ) ? esc_attr($instance['showLocation']) : '0';
-$showMapIcon = ( ! empty( $instance['showMapIcon'] ) ) ? esc_attr($instance['showMapIcon']) : '0';
-$showSearchText = ( ! empty( $instance['showSearchText'] ) ) ? esc_attr($instance['showSearchText']) : '0';
-$showAccomodations = ( ! empty( $instance['showAccomodations'] ) ) ? esc_attr($instance['showAccomodations']) : '0';
-$showDateRange = ( ! empty( $instance['showDateRange'] ) ) ? esc_attr($instance['showDateRange']) : '0';
+$showLocation = ( !empty($tablistResources) && ! empty( $instance['showLocation'] ) ) ? esc_attr($instance['showLocation']) : '0';
+$showMapIcon = ( !empty($tablistResources) && ! empty( $instance['showMapIcon'] ) ) ? esc_attr($instance['showMapIcon']) : '0';
+$showSearchText = ( !empty($tablistResources) && ! empty( $instance['showSearchText'] ) ) ? esc_attr($instance['showSearchText']) : '0';
+$showAccomodations = ( !empty($tablistResources) && ! empty( $instance['showAccomodations'] ) ) ? esc_attr($instance['showAccomodations']) : '0';
+$showDateRange = ( !empty($tablistResources) && ! empty( $instance['showDateRange'] ) ) ? esc_attr($instance['showDateRange']) : '0';
 
 if($showSearchText) {
 	$showLocation = '0';
-//	$showMapIcon = '0';
 	$showAccomodations = '0';
 }
 
-$showSearchTextOnSell = ( ! empty( $instance['showSearchTextOnSell'] ) ) ? esc_attr($instance['showSearchTextOnSell']) : '0';
-$showMapIconOnSell = ( ! empty( $instance['showMapIconOnSell'] ) ) ? esc_attr($instance['showMapIconOnSell']) : '0';
-$showAccomodationsOnSell = ( ! empty( $instance['showAccomodationsOnSell'] ) ) ? esc_attr($instance['showAccomodationsOnSell']) : '0';
+$showAdult = ( !empty($tablistResources) && ! empty( $instance['showAdult'] ) ) ? esc_attr($instance['showAdult']) : '0';
+$showChildren = ( !empty($tablistResources) && ! empty( $instance['showChildren'] ) ) ? esc_attr($instance['showChildren']) : '0';
+$showSenior = ( !empty($tablistResources) && ! empty( $instance['showSenior'] ) ) ? esc_attr($instance['showSenior']) : '0';
+$showServices = ( !empty($tablistResources) && ! empty( $instance['showServices'] ) ) ? esc_attr($instance['showServices']) : '0';
+$showOnlineBooking = ( !empty($tablistResources) && ! empty( $instance['showOnlineBooking'] ) ) ? esc_attr($instance['showOnlineBooking']) : '0';
 
-$showAdult = ( ! empty( $instance['showAdult'] ) ) ? esc_attr($instance['showAdult']) : '0';
-$showChildren = ( ! empty( $instance['showChildren'] ) ) ? esc_attr($instance['showChildren']) : '0';
-$showSenior = ( ! empty( $instance['showSenior'] ) ) ? esc_attr($instance['showSenior']) : '0';
-$showServices = ( ! empty( $instance['showServices'] ) ) ? esc_attr($instance['showServices']) : '0';
-$showOnlineBooking = ( ! empty( $instance['showOnlineBooking'] ) ) ? esc_attr($instance['showOnlineBooking']) : '0';
-$showMaxPrice = ( ! empty( $instance['showMaxPrice'] ) ) ? esc_attr($instance['showMaxPrice']) : '0';
-$showMinFloor = ( ! empty( $instance['showMinFloor'] ) ) ? esc_attr($instance['showMinFloor']) : '0';
-$showContract = ( ! empty( $instance['showContract'] ) ) ? esc_attr($instance['showContract']) : '0';
-
-$showBedRooms = ( ! empty( $instance['showBedRooms'] ) ) ? esc_attr($instance['showBedRooms']) : '0';
-$showRooms = ( ! empty( $instance['showRooms'] ) ) ? esc_attr($instance['showRooms']) : '0';
-$showBaths = ( ! empty( $instance['showBaths'] ) ) ? esc_attr($instance['showBaths']) : '0';
-$showOnlyNew = ( ! empty( $instance['showOnlyNew'] ) ) ? esc_attr($instance['showOnlyNew']) : '0';
-$showServicesList = ( ! empty( $instance['showServicesList'] ) ) ? esc_attr($instance['showServicesList']) : '0';
+$showSearchTextOnSell = ( !empty($tablistRealEstate) && ! empty( $instance['showSearchTextOnSell'] ) ) ? esc_attr($instance['showSearchTextOnSell']) : '0';
+$showMapIconOnSell = ( !empty($tablistRealEstate) && ! empty( $instance['showMapIconOnSell'] ) ) ? esc_attr($instance['showMapIconOnSell']) : '0';
+$showAccomodationsOnSell = ( !empty($tablistRealEstate) && ! empty( $instance['showAccomodationsOnSell'] ) ) ? esc_attr($instance['showAccomodationsOnSell']) : '0';
+$showMaxPrice = ( !empty($tablistRealEstate) && ! empty( $instance['showMaxPrice'] ) ) ? esc_attr($instance['showMaxPrice']) : '0';
+$showMinFloor = ( !empty($tablistRealEstate) && ! empty( $instance['showMinFloor'] ) ) ? esc_attr($instance['showMinFloor']) : '0';
+$showContract = ( !empty($tablistRealEstate) && ! empty( $instance['showContract'] ) ) ? esc_attr($instance['showContract']) : '0';
+$showBedRooms = ( !empty($tablistRealEstate) && ! empty( $instance['showBedRooms'] ) ) ? esc_attr($instance['showBedRooms']) : '0';
+$showRooms = ( !empty($tablistRealEstate) && ! empty( $instance['showRooms'] ) ) ? esc_attr($instance['showRooms']) : '0';
+$showBaths = ( !empty($tablistRealEstate) && ! empty( $instance['showBaths'] ) ) ? esc_attr($instance['showBaths']) : '0';
+$showOnlyNew = ( !empty($tablistRealEstate) && ! empty( $instance['showOnlyNew'] ) ) ? esc_attr($instance['showOnlyNew']) : '0';
+$showServicesList = ( !empty($tablistRealEstate) && ! empty( $instance['showServicesList'] ) ) ? esc_attr($instance['showServicesList']) : '0';
 
 $merchantCategoriesSelectedBooking = ( ! empty( $instance['merchantcategoriesbooking'] ) ) ? $instance['merchantcategoriesbooking'] : array();
 $merchantCategoriesSelectedActivities = ( ! empty( $instance['merchantcategoriesactivities'] ) ) ? $instance['merchantcategoriesactivities'] : array();
@@ -289,42 +287,6 @@ if($showAccomodations || $showAccomodationsOnSell){
 		}
 	}
 }
-
-
-//$masterTypologiesString = "";
-//$merchantCategoriesString = "";
-//if($showAccomodations){
-//	$masterTypologies =  BFCHelper::GetProductCategoryForSearch($language,1);
-//
-//	if(!empty($masterTypologies)){
-//		$masterTypologiesString = '<option value="0">'.__('Select', 'bfi').'</option>';
-//		$masterTypologies = is_array($masterTypologies) ? $masterTypologies : array();
-//		foreach ($masterTypologies as $mc) {
-//			if($mc->ProductCategoryId == $masterTypeId){
-//				$masterTypologiesString = $masterTypologiesString . '<option value="'.$mc->ProductCategoryId.'" selected>'.$mc->Name.'</option>';
-//			}else{
-//				$masterTypologiesString = $masterTypologiesString . '<option value="'.$mc->ProductCategoryId.'">'.$mc->Name.'</option>';
-//			}
-//		}
-//	}
-//
-//	$merchantCategories = BFCHelper::getMerchantCategoriesForRequest($language);
-//	
-//	if(!empty($merchantCategories)){
-//		$merchantCategoriesString = '<option value="0" >'.__('Select', 'bfi').'</option>'; 
-//		$merchantCategories = is_array($merchantCategories) ? $merchantCategories : array();
-//		foreach ($merchantCategories as $mc) {
-//			if($mc->MerchantCategoryId == $merchantCategoryIdResource){
-//				$merchantCategoriesString = $merchantCategoriesString . '<option value="'.$mc->MerchantCategoryId.'" selected>'.$mc->Name.'</option>';
-//			}else{
-//				$merchantCategoriesString = $merchantCategoriesString . '<option value="'.$mc->MerchantCategoryId.'">'.$mc->Name.'</option>';
-//			}
-//		}
-//	}
-//
-//}
-
-
 
 
 
@@ -492,7 +454,7 @@ $tabActive = "";
 		}
 		?>
 		<li class="<?php //echo $tabActive ?>" data-searchtypeid="0">
-            <a href="#bfisearch<?php echo $currModID ?>" data-toggle="tab" aria-expanded="true" class="searchResources">
+            <a href="#bfisearchtab<?php echo $currModID ?>" data-toggle="tab" aria-expanded="true" class="searchResources">
                 <i class="fa fa-suitcase" aria-hidden="true"></i><br />
                 <?php _e('Booking', 'bfi') ?>
             </a>
@@ -508,7 +470,7 @@ $tabActive = "";
 		}
 		?>
         <li class="<?php //echo $tabActive ?>" data-searchtypeid="2">
-            <a href="#bfisearch<?php echo $currModID ?>" data-toggle="tab" aria-expanded="true" class="searchTimeSlots">
+            <a href="#bfisearchtab<?php echo $currModID ?>" data-toggle="tab" aria-expanded="true" class="searchTimeSlots">
                 <i class="fa fa-calendar" aria-hidden="true"></i><br />
                 <?php _e('Activities', 'bfi') ?>
             </a>
@@ -533,7 +495,7 @@ $tabActive = "";
     </ul>
     <div class="tab-content">
 <?php if(!empty($tablistResources)){ ?>
-        <div id="bfisearch<?php echo $currModID ?>" class="tab-pane fade active in">
+        <div id="bfisearchtab<?php echo $currModID ?>" class="tab-pane fade active in">
 		<form action="<?php echo $url_page_Resources; ?>" method="get" id="searchform<?php echo $currModID ?>" class="bfi-form-<?php echo $showdirection?"horizontal":"vertical"; ?> ">
 				<?php if($showSearchText) { ?>
 					<div class="bfi_destination bfi-container">
@@ -759,11 +721,6 @@ $tabActive = "";
 				   
         </div>
 <?php }  ?>
-
-
-
-
-
 <?php if(!empty($tablistRealEstate)){ ?>
 		<div id="bfisearchselling<?php echo $currModID ?>" class="tab-pane fade <?php echo (empty($tablistResources)) ?"active in": "" ?>">
 		<form action="<?php echo $url_page_RealEstate; ?>" method="get" id="searchformonsellunit<?php echo $currModID ?>" class=" ">			
@@ -1072,6 +1029,7 @@ jQuery(function($)
 <!--
 var img1 = new Image(); 
 var localeSetting = "<?php echo substr($language,0,2); ?>";
+<?php if($showDateRange){ ?>
 function insertNight<?php echo $currModID ?>(){
 		var checkindate = jQuery('#<?php echo $checkinId; ?>').val();
 		var checkoutdate = jQuery('#<?php echo $checkoutId; ?>').val();
@@ -1235,6 +1193,7 @@ function checkDate<?php echo $checkinId; ?>($, obj, selectedDate) {
 	d.setDate(d.getDate());
 	jQuery("#<?php echo $checkoutId; ?>").datepicker("option", "minDate", d);
 }
+<?php } ?>
 
 function checkSelSearch<?php echo $currModID ?>() {
 	var sel = jQuery("#merchantCategoryId<?php echo $currModID ?>")
@@ -1264,12 +1223,8 @@ function checkChildrenSearch<?php echo $currModID ?>(nch,showMsg) {
 
 }
 jQuery(function() {
-	jQuery("#bfisearch<?php echo $currModID ?>").tabs();
-	var index = jQuery('#bfisearch<?php echo $currModID ?> li[data-searchtypeid="<?php echo $searchtypetab ?>"] a').parent().index();
-	jQuery("#bfisearch<?php echo $currModID ?>").tabs("option", "active", index);
-	
 
-
+<?php if($showDateRange){ ?>
 	jQuery("#<?php echo $checkinId; ?>").datepicker({
 		defaultDate: "+2d"
 		,dateFormat: "dd/mm/yy"
@@ -1305,7 +1260,12 @@ jQuery(function() {
 		, buttonText: "<div class='checkoutli<?php echo $currModID; ?>'><span class='bfi-weekdayname'><?php echo date_i18n('l',$checkout->getTimestamp());?> </span><?php echo $checkout->format("d") ;?> <?php echo date_i18n('F',$checkout->getTimestamp());?><span class='bfi-year'> <?php echo $checkout->format("Y"); ?></span></div>"
 		, firstDay: 1
 	});
+<?php } ?>
 
+	jQuery("#bfisearch<?php echo $currModID ?>").tabs();
+	var index = jQuery('#bfisearch<?php echo $currModID ?> li[data-searchtypeid="<?php echo $searchtypetab ?>"] a').parent().index();
+	jQuery("#bfisearch<?php echo $currModID ?>").tabs("option", "active", index);
+	
 	jQuery('#BtnResource<?php echo $currModID ?>').click(function(e) {
 		e.preventDefault();
 		jQuery("#searchform<?php echo $currModID ?>").submit(); 
@@ -1470,7 +1430,9 @@ jQuery(function() {
 	<?php } ?>
 	
 	showhideCategories<?php echo $currModID ?>();
+<?php if($showDateRange){ ?>	
 	insertNight<?php echo $currModID ?>();
+<?php } ?>
 	checkChildrenSearch<?php echo $currModID ?>(<?php echo $nch ?>,<?php echo $showChildrenagesmsg ?>);
 	jQuery("#bfi-child<?php echo $currModID ?>").change(function() {
 		checkChildrenSearch<?php echo $currModID ?>(jQuery(this).val(),0);
@@ -1583,6 +1545,7 @@ function showhideCategories<?php echo $currModID ?>() {
 
 
 		jQuery("#searchtypetab<?php echo $currModID ?>").val("0");
+<?php if($showDateRange){ ?>	
 		var d = jQuery('#<?php echo $checkinId; ?>').datepicker('getDate');
 		if (jQuery(resbynight).val() == 1) {
 			d.setDate(d.getDate() + 1);
@@ -1592,6 +1555,7 @@ function showhideCategories<?php echo $currModID ?>() {
 		if (jQuery('#<?php echo $checkoutId; ?>').datepicker("getDate") <= d) {
 			jQuery('#<?php echo $checkoutId; ?>').datepicker("setDate", Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
 		}
+<?php } ?>
 
 		if(itemTypesSelectedBooking.length>0){
 			itemTypes.val(itemTypesSelectedBooking);
@@ -1674,11 +1638,13 @@ function showhideCategories<?php echo $currModID ?>() {
 		}
 	}
 	
+<?php if($showDateRange){ ?>	
 	jQuery("#divcalendarnightsearch<?php echo $currModID ?>").hide();
 	var resbynight_str = resbynight.val().split(",");
 	if(resbynight_str.indexOf("0") !== -1 || resbynight_str.indexOf("1") !== -1 ){
 		jQuery("#divcalendarnightsearch<?php echo $currModID ?>").show();
 	}
+<?php } ?>
 
 	if (currTab.hasClass("searchSelling")) {
 		jQuery("#searchtypetab<?php echo $currModID ?>").val("3");
@@ -1687,7 +1653,9 @@ function showhideCategories<?php echo $currModID ?>() {
 
 
     jQuery('#bfisearch<?php echo $currModID ?>').on('tabsactivate', function (event, ui) {
+<?php if($showDateRange){ ?>	
 		insertNight<?php echo $currModID ?>();
+<?php } ?>
 		showhideCategories<?php echo $currModID ?>();
     })
 

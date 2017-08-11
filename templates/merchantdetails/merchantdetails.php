@@ -117,6 +117,7 @@ if ($rating>9 )
 $reviewavg = isset($merchant->Avg) ? $merchant->Avg->Average : 0;
 $reviewcount = isset($merchant->Avg) ? $merchant->Avg->Count : 0;
 $resourceDescription = BFCHelper::getLanguage($merchant->Description, $language, null, array( 'striptags'=>'striptags', 'bbcode'=>'bbcode','ln2br'=>'ln2br')) ;
+$merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
 ?>
 <script type="application/ld+json">// <![CDATA[
 <?php echo json_encode($payload); ?>
@@ -186,10 +187,10 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 		</div>	
 	</div>
 	
-	<?php if ($merchant->HasResources):?>
+	<?php if ($merchant->HasResources){?>
 		<a name="calc"></a>
 		<div id="divcalculator"><div style="padding:10px;text-align:center;"><i class="fa fa-spinner fa-spin fa-3x fa-fw margin-bottom"></i><span class="sr-only">Loading...</span></div></div>
-	<?php endif; ?>	
+	<?php } ?>	
 	
 	
 	<div class="bfi-clearboth"></div>
@@ -220,7 +221,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 	<div class="bfi-clearboth"></div>
 	<?php  include(BFI()->plugin_path().'/templates/merchant_small_details.php');  ?>
 	
-	<?php if (($showMap)) :?>
+	<?php if (($showMap)) {?>
 	<br /><br />
 <div id="merchant_map" style="width:100%;height:350px"></div>
 	<script type="text/javascript">
@@ -276,23 +277,23 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 
 	//-->
 	</script>
-<?php endif; ?>
+<?php } ?>
 
 
-<?php if ($merchant->RatingsContext ==1 || $merchant->RatingsContext ==3):?>
+<?php if ($merchant->RatingsContext ==1 || $merchant->RatingsContext ==3){?>
 	<div class="bfi-ratingslist">
 	<?php
 		$summaryRatings = $modelmerchant->getMerchantRatingAverageFromService($merchant_id);
 		$modelmerchant->setItemPerPage(COM_BOOKINGFORCONNECTOR_ITEMPERPAGE);
 		$ratings = $modelmerchant->getItemsRating($merchant_id);
-		if ( false !== ( $temp_message = get_transient( 'temporary_message' ) )) :
+		if ( false !== ( $temp_message = get_transient( 'temporary_message' ) )) {
 			echo $temp_message;
 			delete_transient( 'temporary_message' );
-		endif;
+		}
 	?>
 		<?php include('merchant-ratings.php'); ?>
 	</div>
-<?php endif; ?>
+<?php } ?>
 
 </div>
 <script type="text/javascript">

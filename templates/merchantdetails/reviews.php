@@ -46,6 +46,11 @@ $rating_text = array('merchants_reviews_text_value_0' => __('Very poor', 'bfi'),
 					);
 $merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
 
+$rating = $merchant->Rating;
+if ($rating>9 )
+{
+	$rating = $rating/10;
+} 
 
 ?>
 
@@ -53,7 +58,7 @@ $merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], nu
 	<?php //echo JHTML::link(JRoute::_('index.php?option=com_bookingforconnector&view=merchantdetails&merchantId=' . $merchant->MerchantId . ':' . BFCHelper::getSlug($merchant->Name),true,-1), JTEXT::_('COM_BOOKINGFORCONNECTOR_MERCHANTS_VIEW_MERCHANTDETAILS_RATING_RETURN') ,array('class' => ' bfi-pull-right'));?>
 	<div class="bfi-title-name"><?php echo  $merchant->Name?> 
 		<span class="bfi-item-rating">
-		  <?php for($i = 0; $i < $merchant->Rating; $i++) { ?>
+		  <?php for($i = 0; $i < $rating; $i++) { ?>
 		  <i class="fa fa-star"></i>
 		  <?php } ?>
 		</span>
@@ -74,10 +79,7 @@ $merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], nu
 		$total = number_format((float)$summaryRatings->Average, 1, '.', '');
 
 		$totalInt = BFCHelper::convertTotal($total);
-
-   }
 	?>
-	<?php if (isset($summaryRatings)){ ?>
 	<div class="bfi-rating-container">
 		<div class="bfi-row">
 			<div class="bfi-col-md-3 bfi-text-center">
@@ -237,13 +239,13 @@ $merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], nu
 					
 					<div class="bfi-rating-details">
 					<?php if($rating->NotesData !="") {?>
-						<p > <span class="label label-info"><b><?php _e('+', 'bfi') ?></b></span>
+						<p > <span class="bfi-label bfi-label-info"><b><?php _e('+', 'bfi') ?></b></span>
 						<span class="expander"><?php echo  stripslashes($rating->NotesData); ?></span>
 						</p>
 						<br />
 					<?php } ?>
 					<?php if($rating->NotesData1 !="") {?>
-						<p ><span class="label label-warning"><b><?php _e('-', 'bfi') ?></b></span>
+						<p ><span class="bfi-label bfi-label-warning"><b><?php _e('-', 'bfi') ?></b></span>
 						<span class="expander"><?php echo  stripslashes($rating->NotesData1); ?></span>
 						</p>
 					<?php } ?>

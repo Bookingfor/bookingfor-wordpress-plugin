@@ -2043,6 +2043,7 @@ function checkDateBooking<?php echo $checkinId?>($, obj, selectedDate) {
 			if ($("#<?php echo $checkoutId?>").datepicker("getDate") < date) {
 				$("#<?php echo $checkoutId?>").datepicker("setDate", Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
 			}
+			break;
 		case 1:
 			offsetDate.setDate(offsetDate.getDate() + 1);
 			$("#<?php echo $checkoutId?>").datepicker("option", "minDate", offsetDate);

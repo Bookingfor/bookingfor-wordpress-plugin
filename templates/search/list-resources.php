@@ -37,16 +37,6 @@ $isportal = COM_BOOKINGFORCONNECTOR_ISPORTAL;
 $showdata = COM_BOOKINGFORCONNECTOR_SHOWDATA;
 
 $resourceImageUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s6.jpeg";
-//$merchantLogoUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s1.jpeg";
-
-//$resourceLogoPath = BFCHelper::getImageUrlResized('resources',"[img]", 'medium');
-//$resourceLogoPathError = BFCHelper::getImageUrl('resources',"[img]", 'medium');
-
-//$merchantImageUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s6.jpeg";
-//$merchantLogoUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s6.jpeg";
-
-//$merchantLogoPath = BFCHelper::getImageUrlResized('merchant',"[img]", 'logomedium');
-//$merchantLogoPathError = BFCHelper::getImageUrl('merchant',"[img]", 'logomedium');
 
 $searchAvailability_page = get_post( bfi_get_page_id( 'searchavailability' ) );
 $formAction = get_permalink( $searchAvailability_page->ID );

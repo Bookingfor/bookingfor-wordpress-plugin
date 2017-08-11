@@ -2370,7 +2370,7 @@ class BFCHelper {
 							unset($order->RatePlanStay->SuggestedStay);
 							unset($order->RatePlanStay->AllVariationsString);
 							
-							foreach($pr as $order->CalculatedPricesDetails) {
+							foreach($order->CalculatedPricesDetails as $pr) {
 								unset($pr->OriginalDays);
 								unset($pr->Days);
 								unset($pr->Variations);

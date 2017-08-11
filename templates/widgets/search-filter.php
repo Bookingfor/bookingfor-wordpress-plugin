@@ -676,7 +676,7 @@ function bfi_applyfilterdata(){
 
 	jQuery('.bfi-filter-label').bind('mouseenter', function(){
 		var $this = jQuery(this);
-		var divWidthBefore = $this.width()+5;
+		var divWidthBefore = $this.width();
 		$this.css('width','auto');
 		$this.css('white-space','nowrap');
 		var divWidth = $this.width();

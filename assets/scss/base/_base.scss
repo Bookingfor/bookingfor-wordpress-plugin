@@ -379,6 +379,16 @@ a.bfi-avg-value, a.bfi-avg-value:link, a.bfi-avg-value:hover {
 		}
 	}
 }
+.bfi-filter-label{
+    box-sizing: border-box;
+	overflow: hidden;
+	white-space: normal;
+	height:20px;
+    top: 0px;
+    position: absolute;
+    left: 20px;
+	padding-right:20px;
+}
 .bfi-filter-count {
     top: 0px;
     position: absolute;

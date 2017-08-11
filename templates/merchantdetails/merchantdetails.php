@@ -38,10 +38,10 @@ $rating_text = array('merchants_reviews_text_value_0' => __('Very poor', 'bfi'),
 					);
 
 
-$merchantRules ='';
-if(!empty($merchant->Rules)){
-	$merchantRules = BFCHelper::getLanguage($merchant->Rules, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags', 'bbcode'=>'bbcode'));
-}
+//$merchantRules ='';
+//if(!empty($merchant->Rules)){
+//	$merchantRules = BFCHelper::getLanguage($merchant->Rules, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags', 'bbcode'=>'bbcode'));
+//}
 $resourceLat = null;
 $resourceLon = null;
 

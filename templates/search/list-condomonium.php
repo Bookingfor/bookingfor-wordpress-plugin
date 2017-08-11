@@ -24,7 +24,10 @@ $totalResult = $total;
 
 $language = $GLOBALS['bfi_lang'];
 $languageForm ='';
+
 $listsId = array();
+$listResourceIds = array(); 
+
 if(defined('ICL_LANGUAGE_CODE') &&  class_exists('SitePress')){
 		global $sitepress;
 		if($sitepress->get_current_language() != $sitepress->get_default_language()){
@@ -34,14 +37,7 @@ if(defined('ICL_LANGUAGE_CODE') &&  class_exists('SitePress')){
 $isportal = COM_BOOKINGFORCONNECTOR_ISPORTAL;
 $showdata = COM_BOOKINGFORCONNECTOR_SHOWDATA;
 
-$img = BFI()->plugin_url() . "/assets/images/default.png";
-$imgError = BFI()->plugin_url() . "/assets/images/default.png";
-
 $merchantImageUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s6.jpeg";
-
-$merchantImagePath = BFCHelper::getImageUrlResized('merchant', "[img]",'medium');
-$merchantImagePathError = BFCHelper::getImageUrl('merchant', "[img]",'medium');
-
 
 $base_url = get_site_url();
 $onlystay = true ;
@@ -109,13 +105,8 @@ $url_condominium_page = get_permalink( $condominiumdetails_page->ID );
 
 <div class="bfi-clearfix"></div>
 <div id="bfi-list" class="bfi-row bfi-list">
-<?php 
 
-$listResourceIds = array(); 
-
-?>  
-
-<?php foreach ($merchants as $merchant): ?>
+<?php foreach ($merchants as $merchant){ ?>
 <?php 
 
 	$rating = $merchant->MrcRating;
@@ -127,8 +118,9 @@ $listResourceIds = array();
 	} 
 	$isCondominium = (!empty( $merchant->CondominiumId ) && ($merchant->CondominiumId != $merchant->ResourceId));
 
-	$routeMerchant = $url_merchant_page . $merchant->MerchantId.'-'.BFI()->seoUrl($merchant->Name);
+	$routeMerchant = $url_merchant_page . $merchant->MerchantId.'-'.BFI()->seoUrl($merchant->MrcName);
 	$routeCondominium = $url_condominium_page . $merchant->CondominiumId.'-'.BFI()->seoUrl($merchant->GrpName);
+	$routeCondominium .= "?fromsearch=1";
 //	$routeCondominium = $url_condominium_page . $merchant->CondominiumId.'-toreplace-';
 	
 	$routeRating = $routeMerchant .'/'._x('reviews', 'Page slug', 'bfi' );
@@ -189,25 +181,25 @@ $listResourceIds = array();
 	<div class="bfi-col-sm-6 bfi-item">
 		<div class="bfi-row bfi-sameheight" >
 			<div class="bfi-col-sm-3 bfi-img-container">
-				<a href="<?php echo $routeCondominium ?>?fromsearch=1" style='background: url("<?php echo $merchantImageUrl; ?>") center 25%;background-size: cover;' target="_blank"><img src="<?php echo $merchantImageUrl; ?>" class="bfi-img-responsive" /></a> 
+				<a href="<?php echo $routeCondominium ?>" style='background: url("<?php echo $merchantImageUrl; ?>") center 25%;background-size: cover;' target="_blank"><img src="<?php echo $merchantImageUrl; ?>" class="bfi-img-responsive" /></a> 
 			</div>
 			<div class="bfi-col-sm-9 bfi-details-container">
 				<!-- merchant details -->
 				<div class="bfi-row" >
 					<div class="bfi-col-sm-12">
 						<div class="bfi-item-title">
-							<a href="<?php echo $routeCondominium ?>?fromsearch=1" id="nameAnchor<?php echo $merchant->CondominiumId?>" target="_blank"><?php echo  $currName ?></a> 
+							<a href="<?php echo $routeCondominium ?>" id="nameAnchor<?php echo $merchant->CondominiumId?>" target="_blank"><?php echo  $currName ?></a> 
 						</div>
 						<div class="bfi-item-address">
-							<?php if ($showMerchantMap):?>
+							<?php if ($showMerchantMap){?>
 							<a href="javascript:void(0);" onclick="showMarker(<?php echo $merchant->ResourceId?>)"><span id="address<?php echo $merchant->CondominiumId?>"></span></a>
-							<?php endif; ?>
+							<?php } ?>
 						</div>
 						<div class="bfi-mrcgroup" id="bfitags<?php echo $merchant->CondominiumId; ?>"></div>
 					</div>
 					<?php if(false) { ?>
 						<div class="bfi-col-sm-3 bfi-text-right">
-							<?php if ($isportal && ($merchant->RatingsContext ==1 || $merchant->RatingsContext ==3)):?>
+							<?php if ($isportal && ($merchant->RatingsContext ==1 || $merchant->RatingsContext ==3)){?>
 									<div class="bfi-avg">
 									<?php if ($merchant->MrcAVGCount>0){
 										$totalInt = BFCHelper::convertTotal(number_format((float)$merchant->MrcAVG, 1, '.', ''));
@@ -219,7 +211,7 @@ $listResourceIds = array();
 										<!-- <a class="bfi-avg-leaverating " href="<?php echo $routeRatingform ?>"><?php _e('Would you like to leave your review?', 'bfi') ?></a> -->
 									<?php } ?>
 									</div>
-							<?php endif; ?>
+							<?php } ?>
 						</div>
 					<?php } ?>
 					
@@ -367,7 +359,7 @@ $listResourceIds = array();
 		
 ?>
 
-	<?php endforeach; ?>
+	<?php } ?>
 </div>
 </div>
 <script type="text/javascript">

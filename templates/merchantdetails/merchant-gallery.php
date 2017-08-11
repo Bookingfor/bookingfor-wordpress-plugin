@@ -31,13 +31,6 @@ if(!empty($merchant->VideoData)) {
 <?php
 $main_img = $images[0];
 $sub_images = array_slice($images, 1, 4);
-$rating = $merchant->Rating;
-if ($rating>9 )
-{
-	$rating = $rating/10;
-} 
-$reviewavg = isset($merchant->Avg) ? $merchant->Avg->Average : 0;
-$reviewcount = isset($merchant->Avg) ? $merchant->Avg->Count : 0;
 ?>
 <div class="bfi-launch-fullscreen">
 	<img src="<?php echo BFCHelper::getImageUrlResized('merchant', $main_img['data'],'big')?>" alt="">

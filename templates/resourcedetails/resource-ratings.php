@@ -2,13 +2,9 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
-$merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
-
-
 ?>
 <div >
 	<?php
-   //$filters = $this->params['filters'];
    
    $list = array (__('All reviewers', 'bfi'), __('Solo travellers', 'bfi'), __('Groups', 'bfi'), __('Young couplet', 'bfi'), __('Mature couples', 'bfi'), __('Families with young children', 'bfi'), __('Family with older children', 'bfi'));
 
@@ -119,7 +115,22 @@ $merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], nu
 			$reply = ""; 
 			$replydateLabel = ""; 
 			if (!empty($rating->Reply)){					
-				$reply =$rating->Reply;			
+				if (strpos($rating->Reply,'<replies>') !== false) {
+					$replies = bfi_simpledom_load_string($rating->Reply);
+					
+					$reply = $replies->reply[0];
+					$replydate = $replies->reply[0]["date"];
+
+
+					if(!empty($replydate)){
+//					$jdatereply  = new JDate(strtotime($replydate),2); // 3:20 PM, December 1st, 2012
+					$jdatereply  = DateTime::createFromFormat('Ymd', $replydate);
+
+					$replydateLabel =sprintf(__( 'Replied on %1s', 'bfi' ), $jdatereply->format('d/m/Y'));
+					}
+				} else{
+					$reply =$rating->Reply;
+				}
 			}
 			?>
 			<div class="bfi-row bfi-rating-list">
@@ -180,7 +191,7 @@ $merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], nu
 					<?php if (!empty($reply)) { ?>
 						<div class="bfi-rating-details bfi-arrow-box-top">
 							<div class="">
-							   <?php printf( __( '%s has responded to this review', 'bfi' ), $merchantname); ?>
+							   <?php printf( __( '%s has responded to this review', 'bfi' ), $merchantName); ?>
 								<span class="com_bookingforconnector_rating_date_small bfi-pull-right"><?php echo  $replydateLabel?></span>
 							</div>
 							<br />

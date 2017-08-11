@@ -46,7 +46,7 @@ if (!empty($merchant->LogoUrl)){
 if(BFI()->isResourcePage() && !empty($resource_id)){
 	$uriMerchantInfoRequest .= '/'.$resource_id .'-'._x( 'accommodation-details', 'Page slug', 'bfi' );
 }
-if(BFI()->isResourceOnSellPage()){
+if(BFI()->isResourceOnSellPage() && !empty($resource_id)){
 	$uriMerchantInfoRequest .= '/'.$resource_id .'-'._x( 'properties-for-sale', 'Page slug', 'bfi' );
 }
 

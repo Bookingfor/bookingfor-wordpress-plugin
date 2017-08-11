@@ -856,7 +856,7 @@ foreach($allResourceId as $resId) {
 
 										$loadScriptTimePeriod = true;
 
-										$timeDuration = $currDiff->i + ($currDiff->h*60);
+										$timeDuration = $currDiff->h + ($currDiff->i/60);
 
 										array_push($allTimePeriodResourceId, $res->ResourceId);
 									?>
@@ -1060,6 +1060,7 @@ if($currRateplan->AvailabilityType==0 || $currRateplan->AvailabilityType==1){
 ?>
 			<tr id="data-id-<?php echo $currRateplan->ResourceId ?>-<?php echo $currRateplan->RatePlan->RatePlanId ?>" class="<?php echo $IsBookable?"bfi-bookable":"bfi-canberequested"; ?>">
 				<td><!-- Min/Max -->
+				<?php if ($currRateplan->MaxPaxes>0){?>
 				<?php 
 				if(!empty( $currRateplan->RatePlan->SuggestedStay ) && !empty( $currRateplan->RatePlan->SuggestedStay->ComputedPaxes )){
 					$computedPaxes = explode("|", $currRateplan->RatePlan->SuggestedStay->ComputedPaxes);
@@ -1104,17 +1105,16 @@ if($currRateplan->AvailabilityType==0 || $currRateplan->AvailabilityType==1){
 
 				}else{
 				?>
-					<?php if ($currRateplan->MaxPaxes>0){?>
-						<div class="bfi-icon-paxes">
-							<i class="fa fa-user"></i> 
-							<?php if ($currRateplan->MaxPaxes==2 && $currRateplan->MinPaxes==2){?>
-							<i class="fa fa-user"></i> 
-							<?php }?>
-							<?php if ($currRateplan->MaxPaxes>2){?>
-								<?php echo ($currRateplan->MinPaxes != $currRateplan->MaxPaxes)? $currRateplan->MinPaxes . "-" : "" ?><?php echo  $currRateplan->MaxPaxes ?>
-							<?php }?>
-						</div>
-					<?php } ?>
+					<div class="bfi-icon-paxes">
+						<i class="fa fa-user"></i> 
+						<?php if ($currRateplan->MaxPaxes==2 && $currRateplan->MinPaxes==2){?>
+						<i class="fa fa-user"></i> 
+						<?php }?>
+						<?php if ($currRateplan->MaxPaxes>2){?>
+							<?php echo ($currRateplan->MinPaxes != $currRateplan->MaxPaxes)? $currRateplan->MinPaxes . "-" : "" ?><?php echo  $currRateplan->MaxPaxes ?>
+						<?php }?>
+					</div>
+				<?php } ?>
 				<?php } ?>
 				</td>
 

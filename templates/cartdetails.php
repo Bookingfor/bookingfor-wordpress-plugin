@@ -339,11 +339,6 @@ if(!empty($MerchantDetail->AcceptanceCheckIn) && !empty($MerchantDetail->Accepta
 
 				</td>
 			</tr>
-<?php 
-
-//		foreach ($merchant as $itm) // foreach $itm
-//		{
-?>
                             <?php 
                             foreach ($merchantResources as $keyRes=>$res )
                             {
@@ -919,7 +914,7 @@ if($res->IncludedMeals >-1){
 														$currCheckOut = DateTime::createFromFormat("YmdHis", $sdetail->CheckInTime);
 														$currCheckOut->add(new DateInterval('PT' . $sdetail->TimeDuration . 'M'));
 														$currDiff = $currCheckOut->diff($currCheckIn);
-														$timeDuration = $currDiff->i + ($currDiff->h*60);
+														$timeDuration = $currDiff->h + ($currDiff->i/60);;
 //														$startHour = DateTime::createFromFormat("YmdHis", $sdetail->CheckInTime);
 //														$endHour = DateTime::createFromFormat("YmdHis", $sdetail->CheckInTime);
 //														$endHour->add(new DateInterval('PT' . $sdetail->TimeDuration . 'M'));

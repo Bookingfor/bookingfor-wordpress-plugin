@@ -421,8 +421,6 @@ class BookingForConnectorModelSearch
 					$val->Resource->YGooglePos = $result->ResLng;
 					$val->Resource->ResourceName = BFCHelper::getSlug($result->ResName);
 					$val->Resource->Price = $result->Price;
-					
-					$val->Resource->strAddress =  $result->Address . " - " . $result->ZipCode ." - " . $result->CityName . " (".$result->RegionName.")";
 				}
 				else { 
 					$val->Resource = new StdClass;
@@ -529,6 +527,10 @@ class BookingForConnectorModelSearch
 	}
 	
 	public function SearchResult($term, $language, $limit, $onlyLocations=0) {
+		if(empty( $onlyLocations)){
+			$onlyLocations = 0;
+		}
+		
 		$options = array(
 			'path' => $this->urlSearchResult,
 			'data' => array(

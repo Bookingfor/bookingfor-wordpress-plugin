@@ -627,8 +627,18 @@ if(!empty($allResourceId)){
 				</div>	
 		</div>
 </div><!-- /.modal -->
+<?php 
+if(empty($allResourceId) && empty($resourceId)){
+?>
 
-
+					<div class="errorbooking" id="errorbooking">
+						<strong><?php _e('No results available for the submitted data', 'bfi') ?></strong>
+						<!-- No disponibile -->
+					</div>
+<?php 
+$showResult= " bfi-hide";
+					}
+?>
 
 <div class="bfi-result-list <?php echo $showResult ?> bfi-table-responsive">
 <script>
@@ -735,9 +745,9 @@ $currTouristTaxValue = isset($resource->TouristTaxValue)?$resource->TouristTaxVa
 					</div>
 				</td>
 			</tr>
-			<?php if ($totalResCount > 0 ): ?>
+			<?php if (!empty($allResourceId)) { ?>
 				<tr><td colspan="5" class="bfi-otherresults-box"><div class="bfi-otherresults"><?php echo sprintf(__('Other %1$d choise', 'bfi'), $totalResCount) ?></div> <?php _e('Find other great offers!', 'bfi') ?></td></tr>
-			<?php endif; ?>
+			<?php } ?>
 
 		<?php } ?>
 <?php

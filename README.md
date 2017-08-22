@@ -18,7 +18,7 @@ Bookingfor v.7.x.x
 # Compatibility
 Polylang v. 1.9.x<br/>
 WPML v. 3.3<br/><br/>
-Supported theme: <br/> 
+Supported theme: <br/>
 twentyseventeen<br/>
 twentysixteen<br/>
 twentyfifteen<br/>

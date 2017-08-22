@@ -2,28 +2,9 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
-//$base_url = get_site_url();
-$rating_text = array('merchants_reviews_text_value_0' => __('Very poor', 'bfi'),
-						'merchants_reviews_text_value_1' => __('Poor', 'bfi'),   
-						'merchants_reviews_text_value_2' => __('Disappointing', 'bfi'),
-						'merchants_reviews_text_value_3' => __('Fair', 'bfi'),
-						'merchants_reviews_text_value_4' => __('Okay', 'bfi'),
-						'merchants_reviews_text_value_5' => __('Pleasant', 'bfi'),  
-						'merchants_reviews_text_value_6' => __('Good', 'bfi'),
-						'merchants_reviews_text_value_7' => __('Very good', 'bfi'),  
-						'merchants_reviews_text_value_8' => __('Fabulous', 'bfi'), 
-						'merchants_reviews_text_value_9' => __('Exceptional', 'bfi'),  
-						'merchants_reviews_text_value_10' => __('Exceptional', 'bfi'),                                 
-					);
-
-$merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
-
-
 ?>
-
 <div >
 	<?php
-   //$filters = $this->params['filters'];
    
    $list = array (__('All reviewers', 'bfi'), __('Solo travellers', 'bfi'), __('Groups', 'bfi'), __('Young couplet', 'bfi'), __('Mature couples', 'bfi'), __('Families with young children', 'bfi'), __('Family with older children', 'bfi'));
 
@@ -82,23 +63,21 @@ $merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], nu
 	<div class="bfi-rating-container">
 			<?php $typologyId = isset($_SESSION['ratings']['filters']['typologyid']) ? $_SESSION['ratings']['filters']['typologyid'] : 0; ?>
 			<form action="<?php echo $routeMerchant; ?>/<?php echo _x('reviews', 'Page slug', 'bfi' ) ?>" method="post" name="adminForm" id="adminForm" class="bfi-rating-filter ratingformfilter">
-				<div class="filters">
 					<?php _e('Show reviews from', 'bfi') ?>
 					<select id="filterstypologyid" name="filters[typologyid]" onchange="this.form.submit();">
-						<option value="0"><?php _e('All reviewers', 'bfi'); ?></option>
-						<option value="1"><?php _e('Solo travellers', 'bfi'); ?></option>
-						<option value="2"><?php _e('Groups', 'bfi'); ?></option>
-						<option value="3"><?php _e('Young couplet', 'bfi'); ?></option>
-						<option value="4"><?php _e('Mature couples', 'bfi'); ?></option>
-						<option value="5"><?php _e('Families with young children', 'bfi'); ?></option>
-						<option value="6"><?php _e('Family with older children', 'bfi'); ?></option>
+						<option value="0"<?php if($typologyId == 0) { echo ' selected="selected"'; } else { echo ''; } ?>><?php _e('All reviewers', 'bfi'); ?></option>
+						<option value="1"<?php if($typologyId == 1) { echo ' selected="selected"'; } else { echo ''; } ?>><?php _e('Solo travellers', 'bfi'); ?></option>
+						<option value="2"<?php if($typologyId == 2) { echo ' selected="selected"'; } else { echo ''; } ?>><?php _e('Groups', 'bfi'); ?></option>
+						<option value="3"<?php if($typologyId == 3) { echo ' selected="selected"'; } else { echo ''; } ?>><?php _e('Young couplet', 'bfi'); ?></option>
+						<option value="4"<?php if($typologyId == 4) { echo ' selected="selected"'; } else { echo ''; } ?>><?php _e('Mature couples', 'bfi'); ?></option>
+						<option value="5"<?php if($typologyId == 5) { echo ' selected="selected"'; } else { echo ''; } ?>><?php _e('Families with young children', 'bfi'); ?></option>
+						<option value="6"<?php if($typologyId == 6) { echo ' selected="selected"'; } else { echo ''; } ?>><?php _e('Family with older children', 'bfi'); ?></option>
 					</select>
 					<input type="hidden" name="filter_order" value="">
 					<input type="hidden" name="filter_order_Dir" value="">
 					<input type="hidden" name="searchid" value="-1">
 					<input type="hidden" name="limitstart" value="0">
 					<a href="<?php echo $routeMerchant; ?>/<?php echo _x('review', 'Page slug', 'bfi' ) ?>" class="bfi-btn bfi-alternative bfi-pull-right"><?php _e('Write a Review', 'bfi') ?></a>
-				</div>
 			</form>
 		<?php if ($ratings != null): ?>
 		<div class="bfi-merchantdetails-ratings">
@@ -198,11 +177,11 @@ $merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], nu
 					
 					<div class="bfi-rating-details">
 					<?php if($rating->NotesData !="") :?>
-						<span class="label label-info"><b><?php _e('+', 'bfi') ?></b></span>
+						<span class="label"><b><?php _e('+', 'bfi') ?></b></span>
 						<span class="expander"><?php echo  stripslashes($rating->NotesData); ?></span>
 					<?php endif; ?>
 					<?php if($rating->NotesData1 !="") :?>
-						<p><span class="label label-warning"><b><?php _e('-', 'bfi') ?></b></span>
+						<p><span class="label"><b><?php _e('-', 'bfi') ?></b></span>
 						<span class="expander"><?php echo  stripslashes($rating->NotesData1); ?></span></p>
 					<?php endif; ?>
 					</div>

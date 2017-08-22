@@ -16,20 +16,7 @@ if(defined('ICL_LANGUAGE_CODE') &&  class_exists('SitePress')){
 $isportal = COM_BOOKINGFORCONNECTOR_ISPORTAL;
 $showdata = COM_BOOKINGFORCONNECTOR_SHOWDATA;
 
-$img = BFI()->plugin_url() . "/assets/images/default.png";
-$imgError = BFI()->plugin_url() . "/assets/images/default.png";
-
-$merchantLogo = BFI()->plugin_url() . "/assets/images/defaults/default-s1.jpeg";
 $merchantImageUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s6.jpeg";
-
-$merchantImagePath = BFCHelper::getImageUrlResized('merchant', "[img]",'medium');
-$merchantImagePathError = BFCHelper::getImageUrl('merchant', "[img]",'medium');
-
-
-$onlystay = true ;
-if(!empty($_SESSION['search.params']['onlystay'])){
-	$onlystay =  $_SESSION['search.params']['onlystay'] === 'false'? false: true;
-}
 
 $merchantdetails_page = get_post( bfi_get_page_id( 'merchantdetails' ) );
 $url_merchant_page = get_permalink( $merchantdetails_page->ID );
@@ -92,7 +79,6 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 				$rating = $rating/10;
 			} 
 			$routeMerchant = $url_merchant_page . $merchant->MerchantId.'-'.BFI()->seoUrl($merchant->Name);
-			$routeRating = $routeMerchant .'/'._x('reviews', 'Page slug', 'bfi' );
 			$routeRating = $routeMerchant .'/'._x('reviews', 'Page slug', 'bfi' );
 			$routeInfoRequest = $routeMerchant .'/'._x('contactspopup', 'Page slug', 'bfi' );
 			

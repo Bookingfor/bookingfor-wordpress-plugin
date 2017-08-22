@@ -25,6 +25,12 @@ $pages = 0;
 if($total>0){
 	$pages = ceil($total / COM_BOOKINGFORCONNECTOR_ITEMPERPAGE);
 }
+$rating = $merchant->Rating;
+if ($rating>9 )
+{
+	$rating = $rating/10;
+}
+
 ?>
 <script type="text/javascript">
 <!--
@@ -37,7 +43,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 <div class="bfi-row">
 	<div class="bfi-title-name bfi-hideonextra"><?php echo  $merchant->Name?>
 		<span class="bfi-item-rating">
-			<?php for($i = 0; $i < $merchant->Rating; $i++) { ?>
+			<?php for($i = 0; $i < $rating; $i++) { ?>
 			<i class="fa fa-star"></i>
 			<?php } ?>
 		</span>

@@ -1,5 +1,5 @@
 .bfi-datepicker {
-    background-color: $color13;
+	background-color: $color13;
 	border-radius: $border-radius-base;
 	border: $color11 1px solid;
 	padding: 5px 0;
@@ -31,6 +31,7 @@
 	}
 }
 #ui-datepicker-div.bfi-calendar{
+	z-index:999 !important;
 	&::before, &::after {
 		text-align: center;
 		width: auto;
@@ -138,7 +139,7 @@
 		text-decoration: line-through;
 	}
 	& .ui-datepicker-group {
-		padding: 5px;
+		padding: 5px 0;
 		background: $color13;
 	}
 }

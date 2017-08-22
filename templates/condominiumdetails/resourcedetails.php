@@ -122,6 +122,9 @@ if(!empty($fromSearch)){
 $reviewavg = 0;
 $reviewcount = 0;
 $showReview = false;
+$resource->IsCatalog = false;
+$resource->MaxCapacityPaxes = 0;
+$resource->TagsIdList = "";
 
 
 //if ($merchant->RatingsContext != NULL && $merchant->RatingsContext > 0) {

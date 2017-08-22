@@ -370,7 +370,7 @@ echo("</tr>\n");
 				var marker = new google.maps.Marker({
 					position: myLatlng,
 					map: mapUnit,
-					title: '<?php echo $resourcename?>'
+					title: '<?php echo $resourceName?>'
 				});
 			}
 			else {
@@ -381,7 +381,7 @@ echo("</tr>\n");
 					center: myLatlng,
 					radius: 300, //in metri (1000m = 1Km)
 					map: mapUnit,
-					title: '<?php echo $resourcename?>'
+					title: '<?php echo $resourceName?>'
 				});
 			}
 			redrawmap()
@@ -423,36 +423,26 @@ echo("</tr>\n");
 
 <br>
 <br>
-	<script type="text/javascript">
-	<!--
+<script type="text/javascript">
+<!--
 jQuery(function($) {
-		jQuery('.bfi-menu-top li a,.bfi-map-link').click(function(e) {
-			e.preventDefault();
-			jQuery('html, body').animate({ scrollTop: jQuery(jQuery(this).attr("rel")).offset().top }, 2000);
-		});
-		jQuery('#bfi-avgreview').click(function() {
-			jQuery('html, body').animate({ scrollTop: jQuery(".bfi-ratingslist").offset().top }, 2000);
-		});
+	jQuery('.bfi-menu-top li a,.bfi-map-link').click(function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({ scrollTop: jQuery(jQuery(this).attr("rel")).offset().top }, 2000);
+	});
+	jQuery('#bfi-avgreview').click(function() {
+		jQuery('html, body').animate({ scrollTop: jQuery(".bfi-ratingslist").offset().top }, 2000);
+	});
 
 	var shortenOption = {
 		moreText: "<?php _e('Read more', 'bfi'); ?>",
 		lessText: "<?php _e('Read less', 'bfi'); ?>",
 		showChars: '250'
 	};
+
 	jQuery(".bfi-description-data").shorten(shortenOption);
 
-	var rateplansTags = [];
-
-
-//// sostituzione ricerca======================
-//	selTipo = jQuery('select[name=merchantCategoryId] > option:first-child');
-//    if (selTipo.length ) {
-//		selTipo.text('<?php echo addslashes($merchant->Name) ?>');
-//		selTipo.val("id|<?php echo $merchant->MerchantId ?>");
-//		var sel = jQuery("select[name=merchantCategoryId]")
-//		sel.val(selTipo.val());
-//	}
-	});
-	//-->
-	</script>
+});
+//-->
+</script>
 </div>

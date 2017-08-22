@@ -1,4 +1,4 @@
-<?php
+0<?php
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
@@ -20,8 +20,6 @@ if(defined('ICL_LANGUAGE_CODE') &&  class_exists('SitePress')){
 
 $merchantdetails_page = get_post( bfi_get_page_id( 'merchantdetails' ) );
 $url_merchant_page = get_permalink( $merchantdetails_page->ID );
-
-$currModID = uniqid('search');
 
 $cols = !empty($instance['itemspage'])? $instance['itemspage']: 4;
 $tags =  $instance['tags']; 
@@ -63,16 +61,9 @@ if ( $title ) {
 			if(!empty($merchant->DefaultImg)){
 				$currMerchantImageUrl = BFCHelper::getImageUrlResized('merchant',$merchant->DefaultImg, 'small');
 			}
-			$urls = array();
 			if(!empty($merchant->ImageData)) {
 				$images = explode(",", $merchant->ImageData);
 				$currMerchantImageUrl = BFCHelper::getImageUrlResized('merchant',$images[0], 'small');
-				foreach($images as $i => $url) {
-					if(!empty($url)) {
-						$imgLogo = str_replace("[img]", $url, $merchantImagePath);
-						$urls[] = '<div class="item ' . ($i == 0 ? 'active' : '') .'><img src="$imgLogo"></div>';
-					}
-				}
 			}
 		?>
 			<div class="com_bookingforconnector-item-col" >
@@ -116,43 +107,29 @@ if ( $title ) {
 </div>
 <script type="text/javascript">
 <!--
-	jQuery(document).ready(function() {
-		var ncolslick = <?php echo $cols ?>;
-		if(jQuery(window).width()<400){
-			ncolslick = 2;
-		}
+jQuery(document).ready(function() {
+	var ncolslick = <?php echo $cols ?>;
+	if(jQuery('#<?php echo $carouselid; ?>').width()<400){
+		ncolslick = 2;
+	}
+	if(jQuery('#<?php echo $carouselid; ?>').width()<200){
+		ncolslick = 1;
+	}
 
-		jQuery('#<?php echo $carouselid; ?>').slick({
-			dots: false,
-			draggable: false,
-			arrows: true,
-			infinite: true,
-			slidesToShow: ncolslick,
-			slidesToScroll: 1,
-		});
-
-//		// On swipe event
-//		jQuery('#<?php echo $carouselid; ?>').on('swipe', function(event, slick, direction){
-//		  console.log(direction);
-//		  // left
-//		});
-//
-//		// On edge hit
-//		jQuery('#<?php echo $carouselid; ?>').on('edge', function(event, slick, direction){
-//		  console.log('edge was hit')
-//		});
-//
-//		// On before slide change
-//		jQuery('#<?php echo $carouselid; ?>').on('beforeChange', function(event, slick, currentSlide, nextSlide){
-//		  console.log('beforeChange');
-//		  console.log(nextSlide);
-//		});
-		jQuery('#<?php echo $carouselid; ?>').on('afterChange', function(event, slick, currentSlide){
-			var maxHeight = 0;
-			jQuery('.com_bookingforconnector-item-col', jQuery(slick.$slider ))
-			.each(function() { maxHeight = Math.max(maxHeight, jQuery(this).height()); })
-			.height(maxHeight);
-		});
+	jQuery('#<?php echo $carouselid; ?>').slick({
+		dots: false,
+		draggable: false,
+		arrows: true,
+		infinite: true,
+		slidesToShow: ncolslick,
+		slidesToScroll: 1,
+	});
+	jQuery('#<?php echo $carouselid; ?>').on('afterChange', function(event, slick, currentSlide){
+		var maxHeight = 0;
+		jQuery('.com_bookingforconnector-item-col', jQuery(slick.$slider ))
+		.each(function() { maxHeight = Math.max(maxHeight, jQuery(this).height()); })
+		.height(maxHeight);
+	});
 //		jQuery('#<?php echo $carouselid; ?>').on('init', function(event, slick){
 //			var maxHeight = 0;
 //			jQuery('.com_bookingforconnector-item-col', jQuery(slick.$slider ))

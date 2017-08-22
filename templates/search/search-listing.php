@@ -205,7 +205,7 @@ add_filter( 'paginate_links', function( $link )
 				}else{
 					$merchantdetails_page = get_post( bfi_get_page_id( 'merchantdetails' ) );
 					$url_merchant_page = get_permalink( $merchantdetails_page->ID );
-					$merchants = BFCHelper::getMerchantsSearch(null,0,10,null,null);
+					$merchants = BFCHelper::getMerchantsSearch(null,0,1,null,null);
 					foreach ($merchants as $merchant){
 						$routeMerchant = $url_merchant_page . $merchant->MerchantId.'-'.BFI()->seoUrl($merchant->Name);
 						$routeRating = $routeMerchant .'/'._x('reviews', 'Page slug', 'bfi' );

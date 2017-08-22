@@ -54,7 +54,7 @@ if(COM_BOOKINGFORCONNECTOR_MONTHINCALENDAR==1){
 						<?php echo $resource->Name; ?>
 					</div><!--/span-->
 				<?php } ?>	
-				<div>
+				<div class="bfi_form_txt">
 					<input placeholder="<?php _e('Name', 'bfi'); ?> *" type="text" value="" size="50" name="form[Name]" id="Name" required="" title="<?php _e('Mandatory', 'bfi'); ?>" aria-required="true">
 				</div>
 				<div class="bfi_form_txt">

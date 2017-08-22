@@ -1,5 +1,5 @@
 var bookingfor = new function() {
-    this.version = "3.1.2";
+    this.version = "3.1.3";
 	this.bsVersion = ( typeof jQuery.fn.typeahead !== 'undefined' ? 2 : 3 );
     this.offersLoaded = [];
 
@@ -12,7 +12,7 @@ var bookingfor = new function() {
         }
 
         var query = "discountId=" + discountId + "&hasRateplans=" + hasRateplans + "&language=en-gb&task=getDiscountDetails";
-        jQuery.getJSON(urlCheck + "?" + query, function(data) {
+        jQuery.getJSON(urlCheck + ((urlCheck.indexOf('?') > -1)? "&" :"?") + query, function(data) {
 
           var name = getXmlLanguage(data.Name, cultureCode, defaultcultureCode);;
           name = nl2br(jQuery("<p>" + name + "</p>").text());
@@ -35,7 +35,7 @@ var bookingfor = new function() {
         }
 
         var query = "rateplanId=" + rateplanId + "&language=en-gb&task=getRateplanDetails";
-        jQuery.getJSON(urlCheck + "?" + query, function(data) {
+        jQuery.getJSON(urlCheck + ((urlCheck.indexOf('?') > -1)? "&" :"?") + query, function(data) {
 
           var name = getXmlLanguage(data.Name, cultureCode, defaultcultureCode);;
           name = nl2br(jQuery("<p>" + name + "</p>").text());
@@ -306,6 +306,10 @@ var bookingfor = new function() {
 		bookingfor.waitBlockUI();
 //		jQuery.blockUI({ message: ''});
 		var cart = jQuery('.bfi-shopping-cart');
+		if (!jQuery(cart).length) {
+			cart = jQuery('.bfi-content').first();
+		}
+		
 		var recalculareOrder = 0;
 		var orderDetailSummarytodrag = jQuery("#orderDetailSummary");
 		if (jQuery(objSource).length) {
@@ -339,7 +343,7 @@ var bookingfor = new function() {
 						jQuery.ajax({
 							cache: false,
 							type: 'POST',
-							url: bfi_variable.bfi_urlCheck + '?task=addToCart',
+							url: bfi_variable.bfi_urlCheck + ((bfi_variable.bfi_urlCheck.indexOf('?') > -1)? "&" :"?") + 'task=addToCart',
 							data: 'hdnOrderData=' + jQuery("#hdnOrderDataCart").val() + "&recalculateOrder=" + recalculateOrder +  '&hdnBookingType=' + jQuery("#hdnBookingType").val(),
 							success: function (data) {
 	//							console.log(data);
@@ -395,7 +399,7 @@ var bookingfor = new function() {
 				jQuery.ajax({
 					cache: false,
 					type: 'POST',
-					url: bfi_variable.bfi_urlCheck + '?task=addToCart',
+					url: bfi_variable.bfi_urlCheck + ((bfi_variable.bfi_urlCheck.indexOf('?') > -1)? "&" :"?") + 'task=addToCart',
 					data: 'hdnOrderData=' + jQuery("#hdnOrderDataCart").val() + "&recalculateOrder=" + recalculateOrder+  '&hdnBookingType=' + jQuery("#hdnBookingType").val(),
 					success: function (data) {
 		//							console.log(data);
@@ -712,7 +716,7 @@ jQuery(document).ready(function() {
 //        }
 //      );
 
-	jQuery("#my-account-tabs").tabs();
+//	jQuery("#my-account-tabs").tabs();
 
 	var start = jQuery('.checkincalendar').val();
 	if (typeof start !== "undefined") {
@@ -837,7 +841,7 @@ jQuery(document).ready(function() {
 
 
 					if((jQuery(".bfi-result-list").offset().top+jQuery(".bfi-result-list").height()) <(jQuery(window).scrollTop()+$currDivBook.height() )){
-						console.log("corr" +corr )
+//						console.log("corr" +corr )
 						$currDivBook.css('top',( (jQuery(".bfi-result-list").offset().top+jQuery(".bfi-result-list").height()) - (jQuery(window).scrollTop()+$currDivBook.height()))  + 'px');
 					}else{
 						$currDivBook.css('top','50px');
@@ -990,7 +994,7 @@ function bfi_getcompleterateplansstaybyrateplanid($el) {
 	dataarray.push({name: 'searchModel', value: searchModel});
 
 	var jqxhr = jQuery.ajax({
-		url: urlCheck + '?task=getCompleteRateplansStay',
+		url: urlCheck + ((urlCheck.indexOf('?') > -1)? "&" :"?") + 'task=getCompleteRateplansStay',
 		type: "POST",
 		dataType: "json",
 		data : dataarray

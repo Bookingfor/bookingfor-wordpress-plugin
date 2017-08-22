@@ -6,8 +6,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php
 global $post;
 
-$trackorder = false;
-
 $orderid = get_query_var( 'orderid', BFCHelper::getVar('payedOrderId',0) );
 
 $actionmode = BFCHelper::getVar('actionmode',"");
@@ -16,7 +14,6 @@ $model->populateState();
 
 //$item = $model->getItem($orderid);
 $lastPayment = $model->GetLastOrderPayment($orderid);
-$hasPayed = null;
 
 $language = $GLOBALS['bfi_lang'];
 $languageForm ='';

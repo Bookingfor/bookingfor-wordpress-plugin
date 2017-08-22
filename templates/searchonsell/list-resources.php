@@ -2,18 +2,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
-$rating_text = array('merchants_reviews_text_value_0' => __('Very poor', 'bfi'),
-						'merchants_reviews_text_value_1' => __('Poor', 'bfi'),   
-						'merchants_reviews_text_value_2' => __('Disappointing', 'bfi'),
-						'merchants_reviews_text_value_3' => __('Fair', 'bfi'),
-						'merchants_reviews_text_value_4' => __('Okay', 'bfi'),
-						'merchants_reviews_text_value_5' => __('Pleasant', 'bfi'),  
-						'merchants_reviews_text_value_6' => __('Good', 'bfi'),
-						'merchants_reviews_text_value_7' => __('Very good', 'bfi'),  
-						'merchants_reviews_text_value_8' => __('Fabulous', 'bfi'), 
-						'merchants_reviews_text_value_9' => __('Exceptional', 'bfi'),  
-						'merchants_reviews_text_value_10' => __('Exceptional', 'bfi'),                                 
-					);
 
 $totalResult = count($results);
 $language = $GLOBALS['bfi_lang'];
@@ -52,8 +40,6 @@ $url_merchant_page = get_permalink( $merchantdetails_page->ID );
 $onselldetails_page = get_post( bfi_get_page_id( 'onselldetails' ) );
 $url_resource_page = get_permalink( $onselldetails_page->ID );
 $uri = $url_resource_page;
-
-$pars = BFCHelper::getSearchOnSellParamsSession();
 
 ?>
 <div class="bfi-content">
@@ -126,10 +112,7 @@ $pars = BFCHelper::getSearchOnSellParamsSession();
 		
 		$currUriresource = $uri.$resource->ResourceId.'-'.BFI()->seoUrl($resourceName);
 		
-		$resourceRoute = $route = $currUriresource;
-		$routeInfoRequest = $currUriresource.'/'._x('inforequestpopup', 'Page slug', 'bfi' );
-		$routeRapidView = $currUriresource.'/'._x('rapidview', 'Page slug', 'bfi' );
-		
+		$resourceRoute = $route = $currUriresource;		
 		
 		$routeMerchant = "";
 		if($isportal){

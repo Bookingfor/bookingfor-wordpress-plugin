@@ -34,9 +34,7 @@ class BookingForConnectorModelOnSellUnits
 	
 	public function __construct($config = array())
 	{
-      $ws_url = COM_BOOKINGFORCONNECTOR_WSURL;
-		$api_key = COM_BOOKINGFORCONNECTOR_API_KEY;
-		$this->helper = new wsQueryHelper($ws_url, $api_key);
+		$this->helper = new wsQueryHelper(COM_BOOKINGFORCONNECTOR_WSURL, COM_BOOKINGFORCONNECTOR_API_KEY);
 		$this->urlResources = '/ResourceonsellView';
 		$this->urlResourcesCount = '/ResourceonsellView';
 		$this->resourcesCount = 0;

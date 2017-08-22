@@ -18,7 +18,7 @@ $currency_text = array('978' => __('Euro', 'bfi'),
 						'643' => __('Russian Ruble', 'bfi'),  
 						'200' => __('Czech koruna', 'bfi'),
 						'702' => __('Singapore dollar', 'bfi'),  
-						'826' => __('Pound sterling ', 'bfi')                            
+						'826' => __('Pound sterling', 'bfi')                            
 					);
 
 

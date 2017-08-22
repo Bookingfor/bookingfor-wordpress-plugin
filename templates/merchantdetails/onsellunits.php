@@ -49,20 +49,27 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 //-->
 </script>
 <div class="bfi-content">
-<div class="bfi-row">
-	<div class="bfi-col-xs-9 ">
-		<div class="bfi-search-title">
-			<?php echo sprintf(__('%s available accommodations', 'bfi'), $total) ?>
-		</div>
-	</div>	
-<?php if(!empty(COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY)){ ?>
-	<!-- <div class="bfi-col-xs-3 ">
-		<div class="bfi-search-view-maps ">
-		<span><?php _e('Map view', 'bfi') ?></span>
+	<div class="bfi-row">
+		<div class="bfi-col-xs-9 ">
+			<div class="bfi-title-name bfi-hideonextra"><?php echo  $merchant->Name?>
+				<span class="bfi-item-rating">
+					<?php for($i = 0; $i < $merchant->Rating; $i++) { ?>
+					<i class="fa fa-star"></i>
+					<?php } ?>
+				</span>
+			</div>
+			<div class="bfi-search-title">
+				<?php echo sprintf(__('%s available accommodations', 'bfi'), $total) ?>
+			</div>
 		</div>	
-	</div>	 -->
-<?php } ?>
-</div>	
+	<?php if(!empty(COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY)){ ?>
+		<!-- <div class="bfi-col-xs-3 ">
+			<div class="bfi-search-view-maps ">
+			<span><?php _e('Map view', 'bfi') ?></span>
+			</div>	
+		</div>	 -->
+	<?php } ?>
+	</div>	
 <?php if ($total > 0){ ?>
 
 <div class="bfi-search-menu">
@@ -103,12 +110,13 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 //		}
 
 		$resource->Price = $resource->MinPrice;	
-		$rating = $resource->Rating;
-		if ($rating>9 )
-		{
-			$rating = $rating/10;
-		}
+		$rating= 0;	//set 0 so not show 
 		$ratingMrc= 0;	//set 0 so not show 
+//		$rating = $resource->Rating;
+//		if ($rating>9 )
+//		{
+//			$rating = $rating/10;
+//		}
 //		$ratingMrc = $resource->MrcRating;
 //		if ($ratingMrc>9 )
 //		{
@@ -122,7 +130,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 	<div class="bfi-col-sm-6 bfi-item">
 		<div class="bfi-row bfi-sameheight" >
 			<div class="bfi-col-sm-3 bfi-img-container">
-				<a href="<?php echo $resourceRoute ?>?fromsearch=1" style='background: url("<?php echo $resourceImageUrl; ?>") center 25% / cover;'><img src="<?php echo $resourceImageUrl; ?>" class="bfi-img-responsive" /></a> 
+				<a href="<?php echo $resourceRoute ?>" style='background: url("<?php echo $resourceImageUrl; ?>") center 25% / cover;'><img src="<?php echo $resourceImageUrl; ?>" class="bfi-img-responsive" /></a> 
 			</div>
 			<div class="bfi-col-sm-9 bfi-details-container">
 				<!-- merchant details -->
@@ -145,9 +153,9 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 							</span>
 						</div>
 						<div class="bfi-item-address">
-							<?php if ($showResourceMap):?>
+							<?php if ($showResourceMap){?>
 							<a href="javascript:void(0);" onclick="showMarker(<?php echo $resource->ResourceId?>)"><span id="address<?php echo $resource->ResourceId?>"></span></a>
-							<?php endif; ?>
+							<?php } ?>
 						</div>
 						<div class="bfi-mrcgroup" id="bfitags<?php echo $resource->MerchantId; ?>"></div>
 						<span class="bfi-label-alternative2 bfi-hide" id="showcaseresource<?php echo $resource->ResourceId?>">
@@ -294,12 +302,6 @@ var nowDate =  new Date();
 var newFromDate =  new Date();
 newFromDate.setDate(newFromDate.getDate() - onsellunitDaysToBeNew); 
 var listAnonymous = ",<?php echo COM_BOOKINGFORCONNECTOR_ANONYMOUS_TYPE ?>,";
-
-var strRatingNoResult = "<?php _e('Would you like to leave your review?', 'bfi') ?>";
-var strRatingBased = "<?php _e('Score from %s reviews', 'bfi') ?>";
-var strRatingValuation = "<?php _e('Guest Rating', 'bfi') ?>";
-
-var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 
 var shortenOption = {
 	moreText: "<?php _e('Read More', 'bfi'); ?>",

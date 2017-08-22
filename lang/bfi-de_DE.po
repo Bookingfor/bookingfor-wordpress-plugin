@@ -1,1829 +1,3246 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: VERSION\n"
-"POT-Creation-Date: 2017-06-07 07:10+0000\n"
-"PO-Revision-Date: 2017-06-07 07:10+0000\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-22 15:04+0100\n"
+"PO-Revision-Date: 2017-08-22 15:11+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE TEAM <EMAIL@ADDRESS>\n"
-"Language: de_DE\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
+"X-Generator: Eazy Po 0.9.5.3\n"
 
-msgid "BookingFor Cart Details page"
-msgstr "BookingFor-Warenkorbseite"
-
-msgctxt "slug"
-msgid "cartdetails"
-msgstr "Warenkorbdaten"
-
-msgctxt "Page slug"
-msgid "cartdetails"
-msgstr "Warenkorbdaten"
-
-msgid "Search text"
-msgstr "Suchtext"
-
-msgid "Unit price"
-msgstr "Einzelpreis"
-
-msgid "Cart"
-msgstr "Warenkorb"
-
-#, php-format
-msgid " %d week/s"
-msgstr " %d Woche(n)"
-
-#, php-format
-msgid " %d month/s"
-msgstr " %d Monat(e)"
-
-msgid "To be refurbished"
-msgstr "Renovierungsbedürftig"
-
-msgid "Habitable"
-msgstr "Bewohnbar"
-
-msgid "Refurbished"
-msgstr "Renoviert"
-
-msgid "This is a demo store for testing purposes &mdash; no orders shall be fulfilled."
+#: includes/bfi-template-functions.php:381
+#, fuzzy
+#| msgid "This is a demo store for testing purposes &mdash; no orders shall be fulfilled."
+msgid ""
+"This is a demo store for testing purposes &mdash; no orders shall be "
+"fulfilled."
 msgstr "Dies ist ein Demo-Shop für Testzwecke. &mdash; Es werden keine Aufträge ausgeführt."
 
+#: includes/bfi-template-functions.php:401
 #, php-format
 msgid "Search Results: &ldquo;%s&rdquo;"
 msgstr "Suchergebnisse: &ldquo;%s&rdquo;"
 
+#: includes/bfi-template-functions.php:404
 #, php-format
 msgid "&nbsp;&ndash; Page %s"
 msgstr "&nbsp;&ndash; Seite %s"
 
+#: includes/class-bfi-install.php:47
 msgctxt "Page slug"
 msgid "search-availability"
 msgstr "Verfügbarkeitssuche"
 
-msgctxt "slug"
-msgid "search-availability"
-msgstr "Suche-Verfügbarkeit"
-
-msgctxt "default-slug"
-msgid "search-availability"
-msgstr "Verfügbarkeitssuche"
-
+#: includes/class-bfi-install.php:48
 msgctxt "Page title"
 msgid "Search Availability"
 msgstr "Verfügbarkeit suchen"
 
+#: includes/class-bfi-install.php:53 templates/merchantdetails.php:423
+#: templates/merchant_small_details.php:50
 msgctxt "Page slug"
 msgid "properties-for-sale"
 msgstr "Verkäufliche Immobilien"
 
+#: includes/class-bfi-install.php:54
 msgctxt "Page title"
 msgid "Search Properties for sale"
 msgstr "Verkäufliche Immobilien suchen"
 
+#: includes/class-bfi-install.php:59
 msgctxt "Page slug"
 msgid "merchantdetails"
 msgstr "Händlerdaten"
 
-msgctxt "slug"
-msgid "merchantdetails"
-msgstr "Händlerdaten"
-
+#: includes/class-bfi-install.php:60
 msgctxt "Page title"
 msgid "Merchant Details"
 msgstr "Händlerdaten"
 
+#: includes/class-bfi-install.php:65
+msgctxt "Page slug"
+msgid "condominiumdetails"
+msgstr "eigentumswohnungdetails"
+
+#: includes/class-bfi-install.php:66
+msgctxt "Page title"
+msgid "Condominium Details"
+msgstr "Eigentumswohnung Details"
+
+#: includes/class-bfi-install.php:71 templates/merchantdetails.php:416
+#: templates/merchant_small_details.php:47
 msgctxt "Page slug"
 msgid "accommodation-details"
 msgstr "Details der Unterkunft"
 
-msgctxt "slug"
-msgid "accommodation-details"
-msgstr "Unterkunftdetails"
-
+#: includes/class-bfi-install.php:72
 msgctxt "Page title"
 msgid "Accommodation Details"
 msgstr "Details zur Unterkunft"
 
+#: includes/class-bfi-install.php:77
 msgctxt "Page slug"
 msgid "onsell-details"
 msgstr "Verkaufsdetails"
 
-msgctxt "slug"
-msgid "onsell-details"
-msgstr "Verkaufsdetails"
-
+#: includes/class-bfi-install.php:78
 msgctxt "Page title"
 msgid "On Sell Details"
 msgstr "Verkaufsdetails"
 
+#: includes/class-bfi-install.php:83
 msgctxt "Page slug"
 msgid "orders"
 msgstr "Bestellungen"
 
+#: includes/class-bfi-install.php:84
 msgctxt "Page title"
 msgid "Order Details"
 msgstr "Bestelldaten"
 
+#: includes/class-bfi-install.php:89
 msgctxt "Page slug"
 msgid "payment"
 msgstr "Zahlung"
 
+#: includes/class-bfi-install.php:90
 msgctxt "Page title"
 msgid "Payment Details"
 msgstr "Zahlungsdetails"
 
+#: includes/class-bfi-install.php:94
 msgctxt "Page slug"
-msgid "my-account"
-msgstr "Mein Konto"
+msgid "cartdetails"
+msgstr "Warenkorbdaten"
 
-msgctxt "Page title"
-msgid "My Account"
-msgstr "Mein Konto"
-
+#: includes/class-bfi-install.php:95
 msgctxt "Page title"
 msgid "Cart Details"
 msgstr "Warenkorbdaten"
 
+#: includes/class-bfi-post-types.php:74
+#: includes/admin/class-bfi-admin-permalink-settings.php:109
 msgctxt "slug"
 msgid "merchantlist"
 msgstr "Händlerliste"
 
+#: includes/class-bfi-post-types.php:80 includes/class-bfi-post-types.php:102
 msgid "Merchant list pages"
 msgstr "Händlerlistenseiten"
 
+#: includes/class-bfi-post-types.php:81
 msgid "Merchant list page"
 msgstr "Händlerlistenseite"
 
+#: includes/class-bfi-post-types.php:82
 msgctxt "Admin menu name"
 msgid "Merchant list"
 msgstr "Händlerliste"
 
+#: includes/class-bfi-post-types.php:83
 msgid "Add Merchant list page"
 msgstr "Händlerlistenseite hinzufügen"
 
+#: includes/class-bfi-post-types.php:84
 msgid "Add New Merchant list page"
 msgstr "Neue Händlerlistenseite hinzufügen"
 
+#: includes/class-bfi-post-types.php:85 templates/merchantslist.php:34
 msgid "Edit"
 msgstr "Bearbeiten"
 
+#: includes/class-bfi-post-types.php:86
 msgid "Edit Merchant list page"
 msgstr "Händlerlistenseite bearbeiten"
 
+#: includes/class-bfi-post-types.php:87
 msgid "New Merchant list page"
 msgstr "Neue Händlerlistenseite"
 
+#: includes/class-bfi-post-types.php:88 includes/class-bfi-post-types.php:89
 msgid "View Merchant list page"
 msgstr "Händlerlistenseite ansehen"
 
+#: includes/class-bfi-post-types.php:90
 msgid "Search Merchant list page"
 msgstr "Händlerlistenseite suchen"
 
+#: includes/class-bfi-post-types.php:91
 msgid "No Merchant list page found"
 msgstr "Keine Händlerlistenseite gefunden"
 
+#: includes/class-bfi-post-types.php:92
 msgid "No Merchant list page found in trash"
 msgstr "Kein Händlerlistenseite im Mülleimer gefunden"
 
+#: includes/class-bfi-post-types.php:93
 msgid "Parent Merchant list page"
 msgstr "Übergeordnete Händlerlistenseite"
 
+#: includes/class-bfi-post-types.php:98
 msgid "Insert into Merchant list page"
 msgstr "In Händlerlistenseite einfügen"
 
+#: includes/class-bfi-post-types.php:99
 msgid "Uploaded to this Merchant list page"
 msgstr "Auf diese Händlerlistenseite hochgeladen"
 
+#: includes/class-bfi-post-types.php:100
 msgid "Filter Merchant list pages"
 msgstr "Händlerlistenseiten filtern"
 
+#: includes/class-bfi-post-types.php:101
 msgid "Merchant list pages navigation"
 msgstr "Navigation der Händlerlistenseiten"
 
+#: includes/class-bfi-post-types.php:104
 msgid "This is where you can add new Merchant list page."
 msgstr "Hier können Sie eine neue Händlerlistenseite hinzufügen."
 
+#: includes/class-bfi-query.php:82
 msgid "Merchant details"
 msgstr "Haendler details"
 
+#: includes/class-bfi-query.php:85
+msgid "Condominium details"
+msgstr "Eigentumswohnung details"
+
+#: includes/class-bfi-query.php:88
 msgid "Accomodation details"
 msgstr "Unterkunft details"
 
+#: includes/class-bfi-query.php:91
 msgid "Order details"
 msgstr "Reservierungsangaben"
 
+#: includes/class-bfi-query.php:94
+msgid "Order payment"
+msgstr "Auftragszahlung"
+
+#: includes/class-bfi-query.php:97
 msgid "On Sell details"
 msgstr "Immobilie details"
 
+#: includes/class-bfi-query.php:100
 msgid "Cart details"
 msgstr "Warenkorbdetails"
 
+#: includes/admin/class-bfi-admin-meta-boxes.php:99
+#: includes/admin/class-bfi-admin-meta-boxes.php:112
 msgid "Autentication Mode"
 msgstr "Authentifizierungsmodus"
 
+#: includes/admin/class-bfi-admin-meta-boxes.php:102
 msgid "Categories"
 msgstr "Kategorien"
 
+#: includes/admin/class-bfi-admin-meta-boxes.php:165
 msgid "Merchant category filter"
 msgstr "Händlerkategorienfilter"
 
+#: includes/admin/class-bfi-admin-meta-boxes.php:172
 msgid "Merchant Rating filter"
 msgstr "Händlerbewertungsfilter"
 
+#: includes/admin/class-bfi-admin-meta-boxes.php:174
+#: templates/widgets/booking-search.php:235
+#: templates/widgets/booking-search.php:238
+#: templates/widgets/booking-search.php:262
+#: templates/widgets/booking-search.php:279
+#: templates/widgets/booking-search.php:323
+#: templates/widgets/booking-search.php:342
 msgid "All"
 msgstr "Alle"
 
+#: includes/admin/class-bfi-admin-meta-boxes.php:193
 msgid "Cities"
 msgstr "Städte"
 
+#: includes/admin/class-bfi-admin-permalink-settings.php:36
 msgid "BookingFor Permalinks"
 msgstr "BookingFor-Permalinks"
 
+#: includes/admin/class-bfi-admin-permalink-settings.php:41
 msgid "BookingFor search result page"
 msgstr "BookingFor-Suchergebnisseite"
 
+#: includes/admin/class-bfi-admin-permalink-settings.php:48
 msgid "BookingFor Merchant details page"
 msgstr "BookingFor-Händlerdatenseite"
 
+#: includes/admin/class-bfi-admin-permalink-settings.php:55
 msgid "BookingFor Accommodation details page"
 msgstr "BookingFor-Detailseite der Unterkunft"
 
+#: includes/admin/class-bfi-admin-permalink-settings.php:62
 msgid "BookingFor On Sell details page"
 msgstr "BookingFor Verkaufsdetailseite"
 
+#: includes/admin/class-bfi-admin-permalink-settings.php:69
 msgid "BookingFor Merchant List page"
 msgstr "BookingFor-Händlerlistenseite"
 
+#: includes/admin/class-bfi-admin-permalink-settings.php:76
+msgid "BookingFor Cart Details page"
+msgstr "BookingFor-Warenkorbseite"
+
+#: includes/admin/class-bfi-admin-permalink-settings.php:90
+msgctxt "slug"
+msgid "search-availability"
+msgstr "Suche-Verfügbarkeit"
+
+#: includes/admin/class-bfi-admin-permalink-settings.php:100
+msgctxt "slug"
+msgid "merchantdetails"
+msgstr "Händlerdaten"
+
+#: includes/admin/class-bfi-admin-permalink-settings.php:118
+msgctxt "slug"
+msgid "cartdetails"
+msgstr "Warenkorbdaten"
+
+#: includes/admin/class-bfi-admin-permalink-settings.php:128
+msgctxt "slug"
+msgid "accommodation-details"
+msgstr "Unterkunftdetails"
+
+#: includes/admin/class-bfi-admin-permalink-settings.php:137
+msgctxt "slug"
+msgid "onsell-details"
+msgstr "Verkaufsdetails"
+
+#: includes/admin/class-bfi-admin-permalink-settings.php:145
 msgid "These settings control the permalinks used specifically for BookingFor."
 msgstr "Diese Einstellungen steuern die Permalinks, die speziell für BookingFor verwendet werden."
 
+#: includes/admin/class-bfi-admin-permalink-settings.php:152
+#: includes/admin/class-bfi-admin-permalink-settings.php:153
+msgctxt "default-slug"
+msgid "search-availability"
+msgstr "Verfügbarkeitssuche"
+
+#: includes/admin/class-bfi-admin-permalink-settings.php:164
 msgid "Default"
 msgstr "Standard"
 
+#: includes/admin/class-bfi-admin-permalink-settings.php:169
 msgid "Search Availability base"
 msgstr "Verfügbarkeitsbasis suchen"
 
+#: includes/admin/class-bfi-admin-permalink-settings.php:175
 msgid "Custom Base"
 msgstr "Benutzerdefinierte Basis"
 
-msgid "Enter a custom base to use. A base <strong>must</strong> be set or WordPress will use default instead."
+#: includes/admin/class-bfi-admin-permalink-settings.php:177
+#, fuzzy
+#| msgid "Enter a custom base to use. A base <strong>must</strong> be set or WordPress will use default instead."
+msgid ""
+"Enter a custom base to use. A base <strong>must</strong> be set or WordPress "
+"will use default instead."
 msgstr "Geben Sie eine zu verwendende benutzerdefinierte Basis ein. Eine Basis <strong> muss </strong> festgelegt werden oder WordPress wird stattdessen den Standard verwenden."
 
+#: includes/admin/class-bfi-admin-permalink-settings.php:252
 msgctxt "default-slug"
 msgid "searchavailability"
 msgstr "Verfügbarkeitssuche"
 
+#: includes/admin/class-bfi-admin.php:442
+#: templates/widgets/currency-switcher.php:12
 msgid "Euro"
 msgstr "Euro"
 
+#: includes/admin/class-bfi-admin.php:443
+#: templates/widgets/currency-switcher.php:13
 msgid "Kune"
 msgstr "Kune"
 
+#: includes/admin/class-bfi-admin.php:444
+#: templates/widgets/currency-switcher.php:14
 msgid "U.S. dollar"
 msgstr "US-Dollar"
 
+#: includes/admin/class-bfi-admin.php:445
+#: templates/widgets/currency-switcher.php:15
 msgid "Japanese yen"
 msgstr "Japanischer Yen"
 
+#: includes/admin/class-bfi-admin.php:446
+#: templates/widgets/currency-switcher.php:16
 msgid "Canadian dollar"
 msgstr "Kanadischer Dollar"
 
+#: includes/admin/class-bfi-admin.php:447
+#: templates/widgets/currency-switcher.php:17
 msgid "Australian dollar"
 msgstr "Australischer Dollar"
 
+#: includes/admin/class-bfi-admin.php:448
+#: templates/widgets/currency-switcher.php:18
 msgid "Russian Ruble"
 msgstr "Russischer Rubel"
 
+#: includes/admin/class-bfi-admin.php:449
+#: templates/widgets/currency-switcher.php:19
 msgid "Czech koruna"
 msgstr "Tschechische Krone"
 
+#: includes/admin/class-bfi-admin.php:450
+#: templates/widgets/currency-switcher.php:20
 msgid "Singapore dollar"
 msgstr "Singapur-Dollar"
 
+#: includes/admin/class-bfi-admin.php:451
 msgid "Pound sterling "
 msgstr "Pfund Sterling "
 
+#: includes/admin/class-bfi-admin.php:605
+#, fuzzy
 #, php-format
-msgid "If you like <strong>BookingFor</strong> please leave us a %s&#9733;&#9733;&#9733;&#9733;&#9733;%s rating. A huge thank you from Bookingfor in advance!"
+#| msgid "If you like <strong>BookingFor</strong> please leave us a %s&#9733;&#9733;&#9733;&#9733;&#9733;%s rating. A huge thank you from Bookingfor in advance!"
+msgid ""
+"If you like <strong>BookingFor</strong> please leave us a %s&#9733;&#9733;"
+"&#9733;&#9733;&#9733;%s rating. A huge thank you from Bookingfor in advance!"
 msgstr "Wenn Sie möchten <strong> BookingFor </strong> hinterlassen Sie uns bitte eine %s&#9733;&#9733;&#9733;&#9733;&#9733;%s Rating. Ein riesiges Dankeschön von Bookingfor im Voraus!"
 
+#: includes/admin/class-bfi-admin.php:605
 msgid "Thanks"
 msgstr "Danke"
 
+#: includes/admin/class-bfi-admin.php:613
 msgid "Thank you for selling with BookingFor."
 msgstr "Vielen Dank, dass Sie mit BookingFor verkaufen."
 
+#: includes/admin/views/html-admin-settings.php:176
 msgid "Save changes"
 msgstr "Änderungen speichern"
 
+#: includes/model/onsellunits.php:208 includes/model/onsellunits.php:210
+#: includes/model/onsellunits.php:262 includes/model/onsellunits.php:264
 msgid "&resourceId="
 msgstr "&resourceId="
 
+#: includes/model/onsellunits.php:316
 msgid "index.php?option=com_bookingforconnector&view=onsellunit&resourceId="
 msgstr "index.php?option=com_bookingforconnector&view=onsellunit&resourceId="
 
+#: includes/widgets/class-bfi-widget-booking-cart.php:24
+msgid "Display the user's Cart link in the sidebar."
+msgstr "Warenkorb-Link des Benutzers in der Seitenleiste angezeigen."
+
+#: includes/widgets/class-bfi-widget-booking-cart.php:26
+msgid "BookingFor Cart"
+msgstr "BookingFor-Warenkorb"
+
+#: includes/widgets/class-bfi-widget-booking-cart.php:31
+#: includes/widgets/class-bfi-widget-booking-currency-switcher.php:31
+#: includes/widgets/class-bfi-widget-booking-search.php:31
+#: includes/widgets/class-bfi-widget-booking-search.php:184
+#: includes/widgets/class-bfi-widget-merchant-vcard.php:31
+#: includes/widgets/class-bfi-widget-merchant.php:31
+#: includes/widgets/class-bfi-widget-merchant.php:95
+#: includes/widgets/class-bfi-widget-search-filters.php:31
+msgid "Title"
+msgstr "Titel"
+
+#: includes/widgets/class-bfi-widget-booking-currency-switcher.php:24
+msgid "Display the user's currency switcher in the sidebar."
+msgstr "Währungswechsler des Benutzers in der Seitenleiste anzeigen."
+
+#: includes/widgets/class-bfi-widget-booking-currency-switcher.php:26
+msgid "BookingFor currency switcher"
+msgstr "BookingFor Währungswechsler"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:24
+msgid "A Search box for multimerchant, monomerchant and sell on."
+msgstr "Ein Suchfeld für Mehrfachhändler, Monohändler und Weiterverkauf."
+
+#: includes/widgets/class-bfi-widget-booking-search.php:26
+msgid "BookingFor Search"
+msgstr "BookingFor Suche"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:66
+#: templates/merchantdetails/merchantdetails.php:166
+#: templates/merchantdetails/offer-details.php:60
+#: templates/widgets/booking-search.php:459
+msgid "Booking"
+msgstr "Buchen Sie"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:68
+#: templates/widgets/booking-search.php:475
+msgid "Activities"
+msgstr "Aktivitäten"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:69
+#: templates/merchant_small_details.php:97
+#: templates/widgets/booking-search.php:491
+#: templates/widgets/merchant-vcard.php:249
+msgid "Real Estate"
+msgstr "Immobilien Verkauf"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:73
+#: templates/search_details.php:430 templates/search_details.php:1714
+#: templates/widgets/booking-search.php:213
+#: templates/widgets/booking-search.php:560
+#: templates/widgets/booking-search.php:1049
+#: templates/widgets/booking-search.php:1088
+msgid "Nights"
+msgstr "Nächte"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:74
+#: templates/search_details.php:430 templates/search_details.php:1717
+#: templates/widgets/booking-search.php:214
+#: templates/widgets/booking-search.php:1052
+#: templates/widgets/booking-search.php:1091
+msgid "Days"
+msgstr "Tage"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:75
+msgid "Unit of times"
+msgstr "Zeiteinheiten"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:76
+msgid "Time slot"
+msgstr "Zeitfenster"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:79
+#: includes/widgets/class-bfi-widget-booking-search.php:84
+#: templates/search_details.php:440 templates/widgets/booking-search.php:567
+msgid "Resource"
+msgstr "Ressource"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:80
+msgid "Merchant"
+msgstr "Händler"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:81
+msgid "Condominium"
+msgstr "Eigentumswohnung"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:85
+msgid "Service"
+msgstr "Service"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:188
+msgid "Displays horizontally"
+msgstr "Wird horizontal angezeigt"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:191
+msgid "Tab"
+msgstr "Registerkarte"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:197
+msgid "Block Months"
+msgstr "Monate sperren"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:217
+msgid "Disable Days"
+msgstr "Tage deaktivieren"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:240
+#: includes/widgets/class-bfi-widget-booking-search.php:337
+#: includes/widgets/class-bfi-widget-booking-search.php:450
+msgid "Merchant category"
+msgstr "Händlerkategorie"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:260
+#: includes/widgets/class-bfi-widget-booking-search.php:357
+#: includes/widgets/class-bfi-widget-booking-search.php:470
+msgid "Product category"
+msgstr "Produktkategorie"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:279
+#: includes/widgets/class-bfi-widget-booking-search.php:376
+msgid "Search availability for"
+msgstr "Suche Verfügbarkeit für"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:297
+#: includes/widgets/class-bfi-widget-booking-search.php:394
+msgid "Items type"
+msgstr "Positionstyp"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:315
+#: includes/widgets/class-bfi-widget-booking-search.php:412
+msgid "Default group by "
+msgstr "Standardgruppierung nach "
+
+#: includes/widgets/class-bfi-widget-booking-search.php:432
+msgid "Fields Visibility"
+msgstr "Feldersichtbarkeit"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:433
+#: includes/widgets/class-bfi-widget-booking-search.php:489
+#: templates/widgets/booking-search.php:502
+#: templates/widgets/booking-search.php:738
+#: templates/widgets/booking-search.php:739
+msgid "Search text"
+msgstr "Suchtext"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:433
+msgid ""
+"(Merchants, Products, Tags, Merchants and Products Categories, Regions, "
+"States, Cities, Zones)"
+msgstr ""
+"(Händler, Produkte, Tags, Händler und Produkte Kategorien, Regionen, Staaten,"
+" Städte, Zonen)"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:434
+msgid "or"
+msgstr "oder"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:435
+#: templates/widgets/booking-search.php:342
+#: templates/widgets/booking-search.php:512
+#: templates/widgets/search-filter.php:552
+msgid "Destination"
+msgstr "Zone"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:436
+#: includes/widgets/class-bfi-widget-booking-search.php:492
+#: templates/cartdetails.php:1446
+#: templates/onselldetails/resourcedetails.php:203
+#: templates/resourcedetails/form.php:679
+#: templates/widgets/booking-search.php:262
+#: templates/widgets/booking-search.php:279
+#: templates/widgets/booking-search.php:520
+#: templates/widgets/booking-search.php:754
+msgid "Type"
+msgstr "Typ"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:437
+#: includes/widgets/class-bfi-widget-booking-search.php:490
+msgid "Map Button"
+msgstr "Schaltfläche „Karte“"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:439
+msgid "Date Range"
+msgstr "Datumsbereich"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:440
+#: templates/cartdetails.php:406 templates/search_details.php:441
+#: templates/widgets/booking-search.php:568
+#: templates/widgets/booking-search.php:575
+msgid "Adults"
+msgstr "Erwachsene"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:441
+msgid "Childrens"
+msgstr "Kinder"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:442
+msgid "Senior"
+msgstr "Senior"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:443
+#: templates/merchantdetails/merchant-ratings.php:39
+#: templates/merchantdetails/review.php:207
+#: templates/merchantdetails/reviews.php:98
+#: templates/resourcedetails/resource-ratings.php:39
+#: templates/resourcedetails/review.php:255
+msgid "Services"
+msgstr "Dienstleistungen"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:444
+msgid "Only Online Booking"
+msgstr "Nur Online-Buchung"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:489
+msgid "(Regions, States, Cities, Zones)"
+msgstr "(Regionen, Staaten, Städte, Zonen)"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:491
+#: templates/onselldetails/resourcedetails.php:191
+#: templates/widgets/booking-search.php:730
+msgid "Contract"
+msgstr "Vertrag"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:493
+#: templates/cartdetails.php:266 templates/search_details.php:642
+#: templates/search_details.php:1454
+#: templates/onselldetails/resourcedetails.php:193
+#: templates/widgets/booking-search.php:762
+#: templates/widgets/booking-search.php:765
+#: templates/widgets/booking-search.php:768
+msgid "Price"
+msgstr "Preis"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:494
+msgid "Floor Area"
+msgstr "Grundfläche"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:495
+msgid "BedRooms"
+msgstr "Schlafzimmer"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:496
+#: templates/onsellunits.php:187 templates/merchantdetails/onsellunits.php:182
+#: templates/onselldetails/resourcedetails.php:211
+#: templates/searchonsell/list-resources.php:194
+#: templates/widgets/booking-search.php:801
+#: templates/widgets/booking-search.php:804
+#: templates/widgets/booking-search.php:807
+#: templates/widgets/search-filter.php:610
+msgid "Rooms"
+msgstr "Zimmer"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:497
+msgid "Baths"
+msgstr "Bäder"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:498
+msgid "Only New"
+msgstr "Nur neue"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:499
+msgid "Services list"
+msgstr "Dienstleistungsliste"
+
+#: includes/widgets/class-bfi-widget-merchant-vcard.php:24
+msgid "A details merchant box."
+msgstr "Ein Detail-Händlerfeld."
+
+#: includes/widgets/class-bfi-widget-merchant-vcard.php:26
+msgid "BookingFor details merchant box"
+msgstr "BookingFor Detail-Händlerfeld"
+
+#: includes/widgets/class-bfi-widget-merchant.php:24
+msgid "A Carousel list of Merchants."
+msgstr "Eine Karussell-Liste der Händler."
+
+#: includes/widgets/class-bfi-widget-merchant.php:26
+msgid "BookingFor Merchants"
+msgstr "BookingFor-Händler"
+
+#: includes/widgets/class-bfi-widget-merchant.php:36
+#: includes/widgets/class-bfi-widget-merchant.php:99
+#: templates/widgets/search-filter.php:595
+msgid "Tags"
+msgstr "Tags"
+
+#: includes/widgets/class-bfi-widget-merchant.php:41
+#: includes/widgets/class-bfi-widget-merchant.php:105
+msgid "Items per page"
+msgstr "Positionen pro Seite"
+
+#: includes/widgets/class-bfi-widget-merchant.php:46
+#: includes/widgets/class-bfi-widget-merchant.php:113
+msgid "Max items"
+msgstr "Maximale Positionen"
+
+#: includes/widgets/class-bfi-widget-merchant.php:51
+#: includes/widgets/class-bfi-widget-merchant.php:117
+msgid "Max description characters"
+msgstr "Maximale Zeichen der Beschreibung"
+
+#: includes/widgets/class-bfi-widget-search-filters.php:24
+msgid "A Filter box."
+msgstr "Eine Filterfeld"
+
+#: includes/widgets/class-bfi-widget-search-filters.php:26
+msgid "BookingFor Search Filters"
+msgstr "BookingFor-Suchfilter"
+
+#: templates/cartdetails.php:106 templates/cartdetails.php:1183
+#: templates/merchantdetails.php:114 templates/payment.php:48
+#: templates/merchantdetails/offer-details.php:25
+#: templates/merchantdetails/review.php:37
+#: templates/merchantdetails/thanks.php:25
+#: templates/resourcedetails/form.php:29
+#: templates/resourcedetails/review.php:40
+#: templates/widgets/merchant-vcard.php:164
 msgctxt "Page slug"
 msgid "thanks"
 msgstr "Vielen Dank"
 
+#: templates/cartdetails.php:110 templates/cartdetails.php:1184
+#: templates/condominiumdetails.php:191 templates/merchantdetails.php:121
+#: templates/merchantdetails.php:433 templates/onselldetails.php:178
+#: templates/payment.php:49 templates/resourcedetails.php:323
+#: templates/merchantdetails/offer-details.php:26
+#: templates/merchantdetails/review.php:38
+#: templates/merchantdetails/thanks.php:26
+#: templates/resourcedetails/form.php:30
+#: templates/resourcedetails/review.php:41
+#: templates/widgets/merchant-vcard.php:165
 msgctxt "Page slug"
 msgid "errors"
 msgstr "Fehler"
 
-msgid "Display the user's Cart link in the sidebar."
-msgstr "Warenkorb-Link des Benutzers in der Seitenleiste angezeigen."
-
-msgid "BookingFor Cart"
-msgstr "BookingFor-Warenkorb"
-
-msgid "Title"
-msgstr "Titel"
-
-msgid "Display the user's currency switcher in the sidebar."
-msgstr "Währungswechsler des Benutzers in der Seitenleiste anzeigen."
-
-msgid "BookingFor currency switcher"
-msgstr "BookingFor Währungswechsler"
-
-msgid "A Search box for multimerchant, monomerchant and sell on."
-msgstr "Ein Suchfeld für Mehrfachhändler, Monohändler und Weiterverkauf."
-
-msgid "BookingFor Search"
-msgstr "BookingFor Suche"
-
-msgid "Booking"
-msgstr "Buchen Sie"
-
-msgid "Activities"
-msgstr "Aktivitäten"
-
-msgid "Real Estate"
-msgstr "Immobilien Verkauf"
-
-msgid "Nights"
-msgstr "Nächte"
-
-msgid "Days"
-msgstr "Tage"
-
-msgid "Unit of times"
-msgstr "Zeiteinheiten"
-
-msgid "Time slot"
-msgstr "Zeitfenster"
-
-msgid "Resource"
-msgstr "Ressource"
-
-msgid "Merchant"
-msgstr "Händler"
-
-msgid "Condominium"
-msgstr "Eigentumswohnung"
-
-msgid "Service"
-msgstr "Service"
-
-msgid "Tab"
-msgstr "Registerkarte"
-
-msgid "Block Months"
-msgstr "Monate sperren"
-
-msgid "Disable Days"
-msgstr "Tage deaktivieren"
-
-msgid "Merchant category"
-msgstr "Händlerkategorie"
-
-msgid "Product category"
-msgstr "Produktkategorie"
-
-msgid "Search availability for"
-msgstr "Suche Verfügbarkeit für"
-
-msgid "Items type"
-msgstr "Positionstyp"
-
-msgid "Default group by "
-msgstr "Standardgruppierung nach "
-
-msgid "Displays horizontally"
-msgstr "Wird horizontal angezeigt"
-
-msgid "Fields Visibility"
-msgstr "Feldersichtbarkeit"
-
-msgid "Destination"
-msgstr "Zone"
-
-msgid "Map Button"
-msgstr "Schaltfläche „Karte“"
-
-msgid "Type"
-msgstr "Typ"
-
-msgid "Date Range"
-msgstr "Datumsbereich"
-
-msgid "Adults"
-msgstr "Erwachsene"
-
-msgid "Childrens"
-msgstr "Kinder"
-
-msgid "Senior"
-msgstr "Senior"
-
-msgid "Services"
-msgstr "Dienstleistungen"
-
-msgid "Only Online Booking"
-msgstr "Nur Online-Buchung"
-
-msgid "Contract"
-msgstr "Vertrag"
-
-msgid "Price"
-msgstr "Preis"
-
-msgid "Floor Area"
-msgstr "Grundfläche"
-
-msgid "BedRooms"
-msgstr "Schlafzimmer"
-
-msgid "Rooms"
-msgstr "Zimmer"
-
-msgid "Baths"
-msgstr "Bäder"
-
-msgid "Only New"
-msgstr "Nur neue"
-
-msgid "Services list"
-msgstr "Dienstleistungsliste"
-
-msgid "A details merchant box."
-msgstr "Ein Detail-Händlerfeld."
-
-msgid "BookingFor details merchant box"
-msgstr "BookingFor Detail-Händlerfeld"
-
-msgid "A Carousel list of Merchants."
-msgstr "Eine Karussell-Liste der Händler."
-
-msgid "BookingFor Merchants"
-msgstr "BookingFor-Händler"
-
-msgid "Tags"
-msgstr "Tags"
-
-msgid "Items per page"
-msgstr "Positionen pro Seite"
-
-msgid "Max items"
-msgstr "Maximale Positionen"
-
-msgid "Max description characters"
-msgstr "Maximale Zeichen der Beschreibung"
-
-msgid "A Filter box."
-msgstr "Eine Filterfeld"
-
-msgid "BookingFor Search Filters"
-msgstr "BookingFor-Suchfilter"
-
+#: templates/cartdetails.php:135
 msgid "Your Cart is empty! "
 msgstr "Ihr Warenkorb ist leer! "
 
+#: templates/cartdetails.php:248
 msgid "Secure booking. We protect your information"
 msgstr "Sichere Buchung. Wir beschützen Ihre Daten."
 
+#: templates/cartdetails.php:259
 msgid "Your reservation includes"
 msgstr "Ihre Reservierung enthält"
 
-msgid "Host"
-msgstr "Gastgeber"
-
+#: templates/cartdetails.php:264 templates/search_details.php:640
+#: templates/search_details.php:1452
 msgid "Information"
 msgstr "Informationen"
 
-msgid "Min"
-msgstr "Min."
+#: templates/cartdetails.php:265 templates/search_details.php:641
+#: templates/search_details.php:1453
+msgid "For"
+msgstr "Zum"
 
-msgid "Max"
-msgstr "Max."
-
+#: templates/cartdetails.php:267 templates/search_details.php:643
+#: templates/search_details.php:1455
 msgid "Options"
 msgstr "Optionen"
 
+#: templates/cartdetails.php:268 templates/search_details.php:644
+#: templates/search_details.php:1456
 msgid "Qt."
 msgstr "Qt."
 
+#: templates/cartdetails.php:269
+#, fuzzy
+#| msgid "Total Price"
+msgid "Total price"
+msgstr "Gesamtpreis"
+
+#: templates/cartdetails.php:408 templates/search_details.php:442
+#: templates/widgets/booking-search.php:569
+#: templates/widgets/booking-search.php:586
 msgid "Seniores"
 msgstr "Senioren"
 
+#: templates/cartdetails.php:411 templates/search_details.php:443
+#: templates/search_details.php:476 templates/widgets/booking-search.php:570
+#: templates/widgets/booking-search.php:598
 msgid "Children"
 msgstr "Kinder"
 
+#: templates/cartdetails.php:411
 msgid "Years"
 msgstr "Alter"
 
+#: templates/cartdetails.php:439 templates/cartdetails.php:482
+#: templates/cartdetails.php:513 templates/cartdetails.php:549
+#: templates/cartdetails.php:924 templates/cartdetails.php:968
+#: templates/cartdetails.php:1043 templates/cartdetails.php:1087
+#: templates/merchant-sidebar-contact.php:161
+#: templates/merchant_small_details.php:114 templates/search_details.php:419
+#: templates/search_details.php:872 templates/search_details.php:926
+#: templates/search_details.php:1494 templates/search_details.php:1556
+#: templates/orderdetails/default_checkmode146.php:18
+#: templates/orderdetails/default_checkmode450.php:19
+#: templates/orderdetails/default_checkmode450_simple.php:15
+#: templates/resourcedetails/form.php:728
+#: templates/widgets/booking-search.php:546
 msgid "Check-in"
 msgstr "Check-in"
 
+#: templates/cartdetails.php:441 templates/cartdetails.php:484
+#: templates/widgets/booking-search.php:765
+#: templates/widgets/booking-search.php:778
+#: templates/widgets/booking-search.php:791
+#: templates/widgets/booking-search.php:804
+#: templates/widgets/booking-search.php:820
+#, fuzzy
+#| msgid "From"
+msgid "from"
+msgstr "Ab"
+
+#: templates/cartdetails.php:445 templates/cartdetails.php:488
+#: templates/cartdetails.php:519 templates/cartdetails.php:555
+#: templates/cartdetails.php:930 templates/cartdetails.php:974
+#: templates/cartdetails.php:1049 templates/cartdetails.php:1093
+#: templates/merchant-sidebar-contact.php:165
+#: templates/merchant_small_details.php:117 templates/search_details.php:878
+#: templates/search_details.php:932 templates/search_details.php:1500
+#: templates/search_details.php:1562 templates/resourcedetails/form.php:732
+#: templates/widgets/booking-search.php:552
 msgid "Check-out"
 msgstr "Check-out"
 
-msgid "Total"
-msgstr "Gesamtbuchung"
-
-msgid "days"
-msgstr "Tage"
-
-msgid "nights"
-msgstr "Nächte"
-
-msgid "hours"
-msgstr "Stunden"
-
-msgid "Included"
-msgstr "Enthalten"
-
-msgid "VAT"
-msgstr "MwSt"
-
-msgid "Not included"
-msgstr "Nicht enthalten"
-
-msgid "City tax per person per night."
-msgstr "Kurtaxe pro Person pro Nacht."
-
-msgid "Cancellation FREE"
-msgstr "Stornierung KOSTENFREI"
-
+#: templates/cartdetails.php:447 templates/cartdetails.php:490
+#: templates/cartdetails.php:750 templates/search_details.php:1200
 msgid "until"
 msgstr "bis"
 
+#: templates/cartdetails.php:451 templates/cartdetails.php:494
+#: templates/cartdetails.php:525 templates/cartdetails.php:561
+#: templates/cartdetails.php:936 templates/cartdetails.php:980
+#: templates/cartdetails.php:1055 templates/cartdetails.php:1099
+#: templates/cartdetails.php:1158 templates/search_details.php:884
+#: templates/search_details.php:938 templates/search_details.php:1506
+#: templates/search_details.php:1568
+msgid "Total"
+msgstr "Gesamtbuchung"
+
+#: templates/cartdetails.php:453
+msgid "days"
+msgstr "Tage"
+
+#: templates/cartdetails.php:496
+msgid "nights"
+msgstr "Nächte"
+
+#: templates/cartdetails.php:527 templates/cartdetails.php:563
+#: templates/cartdetails.php:938 templates/cartdetails.php:982
+#: templates/cartdetails.php:1057 templates/cartdetails.php:1101
+#: templates/search_details.php:886 templates/search_details.php:940
+#: templates/search_details.php:1508 templates/search_details.php:1570
+msgid "hours"
+msgstr "Stunden"
+
+#: templates/cartdetails.php:592 templates/search_details.php:708
+#: templates/search_details.php:967
+msgid "Included"
+msgstr "Enthalten"
+
+#: templates/cartdetails.php:592 templates/search_details.php:708
+#: templates/search_details.php:967
+msgid "VAT"
+msgstr "MwSt"
+
+#: templates/cartdetails.php:595 templates/search_details.php:711
+#: templates/search_details.php:970
+msgid "Not included"
+msgstr "Nicht enthalten"
+
+#: templates/cartdetails.php:595 templates/search_details.php:711
+#: templates/search_details.php:970
+msgid "City tax per person per night."
+msgstr "Kurtaxe pro Person pro Nacht."
+
+#: templates/cartdetails.php:747 templates/cartdetails.php:762
+#: templates/cartdetails.php:777 templates/search_details.php:1197
+#: templates/search_details.php:1212 templates/search_details.php:1227
+msgid "Cancellation FREE"
+msgstr "Stornierung KOSTENFREI"
+
+#: templates/cartdetails.php:752 templates/search_details.php:1202
+#, fuzzy
 #, php-format
-msgid "You may cancel free of charge until %1$s before arrival. You will be charged %2$s if you cancel in the %1$s before arrival."
+#| msgid "You may cancel free of charge until %1$s before arrival. You will be charged %2$s if you cancel in the %1$s before arrival."
+msgid ""
+"You may cancel free of charge until %1$s before arrival. You will be charged "
+"%2$s if you cancel in the %1$s before arrival."
 msgstr "Sie können bis %1$s vor Ankunft kostenlos stornieren. Ihnen werden %2$s berechnet, wenn Sie %1$s vor Ankunft stornieren."
 
+#: templates/cartdetails.php:764 templates/cartdetails.php:779
+#: templates/search_details.php:1214 templates/search_details.php:1229
 msgid "You may cancel free of charge until arrival."
 msgstr "Sie können bis zur Ankunft kostenfrei stornieren."
 
+#: templates/cartdetails.php:767 templates/cartdetails.php:782
+#: templates/search_details.php:1217 templates/search_details.php:1232
 msgid "Special conditions"
 msgstr "Besondere Bedingungen"
 
+#: templates/cartdetails.php:769 templates/search_details.php:1219
+#, fuzzy
 #, php-format
-msgid "You may cancel with a charge of %3$s  until %1$s before arrival. You will be charged %2$s if you cancel in the %1$s before arrival."
+#| msgid "You may cancel with a charge of %3$s  until %1$s before arrival. You will be charged %2$s if you cancel in the %1$s before arrival."
+msgid ""
+"You may cancel with a charge of %3$s  until %1$s before arrival. You will be "
+"charged %2$s if you cancel in the %1$s before arrival."
 msgstr "Sie können mit einer Gebühr von %3$s bis %1$s vor der Ankunft stornieren. Ihnen werden %2$s berechnet, wenn Sie in den %1$s vor der Ankunft stornieren."
 
+#: templates/cartdetails.php:784 templates/search_details.php:1234
 #, php-format
 msgid "You will be charged %1$s if you cancel before arrival."
 msgstr "Ihnen werden %1$s berechnet, wenn Sie vor der Ankunft stornieren."
 
+#: templates/cartdetails.php:791 templates/search_details.php:1241
 msgid "Non refundable"
 msgstr "Nicht erstattbar"
 
+#: templates/cartdetails.php:793 templates/search_details.php:1243
 msgid "You will be charged all if you cancel before arrival."
 msgstr "Ihnen wird alles berechnet, wenn Sie vor der Ankunft stornieren."
 
-msgid "Pay at the property – NO PREPAYMENT NEEDED"
-msgstr "Zahlen Sie in der Unterkunft. – KEINE VORAUSZAHLUNG ERFORDERLICH"
-
-msgid "No prepayment is needed."
-msgstr "Keine Vorauszahlung erforderlich."
-
-msgid "You will be charged a prepayment of the total price at any time."
-msgstr "Ihnen wird jederzeit eine Vorauszahlung des Gesamtpreises berechnet."
-
-#, php-format
-msgid "You will be charged a prepayment of %1$s of the total price at any time."
-msgstr "Ihnen wird jederzeit eine Vorauszahlung von %1$s des Gesamtpreises."
-
-#, php-format
-msgid "You will be charged a prepayment of %1$s at any time."
-msgstr "Ihnen wird jederzeit eine Vorauszahlung von %1$s berechnet."
-
+#: templates/cartdetails.php:833 templates/search_details.php:1281
 msgid "There is no meal option with this room."
 msgstr "Für dieses Zimmer gibt es keine Mahlzeiten-Option."
 
+#: templates/cartdetails.php:835 templates/cartdetails.php:846
+#: templates/search_details.php:1283 templates/search_details.php:1294
 msgid "Breakfast"
 msgstr "Frühstück"
 
+#: templates/cartdetails.php:838 templates/cartdetails.php:849
+#: templates/search_details.php:1286 templates/search_details.php:1297
 msgid "Lunch"
 msgstr "Mittagessen"
 
+#: templates/cartdetails.php:841 templates/cartdetails.php:849
+#: templates/search_details.php:1289 templates/search_details.php:1297
 msgid "Dinner"
 msgstr "Abendessen"
 
+#: templates/cartdetails.php:844 templates/cartdetails.php:849
+#: templates/resources_grouped.php:235 templates/search_details.php:1292
+#: templates/search_details.php:1297 templates/search/list-condomonium.php:267
+#: templates/search/list-merchants.php:253
+#: templates/search/list-resources.php:272
 msgid "All Inclusive"
 msgstr "All-Inclusive"
 
+#: templates/cartdetails.php:853 templates/cartdetails.php:856
+#: templates/search_details.php:1301 templates/search_details.php:1304
 msgid "included"
 msgstr "enthalten"
 
+#: templates/cartdetails.php:871 templates/search_details.php:1319
+#: templates/widgets/search-filter.php:506
 msgid "Meals"
 msgstr "Behandlung"
 
+#: templates/cartdetails.php:873 templates/search_details.php:1321
 msgid "Cancellation"
 msgstr "Stornierung"
 
+#: templates/cartdetails.php:875 templates/search_details.php:1323
 msgid "Prepayment"
 msgstr "Vorauszahlung"
 
+#: templates/cartdetails.php:895
 msgid "Are you sure?"
 msgstr "Sind Sie sicher?"
 
+#: templates/cartdetails.php:1268 templates/resourcedetails/form.php:490
 msgid "Enter your details"
 msgstr "Geben Sie Ihre Details ein."
 
+#: templates/cartdetails.php:1274 templates/merchant-sidebar-contact.php:58
+#: templates/merchantdetails/review.php:83
+#: templates/orderdetails/default_checkmode25.php:12
+#: templates/orderdetails/default_checkmode26.php:11
+#: templates/resourcedetails/form.php:496
+#: templates/resourcedetails/review.php:131
 msgid "Name"
 msgstr "Name"
 
+#: templates/cartdetails.php:1275 templates/cartdetails.php:1279
+#: templates/cartdetails.php:1283 templates/cartdetails.php:1287
+#: templates/cartdetails.php:1294 templates/cartdetails.php:1298
+#: templates/cartdetails.php:1374 templates/cartdetails.php:1414
+#: templates/cartdetails.php:1418 templates/cartdetails.php:1457
+#: templates/cartdetails.php:1463 templates/cartdetails.php:1468
+#: templates/cartdetails.php:1470
+#: templates/orderdetails/default_checkmode146.php:59
+#: templates/orderdetails/default_checkmode146.php:61
+#: templates/orderdetails/default_checkmode146.php:64
+#: templates/orderdetails/default_checkmode25.php:32
+#: templates/orderdetails/default_checkmode25.php:33
+#: templates/orderdetails/default_checkmode25.php:34
+#: templates/orderdetails/default_checkmode26.php:31
+#: templates/orderdetails/default_checkmode26.php:32
+#: templates/orderdetails/default_checkmode26.php:33
+#: templates/orderdetails/default_checkmode450.php:87
+#: templates/orderdetails/default_checkmode450.php:88
+#: templates/orderdetails/default_checkmode450.php:90
+#: templates/orderdetails/default_checkmode450.php:94
+#: templates/orderdetails/default_checkmode450_simple.php:42
+#: templates/orderdetails/default_checkmode450_simple.php:43
+#: templates/orderdetails/default_checkmode450_simple.php:45
+#: templates/orderdetails/default_checkmode450_simple.php:49
+#: templates/orderdetails/default_checkmode5.php:36
+#: templates/orderdetails/default_checkmode5.php:37
+#: templates/orderdetails/default_checkmode6.php:36
+#: templates/orderdetails/default_checkmode6.php:37
+#: templates/resourcedetails/form.php:497
+#: templates/resourcedetails/form.php:501
+#: templates/resourcedetails/form.php:505
+#: templates/resourcedetails/form.php:509
+#: templates/resourcedetails/form.php:516
+#: templates/resourcedetails/form.php:520
+#: templates/resourcedetails/form.php:596
+#: templates/resourcedetails/form.php:636
+#: templates/resourcedetails/form.php:640
+#: templates/resourcedetails/form.php:690
+#: templates/resourcedetails/form.php:696
+#: templates/resourcedetails/form.php:701
+#: templates/resourcedetails/form.php:703
 msgid "This field is required."
 msgstr "Dieses Feld ist erforderlich."
 
+#: templates/cartdetails.php:1278 templates/merchant-sidebar-contact.php:61
+#: templates/orderdetails/default_checkmode146.php:14
+#: templates/orderdetails/default_checkmode25.php:16
+#: templates/orderdetails/default_checkmode26.php:15
+#: templates/resourcedetails/form.php:500
 msgid "Surname"
 msgstr "Nachname"
 
+#: templates/cartdetails.php:1282 templates/merchant-sidebar-contact.php:64
+#: templates/orderdetails/default_checkmode5.php:15
+#: templates/orderdetails/default_checkmode6.php:16
+#: templates/resourcedetails/form.php:504
 msgid "Email"
 msgstr "Email"
 
+#: templates/cartdetails.php:1286 templates/resourcedetails/form.php:508
 msgid "Reenter email"
 msgstr "Bestätigen Sie Ihre E-Mail"
 
+#: templates/cartdetails.php:1293 templates/merchant-sidebar-contact.php:70
+#: templates/resourcedetails/form.php:515
 msgid "Address"
 msgstr "Adresse"
 
+#: templates/cartdetails.php:1297 templates/resourcedetails/form.php:519
 msgid "Postal Code"
 msgstr "Postleitzahl"
 
+#: templates/cartdetails.php:1301 templates/merchantdetails/review.php:104
+#: templates/resourcedetails/form.php:523
+#: templates/resourcedetails/review.php:152
 msgid "Country"
 msgstr "Land"
 
+#: templates/cartdetails.php:1369 templates/resourcedetails/form.php:591
 msgid "Note"
 msgstr "Anfrage"
 
+#: templates/cartdetails.php:1373 templates/merchant-sidebar-contact.php:67
+#: templates/resourcedetails/form.php:595
 msgid "Phone"
 msgstr "Telefon"
 
+#: templates/cartdetails.php:1377 templates/resourcedetails/form.php:599
 msgid "Your estimated time of arrival"
 msgstr "Geschätzte Ankunftszeit"
 
+#: templates/cartdetails.php:1379 templates/resourcedetails/form.php:601
 msgid "I don't know"
 msgstr "Unklar"
 
+#: templates/cartdetails.php:1409 templates/resourcedetails/form.php:631
 msgid "Password"
 msgstr "Password"
 
+#: templates/cartdetails.php:1413 templates/merchant-sidebar-contact.php:76
+#: templates/merchantdetails/review.php:87
+#: templates/resourcedetails/form.php:635
+#: templates/resourcedetails/review.php:135
 msgid "City"
 msgstr "Stadt"
 
+#: templates/cartdetails.php:1417 templates/merchant-sidebar-contact.php:79
+#: templates/onselldetails/resourcedetails.php:209
+#: templates/resourcedetails/form.php:639
+#: templates/widgets/booking-search.php:323
 msgid "Province"
 msgstr "Land"
 
+#: templates/cartdetails.php:1424 templates/resourcedetails/form.php:647
 msgid "Payment method"
 msgstr "Zahlungsmethode"
 
+#: templates/cartdetails.php:1425 templates/resourcedetails/form.php:648
 msgid "Please choose a payment method"
 msgstr "Bitte wählen sie eine Zahlungsmethode"
 
+#: templates/cartdetails.php:1436
 msgid "Deposit"
 msgstr "Anzahlung"
 
+#: templates/cartdetails.php:1443 templates/resourcedetails/form.php:676
 msgid "Credit card details"
 msgstr "Kreditkartendetails"
 
+#: templates/cartdetails.php:1456 templates/resourcedetails/form.php:689
 msgid "Holder"
 msgstr "Kartenbesitzer"
 
+#: templates/cartdetails.php:1462 templates/resourcedetails/form.php:695
 msgid "Number"
 msgstr "Kartennummer"
 
+#: templates/cartdetails.php:1466 templates/resourcedetails/form.php:699
 msgid "Valid until"
 msgstr "Gültigkeitsdatum"
 
+#: templates/cartdetails.php:1468 templates/resourcedetails/form.php:701
 msgid "Month (MM)"
 msgstr "Monat (MM)"
 
+#: templates/cartdetails.php:1470 templates/resourcedetails/form.php:703
 msgid "Year (YY)"
 msgstr "Jahr (JJ)"
 
-msgid "Mandatory"
-msgstr "Es ist erforderlich"
-
-msgid "I agree to the conditions"
-msgstr "Ich stimme den Bedingungen zu."
-
-msgid "I accept personal data treatment"
-msgstr "Ich akzeptiere die Verarbeitung personenbezogener Daten."
-
-msgid "I accept additional purposes"
-msgstr "Ich akzeptiere zusätzliche Zwecke."
-
-msgid "Send"
-msgstr "Senden"
-
-msgid "Cart Not enabled! "
-msgstr "Warenkorb nicht aktiviert! "
-
-msgid "OPS, some errors occurred! Please try again later."
-msgstr "Ups, einige Fehler sind aufgetreten! Bitte später erneut versuchen."
-
-msgid "Your search"
-msgstr "Ihre Suche"
-
-msgid "Extra services"
-msgstr "Zusätzliche Leistungen"
-
-msgid "Insert your data"
-msgstr "Geben Sie Ihre Daten ein."
-
-msgid "Confirm booking"
-msgstr "Buchung bestätigen"
-
-msgid "Request for Information"
-msgstr "Unverbindliche Anfrage"
-
-msgid "Cap"
-msgstr "Obergrenze"
-
-msgid "Persons"
-msgstr "Personen"
-
-msgid "Special Requests"
-msgstr "Anfrage"
-
-msgid "Personal data treatment"
-msgstr "Verarbeitung personenbezogener Daten"
-
-msgid "Additional purposes"
-msgstr "Weitere Zwecke"
-
-msgid "Sending..."
-msgstr "Wird gesendet ..."
-
-msgctxt "Page slug"
-msgid "contactspopup"
-msgstr "contactspopup"
-
-msgctxt "Page slug"
-msgid "mapspopup"
-msgstr "mapspopup"
-
-msgctxt "Page slug"
-msgid "thankspopup"
-msgstr "thankspopup"
-
-msgctxt "Page slug"
-msgid "resources"
-msgstr "Ressourcen"
-
-msgctxt "Page slug"
-msgid "onsellunits"
-msgstr "onsellunits"
-
-msgctxt "Page slug"
-msgid "offers"
-msgstr "angebote"
-
-msgctxt "Page slug"
-msgid "offer"
-msgstr "angebot"
-
-msgctxt "Page slug"
-msgid "packages"
-msgstr "Pakete"
-
-msgctxt "Page slug"
-msgid "package"
-msgstr "Paket"
-
-msgctxt "Page slug"
-msgid "reviews"
-msgstr "Bewertungen"
-
-msgctxt "Page slug"
-msgid "review"
-msgstr "Bewertung"
-
-msgctxt "Page slug"
-msgid "redirect"
-msgstr "Umleitung"
-
-msgid "Show phone"
-msgstr "Telefon anzeigen"
-
-msgid "Web site"
-msgstr "Webseite"
-
-msgid "Request info"
-msgstr "Info anfordern"
-
-msgid "Proposals"
-msgstr "Vorschläge"
-
-msgid "Offers"
-msgstr "Angebote"
-
-msgid "Reviews"
-msgstr "Bewertungen"
-
-msgid "Good to know"
-msgstr "Nützliche Informationen"
-
-msgid "You need to be loggedin in order to access this page."
-msgstr "Sie müssen angemeldet sein, um diese Seite aufzurufen."
-
-msgid "Personal Informations"
-msgstr "Persönliche Informationen"
-
-msgid "Reservations"
-msgstr "Reservierungen"
-
-msgid "Settings"
-msgstr "Einstellungen"
-
-msgid "Social Network"
-msgstr "Soziales Netzwerk"
-
-msgid "Give your social profiles"
-msgstr "Geben Sie Ihre Profile auf sozialen Medien an."
-
-msgid "Connect with your account via your social networks , one less password to remember!"
-msgstr "Verbinden Sie Ihr Konto über Ihre sozialen Netzwerke. Ein Passwort weniger zu merken!"
-
-msgid "Your profile"
-msgstr "Ihr Profil"
-
-msgid "This information is used to automatically fill in your details and book more quickly. We do not share it publicly."
-msgstr "Diese Informationen wird verwendet, um automatisch Ihre Details auszufüllen und schneller zu buchen. Wir teilen sie nicht öffentlich."
-
-msgid "Date of birth"
-msgstr "Geburtsdatum"
-
-msgid "Gender"
-msgstr "Geschlecht"
-
-msgid "Male"
-msgstr "Männlich"
-
-msgid "Female"
-msgstr "Weiblich"
-
-msgid "State/Province"
-msgstr "Bundesland/Provinz"
-
-msgid "Zip Code"
-msgstr "Postleitzahl"
-
-msgid "Language"
-msgstr "Sprache"
-
-msgid "Submit"
-msgstr "Abschicken"
-
-msgid "Reservation number"
-msgstr "Reservierungsnummer"
-
-msgid "Booking Detail"
-msgstr "Buchungsdetails"
-
-msgid "Cancel Booking"
-msgstr "Buchung stornieren"
-
-msgid "You want to change your password? Click on the button below and we'll send you an email with a link to reset it."
-msgstr "Sie möchten Ihr Passwort ändern? Klicken Sie unten auf den Button und wir schicken Ihnen eine E-Mail mit einem Link zum Zurücksetzen."
-
-msgid "Change your password"
-msgstr "Ändern Sie Ihr Passwort"
-
-msgid "Choose how often you want to receive offers and suggestions, do not miss the best offers!"
-msgstr "Wählen Sie, wie oft Sie Angebote und Vorschläge erhalten möchten. Verpassen Sie nicht die besten Angebote!"
-
-msgid "Receive newsletter"
-msgstr "Newsletter erhalten"
-
-msgid "I do not care"
-msgstr "Ist mir egal"
-
-msgid "Fetching Reservation Details"
-msgstr "Reservierungsdaten werden abgerufen"
-
-msgid "Please be patient"
-msgstr "Bitte warten Sie einen Moment."
-
-msgctxt "Page slug"
-msgid "inforequestpopup"
-msgstr "inforequestpopup"
-
-msgid "List"
-msgstr "Liste"
-
-msgid "Grid"
-msgstr "Raster"
-
-msgctxt "Page slug"
-msgid "rating"
-msgstr "Bewertung"
-
-msgctxt "Page slug"
-msgid "rapidview"
-msgstr "Schnellansicht"
-
-msgid "Vetrina"
-msgstr "Vitrine"
-
-msgid "Top"
-msgstr "Beste"
-
-msgid "New!"
-msgstr "Neu!"
-
-msgid "m&sup2;"
-msgstr "m&sup2;"
-
-msgid "Contact Agent"
-msgstr "Vermittler kontaktieren"
-
-msgid "Details"
-msgstr "Details"
-
-msgid "New ad"
-msgstr "Neue Anzeige"
-
-msgid "&laquo;"
-msgstr "„"
-
-msgid "&raquo;"
-msgstr "“"
-
-msgid "Page"
-msgstr "Seite"
-
-msgid "Would you like to leave your review?"
-msgstr "Haben Sie einen Kommentar?"
-
-#, php-format
-msgid "Score from %s reviews"
-msgstr "auf der Grundlage von %s Bewertungen"
-
-msgid "Guest Rating"
-msgstr "Kundenbeurteilung"
-
-msgid "Read more"
-msgstr "Mehr lesen"
-
-msgid "Read less"
-msgstr "Weniger lesen"
-
-msgid "No results available"
-msgstr "Keine Unterkunft ist zu Ihren Reisedaten verfügbar"
-
-msgid "Order"
-msgstr "Ihre Reservierung"
-
-msgid "Error, please try again"
-msgstr "Fehler, bitte erneut versuhen"
-
-msgid "Payment"
-msgstr "Bezahlung"
-
-msgid " Years"
-msgstr " Jahre"
-
-msgid "Back to list"
-msgstr "Zurück zur Liste"
-
-msgid "adults"
-msgstr "Erwachsene"
-
-msgid "children"
-msgstr "Kinder"
-
-msgid "Total Price"
-msgstr "Gesamtpreis"
-
-msgctxt "Page slug"
-msgid "form"
-msgstr "Formular"
-
-#, php-format
-msgid "%s available accommodations"
-msgstr "%s gültige Unterkünfte"
-
-msgid "Map view"
-msgstr "Kartenansicht"
-
-#, php-format
-msgid "%s Results  found from %s for %s nigth(s)"
-msgstr "%s Unterkünfte von %s für %s nacht/nächte"
-
-msgid "Order by"
-msgstr "Sortieren nach"
-
-msgid "Lowest price first"
-msgstr "Niedrigster Preis"
-
-msgid "Review score"
-msgstr "Gästebewertung"
-
-msgid "Best offers"
-msgstr "Top Angebot"
-
-msgid "Book Now"
-msgstr "Buchen Sie"
-
-msgid " Offer "
-msgstr "Angebot"
-
-#, php-format
-msgid "Only %d available"
-msgstr "Nur noch %d verfügbar"
-
-msgid "Available"
-msgstr "Verfügbar"
-
-#, php-format
-msgid "Total for %d night/s"
-msgstr "Preis für %d nächte"
-
-msgid "SHOW ALL"
-msgstr "Mehr"
-
-#, php-format
-msgid "Offer %d%%"
-msgstr "Angebot %d%%"
-
-msgid "Facility contacts data"
-msgstr "Kontakt-Struktur"
-
-msgid "Availability"
-msgstr "Reisedaten ändern"
-
-msgid "My Cart"
-msgstr "Mein Warenkorb"
-
-msgid "Add to cart"
-msgstr "In Warenkorb legen"
-
-msgid "Continue shopping"
-msgstr "Weiter einkaufen"
-
-msgid "Check-out "
-msgstr "Check-out "
-
-msgid "Adults "
-msgstr "Erwachsene"
-
-msgid "Seniors "
-msgstr "Senioren"
-
-msgid "Search"
-msgstr "Suche"
-
-msgid "Ages of children"
-msgstr "Alter von Kindern"
-
-msgid "on"
-msgstr "auf"
-
-#, php-format
-msgid "We preset your children's ages to %s years old - but if you enter their actual ages, you might be able to find a better price."
-msgstr "Wir haben das Alter Ihres Kindes auf %s Jahre voreingestellt. Wenn Sie jedoch das tatsächliche Alter eingeben, finden Sie möglicherweise bessere Angebote."
-
-msgid "Select"
-msgstr "Wählen"
-
-msgid "Confirm your reservation"
-msgstr "Bestätigen Sie Ihre Reservierung"
-
-msgid "You can't acquire resources from another merchant."
-msgstr "Sie können keine Ressourcen von einem anderen Händler erwerben."
-
-msgid "selected items"
-msgstr "ausgewählte Positionen"
-
-msgid "Request Now"
-msgstr "Jetzt anfordern"
-
-msgid "No results available for the submitted data"
-msgstr "Diese Unterkunft ist zu Ihren Reisedaten leider nicht verfügbar"
-
-#, php-format
-msgid "Persons min:%1$d max:%2$d"
-msgstr "Personen min: %1$d max: %2$d"
-
-#, php-format
-msgid "Other %1$d choise"
-msgstr "Andere %1$d Alternativen"
-
-msgid "Find other great offers!"
-msgstr "Finden Sie weitere tolle Angebote!"
-
-msgid "Booking Enquiry"
-msgstr "Buchungsanfrage"
-
-msgid "Facility"
-msgstr "Dienstleistungen"
-
-msgid "Select a period"
-msgstr "Wählen Sie einen Zeitraum"
-
-msgid "selected services"
-msgstr "ausgewählte Dienstleistungen"
-
-msgid "Please, select a day"
-msgstr "Bitte wählen Sie einen Tag."
-
-msgid "Change your details"
-msgstr "Ihre Details ändern"
-
-msgid "Thank you for having chosen us."
-msgstr "Formular wurde erfolgreich abgegeben. Vielen Dank."
-
-msgid "Show All"
-msgstr "Mehr"
-
-msgid "Would you like to be the first to write a review?"
-msgstr "Möchten Sie als erster eine Bewertung schreiben?"
-
-msgid "Very poor"
-msgstr "Sehr schlecht"
-
-msgid "Poor"
-msgstr "Schlecht"
-
-msgid "Disappointing"
-msgstr "Enttäuschend "
-
-msgid "Fair"
-msgstr "Passabel"
-
-msgid "Okay"
-msgstr "Okay"
-
-msgid "Pleasant"
-msgstr "Angenehm"
-
-msgid "Good"
-msgstr "Gut"
-
-msgid "Very good"
-msgstr "Sehr gut"
-
-msgid "Fabulous"
-msgstr "Fabelhaft"
-
-msgid "Exceptional"
-msgstr "Außergewöhnlich"
-
-msgid "All reviewers"
-msgstr "Alle Bewertungen"
-
-msgid "Solo travellers"
-msgstr "Einzelreisende"
-
-msgid "Groups"
-msgstr "Gruppen"
-
-msgid "Young couplet"
-msgstr "Junge Paare"
-
-msgid "Mature couples"
-msgstr "Ältere Ehepaare"
-
-msgid "Families with young children"
-msgstr "Familien mit kleinen Kindern"
-
-msgid "Family with older children"
-msgstr "Familie mit älteren Kindern"
-
-#, php-format
-msgid "Based on %1$s Reviews."
-msgstr "Auf Grundlage von %1$s Bewertungen."
-
-msgid "Staff"
-msgstr "Hotelpersonal"
-
-msgid "Clean"
-msgstr "Sauberkeit"
-
-msgid "Comfort"
-msgstr "Komfort"
-
-msgid "Value for Money"
-msgstr "Gutes Preis-Leistungs-Verhältnis"
-
-msgid "Show reviews from"
-msgstr "Bewertungen anzeigen"
-
-msgid "Write a Review"
-msgstr "Bewertung schreiben"
-
-msgid "Reviewed"
-msgstr "Bewertet am"
-
-msgid "Stayed"
-msgstr "Aufenthalt"
-
-#, php-format
-msgid "Replied on %1s"
-msgstr "Antwortete am %1s"
-
-msgid "Reference"
-msgstr "Referenz"
-
-#, php-format
-msgid "Review certified by %1$s"
-msgstr "Bewertung von %1$s zertifiziert"
-
-msgid "+"
-msgstr "+"
-
-msgid "-"
-msgstr "+"
-
-#, php-format
-msgid "%s has responded to this review"
-msgstr "%s hat auf diese Bewertung geantwortet"
-
-msgid "No Reviews Found."
-msgstr "Keine Bewertungen gefunden."
-
-msgid "Media"
-msgstr "Medien"
-
-msgid "Description"
-msgstr "Beschreibung"
-
-msgid "Map"
-msgstr "Karte"
-
-msgid "In short"
-msgstr "Kurz gesagt"
-
-msgid "Share"
-msgstr "Freigeben"
-
-msgid "No Results Found"
-msgstr "Keine Ergebnisse gefunden"
-
-#, php-format
-msgid "%s available offers"
-msgstr "%s gültige Angebote"
-
-msgid "Read More"
-msgstr "Mehr lesen"
-
-msgid "Read Less"
-msgstr "Weniger lesen"
-
-msgid "please wait..."
-msgstr "Bitte warten ..."
-
-msgid "Type of traveller"
-msgstr "Reisetyp"
-
-msgid "E-mail"
-msgstr "E-mail"
-
-msgid "Confirm E-mail"
-msgstr "E-Mail bestätigen"
-
-msgid "When did you travel?"
-msgstr "Wann haben Sie hier übernachtet"
-
-msgid "Value for money"
-msgstr "Gutes Preis-Leistungs-Verhältnis"
-
-msgid "Valuation"
-msgstr "Schätzwert"
-
-msgid "List of the facility's positive points"
-msgstr "Liste der Vorteile des Objekts"
-
-msgid "List of the facility's negative points"
-msgstr "Liste der Nachteile des Objekts"
-
-#, php-format
-msgid "I certify that this review is based on my own experience and is my genuine opinion of this accommodation, and that I have no personal or business relationship with this establishment, and have not been offered any incentive or payment originating from the establishment to write this review. I understand that %s has a zero-tolerance policy on fake reviews."
-msgstr "Ich bestätige, dass dieser Beitrag auf meiner eigenen Erfahrung basiert und meine wirkliche Meinung über diese Unterkunft ist und ich keine persönliche oder geschäftliche Beziehung mit dieser Einrichtung habe und mir kein Anreiz oder eine Zahlung von der Einrichtung angebote wurde, um diese Bewertung zu schreiben. Ich verstehe, dass %s eine Null-Toleranz-Politik für gefälschte Rezensionen hat."
-
-msgid "send"
-msgstr "Anmeldung"
-
-msgid "A-Z"
-msgstr "A-Z"
-
-msgid "Z-A"
-msgstr "Z-A"
-
-msgid "comment"
-msgstr "Kommentar"
-
-msgid "To rent"
-msgstr "Vermietung"
-
-msgid "On sale"
-msgstr "Verkauf"
-
-msgid "Floor area"
-msgstr "Fläche"
-
-msgid "Area"
-msgstr "Fläche"
-
-msgid "Last update"
-msgstr "Letzte Änderung"
-
-msgid "Floor"
-msgstr "Etage"
-
-msgid "Ground floor"
-msgstr "Erdgeschoss"
-
-msgid "Top floor"
-msgstr "Dachgeschoss"
-
-msgid "Attic"
-msgstr "Dachboden"
-
-msgid "Multiple levels"
-msgstr "Mehrere Ebenen"
-
-msgid "ND"
-msgstr "k. A."
-
-msgid "Condition"
-msgstr "Zustand"
-
-msgid "New"
-msgstr "Neu"
-
-msgid "Bathrooms"
-msgstr "Badezimmer"
-
-msgid "Heating"
-msgstr "Heizung"
-
-msgid "Autonomous"
-msgstr "Autonome"
-
-msgid "Communal"
-msgstr "Gemeinschaftlich"
-
-msgid "Pay per use"
-msgstr "Pay-per-use"
-
-msgid "Box Auto"
-msgstr "Garage"
-
-msgid "Parking space"
-msgstr "Parkplätze"
-
-msgid "Energy efficiency class"
-msgstr "Energie Klasse"
-
-msgid "not set"
-msgstr "nicht festgelegt"
-
-msgid "Nondescript"
-msgstr "Unauffällig"
-
-msgid "Free property"
-msgstr "Freies Anwesen"
-
-msgid "Under evaluation"
-msgstr "Unter Begutachtung"
-
-msgid "IPE"
-msgstr "EEI"
-
-msgid "Yes"
-msgstr "Ja"
-
-msgid "Real estate agency collaboration"
-msgstr "Zusammenarbeit von Immobilienagenturen"
-
-msgid "External order ID"
-msgstr "Externe Bestell-ID"
-
-msgid "Correct format: dd/mm/yyyy"
-msgstr "Richtigen Format: dd/mm/yyyy"
-
-msgid "Booking reference"
-msgstr "Buchungsnummer"
-
-msgid "Client code"
-msgstr "Kundencode"
-
-msgid "Check-in must be great than Check-out"
-msgstr "Check-in muss größer als Check-Out sein"
-
-msgid "Please insert a valid email address!"
-msgstr "Bitte geben Sie eine gültige E-Mail-Adresse ein!"
-
-msgid "Rejected order"
-msgstr "Abgelehnte Bestellung"
-
-msgid "Deposit total"
-msgstr "Anzahlung"
-
-msgid "Status"
-msgstr "Status"
-
-msgid "Order sent to bank"
-msgstr "Auftrag an Bank gesendet"
-
-msgid "Pay"
-msgstr "Bezahlen"
-
-msgid "Waiting to confirm"
-msgstr "Bestätigung wird erwartet"
-
-msgid "Payment attempt was not successful. Try again"
-msgstr "Zahlungsversuch war nicht erfolgreich. Erneut versuchen."
-
-msgid "Payed order"
-msgstr "Bezahlte Bestellung"
-
-msgid "Order by credit card guarantee"
-msgstr "Per Kreditkartengarantie bestellen"
-
-msgid "Change data"
-msgstr "Daten ändern"
-
-msgid "Accommodation"
-msgstr "Unterkunft"
-
-msgid "Period"
-msgstr "Zeitraum"
-
-msgid "People"
-msgstr "Personen"
-
-#, php-format
-msgid "%1s will not charge anything to your credit card. Your credit card details are only requested in order to guarantee your booking."
-msgstr "%1s wird Ihrer Kreditkarte nichts belasten. Ihre Kreditkartendaten werden nur angefordert, um Ihre Buchung zu garantieren."
-
-msgid "Other payments"
-msgstr "Sonstige Zahlungen"
-
-msgid "Date"
-msgstr "Datum"
-
-msgid "Amount"
-msgstr "Betrag"
-
-msgid "Payment refused"
-msgstr "Zahlung abgelehnt"
-
-msgid "New payment"
-msgstr "Neue Zahlung"
-
-msgid "It 'requires a further amount for payments"
-msgstr "Es ist ein weiterer Betrag für Zahlungen erforderlich."
-
-msgid "Please insert a correct amount, it should be this format: xxx.xx (please use dot for deciaml prices)"
-msgstr "Bitte geben Sie einen korrekten Betrag ein. Er sollte dieses Format haben: xxx.xx (Bitte ein Punkt für Dezimalpreise verwenden.)"
-
-msgid "Thank you: payment process successfully completed"
-msgstr "Danke: Zahlungsvorgang erfolgreich abgeschlossen"
-
-msgid "Print"
-msgstr "Drucken"
-
-msgid "Payment process not successfully completed"
-msgstr "Der Zahlungsvorgang wurde nicht erfolgreich abgeschlossen."
-
-msgid "Payment process not successfully completed and has been deleted"
-msgstr "Zahlungsvorgang nicht erfolgreich abgeschlossen und wurde gelöscht"
-
-msgid "Some problems occured durint payment process, please contact merchant if you are sure that your payment process completed"
-msgstr "Einige Probleme traten wahrend des Zahlungsvorgangs auf. Bitte Händler kontaktieren, wenn Sie sicher sind, dass Ihre Zahlungsvorgang abgeschlossen wurde."
-
-msgid "Error inserting data"
-msgstr "Fehler beim Einfügen der Daten"
-
-msgid "Order doesn't exist"
-msgstr "Die Bestellung ist nicht vorhanden."
-
-msgid "Deposit does not exist"
-msgstr "Anzahlung ist nicht vorhanden"
-
-msgid "At this moment you cannot do payments."
-msgstr "Derzeit können Sie keine Zahlungen vornehmen."
-
-msgid "index.php?view=payment&actionmode=error&payedOrderId="
-msgstr "Index.PHP?View=Payment&actionmode=Error&payedOrderId="
-
-msgid "index.php?view=payment&actionmode=activaServer&payedOrderId="
-msgstr "Index.PHP?View=Payment&actionmode=activaServer&payedOrderId="
-
-msgid "index.php?view=orders"
-msgstr "Index.PHP?View=Orders"
-
-msgid "index.php?view=payment&actionmode=bnlpositivity&payedOrderId="
-msgstr "Index.PHP?View=Payment&actionmode=bnlpositivity&payedOrderId="
-
-msgid "index.php?view=payment&actionmode=keyclient&payedOrderId="
-msgstr "Index.PHP?View=Payment&actionmode=keyclient&payedOrderId="
-
-msgid "index.php?view=payment&actionmode=keyclient2014&payedOrderId="
-msgstr "Index.PHP?View=Payment&actionmode=keyclient2014&payedOrderId="
-
-msgid "index.php?view=payment&actionmode=pagoonline&payedOrderId="
-msgstr "Index.PHP?View=Payment&actionmode=pagoonline&payedOrderId="
-
-msgid "index.php?view=payment&actionmode=pagoonline&payedOrderId=donation"
-msgstr "Index.PHP?View=Payment&actionmode=pagoonline&payedOrderId=Donation"
-
-msgid "index.php?view=payment&actionmode=errordonation"
-msgstr "Index.PHP?View=Payment&actionmode=errordonation"
-
-msgid "index.php?view=payment&actionmode=virtualpay&payedOrderId="
-msgstr "Index.PHP?View=Payment&actionmode=virtualpay&payedOrderId="
-
-msgid "index.php?view=payment&actionmode=virtualpay&payedOrderId=donation"
-msgstr "Index.PHP?View=Payment&actionmode=virtualpay&payedOrderId=Donation"
-
-msgid "Total deposit : €"
-msgstr "Gesamtanzahlung: €"
-
-msgid "Info"
-msgstr "Informationen"
-
-msgid "Almost done"
-msgstr "Ausfüllen und senden, ist es einfach!"
-
-msgid "Book now"
-msgstr "Buchen Sie"
-
-msgid "Min paxes"
-msgstr "Min. paxes"
-
-msgid "Max paxes"
-msgstr "Max paxes"
-
-msgid "Energy Class"
-msgstr "Energieklasse"
-
-msgid "nondescript"
-msgstr "unscheinbar"
-
-msgid "free property"
-msgstr "Freies Objekt"
-
-msgid "A+"
-msgstr "A+"
-
-msgid "A"
-msgstr "A"
-
-msgid "B"
-msgstr "B"
-
-msgid "C"
-msgstr "C"
-
-msgid "D"
-msgstr "D"
-
-msgid "E"
-msgstr "E"
-
-msgid "F"
-msgstr "F"
-
-msgid "G"
-msgstr "G"
-
-msgid "EPI Value"
-msgstr "EPI-Wert"
-
-msgid "Attention!"
-msgstr "Achtung!"
-
-msgid "It 's not possible to insert your own review"
-msgstr "Es ist nicht möglich, Ihre eigene Rezension hinzuzufügen."
-
-msgid "nonexistent order"
-msgstr "nicht vorhandene Bestellung"
-
-msgid "Order with already a Review"
-msgstr "Bestellung mit bereits einer Rezension"
-
-msgid "nonexistent order or to which it is not possible to associate a review"
-msgstr "nicht vorhandene Bestellung oder bei der es nicht möglich ist, eine Rezension zuzuordnen"
-
-msgid "Order not related at this resource"
-msgstr "Die Bestellung ist nicht mit dieser Ressource verbunden."
-
-msgid "Order make before the date to make a review"
-msgstr "Sie können keine Rezension hinterlassen, wenn Ihr Bestelldatum in der Zukunft liegt."
-
-#, php-format
-msgid "Found %s results"
-msgstr "%s Ergebnisse gefunden"
-
-#, php-format
-msgid "From %s to %s"
-msgstr "Von %s bis %s"
-
-msgid "Request"
-msgstr "Anfrage"
-
-#, php-format
-msgid "%s reviews"
-msgstr "%s Rezensionen"
-
-msgid "Breakfast included"
-msgstr "Frühstück inbegriffen"
-
-msgid "Half board"
-msgstr "Halbpension"
-
-msgid "Full board"
-msgstr "Vollpension"
-
-#, php-format
-msgid "Price for %s person"
-msgstr "Preis für %s Person"
-
-msgid "Total for"
-msgstr "Summe für"
-
+#: templates/cartdetails.php:1495 templates/cartdetails.php:1498
+#: templates/cartdetails.php:1507 templates/cartdetails.php:1510
+#: templates/resources_grouped.php:268 templates/search_details.php:1150
+#: templates/search_details.php:1153 templates/search_details.php:1162
+#: templates/search_details.php:1165 templates/search_details.php:1177
+#: templates/search/list-condomonium.php:300
+#: templates/search/list-merchants.php:286
+#: templates/search/list-resources.php:305
 #, php-format
 msgid " %d day/s"
 msgstr " %d Tag(e)"
 
+#: templates/cartdetails.php:1516 templates/cartdetails.php:1530
+#: templates/cartdetails.php:1536 templates/cartdetails.php:1543
+#: templates/cartdetails.php:1656 templates/cartdetails.php:1657
+#: templates/cartdetails.php:1658 templates/merchant-sidebar-contact.php:58
+#: templates/merchant-sidebar-contact.php:61
+#: templates/merchant-sidebar-contact.php:64
+#: templates/merchant-sidebar-contact.php:67
+#: templates/merchant-sidebar-contact.php:70
+#: templates/merchant-sidebar-contact.php:73
+#: templates/merchant-sidebar-contact.php:76
+#: templates/merchant-sidebar-contact.php:79
+#: templates/merchant-sidebar-contact.php:198
+#: templates/merchant-sidebar-contact.php:210
+#: templates/merchant-sidebar-contact.php:217
+#: templates/merchantdetails/review.php:296
+#: templates/merchantdetails/review.php:308
+#: templates/merchantdetails/review.php:314
+#: templates/merchantdetails/review.php:389
+#: templates/merchantdetails/review.php:390
+#: templates/merchantdetails/review.php:391
+#: templates/merchantdetails/review.php:392
+#: templates/resourcedetails/form.php:749
+#: templates/resourcedetails/form.php:756
+#: templates/resourcedetails/form.php:763
+#: templates/resourcedetails/form.php:770
+#: templates/resourcedetails/form.php:899
+#: templates/resourcedetails/form.php:900
+#: templates/resourcedetails/form.php:901
+#: templates/resourcedetails/review.php:343
+#: templates/resourcedetails/review.php:355
+#: templates/resourcedetails/review.php:360
+#: templates/resourcedetails/review.php:459
+#: templates/resourcedetails/review.php:460
+#: templates/resourcedetails/review.php:461
+#: templates/resourcedetails/review.php:462
+msgid "Mandatory"
+msgstr "Es ist erforderlich"
+
+#: templates/cartdetails.php:1517 templates/resourcedetails/form.php:750
+msgid "I agree to the conditions"
+msgstr "Ich stimme den Bedingungen zu."
+
+#: templates/cartdetails.php:1531 templates/merchant-sidebar-contact.php:199
+#: templates/merchantdetails/review.php:297
+#: templates/resourcedetails/form.php:757
+#: templates/resourcedetails/review.php:344
+msgid "I accept personal data treatment"
+msgstr "Ich akzeptiere die Verarbeitung personenbezogener Daten."
+
+#: templates/cartdetails.php:1537 templates/merchant-sidebar-contact.php:211
+#: templates/merchantdetails/review.php:309
+#: templates/resourcedetails/form.php:764
+#: templates/resourcedetails/review.php:356
+msgid "I accept additional purposes"
+msgstr "Ich akzeptiere zusätzliche Zwecke."
+
+#: templates/cartdetails.php:1568 templates/merchant-sidebar-contact.php:228
+#: templates/orderdetails.php:55 templates/resourcedetails/form.php:793
+msgid "Send"
+msgstr "Senden"
+
+#: templates/cartdetails.php:1902
+msgid "Cart Not enabled! "
+msgstr "Warenkorb nicht aktiviert! "
+
+#: templates/condominiumdetails.php:13 templates/condominiumdetails.php:175
+#: templates/onselldetails.php:14 templates/onselldetails.php:162
+#: templates/resourcedetails.php:24 templates/resourcedetails.php:307
+#: templates/condominiumdetails/resourcedetails.php:100
+msgctxt "Page slug"
+msgid "inforequestpopup"
+msgstr "inforequestpopup"
+
+#: templates/condominiumdetails.php:13 templates/condominiumdetails.php:224
+#: templates/merchantdetails.php:12 templates/merchantdetails.php:464
+#: templates/onselldetails.php:14 templates/onselldetails.php:91
+#: templates/onselldetails.php:209 templates/resourcedetails.php:24
+#: templates/resourcedetails.php:356
+msgctxt "Page slug"
+msgid "mapspopup"
+msgstr "mapspopup"
+
+#: templates/condominiumdetails.php:190 templates/merchantdetails.php:12
+#: templates/merchantdetails.php:432 templates/merchantdetails.php:469
+#: templates/onselldetails.php:177 templates/resourcedetails.php:322
+msgctxt "Page slug"
+msgid "thankspopup"
+msgstr "thankspopup"
+
+#: templates/errors.php:17 templates/merchantdetails/errors.php:29
+msgid "OPS, some errors occurred! Please try again later."
+msgstr "Ups, einige Fehler sind aufgetreten! Bitte später erneut versuchen."
+
+#: templates/errors.php:19 templates/errors.php:22
+msgid "At this moment you cannot do payments."
+msgstr "Derzeit können Sie keine Zahlungen vornehmen."
+
+#: templates/menu_small_booking.php:3
+msgid "Your search"
+msgstr "Ihre Suche"
+
+#: templates/menu_small_booking.php:4
+msgid "Extra services"
+msgstr "Zusätzliche Leistungen"
+
+#: templates/menu_small_booking.php:5
+msgid "Insert your data"
+msgstr "Geben Sie Ihre Daten ein."
+
+#: templates/menu_small_booking.php:6
+msgid "Confirm booking"
+msgstr "Buchung bestätigen"
+
+#: templates/merchant-sidebar-contact.php:38
+#: templates/merchant-sidebar-contact.php:51
+msgid "Request for Information"
+msgstr "Unverbindliche Anfrage"
+
+#: templates/merchant-sidebar-contact.php:73
+msgid "Cap"
+msgstr "Obergrenze"
+
+#: templates/merchant-sidebar-contact.php:171
+msgid "Persons"
+msgstr "Personen"
+
+#: templates/merchant-sidebar-contact.php:187
+msgid "Special Requests"
+msgstr "Anfrage"
+
+#: templates/merchant-sidebar-contact.php:191
+#: templates/merchantdetails/review.php:289
+#: templates/resourcedetails/review.php:337
+msgid "Personal data treatment"
+msgstr "Verarbeitung personenbezogener Daten"
+
+#: templates/merchant-sidebar-contact.php:204
+#: templates/merchantdetails/review.php:302
+#: templates/resourcedetails/review.php:349
+msgid "Additional purposes"
+msgstr "Weitere Zwecke"
+
+#: templates/merchant-sidebar-contact.php:376
+msgid "Sending..."
+msgstr "Wird gesendet ..."
+
+#: templates/merchantdetails.php:12 templates/merchantdetails.php:401
+#: templates/merchant_small_details.php:40 templates/resources_grouped.php:99
+#: templates/merchantslist/merchantslist.php:83
+#: templates/search/list-condomonium.php:127
+#: templates/search/list-merchants.php:127
+#: templates/search/search-listing.php:213
+msgctxt "Page slug"
+msgid "contactspopup"
+msgstr "contactspopup"
+
+#: templates/merchantdetails.php:43 templates/merchant_small_details.php:35
+#: templates/merchantdetails/resources.php:204
+#: templates/widgets/merchant-vcard.php:154
+msgctxt "Page slug"
+msgid "resources"
+msgstr "Ressourcen"
+
+#: templates/merchantdetails.php:62 templates/merchant_small_details.php:37
+#: templates/merchantdetails/onsellunits.php:230
+#: templates/widgets/merchant-vcard.php:158
+msgctxt "Page slug"
+msgid "onsellunits"
+msgstr "onsellunits"
+
+#: templates/merchantdetails.php:80 templates/merchant_small_details.php:36
+#: templates/widgets/merchant-vcard.php:156
+msgctxt "Page slug"
+msgid "offers"
+msgstr "angebote"
+
+#: templates/merchantdetails.php:98 templates/merchantdetails/offers.php:74
+msgctxt "Page slug"
+msgid "offer"
+msgstr "angebot"
+
+#: templates/merchantdetails.php:125 templates/widgets/merchant-vcard.php:157
+msgctxt "Page slug"
+msgid "packages"
+msgstr "Pakete"
+
+#: templates/merchantdetails.php:142
+msgctxt "Page slug"
+msgid "package"
+msgstr "Paket"
+
+#: templates/merchantdetails.php:159 templates/merchant_small_details.php:38
+#: templates/resources_grouped.php:98
+#: templates/merchantdetails/merchant-ratings.php:65
+#: templates/merchantdetails/merchant-ratings.php:205
+#: templates/merchantdetails/reviews.php:124
+#: templates/merchantdetails/reviews.php:287
+#: templates/merchantslist/merchantslist.php:82
+#: templates/search/list-condomonium.php:126
+#: templates/search/list-merchants.php:126
+#: templates/search/search-listing.php:211
+#: templates/search/search-listing.php:212
+#: templates/widgets/merchant-vcard.php:159
+msgctxt "Page slug"
+msgid "reviews"
+msgstr "Bewertungen"
+
+#: templates/merchantdetails.php:169 templates/resourcedetails.php:191
+#: templates/resources_grouped.php:119
+#: templates/condominiumdetails/resourcedetails.php:99
+#: templates/merchantdetails/merchant-ratings.php:80
+#: templates/merchantdetails/merchant-ratings.php:222
+#: templates/merchantdetails/reviews.php:140
+#: templates/merchantdetails/reviews.php:318
+#: templates/resourcedetails/resourcedetails.php:99
+#: templates/search/list-condomonium.php:142
+msgctxt "Page slug"
+msgid "review"
+msgstr "Bewertung"
+
+#: templates/merchantdetails.php:173 templates/merchant_small_details.php:39
+#: templates/widgets/merchant-vcard.php:161
+msgctxt "Page slug"
+msgid "redirect"
+msgstr "Umleitung"
+
+#: templates/merchant_small_details.php:78
+#: templates/widgets/merchant-vcard.php:239
+msgid "Show phone"
+msgstr "Telefon anzeigen"
+
+#: templates/merchant_small_details.php:79
+#: templates/widgets/merchant-vcard.php:240
+msgid "Web site"
+msgstr "Webseite"
+
+#: templates/merchant_small_details.php:87 templates/search_details.php:821
+#: templates/search/search-listing.php:215
+msgid "Request info"
+msgstr "Info anfordern"
+
+#: templates/merchant_small_details.php:94
+#: templates/widgets/merchant-vcard.php:246
+msgid "Proposals"
+msgstr "Vorschläge"
+
+#: templates/merchant_small_details.php:101
+#: templates/widgets/merchant-vcard.php:253
+msgid "Offers"
+msgstr "Angebote"
+
+#: templates/merchant_small_details.php:105
+#: templates/condominiumdetails/resourcedetails.php:196
+#: templates/condominiumdetails/resourcedetails.php:206
+#: templates/merchantdetails/merchantdetails.php:155
+#: templates/merchantdetails/merchantdetails.php:164
+#: templates/resourcedetails/resourcedetails.php:177
+#: templates/resourcedetails/resourcedetails.php:187
+#: templates/widgets/merchant-vcard.php:257
+msgid "Reviews"
+msgstr "Bewertungen"
+
+#: templates/merchant_small_details.php:112
+#: templates/resourcedetails/form.php:724
+msgid "Good to know"
+msgstr "Nützliche Informationen"
+
+#: templates/onsellunits.php:83 templates/onsellunits.php:85
+#: templates/resources.php:65 templates/resources.php:67
+#: templates/resources_grouped.php:64 templates/resources_grouped.php:66
+#: templates/merchantdetails/offers.php:57
+#: templates/merchantdetails/offers.php:59
+#: templates/merchantdetails/onsellunits.php:77
+#: templates/merchantdetails/onsellunits.php:79
+#: templates/merchantdetails/resources.php:74
+#: templates/merchantdetails/resources.php:76
+#: templates/merchantslist/merchantslist.php:63
+#: templates/merchantslist/merchantslist.php:65
+#: templates/search/list-condomonium.php:96
+#: templates/search/list-condomonium.php:98
+#: templates/search/list-merchants.php:97
+#: templates/search/list-merchants.php:99
+#: templates/search/list-resources.php:94
+#: templates/search/list-resources.php:96
+#: templates/searchonsell/list-resources.php:74
+#: templates/searchonsell/list-resources.php:76
+msgid "List"
+msgstr "Liste"
+
+#: templates/onsellunits.php:86 templates/resources.php:68
+#: templates/resources_grouped.php:67 templates/merchantdetails/offers.php:60
+#: templates/merchantdetails/onsellunits.php:80
+#: templates/merchantdetails/resources.php:77
+#: templates/merchantslist/merchantslist.php:66
+#: templates/search/list-condomonium.php:99
+#: templates/search/list-merchants.php:100
+#: templates/search/list-resources.php:97
+#: templates/searchonsell/list-resources.php:77
+msgid "Grid"
+msgstr "Raster"
+
+#: templates/onsellunits.php:167 templates/merchantdetails/onsellunits.php:162
+#: templates/searchonsell/list-resources.php:174
+msgid "Vetrina"
+msgstr "Vitrine"
+
+#: templates/onsellunits.php:171 templates/merchantdetails/onsellunits.php:166
+#: templates/searchonsell/list-resources.php:178
+msgid "Top"
+msgstr "Beste"
+
+#: templates/onsellunits.php:175 templates/merchantdetails/onsellunits.php:170
+#: templates/searchonsell/list-resources.php:182
+msgid "New!"
+msgstr "Neu!"
+
+#: templates/onsellunits.php:195 templates/merchantdetails/onsellunits.php:190
+#: templates/searchonsell/list-resources.php:203
+msgid "m&sup2;"
+msgstr "m&sup2;"
+
+#: templates/onsellunits.php:203 templates/merchantdetails/onsellunits.php:198
+#: templates/onselldetails/resourcedetails.php:198
+#: templates/searchonsell/list-resources.php:211
+msgid "Contact Agent"
+msgstr "Vermittler kontaktieren"
+
+#: templates/onsellunits.php:208 templates/resources.php:177
+#: templates/merchantdetails/merchant-ratings.php:230
+#: templates/merchantdetails/merchant-ratings.php:231
+#: templates/merchantdetails/offers.php:103
+#: templates/merchantdetails/onsellunits.php:203
+#: templates/merchantdetails/resources.php:174
+#: templates/merchantdetails/reviews.php:329
+#: templates/merchantdetails/reviews.php:330
+#: templates/merchantslist/merchantslist.php:163
+#: templates/resourcedetails/form.php:1047
+#: templates/resourcedetails/form.php:1048
+#: templates/resourcedetails/resource-ratings.php:226
+#: templates/resourcedetails/resource-ratings.php:227
+#: templates/search/list-resources.php:278
+#: templates/searchonsell/list-resources.php:216
+#: templates/widgets/merchants.php:101
+msgid "Details"
+msgstr "Details"
+
+#: templates/onsellunits.php:213 templates/merchantdetails/onsellunits.php:208
+#: templates/searchonsell/list-resources.php:221
+msgid "New ad"
+msgstr "Neue Anzeige"
+
+#: templates/onsellunits.php:246 templates/resources.php:217
+#: templates/search-onsell.php:98
+#: templates/merchantdetails/onsellunits.php:238
+#: templates/merchantdetails/resources.php:212
+#: templates/merchantdetails/reviews.php:295
+#: templates/merchantslist/merchantslist.php:186
+#: templates/search/search-listing.php:75
+msgid "&laquo;"
+msgstr "„"
+
+#: templates/onsellunits.php:247 templates/resources.php:218
+#: templates/search-onsell.php:99
+#: templates/merchantdetails/onsellunits.php:239
+#: templates/merchantdetails/resources.php:213
+#: templates/merchantdetails/reviews.php:296
+#: templates/merchantslist/merchantslist.php:187
+#: templates/search/search-listing.php:76
+msgid "&raquo;"
+msgstr "“"
+
+#: templates/onsellunits.php:257 templates/resources.php:228
+#: templates/search-onsell.php:116
+#: templates/merchantdetails/onsellunits.php:249
+#: templates/merchantdetails/resources.php:223
+#: templates/merchantdetails/reviews.php:306
+#: templates/merchantslist/merchantslist.php:197
+#: templates/search/search-listing.php:145
+msgid "Page"
+msgstr "Seite"
+
+#: templates/onsellunits.php:314 templates/resources_grouped.php:184
+#: templates/merchantslist/merchantslist.php:154
+#: templates/merchantslist/merchantslist.php:284
+#: templates/search/list-condomonium.php:211
+#: templates/search/list-resources.php:222
+msgid "Would you like to leave your review?"
+msgstr "Haben Sie einen Kommentar?"
+
+#: templates/onsellunits.php:315 templates/merchantslist/merchantslist.php:285
+#, php-format
+msgid "Score from %s reviews"
+msgstr "auf der Grundlage von %s Bewertungen"
+
+#: templates/onsellunits.php:316 templates/merchantslist/merchantslist.php:286
+msgid "Guest Rating"
+msgstr "Kundenbeurteilung"
+
+#: templates/onsellunits.php:321 templates/merchantdetails/offers.php:163
+#: templates/merchantdetails/onsellunits.php:307
+#, fuzzy
+#| msgid "Read more"
+msgid "Read More"
+msgstr "Mehr lesen"
+
+#: templates/onsellunits.php:322 templates/merchantdetails/offers.php:164
+#: templates/merchantdetails/onsellunits.php:308
+#, fuzzy
+#| msgid "Read less"
+msgid "Read Less"
+msgstr "Weniger lesen"
+
+#: templates/onsellunits.php:456 templates/merchantdetails/onsellunits.php:442
+#: templates/merchantdetails/resources.php:404
+#: templates/search/search-listing.php:293
+#: templates/searchonsell/search-listing.php:69
+msgid "No results available"
+msgstr "Keine Unterkunft ist zu Ihren Reisedaten verfügbar"
+
+#: templates/orderdetails.php:33
+msgid "Order"
+msgstr "Ihre Reservierung"
+
+#: templates/payment.php:43
+msgid "Payment"
+msgstr "Bezahlung"
+
+#: templates/resourcedetails.php:13 templates/resourcedetails.php:69
+msgctxt "Page slug"
+msgid "form"
+msgstr "Formular"
+
+#: templates/resources.php:50 templates/resources_grouped.php:49
+#: templates/merchantdetails/onsellunits.php:62
+#: templates/merchantdetails/resources.php:59
+#, php-format
+msgid "%s available accommodations"
+msgstr "%s gültige Unterkünfte"
+
+#: templates/resources.php:56 templates/resources_grouped.php:55
+#: templates/merchantdetails/onsellunits.php:68
+#: templates/merchantdetails/resources.php:65
+#: templates/search/list-condomonium.php:76
+#: templates/search/list-merchants.php:77
+#: templates/search/list-resources.php:74
+#: templates/searchonsell/list-resources.php:55
+msgid "Map view"
+msgstr "Kartenansicht"
+
+#: templates/resources.php:102 templates/merchantdetails/resources.php:101
+msgctxt "Page slug"
+msgid "rating"
+msgstr "Bewertung"
+
+#: templates/resources.php:284 templates/resources_grouped.php:379
+#: templates/merchantdetails/resources.php:279
+#: templates/merchantslist/merchantslist.php:289
+#: templates/onselldetails/resourcedetails.php:438
+#: templates/search/list-condomonium.php:379
+#: templates/search/list-merchants.php:357
+#: templates/search/list-resources.php:375
+#: templates/searchonsell/list-resources.php:285
+#, fuzzy
+#| msgid "Read More"
+msgid "Read more"
+msgstr "Mehr lesen"
+
+#: templates/resources.php:285 templates/resources_grouped.php:380
+#: templates/merchantdetails/resources.php:280
+#: templates/merchantslist/merchantslist.php:290
+#: templates/onselldetails/resourcedetails.php:439
+#: templates/search/list-condomonium.php:380
+#: templates/search/list-merchants.php:358
+#: templates/search/list-resources.php:376
+#: templates/searchonsell/list-resources.php:286
+#, fuzzy
+#| msgid "Read Less"
+msgid "Read less"
+msgstr "Weniger lesen"
+
+#: templates/resources_grouped.php:132 templates/resources_grouped.php:241
+#: templates/resources_grouped.php:306
+#: templates/search/list-condomonium.php:155
+#: templates/search/list-condomonium.php:273
+#: templates/search/list-condomonium.php:338
+#: templates/search/list-merchants.php:152
+#: templates/search/list-merchants.php:259
+#: templates/search/list-merchants.php:324
+#: templates/search/list-resources.php:136
+#: templates/search/list-resources.php:343
+msgid "Request"
+msgstr "Anfrage"
+
+#: templates/resources_grouped.php:135 templates/search_details.php:664
+#: templates/search_details.php:824 templates/search_details.php:1666
+#: templates/search/list-condomonium.php:158
+#: templates/search/list-merchants.php:155
+#: templates/search/list-resources.php:139
+msgid "Book Now"
+msgstr "Buchen Sie"
+
+#: templates/resources_grouped.php:182
+#: templates/merchantslist/merchantslist.php:152
+#: templates/search/list-condomonium.php:209
+#: templates/search/list-merchants.php:202
+#: templates/search/list-resources.php:220
+#, php-format
+msgid "%s reviews"
+msgstr "%s Rezensionen"
+
+#: templates/resources_grouped.php:213 templates/search_details.php:846
+#: templates/search/list-condomonium.php:245
+#: templates/search/list-merchants.php:231
+#: templates/search/list-resources.php:250
+#, php-format
+msgid "Only %d available"
+msgstr "Nur noch %d verfügbar"
+
+#: templates/resources_grouped.php:224
+#: templates/search/list-condomonium.php:256
+#: templates/search/list-merchants.php:242
+#: templates/search/list-resources.php:261
+#: templates/widgets/search-filter.php:29
+msgid "Breakfast included"
+msgstr "Frühstück inbegriffen"
+
+#: templates/resources_grouped.php:229
+#: templates/search/list-condomonium.php:261
+#: templates/search/list-merchants.php:247
+#: templates/search/list-resources.php:266
+#: templates/widgets/search-filter.php:28
+msgid "Half board"
+msgstr "Halbpension"
+
+#: templates/resources_grouped.php:232
+#: templates/search/list-condomonium.php:264
+#: templates/search/list-merchants.php:250
+#: templates/search/list-resources.php:269
+#: templates/widgets/search-filter.php:27
+msgid "Full board"
+msgstr "Vollpension"
+
+#: templates/resources_grouped.php:253
+#: templates/search/list-condomonium.php:285
+#: templates/search/list-merchants.php:271
+#: templates/search/list-resources.php:290
+#, php-format
+msgid "Price for %s person"
+msgstr "Preis für %s Person"
+
+#: templates/resources_grouped.php:267 templates/resources_grouped.php:271
+#: templates/resources_grouped.php:275
+#: templates/search/list-condomonium.php:299
+#: templates/search/list-condomonium.php:303
+#: templates/search/list-condomonium.php:307
+#: templates/search/list-merchants.php:285
+#: templates/search/list-merchants.php:289
+#: templates/search/list-merchants.php:293
+#: templates/search/list-resources.php:304
+#: templates/search/list-resources.php:308
+#: templates/search/list-resources.php:312
+msgid "Total for"
+msgstr "Summe für"
+
+#: templates/resources_grouped.php:272
+#: templates/search/list-condomonium.php:304
+#: templates/search/list-merchants.php:290
+#: templates/search/list-resources.php:309
 #, php-format
 msgid " %d night/s"
 msgstr " %d Nacht/Nächte"
 
+#: templates/resources_grouped.php:277 templates/search_details.php:1181
+#: templates/search/list-condomonium.php:309
+#: templates/search/list-merchants.php:295
+#: templates/search/list-resources.php:314
 #, php-format
 msgid " %d hour/s"
 msgstr " %d Stunde(n)"
 
+#: templates/resources_grouped.php:280
+#: templates/search/list-condomonium.php:312
+#: templates/search/list-merchants.php:298
+#: templates/search/list-resources.php:317
 #, php-format
 msgid " %d minute/s"
 msgstr " %d Minute(n)"
 
+#: templates/resources_grouped.php:284
+#: templates/search/list-condomonium.php:316
+#: templates/search/list-merchants.php:302
+#: templates/search/list-resources.php:321
+#, fuzzy
+#| msgid "from"
 msgid "From"
-msgstr "Ab"
+msgstr "Vom"
 
+#: templates/resources_grouped.php:315
+#: templates/search/list-condomonium.php:347
+#: templates/search/list-merchants.php:333
+#: templates/search/list-resources.php:352
+#, php-format
+msgid "Offer %d%%"
+msgstr "Angebot %d%%"
+
+#: templates/search_details.php:398
+msgid "Availability"
+msgstr "Reisedaten ändern"
+
+#: templates/search_details.php:400 templates/search_details.php:402
+msgid "Cart"
+msgstr "Warenkorb"
+
+#: templates/search_details.php:403
+msgid "Add to cart"
+msgstr "In Warenkorb legen"
+
+#: templates/search_details.php:405
+msgid "Continue shopping"
+msgstr "Weiter einkaufen"
+
+#: templates/search_details.php:425
+#: templates/orderdetails/default_checkmode450.php:23
+#: templates/orderdetails/default_checkmode450_simple.php:19
+msgid "Check-out "
+msgstr "Check-out "
+
+#: templates/search_details.php:438 templates/search_details.php:2578
+#: templates/widgets/booking-search.php:1664
+msgid "Guest"
+msgstr "Gast"
+
+#: templates/search_details.php:448 templates/widgets/booking-search.php:681
+#: templates/widgets/booking-search.php:859
+#: templates/widgets/booking-search.php:1012
+msgid "Search"
+msgstr "Suche"
+
+#: templates/search_details.php:456
+msgid "Adults "
+msgstr "Erwachsene"
+
+#: templates/search_details.php:466
+msgid "Seniors "
+msgstr "Senioren"
+
+#: templates/search_details.php:487
+msgid "Ages of children"
+msgstr "Alter von Kindern"
+
+#: templates/search_details.php:488 templates/search_details.php:1751
+#: templates/search_details.php:1756 templates/search_details.php:1760
+#: templates/widgets/booking-search.php:627
+#: templates/widgets/booking-search.php:1169
+#: templates/widgets/booking-search.php:1174
+#: templates/widgets/booking-search.php:1178
+msgid "on"
+msgstr "auf"
+
+#: templates/search_details.php:559 templates/widgets/booking-search.php:714
+#, fuzzy
+#, php-format
+#| msgid "We preset your children's ages to %s years old - but if you enter their actual ages, you might be able to find a better price."
+msgid ""
+"We preset your children's ages to %s years old - but if you enter their "
+"actual ages, you might be able to find a better price."
+msgstr "Wir haben das Alter Ihres Kindes auf %s Jahre voreingestellt. Wenn Sie jedoch das tatsächliche Alter eingeben, finden Sie möglicherweise bessere Angebote."
+
+#: templates/search_details.php:610 templates/search_details.php:626
+msgid "Select"
+msgstr "Wählen"
+
+#: templates/search_details.php:645 templates/search_details.php:1407
+msgid "Confirm your reservation"
+msgstr "Bestätigen Sie Ihre Reservierung"
+
+#: templates/search_details.php:656
+msgid "You can't acquire resources from another merchant."
+msgstr "Sie können keine Ressourcen von einem anderen Händler erwerben."
+
+#: templates/search_details.php:660 templates/search_details.php:1661
+msgid "selected items"
+msgstr "ausgewählte Positionen"
+
+#: templates/search_details.php:667 templates/search_details.php:1669
+msgid "Request Now"
+msgstr "Jetzt anfordern"
+
+#: templates/search_details.php:730 templates/search_details.php:1132
+#: templates/resourcedetails/form.php:1062
+msgid "No results available for the submitted data"
+msgstr "Diese Unterkunft ist zu Ihren Reisedaten leider nicht verfügbar"
+
+#: templates/search_details.php:733
+#, php-format
+msgid "Persons min:%1$d max:%2$d"
+msgstr "Personen min: %1$d max: %2$d"
+
+#: templates/search_details.php:739 templates/search_details.php:1381
+#, php-format
+msgid "Other %1$d choise"
+msgstr "Andere %1$d Alternativen"
+
+#: templates/search_details.php:739 templates/search_details.php:1381
+msgid "Find other great offers!"
+msgstr "Finden Sie weitere tolle Angebote!"
+
+#: templates/search_details.php:1185
+#, php-format
+msgid " %d week/s"
+msgstr " %d Woche(n)"
+
+#: templates/search_details.php:1189
+#, php-format
+msgid " %d month/s"
+msgstr " %d Monat(e)"
+
+#: templates/search_details.php:1258
+msgid "Pay at the property – NO PREPAYMENT NEEDED"
+msgstr "Zahlen Sie in der Unterkunft. – KEINE VORAUSZAHLUNG ERFORDERLICH"
+
+#: templates/search_details.php:1259
+msgid "No prepayment is needed."
+msgstr "Keine Vorauszahlung erforderlich."
+
+#: templates/search_details.php:1264
+msgid "You will be charged a prepayment of the total price at any time."
+msgstr "Ihnen wird jederzeit eine Vorauszahlung des Gesamtpreises berechnet."
+
+#: templates/search_details.php:1266
+#, php-format
+msgid ""
+"You will be charged a prepayment of %1$s of the total price at any time."
+msgstr "Ihnen wird jederzeit eine Vorauszahlung von %1$s des Gesamtpreises."
+
+#: templates/search_details.php:1268
+#, php-format
+msgid "You will be charged a prepayment of %1$s at any time."
+msgstr "Ihnen wird jederzeit eine Vorauszahlung von %1$s berechnet."
+
+#: templates/search_details.php:1329
+msgid "Booking Enquiry"
+msgstr "Buchungsanfrage"
+
+#: templates/search_details.php:1406
+msgid "Do you want add more?"
+msgstr "Möchten Sie noch mehr hinzufügen?"
+
+#: templates/search_details.php:1485
+msgid "Select a period"
+msgstr "Wählen Sie einen Zeitraum"
+
+#: templates/search_details.php:1662
+msgid "selected services"
+msgstr "ausgewählte Dienstleistungen"
+
+#: templates/search_details.php:2333
+msgid "Please, select a day"
+msgstr "Bitte wählen Sie einen Tag."
+
+#: templates/search_details.php:2347 templates/search_details.php:2413
+msgid "Change your details"
+msgstr "Ihre Details ändern"
+
+#: templates/thanks.php:24 templates/merchantdetails/thanks.php:31
+msgid "Thank you for having chosen us."
+msgstr "Formular wurde erfolgreich abgegeben. Vielen Dank."
+
+#: templates/condominiumdetails/resource-gallery.php:71
+#: templates/merchantdetails/gallery.php:45
+#: templates/merchantdetails/merchant-gallery.php:69
+#: templates/onselldetails/resource-gallery.php:71
+#: templates/resourcedetails/resource-gallery.php:71
+#, fuzzy
+#| msgid "SHOW ALL"
+msgid "Show All"
+msgstr "Mehr"
+
+#: templates/condominiumdetails/resourcedetails.php:35
+#: templates/merchantdetails/merchantdetails.php:27
+#: templates/merchantdetails/reviews.php:35
+#: templates/resourcedetails/resourcedetails.php:35
+#: templates/search/list-condomonium.php:5
+#: templates/search/list-merchants.php:5 templates/search/list-resources.php:5
+#: templates/widgets/search-filter.php:45
+msgid "Very poor"
+msgstr "Sehr schlecht"
+
+#: templates/condominiumdetails/resourcedetails.php:36
+#: templates/merchantdetails/merchantdetails.php:28
+#: templates/merchantdetails/reviews.php:36
+#: templates/resourcedetails/resourcedetails.php:36
+#: templates/search/list-condomonium.php:6
+#: templates/search/list-merchants.php:6 templates/search/list-resources.php:6
+#: templates/widgets/search-filter.php:46
+msgid "Poor"
+msgstr "Schlecht"
+
+#: templates/condominiumdetails/resourcedetails.php:37
+#: templates/merchantdetails/merchantdetails.php:29
+#: templates/merchantdetails/reviews.php:37
+#: templates/resourcedetails/resourcedetails.php:37
+#: templates/search/list-condomonium.php:7
+#: templates/search/list-merchants.php:7 templates/search/list-resources.php:7
+#: templates/widgets/search-filter.php:47
+msgid "Disappointing"
+msgstr "Enttäuschend "
+
+#: templates/condominiumdetails/resourcedetails.php:38
+#: templates/merchantdetails/merchantdetails.php:30
+#: templates/merchantdetails/reviews.php:38
+#: templates/resourcedetails/resourcedetails.php:38
+#: templates/search/list-condomonium.php:8
+#: templates/search/list-merchants.php:8 templates/search/list-resources.php:8
+#: templates/widgets/search-filter.php:48
+msgid "Fair"
+msgstr "Passabel"
+
+#: templates/condominiumdetails/resourcedetails.php:39
+#: templates/merchantdetails/merchantdetails.php:31
+#: templates/merchantdetails/reviews.php:39
+#: templates/resourcedetails/resourcedetails.php:39
+#: templates/search/list-condomonium.php:9
+#: templates/search/list-merchants.php:9 templates/search/list-resources.php:9
+#: templates/widgets/search-filter.php:49
+msgid "Okay"
+msgstr "Okay"
+
+#: templates/condominiumdetails/resourcedetails.php:40
+#: templates/merchantdetails/merchantdetails.php:32
+#: templates/merchantdetails/reviews.php:40
+#: templates/resourcedetails/resourcedetails.php:40
+#: templates/search/list-condomonium.php:10
+#: templates/search/list-merchants.php:10
+#: templates/search/list-resources.php:10
+#: templates/widgets/search-filter.php:50
+msgid "Pleasant"
+msgstr "Angenehm"
+
+#: templates/condominiumdetails/resourcedetails.php:41
+#: templates/merchantdetails/merchantdetails.php:33
+#: templates/merchantdetails/reviews.php:41
+#: templates/onselldetails/resourcedetails.php:246
+#: templates/resourcedetails/resourcedetails.php:41
+#: templates/search/list-condomonium.php:11
+#: templates/search/list-merchants.php:11
+#: templates/search/list-resources.php:11
+#: templates/widgets/search-filter.php:51
+msgid "Good"
+msgstr "Gut"
+
+#: templates/condominiumdetails/resourcedetails.php:42
+#: templates/merchantdetails/merchantdetails.php:34
+#: templates/merchantdetails/reviews.php:42
+#: templates/resourcedetails/resourcedetails.php:42
+#: templates/search/list-condomonium.php:12
+#: templates/search/list-merchants.php:12
+#: templates/search/list-resources.php:12
+#: templates/widgets/search-filter.php:52
+msgid "Very good"
+msgstr "Sehr gut"
+
+#: templates/condominiumdetails/resourcedetails.php:43
+#: templates/merchantdetails/merchantdetails.php:35
+#: templates/merchantdetails/reviews.php:43
+#: templates/resourcedetails/resourcedetails.php:43
+#: templates/search/list-condomonium.php:13
+#: templates/search/list-merchants.php:13
+#: templates/search/list-resources.php:13
+#: templates/widgets/search-filter.php:53
+msgid "Fabulous"
+msgstr "Fabelhaft"
+
+#: templates/condominiumdetails/resourcedetails.php:44
+#: templates/condominiumdetails/resourcedetails.php:45
+#: templates/merchantdetails/merchantdetails.php:36
+#: templates/merchantdetails/merchantdetails.php:37
+#: templates/merchantdetails/reviews.php:44
+#: templates/merchantdetails/reviews.php:45
+#: templates/resourcedetails/resourcedetails.php:44
+#: templates/resourcedetails/resourcedetails.php:45
+#: templates/search/list-condomonium.php:14
+#: templates/search/list-condomonium.php:15
+#: templates/search/list-merchants.php:14
+#: templates/search/list-merchants.php:15
+#: templates/search/list-resources.php:14
+#: templates/search/list-resources.php:15
+#: templates/widgets/search-filter.php:54
+#: templates/widgets/search-filter.php:55
+msgid "Exceptional"
+msgstr "Außergewöhnlich"
+
+#: templates/condominiumdetails/resourcedetails.php:101
+msgctxt "Page slug"
+msgid "rapidview"
+msgstr "Schnellansicht"
+
+#: templates/condominiumdetails/resourcedetails.php:203
+#: templates/merchantdetails/merchantdetails.php:161
+#: templates/merchantdetails/offer-details.php:58
+#: templates/onselldetails/resourcedetails.php:155
+#: templates/resourcedetails/resourcedetails.php:184
+msgid "Media"
+msgstr "Medien"
+
+#: templates/condominiumdetails/resourcedetails.php:204
+#: templates/merchantdetails/merchantdetails.php:163
+#: templates/merchantdetails/offer-details.php:59
+#: templates/onselldetails/resourcedetails.php:156
+#: templates/resourcedetails/resourcedetails.php:185
+msgid "Description"
+msgstr "Beschreibung"
+
+#: templates/condominiumdetails/resourcedetails.php:205
+#: templates/onselldetails/resourcedetails.php:157
+#: templates/resourcedetails/resourcedetails.php:186
+msgid "Host"
+msgstr "Gastgeber"
+
+#: templates/condominiumdetails/resourcedetails.php:207
+#: templates/resourcedetails/resourcedetails.php:188
+msgid "Book now"
+msgstr "Buchen Sie"
+
+#: templates/condominiumdetails/resourcedetails.php:222
+#: templates/merchantdetails/merchantdetails.php:180
+#: templates/onselldetails/resourcedetails.php:172
+#: templates/resourcedetails/resourcedetails.php:203
+msgid "In short"
+msgstr "Kurz gesagt"
+
+#: templates/condominiumdetails/resourcedetails.php:224
+#: templates/onselldetails/resourcedetails.php:173
+#: templates/onselldetails/resourcedetails.php:205
+#: templates/resourcedetails/resourcedetails.php:205
+msgid "Floor area"
+msgstr "Fläche"
+
+#: templates/condominiumdetails/resourcedetails.php:228
+#: templates/onselldetails/resourcedetails.php:177
+#: templates/resourcedetails/resourcedetails.php:209
+msgid "Min paxes"
+msgstr "Min. paxes"
+
+#: templates/condominiumdetails/resourcedetails.php:230
+#: templates/onselldetails/resourcedetails.php:179
+#: templates/resourcedetails/resourcedetails.php:211
+msgid "Max paxes"
+msgstr "Max paxes"
+
+#: templates/condominiumdetails/resourcedetails.php:237
+#: templates/resourcedetails/resourcedetails.php:218
+msgid "Energy Class"
+msgstr "Energieklasse"
+
+#: templates/condominiumdetails/resourcedetails.php:242
+#: templates/onselldetails/resourcedetails.php:303
+#: templates/resourcedetails/resourcedetails.php:223
+msgid "not set"
+msgstr "nicht festgelegt"
+
+#: templates/condominiumdetails/resourcedetails.php:243
+#: templates/resourcedetails/resourcedetails.php:224
+#, fuzzy
+#| msgid "Nondescript"
+msgid "nondescript"
+msgstr "Unauffällig"
+
+#: templates/condominiumdetails/resourcedetails.php:244
+#: templates/resourcedetails/resourcedetails.php:225
+#, fuzzy
+#| msgid "Free property"
+msgid "free property"
+msgstr "Freies Anwesen"
+
+#: templates/condominiumdetails/resourcedetails.php:245
+#: templates/onselldetails/resourcedetails.php:306
+#: templates/resourcedetails/resourcedetails.php:226
+msgid "Under evaluation"
+msgstr "Unter Begutachtung"
+
+#: templates/condominiumdetails/resourcedetails.php:246
+#: templates/resourcedetails/resourcedetails.php:227
+msgid "A+"
+msgstr "A+"
+
+#: templates/condominiumdetails/resourcedetails.php:247
+#: templates/resourcedetails/resourcedetails.php:228
+msgid "A"
+msgstr "A"
+
+#: templates/condominiumdetails/resourcedetails.php:248
+#: templates/resourcedetails/resourcedetails.php:229
+msgid "B"
+msgstr "B"
+
+#: templates/condominiumdetails/resourcedetails.php:249
+#: templates/resourcedetails/resourcedetails.php:230
+msgid "C"
+msgstr "C"
+
+#: templates/condominiumdetails/resourcedetails.php:250
+#: templates/resourcedetails/resourcedetails.php:231
+msgid "D"
+msgstr "D"
+
+#: templates/condominiumdetails/resourcedetails.php:251
+#: templates/resourcedetails/resourcedetails.php:232
+msgid "E"
+msgstr "E"
+
+#: templates/condominiumdetails/resourcedetails.php:252
+#: templates/resourcedetails/resourcedetails.php:233
+msgid "F"
+msgstr "F"
+
+#: templates/condominiumdetails/resourcedetails.php:253
+#: templates/resourcedetails/resourcedetails.php:234
+msgid "G"
+msgstr "G"
+
+#: templates/condominiumdetails/resourcedetails.php:260
+#: templates/resourcedetails/resourcedetails.php:241
+msgid "EPI Value"
+msgstr "EPI-Wert"
+
+#: templates/condominiumdetails/resourcedetails.php:268
+#: templates/merchantdetails/merchantdetails.php:184
+#: templates/onselldetails/resourcedetails.php:183
+#: templates/resourcedetails/resourcedetails.php:249
+msgid "Share"
+msgstr "Freigeben"
+
+#: templates/merchantdetails/merchant-ratings.php:9
+#: templates/merchantdetails/merchant-ratings.php:68
+#: templates/merchantdetails/reviews.php:71
+#: templates/merchantdetails/reviews.php:128
+#: templates/resourcedetails/resource-ratings.php:9
+#: templates/resourcedetails/resource-ratings.php:68
+msgid "All reviewers"
+msgstr "Alle Bewertungen"
+
+#: templates/merchantdetails/merchant-ratings.php:9
+#: templates/merchantdetails/merchant-ratings.php:69
+#: templates/merchantdetails/review.php:95
+#: templates/merchantdetails/reviews.php:71
+#: templates/merchantdetails/reviews.php:129
+#: templates/resourcedetails/resource-ratings.php:9
+#: templates/resourcedetails/resource-ratings.php:69
+#: templates/resourcedetails/review.php:143
+msgid "Solo travellers"
+msgstr "Einzelreisende"
+
+#: templates/merchantdetails/merchant-ratings.php:9
+#: templates/merchantdetails/merchant-ratings.php:70
+#: templates/merchantdetails/review.php:96
+#: templates/merchantdetails/reviews.php:71
+#: templates/merchantdetails/reviews.php:130
+#: templates/resourcedetails/resource-ratings.php:9
+#: templates/resourcedetails/resource-ratings.php:70
+#: templates/resourcedetails/review.php:144
+msgid "Groups"
+msgstr "Gruppen"
+
+#: templates/merchantdetails/merchant-ratings.php:9
+#: templates/merchantdetails/merchant-ratings.php:71
+#: templates/merchantdetails/review.php:97
+#: templates/merchantdetails/reviews.php:71
+#: templates/merchantdetails/reviews.php:131
+#: templates/resourcedetails/resource-ratings.php:9
+#: templates/resourcedetails/resource-ratings.php:71
+#: templates/resourcedetails/review.php:145
+msgid "Young couplet"
+msgstr "Junge Paare"
+
+#: templates/merchantdetails/merchant-ratings.php:9
+#: templates/merchantdetails/merchant-ratings.php:72
+#: templates/merchantdetails/review.php:98
+#: templates/merchantdetails/reviews.php:71
+#: templates/merchantdetails/reviews.php:132
+#: templates/resourcedetails/resource-ratings.php:9
+#: templates/resourcedetails/resource-ratings.php:72
+#: templates/resourcedetails/review.php:146
+msgid "Mature couples"
+msgstr "Ältere Ehepaare"
+
+#: templates/merchantdetails/merchant-ratings.php:9
+#: templates/merchantdetails/merchant-ratings.php:73
+#: templates/merchantdetails/review.php:99
+#: templates/merchantdetails/reviews.php:71
+#: templates/merchantdetails/reviews.php:133
+#: templates/resourcedetails/resource-ratings.php:9
+#: templates/resourcedetails/resource-ratings.php:73
+#: templates/resourcedetails/review.php:147
+msgid "Families with young children"
+msgstr "Familien mit kleinen Kindern"
+
+#: templates/merchantdetails/merchant-ratings.php:9
+#: templates/merchantdetails/merchant-ratings.php:74
+#: templates/merchantdetails/review.php:100
+#: templates/merchantdetails/reviews.php:71
+#: templates/merchantdetails/reviews.php:134
+#: templates/resourcedetails/resource-ratings.php:9
+#: templates/resourcedetails/resource-ratings.php:74
+#: templates/resourcedetails/review.php:148
+msgid "Family with older children"
+msgstr "Familie mit älteren Kindern"
+
+#: templates/merchantdetails/merchant-ratings.php:30
+#: templates/merchantdetails/reviews.php:89
+#: templates/resourcedetails/resource-ratings.php:30
+#, php-format
+msgid "Based on %1$s Reviews."
+msgstr "Auf Grundlage von %1$s Bewertungen."
+
+#: templates/merchantdetails/merchant-ratings.php:35
+#: templates/merchantdetails/review.php:193
+#: templates/merchantdetails/reviews.php:94
+#: templates/resourcedetails/resource-ratings.php:35
+#: templates/resourcedetails/review.php:241
+msgid "Staff"
+msgstr "Hotelpersonal"
+
+#: templates/merchantdetails/merchant-ratings.php:43
+#: templates/merchantdetails/review.php:221
+#: templates/merchantdetails/reviews.php:102
+#: templates/resourcedetails/resource-ratings.php:43
+#: templates/resourcedetails/review.php:269
+msgid "Clean"
+msgstr "Sauberkeit"
+
+#: templates/merchantdetails/merchant-ratings.php:52
+#: templates/merchantdetails/review.php:236
+#: templates/merchantdetails/reviews.php:111
+#: templates/resourcedetails/resource-ratings.php:52
+#: templates/resourcedetails/review.php:284
+msgid "Comfort"
+msgstr "Komfort"
+
+#: templates/merchantdetails/merchant-ratings.php:56
+#: templates/merchantdetails/reviews.php:115
+#: templates/resourcedetails/resource-ratings.php:56
+msgid "Value for Money"
+msgstr "Gutes Preis-Leistungs-Verhältnis"
+
+#: templates/merchantdetails/merchant-ratings.php:66
+#: templates/merchantdetails/reviews.php:126
+#: templates/resourcedetails/resource-ratings.php:66
+msgid "Show reviews from"
+msgstr "Bewertungen anzeigen"
+
+#: templates/merchantdetails/merchant-ratings.php:80
+#: templates/merchantdetails/merchant-ratings.php:222
+#: templates/merchantdetails/reviews.php:140
+#: templates/merchantdetails/reviews.php:318
+#: templates/resourcedetails/resource-ratings.php:81
+#: templates/resourcedetails/resource-ratings.php:218
+msgid "Write a Review"
+msgstr "Bewertung schreiben"
+
+#: templates/merchantdetails/merchant-ratings.php:93
+#: templates/merchantdetails/reviews.php:154
+#: templates/resourcedetails/resource-ratings.php:95
+msgid "Reviewed"
+msgstr "Bewertet am"
+
+#: templates/merchantdetails/merchant-ratings.php:99
+#: templates/merchantdetails/reviews.php:160
+#: templates/resourcedetails/resource-ratings.php:101
+msgid "Stayed"
+msgstr "Aufenthalt"
+
+#: templates/merchantdetails/merchant-ratings.php:127
+#: templates/merchantdetails/reviews.php:188
+#: templates/resourcedetails/resource-ratings.php:129
+#, php-format
+msgid "Replied on %1s"
+msgstr "Antwortete am %1s"
+
+#: templates/merchantdetails/merchant-ratings.php:152
+#: templates/merchantdetails/reviews.php:213
+#: templates/resourcedetails/resource-ratings.php:154
+msgid "Reference"
+msgstr "Referenz"
+
+#: templates/merchantdetails/merchant-ratings.php:172
+#: templates/merchantdetails/reviews.php:234
+#: templates/resourcedetails/resource-ratings.php:174
+#, php-format
+msgid "Review certified by %1$s"
+msgstr "Bewertung von %1$s zertifiziert"
+
+#: templates/merchantdetails/merchant-ratings.php:180
+#: templates/merchantdetails/reviews.php:242
+#: templates/resourcedetails/resource-ratings.php:182
+msgid "+"
+msgstr "+"
+
+#: templates/merchantdetails/merchant-ratings.php:184
+#: templates/merchantdetails/reviews.php:248
+#: templates/resourcedetails/resource-ratings.php:186
+msgid "-"
+msgstr "+"
+
+#: templates/merchantdetails/merchant-ratings.php:191
+#: templates/merchantdetails/reviews.php:256
+#: templates/resourcedetails/resource-ratings.php:194
+#, php-format
+msgid "%s has responded to this review"
+msgstr "%s hat auf diese Bewertung geantwortet"
+
+#: templates/merchantdetails/merchant-ratings.php:213
+#: templates/merchantdetails/merchant-ratings.php:218
+#: templates/merchantdetails/reviews.php:270
+#: templates/merchantdetails/reviews.php:314
+#: templates/resourcedetails/resource-ratings.php:208
+#: templates/resourcedetails/resource-ratings.php:213
+msgid "No Reviews Found."
+msgstr "Keine Bewertungen gefunden."
+
+#: templates/merchantdetails/merchant-ratings.php:221
+#: templates/merchantdetails/reviews.php:317
+#: templates/resourcedetails/resource-ratings.php:217
+msgid "Would you like to be the first to write a review?"
+msgstr "Möchten Sie als erster eine Bewertung schreiben?"
+
+#: templates/merchantdetails/merchantdetails.php:165
+#: templates/onselldetails/resourcedetails.php:158
+#: templates/widgets/booking-search.php:336
+msgid "Map"
+msgstr "Karte"
+
+#: templates/merchantdetails/merchantdetails.php:204
+#: templates/widgets/search-filter.php:536
+msgid "Facility"
+msgstr "Dienstleistungen"
+
+#: templates/merchantdetails/offer-details.php:92
+#: templates/merchantdetails/offers.php:116
+msgid "No Results Found"
+msgstr "Keine Ergebnisse gefunden"
+
+#: templates/merchantdetails/offers.php:52
+#, php-format
+msgid "%s available offers"
+msgstr "%s gültige Angebote"
+
+#: templates/merchantdetails/redirect.php:58
+msgid "please wait..."
+msgstr "Bitte warten ..."
+
+#: templates/merchantdetails/review.php:93
+#: templates/resourcedetails/review.php:141
+msgid "Type of traveller"
+msgstr "Reisetyp"
+
+#: templates/merchantdetails/review.php:171
+#: templates/resourcedetails/review.php:219
+msgid "E-mail"
+msgstr "E-mail"
+
+#: templates/merchantdetails/review.php:175
+#: templates/resourcedetails/review.php:223
+msgid "Confirm E-mail"
+msgstr "E-Mail bestätigen"
+
+#: templates/merchantdetails/review.php:181
+#: templates/resourcedetails/review.php:229
+msgid "When did you travel?"
+msgstr "Wann haben Sie hier übernachtet"
+
+#: templates/merchantdetails/review.php:250
+#: templates/resourcedetails/review.php:298
+msgid "Value for money"
+msgstr "Gutes Preis-Leistungs-Verhältnis"
+
+#: templates/merchantdetails/review.php:266
+#: templates/resourcedetails/review.php:314
+msgid "Valuation"
+msgstr "Schätzwert"
+
+#: templates/merchantdetails/review.php:276
+#: templates/resourcedetails/review.php:324
+msgid "List of the facility's positive points"
+msgstr "Liste der Vorteile des Objekts"
+
+#: templates/merchantdetails/review.php:282
+#: templates/resourcedetails/review.php:330
+msgid "List of the facility's negative points"
+msgstr "Liste der Nachteile des Objekts"
+
+#: templates/merchantdetails/review.php:319
+#: templates/resourcedetails/review.php:365
+#, fuzzy
+#, php-format
+#| msgid "I certify that this review is based on my own experience and is my genuine opinion of this accommodation, and that I have no personal or business relationship with this establishment, and have not been offered any incentive or payment originating from the establishment to write this review. I understand that %s has a zero-tolerance policy on fake reviews."
+msgid ""
+"I certify that this review is based on my own experience and is my genuine "
+"opinion of this accommodation, and that I have no personal or business "
+"relationship with this establishment, and have not been offered any "
+"incentive or payment originating from the establishment to write this "
+"review. I understand that %s has a zero-tolerance policy on fake reviews."
+msgstr "Ich bestätige, dass dieser Beitrag auf meiner eigenen Erfahrung basiert und meine wirkliche Meinung über diese Unterkunft ist und ich keine persönliche oder geschäftliche Beziehung mit dieser Einrichtung habe und mir kein Anreiz oder eine Zahlung von der Einrichtung angebote wurde, um diese Bewertung zu schreiben. Ich verstehe, dass %s eine Null-Toleranz-Politik für gefälschte Rezensionen hat."
+
+#: templates/merchantdetails/review.php:325
+#: templates/resourcedetails/review.php:371
+msgid "send"
+msgstr "Anmeldung"
+
+#: templates/merchantslist/merchantslist.php:58
+#: templates/search/list-condomonium.php:90
+#: templates/search/list-merchants.php:91
+#: templates/search/list-resources.php:88
+#: templates/searchonsell/list-resources.php:69
+msgid "Order by"
+msgstr "Sortieren nach"
+
+#: templates/merchantslist/merchantslist.php:59
+msgid "A-Z"
+msgstr "A-Z"
+
+#: templates/merchantslist/merchantslist.php:60
+msgid "Z-A"
+msgstr "Z-A"
+
+#: templates/onselldetails/resourcedetails.php:83
+#: templates/searchonsell/list-resources.php:96
+#: templates/widgets/booking-search.php:371
+#: templates/widgets/booking-search.php:375
+msgid "To rent"
+msgstr "Vermietung"
+
+#: templates/onselldetails/resourcedetails.php:83
+#: templates/searchonsell/list-resources.php:96
+#: templates/widgets/booking-search.php:370
+#: templates/widgets/booking-search.php:374
+msgid "On sale"
+msgstr "Verkauf"
+
+#: templates/onselldetails/resourcedetails.php:215
+#: templates/widgets/booking-search.php:1008
+msgid "Area"
+msgstr "Fläche"
+
+#: templates/onselldetails/resourcedetails.php:217
+msgid "Last update"
+msgstr "Letzte Änderung"
+
+#: templates/onselldetails/resourcedetails.php:221
+msgid "Floor"
+msgstr "Etage"
+
+#: templates/onselldetails/resourcedetails.php:228
+msgid "Ground floor"
+msgstr "Erdgeschoss"
+
+#: templates/onselldetails/resourcedetails.php:229
+msgid "Top floor"
+msgstr "Dachgeschoss"
+
+#: templates/onselldetails/resourcedetails.php:230
+msgid "Attic"
+msgstr "Dachboden"
+
+#: templates/onselldetails/resourcedetails.php:231
+msgid "Multiple levels"
+msgstr "Mehrere Ebenen"
+
+#: templates/onselldetails/resourcedetails.php:232
+#: templates/onselldetails/resourcedetails.php:233
+#: templates/onselldetails/resourcedetails.php:250
+#: templates/onselldetails/resourcedetails.php:259
+#: templates/onselldetails/resourcedetails.php:272
+#: templates/onselldetails/resourcedetails.php:279
+msgid "ND"
+msgstr "k. A."
+
+#: templates/onselldetails/resourcedetails.php:239
+msgid "Condition"
+msgstr "Zustand"
+
+#: templates/onselldetails/resourcedetails.php:242
+msgid "New"
+msgstr "Neu"
+
+#: templates/onselldetails/resourcedetails.php:245
+msgid "To be refurbished"
+msgstr "Renovierungsbedürftig"
+
+#: templates/onselldetails/resourcedetails.php:247
+msgid "Excellent"
+msgstr "Ausgezeichnet"
+
+#: templates/onselldetails/resourcedetails.php:248
+msgid "Refurbished"
+msgstr "Renoviert"
+
+#: templates/onselldetails/resourcedetails.php:249
+msgid "Habitable"
+msgstr "Bewohnbar"
+
+#: templates/onselldetails/resourcedetails.php:257
+#: templates/widgets/booking-search.php:380
+#: templates/widgets/booking-search.php:814
+msgid "Bathrooms"
+msgstr "Badezimmer"
+
+#: templates/onselldetails/resourcedetails.php:265
+msgid "Heating"
+msgstr "Heizung"
+
+#: templates/onselldetails/resourcedetails.php:269
+msgid "Autonomous"
+msgstr "Autonome"
+
+#: templates/onselldetails/resourcedetails.php:270
+msgid "Communal"
+msgstr "Gemeinschaftlich"
+
+#: templates/onselldetails/resourcedetails.php:271
+msgid "Pay per use"
+msgstr "Pay-per-use"
+
+#: templates/onselldetails/resourcedetails.php:276
+msgid "Box Auto"
+msgstr "Garage"
+
+#: templates/onselldetails/resourcedetails.php:288
+msgid "Parking space"
+msgstr "Parkplätze"
+
+#: templates/onselldetails/resourcedetails.php:298
+msgid "Energy efficiency class"
+msgstr "Energie Klasse"
+
+#: templates/onselldetails/resourcedetails.php:304
+#, fuzzy
+#| msgid "nondescript"
+msgid "Nondescript"
+msgstr "unscheinbar"
+
+#: templates/onselldetails/resourcedetails.php:305
+#, fuzzy
+#| msgid "free property"
+msgid "Free property"
+msgstr "Freies Objekt"
+
+#: templates/onselldetails/resourcedetails.php:321
+msgid "IPE"
+msgstr "EEI"
+
+#: templates/onselldetails/resourcedetails.php:333
+msgid "Yes"
+msgstr "Ja"
+
+#: templates/onselldetails/resourcedetails.php:345
+msgid "Real estate agency collaboration"
+msgstr "Zusammenarbeit von Immobilienagenturen"
+
+#: templates/orderdetails/default_checkmode146.php:10
+#: templates/orderdetails/default_checkmode26.php:7
+#: templates/orderdetails/default_checkmode450.php:15
+#: templates/orderdetails/default_checkmode450_simple.php:11
+#: templates/orderdetails/default_checkmode6.php:12
+msgid "External order ID"
+msgstr "Externe Bestell-ID"
+
+#: templates/orderdetails/default_checkmode146.php:62
+#: templates/orderdetails/default_checkmode450.php:91
+#: templates/orderdetails/default_checkmode450.php:95
+#: templates/orderdetails/default_checkmode450_simple.php:46
+#: templates/orderdetails/default_checkmode450_simple.php:50
+msgid "Correct format: dd/mm/yyyy"
+msgstr "Richtigen Format: dd/mm/yyyy"
+
+#: templates/orderdetails/default_checkmode25.php:8
+#: templates/orderdetails/default_checkmode5.php:11
+msgid "Booking reference"
+msgstr "Buchungsnummer"
+
+#: templates/orderdetails/default_checkmode450.php:11
+#: templates/orderdetails/default_checkmode450_simple.php:7
+msgid "Client code"
+msgstr "Kundencode"
+
+#: templates/orderdetails/default_checkmode450.php:96
+msgid "Check-in must be great than Check-out"
+msgstr "Check-in muss größer als Check-Out sein"
+
+#: templates/resourcedetails/form.php:666
+msgid "Total deposit : €"
+msgstr "Gesamtanzahlung: €"
+
+#: templates/resourcedetails/form.php:713
+#, fuzzy
+#, php-format
+#| msgid "%1s will not charge anything to your credit card. Your credit card details are only requested in order to guarantee your booking."
+msgid ""
+"%1s will not charge anything to your credit card. Your credit card details "
+"are only requested in order to guarantee your booking."
+msgstr "%1s wird Ihrer Kreditkarte nichts belasten. Ihre Kreditkartendaten werden nur angefordert, um Ihre Buchung zu garantieren."
+
+#: templates/resourcedetails/form.php:738
+msgid "Info"
+msgstr "Informationen"
+
+#: templates/resourcedetails/form.php:792
+msgid "Almost done"
+msgstr "Ausfüllen und senden, ist es einfach!"
+
+#: templates/resourcedetails/review.php:378
+msgid "Attention!"
+msgstr "Achtung!"
+
+#: templates/resourcedetails/review.php:378
+msgid "It 's not possible to insert your own review"
+msgstr "Es ist nicht möglich, Ihre eigene Rezension hinzuzufügen."
+
+#: templates/resourcedetails/review.php:383
+msgid "nonexistent order"
+msgstr "nicht vorhandene Bestellung"
+
+#: templates/resourcedetails/review.php:386
+msgid "Order with already a Review"
+msgstr "Bestellung mit bereits einer Rezension"
+
+#: templates/resourcedetails/review.php:389
+msgid "nonexistent order or to which it is not possible to associate a review"
+msgstr "nicht vorhandene Bestellung oder bei der es nicht möglich ist, eine Rezension zuzuordnen"
+
+#: templates/resourcedetails/review.php:392
+msgid "Order not related at this resource"
+msgstr "Die Bestellung ist nicht mit dieser Ressource verbunden."
+
+#: templates/resourcedetails/review.php:395
+msgid "Order make before the date to make a review"
+msgstr "Sie können keine Rezension hinterlassen, wenn Ihr Bestelldatum in der Zukunft liegt."
+
+#: templates/search/list-condomonium.php:67
+#: templates/search/list-merchants.php:68
+#: templates/search/list-resources.php:65
+#: templates/searchonsell/list-resources.php:49
+#, php-format
+msgid "Found %s results"
+msgstr "%s Ergebnisse gefunden"
+
+#: templates/search/list-condomonium.php:70
+#: templates/search/list-merchants.php:71
+#: templates/search/list-resources.php:68
+#, php-format
+msgid "From %s to %s"
+msgstr "Von %s bis %s"
+
+#: templates/search/list-condomonium.php:91
+#: templates/search/list-merchants.php:92
+#: templates/search/list-resources.php:89
+#: templates/searchonsell/list-resources.php:70
+msgid "Lowest price first"
+msgstr "Niedrigster Preis"
+
+#: templates/search/list-condomonium.php:92
+#: templates/search/list-merchants.php:93
+#: templates/search/list-resources.php:90
+#: templates/widgets/search-filter.php:491
+msgid "Review score"
+msgstr "Gästebewertung"
+
+#: templates/search/list-condomonium.php:93
+#: templates/search/list-merchants.php:94
+#: templates/search/list-resources.php:91
+msgid "Best offers"
+msgstr "Top Angebot"
+
+#: templates/search/search-listing.php:153
+#: templates/searchonsell/search-listing.php:38
+#: templates/widgets/booking-search.php:1316
+#: templates/widgets/booking-search.php:1381
 msgid "No result available"
 msgstr "Kein Ergebnis verfügbar"
 
-msgid "Leatest ads"
-msgstr "Neueste anzeigen"
+#: templates/searchonsell/list-resources.php:71
+msgid "Latest ads"
+msgstr "Neueste Anzeigen"
 
-msgid "1"
-msgstr "1"
-
-msgid "2"
-msgstr "2"
-
-msgid "3"
-msgstr "3"
-
-msgid ">3"
-msgstr ">3"
-
+#: templates/widgets/booking-search.php:235
+#: templates/widgets/booking-search.php:528
+#: templates/widgets/search-filter.php:460
 msgid "Tipology"
 msgstr "Typ"
 
+#: templates/widgets/booking-search.php:380
+msgid "Any"
+msgstr "Alle"
+
+#: templates/widgets/booking-search.php:381
+msgid "1"
+msgstr "1"
+
+#: templates/widgets/booking-search.php:382
+msgid "2"
+msgstr "2"
+
+#: templates/widgets/booking-search.php:383
+msgid "3"
+msgstr "3"
+
+#: templates/widgets/booking-search.php:384
+msgid ">3"
+msgstr ">3"
+
+#: templates/widgets/booking-search.php:503
+msgid "Enter Your destination"
+msgstr "Geben Sie Ihr Ziel einGeben Sie Ihr Ziel ein"
+
+#: templates/widgets/booking-search.php:626
 msgid "Age of children"
 msgstr "Alter von Kindern"
 
+#: templates/widgets/booking-search.php:677
+#: templates/widgets/search-filter.php:111
 msgid "Show only online booking"
 msgstr "Nur Online-Buchung anzeigen"
 
-msgid "All province"
-msgstr "Alle Provinzen"
-
-msgid "from"
-msgstr "Vom"
-
-msgid "to"
-msgstr "Bis"
-
-msgid "Floor area m&sup2;"
-msgstr "Fläche m&sup2;"
-
-msgid "Bedrooms"
-msgstr "Schlafzimmer"
-
-msgid "Only new building"
-msgstr "Nur Neubau"
-
-msgid "Please select"
-msgstr "Wählen"
-
+#: templates/widgets/booking-search.php:765
+#: templates/widgets/booking-search.php:768
+#: templates/widgets/booking-search.php:778
+#: templates/widgets/booking-search.php:781
+#: templates/widgets/booking-search.php:791
+#: templates/widgets/booking-search.php:794
+#: templates/widgets/booking-search.php:804
+#: templates/widgets/booking-search.php:807
 msgid "Please enter a integer number"
 msgstr "Bitte eine ganze Zahl eingeben."
 
+#: templates/widgets/booking-search.php:768
+#: templates/widgets/booking-search.php:781
+#: templates/widgets/booking-search.php:794
+#: templates/widgets/booking-search.php:807
+#: templates/widgets/booking-search.php:821
+msgid "to"
+msgstr "Bis"
+
+#: templates/widgets/booking-search.php:775
+#: templates/widgets/booking-search.php:778
+#: templates/widgets/booking-search.php:781
+msgid "Floor area m&sup2;"
+msgstr "Fläche m&sup2;"
+
+#: templates/widgets/booking-search.php:788
+#: templates/widgets/booking-search.php:791
+#: templates/widgets/booking-search.php:794
+msgid "Bedrooms"
+msgstr "Schlafzimmer"
+
+#: templates/widgets/booking-search.php:851
+msgid "Only new building"
+msgstr "Nur Neubau"
+
+#: templates/widgets/booking-search.php:896
 msgid "We're processing your request"
 msgstr "Wir bearbeiten Ihre Anfrage"
 
+#: templates/widgets/booking-search.php:897
+msgid "Please be patient"
+msgstr "Bitte warten Sie einen Moment."
+
+#: templates/widgets/booking-search.php:1007
 msgid "Draw area"
 msgstr "Zeichnen Sie"
 
+#: templates/widgets/booking-search.php:1009
 msgid "Circle"
 msgstr "Kreis"
 
+#: templates/widgets/booking-search.php:1014
 msgid "Reset"
 msgstr "Zurücksetzen"
 
+#: templates/widgets/booking-search.php:1015
+msgid "Confirm"
+msgstr "Bestätigen"
+
+#: templates/widgets/booking-search.php:1024
 msgid "Click on map and choose your area."
 msgstr "Auf Karte karte und Ihren Bereich auswählen."
 
-msgid "Holiday Packages"
-msgstr "Urlaubspakete"
+#: templates/widgets/currency-switcher.php:21
+msgid "Pound sterling"
+msgstr "Britisches Pfund"
 
+#: templates/widgets/search-filter.php:22
 msgid "Free cancellation"
 msgstr "Kostenlose Stornierung"
 
+#: templates/widgets/search-filter.php:23
 msgid "No prepayment"
 msgstr "Keine Vorauszahlung"
 
+#: templates/widgets/search-filter.php:24
 msgid "Book without credit card"
 msgstr "Buchen ohne Kreditkarte"
 
+#: templates/widgets/search-filter.php:26
 msgid "All inclusive"
 msgstr "All-inclusive"
 
+#: templates/widgets/search-filter.php:31
+#: templates/widgets/search-filter.php:32
+#: templates/widgets/search-filter.php:44
 msgid "Unrated"
 msgstr "Unbewertet"
 
+#: templates/widgets/search-filter.php:33
 msgid "1 star"
 msgstr "1 Stern"
 
+#: templates/widgets/search-filter.php:34
 msgid "2 stars"
 msgstr "2 Sterne"
 
+#: templates/widgets/search-filter.php:35
 msgid "3 stars"
 msgstr "3 Sterne"
 
+#: templates/widgets/search-filter.php:36
 msgid "4 stars"
 msgstr "4 Sterne"
 
+#: templates/widgets/search-filter.php:37
 msgid "5 stars"
 msgstr "5 Sterne"
 
+#: templates/widgets/search-filter.php:38
 msgid "6 stars"
 msgstr "6 Sterne"
 
+#: templates/widgets/search-filter.php:39
 msgid "7 stars"
 msgstr "7 Sterne"
 
+#: templates/widgets/search-filter.php:40
 msgid "8 stars"
 msgstr "8 Sterne"
 
+#: templates/widgets/search-filter.php:41
 msgid "9 stars"
 msgstr "9 Sterne"
 
+#: templates/widgets/search-filter.php:42
 msgid "10 stars"
 msgstr "10 Sterne"
 
+#: templates/widgets/search-filter.php:113
 msgid "Smart offer"
 msgstr "Smart Angebot"
 
+#: templates/widgets/search-filter.php:422
 msgid "Filter by"
 msgstr "Filter nach"
 
+#: templates/widgets/search-filter.php:438
 msgid "Budget"
 msgstr "Budget"
 
+#: templates/widgets/search-filter.php:475
 msgid "Star rating"
 msgstr "Sternebewertung"
 
+#: templates/widgets/search-filter.php:521
 msgid "Property facility"
 msgstr "Unterkunftsmöglichkeit"
 
+#: templates/widgets/search-filter.php:567
 msgid "Booking type"
 msgstr "Booking typ"
 
+#: templates/widgets/search-filter.php:581
 msgid "Offer"
 msgstr "Angebot"
 
+#: templates/widgets/search-filter.php:625
 msgid "Book with ease "
 msgstr "Bequem buchen "
 
+#: templates/widgets/search-filter.php:657
 msgid "Show map"
 msgstr "Karte anzeigen"
 
-msgid "Your holiday"
-msgstr "Ihre Reise!"
+#~ msgid "Unit price"
+#~ msgstr "Einzelpreis"
 
-msgid "Total price"
-msgstr "Gesamtpreis"
+#~ msgctxt "Page slug"
+#~ msgid "my-account"
+#~ msgstr "Mein Konto"
 
+#~ msgctxt "Page title"
+#~ msgid "My Account"
+#~ msgstr "Mein Konto"
+
+#~ msgid "Min"
+#~ msgstr "Min."
+
+#~ msgid "Max"
+#~ msgstr "Max."
+
+#~ msgid "You need to be loggedin in order to access this page."
+#~ msgstr "Sie müssen angemeldet sein, um diese Seite aufzurufen."
+
+#~ msgid "Personal Informations"
+#~ msgstr "Persönliche Informationen"
+
+#~ msgid "Reservations"
+#~ msgstr "Reservierungen"
+
+#~ msgid "Settings"
+#~ msgstr "Einstellungen"
+
+#~ msgid "Social Network"
+#~ msgstr "Soziales Netzwerk"
+
+#~ msgid "Give your social profiles"
+#~ msgstr "Geben Sie Ihre Profile auf sozialen Medien an."
+
+#~ msgid "Connect with your account via your social networks , one less password to remember!"
+#~ msgstr "Verbinden Sie Ihr Konto über Ihre sozialen Netzwerke. Ein Passwort weniger zu merken!"
+
+#~ msgid "Your profile"
+#~ msgstr "Ihr Profil"
+
+#~ msgid "This information is used to automatically fill in your details and book more quickly. We do not share it publicly."
+#~ msgstr "Diese Informationen wird verwendet, um automatisch Ihre Details auszufüllen und schneller zu buchen. Wir teilen sie nicht öffentlich."
+
+#~ msgid "Date of birth"
+#~ msgstr "Geburtsdatum"
+
+#~ msgid "Gender"
+#~ msgstr "Geschlecht"
+
+#~ msgid "Male"
+#~ msgstr "Männlich"
+
+#~ msgid "Female"
+#~ msgstr "Weiblich"
+
+#~ msgid "State/Province"
+#~ msgstr "Bundesland/Provinz"
+
+#~ msgid "Zip Code"
+#~ msgstr "Postleitzahl"
+
+#~ msgid "Language"
+#~ msgstr "Sprache"
+
+#~ msgid "Submit"
+#~ msgstr "Abschicken"
+
+#~ msgid "Reservation number"
+#~ msgstr "Reservierungsnummer"
+
+#~ msgid "Booking Detail"
+#~ msgstr "Buchungsdetails"
+
+#~ msgid "Cancel Booking"
+#~ msgstr "Buchung stornieren"
+
+#~ msgid "You want to change your password? Click on the button below and we'll send you an email with a link to reset it."
+#~ msgstr "Sie möchten Ihr Passwort ändern? Klicken Sie unten auf den Button und wir schicken Ihnen eine E-Mail mit einem Link zum Zurücksetzen."
+
+#~ msgid "Change your password"
+#~ msgstr "Ändern Sie Ihr Passwort"
+
+#~ msgid "Choose how often you want to receive offers and suggestions, do not miss the best offers!"
+#~ msgstr "Wählen Sie, wie oft Sie Angebote und Vorschläge erhalten möchten. Verpassen Sie nicht die besten Angebote!"
+
+#~ msgid "Receive newsletter"
+#~ msgstr "Newsletter erhalten"
+
+#~ msgid "I do not care"
+#~ msgstr "Ist mir egal"
+
+#~ msgid "Fetching Reservation Details"
+#~ msgstr "Reservierungsdaten werden abgerufen"
+
+#~ msgid "Error, please try again"
+#~ msgstr "Fehler, bitte erneut versuhen"
+
+#~ msgid " Years"
+#~ msgstr " Jahre"
+
+#~ msgid "Back to list"
+#~ msgstr "Zurück zur Liste"
+
+#~ msgid "adults"
+#~ msgstr "Erwachsene"
+
+#~ msgid "children"
+#~ msgstr "Kinder"
+
+#, php-format
+#~ msgid "%s Results  found from %s for %s nigth(s)"
+#~ msgstr "%s Unterkünfte von %s für %s nacht/nächte"
+
+#~ msgid " Offer "
+#~ msgstr "Angebot"
+
+#~ msgid "Available"
+#~ msgstr "Verfügbar"
+
+#, php-format
+#~ msgid "Total for %d night/s"
+#~ msgstr "Preis für %d nächte"
+
+#~ msgid "Facility contacts data"
+#~ msgstr "Kontakt-Struktur"
+
+#~ msgid "My Cart"
+#~ msgstr "Mein Warenkorb"
+
+#~ msgid "comment"
+#~ msgstr "Kommentar"
+
+#~ msgid "Please insert a valid email address!"
+#~ msgstr "Bitte geben Sie eine gültige E-Mail-Adresse ein!"
+
+#~ msgid "Rejected order"
+#~ msgstr "Abgelehnte Bestellung"
+
+#~ msgid "Deposit total"
+#~ msgstr "Anzahlung"
+
+#~ msgid "Status"
+#~ msgstr "Status"
+
+#~ msgid "Order sent to bank"
+#~ msgstr "Auftrag an Bank gesendet"
+
+#~ msgid "Pay"
+#~ msgstr "Bezahlen"
+
+#~ msgid "Waiting to confirm"
+#~ msgstr "Bestätigung wird erwartet"
+
+#~ msgid "Payment attempt was not successful. Try again"
+#~ msgstr "Zahlungsversuch war nicht erfolgreich. Erneut versuchen."
+
+#~ msgid "Payed order"
+#~ msgstr "Bezahlte Bestellung"
+
+#~ msgid "Order by credit card guarantee"
+#~ msgstr "Per Kreditkartengarantie bestellen"
+
+#~ msgid "Change data"
+#~ msgstr "Daten ändern"
+
+#~ msgid "Accommodation"
+#~ msgstr "Unterkunft"
+
+#~ msgid "Period"
+#~ msgstr "Zeitraum"
+
+#~ msgid "People"
+#~ msgstr "Personen"
+
+#~ msgid "Other payments"
+#~ msgstr "Sonstige Zahlungen"
+
+#~ msgid "Date"
+#~ msgstr "Datum"
+
+#~ msgid "Amount"
+#~ msgstr "Betrag"
+
+#~ msgid "Payment refused"
+#~ msgstr "Zahlung abgelehnt"
+
+#~ msgid "New payment"
+#~ msgstr "Neue Zahlung"
+
+#~ msgid "It 'requires a further amount for payments"
+#~ msgstr "Es ist ein weiterer Betrag für Zahlungen erforderlich."
+
+#~ msgid "Please insert a correct amount, it should be this format: xxx.xx (please use dot for deciaml prices)"
+#~ msgstr "Bitte geben Sie einen korrekten Betrag ein. Er sollte dieses Format haben: xxx.xx (Bitte ein Punkt für Dezimalpreise verwenden.)"
+
+#~ msgid "Thank you: payment process successfully completed"
+#~ msgstr "Danke: Zahlungsvorgang erfolgreich abgeschlossen"
+
+#~ msgid "Print"
+#~ msgstr "Drucken"
+
+#~ msgid "Payment process not successfully completed"
+#~ msgstr "Der Zahlungsvorgang wurde nicht erfolgreich abgeschlossen."
+
+#~ msgid "Payment process not successfully completed and has been deleted"
+#~ msgstr "Zahlungsvorgang nicht erfolgreich abgeschlossen und wurde gelöscht"
+
+#~ msgid "Some problems occured durint payment process, please contact merchant if you are sure that your payment process completed"
+#~ msgstr "Einige Probleme traten wahrend des Zahlungsvorgangs auf. Bitte Händler kontaktieren, wenn Sie sicher sind, dass Ihre Zahlungsvorgang abgeschlossen wurde."
+
+#~ msgid "Error inserting data"
+#~ msgstr "Fehler beim Einfügen der Daten"
+
+#~ msgid "Order doesn't exist"
+#~ msgstr "Die Bestellung ist nicht vorhanden."
+
+#~ msgid "Deposit does not exist"
+#~ msgstr "Anzahlung ist nicht vorhanden"
+
+#~ msgid "index.php?view=payment&actionmode=error&payedOrderId="
+#~ msgstr "Index.PHP?View=Payment&actionmode=Error&payedOrderId="
+
+#~ msgid "index.php?view=payment&actionmode=activaServer&payedOrderId="
+#~ msgstr "Index.PHP?View=Payment&actionmode=activaServer&payedOrderId="
+
+#~ msgid "index.php?view=orders"
+#~ msgstr "Index.PHP?View=Orders"
+
+#~ msgid "index.php?view=payment&actionmode=bnlpositivity&payedOrderId="
+#~ msgstr "Index.PHP?View=Payment&actionmode=bnlpositivity&payedOrderId="
+
+#~ msgid "index.php?view=payment&actionmode=keyclient&payedOrderId="
+#~ msgstr "Index.PHP?View=Payment&actionmode=keyclient&payedOrderId="
+
+#~ msgid "index.php?view=payment&actionmode=keyclient2014&payedOrderId="
+#~ msgstr "Index.PHP?View=Payment&actionmode=keyclient2014&payedOrderId="
+
+#~ msgid "index.php?view=payment&actionmode=pagoonline&payedOrderId="
+#~ msgstr "Index.PHP?View=Payment&actionmode=pagoonline&payedOrderId="
+
+#~ msgid "index.php?view=payment&actionmode=pagoonline&payedOrderId=donation"
+#~ msgstr "Index.PHP?View=Payment&actionmode=pagoonline&payedOrderId=Donation"
+
+#~ msgid "index.php?view=payment&actionmode=errordonation"
+#~ msgstr "Index.PHP?View=Payment&actionmode=errordonation"
+
+#~ msgid "index.php?view=payment&actionmode=virtualpay&payedOrderId="
+#~ msgstr "Index.PHP?View=Payment&actionmode=virtualpay&payedOrderId="
+
+#~ msgid "index.php?view=payment&actionmode=virtualpay&payedOrderId=donation"
+#~ msgstr "Index.PHP?View=Payment&actionmode=virtualpay&payedOrderId=Donation"
+
+#~ msgid "Leatest ads"
+#~ msgstr "Neueste anzeigen"
+
+#~ msgid "All province"
+#~ msgstr "Alle Provinzen"
+
+#~ msgid "Please select"
+#~ msgstr "Wählen"
+
+#~ msgid "Holiday Packages"
+#~ msgstr "Urlaubspakete"
+
+#~ msgid "Your holiday"
+#~ msgstr "Ihre Reise!"

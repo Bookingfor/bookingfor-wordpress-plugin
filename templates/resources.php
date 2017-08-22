@@ -102,7 +102,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 		$routeRating = $routeRatingform = $currUriresource.'/'._x('rating', 'Page slug', 'bfi' );
 		$routeMerchant = "";
 		if($isportal){
-			$routeMerchant = $url_merchant_page . $resource->MerchantId .'-'.BFI()->seoUrl($resource->MerchantName)."?fromsearch=1";
+			$routeMerchant = $url_merchant_page . $resource->MerchantId .'-'.BFI()->seoUrl($resource->MerchantName);
 		}
 		$rating = 0;
 		$ratingMrc = 0;
@@ -124,7 +124,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 	<div class="bfi-col-sm-6 bfi-item">
 		<div class="bfi-row bfi-sameheight" >
 			<div class="bfi-col-sm-3 bfi-img-container">
-				<a href="<?php echo $resourceRoute ?>?fromsearch=1" style='background: url("<?php echo $resourceImageUrl; ?>") center 25% / cover;'><img src="<?php echo $resourceImageUrl; ?>" class="bfi-img-responsive" /></a> 
+				<a href="<?php echo $resourceRoute ?>" style='background: url("<?php echo $resourceImageUrl; ?>") center 25% / cover;'><img src="<?php echo $resourceImageUrl; ?>" class="bfi-img-responsive" /></a> 
 			</div>
 			<div class="bfi-col-sm-9 bfi-details-container">
 				<!-- merchant details -->
@@ -160,7 +160,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 				<!-- resource details -->
 				<div class="bfi-row" >
 					<div class="bfi-col-sm-8">
-						<?php if ($resource->MaxPaxes>0):?>
+						<?php if ($resource->MaxPaxes>0){?>
 							<div class="bfi-icon-paxes">
 								<i class="fa fa-user"></i> 
 								<?php if ($resource->MaxPaxes==2){?>
@@ -170,11 +170,11 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 									<?php echo ($resource->MinPaxes != $resource->MaxPaxes)? $resource->MinPaxes . "-" : "" ?><?php echo  $resource->MaxPaxes ?>
 								<?php }?>
 							</div>
-						<?php endif; ?>
+						<?php } ?>
 					
 					</div>
 					<div class="bfi-col-sm-4 bfi-text-right">
-						<a href="<?php echo $resourceRoute ?>" class="bfi-btn"><?php echo _e('Details' , 'bfi')?></a>
+						<a href="<?php echo $resourceRoute ?>" class="bfi-btn" target="_blank"><?php echo _e('Details' , 'bfi')?></a>
 					</div>
 				</div>
 				<!-- end resource details -->

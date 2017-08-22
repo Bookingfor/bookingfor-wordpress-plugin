@@ -1,17 +1,22 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-10 10:23+0200\n"
-"PO-Revision-Date: 2017-07-10 15:19+0200\n"
-"Last-Translator: \n"
-"Language-Team: LANGUAGE TEAM <EMAIL@ADDRESS>\n"
-"Language: it_IT\n"
+"POT-Creation-Date: 2017-08-22 14:56+0100\n"
+"PO-Revision-Date: 2017-08-22 15:02+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.11\n"
+"Plural-Forms: \n"
+"X-Generator: Eazy Po 0.9.5.3\n"
 
 #: includes/bfi-template-functions.php:381
 msgid ""
@@ -115,20 +120,10 @@ msgstr "Pagamento"
 
 #: includes/class-bfi-install.php:94
 msgctxt "Page slug"
-msgid "my-account"
-msgstr "il mio account"
-
-#: includes/class-bfi-install.php:95
-msgctxt "Page title"
-msgid "My Account"
-msgstr "Il mio Account"
-
-#: includes/class-bfi-install.php:100
-msgctxt "Page slug"
 msgid "cartdetails"
 msgstr "cartdetails"
 
-#: includes/class-bfi-install.php:101
+#: includes/class-bfi-install.php:95
 msgctxt "Page title"
 msgid "Cart Details"
 msgstr "Dettagli carrello"
@@ -225,9 +220,13 @@ msgstr "Dettagli condominio"
 msgid "Accomodation details"
 msgstr "Dettagli alloggio"
 
-#: includes/class-bfi-query.php:91 includes/class-bfi-query.php:94
+#: includes/class-bfi-query.php:91
 msgid "Order details"
 msgstr "Dettagli prenotazione"
+
+#: includes/class-bfi-query.php:94
+msgid "Order payment"
+msgstr "Pagamento ordine"
 
 #: includes/class-bfi-query.php:97
 msgid "On Sell details"
@@ -255,12 +254,12 @@ msgid "Merchant Rating filter"
 msgstr "Mercantili voto filtro"
 
 #: includes/admin/class-bfi-admin-meta-boxes.php:174
-#: templates/widgets/booking-search.php:237
-#: templates/widgets/booking-search.php:240
-#: templates/widgets/booking-search.php:264
-#: templates/widgets/booking-search.php:281
-#: templates/widgets/booking-search.php:361
-#: templates/widgets/booking-search.php:380
+#: templates/widgets/booking-search.php:235
+#: templates/widgets/booking-search.php:238
+#: templates/widgets/booking-search.php:262
+#: templates/widgets/booking-search.php:279
+#: templates/widgets/booking-search.php:323
+#: templates/widgets/booking-search.php:342
 msgid "All"
 msgstr "Tutto"
 
@@ -358,57 +357,56 @@ msgctxt "default-slug"
 msgid "searchavailability"
 msgstr "ricercadisponibilita"
 
-#: includes/admin/class-bfi-admin.php:436
+#: includes/admin/class-bfi-admin.php:442
 #: templates/widgets/currency-switcher.php:12
 msgid "Euro"
 msgstr "Euro"
 
-#: includes/admin/class-bfi-admin.php:437
+#: includes/admin/class-bfi-admin.php:443
 #: templates/widgets/currency-switcher.php:13
 msgid "Kune"
 msgstr "Kune"
 
-#: includes/admin/class-bfi-admin.php:438
+#: includes/admin/class-bfi-admin.php:444
 #: templates/widgets/currency-switcher.php:14
 msgid "U.S. dollar"
 msgstr "Dollaro Americano"
 
-#: includes/admin/class-bfi-admin.php:439
+#: includes/admin/class-bfi-admin.php:445
 #: templates/widgets/currency-switcher.php:15
 msgid "Japanese yen"
 msgstr "Yen Giapponese"
 
-#: includes/admin/class-bfi-admin.php:440
+#: includes/admin/class-bfi-admin.php:446
 #: templates/widgets/currency-switcher.php:16
 msgid "Canadian dollar"
 msgstr "Dollaro canadese"
 
-#: includes/admin/class-bfi-admin.php:441
+#: includes/admin/class-bfi-admin.php:447
 #: templates/widgets/currency-switcher.php:17
 msgid "Australian dollar"
 msgstr "Dollaro australiano"
 
-#: includes/admin/class-bfi-admin.php:442
+#: includes/admin/class-bfi-admin.php:448
 #: templates/widgets/currency-switcher.php:18
 msgid "Russian Ruble"
 msgstr "Rublo russo"
 
-#: includes/admin/class-bfi-admin.php:443
+#: includes/admin/class-bfi-admin.php:449
 #: templates/widgets/currency-switcher.php:19
 msgid "Czech koruna"
 msgstr "Corona ceca"
 
-#: includes/admin/class-bfi-admin.php:444
+#: includes/admin/class-bfi-admin.php:450
 #: templates/widgets/currency-switcher.php:20
 msgid "Singapore dollar"
 msgstr "Dollaro di Singapore"
 
-#: includes/admin/class-bfi-admin.php:445
-#: templates/widgets/currency-switcher.php:21
+#: includes/admin/class-bfi-admin.php:451
 msgid "Pound sterling "
 msgstr "Sterlina britannica "
 
-#: includes/admin/class-bfi-admin.php:595
+#: includes/admin/class-bfi-admin.php:605
 #, php-format
 msgid ""
 "If you like <strong>BookingFor</strong> please leave us a %s&#9733;&#9733;"
@@ -418,11 +416,11 @@ msgstr ""
 "&#9733; &#9733; &#9733; &#9733; %s voto. Un enorme grazie da Bookingfor in "
 "anticipo!"
 
-#: includes/admin/class-bfi-admin.php:595
+#: includes/admin/class-bfi-admin.php:605
 msgid "Thanks"
 msgstr "Grazie"
 
-#: includes/admin/class-bfi-admin.php:603
+#: includes/admin/class-bfi-admin.php:613
 msgid "Thank you for selling with BookingFor."
 msgstr "Grazie per la vendita con BookingFor."
 
@@ -430,40 +428,14 @@ msgstr "Grazie per la vendita con BookingFor."
 msgid "Save changes"
 msgstr "Salva"
 
-#: includes/model/onsellunits.php:210 includes/model/onsellunits.php:212
-#: includes/model/onsellunits.php:264 includes/model/onsellunits.php:266
+#: includes/model/onsellunits.php:208 includes/model/onsellunits.php:210
+#: includes/model/onsellunits.php:262 includes/model/onsellunits.php:264
 msgid "&resourceId="
 msgstr "&resourceId="
 
-#: includes/model/onsellunits.php:318
+#: includes/model/onsellunits.php:316
 msgid "index.php?option=com_bookingforconnector&view=onsellunit&resourceId="
 msgstr "index.php?option=com_bookingforconnector&view=onsellunit&resourceId="
-
-#: includes/payments/wspayform.php:170 templates/cartdetails.php:106
-#: templates/cartdetails.php:1184 templates/merchantdetails.php:114
-#: templates/merchantdetails/offer-details.php:25
-#: templates/merchantdetails/review.php:37
-#: templates/merchantdetails/thanks.php:25 templates/orderdetails/order.php:35
-#: templates/resourcedetails/form.php:29
-#: templates/resourcedetails/review.php:40
-#: templates/widgets/merchant-vcard.php:164
-msgctxt "Page slug"
-msgid "thanks"
-msgstr "grazie"
-
-#: includes/payments/wspayform.php:171 templates/cartdetails.php:110
-#: templates/cartdetails.php:1185 templates/condominiumdetails.php:191
-#: templates/merchantdetails.php:121 templates/merchantdetails.php:433
-#: templates/onselldetails.php:178 templates/resourcedetails.php:323
-#: templates/merchantdetails/offer-details.php:26
-#: templates/merchantdetails/review.php:38
-#: templates/merchantdetails/thanks.php:26 templates/orderdetails/order.php:36
-#: templates/resourcedetails/form.php:30
-#: templates/resourcedetails/review.php:41
-#: templates/widgets/merchant-vcard.php:165
-msgctxt "Page slug"
-msgid "errors"
-msgstr "errore"
 
 #: includes/widgets/class-bfi-widget-booking-cart.php:24
 msgid "Display the user's Cart link in the sidebar."
@@ -501,40 +473,38 @@ msgid "BookingFor Search"
 msgstr "BookingFor - Motore di ricerca risorse"
 
 #: includes/widgets/class-bfi-widget-booking-search.php:66
-#: templates/merchantdetails/merchantdetails.php:165
+#: templates/merchantdetails/merchantdetails.php:166
 #: templates/merchantdetails/offer-details.php:60
-#: templates/widgets/booking-search.php:497
+#: templates/widgets/booking-search.php:459
 msgid "Booking"
 msgstr "Prenota"
 
 #: includes/widgets/class-bfi-widget-booking-search.php:68
-#: templates/widgets/booking-search.php:513
+#: templates/widgets/booking-search.php:475
 msgid "Activities"
 msgstr "Attività"
 
 #: includes/widgets/class-bfi-widget-booking-search.php:69
 #: templates/merchant_small_details.php:97
-#: templates/widgets/booking-search.php:529
+#: templates/widgets/booking-search.php:491
 #: templates/widgets/merchant-vcard.php:249
 msgid "Real Estate"
 msgstr "Vendite"
 
 #: includes/widgets/class-bfi-widget-booking-search.php:73
-#: templates/search_details.php:428 templates/search_details.php:1688
-#: templates/widgets/booking-search.php:215
-#: templates/widgets/booking-search.php:598
-#: templates/widgets/booking-search.php:602
-#: templates/widgets/booking-search.php:1098
-#: templates/widgets/booking-search.php:1137
+#: templates/search_details.php:430 templates/search_details.php:1714
+#: templates/widgets/booking-search.php:213
+#: templates/widgets/booking-search.php:560
+#: templates/widgets/booking-search.php:1049
+#: templates/widgets/booking-search.php:1088
 msgid "Nights"
 msgstr "Notti"
 
 #: includes/widgets/class-bfi-widget-booking-search.php:74
-#: templates/search_details.php:428 templates/search_details.php:1691
-#: templates/widgets/booking-search.php:216
-#: templates/widgets/booking-search.php:603
-#: templates/widgets/booking-search.php:1101
-#: templates/widgets/booking-search.php:1140
+#: templates/search_details.php:430 templates/search_details.php:1717
+#: templates/widgets/booking-search.php:214
+#: templates/widgets/booking-search.php:1052
+#: templates/widgets/booking-search.php:1091
 msgid "Days"
 msgstr "Giorni"
 
@@ -548,7 +518,7 @@ msgstr "Fascia oraria"
 
 #: includes/widgets/class-bfi-widget-booking-search.php:79
 #: includes/widgets/class-bfi-widget-booking-search.php:84
-#: templates/search_details.php:438 templates/widgets/booking-search.php:612
+#: templates/search_details.php:440 templates/widgets/booking-search.php:567
 msgid "Resource"
 msgstr "Risorsa"
 
@@ -613,9 +583,9 @@ msgstr "Campi di visibilità"
 
 #: includes/widgets/class-bfi-widget-booking-search.php:433
 #: includes/widgets/class-bfi-widget-booking-search.php:489
-#: templates/widgets/booking-search.php:540
-#: templates/widgets/booking-search.php:788
-#: templates/widgets/booking-search.php:789
+#: templates/widgets/booking-search.php:502
+#: templates/widgets/booking-search.php:738
+#: templates/widgets/booking-search.php:739
 msgid "Search text"
 msgstr "Ricerca testuale"
 
@@ -632,39 +602,37 @@ msgid "or"
 msgstr "o"
 
 #: includes/widgets/class-bfi-widget-booking-search.php:435
-#: templates/widgets/booking-search.php:380
-#: templates/widgets/booking-search.php:550
+#: templates/widgets/booking-search.php:342
+#: templates/widgets/booking-search.php:512
 #: templates/widgets/search-filter.php:552
 msgid "Destination"
 msgstr "Zona"
 
 #: includes/widgets/class-bfi-widget-booking-search.php:436
+#: includes/widgets/class-bfi-widget-booking-search.php:492
+#: templates/cartdetails.php:1446
+#: templates/onselldetails/resourcedetails.php:203
+#: templates/resourcedetails/form.php:679
+#: templates/widgets/booking-search.php:262
+#: templates/widgets/booking-search.php:279
+#: templates/widgets/booking-search.php:520
+#: templates/widgets/booking-search.php:754
+msgid "Type"
+msgstr "Tipo"
+
+#: includes/widgets/class-bfi-widget-booking-search.php:437
 #: includes/widgets/class-bfi-widget-booking-search.php:490
 msgid "Map Button"
 msgstr "Pulsante mappa"
-
-#: includes/widgets/class-bfi-widget-booking-search.php:437
-#: includes/widgets/class-bfi-widget-booking-search.php:492
-#: templates/cartdetails.php:1447
-#: templates/onselldetails/resourcedetails.php:203
-#: templates/orderdetails/order.php:197 templates/orderdetails/order.php:455
-#: templates/resourcedetails/form.php:679
-#: templates/widgets/booking-search.php:264
-#: templates/widgets/booking-search.php:281
-#: templates/widgets/booking-search.php:558
-#: templates/widgets/booking-search.php:804
-msgid "Type"
-msgstr "Tipo"
 
 #: includes/widgets/class-bfi-widget-booking-search.php:439
 msgid "Date Range"
 msgstr "Intervallo di date"
 
 #: includes/widgets/class-bfi-widget-booking-search.php:440
-#: templates/cartdetails.php:409 templates/search_details.php:439
-#: templates/orderdetails/order.php:414
-#: templates/widgets/booking-search.php:613
-#: templates/widgets/booking-search.php:620
+#: templates/cartdetails.php:406 templates/search_details.php:441
+#: templates/widgets/booking-search.php:568
+#: templates/widgets/booking-search.php:575
 msgid "Adults"
 msgstr "Adulti"
 
@@ -677,10 +645,10 @@ msgid "Senior"
 msgstr "Senior"
 
 #: includes/widgets/class-bfi-widget-booking-search.php:443
-#: templates/merchantdetails/merchant-ratings.php:58
-#: templates/merchantdetails/review.php:201
-#: templates/merchantdetails/reviews.php:96
-#: templates/resourcedetails/resource-ratings.php:43
+#: templates/merchantdetails/merchant-ratings.php:39
+#: templates/merchantdetails/review.php:207
+#: templates/merchantdetails/reviews.php:98
+#: templates/resourcedetails/resource-ratings.php:39
 #: templates/resourcedetails/review.php:255
 msgid "Services"
 msgstr "Servizi"
@@ -695,17 +663,17 @@ msgstr "(Regioni, Stati, Città, Zone)"
 
 #: includes/widgets/class-bfi-widget-booking-search.php:491
 #: templates/onselldetails/resourcedetails.php:191
-#: templates/widgets/booking-search.php:780
+#: templates/widgets/booking-search.php:730
 msgid "Contract"
 msgstr "Contratto"
 
 #: includes/widgets/class-bfi-widget-booking-search.php:493
-#: templates/cartdetails.php:268 templates/search_details.php:640
-#: templates/search_details.php:1444
+#: templates/cartdetails.php:266 templates/search_details.php:642
+#: templates/search_details.php:1454
 #: templates/onselldetails/resourcedetails.php:193
-#: templates/widgets/booking-search.php:812
-#: templates/widgets/booking-search.php:815
-#: templates/widgets/booking-search.php:818
+#: templates/widgets/booking-search.php:762
+#: templates/widgets/booking-search.php:765
+#: templates/widgets/booking-search.php:768
 msgid "Price"
 msgstr "Prezzo"
 
@@ -718,12 +686,12 @@ msgid "BedRooms"
 msgstr "Camere da letto"
 
 #: includes/widgets/class-bfi-widget-booking-search.php:496
-#: templates/onsellunits.php:187 templates/merchantdetails/onsellunits.php:174
+#: templates/onsellunits.php:187 templates/merchantdetails/onsellunits.php:182
 #: templates/onselldetails/resourcedetails.php:211
-#: templates/searchonsell/list-resources.php:226
-#: templates/widgets/booking-search.php:851
-#: templates/widgets/booking-search.php:854
-#: templates/widgets/booking-search.php:857
+#: templates/searchonsell/list-resources.php:194
+#: templates/widgets/booking-search.php:801
+#: templates/widgets/booking-search.php:804
+#: templates/widgets/booking-search.php:807
 #: templates/widgets/search-filter.php:610
 msgid "Rooms"
 msgstr "Numero locali"
@@ -785,6 +753,32 @@ msgstr "Un modulo per filtrare i risultati della ricerca per risorse"
 msgid "BookingFor Search Filters"
 msgstr "BookingFor - Filtri ricerca"
 
+#: templates/cartdetails.php:106 templates/cartdetails.php:1183
+#: templates/merchantdetails.php:114 templates/payment.php:48
+#: templates/merchantdetails/offer-details.php:25
+#: templates/merchantdetails/review.php:37
+#: templates/merchantdetails/thanks.php:25
+#: templates/resourcedetails/form.php:29
+#: templates/resourcedetails/review.php:40
+#: templates/widgets/merchant-vcard.php:164
+msgctxt "Page slug"
+msgid "thanks"
+msgstr "grazie"
+
+#: templates/cartdetails.php:110 templates/cartdetails.php:1184
+#: templates/condominiumdetails.php:191 templates/merchantdetails.php:121
+#: templates/merchantdetails.php:433 templates/onselldetails.php:178
+#: templates/payment.php:49 templates/resourcedetails.php:323
+#: templates/merchantdetails/offer-details.php:26
+#: templates/merchantdetails/review.php:38
+#: templates/merchantdetails/thanks.php:26
+#: templates/resourcedetails/form.php:30
+#: templates/resourcedetails/review.php:41
+#: templates/widgets/merchant-vcard.php:165
+msgctxt "Page slug"
+msgid "errors"
+msgstr "errore"
+
 #: templates/cartdetails.php:135
 msgid "Your Cart is empty! "
 msgstr "Il tuo carrello è vuoto! "
@@ -797,152 +791,143 @@ msgstr "Prenotazione sicura. Noi proteggiamo le tue informazioni"
 msgid "Your reservation includes"
 msgstr "La tua prenotazione include"
 
-#: templates/cartdetails.php:264 templates/search_details.php:638
-#: templates/search_details.php:1442
+#: templates/cartdetails.php:264 templates/search_details.php:640
+#: templates/search_details.php:1452
 msgid "Information"
 msgstr "Informazione"
 
-#: templates/cartdetails.php:265 templates/search_details.php:639
-#: templates/search_details.php:1443
+#: templates/cartdetails.php:265 templates/search_details.php:641
+#: templates/search_details.php:1453
 msgid "For"
 msgstr "Per"
 
-#: templates/cartdetails.php:266
-msgid "Unit price"
-msgstr "Prezzo unitario"
-
-#: templates/cartdetails.php:267 templates/search_details.php:641
-#: templates/search_details.php:1445
+#: templates/cartdetails.php:267 templates/search_details.php:643
+#: templates/search_details.php:1455
 msgid "Options"
 msgstr "Opzioni"
 
-#: templates/cartdetails.php:269 templates/search_details.php:642
-#: templates/search_details.php:1446
+#: templates/cartdetails.php:268 templates/search_details.php:644
+#: templates/search_details.php:1456
 msgid "Qt."
 msgstr "Qt."
 
-#: templates/cartdetails.php:411 templates/search_details.php:440
-#: templates/orderdetails/order.php:416
-#: templates/widgets/booking-search.php:614
-#: templates/widgets/booking-search.php:631
+#: templates/cartdetails.php:269
+#, fuzzy
+#| msgid "Total Price"
+msgid "Total price"
+msgstr "Prezzo totale"
+
+#: templates/cartdetails.php:408 templates/search_details.php:442
+#: templates/widgets/booking-search.php:569
+#: templates/widgets/booking-search.php:586
 msgid "Seniores"
 msgstr "Seniores"
 
-#: templates/cartdetails.php:414 templates/search_details.php:441
-#: templates/search_details.php:474 templates/orderdetails/order.php:419
-#: templates/widgets/booking-search.php:615
-#: templates/widgets/booking-search.php:643
+#: templates/cartdetails.php:411 templates/search_details.php:443
+#: templates/search_details.php:476 templates/widgets/booking-search.php:570
+#: templates/widgets/booking-search.php:598
 msgid "Children"
 msgstr "Bambini"
 
-#: templates/cartdetails.php:414 templates/orderdetails/order.php:419
+#: templates/cartdetails.php:411
 msgid "Years"
 msgstr "Anni"
 
-#: templates/cartdetails.php:442 templates/cartdetails.php:485
-#: templates/cartdetails.php:516 templates/cartdetails.php:552
-#: templates/cartdetails.php:925 templates/cartdetails.php:969
-#: templates/cartdetails.php:1044 templates/cartdetails.php:1088
+#: templates/cartdetails.php:439 templates/cartdetails.php:482
+#: templates/cartdetails.php:513 templates/cartdetails.php:549
+#: templates/cartdetails.php:924 templates/cartdetails.php:968
+#: templates/cartdetails.php:1043 templates/cartdetails.php:1087
 #: templates/merchant-sidebar-contact.php:161
-#: templates/merchant_small_details.php:114 templates/myaccount.php:290
-#: templates/reservationdetails.php:74 templates/search_details.php:417
-#: templates/search_details.php:870 templates/search_details.php:916
-#: templates/search_details.php:1484 templates/search_details.php:1530
+#: templates/merchant_small_details.php:114 templates/search_details.php:419
+#: templates/search_details.php:872 templates/search_details.php:926
+#: templates/search_details.php:1494 templates/search_details.php:1556
 #: templates/orderdetails/default_checkmode146.php:18
 #: templates/orderdetails/default_checkmode450.php:19
 #: templates/orderdetails/default_checkmode450_simple.php:15
-#: templates/orderdetails/order.php:284 templates/orderdetails/order.php:315
-#: templates/orderdetails/order.php:346 templates/orderdetails/order.php:382
-#: templates/resourcedetails/form.php:738
-#: templates/widgets/booking-search.php:584
+#: templates/resourcedetails/form.php:728
+#: templates/widgets/booking-search.php:546
 msgid "Check-in"
 msgstr "Check-in"
 
-#: templates/cartdetails.php:444 templates/cartdetails.php:487
-#: templates/widgets/booking-search.php:815
-#: templates/widgets/booking-search.php:828
-#: templates/widgets/booking-search.php:841
-#: templates/widgets/booking-search.php:854
-#: templates/widgets/booking-search.php:870
+#: templates/cartdetails.php:441 templates/cartdetails.php:484
+#: templates/widgets/booking-search.php:765
+#: templates/widgets/booking-search.php:778
+#: templates/widgets/booking-search.php:791
+#: templates/widgets/booking-search.php:804
+#: templates/widgets/booking-search.php:820
 msgid "from"
 msgstr "da"
 
-#: templates/cartdetails.php:448 templates/cartdetails.php:491
-#: templates/cartdetails.php:522 templates/cartdetails.php:558
-#: templates/cartdetails.php:931 templates/cartdetails.php:975
-#: templates/cartdetails.php:1050 templates/cartdetails.php:1094
+#: templates/cartdetails.php:445 templates/cartdetails.php:488
+#: templates/cartdetails.php:519 templates/cartdetails.php:555
+#: templates/cartdetails.php:930 templates/cartdetails.php:974
+#: templates/cartdetails.php:1049 templates/cartdetails.php:1093
 #: templates/merchant-sidebar-contact.php:165
-#: templates/merchant_small_details.php:117 templates/myaccount.php:319
-#: templates/reservationdetails.php:99 templates/search_details.php:876
-#: templates/search_details.php:922 templates/search_details.php:1490
-#: templates/search_details.php:1536 templates/orderdetails/order.php:290
-#: templates/orderdetails/order.php:321 templates/orderdetails/order.php:352
-#: templates/orderdetails/order.php:388 templates/resourcedetails/form.php:742
-#: templates/widgets/booking-search.php:590
+#: templates/merchant_small_details.php:117 templates/search_details.php:878
+#: templates/search_details.php:932 templates/search_details.php:1500
+#: templates/search_details.php:1562 templates/resourcedetails/form.php:732
+#: templates/widgets/booking-search.php:552
 msgid "Check-out"
 msgstr "Check-out"
 
-#: templates/cartdetails.php:450 templates/cartdetails.php:493
-#: templates/cartdetails.php:753 templates/search_details.php:1190
+#: templates/cartdetails.php:447 templates/cartdetails.php:490
+#: templates/cartdetails.php:750 templates/search_details.php:1200
 msgid "until"
 msgstr "fino a"
 
-#: templates/cartdetails.php:454 templates/cartdetails.php:497
-#: templates/cartdetails.php:528 templates/cartdetails.php:564
-#: templates/cartdetails.php:937 templates/cartdetails.php:981
-#: templates/cartdetails.php:1056 templates/cartdetails.php:1100
-#: templates/cartdetails.php:1159 templates/search_details.php:882
-#: templates/search_details.php:928 templates/search_details.php:1496
-#: templates/search_details.php:1542 templates/orderdetails/order.php:146
-#: templates/orderdetails/order.php:296 templates/orderdetails/order.php:327
-#: templates/orderdetails/order.php:358 templates/orderdetails/order.php:394
+#: templates/cartdetails.php:451 templates/cartdetails.php:494
+#: templates/cartdetails.php:525 templates/cartdetails.php:561
+#: templates/cartdetails.php:936 templates/cartdetails.php:980
+#: templates/cartdetails.php:1055 templates/cartdetails.php:1099
+#: templates/cartdetails.php:1158 templates/search_details.php:884
+#: templates/search_details.php:938 templates/search_details.php:1506
+#: templates/search_details.php:1568
 msgid "Total"
 msgstr "Totale"
 
-#: templates/cartdetails.php:456 templates/orderdetails/order.php:298
+#: templates/cartdetails.php:453
 msgid "days"
 msgstr "giorni"
 
-#: templates/cartdetails.php:499 templates/orderdetails/order.php:329
+#: templates/cartdetails.php:496
 msgid "nights"
 msgstr "notti"
 
-#: templates/cartdetails.php:530 templates/cartdetails.php:566
-#: templates/cartdetails.php:939 templates/cartdetails.php:983
-#: templates/cartdetails.php:1058 templates/cartdetails.php:1102
-#: templates/search_details.php:884 templates/search_details.php:930
-#: templates/search_details.php:1498 templates/search_details.php:1544
-#: templates/orderdetails/order.php:360 templates/orderdetails/order.php:396
+#: templates/cartdetails.php:527 templates/cartdetails.php:563
+#: templates/cartdetails.php:938 templates/cartdetails.php:982
+#: templates/cartdetails.php:1057 templates/cartdetails.php:1101
+#: templates/search_details.php:886 templates/search_details.php:940
+#: templates/search_details.php:1508 templates/search_details.php:1570
 msgid "hours"
 msgstr "ore"
 
-#: templates/cartdetails.php:595 templates/search_details.php:706
-#: templates/search_details.php:957
+#: templates/cartdetails.php:592 templates/search_details.php:708
+#: templates/search_details.php:967
 msgid "Included"
 msgstr "Incluso"
 
-#: templates/cartdetails.php:595 templates/search_details.php:706
-#: templates/search_details.php:957
+#: templates/cartdetails.php:592 templates/search_details.php:708
+#: templates/search_details.php:967
 msgid "VAT"
 msgstr "IVA"
 
-#: templates/cartdetails.php:598 templates/search_details.php:709
-#: templates/search_details.php:960
+#: templates/cartdetails.php:595 templates/search_details.php:711
+#: templates/search_details.php:970
 msgid "Not included"
 msgstr "Non incluso"
 
-#: templates/cartdetails.php:598 templates/search_details.php:709
-#: templates/search_details.php:960
+#: templates/cartdetails.php:595 templates/search_details.php:711
+#: templates/search_details.php:970
 msgid "City tax per person per night."
 msgstr "Tassa di soggiorno a persona per notte."
 
-#: templates/cartdetails.php:750 templates/cartdetails.php:765
-#: templates/cartdetails.php:780 templates/search_details.php:1187
-#: templates/search_details.php:1202 templates/search_details.php:1217
+#: templates/cartdetails.php:747 templates/cartdetails.php:762
+#: templates/cartdetails.php:777 templates/search_details.php:1197
+#: templates/search_details.php:1212 templates/search_details.php:1227
 msgid "Cancellation FREE"
 msgstr "Cancellazione GRATUITA"
 
-#: templates/cartdetails.php:755 templates/search_details.php:1192
+#: templates/cartdetails.php:752 templates/search_details.php:1202
 #, php-format
 msgid ""
 "You may cancel free of charge until %1$s before arrival. You will be charged "
@@ -951,17 +936,17 @@ msgstr ""
 "Puoi cancellare gratuitamente fino a %1$s prima dell'arrivo. Se cancelli "
 "entro %1$s precedenti all'arrivo ti sarà addebitato %2$s."
 
-#: templates/cartdetails.php:767 templates/cartdetails.php:782
-#: templates/search_details.php:1204 templates/search_details.php:1219
+#: templates/cartdetails.php:764 templates/cartdetails.php:779
+#: templates/search_details.php:1214 templates/search_details.php:1229
 msgid "You may cancel free of charge until arrival."
 msgstr "Puoi cancellare gratuitamente fino all'arrivo"
 
-#: templates/cartdetails.php:770 templates/cartdetails.php:785
-#: templates/search_details.php:1207 templates/search_details.php:1222
+#: templates/cartdetails.php:767 templates/cartdetails.php:782
+#: templates/search_details.php:1217 templates/search_details.php:1232
 msgid "Special conditions"
 msgstr "Condizioni speciali"
 
-#: templates/cartdetails.php:772 templates/search_details.php:1209
+#: templates/cartdetails.php:769 templates/search_details.php:1219
 #, php-format
 msgid ""
 "You may cancel with a charge of %3$s  until %1$s before arrival. You will be "
@@ -970,88 +955,88 @@ msgstr ""
 "Puoi cancellare con un addebito di %3$s fino a %1$s prima dell'arrivo. Se "
 "cancelli entro %1$s precedenti all'arrivo ti sarà addebitato %2$s."
 
-#: templates/cartdetails.php:787 templates/search_details.php:1224
+#: templates/cartdetails.php:784 templates/search_details.php:1234
 #, php-format
 msgid "You will be charged %1$s if you cancel before arrival."
 msgstr "Ti sarà addebitato %1$s se annulli prima dell'arrivo."
 
-#: templates/cartdetails.php:794 templates/search_details.php:1231
+#: templates/cartdetails.php:791 templates/search_details.php:1241
 msgid "Non refundable"
 msgstr "Non rimborsabile"
 
-#: templates/cartdetails.php:796 templates/search_details.php:1233
+#: templates/cartdetails.php:793 templates/search_details.php:1243
 msgid "You will be charged all if you cancel before arrival."
 msgstr "Ti sarà addebitato l'intero importo se annulli prima dell'arrivo."
 
-#: templates/cartdetails.php:836 templates/search_details.php:1271
+#: templates/cartdetails.php:833 templates/search_details.php:1281
 msgid "There is no meal option with this room."
 msgstr "La tariffa di questa camera non include alcun pasto."
 
-#: templates/cartdetails.php:838 templates/cartdetails.php:849
-#: templates/search_details.php:1273 templates/search_details.php:1284
+#: templates/cartdetails.php:835 templates/cartdetails.php:846
+#: templates/search_details.php:1283 templates/search_details.php:1294
 msgid "Breakfast"
 msgstr "Colazione"
 
-#: templates/cartdetails.php:841 templates/cartdetails.php:852
-#: templates/search_details.php:1276 templates/search_details.php:1287
+#: templates/cartdetails.php:838 templates/cartdetails.php:849
+#: templates/search_details.php:1286 templates/search_details.php:1297
 msgid "Lunch"
 msgstr "Pranzo"
 
-#: templates/cartdetails.php:844 templates/cartdetails.php:852
-#: templates/search_details.php:1279 templates/search_details.php:1287
+#: templates/cartdetails.php:841 templates/cartdetails.php:849
+#: templates/search_details.php:1289 templates/search_details.php:1297
 msgid "Dinner"
 msgstr "Cena"
 
-#: templates/cartdetails.php:847 templates/cartdetails.php:852
-#: templates/resources_grouped.php:235 templates/search_details.php:1282
-#: templates/search_details.php:1287 templates/search/list-condomonium.php:275
-#: templates/search/list-merchants.php:264
-#: templates/search/list-resources.php:288
+#: templates/cartdetails.php:844 templates/cartdetails.php:849
+#: templates/resources_grouped.php:235 templates/search_details.php:1292
+#: templates/search_details.php:1297 templates/search/list-condomonium.php:267
+#: templates/search/list-merchants.php:253
+#: templates/search/list-resources.php:272
 msgid "All Inclusive"
 msgstr "Tutto incluso"
 
-#: templates/cartdetails.php:856 templates/cartdetails.php:859
-#: templates/search_details.php:1291 templates/search_details.php:1294
+#: templates/cartdetails.php:853 templates/cartdetails.php:856
+#: templates/search_details.php:1301 templates/search_details.php:1304
 msgid "included"
 msgstr "incluso"
 
-#: templates/cartdetails.php:874 templates/search_details.php:1309
+#: templates/cartdetails.php:871 templates/search_details.php:1319
 #: templates/widgets/search-filter.php:506
 msgid "Meals"
 msgstr "Trattamento"
 
-#: templates/cartdetails.php:876 templates/search_details.php:1311
+#: templates/cartdetails.php:873 templates/search_details.php:1321
 msgid "Cancellation"
 msgstr "Cancellazione"
 
-#: templates/cartdetails.php:878 templates/search_details.php:1313
+#: templates/cartdetails.php:875 templates/search_details.php:1323
 msgid "Prepayment"
 msgstr "Caparra"
 
-#: templates/cartdetails.php:898
+#: templates/cartdetails.php:895
 msgid "Are you sure?"
 msgstr "Sei sicuro?"
 
-#: templates/cartdetails.php:1269 templates/resourcedetails/form.php:490
+#: templates/cartdetails.php:1268 templates/resourcedetails/form.php:490
 msgid "Enter your details"
 msgstr "Inserisci i tuoi dati"
 
-#: templates/cartdetails.php:1275 templates/merchant-sidebar-contact.php:58
-#: templates/myaccount.php:108 templates/merchantdetails/review.php:77
+#: templates/cartdetails.php:1274 templates/merchant-sidebar-contact.php:58
+#: templates/merchantdetails/review.php:83
 #: templates/orderdetails/default_checkmode25.php:12
 #: templates/orderdetails/default_checkmode26.php:11
-#: templates/orderdetails/order.php:88 templates/resourcedetails/form.php:496
+#: templates/resourcedetails/form.php:496
 #: templates/resourcedetails/review.php:131
 msgid "Name"
 msgstr "Nome"
 
-#: templates/cartdetails.php:1276 templates/cartdetails.php:1280
-#: templates/cartdetails.php:1284 templates/cartdetails.php:1288
-#: templates/cartdetails.php:1295 templates/cartdetails.php:1299
-#: templates/cartdetails.php:1375 templates/cartdetails.php:1415
-#: templates/cartdetails.php:1419 templates/cartdetails.php:1458
-#: templates/cartdetails.php:1464 templates/cartdetails.php:1474
-#: templates/cartdetails.php:1476
+#: templates/cartdetails.php:1275 templates/cartdetails.php:1279
+#: templates/cartdetails.php:1283 templates/cartdetails.php:1287
+#: templates/cartdetails.php:1294 templates/cartdetails.php:1298
+#: templates/cartdetails.php:1374 templates/cartdetails.php:1414
+#: templates/cartdetails.php:1418 templates/cartdetails.php:1457
+#: templates/cartdetails.php:1463 templates/cartdetails.php:1468
+#: templates/cartdetails.php:1470
 #: templates/orderdetails/default_checkmode146.php:59
 #: templates/orderdetails/default_checkmode146.php:61
 #: templates/orderdetails/default_checkmode146.php:64
@@ -1073,8 +1058,6 @@ msgstr "Nome"
 #: templates/orderdetails/default_checkmode5.php:37
 #: templates/orderdetails/default_checkmode6.php:36
 #: templates/orderdetails/default_checkmode6.php:37
-#: templates/orderdetails/order.php:466 templates/orderdetails/order.php:473
-#: templates/orderdetails/order.php:483 templates/orderdetails/order.php:485
 #: templates/resourcedetails/form.php:497
 #: templates/resourcedetails/form.php:501
 #: templates/resourcedetails/form.php:505
@@ -1086,144 +1069,132 @@ msgstr "Nome"
 #: templates/resourcedetails/form.php:640
 #: templates/resourcedetails/form.php:690
 #: templates/resourcedetails/form.php:696
-#: templates/resourcedetails/form.php:706
-#: templates/resourcedetails/form.php:708
+#: templates/resourcedetails/form.php:701
+#: templates/resourcedetails/form.php:703
 msgid "This field is required."
 msgstr "Questo campo è obbligatorio"
 
-#: templates/cartdetails.php:1279 templates/merchant-sidebar-contact.php:61
-#: templates/myaccount.php:112
+#: templates/cartdetails.php:1278 templates/merchant-sidebar-contact.php:61
 #: templates/orderdetails/default_checkmode146.php:14
 #: templates/orderdetails/default_checkmode25.php:16
 #: templates/orderdetails/default_checkmode26.php:15
-#: templates/orderdetails/order.php:92 templates/resourcedetails/form.php:500
+#: templates/resourcedetails/form.php:500
 msgid "Surname"
 msgstr "Cognome"
 
-#: templates/cartdetails.php:1283 templates/merchant-sidebar-contact.php:64
-#: templates/myaccount.php:116 templates/orderdetails/default_checkmode5.php:15
+#: templates/cartdetails.php:1282 templates/merchant-sidebar-contact.php:64
+#: templates/orderdetails/default_checkmode5.php:15
 #: templates/orderdetails/default_checkmode6.php:16
-#: templates/orderdetails/mailupdate.php:33 templates/orderdetails/order.php:98
 #: templates/resourcedetails/form.php:504
 msgid "Email"
 msgstr "Email"
 
-#: templates/cartdetails.php:1287 templates/resourcedetails/form.php:508
+#: templates/cartdetails.php:1286 templates/resourcedetails/form.php:508
 msgid "Reenter email"
 msgstr "Conferma email"
 
-#: templates/cartdetails.php:1294 templates/merchant-sidebar-contact.php:70
-#: templates/myaccount.php:133 templates/orderdetails/order.php:109
+#: templates/cartdetails.php:1293 templates/merchant-sidebar-contact.php:70
 #: templates/resourcedetails/form.php:515
 msgid "Address"
 msgstr "Indirizzo"
 
-#: templates/cartdetails.php:1298 templates/resourcedetails/form.php:519
+#: templates/cartdetails.php:1297 templates/resourcedetails/form.php:519
 msgid "Postal Code"
 msgstr "CAP"
 
-#: templates/cartdetails.php:1302 templates/myaccount.php:141
-#: templates/merchantdetails/review.php:98 templates/orderdetails/order.php:119
+#: templates/cartdetails.php:1301 templates/merchantdetails/review.php:104
 #: templates/resourcedetails/form.php:523
 #: templates/resourcedetails/review.php:152
 msgid "Country"
 msgstr "Nazione"
 
-#: templates/cartdetails.php:1370 templates/resourcedetails/form.php:591
+#: templates/cartdetails.php:1369 templates/resourcedetails/form.php:591
 msgid "Note"
 msgstr "Messaggio"
 
-#: templates/cartdetails.php:1374 templates/merchant-sidebar-contact.php:67
-#: templates/myaccount.php:218 templates/orderdetails/order.php:102
+#: templates/cartdetails.php:1373 templates/merchant-sidebar-contact.php:67
 #: templates/resourcedetails/form.php:595
 msgid "Phone"
 msgstr "Telefono"
 
-#: templates/cartdetails.php:1378 templates/resourcedetails/form.php:599
+#: templates/cartdetails.php:1377 templates/resourcedetails/form.php:599
 msgid "Your estimated time of arrival"
 msgstr "Orario di arrivo previsto"
 
-#: templates/cartdetails.php:1380 templates/resourcedetails/form.php:601
+#: templates/cartdetails.php:1379 templates/resourcedetails/form.php:601
 msgid "I don't know"
 msgstr "Non lo so"
 
-#: templates/cartdetails.php:1410 templates/myaccount.php:382
-#: templates/resourcedetails/form.php:631
+#: templates/cartdetails.php:1409 templates/resourcedetails/form.php:631
 msgid "Password"
 msgstr "Password"
 
-#: templates/cartdetails.php:1414 templates/merchant-sidebar-contact.php:76
-#: templates/myaccount.php:137 templates/merchantdetails/review.php:81
-#: templates/orderdetails/order.php:113 templates/resourcedetails/form.php:635
+#: templates/cartdetails.php:1413 templates/merchant-sidebar-contact.php:76
+#: templates/merchantdetails/review.php:87
+#: templates/resourcedetails/form.php:635
 #: templates/resourcedetails/review.php:135
 msgid "City"
 msgstr "Città"
 
-#: templates/cartdetails.php:1418 templates/merchant-sidebar-contact.php:79
+#: templates/cartdetails.php:1417 templates/merchant-sidebar-contact.php:79
 #: templates/onselldetails/resourcedetails.php:209
 #: templates/resourcedetails/form.php:639
-#: templates/widgets/booking-search.php:361
+#: templates/widgets/booking-search.php:323
 msgid "Province"
 msgstr "Comune"
 
-#: templates/cartdetails.php:1425 templates/resourcedetails/form.php:647
+#: templates/cartdetails.php:1424 templates/resourcedetails/form.php:647
 msgid "Payment method"
 msgstr "Metodo di pagamento"
 
-#: templates/cartdetails.php:1426 templates/resourcedetails/form.php:648
+#: templates/cartdetails.php:1425 templates/resourcedetails/form.php:648
 msgid "Please choose a payment method"
 msgstr "Si prega di selezionare la modalità di pagamento"
 
-#: templates/cartdetails.php:1437
+#: templates/cartdetails.php:1436
 msgid "Deposit"
 msgstr "Caparra"
 
-#: templates/cartdetails.php:1444 templates/orderdetails/order.php:194
-#: templates/orderdetails/order.php:452 templates/resourcedetails/form.php:676
+#: templates/cartdetails.php:1443 templates/resourcedetails/form.php:676
 msgid "Credit card details"
 msgstr "Dati della carta di credito"
 
-#: templates/cartdetails.php:1457 templates/orderdetails/order.php:201
-#: templates/orderdetails/order.php:465 templates/resourcedetails/form.php:689
+#: templates/cartdetails.php:1456 templates/resourcedetails/form.php:689
 msgid "Holder"
 msgstr "Intestatario"
 
-#: templates/cartdetails.php:1463 templates/orderdetails/order.php:208
-#: templates/orderdetails/order.php:472 templates/resourcedetails/form.php:695
+#: templates/cartdetails.php:1462 templates/resourcedetails/form.php:695
 msgid "Number"
 msgstr "Numero"
 
-#: templates/cartdetails.php:1467 templates/orderdetails/order.php:215
-#: templates/orderdetails/order.php:476 templates/resourcedetails/form.php:699
+#: templates/cartdetails.php:1466 templates/resourcedetails/form.php:699
 msgid "Valid until"
 msgstr "Validità"
 
-#: templates/cartdetails.php:1470 templates/orderdetails/order.php:479
-#: templates/resourcedetails/form.php:702
+#: templates/cartdetails.php:1468 templates/resourcedetails/form.php:701
 msgid "Month (MM)"
 msgstr "Mese (MM)"
 
-#: templates/cartdetails.php:1480 templates/orderdetails/order.php:489
-#: templates/resourcedetails/form.php:712
+#: templates/cartdetails.php:1470 templates/resourcedetails/form.php:703
 msgid "Year (YY)"
 msgstr "Anni (AA)"
 
-#: templates/cartdetails.php:1506 templates/cartdetails.php:1509
-#: templates/cartdetails.php:1518 templates/cartdetails.php:1521
-#: templates/resources_grouped.php:268 templates/search_details.php:1140
-#: templates/search_details.php:1143 templates/search_details.php:1152
-#: templates/search_details.php:1155 templates/search_details.php:1167
-#: templates/search/list-condomonium.php:308
-#: templates/search/list-merchants.php:297
-#: templates/search/list-resources.php:321
+#: templates/cartdetails.php:1495 templates/cartdetails.php:1498
+#: templates/cartdetails.php:1507 templates/cartdetails.php:1510
+#: templates/resources_grouped.php:268 templates/search_details.php:1150
+#: templates/search_details.php:1153 templates/search_details.php:1162
+#: templates/search_details.php:1165 templates/search_details.php:1177
+#: templates/search/list-condomonium.php:300
+#: templates/search/list-merchants.php:286
+#: templates/search/list-resources.php:305
 #, php-format
 msgid " %d day/s"
 msgstr " %d giorno/i"
 
-#: templates/cartdetails.php:1527 templates/cartdetails.php:1541
-#: templates/cartdetails.php:1546 templates/cartdetails.php:1552
-#: templates/cartdetails.php:1665 templates/cartdetails.php:1666
-#: templates/cartdetails.php:1667 templates/merchant-sidebar-contact.php:58
+#: templates/cartdetails.php:1516 templates/cartdetails.php:1530
+#: templates/cartdetails.php:1536 templates/cartdetails.php:1543
+#: templates/cartdetails.php:1656 templates/cartdetails.php:1657
+#: templates/cartdetails.php:1658 templates/merchant-sidebar-contact.php:58
 #: templates/merchant-sidebar-contact.php:61
 #: templates/merchant-sidebar-contact.php:64
 #: templates/merchant-sidebar-contact.php:67
@@ -1234,21 +1205,20 @@ msgstr " %d giorno/i"
 #: templates/merchant-sidebar-contact.php:198
 #: templates/merchant-sidebar-contact.php:210
 #: templates/merchant-sidebar-contact.php:217
-#: templates/merchantdetails/review.php:290
-#: templates/merchantdetails/review.php:302
+#: templates/merchantdetails/review.php:296
 #: templates/merchantdetails/review.php:308
-#: templates/merchantdetails/review.php:380
-#: templates/merchantdetails/review.php:381
-#: templates/merchantdetails/review.php:382
-#: templates/merchantdetails/review.php:383
-#: templates/orderdetails/order.php:536 templates/orderdetails/order.php:537
-#: templates/orderdetails/order.php:538 templates/resourcedetails/form.php:759
-#: templates/resourcedetails/form.php:766
-#: templates/resourcedetails/form.php:773
-#: templates/resourcedetails/form.php:780
-#: templates/resourcedetails/form.php:909
-#: templates/resourcedetails/form.php:910
-#: templates/resourcedetails/form.php:911
+#: templates/merchantdetails/review.php:314
+#: templates/merchantdetails/review.php:389
+#: templates/merchantdetails/review.php:390
+#: templates/merchantdetails/review.php:391
+#: templates/merchantdetails/review.php:392
+#: templates/resourcedetails/form.php:749
+#: templates/resourcedetails/form.php:756
+#: templates/resourcedetails/form.php:763
+#: templates/resourcedetails/form.php:770
+#: templates/resourcedetails/form.php:899
+#: templates/resourcedetails/form.php:900
+#: templates/resourcedetails/form.php:901
 #: templates/resourcedetails/review.php:343
 #: templates/resourcedetails/review.php:355
 #: templates/resourcedetails/review.php:360
@@ -1259,31 +1229,30 @@ msgstr " %d giorno/i"
 msgid "Mandatory"
 msgstr "Obbligatorio"
 
-#: templates/cartdetails.php:1528 templates/resourcedetails/form.php:760
+#: templates/cartdetails.php:1517 templates/resourcedetails/form.php:750
 msgid "I agree to the conditions"
 msgstr "Accetto le condizioni"
 
-#: templates/cartdetails.php:1542 templates/merchant-sidebar-contact.php:199
-#: templates/merchantdetails/review.php:291
-#: templates/resourcedetails/form.php:767
+#: templates/cartdetails.php:1531 templates/merchant-sidebar-contact.php:199
+#: templates/merchantdetails/review.php:297
+#: templates/resourcedetails/form.php:757
 #: templates/resourcedetails/review.php:344
 msgid "I accept personal data treatment"
 msgstr "Accetto il trattamento dei dati personali"
 
-#: templates/cartdetails.php:1547 templates/merchant-sidebar-contact.php:211
-#: templates/merchantdetails/review.php:303
-#: templates/resourcedetails/form.php:774
+#: templates/cartdetails.php:1537 templates/merchant-sidebar-contact.php:211
+#: templates/merchantdetails/review.php:309
+#: templates/resourcedetails/form.php:764
 #: templates/resourcedetails/review.php:356
 msgid "I accept additional purposes"
 msgstr "Accetto ulteriori finalità"
 
-#: templates/cartdetails.php:1577 templates/merchant-sidebar-contact.php:228
-#: templates/orderdetails.php:78 templates/orderdetails/mailupdate.php:37
-#: templates/orderdetails/order.php:509 templates/resourcedetails/form.php:803
+#: templates/cartdetails.php:1568 templates/merchant-sidebar-contact.php:228
+#: templates/orderdetails.php:55 templates/resourcedetails/form.php:793
 msgid "Send"
 msgstr "Invia"
 
-#: templates/cartdetails.php:1910
+#: templates/cartdetails.php:1902
 msgid "Cart Not enabled! "
 msgstr "Carrello non abilitato! "
 
@@ -1291,8 +1260,6 @@ msgstr "Carrello non abilitato! "
 #: templates/onselldetails.php:14 templates/onselldetails.php:162
 #: templates/resourcedetails.php:24 templates/resourcedetails.php:307
 #: templates/condominiumdetails/resourcedetails.php:100
-#: templates/resourcedetails/resourcedetails.php:100
-#: templates/searchonsell/list-resources.php:130
 msgctxt "Page slug"
 msgid "inforequestpopup"
 msgstr "inforequestpopup"
@@ -1313,10 +1280,14 @@ msgctxt "Page slug"
 msgid "thankspopup"
 msgstr "thankspopup"
 
-#: templates/errors.php:20 templates/merchantdetails/errors.php:28
+#: templates/errors.php:17 templates/merchantdetails/errors.php:29
 msgid "OPS, some errors occurred! Please try again later."
 msgstr ""
 "OPS, si sono verificati alcuni errori! Si prega di riprovare più tardi."
+
+#: templates/errors.php:19 templates/errors.php:22
+msgid "At this moment you cannot do payments."
+msgstr "In questo momento non si possono fare i pagamenti."
 
 #: templates/menu_small_booking.php:3
 msgid "Your search"
@@ -1352,27 +1323,27 @@ msgid "Special Requests"
 msgstr "Note"
 
 #: templates/merchant-sidebar-contact.php:191
-#: templates/merchantdetails/review.php:283
+#: templates/merchantdetails/review.php:289
 #: templates/resourcedetails/review.php:337
 msgid "Personal data treatment"
 msgstr "Trattamento dei dati personali"
 
 #: templates/merchant-sidebar-contact.php:204
-#: templates/merchantdetails/review.php:296
+#: templates/merchantdetails/review.php:302
 #: templates/resourcedetails/review.php:349
 msgid "Additional purposes"
 msgstr "Ulteriori finalità"
 
-#: templates/merchant-sidebar-contact.php:379
+#: templates/merchant-sidebar-contact.php:376
 msgid "Sending..."
 msgstr "Invio in corso"
 
 #: templates/merchantdetails.php:12 templates/merchantdetails.php:401
 #: templates/merchant_small_details.php:40 templates/resources_grouped.php:99
-#: templates/merchantslist/merchantslist.php:97
-#: templates/search/list-condomonium.php:135
-#: templates/search/list-merchants.php:128
-#: templates/search/search-listing.php:212
+#: templates/merchantslist/merchantslist.php:83
+#: templates/search/list-condomonium.php:127
+#: templates/search/list-merchants.php:127
+#: templates/search/search-listing.php:213
 msgctxt "Page slug"
 msgid "contactspopup"
 msgstr "contactspopup"
@@ -1385,7 +1356,7 @@ msgid "resources"
 msgstr "risorse"
 
 #: templates/merchantdetails.php:62 templates/merchant_small_details.php:37
-#: templates/merchantdetails/onsellunits.php:222
+#: templates/merchantdetails/onsellunits.php:230
 #: templates/widgets/merchant-vcard.php:158
 msgctxt "Page slug"
 msgid "onsellunits"
@@ -1397,7 +1368,7 @@ msgctxt "Page slug"
 msgid "offers"
 msgstr "offerte"
 
-#: templates/merchantdetails.php:98 templates/merchantdetails/offers.php:68
+#: templates/merchantdetails.php:98 templates/merchantdetails/offers.php:74
 msgctxt "Page slug"
 msgid "offer"
 msgstr "offerta"
@@ -1414,17 +1385,15 @@ msgstr "pacchetto-vacanze"
 
 #: templates/merchantdetails.php:159 templates/merchant_small_details.php:38
 #: templates/resources_grouped.php:98
-#: templates/merchantdetails/merchant-ratings.php:84
-#: templates/merchantdetails/merchant-ratings.php:226
-#: templates/merchantdetails/reviews.php:122
-#: templates/merchantdetails/reviews.php:283
-#: templates/merchantslist/merchantslist.php:95
-#: templates/merchantslist/merchantslist.php:96
-#: templates/search/list-condomonium.php:134
-#: templates/search/list-merchants.php:127
-#: templates/search/list-resources.php:129
-#: templates/search/search-listing.php:210
+#: templates/merchantdetails/merchant-ratings.php:65
+#: templates/merchantdetails/merchant-ratings.php:205
+#: templates/merchantdetails/reviews.php:124
+#: templates/merchantdetails/reviews.php:287
+#: templates/merchantslist/merchantslist.php:82
+#: templates/search/list-condomonium.php:126
+#: templates/search/list-merchants.php:126
 #: templates/search/search-listing.php:211
+#: templates/search/search-listing.php:212
 #: templates/widgets/merchant-vcard.php:159
 msgctxt "Page slug"
 msgid "reviews"
@@ -1433,13 +1402,12 @@ msgstr "recensioni"
 #: templates/merchantdetails.php:169 templates/resourcedetails.php:191
 #: templates/resources_grouped.php:119
 #: templates/condominiumdetails/resourcedetails.php:99
-#: templates/merchantdetails/merchant-ratings.php:100
-#: templates/merchantdetails/merchant-ratings.php:243
-#: templates/merchantdetails/reviews.php:137
-#: templates/merchantdetails/reviews.php:314
+#: templates/merchantdetails/merchant-ratings.php:80
+#: templates/merchantdetails/merchant-ratings.php:222
+#: templates/merchantdetails/reviews.php:140
+#: templates/merchantdetails/reviews.php:318
 #: templates/resourcedetails/resourcedetails.php:99
-#: templates/search/list-condomonium.php:150
-#: templates/search/list-merchants.php:148
+#: templates/search/list-condomonium.php:142
 msgctxt "Page slug"
 msgid "review"
 msgstr "recensione"
@@ -1460,8 +1428,8 @@ msgstr "Mostra telefono"
 msgid "Web site"
 msgstr "Sito web"
 
-#: templates/merchant_small_details.php:87 templates/search_details.php:819
-#: templates/search/search-listing.php:214
+#: templates/merchant_small_details.php:87 templates/search_details.php:821
+#: templates/search/search-listing.php:215
 msgid "Request info"
 msgstr "Richiedi info"
 
@@ -1476,328 +1444,176 @@ msgid "Offers"
 msgstr "Offerte"
 
 #: templates/merchant_small_details.php:105
-#: templates/condominiumdetails/resourcedetails.php:193
-#: templates/condominiumdetails/resourcedetails.php:203
-#: templates/merchantdetails/merchantdetails.php:154
-#: templates/merchantdetails/merchantdetails.php:163
-#: templates/resourcedetails/resourcedetails.php:193
-#: templates/resourcedetails/resourcedetails.php:203
+#: templates/condominiumdetails/resourcedetails.php:196
+#: templates/condominiumdetails/resourcedetails.php:206
+#: templates/merchantdetails/merchantdetails.php:155
+#: templates/merchantdetails/merchantdetails.php:164
+#: templates/resourcedetails/resourcedetails.php:177
+#: templates/resourcedetails/resourcedetails.php:187
 #: templates/widgets/merchant-vcard.php:257
 msgid "Reviews"
 msgstr "Recensioni"
 
 #: templates/merchant_small_details.php:112
-#: templates/resourcedetails/form.php:734
+#: templates/resourcedetails/form.php:724
 msgid "Good to know"
 msgstr "Info utili"
-
-#: templates/myaccount.php:16
-msgid "You need to be loggedin in order to access this page."
-msgstr "È necessario essere loggedin al fine di accedere a questa pagina."
-
-#: templates/myaccount.php:83 templates/myaccount.php:100
-#: templates/orderdetails/order.php:80 templates/orderdetails/order.php:85
-msgid "Personal Informations"
-msgstr "Informazioni personali"
-
-#: templates/myaccount.php:84 templates/orderdetails/order.php:81
-msgid "Reservations"
-msgstr "Prenotazioni"
-
-#: templates/myaccount.php:85
-msgid "Settings"
-msgstr "Impostazioni"
-
-#: templates/myaccount.php:90
-msgid "Social Network"
-msgstr "Rete sociale"
-
-#: templates/myaccount.php:91
-msgid "Give your social profiles"
-msgstr "Dare i vostri profili di social"
-
-#: templates/myaccount.php:92
-msgid ""
-"Connect with your account via your social networks , one less password to "
-"remember!"
-msgstr ""
-"Connettiti con il tuo account tramite il tuo social network, una password in "
-"meno da ricordare!"
-
-#: templates/myaccount.php:101 templates/orderdetails/order.php:86
-msgid "Your profile"
-msgstr "Il tuo profilo"
-
-#: templates/myaccount.php:102
-msgid ""
-"This information is used to automatically fill in your details and book more "
-"quickly. We do not share it publicly."
-msgstr ""
-"Queste informazioni viene utilizzate per riempire i dettagli e prenotazioni "
-"più rapidamente automaticamente. Non condividerlo pubblicamente."
-
-#: templates/myaccount.php:120
-msgid "Date of birth"
-msgstr "Data di nascita"
-
-#: templates/myaccount.php:124
-msgid "Gender"
-msgstr "Genere"
-
-#: templates/myaccount.php:126
-msgid "Male"
-msgstr "Uomo"
-
-#: templates/myaccount.php:127
-msgid "Female"
-msgstr "Donna"
-
-#: templates/myaccount.php:206 templates/orderdetails/order.php:123
-msgid "State/Province"
-msgstr "Stato/provincia"
-
-#: templates/myaccount.php:210
-msgid "Zip Code"
-msgstr "CAP"
-
-#: templates/myaccount.php:214
-msgid "Language"
-msgstr "Lingua"
-
-#: templates/myaccount.php:223
-msgid "Submit"
-msgstr "Invia"
-
-#: templates/myaccount.php:283
-msgid "Reservation number"
-msgstr "Numero di prenotazione"
-
-#: templates/myaccount.php:332 templates/reservationdetails.php:60
-msgid "Booking Detail"
-msgstr "Dettaglio di prenotazione"
-
-#: templates/myaccount.php:334
-msgid "Cancel Booking"
-msgstr "Annulla prenotazione"
-
-#: templates/myaccount.php:383
-msgid ""
-"You want to change your password? Click on the button below and we'll send "
-"you an email with a link to reset it."
-msgstr ""
-"Vuoi cambiare la tua password? Fare clic sul pulsante qui sotto e ti "
-"invieremo una mail con un link per reimpostarla."
-
-#: templates/myaccount.php:384
-msgid "Change your password"
-msgstr "Cambiare la password"
-
-#: templates/myaccount.php:393
-msgid ""
-"Choose how often you want to receive offers and suggestions, do not miss the "
-"best offers!"
-msgstr ""
-"Scegli quante volte si desidera ricevere offerte e proposte, da non perdere "
-"le migliori offerte!"
-
-#: templates/myaccount.php:399
-msgid "Receive newsletter"
-msgstr "Ricevere la newsletter"
-
-#: templates/myaccount.php:402
-msgid "I do not care"
-msgstr "Non mi interessa"
-
-#: templates/myaccount.php:418
-msgid "Fetching Reservation Details"
-msgstr "Il recupero di dati della prenotazione"
-
-#: templates/myaccount.php:419 templates/widgets/booking-search.php:947
-msgid "Please be patient"
-msgstr "Si prega di attendere"
 
 #: templates/onsellunits.php:83 templates/onsellunits.php:85
 #: templates/resources.php:65 templates/resources.php:67
 #: templates/resources_grouped.php:64 templates/resources_grouped.php:66
-#: templates/merchantdetails/offers.php:51
-#: templates/merchantdetails/offers.php:53
-#: templates/merchantdetails/onsellunits.php:70
-#: templates/merchantdetails/onsellunits.php:72
+#: templates/merchantdetails/offers.php:57
+#: templates/merchantdetails/offers.php:59
+#: templates/merchantdetails/onsellunits.php:77
+#: templates/merchantdetails/onsellunits.php:79
 #: templates/merchantdetails/resources.php:74
 #: templates/merchantdetails/resources.php:76
-#: templates/merchantslist/merchantslist.php:76
-#: templates/merchantslist/merchantslist.php:78
-#: templates/search/list-condomonium.php:100
-#: templates/search/list-condomonium.php:102
-#: templates/search/list-merchants.php:98
-#: templates/search/list-merchants.php:100
-#: templates/search/list-resources.php:104
-#: templates/search/list-resources.php:106
-#: templates/searchonsell/list-resources.php:88
-#: templates/searchonsell/list-resources.php:90
+#: templates/merchantslist/merchantslist.php:63
+#: templates/merchantslist/merchantslist.php:65
+#: templates/search/list-condomonium.php:96
+#: templates/search/list-condomonium.php:98
+#: templates/search/list-merchants.php:97
+#: templates/search/list-merchants.php:99
+#: templates/search/list-resources.php:94
+#: templates/search/list-resources.php:96
+#: templates/searchonsell/list-resources.php:74
+#: templates/searchonsell/list-resources.php:76
 msgid "List"
 msgstr "Elenco"
 
 #: templates/onsellunits.php:86 templates/resources.php:68
-#: templates/resources_grouped.php:67 templates/merchantdetails/offers.php:54
-#: templates/merchantdetails/onsellunits.php:73
+#: templates/resources_grouped.php:67 templates/merchantdetails/offers.php:60
+#: templates/merchantdetails/onsellunits.php:80
 #: templates/merchantdetails/resources.php:77
-#: templates/merchantslist/merchantslist.php:79
-#: templates/search/list-condomonium.php:103
-#: templates/search/list-merchants.php:101
-#: templates/search/list-resources.php:107
-#: templates/searchonsell/list-resources.php:91
+#: templates/merchantslist/merchantslist.php:66
+#: templates/search/list-condomonium.php:99
+#: templates/search/list-merchants.php:100
+#: templates/search/list-resources.php:97
+#: templates/searchonsell/list-resources.php:77
 msgid "Grid"
 msgstr "Griglia"
 
-#: templates/onsellunits.php:167 templates/merchantdetails/onsellunits.php:154
-#: templates/searchonsell/list-resources.php:191
+#: templates/onsellunits.php:167 templates/merchantdetails/onsellunits.php:162
+#: templates/searchonsell/list-resources.php:174
 msgid "Vetrina"
 msgstr "Vetrina"
 
-#: templates/onsellunits.php:171 templates/merchantdetails/onsellunits.php:158
-#: templates/searchonsell/list-resources.php:195
+#: templates/onsellunits.php:171 templates/merchantdetails/onsellunits.php:166
+#: templates/searchonsell/list-resources.php:178
 msgid "Top"
 msgstr "In evidenza"
 
-#: templates/onsellunits.php:175 templates/merchantdetails/onsellunits.php:162
-#: templates/searchonsell/list-resources.php:199
+#: templates/onsellunits.php:175 templates/merchantdetails/onsellunits.php:170
+#: templates/searchonsell/list-resources.php:182
 msgid "New!"
 msgstr "Nuova costruzione"
 
-#: templates/onsellunits.php:195 templates/merchantdetails/onsellunits.php:182
-#: templates/searchonsell/list-resources.php:235
+#: templates/onsellunits.php:195 templates/merchantdetails/onsellunits.php:190
+#: templates/searchonsell/list-resources.php:203
 msgid "m&sup2;"
 msgstr "m&sup2;"
 
-#: templates/onsellunits.php:203 templates/merchantdetails/onsellunits.php:190
+#: templates/onsellunits.php:203 templates/merchantdetails/onsellunits.php:198
 #: templates/onselldetails/resourcedetails.php:198
-#: templates/searchonsell/list-resources.php:243
+#: templates/searchonsell/list-resources.php:211
 msgid "Contact Agent"
 msgstr "Contatta"
 
 #: templates/onsellunits.php:208 templates/resources.php:177
-#: templates/merchantdetails/merchant-ratings.php:251
-#: templates/merchantdetails/merchant-ratings.php:252
-#: templates/merchantdetails/offers.php:97
-#: templates/merchantdetails/onsellunits.php:195
+#: templates/merchantdetails/merchant-ratings.php:230
+#: templates/merchantdetails/merchant-ratings.php:231
+#: templates/merchantdetails/offers.php:103
+#: templates/merchantdetails/onsellunits.php:203
 #: templates/merchantdetails/resources.php:174
-#: templates/merchantdetails/reviews.php:322
-#: templates/merchantdetails/reviews.php:323
-#: templates/merchantslist/merchantslist.php:177
-#: templates/resourcedetails/form.php:1056
-#: templates/resourcedetails/form.php:1057
-#: templates/resourcedetails/resource-ratings.php:215
-#: templates/resourcedetails/resource-ratings.php:216
-#: templates/search/list-resources.php:294
-#: templates/searchonsell/list-resources.php:248
-#: templates/widgets/merchants.php:110
+#: templates/merchantdetails/reviews.php:329
+#: templates/merchantdetails/reviews.php:330
+#: templates/merchantslist/merchantslist.php:163
+#: templates/resourcedetails/form.php:1047
+#: templates/resourcedetails/form.php:1048
+#: templates/resourcedetails/resource-ratings.php:226
+#: templates/resourcedetails/resource-ratings.php:227
+#: templates/search/list-resources.php:278
+#: templates/searchonsell/list-resources.php:216
+#: templates/widgets/merchants.php:101
 msgid "Details"
 msgstr "Dettagli"
 
-#: templates/onsellunits.php:213 templates/merchantdetails/onsellunits.php:200
-#: templates/searchonsell/list-resources.php:253
+#: templates/onsellunits.php:213 templates/merchantdetails/onsellunits.php:208
+#: templates/searchonsell/list-resources.php:221
 msgid "New ad"
 msgstr "Nuovo annuncio"
 
 #: templates/onsellunits.php:246 templates/resources.php:217
-#: templates/search-onsell.php:98 templates/merchantdetails/onsellunits.php:230
+#: templates/search-onsell.php:98
+#: templates/merchantdetails/onsellunits.php:238
 #: templates/merchantdetails/resources.php:212
-#: templates/merchantdetails/reviews.php:291
-#: templates/merchantslist/merchantslist.php:200
+#: templates/merchantdetails/reviews.php:295
+#: templates/merchantslist/merchantslist.php:186
 #: templates/search/search-listing.php:75
 msgid "&laquo;"
 msgstr "&laquo;"
 
 #: templates/onsellunits.php:247 templates/resources.php:218
-#: templates/search-onsell.php:99 templates/merchantdetails/onsellunits.php:231
+#: templates/search-onsell.php:99
+#: templates/merchantdetails/onsellunits.php:239
 #: templates/merchantdetails/resources.php:213
-#: templates/merchantdetails/reviews.php:292
-#: templates/merchantslist/merchantslist.php:201
+#: templates/merchantdetails/reviews.php:296
+#: templates/merchantslist/merchantslist.php:187
 #: templates/search/search-listing.php:76
 msgid "&raquo;"
 msgstr "&raquo;"
 
 #: templates/onsellunits.php:257 templates/resources.php:228
 #: templates/search-onsell.php:116
-#: templates/merchantdetails/onsellunits.php:241
+#: templates/merchantdetails/onsellunits.php:249
 #: templates/merchantdetails/resources.php:223
-#: templates/merchantdetails/reviews.php:302
-#: templates/merchantslist/merchantslist.php:211
+#: templates/merchantdetails/reviews.php:306
+#: templates/merchantslist/merchantslist.php:197
 #: templates/search/search-listing.php:145
 msgid "Page"
 msgstr "Pagina"
 
 #: templates/onsellunits.php:314 templates/resources_grouped.php:184
-#: templates/merchantdetails/onsellunits.php:298
-#: templates/merchantslist/merchantslist.php:168
-#: templates/merchantslist/merchantslist.php:297
-#: templates/search/list-condomonium.php:219
-#: templates/search/list-merchants.php:213
-#: templates/search/list-resources.php:238
-#: templates/searchonsell/list-resources.php:214
+#: templates/merchantslist/merchantslist.php:154
+#: templates/merchantslist/merchantslist.php:284
+#: templates/search/list-condomonium.php:211
+#: templates/search/list-resources.php:222
 msgid "Would you like to leave your review?"
 msgstr "Vuoi essere il primo a scrivere una recensione?"
 
-#: templates/onsellunits.php:315 templates/merchantdetails/onsellunits.php:299
-#: templates/merchantslist/merchantslist.php:298
+#: templates/onsellunits.php:315 templates/merchantslist/merchantslist.php:285
 #, php-format
 msgid "Score from %s reviews"
 msgstr "Basato su %s giudizi"
 
-#: templates/onsellunits.php:316 templates/merchantdetails/onsellunits.php:300
-#: templates/merchantslist/merchantslist.php:299
+#: templates/onsellunits.php:316 templates/merchantslist/merchantslist.php:286
 msgid "Guest Rating"
 msgstr "Valutazione ospiti"
 
-#: templates/onsellunits.php:321 templates/merchantdetails/offers.php:155
-#: templates/merchantdetails/onsellunits.php:305
+#: templates/onsellunits.php:321 templates/merchantdetails/offers.php:163
+#: templates/merchantdetails/onsellunits.php:307
 msgid "Read More"
 msgstr "Leggi tutto"
 
-#: templates/onsellunits.php:322 templates/merchantdetails/offers.php:156
-#: templates/merchantdetails/onsellunits.php:306
+#: templates/onsellunits.php:322 templates/merchantdetails/offers.php:164
+#: templates/merchantdetails/onsellunits.php:308
 msgid "Read Less"
 msgstr "Comprimi"
 
-#: templates/onsellunits.php:456 templates/merchantdetails/onsellunits.php:440
-#: templates/merchantdetails/resources.php:403
-#: templates/search/search-listing.php:251
+#: templates/onsellunits.php:456 templates/merchantdetails/onsellunits.php:442
+#: templates/merchantdetails/resources.php:404
+#: templates/search/search-listing.php:293
 #: templates/searchonsell/search-listing.php:69
 msgid "No results available"
 msgstr "Nessun risultato disponibile"
 
-#: templates/orderdetails.php:36
+#: templates/orderdetails.php:33
 msgid "Order"
 msgstr "Prenotazione"
 
-#: templates/orderdetails.php:68
-msgid "Error, please try again"
-msgstr "Errore, si prega di riprovare"
-
-#: templates/payment.php:47
+#: templates/payment.php:43
 msgid "Payment"
 msgstr "Pagamento"
-
-#: templates/reservationdetails.php:24
-msgid " Years"
-msgstr " Anni"
-
-#: templates/reservationdetails.php:63
-msgid "Back to list"
-msgstr "Torna alla lista"
-
-#: templates/reservationdetails.php:107
-msgid "adults"
-msgstr "adulti"
-
-#: templates/reservationdetails.php:108
-msgid "children"
-msgstr "bambini"
-
-#: templates/reservationdetails.php:128
-msgid "Total Price"
-msgstr "Prezzo totale"
 
 #: templates/resourcedetails.php:13 templates/resourcedetails.php:69
 msgctxt "Page slug"
@@ -1805,19 +1621,19 @@ msgid "form"
 msgstr "modulo"
 
 #: templates/resources.php:50 templates/resources_grouped.php:49
-#: templates/merchantdetails/onsellunits.php:55
+#: templates/merchantdetails/onsellunits.php:62
 #: templates/merchantdetails/resources.php:59
 #, php-format
 msgid "%s available accommodations"
 msgstr "%s risorse disponibili"
 
 #: templates/resources.php:56 templates/resources_grouped.php:55
-#: templates/merchantdetails/onsellunits.php:61
+#: templates/merchantdetails/onsellunits.php:68
 #: templates/merchantdetails/resources.php:65
-#: templates/search/list-condomonium.php:80
-#: templates/search/list-merchants.php:78
-#: templates/search/list-resources.php:84
-#: templates/searchonsell/list-resources.php:69
+#: templates/search/list-condomonium.php:76
+#: templates/search/list-merchants.php:77
+#: templates/search/list-resources.php:74
+#: templates/searchonsell/list-resources.php:55
 msgid "Map view"
 msgstr "Vedi mappa"
 
@@ -1827,206 +1643,205 @@ msgid "rating"
 msgstr "Voto"
 
 #: templates/resources.php:284 templates/resources_grouped.php:379
-#: templates/merchantdetails/resources.php:278
-#: templates/merchantslist/merchantslist.php:302
-#: templates/onselldetails/resourcedetails.php:424
-#: templates/search/list-condomonium.php:427
-#: templates/search/list-merchants.php:408
-#: templates/search/list-resources.php:428
-#: templates/searchonsell/list-resources.php:316
+#: templates/merchantdetails/resources.php:279
+#: templates/merchantslist/merchantslist.php:289
+#: templates/onselldetails/resourcedetails.php:438
+#: templates/search/list-condomonium.php:379
+#: templates/search/list-merchants.php:357
+#: templates/search/list-resources.php:375
+#: templates/searchonsell/list-resources.php:285
 msgid "Read more"
 msgstr "Leggi tutto"
 
 #: templates/resources.php:285 templates/resources_grouped.php:380
-#: templates/merchantdetails/resources.php:279
-#: templates/merchantslist/merchantslist.php:303
-#: templates/onselldetails/resourcedetails.php:425
-#: templates/search/list-condomonium.php:428
-#: templates/search/list-merchants.php:409
-#: templates/search/list-resources.php:429
-#: templates/searchonsell/list-resources.php:317
+#: templates/merchantdetails/resources.php:280
+#: templates/merchantslist/merchantslist.php:290
+#: templates/onselldetails/resourcedetails.php:439
+#: templates/search/list-condomonium.php:380
+#: templates/search/list-merchants.php:358
+#: templates/search/list-resources.php:376
+#: templates/searchonsell/list-resources.php:286
 msgid "Read less"
 msgstr "Riduci"
 
 #: templates/resources_grouped.php:132 templates/resources_grouped.php:241
 #: templates/resources_grouped.php:306
-#: templates/search/list-condomonium.php:163
-#: templates/search/list-condomonium.php:281
-#: templates/search/list-condomonium.php:346
-#: templates/search/list-merchants.php:161
-#: templates/search/list-merchants.php:270
-#: templates/search/list-merchants.php:335
-#: templates/search/list-resources.php:153
-#: templates/search/list-resources.php:359
+#: templates/search/list-condomonium.php:155
+#: templates/search/list-condomonium.php:273
+#: templates/search/list-condomonium.php:338
+#: templates/search/list-merchants.php:152
+#: templates/search/list-merchants.php:259
+#: templates/search/list-merchants.php:324
+#: templates/search/list-resources.php:136
+#: templates/search/list-resources.php:343
 msgid "Request"
 msgstr "Richiedi"
 
-#: templates/resources_grouped.php:135 templates/search_details.php:662
-#: templates/search_details.php:822 templates/search_details.php:1640
-#: templates/search/list-condomonium.php:166
-#: templates/search/list-merchants.php:164
-#: templates/search/list-resources.php:156
+#: templates/resources_grouped.php:135 templates/search_details.php:664
+#: templates/search_details.php:824 templates/search_details.php:1666
+#: templates/search/list-condomonium.php:158
+#: templates/search/list-merchants.php:155
+#: templates/search/list-resources.php:139
 msgid "Book Now"
 msgstr "Prenota"
 
 #: templates/resources_grouped.php:182
-#: templates/merchantslist/merchantslist.php:166
-#: templates/search/list-condomonium.php:217
-#: templates/search/list-merchants.php:211
-#: templates/search/list-resources.php:236
-#: templates/searchonsell/list-resources.php:212
+#: templates/merchantslist/merchantslist.php:152
+#: templates/search/list-condomonium.php:209
+#: templates/search/list-merchants.php:202
+#: templates/search/list-resources.php:220
 #, php-format
 msgid "%s reviews"
 msgstr "%s recensioni"
 
-#: templates/resources_grouped.php:213 templates/search_details.php:844
-#: templates/search/list-condomonium.php:253
-#: templates/search/list-merchants.php:242
-#: templates/search/list-resources.php:266
+#: templates/resources_grouped.php:213 templates/search_details.php:846
+#: templates/search/list-condomonium.php:245
+#: templates/search/list-merchants.php:231
+#: templates/search/list-resources.php:250
 #, php-format
 msgid "Only %d available"
 msgstr "Solo %d disponibili"
 
 #: templates/resources_grouped.php:224
-#: templates/search/list-condomonium.php:264
-#: templates/search/list-merchants.php:253
-#: templates/search/list-resources.php:277
+#: templates/search/list-condomonium.php:256
+#: templates/search/list-merchants.php:242
+#: templates/search/list-resources.php:261
 #: templates/widgets/search-filter.php:29
 msgid "Breakfast included"
 msgstr "Colazione inclusa"
 
 #: templates/resources_grouped.php:229
-#: templates/search/list-condomonium.php:269
-#: templates/search/list-merchants.php:258
-#: templates/search/list-resources.php:282
+#: templates/search/list-condomonium.php:261
+#: templates/search/list-merchants.php:247
+#: templates/search/list-resources.php:266
 #: templates/widgets/search-filter.php:28
 msgid "Half board"
 msgstr "Mezza pensione"
 
 #: templates/resources_grouped.php:232
-#: templates/search/list-condomonium.php:272
-#: templates/search/list-merchants.php:261
-#: templates/search/list-resources.php:285
+#: templates/search/list-condomonium.php:264
+#: templates/search/list-merchants.php:250
+#: templates/search/list-resources.php:269
 #: templates/widgets/search-filter.php:27
 msgid "Full board"
 msgstr "Pensione completa"
 
 #: templates/resources_grouped.php:253
-#: templates/search/list-condomonium.php:293
-#: templates/search/list-merchants.php:282
-#: templates/search/list-resources.php:306
+#: templates/search/list-condomonium.php:285
+#: templates/search/list-merchants.php:271
+#: templates/search/list-resources.php:290
 #, php-format
 msgid "Price for %s person"
 msgstr "Prezzo per %s persone"
 
 #: templates/resources_grouped.php:267 templates/resources_grouped.php:271
 #: templates/resources_grouped.php:275
+#: templates/search/list-condomonium.php:299
+#: templates/search/list-condomonium.php:303
 #: templates/search/list-condomonium.php:307
-#: templates/search/list-condomonium.php:311
-#: templates/search/list-condomonium.php:315
-#: templates/search/list-merchants.php:296
-#: templates/search/list-merchants.php:300
-#: templates/search/list-merchants.php:304
-#: templates/search/list-resources.php:320
-#: templates/search/list-resources.php:324
-#: templates/search/list-resources.php:328
+#: templates/search/list-merchants.php:285
+#: templates/search/list-merchants.php:289
+#: templates/search/list-merchants.php:293
+#: templates/search/list-resources.php:304
+#: templates/search/list-resources.php:308
+#: templates/search/list-resources.php:312
 msgid "Total for"
 msgstr "Totale per"
 
 #: templates/resources_grouped.php:272
-#: templates/search/list-condomonium.php:312
-#: templates/search/list-merchants.php:301
-#: templates/search/list-resources.php:325
+#: templates/search/list-condomonium.php:304
+#: templates/search/list-merchants.php:290
+#: templates/search/list-resources.php:309
 #, php-format
 msgid " %d night/s"
 msgstr " %d notte/i"
 
-#: templates/resources_grouped.php:277 templates/search_details.php:1171
-#: templates/search/list-condomonium.php:317
-#: templates/search/list-merchants.php:306
-#: templates/search/list-resources.php:330
+#: templates/resources_grouped.php:277 templates/search_details.php:1181
+#: templates/search/list-condomonium.php:309
+#: templates/search/list-merchants.php:295
+#: templates/search/list-resources.php:314
 #, php-format
 msgid " %d hour/s"
 msgstr " %d ora/e"
 
 #: templates/resources_grouped.php:280
-#: templates/search/list-condomonium.php:320
-#: templates/search/list-merchants.php:309
-#: templates/search/list-resources.php:333
+#: templates/search/list-condomonium.php:312
+#: templates/search/list-merchants.php:298
+#: templates/search/list-resources.php:317
 #, php-format
 msgid " %d minute/s"
 msgstr " %d minuto/i"
 
 #: templates/resources_grouped.php:284
-#: templates/search/list-condomonium.php:324
-#: templates/search/list-merchants.php:313
-#: templates/search/list-resources.php:337
+#: templates/search/list-condomonium.php:316
+#: templates/search/list-merchants.php:302
+#: templates/search/list-resources.php:321
 msgid "From"
 msgstr "Da"
 
 #: templates/resources_grouped.php:315
-#: templates/search/list-condomonium.php:355
-#: templates/search/list-merchants.php:344
-#: templates/search/list-resources.php:368
+#: templates/search/list-condomonium.php:347
+#: templates/search/list-merchants.php:333
+#: templates/search/list-resources.php:352
 #, php-format
 msgid "Offer %d%%"
 msgstr "Offerta %d%%"
 
-#: templates/search_details.php:396
+#: templates/search_details.php:398
 msgid "Availability"
 msgstr "Disponibilità"
 
-#: templates/search_details.php:398 templates/search_details.php:400
+#: templates/search_details.php:400 templates/search_details.php:402
 msgid "Cart"
 msgstr "Carrello"
 
-#: templates/search_details.php:401
+#: templates/search_details.php:403
 msgid "Add to cart"
 msgstr "Aggiungi al carrello"
 
-#: templates/search_details.php:403
+#: templates/search_details.php:405
 msgid "Continue shopping"
 msgstr "Continua lo shopping"
 
-#: templates/search_details.php:423
+#: templates/search_details.php:425
 #: templates/orderdetails/default_checkmode450.php:23
 #: templates/orderdetails/default_checkmode450_simple.php:19
 msgid "Check-out "
 msgstr "Check-out "
 
-#: templates/search_details.php:436 templates/search_details.php:2716
-#: templates/widgets/booking-search.php:1703
+#: templates/search_details.php:438 templates/search_details.php:2578
+#: templates/widgets/booking-search.php:1664
 msgid "Guest"
 msgstr "Ospiti"
 
-#: templates/search_details.php:446 templates/widgets/booking-search.php:726
-#: templates/widgets/booking-search.php:909
-#: templates/widgets/booking-search.php:1062
+#: templates/search_details.php:448 templates/widgets/booking-search.php:681
+#: templates/widgets/booking-search.php:859
+#: templates/widgets/booking-search.php:1012
 msgid "Search"
 msgstr "Cerca"
 
-#: templates/search_details.php:454
+#: templates/search_details.php:456
 msgid "Adults "
 msgstr "Adulti"
 
-#: templates/search_details.php:464
+#: templates/search_details.php:466
 msgid "Seniors "
 msgstr "Seniors"
 
-#: templates/search_details.php:485
+#: templates/search_details.php:487
 msgid "Ages of children"
 msgstr "Età bambini"
 
-#: templates/search_details.php:486 templates/search_details.php:1725
-#: templates/search_details.php:1730 templates/search_details.php:1734
-#: templates/widgets/booking-search.php:672
-#: templates/widgets/booking-search.php:1218
-#: templates/widgets/booking-search.php:1223
-#: templates/widgets/booking-search.php:1227
+#: templates/search_details.php:488 templates/search_details.php:1751
+#: templates/search_details.php:1756 templates/search_details.php:1760
+#: templates/widgets/booking-search.php:627
+#: templates/widgets/booking-search.php:1169
+#: templates/widgets/booking-search.php:1174
+#: templates/widgets/booking-search.php:1178
 msgid "on"
 msgstr "il"
 
-#: templates/search_details.php:557 templates/widgets/booking-search.php:759
+#: templates/search_details.php:559 templates/widgets/booking-search.php:714
 #, php-format
 msgid ""
 "We preset your children's ages to %s years old - but if you enter their "
@@ -2035,69 +1850,69 @@ msgstr ""
 "L'età che abbiamo preimpostato per i bambini è  %s anni ma se inserisci "
 "l'età corretta potresti anche trovare prezzi migliori."
 
-#: templates/search_details.php:608 templates/search_details.php:624
+#: templates/search_details.php:610 templates/search_details.php:626
 msgid "Select"
 msgstr "Seleziona"
 
-#: templates/search_details.php:643 templates/search_details.php:1397
+#: templates/search_details.php:645 templates/search_details.php:1407
 msgid "Confirm your reservation"
 msgstr "Conferma la tua prenotazione"
 
-#: templates/search_details.php:654
+#: templates/search_details.php:656
 msgid "You can't acquire resources from another merchant."
 msgstr "Non è possibile acquisire risorse da un altro commerciante."
 
-#: templates/search_details.php:658 templates/search_details.php:1635
+#: templates/search_details.php:660 templates/search_details.php:1661
 msgid "selected items"
 msgstr "prodotti selezionati"
 
-#: templates/search_details.php:665 templates/search_details.php:1643
+#: templates/search_details.php:667 templates/search_details.php:1669
 msgid "Request Now"
 msgstr "Richiedi ora"
 
-#: templates/search_details.php:728 templates/search_details.php:1122
-#: templates/resourcedetails/form.php:1071
+#: templates/search_details.php:730 templates/search_details.php:1132
+#: templates/resourcedetails/form.php:1062
 msgid "No results available for the submitted data"
 msgstr "Nessuna disponibilità per la ricerca effettuata"
 
-#: templates/search_details.php:731
+#: templates/search_details.php:733
 #, php-format
 msgid "Persons min:%1$d max:%2$d"
 msgstr "Posti letto - min:%1$d max:%2$d"
 
-#: templates/search_details.php:737 templates/search_details.php:1371
+#: templates/search_details.php:739 templates/search_details.php:1381
 #, php-format
 msgid "Other %1$d choise"
 msgstr "Altre %1$d scelte"
 
-#: templates/search_details.php:737 templates/search_details.php:1371
+#: templates/search_details.php:739 templates/search_details.php:1381
 msgid "Find other great offers!"
 msgstr "Trova altre eccezionali offerte per te!"
 
-#: templates/search_details.php:1175
+#: templates/search_details.php:1185
 #, php-format
 msgid " %d week/s"
 msgstr " %d settimana/e"
 
-#: templates/search_details.php:1179
+#: templates/search_details.php:1189
 #, php-format
 msgid " %d month/s"
 msgstr " %d mese/i"
 
-#: templates/search_details.php:1248
+#: templates/search_details.php:1258
 msgid "Pay at the property – NO PREPAYMENT NEEDED"
 msgstr "NON SERVE ALCUN PAGAMENTO ANTICIPATO – Paga in struttura"
 
-#: templates/search_details.php:1249
+#: templates/search_details.php:1259
 msgid "No prepayment is needed."
 msgstr "Non è richiesto alcun pagamento anticipato."
 
-#: templates/search_details.php:1254
+#: templates/search_details.php:1264
 msgid "You will be charged a prepayment of the total price at any time."
 msgstr ""
 "In qualsiasi momento ti verrà addebitata una caparra sull'intero importo."
 
-#: templates/search_details.php:1256
+#: templates/search_details.php:1266
 #, php-format
 msgid ""
 "You will be charged a prepayment of %1$s of the total price at any time."
@@ -2105,32 +1920,32 @@ msgstr ""
 "In qualsiasi momento ti verrà addebitata una caparra del %1$s sull'intero "
 "importo."
 
-#: templates/search_details.php:1258
+#: templates/search_details.php:1268
 #, php-format
 msgid "You will be charged a prepayment of %1$s at any time."
 msgstr "In qualsiasi momento ti verrà addebitata una caparra di %1$s."
 
-#: templates/search_details.php:1319
+#: templates/search_details.php:1329
 msgid "Booking Enquiry"
 msgstr "Richiesta di prenotazione"
 
-#: templates/search_details.php:1396
+#: templates/search_details.php:1406
 msgid "Do you want add more?"
 msgstr "Vuoi aggiungere qualcos'altro?"
 
-#: templates/search_details.php:1475
+#: templates/search_details.php:1485
 msgid "Select a period"
 msgstr "Seleziona un periodo"
 
-#: templates/search_details.php:1636
+#: templates/search_details.php:1662
 msgid "selected services"
 msgstr "servizi selezionati"
 
-#: templates/search_details.php:2306
+#: templates/search_details.php:2333
 msgid "Please, select a day"
 msgstr "Si prega di selezionare un giorno"
 
-#: templates/search_details.php:2320 templates/search_details.php:2386
+#: templates/search_details.php:2347 templates/search_details.php:2413
 msgid "Change your details"
 msgstr "Modifica i tuoi dettagli"
 
@@ -2140,87 +1955,74 @@ msgstr "Il modulo è stato inviato correttamente, grazie."
 
 #: templates/condominiumdetails/resource-gallery.php:71
 #: templates/merchantdetails/gallery.php:45
-#: templates/merchantdetails/merchant-gallery.php:76
+#: templates/merchantdetails/merchant-gallery.php:69
 #: templates/onselldetails/resource-gallery.php:71
 #: templates/resourcedetails/resource-gallery.php:71
 msgid "Show All"
 msgstr "Mostra tutto"
 
 #: templates/condominiumdetails/resourcedetails.php:35
-#: templates/merchantdetails/merchant-ratings.php:6
 #: templates/merchantdetails/merchantdetails.php:27
 #: templates/merchantdetails/reviews.php:35
 #: templates/resourcedetails/resourcedetails.php:35
 #: templates/search/list-condomonium.php:5
 #: templates/search/list-merchants.php:5 templates/search/list-resources.php:5
-#: templates/searchonsell/list-resources.php:5
 #: templates/widgets/search-filter.php:45
 msgid "Very poor"
 msgstr "Molto scadente"
 
 #: templates/condominiumdetails/resourcedetails.php:36
-#: templates/merchantdetails/merchant-ratings.php:7
 #: templates/merchantdetails/merchantdetails.php:28
 #: templates/merchantdetails/reviews.php:36
 #: templates/resourcedetails/resourcedetails.php:36
 #: templates/search/list-condomonium.php:6
 #: templates/search/list-merchants.php:6 templates/search/list-resources.php:6
-#: templates/searchonsell/list-resources.php:6
 #: templates/widgets/search-filter.php:46
 msgid "Poor"
 msgstr "Pessimo"
 
 #: templates/condominiumdetails/resourcedetails.php:37
-#: templates/merchantdetails/merchant-ratings.php:8
 #: templates/merchantdetails/merchantdetails.php:29
 #: templates/merchantdetails/reviews.php:37
 #: templates/resourcedetails/resourcedetails.php:37
 #: templates/search/list-condomonium.php:7
 #: templates/search/list-merchants.php:7 templates/search/list-resources.php:7
-#: templates/searchonsell/list-resources.php:7
 #: templates/widgets/search-filter.php:47
 msgid "Disappointing"
 msgstr "Deludente"
 
 #: templates/condominiumdetails/resourcedetails.php:38
-#: templates/merchantdetails/merchant-ratings.php:9
 #: templates/merchantdetails/merchantdetails.php:30
 #: templates/merchantdetails/reviews.php:38
 #: templates/resourcedetails/resourcedetails.php:38
 #: templates/search/list-condomonium.php:8
 #: templates/search/list-merchants.php:8 templates/search/list-resources.php:8
-#: templates/searchonsell/list-resources.php:8
 #: templates/widgets/search-filter.php:48
 msgid "Fair"
 msgstr "Passabile"
 
 #: templates/condominiumdetails/resourcedetails.php:39
-#: templates/merchantdetails/merchant-ratings.php:10
 #: templates/merchantdetails/merchantdetails.php:31
 #: templates/merchantdetails/reviews.php:39
 #: templates/resourcedetails/resourcedetails.php:39
 #: templates/search/list-condomonium.php:9
 #: templates/search/list-merchants.php:9 templates/search/list-resources.php:9
-#: templates/searchonsell/list-resources.php:9
 #: templates/widgets/search-filter.php:49
 msgid "Okay"
 msgstr "Ok"
 
 #: templates/condominiumdetails/resourcedetails.php:40
-#: templates/merchantdetails/merchant-ratings.php:11
 #: templates/merchantdetails/merchantdetails.php:32
 #: templates/merchantdetails/reviews.php:40
 #: templates/resourcedetails/resourcedetails.php:40
 #: templates/search/list-condomonium.php:10
 #: templates/search/list-merchants.php:10
 #: templates/search/list-resources.php:10
-#: templates/searchonsell/list-resources.php:10
 #: templates/widgets/search-filter.php:50
 msgid "Pleasant"
 msgstr "Carino"
 
 #: templates/condominiumdetails/resourcedetails.php:41
-#: templates/merchantdetails/merchant-ratings.php:12
 #: templates/merchantdetails/merchantdetails.php:33
 #: templates/merchantdetails/reviews.php:41
 #: templates/onselldetails/resourcedetails.php:246
@@ -2228,41 +2030,34 @@ msgstr "Carino"
 #: templates/search/list-condomonium.php:11
 #: templates/search/list-merchants.php:11
 #: templates/search/list-resources.php:11
-#: templates/searchonsell/list-resources.php:11
 #: templates/widgets/search-filter.php:51
 msgid "Good"
 msgstr "Buono"
 
 #: templates/condominiumdetails/resourcedetails.php:42
-#: templates/merchantdetails/merchant-ratings.php:13
 #: templates/merchantdetails/merchantdetails.php:34
 #: templates/merchantdetails/reviews.php:42
 #: templates/resourcedetails/resourcedetails.php:42
 #: templates/search/list-condomonium.php:12
 #: templates/search/list-merchants.php:12
 #: templates/search/list-resources.php:12
-#: templates/searchonsell/list-resources.php:12
 #: templates/widgets/search-filter.php:52
 msgid "Very good"
 msgstr "Ottimo"
 
 #: templates/condominiumdetails/resourcedetails.php:43
-#: templates/merchantdetails/merchant-ratings.php:14
 #: templates/merchantdetails/merchantdetails.php:35
 #: templates/merchantdetails/reviews.php:43
 #: templates/resourcedetails/resourcedetails.php:43
 #: templates/search/list-condomonium.php:13
 #: templates/search/list-merchants.php:13
 #: templates/search/list-resources.php:13
-#: templates/searchonsell/list-resources.php:13
 #: templates/widgets/search-filter.php:53
 msgid "Fabulous"
 msgstr "Favoloso"
 
 #: templates/condominiumdetails/resourcedetails.php:44
 #: templates/condominiumdetails/resourcedetails.php:45
-#: templates/merchantdetails/merchant-ratings.php:15
-#: templates/merchantdetails/merchant-ratings.php:16
 #: templates/merchantdetails/merchantdetails.php:36
 #: templates/merchantdetails/merchantdetails.php:37
 #: templates/merchantdetails/reviews.php:44
@@ -2275,362 +2070,358 @@ msgstr "Favoloso"
 #: templates/search/list-merchants.php:15
 #: templates/search/list-resources.php:14
 #: templates/search/list-resources.php:15
-#: templates/searchonsell/list-resources.php:14
-#: templates/searchonsell/list-resources.php:15
 #: templates/widgets/search-filter.php:54
 #: templates/widgets/search-filter.php:55
 msgid "Exceptional"
 msgstr "Eccellente"
 
 #: templates/condominiumdetails/resourcedetails.php:101
-#: templates/resourcedetails/resourcedetails.php:101
-#: templates/searchonsell/list-resources.php:131
 msgctxt "Page slug"
 msgid "rapidview"
 msgstr "rapidview"
 
-#: templates/condominiumdetails/resourcedetails.php:200
-#: templates/merchantdetails/merchantdetails.php:160
+#: templates/condominiumdetails/resourcedetails.php:203
+#: templates/merchantdetails/merchantdetails.php:161
 #: templates/merchantdetails/offer-details.php:58
 #: templates/onselldetails/resourcedetails.php:155
-#: templates/resourcedetails/resourcedetails.php:200
+#: templates/resourcedetails/resourcedetails.php:184
 msgid "Media"
 msgstr "Media"
 
-#: templates/condominiumdetails/resourcedetails.php:201
-#: templates/merchantdetails/merchantdetails.php:162
+#: templates/condominiumdetails/resourcedetails.php:204
+#: templates/merchantdetails/merchantdetails.php:163
 #: templates/merchantdetails/offer-details.php:59
 #: templates/onselldetails/resourcedetails.php:156
-#: templates/resourcedetails/resourcedetails.php:201
+#: templates/resourcedetails/resourcedetails.php:185
 msgid "Description"
 msgstr "Descrizione"
 
-#: templates/condominiumdetails/resourcedetails.php:202
+#: templates/condominiumdetails/resourcedetails.php:205
 #: templates/onselldetails/resourcedetails.php:157
-#: templates/resourcedetails/resourcedetails.php:202
+#: templates/resourcedetails/resourcedetails.php:186
 msgid "Host"
 msgstr "Host"
 
-#: templates/condominiumdetails/resourcedetails.php:204
-#: templates/resourcedetails/resourcedetails.php:204
+#: templates/condominiumdetails/resourcedetails.php:207
+#: templates/resourcedetails/resourcedetails.php:188
 msgid "Book now"
 msgstr "Prenota"
 
-#: templates/condominiumdetails/resourcedetails.php:219
-#: templates/merchantdetails/merchantdetails.php:179
+#: templates/condominiumdetails/resourcedetails.php:222
+#: templates/merchantdetails/merchantdetails.php:180
 #: templates/onselldetails/resourcedetails.php:172
-#: templates/resourcedetails/resourcedetails.php:219
+#: templates/resourcedetails/resourcedetails.php:203
 msgid "In short"
 msgstr "In breve"
 
-#: templates/condominiumdetails/resourcedetails.php:221
+#: templates/condominiumdetails/resourcedetails.php:224
 #: templates/onselldetails/resourcedetails.php:173
 #: templates/onselldetails/resourcedetails.php:205
-#: templates/resourcedetails/resourcedetails.php:221
+#: templates/resourcedetails/resourcedetails.php:205
 msgid "Floor area"
 msgstr "Superficie"
 
-#: templates/condominiumdetails/resourcedetails.php:225
+#: templates/condominiumdetails/resourcedetails.php:228
 #: templates/onselldetails/resourcedetails.php:177
-#: templates/resourcedetails/resourcedetails.php:225
+#: templates/resourcedetails/resourcedetails.php:209
 msgid "Min paxes"
 msgstr "Min persone"
 
-#: templates/condominiumdetails/resourcedetails.php:227
+#: templates/condominiumdetails/resourcedetails.php:230
 #: templates/onselldetails/resourcedetails.php:179
-#: templates/resourcedetails/resourcedetails.php:227
+#: templates/resourcedetails/resourcedetails.php:211
 msgid "Max paxes"
 msgstr "Max persone"
 
-#: templates/condominiumdetails/resourcedetails.php:234
-#: templates/resourcedetails/resourcedetails.php:234
+#: templates/condominiumdetails/resourcedetails.php:237
+#: templates/resourcedetails/resourcedetails.php:218
 msgid "Energy Class"
 msgstr "Classe energetica"
 
-#: templates/condominiumdetails/resourcedetails.php:239
+#: templates/condominiumdetails/resourcedetails.php:242
 #: templates/onselldetails/resourcedetails.php:303
-#: templates/resourcedetails/resourcedetails.php:239
+#: templates/resourcedetails/resourcedetails.php:223
 msgid "not set"
 msgstr "Non impostato"
 
-#: templates/condominiumdetails/resourcedetails.php:240
-#: templates/resourcedetails/resourcedetails.php:240
+#: templates/condominiumdetails/resourcedetails.php:243
+#: templates/resourcedetails/resourcedetails.php:224
 msgid "nondescript"
 msgstr "Non classificabile"
 
-#: templates/condominiumdetails/resourcedetails.php:241
-#: templates/resourcedetails/resourcedetails.php:241
+#: templates/condominiumdetails/resourcedetails.php:244
+#: templates/resourcedetails/resourcedetails.php:225
 msgid "free property"
 msgstr "Immobile esente"
 
-#: templates/condominiumdetails/resourcedetails.php:242
+#: templates/condominiumdetails/resourcedetails.php:245
 #: templates/onselldetails/resourcedetails.php:306
-#: templates/resourcedetails/resourcedetails.php:242
+#: templates/resourcedetails/resourcedetails.php:226
 msgid "Under evaluation"
 msgstr "In fase di valutazione"
 
-#: templates/condominiumdetails/resourcedetails.php:243
-#: templates/resourcedetails/resourcedetails.php:243
+#: templates/condominiumdetails/resourcedetails.php:246
+#: templates/resourcedetails/resourcedetails.php:227
 msgid "A+"
 msgstr "A+"
 
-#: templates/condominiumdetails/resourcedetails.php:244
-#: templates/resourcedetails/resourcedetails.php:244
+#: templates/condominiumdetails/resourcedetails.php:247
+#: templates/resourcedetails/resourcedetails.php:228
 msgid "A"
 msgstr "A"
 
-#: templates/condominiumdetails/resourcedetails.php:245
-#: templates/resourcedetails/resourcedetails.php:245
+#: templates/condominiumdetails/resourcedetails.php:248
+#: templates/resourcedetails/resourcedetails.php:229
 msgid "B"
 msgstr "B"
 
-#: templates/condominiumdetails/resourcedetails.php:246
-#: templates/resourcedetails/resourcedetails.php:246
+#: templates/condominiumdetails/resourcedetails.php:249
+#: templates/resourcedetails/resourcedetails.php:230
 msgid "C"
 msgstr "C"
 
-#: templates/condominiumdetails/resourcedetails.php:247
-#: templates/resourcedetails/resourcedetails.php:247
+#: templates/condominiumdetails/resourcedetails.php:250
+#: templates/resourcedetails/resourcedetails.php:231
 msgid "D"
 msgstr "D"
 
-#: templates/condominiumdetails/resourcedetails.php:248
-#: templates/resourcedetails/resourcedetails.php:248
+#: templates/condominiumdetails/resourcedetails.php:251
+#: templates/resourcedetails/resourcedetails.php:232
 msgid "E"
 msgstr "E"
 
-#: templates/condominiumdetails/resourcedetails.php:249
-#: templates/resourcedetails/resourcedetails.php:249
+#: templates/condominiumdetails/resourcedetails.php:252
+#: templates/resourcedetails/resourcedetails.php:233
 msgid "F"
 msgstr "F"
 
-#: templates/condominiumdetails/resourcedetails.php:250
-#: templates/resourcedetails/resourcedetails.php:250
+#: templates/condominiumdetails/resourcedetails.php:253
+#: templates/resourcedetails/resourcedetails.php:234
 msgid "G"
 msgstr "G"
 
-#: templates/condominiumdetails/resourcedetails.php:257
-#: templates/resourcedetails/resourcedetails.php:257
+#: templates/condominiumdetails/resourcedetails.php:260
+#: templates/resourcedetails/resourcedetails.php:241
 msgid "EPI Value"
 msgstr "Valore EPI"
 
-#: templates/condominiumdetails/resourcedetails.php:265
-#: templates/merchantdetails/merchantdetails.php:183
+#: templates/condominiumdetails/resourcedetails.php:268
+#: templates/merchantdetails/merchantdetails.php:184
 #: templates/onselldetails/resourcedetails.php:183
-#: templates/resourcedetails/resourcedetails.php:265
+#: templates/resourcedetails/resourcedetails.php:249
 msgid "Share"
 msgstr "Condiviso"
 
-#: templates/merchantdetails/merchant-ratings.php:28
-#: templates/merchantdetails/merchant-ratings.php:88
-#: templates/merchantdetails/reviews.php:66
-#: templates/merchantdetails/reviews.php:125
-#: templates/resourcedetails/resource-ratings.php:13
-#: templates/resourcedetails/resource-ratings.php:72
+#: templates/merchantdetails/merchant-ratings.php:9
+#: templates/merchantdetails/merchant-ratings.php:68
+#: templates/merchantdetails/reviews.php:71
+#: templates/merchantdetails/reviews.php:128
+#: templates/resourcedetails/resource-ratings.php:9
+#: templates/resourcedetails/resource-ratings.php:68
 msgid "All reviewers"
 msgstr "Tutti gli ospiti"
 
-#: templates/merchantdetails/merchant-ratings.php:28
-#: templates/merchantdetails/merchant-ratings.php:89
-#: templates/merchantdetails/review.php:89
-#: templates/merchantdetails/reviews.php:66
-#: templates/merchantdetails/reviews.php:126
-#: templates/resourcedetails/resource-ratings.php:13
-#: templates/resourcedetails/resource-ratings.php:73
+#: templates/merchantdetails/merchant-ratings.php:9
+#: templates/merchantdetails/merchant-ratings.php:69
+#: templates/merchantdetails/review.php:95
+#: templates/merchantdetails/reviews.php:71
+#: templates/merchantdetails/reviews.php:129
+#: templates/resourcedetails/resource-ratings.php:9
+#: templates/resourcedetails/resource-ratings.php:69
 #: templates/resourcedetails/review.php:143
 msgid "Solo travellers"
 msgstr "Viaggiatore singolo"
 
-#: templates/merchantdetails/merchant-ratings.php:28
-#: templates/merchantdetails/merchant-ratings.php:90
-#: templates/merchantdetails/review.php:90
-#: templates/merchantdetails/reviews.php:66
-#: templates/merchantdetails/reviews.php:127
-#: templates/resourcedetails/resource-ratings.php:13
-#: templates/resourcedetails/resource-ratings.php:74
+#: templates/merchantdetails/merchant-ratings.php:9
+#: templates/merchantdetails/merchant-ratings.php:70
+#: templates/merchantdetails/review.php:96
+#: templates/merchantdetails/reviews.php:71
+#: templates/merchantdetails/reviews.php:130
+#: templates/resourcedetails/resource-ratings.php:9
+#: templates/resourcedetails/resource-ratings.php:70
 #: templates/resourcedetails/review.php:144
 msgid "Groups"
 msgstr "Gruppi"
 
-#: templates/merchantdetails/merchant-ratings.php:28
-#: templates/merchantdetails/merchant-ratings.php:91
-#: templates/merchantdetails/review.php:91
-#: templates/merchantdetails/reviews.php:66
-#: templates/merchantdetails/reviews.php:128
-#: templates/resourcedetails/resource-ratings.php:13
-#: templates/resourcedetails/resource-ratings.php:75
+#: templates/merchantdetails/merchant-ratings.php:9
+#: templates/merchantdetails/merchant-ratings.php:71
+#: templates/merchantdetails/review.php:97
+#: templates/merchantdetails/reviews.php:71
+#: templates/merchantdetails/reviews.php:131
+#: templates/resourcedetails/resource-ratings.php:9
+#: templates/resourcedetails/resource-ratings.php:71
 #: templates/resourcedetails/review.php:145
 msgid "Young couplet"
 msgstr "Coppia giovane"
 
-#: templates/merchantdetails/merchant-ratings.php:28
-#: templates/merchantdetails/merchant-ratings.php:92
-#: templates/merchantdetails/review.php:92
-#: templates/merchantdetails/reviews.php:66
-#: templates/merchantdetails/reviews.php:129
-#: templates/resourcedetails/resource-ratings.php:13
-#: templates/resourcedetails/resource-ratings.php:76
+#: templates/merchantdetails/merchant-ratings.php:9
+#: templates/merchantdetails/merchant-ratings.php:72
+#: templates/merchantdetails/review.php:98
+#: templates/merchantdetails/reviews.php:71
+#: templates/merchantdetails/reviews.php:132
+#: templates/resourcedetails/resource-ratings.php:9
+#: templates/resourcedetails/resource-ratings.php:72
 #: templates/resourcedetails/review.php:146
 msgid "Mature couples"
 msgstr "Coppie mature"
 
-#: templates/merchantdetails/merchant-ratings.php:28
-#: templates/merchantdetails/merchant-ratings.php:93
-#: templates/merchantdetails/review.php:93
-#: templates/merchantdetails/reviews.php:66
-#: templates/merchantdetails/reviews.php:130
-#: templates/resourcedetails/resource-ratings.php:13
-#: templates/resourcedetails/resource-ratings.php:77
+#: templates/merchantdetails/merchant-ratings.php:9
+#: templates/merchantdetails/merchant-ratings.php:73
+#: templates/merchantdetails/review.php:99
+#: templates/merchantdetails/reviews.php:71
+#: templates/merchantdetails/reviews.php:133
+#: templates/resourcedetails/resource-ratings.php:9
+#: templates/resourcedetails/resource-ratings.php:73
 #: templates/resourcedetails/review.php:147
 msgid "Families with young children"
 msgstr "Famiglia con bambini piccoli"
 
-#: templates/merchantdetails/merchant-ratings.php:28
-#: templates/merchantdetails/merchant-ratings.php:94
-#: templates/merchantdetails/review.php:94
-#: templates/merchantdetails/reviews.php:66
-#: templates/merchantdetails/reviews.php:131
-#: templates/resourcedetails/resource-ratings.php:13
-#: templates/resourcedetails/resource-ratings.php:78
+#: templates/merchantdetails/merchant-ratings.php:9
+#: templates/merchantdetails/merchant-ratings.php:74
+#: templates/merchantdetails/review.php:100
+#: templates/merchantdetails/reviews.php:71
+#: templates/merchantdetails/reviews.php:134
+#: templates/resourcedetails/resource-ratings.php:9
+#: templates/resourcedetails/resource-ratings.php:74
 #: templates/resourcedetails/review.php:148
 msgid "Family with older children"
 msgstr "Famiglia con bambini grandi"
 
-#: templates/merchantdetails/merchant-ratings.php:49
-#: templates/merchantdetails/reviews.php:87
-#: templates/resourcedetails/resource-ratings.php:34
+#: templates/merchantdetails/merchant-ratings.php:30
+#: templates/merchantdetails/reviews.php:89
+#: templates/resourcedetails/resource-ratings.php:30
 #, php-format
 msgid "Based on %1$s Reviews."
 msgstr "Basato su %1$s recensioni"
 
-#: templates/merchantdetails/merchant-ratings.php:54
-#: templates/merchantdetails/review.php:187
-#: templates/merchantdetails/reviews.php:92
-#: templates/resourcedetails/resource-ratings.php:39
+#: templates/merchantdetails/merchant-ratings.php:35
+#: templates/merchantdetails/review.php:193
+#: templates/merchantdetails/reviews.php:94
+#: templates/resourcedetails/resource-ratings.php:35
 #: templates/resourcedetails/review.php:241
 msgid "Staff"
 msgstr "Staff"
 
-#: templates/merchantdetails/merchant-ratings.php:62
-#: templates/merchantdetails/review.php:215
-#: templates/merchantdetails/reviews.php:100
-#: templates/resourcedetails/resource-ratings.php:47
+#: templates/merchantdetails/merchant-ratings.php:43
+#: templates/merchantdetails/review.php:221
+#: templates/merchantdetails/reviews.php:102
+#: templates/resourcedetails/resource-ratings.php:43
 #: templates/resourcedetails/review.php:269
 msgid "Clean"
 msgstr "Pulizia"
 
-#: templates/merchantdetails/merchant-ratings.php:71
-#: templates/merchantdetails/review.php:230
-#: templates/merchantdetails/reviews.php:109
-#: templates/resourcedetails/resource-ratings.php:56
+#: templates/merchantdetails/merchant-ratings.php:52
+#: templates/merchantdetails/review.php:236
+#: templates/merchantdetails/reviews.php:111
+#: templates/resourcedetails/resource-ratings.php:52
 #: templates/resourcedetails/review.php:284
 msgid "Comfort"
 msgstr "Comfort"
 
-#: templates/merchantdetails/merchant-ratings.php:75
-#: templates/merchantdetails/reviews.php:113
-#: templates/resourcedetails/resource-ratings.php:60
+#: templates/merchantdetails/merchant-ratings.php:56
+#: templates/merchantdetails/reviews.php:115
+#: templates/resourcedetails/resource-ratings.php:56
 msgid "Value for Money"
 msgstr "Rapporto qualità/prezzo"
 
-#: templates/merchantdetails/merchant-ratings.php:86
-#: templates/merchantdetails/reviews.php:123
-#: templates/resourcedetails/resource-ratings.php:70
+#: templates/merchantdetails/merchant-ratings.php:66
+#: templates/merchantdetails/reviews.php:126
+#: templates/resourcedetails/resource-ratings.php:66
 msgid "Show reviews from"
 msgstr "Vedi giudizi lasciati da"
 
-#: templates/merchantdetails/merchant-ratings.php:100
-#: templates/merchantdetails/merchant-ratings.php:243
-#: templates/merchantdetails/reviews.php:137
-#: templates/merchantdetails/reviews.php:314
-#: templates/resourcedetails/resource-ratings.php:85
-#: templates/resourcedetails/resource-ratings.php:207
+#: templates/merchantdetails/merchant-ratings.php:80
+#: templates/merchantdetails/merchant-ratings.php:222
+#: templates/merchantdetails/reviews.php:140
+#: templates/merchantdetails/reviews.php:318
+#: templates/resourcedetails/resource-ratings.php:81
+#: templates/resourcedetails/resource-ratings.php:218
 msgid "Write a Review"
 msgstr "Scrivi una recensione"
 
-#: templates/merchantdetails/merchant-ratings.php:114
-#: templates/merchantdetails/reviews.php:151
-#: templates/resourcedetails/resource-ratings.php:99
+#: templates/merchantdetails/merchant-ratings.php:93
+#: templates/merchantdetails/reviews.php:154
+#: templates/resourcedetails/resource-ratings.php:95
 msgid "Reviewed"
 msgstr "Recensito il"
 
-#: templates/merchantdetails/merchant-ratings.php:120
-#: templates/merchantdetails/reviews.php:157
-#: templates/resourcedetails/resource-ratings.php:105
+#: templates/merchantdetails/merchant-ratings.php:99
+#: templates/merchantdetails/reviews.php:160
+#: templates/resourcedetails/resource-ratings.php:101
 msgid "Stayed"
 msgstr "Periodo soggiorno"
 
-#: templates/merchantdetails/merchant-ratings.php:148
-#: templates/merchantdetails/reviews.php:185
+#: templates/merchantdetails/merchant-ratings.php:127
+#: templates/merchantdetails/reviews.php:188
+#: templates/resourcedetails/resource-ratings.php:129
 #, php-format
 msgid "Replied on %1s"
 msgstr "Risposto il %1s"
 
-#: templates/merchantdetails/merchant-ratings.php:173
-#: templates/merchantdetails/reviews.php:210
-#: templates/resourcedetails/resource-ratings.php:143
+#: templates/merchantdetails/merchant-ratings.php:152
+#: templates/merchantdetails/reviews.php:213
+#: templates/resourcedetails/resource-ratings.php:154
 msgid "Reference"
 msgstr "Riferimento"
 
-#: templates/merchantdetails/merchant-ratings.php:193
-#: templates/merchantdetails/reviews.php:230
-#: templates/resourcedetails/resource-ratings.php:163
+#: templates/merchantdetails/merchant-ratings.php:172
+#: templates/merchantdetails/reviews.php:234
+#: templates/resourcedetails/resource-ratings.php:174
 #, php-format
 msgid "Review certified by %1$s"
 msgstr "Recensione certificata da %1$s"
 
-#: templates/merchantdetails/merchant-ratings.php:201
-#: templates/merchantdetails/reviews.php:238
-#: templates/resourcedetails/resource-ratings.php:171
+#: templates/merchantdetails/merchant-ratings.php:180
+#: templates/merchantdetails/reviews.php:242
+#: templates/resourcedetails/resource-ratings.php:182
 msgid "+"
 msgstr "+"
 
-#: templates/merchantdetails/merchant-ratings.php:205
-#: templates/merchantdetails/reviews.php:244
-#: templates/resourcedetails/resource-ratings.php:175
+#: templates/merchantdetails/merchant-ratings.php:184
+#: templates/merchantdetails/reviews.php:248
+#: templates/resourcedetails/resource-ratings.php:186
 msgid "-"
 msgstr "-"
 
-#: templates/merchantdetails/merchant-ratings.php:212
-#: templates/merchantdetails/reviews.php:252
-#: templates/resourcedetails/resource-ratings.php:183
+#: templates/merchantdetails/merchant-ratings.php:191
+#: templates/merchantdetails/reviews.php:256
+#: templates/resourcedetails/resource-ratings.php:194
 #, php-format
 msgid "%s has responded to this review"
 msgstr "%s ha risposto alla recensione"
 
-#: templates/merchantdetails/merchant-ratings.php:234
-#: templates/merchantdetails/merchant-ratings.php:239
-#: templates/merchantdetails/reviews.php:266
-#: templates/merchantdetails/reviews.php:310
-#: templates/resourcedetails/resource-ratings.php:197
-#: templates/resourcedetails/resource-ratings.php:202
+#: templates/merchantdetails/merchant-ratings.php:213
+#: templates/merchantdetails/merchant-ratings.php:218
+#: templates/merchantdetails/reviews.php:270
+#: templates/merchantdetails/reviews.php:314
+#: templates/resourcedetails/resource-ratings.php:208
+#: templates/resourcedetails/resource-ratings.php:213
 msgid "No Reviews Found."
 msgstr "Nessuna recensione trovata."
 
-#: templates/merchantdetails/merchant-ratings.php:242
-#: templates/merchantdetails/reviews.php:313
-#: templates/resourcedetails/resource-ratings.php:206
+#: templates/merchantdetails/merchant-ratings.php:221
+#: templates/merchantdetails/reviews.php:317
+#: templates/resourcedetails/resource-ratings.php:217
 msgid "Would you like to be the first to write a review?"
 msgstr "Vuoi essere il primo a scrivere una recensione?"
 
-#: templates/merchantdetails/merchantdetails.php:164
-#: templates/onselldetails/resourcedetails.php:149
+#: templates/merchantdetails/merchantdetails.php:165
 #: templates/onselldetails/resourcedetails.php:158
-#: templates/widgets/booking-search.php:374
+#: templates/widgets/booking-search.php:336
 msgid "Map"
 msgstr "Mappa"
 
-#: templates/merchantdetails/merchantdetails.php:203
+#: templates/merchantdetails/merchantdetails.php:204
 #: templates/widgets/search-filter.php:536
 msgid "Facility"
 msgstr "Servizi"
 
 #: templates/merchantdetails/offer-details.php:92
-#: templates/merchantdetails/offers.php:110
+#: templates/merchantdetails/offers.php:116
 msgid "No Results Found"
 msgstr "Nessun risultato"
 
-#: templates/merchantdetails/offers.php:46
+#: templates/merchantdetails/offers.php:52
 #, php-format
 msgid "%s available offers"
 msgstr "%s offerte presenti"
@@ -2639,47 +2430,47 @@ msgstr "%s offerte presenti"
 msgid "please wait..."
 msgstr "Un attimo di pazienza, grazie"
 
-#: templates/merchantdetails/review.php:87
+#: templates/merchantdetails/review.php:93
 #: templates/resourcedetails/review.php:141
 msgid "Type of traveller"
 msgstr "Tipo di viaggiatore"
 
-#: templates/merchantdetails/review.php:165
+#: templates/merchantdetails/review.php:171
 #: templates/resourcedetails/review.php:219
 msgid "E-mail"
 msgstr "E-mail"
 
-#: templates/merchantdetails/review.php:169
+#: templates/merchantdetails/review.php:175
 #: templates/resourcedetails/review.php:223
 msgid "Confirm E-mail"
 msgstr "Conferma E-mail"
 
-#: templates/merchantdetails/review.php:175
+#: templates/merchantdetails/review.php:181
 #: templates/resourcedetails/review.php:229
 msgid "When did you travel?"
 msgstr "Quando hai viaggiato?"
 
-#: templates/merchantdetails/review.php:244
+#: templates/merchantdetails/review.php:250
 #: templates/resourcedetails/review.php:298
 msgid "Value for money"
 msgstr "Rapporto qualità/prezzo"
 
-#: templates/merchantdetails/review.php:260
+#: templates/merchantdetails/review.php:266
 #: templates/resourcedetails/review.php:314
 msgid "Valuation"
 msgstr "Valutazione"
 
-#: templates/merchantdetails/review.php:270
+#: templates/merchantdetails/review.php:276
 #: templates/resourcedetails/review.php:324
 msgid "List of the facility's positive points"
 msgstr "Elenco elementi positivi"
 
-#: templates/merchantdetails/review.php:276
+#: templates/merchantdetails/review.php:282
 #: templates/resourcedetails/review.php:330
 msgid "List of the facility's negative points"
 msgstr "Elenco elementi negativi"
 
-#: templates/merchantdetails/review.php:313
+#: templates/merchantdetails/review.php:319
 #: templates/resourcedetails/review.php:365
 #, php-format
 msgid ""
@@ -2695,43 +2486,43 @@ msgstr ""
 "pagamento dalla struttura per scrivere questa recensione . Io capisco che %s "
 "abbia una politica di tolleranza zero sulle false recensioni."
 
-#: templates/merchantdetails/review.php:319
+#: templates/merchantdetails/review.php:325
 #: templates/resourcedetails/review.php:371
 msgid "send"
 msgstr "invia"
 
-#: templates/merchantslist/merchantslist.php:71
-#: templates/search/list-condomonium.php:94
-#: templates/search/list-merchants.php:92
-#: templates/search/list-resources.php:98
-#: templates/searchonsell/list-resources.php:83
+#: templates/merchantslist/merchantslist.php:58
+#: templates/search/list-condomonium.php:90
+#: templates/search/list-merchants.php:91
+#: templates/search/list-resources.php:88
+#: templates/searchonsell/list-resources.php:69
 msgid "Order by"
 msgstr "Ordina per"
 
-#: templates/merchantslist/merchantslist.php:72
+#: templates/merchantslist/merchantslist.php:59
 msgid "A-Z"
 msgstr "A-Z"
 
-#: templates/merchantslist/merchantslist.php:73
+#: templates/merchantslist/merchantslist.php:60
 msgid "Z-A"
 msgstr "Z-A"
 
 #: templates/onselldetails/resourcedetails.php:83
-#: templates/searchonsell/list-resources.php:110
-#: templates/widgets/booking-search.php:409
-#: templates/widgets/booking-search.php:413
+#: templates/searchonsell/list-resources.php:96
+#: templates/widgets/booking-search.php:371
+#: templates/widgets/booking-search.php:375
 msgid "To rent"
 msgstr "Affitto"
 
 #: templates/onselldetails/resourcedetails.php:83
-#: templates/searchonsell/list-resources.php:110
-#: templates/widgets/booking-search.php:408
-#: templates/widgets/booking-search.php:412
+#: templates/searchonsell/list-resources.php:96
+#: templates/widgets/booking-search.php:370
+#: templates/widgets/booking-search.php:374
 msgid "On sale"
 msgstr "Vendita"
 
 #: templates/onselldetails/resourcedetails.php:215
-#: templates/widgets/booking-search.php:1058
+#: templates/widgets/booking-search.php:1008
 msgid "Area"
 msgstr "Zona"
 
@@ -2793,8 +2584,8 @@ msgid "Habitable"
 msgstr "Abitabile"
 
 #: templates/onselldetails/resourcedetails.php:257
-#: templates/widgets/booking-search.php:418
-#: templates/widgets/booking-search.php:864
+#: templates/widgets/booking-search.php:380
+#: templates/widgets/booking-search.php:814
 msgid "Bathrooms"
 msgstr "Bagni"
 
@@ -2851,7 +2642,6 @@ msgstr "E' possibile la collaborazione tra agenzie"
 #: templates/orderdetails/default_checkmode450.php:15
 #: templates/orderdetails/default_checkmode450_simple.php:11
 #: templates/orderdetails/default_checkmode6.php:12
-#: templates/orderdetails/order.php:136
 msgid "External order ID"
 msgstr "ID gestionale"
 
@@ -2865,7 +2655,6 @@ msgstr "Formato corretto: gg/mm/aaaa"
 
 #: templates/orderdetails/default_checkmode25.php:8
 #: templates/orderdetails/default_checkmode5.php:11
-#: templates/orderdetails/order.php:132
 msgid "Booking reference"
 msgstr "Identificativo richiesta"
 
@@ -2878,65 +2667,11 @@ msgstr "Codice cliente"
 msgid "Check-in must be great than Check-out"
 msgstr "Check-in deve essere molto superiore ai Check-out"
 
-#: templates/orderdetails/mailupdate.php:65
-msgid "Please insert a valid email address!"
-msgstr "Si prega di inserire un indirizzo email valido!"
+#: templates/resourcedetails/form.php:666
+msgid "Total deposit : €"
+msgstr "Totale caparra: €"
 
-#: templates/orderdetails/order.php:75 templates/orderdetails/order.php:153
-#: templates/orderdetails/order.php:173
-msgid "Rejected order"
-msgstr "Prenotazione rifiutata"
-
-#: templates/orderdetails/order.php:142
-msgid "Deposit total"
-msgstr "Caparra totale"
-
-#: templates/orderdetails/order.php:156 templates/orderdetails/order.php:599
-msgid "Status"
-msgstr "Status"
-
-#: templates/orderdetails/order.php:158
-msgid "Order sent to bank"
-msgstr "Ordine inviato alla banca"
-
-#: templates/orderdetails/order.php:159 templates/orderdetails/order.php:166
-#: templates/orderdetails/order.php:170
-msgid "Pay"
-msgstr "Effettua un pagamento"
-
-#: templates/orderdetails/order.php:162 templates/orderdetails/order.php:165
-msgid "Waiting to confirm"
-msgstr "In attesa di conferma"
-
-#: templates/orderdetails/order.php:169
-msgid "Payment attempt was not successful. Try again"
-msgstr "Tentativo di pagamento non è riuscito. Riprova"
-
-#: templates/orderdetails/order.php:176 templates/orderdetails/order.php:614
-msgid "Payed order"
-msgstr "Pagato"
-
-#: templates/orderdetails/order.php:179
-msgid "Order by credit card guarantee"
-msgstr "Ordina per carta di credito a garanzia"
-
-#: templates/orderdetails/order.php:221
-msgid "Change data"
-msgstr "Cambia"
-
-#: templates/orderdetails/order.php:267
-msgid "Accommodation"
-msgstr "Alloggio"
-
-#: templates/orderdetails/order.php:271
-msgid "Period"
-msgstr "Periodo"
-
-#: templates/orderdetails/order.php:411
-msgid "People"
-msgstr "Persone"
-
-#: templates/orderdetails/order.php:501 templates/resourcedetails/form.php:723
+#: templates/resourcedetails/form.php:713
 #, php-format
 msgid ""
 "%1s will not charge anything to your credit card. Your credit card details "
@@ -2945,137 +2680,11 @@ msgstr ""
 "%1s non addebiterà nulla sulla vostra carta di credito. I dati di carta di "
 "credito sono richiesti solo al fine di garantire la vostra prenotazione."
 
-#: templates/orderdetails/order.php:590
-msgid "Other payments"
-msgstr "Altri pagamenti"
-
-#: templates/orderdetails/order.php:597
-msgid "Date"
-msgstr "Data"
-
-#: templates/orderdetails/order.php:598
-msgid "Amount"
-msgstr "Importo"
-
-#: templates/orderdetails/order.php:611
-msgid "Payment refused"
-msgstr "Pagamento rifiutato"
-
-#: templates/orderdetails/order.php:626
-msgid "New payment"
-msgstr "Nuovo pagamento"
-
-#: templates/orderdetails/order.php:644 templates/orderdetails/order.php:645
-msgid "It 'requires a further amount for payments"
-msgstr "E ' richiede un ulteriore importo per i pagamenti"
-
-#: templates/orderdetails/order.php:646
-msgid ""
-"Please insert a correct amount, it should be this format: xxx.xx (please use "
-"dot for deciaml prices)"
-msgstr ""
-"Si prega di inserire un importo corretto, dovrebbe essere questo formato: "
-"xxx. XX (si prega di utilizzare dot per i prezzi deciaml)"
-
-#: templates/payment/payment.php:65
-msgid "Thank you: payment process successfully completed"
-msgstr "Grazie: processo di pagamento completato con successo"
-
-#: templates/payment/payment.php:67
-msgid "Print"
-msgstr "Stampa"
-
-#: templates/payment/payment.php:71
-msgid "Payment process not successfully completed"
-msgstr "Processo di pagamento non completato con successo"
-
-#: templates/payment/payment.php:80
-msgid "Payment process not successfully completed and has been deleted"
-msgstr "Processo di pagamento non correttamente completato e cancellata"
-
-#: templates/payment/payment.php:90
-msgid ""
-"Some problems occured durint payment process, please contact merchant if you "
-"are sure that your payment process completed"
-msgstr ""
-"Alcuni problemi si sono verificati durante processo di pagamento, si prega "
-"di contattare mercante se si è certi che il vostro processo di pagamento "
-"completato"
-
-#: templates/payment/payment.php:108
-msgid "Error inserting data"
-msgstr "Errore inserimento dati"
-
-#: templates/payment/payment.php:110
-msgid "Order doesn't exist"
-msgstr "La prenotazione non esiste"
-
-#: templates/payment/payment.php:113
-msgid "Deposit does not exist"
-msgstr "Deposito non esiste"
-
-#: templates/payment/payment.php:116 templates/payment/payment.php:131
-msgid "At this moment you cannot do payments."
-msgstr "In questo momento non si possono fare i pagamenti."
-
-#: templates/payment/payment_activa.php:22
-#: templates/payment/payment_pagoonline.php:23
-msgid "index.php?view=payment&actionmode=error&payedOrderId="
-msgstr "index.php?view=Payment&actionmode=Error&payedOrderId="
-
-#: templates/payment/payment_activa.php:23
-msgid "index.php?view=payment&actionmode=activaServer&payedOrderId="
-msgstr "index.php?view=Payment&actionmode=activaServer&payedOrderId="
-
-#: templates/payment/payment_bnlpositivity.php:25
-#: templates/payment/payment_keyclient.php:24
-#: templates/payment/payment_keyclient2014.php:23
-#: templates/payment/payment_virtualpay.php:27
-msgid "index.php?view=orders"
-msgstr "index.php?View=Orders"
-
-#: templates/payment/payment_bnlpositivity.php:38
-msgid "index.php?view=payment&actionmode=bnlpositivity&payedOrderId="
-msgstr "index.php?view=Payment&actionmode=bnlpositivity&payedOrderId="
-
-#: templates/payment/payment_keyclient.php:26
-msgid "index.php?view=payment&actionmode=keyclient&payedOrderId="
-msgstr "index.php?view=Payment&actionmode=KeyClient&payedOrderId="
-
-#: templates/payment/payment_keyclient2014.php:25
-msgid "index.php?view=payment&actionmode=keyclient2014&payedOrderId="
-msgstr "index.php?view=Payment&actionmode=keyclient2014&payedOrderId="
-
-#: templates/payment/payment_pagoonline.php:22
-msgid "index.php?view=payment&actionmode=pagoonline&payedOrderId="
-msgstr "index.php?view=Payment&actionmode=pagoonline&payedOrderId="
-
-#: templates/payment/payment_pagoonline.php:25
-msgid "index.php?view=payment&actionmode=pagoonline&payedOrderId=donation"
-msgstr "index.php?view=Payment&actionmode=pagoonline&payedOrderId=donation"
-
-#: templates/payment/payment_pagoonline.php:26
-#: templates/payment/payment_virtualpay.php:32
-msgid "index.php?view=payment&actionmode=errordonation"
-msgstr "index.php?view=Payment&actionmode=errordonation"
-
-#: templates/payment/payment_virtualpay.php:28
-msgid "index.php?view=payment&actionmode=virtualpay&payedOrderId="
-msgstr "index.php?view=Payment&actionmode=virtualpay&payedOrderId="
-
-#: templates/payment/payment_virtualpay.php:31
-msgid "index.php?view=payment&actionmode=virtualpay&payedOrderId=donation"
-msgstr "index.php?view=Payment&actionmode=virtualpay&payedOrderId=donation"
-
-#: templates/resourcedetails/form.php:666
-msgid "Total deposit : €"
-msgstr "Totale caparra: €"
-
-#: templates/resourcedetails/form.php:748
+#: templates/resourcedetails/form.php:738
 msgid "Info"
 msgstr "Info"
 
-#: templates/resourcedetails/form.php:802
+#: templates/resourcedetails/form.php:792
 msgid "Almost done"
 msgstr "Compila ed invia, facile!"
 
@@ -3107,151 +2716,159 @@ msgstr "Ordine non legati a questa risorsa"
 msgid "Order make before the date to make a review"
 msgstr "Mettere ordine prima della data di fare una recensione"
 
-#: templates/search/list-condomonium.php:71
-#: templates/search/list-merchants.php:69
-#: templates/search/list-resources.php:75
-#: templates/searchonsell/list-resources.php:63
+#: templates/search/list-condomonium.php:67
+#: templates/search/list-merchants.php:68
+#: templates/search/list-resources.php:65
+#: templates/searchonsell/list-resources.php:49
 #, php-format
 msgid "Found %s results"
 msgstr "Trovati %s risultati"
 
-#: templates/search/list-condomonium.php:74
-#: templates/search/list-merchants.php:72
-#: templates/search/list-resources.php:78
+#: templates/search/list-condomonium.php:70
+#: templates/search/list-merchants.php:71
+#: templates/search/list-resources.php:68
 #, php-format
 msgid "From %s to %s"
 msgstr "Dal %s al %s"
 
-#: templates/search/list-condomonium.php:95
-#: templates/search/list-merchants.php:93
-#: templates/search/list-resources.php:99
-#: templates/searchonsell/list-resources.php:84
+#: templates/search/list-condomonium.php:91
+#: templates/search/list-merchants.php:92
+#: templates/search/list-resources.php:89
+#: templates/searchonsell/list-resources.php:70
 msgid "Lowest price first"
 msgstr "Prezzo più basso"
 
-#: templates/search/list-condomonium.php:96
-#: templates/search/list-merchants.php:94
-#: templates/search/list-resources.php:100
+#: templates/search/list-condomonium.php:92
+#: templates/search/list-merchants.php:93
+#: templates/search/list-resources.php:90
 #: templates/widgets/search-filter.php:491
 msgid "Review score"
 msgstr "Punteggio degli ospiti"
 
-#: templates/search/list-condomonium.php:97
-#: templates/search/list-merchants.php:95
-#: templates/search/list-resources.php:101
+#: templates/search/list-condomonium.php:93
+#: templates/search/list-merchants.php:94
+#: templates/search/list-resources.php:91
 msgid "Best offers"
 msgstr "Offerta migliore"
 
-#: templates/search/search-listing.php:152
+#: templates/search/search-listing.php:153
 #: templates/searchonsell/search-listing.php:38
-#: templates/widgets/booking-search.php:1363
-#: templates/widgets/booking-search.php:1428
+#: templates/widgets/booking-search.php:1316
+#: templates/widgets/booking-search.php:1381
 msgid "No result available"
 msgstr "Nessun risultato disponibile"
 
-#: templates/searchonsell/list-resources.php:85
-msgid "Leatest ads"
-msgstr "Ultimi inserimenti"
+#: templates/searchonsell/list-resources.php:71
+msgid "Latest ads"
+msgstr "Ultimi annunci"
 
-#: templates/widgets/booking-search.php:237
-#: templates/widgets/booking-search.php:566
+#: templates/widgets/booking-search.php:235
+#: templates/widgets/booking-search.php:528
 #: templates/widgets/search-filter.php:460
 msgid "Tipology"
 msgstr "Tipologia"
 
-#: templates/widgets/booking-search.php:418
+#: templates/widgets/booking-search.php:380
 msgid "Any"
 msgstr "Qualsiasi"
 
-#: templates/widgets/booking-search.php:419
+#: templates/widgets/booking-search.php:381
 msgid "1"
 msgstr "1"
 
-#: templates/widgets/booking-search.php:420
+#: templates/widgets/booking-search.php:382
 msgid "2"
 msgstr "2"
 
-#: templates/widgets/booking-search.php:421
+#: templates/widgets/booking-search.php:383
 msgid "3"
 msgstr "3"
 
-#: templates/widgets/booking-search.php:422
+#: templates/widgets/booking-search.php:384
 msgid ">3"
 msgstr ">3"
 
-#: templates/widgets/booking-search.php:541
+#: templates/widgets/booking-search.php:503
 msgid "Enter Your destination"
 msgstr "Inserisci la tua destinazione"
 
-#: templates/widgets/booking-search.php:671
+#: templates/widgets/booking-search.php:626
 msgid "Age of children"
 msgstr "Età bambini"
 
-#: templates/widgets/booking-search.php:722
+#: templates/widgets/booking-search.php:677
 #: templates/widgets/search-filter.php:111
 msgid "Show only online booking"
 msgstr "Mostra solo prenotazioni immediate"
 
-#: templates/widgets/booking-search.php:815
-#: templates/widgets/booking-search.php:818
-#: templates/widgets/booking-search.php:828
-#: templates/widgets/booking-search.php:831
-#: templates/widgets/booking-search.php:841
-#: templates/widgets/booking-search.php:844
-#: templates/widgets/booking-search.php:854
-#: templates/widgets/booking-search.php:857
+#: templates/widgets/booking-search.php:765
+#: templates/widgets/booking-search.php:768
+#: templates/widgets/booking-search.php:778
+#: templates/widgets/booking-search.php:781
+#: templates/widgets/booking-search.php:791
+#: templates/widgets/booking-search.php:794
+#: templates/widgets/booking-search.php:804
+#: templates/widgets/booking-search.php:807
 msgid "Please enter a integer number"
 msgstr "Per favore inserisci un numero"
 
-#: templates/widgets/booking-search.php:818
-#: templates/widgets/booking-search.php:831
-#: templates/widgets/booking-search.php:844
-#: templates/widgets/booking-search.php:857
-#: templates/widgets/booking-search.php:871
+#: templates/widgets/booking-search.php:768
+#: templates/widgets/booking-search.php:781
+#: templates/widgets/booking-search.php:794
+#: templates/widgets/booking-search.php:807
+#: templates/widgets/booking-search.php:821
 msgid "to"
 msgstr "a"
 
-#: templates/widgets/booking-search.php:825
-#: templates/widgets/booking-search.php:828
-#: templates/widgets/booking-search.php:831
+#: templates/widgets/booking-search.php:775
+#: templates/widgets/booking-search.php:778
+#: templates/widgets/booking-search.php:781
 msgid "Floor area m&sup2;"
 msgstr "Superficie m&sup2;"
 
-#: templates/widgets/booking-search.php:838
-#: templates/widgets/booking-search.php:841
-#: templates/widgets/booking-search.php:844
+#: templates/widgets/booking-search.php:788
+#: templates/widgets/booking-search.php:791
+#: templates/widgets/booking-search.php:794
 msgid "Bedrooms"
 msgstr "Camere da letto"
 
-#: templates/widgets/booking-search.php:901
+#: templates/widgets/booking-search.php:851
 msgid "Only new building"
 msgstr "Solo immobili nuovi"
 
-#: templates/widgets/booking-search.php:946
+#: templates/widgets/booking-search.php:896
 msgid "We're processing your request"
 msgstr "Elaborazione in corso"
 
-#: templates/widgets/booking-search.php:1057
+#: templates/widgets/booking-search.php:897
+msgid "Please be patient"
+msgstr "Si prega di attendere"
+
+#: templates/widgets/booking-search.php:1007
 msgid "Draw area"
 msgstr "Disegna l'area"
 
-#: templates/widgets/booking-search.php:1059
+#: templates/widgets/booking-search.php:1009
 msgid "Circle"
 msgstr "Cerchio"
 
-#: templates/widgets/booking-search.php:1064
+#: templates/widgets/booking-search.php:1014
 msgid "Reset"
 msgstr "Cancella"
 
-#: templates/widgets/booking-search.php:1065
+#: templates/widgets/booking-search.php:1015
 msgid "Confirm"
 msgstr "Conferma"
 
-#: templates/widgets/booking-search.php:1074
+#: templates/widgets/booking-search.php:1024
 msgid "Click on map and choose your area."
 msgstr ""
 "Posizionati sulla mappa e fai clic per scegliere il primo punto dell'area di "
 "ricerca: una volta individuata, clicca Conferma."
+
+#: templates/widgets/currency-switcher.php:21
+msgid "Pound sterling"
+msgstr "Sterlina britannica"
 
 #: templates/widgets/search-filter.php:22
 msgid "Free cancellation"
@@ -3351,47 +2968,211 @@ msgstr "Prenota facile "
 msgid "Show map"
 msgstr "Mostra mappa"
 
-#~ msgid "Min"
-#~ msgstr "Min"
+#~ msgctxt "Page slug"
+#~ msgid "my-account"
+#~ msgstr "il mio account"
 
-#~ msgid "Max"
-#~ msgstr "Max"
+#~ msgctxt "Page title"
+#~ msgid "My Account"
+#~ msgstr "Il mio Account"
 
-#~ msgid "All province"
-#~ msgstr "Tutta la provincia"
+#~ msgid "Unit price"
+#~ msgstr "Prezzo unitario"
 
-#~ msgid "Please select"
-#~ msgstr "Seleziona"
+#~ msgid "You need to be loggedin in order to access this page."
+#~ msgstr "È necessario essere loggedin al fine di accedere a questa pagina."
 
-#~ msgid "%s Results  found from %s for %s nigth(s)"
-#~ msgstr "%s risultati trovati - check-in %s - %s notti"
+#~ msgid "Personal Informations"
+#~ msgstr "Informazioni personali"
 
-#~ msgid " Offer "
-#~ msgstr "Offerta"
+#~ msgid "Reservations"
+#~ msgstr "Prenotazioni"
 
-#~ msgid "Available"
-#~ msgstr "Disponibile"
+#~ msgid "Settings"
+#~ msgstr "Impostazioni"
 
-#~ msgid "Total for %d night/s"
-#~ msgstr "Totale per %d notte/i"
+#~ msgid "Social Network"
+#~ msgstr "Rete sociale"
 
-#~ msgid "SHOW ALL"
-#~ msgstr "Mostra tutto"
+#~ msgid "Give your social profiles"
+#~ msgstr "Dare i vostri profili di social"
 
-#~ msgid "Facility contacts data"
-#~ msgstr "Contatti"
+#~ msgid "Your profile"
+#~ msgstr "Il tuo profilo"
 
-#~ msgid "My Cart"
-#~ msgstr "Mio carrello"
+#~ msgid "Date of birth"
+#~ msgstr "Data di nascita"
 
-#~ msgid "comment"
-#~ msgstr "Commenta"
+#~ msgid "Gender"
+#~ msgstr "Genere"
 
-#~ msgid "Holiday Packages"
-#~ msgstr "Pacchetti vacanze"
+#~ msgid "Male"
+#~ msgstr "Uomo"
 
-#~ msgid "Your holiday"
-#~ msgstr "La tua vacanza"
+#~ msgid "Female"
+#~ msgstr "Donna"
 
-#~ msgid "Total price"
-#~ msgstr "Prezzo totale"
+#~ msgid "State/Province"
+#~ msgstr "Stato/provincia"
+
+#~ msgid "Zip Code"
+#~ msgstr "CAP"
+
+#~ msgid "Language"
+#~ msgstr "Lingua"
+
+#~ msgid "Submit"
+#~ msgstr "Invia"
+
+#~ msgid "Reservation number"
+#~ msgstr "Numero di prenotazione"
+
+#~ msgid "Booking Detail"
+#~ msgstr "Dettaglio di prenotazione"
+
+#~ msgid "Cancel Booking"
+#~ msgstr "Annulla prenotazione"
+
+#~ msgid "Change your password"
+#~ msgstr "Cambiare la password"
+
+#~ msgid "Receive newsletter"
+#~ msgstr "Ricevere la newsletter"
+
+#~ msgid "I do not care"
+#~ msgstr "Non mi interessa"
+
+#~ msgid "Fetching Reservation Details"
+#~ msgstr "Il recupero di dati della prenotazione"
+
+#~ msgid "Error, please try again"
+#~ msgstr "Errore, si prega di riprovare"
+
+#~ msgid " Years"
+#~ msgstr " Anni"
+
+#~ msgid "Back to list"
+#~ msgstr "Torna alla lista"
+
+#~ msgid "adults"
+#~ msgstr "adulti"
+
+#~ msgid "children"
+#~ msgstr "bambini"
+
+#~ msgid "Please insert a valid email address!"
+#~ msgstr "Si prega di inserire un indirizzo email valido!"
+
+#~ msgid "Rejected order"
+#~ msgstr "Prenotazione rifiutata"
+
+#~ msgid "Deposit total"
+#~ msgstr "Caparra totale"
+
+#~ msgid "Status"
+#~ msgstr "Status"
+
+#~ msgid "Order sent to bank"
+#~ msgstr "Ordine inviato alla banca"
+
+#~ msgid "Pay"
+#~ msgstr "Effettua un pagamento"
+
+#~ msgid "Waiting to confirm"
+#~ msgstr "In attesa di conferma"
+
+#~ msgid "Payment attempt was not successful. Try again"
+#~ msgstr "Tentativo di pagamento non è riuscito. Riprova"
+
+#~ msgid "Payed order"
+#~ msgstr "Pagato"
+
+#~ msgid "Order by credit card guarantee"
+#~ msgstr "Ordina per carta di credito a garanzia"
+
+#~ msgid "Change data"
+#~ msgstr "Cambia"
+
+#~ msgid "Accommodation"
+#~ msgstr "Alloggio"
+
+#~ msgid "Period"
+#~ msgstr "Periodo"
+
+#~ msgid "People"
+#~ msgstr "Persone"
+
+#~ msgid "Other payments"
+#~ msgstr "Altri pagamenti"
+
+#~ msgid "Date"
+#~ msgstr "Data"
+
+#~ msgid "Amount"
+#~ msgstr "Importo"
+
+#~ msgid "Payment refused"
+#~ msgstr "Pagamento rifiutato"
+
+#~ msgid "New payment"
+#~ msgstr "Nuovo pagamento"
+
+#~ msgid "It 'requires a further amount for payments"
+#~ msgstr "E ' richiede un ulteriore importo per i pagamenti"
+
+#~ msgid "Thank you: payment process successfully completed"
+#~ msgstr "Grazie: processo di pagamento completato con successo"
+
+#~ msgid "Print"
+#~ msgstr "Stampa"
+
+#~ msgid "Payment process not successfully completed"
+#~ msgstr "Processo di pagamento non completato con successo"
+
+#~ msgid "Payment process not successfully completed and has been deleted"
+#~ msgstr "Processo di pagamento non correttamente completato e cancellata"
+
+#~ msgid "Error inserting data"
+#~ msgstr "Errore inserimento dati"
+
+#~ msgid "Order doesn't exist"
+#~ msgstr "La prenotazione non esiste"
+
+#~ msgid "Deposit does not exist"
+#~ msgstr "Deposito non esiste"
+
+#~ msgid "index.php?view=payment&actionmode=error&payedOrderId="
+#~ msgstr "index.php?view=Payment&actionmode=Error&payedOrderId="
+
+#~ msgid "index.php?view=payment&actionmode=activaServer&payedOrderId="
+#~ msgstr "index.php?view=Payment&actionmode=activaServer&payedOrderId="
+
+#~ msgid "index.php?view=orders"
+#~ msgstr "index.php?View=Orders"
+
+#~ msgid "index.php?view=payment&actionmode=bnlpositivity&payedOrderId="
+#~ msgstr "index.php?view=Payment&actionmode=bnlpositivity&payedOrderId="
+
+#~ msgid "index.php?view=payment&actionmode=keyclient&payedOrderId="
+#~ msgstr "index.php?view=Payment&actionmode=KeyClient&payedOrderId="
+
+#~ msgid "index.php?view=payment&actionmode=keyclient2014&payedOrderId="
+#~ msgstr "index.php?view=Payment&actionmode=keyclient2014&payedOrderId="
+
+#~ msgid "index.php?view=payment&actionmode=pagoonline&payedOrderId="
+#~ msgstr "index.php?view=Payment&actionmode=pagoonline&payedOrderId="
+
+#~ msgid "index.php?view=payment&actionmode=pagoonline&payedOrderId=donation"
+#~ msgstr "index.php?view=Payment&actionmode=pagoonline&payedOrderId=donation"
+
+#~ msgid "index.php?view=payment&actionmode=errordonation"
+#~ msgstr "index.php?view=Payment&actionmode=errordonation"
+
+#~ msgid "index.php?view=payment&actionmode=virtualpay&payedOrderId="
+#~ msgstr "index.php?view=Payment&actionmode=virtualpay&payedOrderId="
+
+#~ msgid "index.php?view=payment&actionmode=virtualpay&payedOrderId=donation"
+#~ msgstr "index.php?view=Payment&actionmode=virtualpay&payedOrderId=donation"
+
+#~ msgid "Leatest ads"
+#~ msgstr "Ultimi inserimenti"

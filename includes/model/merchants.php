@@ -745,8 +745,8 @@ class BookingForConnectorModelMerchants
 		$this->params = array(
 			'typeId' => BFCHelper::getVar('typeId'),
 			'startswith' => BFCHelper::getVar('startswith',''),
-			'show_rating' => BFCHelper::getVar('show_rating','1'),
-			'default_display' => BFCHelper::getVar('default_display','0'),
+//			'show_rating' => BFCHelper::getVar('show_rating','1'),
+//			'default_display' => BFCHelper::getVar('default_display','0'),
 			'categoryId' => BFCHelper::getVar('categoryId'),
 			'rating' => BFCHelper::getVar('rating'),
 			'cityids' => BFCHelper::getVar('cityids'),

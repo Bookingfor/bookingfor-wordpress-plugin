@@ -17,28 +17,22 @@ OpenSSL 1.0.1 +<br/>
 Bookingfor v.7.x.x
 
 # Compatibility
-Polylang v. 1.9.x<br/>
-WPML v. 3.3<br/><br/>
+Polylang v. 2.2 +<br/>
+WPML v. 3.7<br/><br/>
 Supported theme: <br/>
 twentyseventeen<br/>
 twentysixteen<br/>
 twentyfifteen<br/>
 Compatible but not supported:<br/>
-genesis (Agent Focused Pro)
+Genesis (Agent Focused Pro)
 
 # Shortcode
-[bookingfor_merchants category=1019 rating=4]
-
-[bookingfor_resources categories=6,4]
-
-[bookingfor_onsells]
-
-[bookingfor_onsells order=asc]
-
-[bookingfor_tag tagid=7]
-
-[bookingfor_merchantscarousel tags=1,32]
-
+[bookingfor_merchants category=1019 rating=4]<br/>
+[bookingfor_resources categories=6,4]<br/>
+[bookingfor_onsells]<br/>
+[bookingfor_onsells order=asc]<br/>
+[bookingfor_tag tagid=7]<br/>
+[bookingfor_merchantscarousel tags=1,32]<br/>
 [bookingfor_resources condominiumid=2]
 
 # Translations

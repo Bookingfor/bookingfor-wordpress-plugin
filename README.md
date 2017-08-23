@@ -10,6 +10,7 @@ Wordpress plugin repo for Bookingfor. BookingFor wordpress plugin is a free and 
 6. enjoy!<br />
 
 # Requirements
+Wordpress  4.8 +<br/>
 PHP 5.6 +<br/>
 cURL 7.30 +<br/>
 OpenSSL 1.0.1 +<br/>

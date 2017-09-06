@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $cartType = 1; //$merchant->CartType;
 $currentCartConfiguration = null;
 
-$ProductAvailabilityType = 1;
+$ProductAvailabilityType = 0;
 $checkInDates = '';
 
 
@@ -82,7 +82,7 @@ $endDate->setTime(0,0,0);
 
 if(!empty($resourceId)){
 	$resourceName = BFCHelper::getLanguage($resource->Name, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
-	$ProductAvailabilityType = $resource->AvailabilityType;
+	//$ProductAvailabilityType = $resource->AvailabilityType;
 	$checkInDates = BFCHelper::getCheckInDates($resource->ResourceId,$startDate);
 	$currUriresource  = $uri.$resource->ResourceId.'-'.BFI()->seoUrl($resourceName);
 	$formRoute = $currUriresource .'/?task=getMerchantResources';

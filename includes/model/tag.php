@@ -585,6 +585,7 @@ class BookingForConnectorModelTags
 						'$format' => 'json',
 						'topRresult' => 0,
 						'calculate' => 0,
+						'checkAvailability' => 0,
 						'cultureCode' =>  BFCHelper::getQuotedString($language),
 						'lite' => 1,
 						'tagids' => BFCHelper::getQuotedString($tagId)

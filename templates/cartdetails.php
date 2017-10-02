@@ -18,7 +18,7 @@ $base_url = get_site_url();
 if(defined('ICL_LANGUAGE_CODE') &&  class_exists('SitePress')){
 		global $sitepress;
 		if($sitepress->get_current_language() != $sitepress->get_default_language()){
-			$base_url = "/" .ICL_LANGUAGE_CODE;
+			$base_url .= "/" .ICL_LANGUAGE_CODE;
 		}
 }
 $currencyclass = bfi_get_currentCurrency();

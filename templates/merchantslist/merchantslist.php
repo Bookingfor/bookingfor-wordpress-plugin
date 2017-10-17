@@ -339,9 +339,6 @@ function getlist(){
 	var query = "merchantsId=" + listToCheck + "&language=<?php echo $language ?>&task=GetMerchantsByIds";
 	if(listToCheck!='')
 	
-	var imgPath = "<?php echo $merchantImagePath ?>";
-	var imgPathError = "<?php echo $merchantImagePathError ?>";
-
 //	jQuery.getJSON(urlCheck + "?" + query, function(data) {
 	jQuery.post(urlCheck, query, function(data) {
 		var eecitems = [];

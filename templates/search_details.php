@@ -145,6 +145,7 @@ $checkout = new DateTime();
 $paxes = 2;
 $paxages = array();
 $currentState ='';
+$nrooms=1;
 
 $ratePlanId = '';
 $pricetype = '';

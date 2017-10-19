@@ -1297,6 +1297,10 @@ class BFCHelper {
 		if(!empty($params['cityId'])){
 			$pars['cityId'] = $params['cityId'];
 		}
+		$pars['locationzone'] = "";
+		if(!empty($params['locationzone'])){
+			$pars['locationzone'] = $params['locationzone'];
+		}
 		$pars['locationzones'] = "";
 		if(!empty($params['locationzones'])){
 			$pars['locationzones'] = $params['locationzones'];

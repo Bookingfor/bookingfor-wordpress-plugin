@@ -25,7 +25,6 @@ Supported theme: <br/>
 twentyseventeen<br/>
 twentysixteen<br/>
 twentyfifteen<br/>
-Compatible but not supported:<br/>
 Genesis (Agent Focused Pro)
 
 # Shortcode

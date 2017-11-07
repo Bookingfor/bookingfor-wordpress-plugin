@@ -719,6 +719,17 @@ function bfi_applyfilterdata(){
 		});
 
 			jQuery('.bfi-filteroptions a').on('click',function() {
+<?php 
+if(COM_BOOKINGFORCONNECTOR_EECENABLED == 1) {
+?>
+//				currValue = jQuery(this).attr("rel");
+				currValue = jQuery(this).find(".bfi-filter-label").first().text(); 
+				listname = jQuery(this).attr("rel1");
+				currAction = jQuery(this).hasClass("bfi-filter-active")? "Remove":"Add";
+				callAnalyticsEEc("", "", listname + "|" + currValue, null, currAction, "Search Filters");
+<?php 
+}
+?>
 				jQuery(this).toggleClass("bfi-filter-active");
 				jQuery(this).closest('form').submit();
 			});
@@ -737,4 +748,4 @@ jQuery(document).ready(function() {
 <?php echo $after_widget; ?>
 <div class="bfi-clearboth"></div>
 <?php } ?>
-
+<?php include('search-filter-merchants.php');?>

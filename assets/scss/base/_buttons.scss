@@ -93,10 +93,11 @@
 		text-align: center;
 		font-size: 9px;
 		font-weight: $font-weight-bold;
-		padding: 2px 2px 2px 5px;
+		padding: 1px 6px;
 		color: $color13;
 		background-color: $color6;
 		border: solid 1px $color6;
-		border-radius: 24px;
+		border-radius: 100px;
+		letter-spacing: 0px;
 	}
 }

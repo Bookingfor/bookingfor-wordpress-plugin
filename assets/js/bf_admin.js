@@ -4,31 +4,28 @@ jQuery(document).ready(function() {
 		if(settings.data.search('action=save-widget') != -1 && settings.data.search('id_base=' + widget_id_base) != -1) {
 			var widgetid = bfi_getParameterByName('widget-id', settings.data);
 			var cForm = jQuery('input[value="' + widgetid + '"]').parents("form");
-			bfi_adminReload(cForm); 
+			bfi_adminInit(cForm); 
 		}
 	});
-	bfi_adminInit();
+	jQuery(document).on('click','.bfitabsearch input',function(){
+		bfi_ShowHideoptSearch(jQuery(this))
+	});
+	bfi_adminInit(null);
 });
 
-function bfi_adminInit(){
-	jQuery(".select2").select2();
-	jQuery(".select2full").select2({ width: '100%' });
-	jQuery(".bfitabsearch input").click(function() {
-		bfi_ShowHideoptSearch(jQuery(this))
-	});
-	jQuery(".bfitabsearch input").each(function() {
-		bfi_ShowHideoptSearch(jQuery(this))
-	});
-}
-
-function bfi_adminReload(currForm){
-	if(jQuery(currForm).length){
-		jQuery(currForm).find(".select2").select2();
-		jQuery(currForm).find(".select2full").select2({ width: '100%' });
+function bfi_adminInit(currForm){
+	if(!jQuery("#g5-container").length){
+		if(currForm!= null && jQuery(currForm).length){
+			jQuery(currForm).find(".select2").select2();
+			jQuery(currForm).find(".select2full").select2({ width: '100%' });
+		}else{
+			jQuery(".select2").not('[name*="__i__"]').select2();
+			jQuery(".select2full").not('[name*="__i__"]').select2({ width: '100%' });
+		}
 	}
-	jQuery(".bfitabsearch input").click(function() {
-		bfi_ShowHideoptSearch(jQuery(this))
-	});
+//	jQuery(".bfitabsearch input").click(function() {
+//		bfi_ShowHideoptSearch(jQuery(this))
+//	});
 	jQuery(".bfitabsearch input").each(function() {
 		bfi_ShowHideoptSearch(jQuery(this))
 	});

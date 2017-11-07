@@ -255,7 +255,7 @@ function updateTotalSelectablePeriod(currEl, updateQuote) {
 			} else {
 				var currentSelectedQt = parseInt(currentSelection);
 				if(currentSelectedQt == 0){currentSelectedQt = 1;}
-				for (var i = carttypeCorrector; i <= maxSelectable; i++) {
+				for (var i = 0; i <= maxSelectable; i++) {
 					var opt = jQuery('<option>').text(i).attr('value', i);
                 if (currentSelectedQt == i) { opt.attr("selected", "selected"); }
                 currSel.append(opt);
@@ -351,7 +351,7 @@ function getcompleterateplansstaybyidPerTime(resourceId, currdDlrooms) {
 	currCheckinhours.html(bookingfor.pad(currentTimeStart.attr("data-TimeMinStart"), 6).replace(/(.{2})(.{2})(.{2})/,'$1:$2') );
 	currCheckout.html(jQuery.datepicker.formatDate("D d M yy", mcurrFromDate));
 	currCheckouthours.html( bookingfor.pad(currentTimeEnd.attr("data-TimeMinEnd"), 6).replace(/(.{2})(.{2})(.{2})/,'$1:$2') );
-	currduration.html(duration/60);
+	currduration.html(Math.round(duration/60 * 100) / 100);
 
 	if (jQuery(".ddlrooms-" + resourceId).first().hasClass("ddlrooms-indipendent")) // if is a extra...
 	{

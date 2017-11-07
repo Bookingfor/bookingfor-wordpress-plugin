@@ -35,14 +35,11 @@ if($total>0){
 }
 
 $listsId = array();
+
+$listNameAnalytics =5;
+$listName = BFCHelper::$listNameAnalytics[$listNameAnalytics];// "Resources Search List";
+
 ?>
-<script type="text/javascript">
-<!--
-var urlCheck = "<?php echo $base_url ?>/bfi-api/v1/task";	
-var cultureCode = '<?php echo $language ?>';
-var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
-//-->
-</script>
 <div class="bfi-content">
 <div class="bfi-row">
 	<div class="bfi-col-xs-9 ">
@@ -51,7 +48,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 		</div>
 	</div>	
 <?php if(!empty(COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY)){ ?>
-	<div class="bfi-col-xs-3 bfi-hide">
+	<div class="bfi-col-xs-3">
 		<div class="bfi-search-view-maps ">
 		<span><?php _e('Map view', 'bfi') ?></span>
 		</div>	
@@ -72,7 +69,11 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 
 <div class="bfi-clearfix"></div>
 <div id="bfi-list" class="bfi-row bfi-list">
-	<?php foreach ($resources as $resource){?>
+<?php 
+	$listResourceIds = array();
+	$listResourceMaps = array();
+?>  
+	<?php foreach ($resources as $currKey => $resource){?>
 	<?php 
 		
 		$resourceImageUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s6.jpeg";
@@ -119,12 +120,19 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 		if(!empty($resource->ImageUrl)){
 			$resourceImageUrl = BFCHelper::getImageUrlResized('resources',$resource->ImageUrl, 'medium');
 		}
+			if(isset($resource->XPos) && !empty($resource->XPos)  ){
+				$val= new StdClass;
+				$val->Id = $resource->ResourceId ;
+				$val->X = $resource->XPos;
+				$val->Y = $resource->YPos;
+				$listResourceMaps[] = $val;
+			}
 
 	?>
 	<div class="bfi-col-sm-6 bfi-item">
 		<div class="bfi-row bfi-sameheight" >
 			<div class="bfi-col-sm-3 bfi-img-container">
-				<a href="<?php echo $resourceRoute ?>" style='background: url("<?php echo $resourceImageUrl; ?>") center 25% / cover;'><img src="<?php echo $resourceImageUrl; ?>" class="bfi-img-responsive" /></a> 
+				<a href="<?php echo $resourceRoute ?>" style='background: url("<?php echo $resourceImageUrl; ?>") center 25% / cover;' target="_blank"><img src="<?php echo $resourceImageUrl; ?>" class="bfi-img-responsive" /></a> 
 			</div>
 			<div class="bfi-col-sm-9 bfi-details-container">
 				<!-- merchant details -->
@@ -138,7 +146,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 								<?php } ?>	             
 							</span>
 							<?php if($isportal){ ?>
-							- <a href="<?php echo $routeMerchant?>" class="bfi-subitem-title"><?php echo $resource->MerchantName; ?></a>
+							- <a href="<?php echo $routeMerchant?>" class="bfi-subitem-title" target="_blank"><?php echo $resource->MerchantName; ?></a>
 							<?php } ?>
 							<span class="bfi-item-rating">
 								<?php for($i = 0; $i < $ratingMrc; $i++) { ?>
@@ -147,9 +155,20 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 							</span>
 						</div>
 						<div class="bfi-item-address">
-							<?php if ($showResourceMap):?>
+							<?php if ($showResourceMap){?>
 							<a href="javascript:void(0);" onclick="showMarker(<?php echo $resource->ResourceId?>)"><span id="address<?php echo $resource->ResourceId?>"></span></a>
-							<?php endif; ?>
+							<div class="bfi-hide" id="markerInfo<?php echo $resource->ResourceId?>">
+									<div class="bfi-item-title">
+										<a href="<?php echo $routeMerchant ?>" target="_blank" ><?php echo  $resource->Name  ?></a> 
+										<span class="bfi-item-rating">
+											<?php for($i = 0; $i < $rating; $i++) { ?>
+												<i class="fa fa-star"></i>
+											<?php } ?>	             
+										</span>
+									</div>
+									<span id="mapaddress<?php echo $resource->ResourceId?>"></span>
+							</div>
+							<?php } ?>
 						</div>
 						<div class="bfi-mrcgroup" id="bfitags<?php echo $resource->ResourceId; ?>"></div>
 						<div class="bfi-description" id="descr<?php echo $resource->ResourceId?>"><?php echo $resourceDescription ?></div>
@@ -277,8 +296,6 @@ var listToCheck = "<?php echo implode(",", $listsId) ?>";
 var strAddress = "[indirizzo] - [cap] - [comune] ([provincia])";
 var imgPathMG = "<?php echo BFCHelper::getImageUrlResized('tag','[img]', 'merchant_merchantgroup') ?>";
 var imgPathMGError = "<?php echo BFCHelper::getImageUrl('tag','[img]', 'merchant_merchantgroup') ?>";
-var cultureCodeMG = '<?php echo $language ?>';
-var defaultcultureCodeMG = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 
 var shortenOption = {
 		moreText: "<?php _e('Read more', 'bfi'); ?>",
@@ -294,14 +311,14 @@ function getAjaxInformations(){
 	{
 		loaded=true;
 		var queryMG = "task=getResourceGroups";
-		jQuery.post(urlCheck, queryMG, function(data) {
+		jQuery.post(bfi_variable.bfi_urlCheck, queryMG, function(data) {
 				if(data!=null){
 					jQuery.each(JSON.parse(data) || [], function(key, val) {
 						if (val.ImageUrl!= null && val.ImageUrl!= '') {
 							var $imageurl = imgPathMG.replace("[img]", val.ImageUrl );		
 							var $imageurlError = imgPathMGError.replace("[img]", val.ImageUrl );		
 							/*--------getName----*/
-							var $name = bookingfor.getXmlLanguage(val.Name,cultureCodeMG,defaultcultureCodeMG);
+							var $name = bookingfor.getXmlLanguage(val.Name,bfi_variable.bfi_cultureCode, bfi_variable.bfi_defaultcultureCode);
 							/*--------getName----*/
 							mg[val.TagId] = '<img src="' + $imageurl + '" onerror="this.onerror=null;this.src=\'' + $imageurlError + '\';" alt="' + $name + '" data-toggle="tooltip" title="' + $name + '" />';
 						} else {
@@ -317,20 +334,12 @@ function getAjaxInformations(){
 }
 
 function getlist(){
-	if (cultureCode.length>1)
-	{
-		cultureCode = cultureCode.substring(0, 2).toLowerCase();
-	}
-	if (defaultcultureCode.length>1)
-	{
-		defaultcultureCode = defaultcultureCode.substring(0, 2).toLowerCase();
-	}
-
 	var query = "resourcesId=" + listToCheck + "&language=<?php echo $language ?>&task=GetResourcesByIds";
 	if(listToCheck!='')
 	
 
-	jQuery.post(urlCheck, query, function(data) {
+	jQuery.post(bfi_variable.bfi_urlCheck, query, function(data) {
+			var eecitems = [];
 
 				if(typeof callfilterloading === 'function'){
 					callfilterloading();
@@ -338,6 +347,13 @@ function getlist(){
 				}
 			jQuery.each(data || [], function(key, val) {
 				$html = '';
+				eecitems.push({
+					id: "" + val.Resource.ResourceId + " - Resource",
+					name: val.Resource.Name,
+					category: val.Merchant.MainCategoryName,
+					brand: val.Merchant.Name,
+					position: key
+				});
 	
 				var $indirizzo = "";
 				var $cap = "";
@@ -354,6 +370,8 @@ function getlist(){
 				addressData = addressData.replace("[comune]",$comune);
 				addressData = addressData.replace("[provincia]",$provincia);
 				jQuery("#address"+val.Resource.ResourceId).html(addressData);
+				jQuery("#mapaddress"+val.Resource.ResourceId).html(addressData);
+				
 <?php if($showdata): ?>
 				if (val.Resource.Description!= null && val.Resource.Description != ''){
 					$html += bookingfor.nl2br(jQuery("<p>" + val.Resource.Description + "</p>").text());
@@ -388,13 +406,148 @@ function getlist(){
 			position : { my: 'center bottom', at: 'center top-10' },
 			tooltipClass: 'bfi-tooltip bfi-tooltip-top '
 		}); 
+		<?php if($analyticsEnabled): ?>
+		callAnalyticsEEc("addImpression", eecitems, "list");
+		<?php endif; ?>
 		},'json');
 }
 
+		var mapSearch;
+		var myLatlngsearch;
+		var oms;
+		var markersLoading = false;
+		var infowindow = null;
+		var markersLoaded = false;
+
+		// make map
+		function handleApiReadySearch() {
+			myLatlngsearch = new google.maps.LatLng(<?php echo $posy ?>, <?php echo $posx ?>);
+			var myOptions = {
+					zoom: <?php echo $startzoom ?>,
+					center: myLatlngsearch,
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				}
+			mapSearch = new google.maps.Map(document.getElementById("bfi-maps-popup"), myOptions);
+			loadMarkers();
+		}
+		
+		function openGoogleMapSearch() {
+
+			if (typeof google !== 'object' || typeof google.maps !== 'object'){
+				var script = document.createElement("script");
+				script.type = "text/javascript";
+				script.src = "https://maps.google.com/maps/api/js?key=<?php echo $googlemapsapykey ?>&libraries=drawing,places&callback=handleApiReadySearch";
+				document.body.appendChild(script);
+			}else{
+				if (typeof mapSearch !== 'object' ){
+					handleApiReadySearch();
+				}
+			}
+		}
+
+	var bfiCurrMarkerId = 0;
+
+	function loadMarkers() {
+		var isVisible = jQuery('#bfi-maps-popup').is(":visible");
+		 bookingfor.waitSimpleBlock(jQuery('#bfi-maps-popup'));
+		if (mapSearch != null && !markersLoaded && isVisible) {
+			if (typeof oms !== 'object'){
+				jQuery.getScript("<?php echo BFI()->plugin_url() ?>/assets/js/oms.js", function(data, textStatus, jqxhr) {
+					var bounds = new google.maps.LatLngBounds();
+					oms = new OverlappingMarkerSpiderfier(mapSearch, {
+							keepSpiderfied : true,
+							nearbyDistance : 1,
+							markersWontHide : true,
+							markersWontMove : true 
+						});
+
+					oms.addListener('click', function(marker) {
+						showMarkerInfo(marker);
+					});
+					if (!markersLoading) {
+						var data = <?php echo json_encode($listResourceMaps) ?>; 
+						createMarkers(data, oms, bounds, mapSearch);
+						if (oms.getMarkers().length > 0) {
+							mapSearch.fitBounds(bounds);
+						}
+						markersLoaded = true;
+						jQuery(jQuery('#bfi-maps-popup')).unblock();
+						if(bfiCurrMarkerId>0){
+							setTimeout(function() {
+								showMarker(bfiCurrMarkerId);
+								bfiCurrMarkerId = 0;
+								},10);
+						}						
+						
+					}
+					markersLoading = true;
+
+				});
+			}
+		}
+	}
+
+	function createMarkers(data, oms, bounds, currentMap) {
+		jQuery.each(data, function(key, val) {
+			if (val.X == '' || val.Y == '' || val.X == null || val.Y == null)
+				return true;
+			var marker = new google.maps.Marker({
+				position: new google.maps.LatLng(val.X, val.Y),
+				map: currentMap
+			});
+			marker.extId = val.Id;
+			oms.addMarker(marker,true);
+			bounds.extend(marker.position);
+		});
+	}
+
+	function showMarker(extId) {
+		if(jQuery( "#bfi-maps-popup").length ){
+			if(jQuery( "#bfi-maps-popup").hasClass("ui-dialog-content") && jQuery( "#bfi-maps-popup" ).dialog("isOpen" )){
+						jQuery(oms.getMarkers()).each(function() {
+							if (this.extId != extId) return true; 
+							showMarkerInfo(this);
+							return false;
+						});		
+			
+			}else{
+				jQuery( "#bfi-maps-popup" ).dialog({
+					open: function( event, ui ) {
+						if(!markersLoaded) {
+							bfiCurrMarkerId = extId;
+						}
+						openGoogleMapSearch();
+						if(!markersLoaded) {
+							return;
+						}
+						jQuery(oms.getMarkers()).each(function() {
+							if (this.extId != extId) return true; 
+							showMarkerInfo(this);
+							return false;
+						});		
+					},
+					height: 500,
+					width: 800,
+					dialogClass: 'bfi-dialog bfi-dialog-map'
+				});
+			}
+		}
+	}
+
+	function showMarkerInfo(marker) {
+		if (infowindow) infowindow.close();
+			var data = jQuery("#markerInfo"+marker.extId).html();
+//			mapSearch.setZoom(17);
+			mapSearch.setCenter(marker.position);
+			infowindow = new google.maps.InfoWindow({ content: data });
+			infowindow.open(mapSearch, marker);
+	}
 	
 jQuery(document).ready(function() {
 	getAjaxInformations();
-
+	if(jQuery( "#bfi-maps-popup").length == 0) {
+		jQuery("body").append("<div id='bfi-maps-popup'></div>");
+	}
 	jQuery('.bfi-maps-static,.bfi-search-view-maps').click(function() {
 		jQuery( "#bfi-maps-popup" ).dialog({
 			open: function( event, ui ) {

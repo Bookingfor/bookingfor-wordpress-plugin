@@ -46,7 +46,8 @@ get_header( 'searchonsell' ); ?>
     $total= $searchmodel->getTotal();
 	$currSorting=$searchmodel->getOrdering() . "|" . $searchmodel->getDirection();
 
-		$listName = "Sales Resource List";
+		$listNameAnalytics = 8;
+		$listName = BFCHelper::$listNameAnalytics[$listNameAnalytics];// "Resources Search List";
 
 		if(count($items) > 0 && COM_BOOKINGFORCONNECTOR_GAENABLED == 1 && !empty(COM_BOOKINGFORCONNECTOR_GAACCOUNT) && COM_BOOKINGFORCONNECTOR_EECENABLED == 1) {
 			add_action('bfi_head', 'bfi_google_analytics_EEc', 10, 1);

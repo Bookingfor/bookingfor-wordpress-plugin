@@ -117,6 +117,22 @@
 				jQuery(".bfi-table-resources").not( ".bfi-table-selectableprice" ).hide();
                 jQuery(".bfi-hideonextra").hide();
                 jQuery(".div-selectableprice").show();
+				
+				//
+//                if (bfi_variable.bfi_eecenabled==1)
+//                {
+//					callAnalyticsEEc("addImpression", jQuery.makeArray(jQuery.map(jQuery(".ddlextras:visible"), function(svc, idx) {
+//						return {
+//							"id": "" + jQuery(svc).attr('data-priceid') + " - Service",
+//							"category": "Services",
+//							"name": jQuery(svc).attr('data-name'),
+//							"brand": jQuery(svc).attr('data-brand'),
+//							"variant": jQuery(svc).attr('data-resourcename'),
+//							"position": idx
+//						};
+//					})), "list", "Services List");
+//                }
+
                 if (typeof daysToEnableTimeSlot !== 'undefined' && typeof strAlternativeDateToSearch !== 'undefined' && typeof initDatepickerTimeSlot !== 'undefined' && jQuery.isFunction(initDatepickerTimeSlot)) {
                     initDatepickerTimeSlot();
                 }
@@ -129,7 +145,7 @@
 					currTableVisible.find('tr:eq(1)').find('td:last').append(currTotalExtras.clone(true));
 					currTotalExtras.remove();
 				}
-            UpdateQuote(); //set service price default value
+				UpdateQuote(); //set service price default value
 
 				bfi_updateQuoteService();
             }

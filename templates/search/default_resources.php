@@ -2,6 +2,8 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
+$isportal = COM_BOOKINGFORCONNECTOR_ISPORTAL;
+$showdata = COM_BOOKINGFORCONNECTOR_SHOWDATA;
 $rating_text = array('merchants_reviews_text_value_0' => __('Very poor', 'bfi'),
 						'merchants_reviews_text_value_1' => __('Poor', 'bfi'),   
 						'merchants_reviews_text_value_2' => __('Disappointing', 'bfi'),
@@ -14,13 +16,7 @@ $rating_text = array('merchants_reviews_text_value_0' => __('Very poor', 'bfi'),
 						'merchants_reviews_text_value_9' => __('Exceptional', 'bfi'),  
 						'merchants_reviews_text_value_10' => __('Exceptional', 'bfi'),                                 
 					);
-
-$checkin = BFCHelper::getStayParam('checkin', new DateTime());
-$checkout = BFCHelper::getStayParam('checkout', new DateTime());
-$checkinstr = $checkin->format("d") . " " . date_i18n('F',$checkin->getTimestamp()) . ' ' . $checkin->format("Y") ;
-$checkoutstr = $checkout->format("d") . " " . date_i18n('F',$checkout->getTimestamp()) . ' ' . $checkout->format("Y") ;
-$totalResult = count($results);
-$totalResult = $total;
+$fromsearchparam = "?fromsearch=1&lna=".$listNameAnalytics;
 
 $language = $GLOBALS['bfi_lang'];
 $languageForm ='';
@@ -30,11 +26,16 @@ if(defined('ICL_LANGUAGE_CODE') &&  class_exists('SitePress')){
 			$languageForm = "/" .ICL_LANGUAGE_CODE;
 		}
 }
+
+$checkin = BFCHelper::getStayParam('checkin', new DateTime());
+$checkout = BFCHelper::getStayParam('checkout', new DateTime());
+$checkinstr = $checkin->format("d") . " " . date_i18n('F',$checkin->getTimestamp()) . ' ' . $checkin->format("Y") ;
+$checkoutstr = $checkout->format("d") . " " . date_i18n('F',$checkout->getTimestamp()) . ' ' . $checkout->format("Y") ;
+$totalResult = $total;
+
 $listsId = array();
 $base_url = get_site_url();
 
-$isportal = COM_BOOKINGFORCONNECTOR_ISPORTAL;
-$showdata = COM_BOOKINGFORCONNECTOR_SHOWDATA;
 
 $resourceImageUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s6.jpeg";
 
@@ -121,7 +122,7 @@ $onlystay =  true;
 		
 		$routeMerchant = "";
 		if($isportal){
-			$routeMerchant = $url_merchant_page . $resource->MerchantId .'-'.BFI()->seoUrl($resource->MrcName)."?fromsearch=1";
+			$routeMerchant = $url_merchant_page . $resource->MerchantId .'-'.BFI()->seoUrl($resource->MrcName).$fromsearchparam;
 		}
 		
 		$bookingType = 0;
@@ -145,7 +146,7 @@ $onlystay =  true;
 			$classofferdisplay = "bfi-highlight";
 			
 		}
-		$resourceRoute .= "?fromsearch=1";
+		$resourceRoute .= $fromsearchparam;
 		if (!empty($resource->RateplanId)){
 			 $resourceRoute .= "&pricetype=" . $resource->RateplanId;
 		}
@@ -241,7 +242,7 @@ $onlystay =  true;
 								<?php }?>
 							</div>
 						<?php } ?>
-						<?php echo ($resource->AvailabilityType ==0 || $resource->AvailabilityType ==1) ? $resource->ResCategoryName: ""; ?>
+						<?php echo $resource->ResCategoryName; ?>
 					</div>
 					<div class="bfi-col-sm-3 ">
 						<?php if (!$resource->IsCatalog && $onlystay ){ ?>
@@ -319,7 +320,6 @@ $onlystay =  true;
 										break;
 									case 3:
 										echo __("From", 'bfi');
-										//sospeso momentaneamente
 //										echo __('Total for', 'bfi');
 //										if($hours >0){
 //											echo sprintf(__('%d hour/s' ,'bfi'),$hours);
@@ -338,9 +338,9 @@ $onlystay =  true;
 					</div>
 					<div class="bfi-col-sm-3 bfi-text-right">
 						<?php if ($resource->Price > 0){ ?>
-								<a href="<?php echo $resourceRoute ?>" class=" bfi-btn <?php echo $btnClass ?> " target="_blank"><?php echo $btnText ?></a>
+								<a href="<?php echo $resourceRoute ?>" class=" bfi-btn <?php echo $btnClass ?> " target="_blank" data-type="Resource" data-id="<?php echo $resource->ResourceId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo $btnText ?></a>
 						<?php }else{ ?>
-								<a href="<?php echo $resourceRoute ?>" class=" bfi-btn <?php echo $btnClass ?>" target="_blank"><?php echo _e('Request' , 'bfi')?></a>
+								<a href="<?php echo $resourceRoute ?>" class=" bfi-btn <?php echo $btnClass ?>" target="_blank" data-type="Resource" data-id="<?php echo $resource->ResourceId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo _e('Request' , 'bfi')?></a>
 						<?php } ?>
 					</div>
 				</div>
@@ -359,17 +359,14 @@ $onlystay =  true;
 <?php } ?>
 </div>
 </div>
+
 <script type="text/javascript">
 <!--
 
-//var urlCheck = "<?php echo $base_url ?>/bfi-api/v1/task";
 var listToCheck = "<?php echo implode(",", $listsId) ?>";
 var strAddress = "[indirizzo] - [cap] - [comune] ([provincia])";
 var imgPathMG = "<?php echo BFCHelper::getImageUrlResized('tag','[img]', 'merchant_merchantgroup') ?>";
 var imgPathMGError = "<?php echo BFCHelper::getImageUrl('tag','[img]', 'merchant_merchantgroup') ?>";
-var cultureCodeMG = '<?php echo $language ?>';
-var defaultcultureCodeMG = '<?php echo BFCHelper::$defaultFallbackCode ?>';
-var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 
 var shortenOption = {
 		moreText: "<?php _e('Read more', 'bfi'); ?>",
@@ -386,14 +383,14 @@ function getAjaxInformations(){
 	{
 		loaded=true;
 		var queryMG = "task=getResourceGroups";
-		jQuery.post(urlCheck, queryMG, function(data) {
+		jQuery.post(bfi_variable.bfi_urlCheck, queryMG, function(data) {
 				if(data!=null){
 					jQuery.each(JSON.parse(data) || [], function(key, val) {
 						if (val.ImageUrl!= null && val.ImageUrl!= '') {
 							var $imageurl = imgPathMG.replace("[img]", val.ImageUrl );		
 							var $imageurlError = imgPathMGError.replace("[img]", val.ImageUrl );		
 							/*--------getName----*/
-							var $name = bookingfor.getXmlLanguage(val.Name,cultureCodeMG,defaultcultureCodeMG);
+							var $name = bookingfor.getXmlLanguage(val.Name,bfi_variable.bfi_cultureCode, bfi_variable.bfi_defaultcultureCode);
 							/*--------getName----*/
 							mg[val.TagId] = '<img src="' + $imageurl + '" onerror="this.onerror=null;this.src=\'' + $imageurlError + '\';" alt="' + $name + '" data-toggle="tooltip" title="' + $name + '" />';
 						} else {
@@ -410,20 +407,11 @@ function getAjaxInformations(){
 
 
 function getlist(){
-	if (cultureCode.length>1)
-	{
-		cultureCode = cultureCode.substring(0, 2).toLowerCase();
-	}
-	if (defaultcultureCode.length>1)
-	{
-		defaultcultureCode = defaultcultureCode.substring(0, 2).toLowerCase();
-	}
-
 	var query = "resourcesId=" + listToCheck + "&language=<?php echo $language ?>&task=GetResourcesByIds";
 	if(listToCheck!='')
 	
 
-	jQuery.post(urlCheck, query, function(data) {
+	jQuery.post(bfi_variable.bfi_urlCheck, query, function(data) {
 
 				if(typeof callfilterloading === 'function'){
 					callfilterloading();
@@ -476,17 +464,8 @@ function getlist(){
 }
 
 function getDiscountsAjaxInformations(discountIds,obj, fn){
-	if (cultureCode.length>1)
-	{
-		cultureCode = cultureCode.substring(0, 2).toLowerCase();
-	}
-	if (defaultcultureCode.length>1)
-	{
-		defaultcultureCode = defaultcultureCode.substring(0, 2).toLowerCase();
-	}
-
 	var query = "discountId=" + discountIds + "&language=<?php echo $language ?>&task=getDiscountDetails";
-	jQuery.post(urlCheck, query, function(data) {
+	jQuery.post(bfi_variable.bfi_urlCheck, query, function(data) {
 			$html = '';
 			jQuery.each(data || [], function(key, val) {
 				var name = val.Name;
@@ -572,13 +551,7 @@ jQuery(document).ready(function() {
 			if (val.Resource.XGooglePos == '' || val.Resource.YGooglePos == '' || val.Resource.XGooglePos == null || val.Resource.YGooglePos == null)
 				return true;
 
-			var url = "<?php echo $formAction; ?>?resourceId=" + val.Resource.ResourceId + '&task=getmarketinforesource';
-//			var url = "<?php echo $url_resource_page; ?>" + val.Resource.ResourceId + '-' + val.Resource.ResourceName + '/mapspopup?fromsearch=1';
-//			console.log(url);
-//			var marker = new google.maps.Marker({
-//				position: new google.maps.LatLng(val.Resource.XGooglePos, val.Resource.YGooglePos),
-//				map: currentMap
-//			});
+			var query = "resourceId=" + val.Resource.ResourceId + '&language=<?php echo $language ?>&task=getmarketinforesource';
 			var marker = new MarkerWithLabel({
 				position: new google.maps.LatLng(val.Resource.XGooglePos, val.Resource.YGooglePos),
 				map: currentMap,
@@ -588,7 +561,7 @@ jQuery(document).ready(function() {
 				labelStyle: {opacity: 0.75}
 
 			});
-			marker.url = url;
+			marker.url = bfi_variable.bfi_urlCheck + ((bfi_variable.bfi_urlCheck.indexOf('?') > -1)? "&" :"?") + query;
 			marker.extId = val.Resource.ResourceId;
 
 			oms.addMarker(marker);

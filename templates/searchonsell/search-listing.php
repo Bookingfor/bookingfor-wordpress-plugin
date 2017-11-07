@@ -17,30 +17,19 @@ $showmap = true;
 if($total<1){
 	$showmap = false;
 }
+$fromsearchparam = "?lna=".$listNameAnalytics;
 
 ?>
-
-
-<script type="text/javascript">
-<!--
-var urlCheck = "<?php echo $base_url ?>/bfi-api/v1/task";
-var cultureCode = '<?php echo $language ?>';
-//-->
-</script>
 <div id="bfi-merchantlist">
-	<div id="com_bookingforconnector-items-container-wrapper">
-		<?php if ($total > 0): ?>
-			<div class="com_bookingforconnector-items-container">
-				<?php include('list-resources.php');?>
-			</div>
-		<?php else: ?>
-			<div class="com_bookingforconnector_search-noresults">
+		<?php if ($total > 0){ ?>
+			<?php include('list-resources.php');?>
+		<?php }else{ ?>
+			<div>
 			<?php _e('No result available', 'bfi') ?>
 			</div>
-		<?php endif; ?>
+		<?php } ?>
 
 		<div class="bfi-clearboth"></div>		
-	</div>
 </div>
 <script type="text/javascript">
 <!--
@@ -148,7 +137,7 @@ $googlemapsapykey = COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY;
 							}
 						}
 
-						jQuery.post(urlCheck, query, function(data) {
+						jQuery.post(bfi_variable.bfi_urlCheck, query, function(data) {
 
 								createMarkers(data, oms, bounds, mapSearch);
 								if (oms.getMarkers().length > 0) {

@@ -15,22 +15,18 @@ $rating_text = array('merchants_reviews_text_value_0' => __('Very poor', 'bfi'),
 						'merchants_reviews_text_value_10' => __('Exceptional', 'bfi'),                                 
 					);
 
-$checkin = BFCHelper::getStayParam('checkin', new DateTime());
-$checkout = BFCHelper::getStayParam('checkout', new DateTime());
-$checkinstr = $checkin->format("d") . " " . date_i18n('F',$checkin->getTimestamp()) . ' ' . $checkin->format("Y") ;
-$checkoutstr = $checkout->format("d") . " " . date_i18n('F',$checkout->getTimestamp()) . ' ' . $checkout->format("Y") ;
-//$totalResult = count($merchants);
-$totalResult = $total;
-
+$fromsearchparam = "?fromsearch=1&lna=".$listNameAnalytics;
+$showSearchTitle = true;
 $language = $GLOBALS['bfi_lang'];
 $languageForm ='';
-$listsId = array();
 if(defined('ICL_LANGUAGE_CODE') &&  class_exists('SitePress')){
 		global $sitepress;
 		if($sitepress->get_current_language() != $sitepress->get_default_language()){
 			$languageForm = "/" .ICL_LANGUAGE_CODE;
 		}
 }
+$listsId = array();
+$listResourceIds = array();
 $isportal = COM_BOOKINGFORCONNECTOR_ISPORTAL;
 $showdata = COM_BOOKINGFORCONNECTOR_SHOWDATA;
 
@@ -45,8 +41,9 @@ $merchantImagePathError = BFCHelper::getImageUrl('merchant', "[img]",'medium');
 
 $base_url = get_site_url();
 $onlystay = true ;
-if(!empty($_SESSION['search.params']['onlystay'])){
-	$onlystay =  $_SESSION['search.params']['onlystay'] === 'false'? false: true;
+$currParam = BFCHelper::getSearchParamsSession();
+if(isset($currParam) && isset($currParam['onlystay'])){
+		$onlystay =  ($currParam['onlystay'] === 'false' || $currParam['onlystay'] === 0)? false: true;
 }
 
 // get searchresult page...
@@ -60,69 +57,71 @@ $url_merchant_page = get_permalink( $merchantdetails_page->ID );
 $accommodationdetails_page = get_post( bfi_get_page_id( 'accommodationdetails' ) );
 $url_resource_page = get_permalink( $accommodationdetails_page->ID );
 
+$totalResult = $total;
+
+$checkin = BFCHelper::getStayParam('checkin', new DateTime());
+$checkout = BFCHelper::getStayParam('checkout', new DateTime());
+$checkinstr = $checkin->format("d") . " " . date_i18n('F',$checkin->getTimestamp()) . ' ' . $checkin->format("Y") ;
+$checkoutstr = $checkout->format("d") . " " . date_i18n('F',$checkout->getTimestamp()) . ' ' . $checkout->format("Y") ;
+
+$counter = 0;
+
 ?>
 <div class="bfi-content">
-<div class="bfi-row">
-	<div class="bfi-col-xs-9 ">
-		<div class="bfi-search-title">
-			<?php echo sprintf( __('Found %s results', 'bfi'),$totalResult ) ?>
-		</div>
-		<div class="bfi-search-title-sub">
-			<?php echo sprintf( __('From %s to %s', 'bfi'),$checkinstr,$checkoutstr ) ?>
-		</div>
-	</div>	
-<?php if(!empty(COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY)){ ?>
-	<div class="bfi-col-xs-3 ">
-		<div class="bfi-search-view-maps ">
-		<span><?php _e('Map view', 'bfi') ?></span>
+	<div class="bfi-row">
+		<div class="bfi-col-xs-9 ">
+			<?php if($showSearchTitle){ ?>
+			<div class="bfi-search-title">
+				<?php echo sprintf( __('Found %s results', 'bfi'),$totalResult ) ?>
+			</div>
+			<div class="bfi-search-title-sub">
+				<?php echo sprintf( __('From %s to %s', 'bfi'),$checkinstr,$checkoutstr ) ?>
+			</div>
+			<?php } ?>
 		</div>	
+	<?php if(!empty(COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY)){ ?>
+		<div class="bfi-col-xs-3 ">
+			<div class="bfi-search-view-maps ">
+			<span><?php _e('Map view', 'bfi') ?></span>
+			</div>	
+		</div>	
+	<?php } ?>
 	</div>	
-<?php } ?>
-</div>	
-
-<div class="bfi-search-menu">
-	<form action="<?php echo $formAction; ?>" method="post" name="bookingforsearchForm" id="bookingforsearchFilterForm">
-			<input type="hidden" class="filterOrder" name="filter_order" value="price" />
-			<input type="hidden" class="filterOrderDirection" name="filter_order_Dir" value="asc" />
-			<input type="hidden" name="searchid" value="<?php //echo   $searchid ?>" />
-			<input type="hidden" name="limitstart" value="0" />
-	</form>
-	<div class="bfi-results-sort">
-		<span class="bfi-sort-item"><?php echo _e('Order by' , 'bfi')?>:</span>
-		<span class="bfi-sort-item <?php echo $currSorting=="price|asc" ? "bfi-sort-item-active": "" ; ?>" rel="price|asc" ><?php echo _e('Lowest price first' , 'bfi'); ?></span>
-		<span class="bfi-sort-item <?php echo $currSorting=="rating|desc" ? "bfi-sort-item-active": "" ; ?>" rel="rating|desc" ><?php echo _e('Review score' , 'bfi'); ?></span>
-		<span class="bfi-sort-item <?php echo $currSorting=="offer|asc" ? "bfi-sort-item-active": "" ; ?>" rel="offer|asc" ><?php echo _e('Best offers' , 'bfi'); ?></span> 
-	</div>
-	<div class="bfi-view-changer">
-		<div class="bfi-view-changer-selected"><?php echo _e('List' , 'bfi') ?></div>
-		<div class="bfi-view-changer-content">
-			<div id="list-view"><?php echo _e('List' , 'bfi') ?></div>
-			<div id="grid-view" class="bfi-view-changer-grid"><?php echo _e('Grid' , 'bfi') ?></div>
+	<div class="bfi-search-menu">
+		<form action="<?php echo $formAction; ?>" method="post" name="bookingforsearchForm" id="bookingforsearchFilterForm">
+				<input type="hidden" class="filterOrder" name="filter_order" value="price" />
+				<input type="hidden" class="filterOrderDirection" name="filter_order_Dir" value="asc" />
+				<input type="hidden" name="searchid" value="<?php //echo   $searchid ?>" />
+				<input type="hidden" name="limitstart" value="0" />
+		</form>
+		<div class="bfi-results-sort">
+			<span class="bfi-sort-item"><?php echo _e('Order by' , 'bfi')?>:</span>
+			<span class="bfi-sort-item <?php echo $currSorting=="price|asc" ? "bfi-sort-item-active": "" ; ?>" rel="price|asc" ><?php echo _e('Lowest price first' , 'bfi'); ?></span>
+			<span class="bfi-sort-item <?php echo $currSorting=="rating|desc" ? "bfi-sort-item-active": "" ; ?>" rel="rating|desc" ><?php echo _e('Review score' , 'bfi'); ?></span>
+			<span class="bfi-sort-item <?php echo $currSorting=="offer|asc" ? "bfi-sort-item-active": "" ; ?>" rel="offer|asc" ><?php echo _e('Best offers' , 'bfi'); ?></span> 
+		</div>
+		<div class="bfi-view-changer">
+			<div class="bfi-view-changer-selected"><?php echo _e('List' , 'bfi') ?></div>
+			<div class="bfi-view-changer-content">
+				<div id="list-view"><?php echo _e('List' , 'bfi') ?></div>
+				<div id="grid-view" class="bfi-view-changer-grid"><?php echo _e('Grid' , 'bfi') ?></div>
+			</div>
 		</div>
 	</div>
-</div>
+	<div class="bfi-clearfix"></div>
 
-
-
-<div class="bfi-clearfix"></div>
 <div id="bfi-list" class="bfi-row bfi-list">
 <?php 
-
-$listResourceIds = array(); 
-
-?>  
-
-<?php foreach ($merchants as $merchant): ?>
-<?php 
+foreach ($merchants as $currKey => $merchant){
 
 	$rating = $merchant->MrcRating;
-	$merchant->Name = $merchant->MrcName;
+	$merchantName = $merchant->MrcName;
 	if ($rating>9 )
 	{
 		$rating = $rating/10;
 	} 
 
-	$routeMerchant = $url_merchant_page . $merchant->MerchantId.'-'.BFI()->seoUrl($merchant->Name);
+	$routeMerchant = $url_merchant_page . $merchant->MerchantId.'-'.BFI()->seoUrl($merchantName);
 	$routeRating = $routeMerchant .'/'._x('reviews', 'Page slug', 'bfi' );
 	$routeInfoRequest = $routeMerchant .'/'._x('contactspopup', 'Page slug', 'bfi' );
 
@@ -159,25 +158,26 @@ $listResourceIds = array();
 	if (($merchant->Price < $merchant->TotalPrice) || $merchant->IsOffer){
 		$classofferdisplay = "bfi-highlight";
 	}
-	$resourceRoute .= "?fromsearch=1";
+	$resourceRoute .= $fromsearchparam;
 	if (!empty($merchant->RateplanId)){
 		$resourceRoute .= "&pricetype=" . $merchant->RateplanId;
 	}
 
+	$resourceNameTrack =  BFCHelper::string_sanitize($resourceName);
+	$merchantNameTrack =  BFCHelper::string_sanitize($merchantName);
+	$merchantCategoryNameTrack =  BFCHelper::string_sanitize($merchant->MrcCategoryName);
 ?>
-
-
 	<div class="bfi-col-sm-6 bfi-item">
 		<div class="bfi-row bfi-sameheight" >
 			<div class="bfi-col-sm-3 bfi-img-container">
-				<a href="<?php echo $routeMerchant ?>?fromsearch=1" style='background: url("<?php echo $merchantImageUrl; ?>") center 25%;background-size: cover;' target="_blank"><img src="<?php echo $merchantImageUrl; ?>" class="bfi-img-responsive" /></a> 
+				<a href="<?php echo $routeMerchant ?>" style='background: url("<?php echo $merchantImageUrl; ?>") center 25%;background-size: cover;' target="_blank" class="eectrack" data-type="Merchant" data-id="<?php echo $merchant->MerchantId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $merchantNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><img src="<?php echo $merchantImageUrl; ?>" class="bfi-img-responsive" /></a> 
 			</div>
 			<div class="bfi-col-sm-9 bfi-details-container">
 				<!-- merchant details -->
 				<div class="bfi-row" >
 					<div class="bfi-col-sm-9">
 						<div class="bfi-item-title">
-							<a href="<?php echo $routeMerchant ?>?fromsearch=1" id="nameAnchor<?php echo $merchant->MerchantId?>" target="_blank"><?php echo  $merchant->Name ?></a> 
+							<a href="<?php echo $routeMerchant ?>" id="nameAnchor<?php echo $merchant->MerchantId?>" target="_blank" class="eectrack" data-type="Merchant" data-id="<?php echo $merchant->MerchantId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $merchantNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo  $merchantName ?></a> 
 							<span class="bfi-item-rating">
 								<?php for($i = 0; $i < $rating; $i++) { ?>
 									<i class="fa fa-star"></i>
@@ -198,8 +198,8 @@ $listResourceIds = array();
 									$totalInt = BFCHelper::convertTotal(number_format((float)$merchant->MrcAVG, 1, '.', ''));
 
 									?>
-									<a class="bfi-avg-value" href="<?php echo $routeMerchant ?>" target="_blank"><?php echo $rating_text['merchants_reviews_text_value_'.$totalInt] . " " . number_format((float)$merchant->MrcAVG, 1, '.', '') ?></a><br />
-									<a class="bfi-avg-count" href="<?php echo $routeMerchant ?>" target="_blank"><?php echo sprintf(__('%s reviews' , 'bfi'),$merchant->MrcAVGCount) ?></a>
+									<a class="bfi-avg-value eectrack" href="<?php echo $routeMerchant ?>" target="_blank" data-type="Merchant" data-id="<?php echo $merchant->MerchantId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $merchantNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo $rating_text['merchants_reviews_text_value_'.$totalInt] . " " . number_format((float)$merchant->MrcAVG, 1, '.', '') ?></a><br />
+									<a class="bfi-avg-count eectrack" href="<?php echo $routeMerchant ?>" target="_blank" data-type="Merchant" data-id="<?php echo $merchant->MerchantId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $merchantNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo sprintf(__('%s reviews' , 'bfi'),$merchant->MrcAVGCount) ?></a>
 								<?php } ?>
 								</div>
 						<?php } ?>
@@ -222,7 +222,7 @@ $listResourceIds = array();
 								<?php }?>
 							</div>
 						<?php endif; ?>
-						<a href="<?php echo $resourceRoute?>" class="bfi-subitem-title" target="_blank"><?php echo $resourceName; ?></a>
+						<a href="<?php echo $resourceRoute?>" class="bfi-subitem-title eectrack" target="_blank" data-type="Resource" data-id="<?php echo $merchant->ResourceId?>" data-index="<?php echo $counter?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo $resourceName; ?></a>
 					</div>
 					<div class="bfi-col-sm-3 ">
 						<?php if (!$merchant->IsCatalog && $onlystay ){ ?>
@@ -256,7 +256,7 @@ $listResourceIds = array();
 								}
 							}
 						} else {?>
-							<a href="<?php echo $resourceRoute ?>" class="bfi-btn <?php echo $btnClass ?>" target="_blank"><?php echo _e('Request' , 'bfi')?></a>
+							<a href="<?php echo $resourceRoute ?>" class="bfi-btn eectrack <?php echo $btnClass ?>" target="_blank" data-type="Resource" data-id="<?php echo $merchant->ResourceId?>" data-index="<?php echo $counter?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo _e('Request' , 'bfi')?></a>
 						<?php } ?>
 					</div>
 				</div>
@@ -319,9 +319,9 @@ $listResourceIds = array();
 					</div>
 					<div class="bfi-col-sm-3 bfi-text-right">
 						<?php if ($merchant->Price > 0){ ?>
-								<a href="<?php echo $resourceRoute ?>" class=" bfi-btn <?php echo $btnClass ?> " target="_blank"><?php echo $btnText ?></a>
+								<a href="<?php echo $resourceRoute ?>" class="bfi-btn eectrack <?php echo $btnClass ?> data-type="Resource" data-id="<?php echo $merchant->ResourceId?>" data-index="<?php echo $counter?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"" target="_blank"><?php echo $btnText ?></a>
 						<?php }else{ ?>
-								<a href="<?php echo $resourceRoute ?>" class=" bfi-btn <?php echo $btnClass ?>" target="_blank"><?php echo _e('Request' , 'bfi')?></a>
+								<a href="<?php echo $resourceRoute ?>" class="bfi-btn eectrack <?php echo $btnClass ?> data-type="Resource" data-id="<?php echo $merchant->ResourceId?>" data-index="<?php echo $counter?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"" target="_blank"><?php echo _e('Request' , 'bfi')?></a>
 						<?php } ?>
 					</div>
 				</div>
@@ -334,24 +334,22 @@ $listResourceIds = array();
 			</div>
 		</div>
 	</div>
-		
-		<?php $listsId[]= $merchant->MerchantId; ?>
-		<?php $listResourceIds[]= $merchant->ResourceId; ?>
+<?php 
+	$listsId[]= $merchant->MerchantId;
+	$listResourceIds[]= $merchant->ResourceId;
+	$counter++;
+}
+?>
 
-	<?php endforeach; ?>
 </div>
 </div>
 <script type="text/javascript">
 <!--
 
-//var urlCheck = "<?php echo $base_url ?>/bfi-api/v1/task";
 var listToCheck = "<?php echo implode(",", $listsId) ?>";
 var strAddress = "[indirizzo] - [cap] - [comune] ([provincia])";
 var imgPathMG = "<?php echo BFCHelper::getImageUrlResized('tag','[img]', 'merchant_merchantgroup') ?>";
 var imgPathMGError = "<?php echo BFCHelper::getImageUrl('tag','[img]', 'merchant_merchantgroup') ?>";
-var cultureCodeMG = '<?php echo $language ?>';
-var defaultcultureCodeMG = '<?php echo BFCHelper::$defaultFallbackCode ?>';
-var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 
 var shortenOption = {
 		moreText: "<?php _e('Read more', 'bfi'); ?>",
@@ -368,14 +366,14 @@ function getAjaxInformations(){
 	{
 		loaded=true;
 		var queryMG = "task=getMerchantGroups";
-		jQuery.post(urlCheck, queryMG, function(data) {
+		jQuery.post(bfi_variable.bfi_urlCheck, queryMG, function(data) {
 				if(data!=null){
 					jQuery.each(JSON.parse(data) || [], function(key, val) {
 						if (val.ImageUrl!= null && val.ImageUrl!= '') {
 							var $imageurl = imgPathMG.replace("[img]", val.ImageUrl );		
 							var $imageurlError = imgPathMGError.replace("[img]", val.ImageUrl );		
 							/*--------getName----*/
-							var $name = bookingfor.getXmlLanguage(val.Name,cultureCodeMG,defaultcultureCodeMG);
+							var $name = bookingfor.getXmlLanguage(val.Name,bfi_variable.bfi_cultureCode, bfi_variable.bfi_defaultcultureCode);
 							/*--------getName----*/
 							mg[val.TagId] = '<img src="' + $imageurl + '" onerror="this.onerror=null;this.src=\'' + $imageurlError + '\';" alt="' + $name + '" data-toggle="tooltip" title="' + $name + '" />';
 						} else {
@@ -390,24 +388,14 @@ function getAjaxInformations(){
 	}
 }
 
-
 function getlist(){
-	if (cultureCode.length>1)
-	{
-		cultureCode = cultureCode.substring(0, 2).toLowerCase();
-	}
-	if (defaultcultureCode.length>1)
-	{
-		defaultcultureCode = defaultcultureCode.substring(0, 2).toLowerCase();
-	}
-
 	var query = "merchantsId=" + listToCheck + "&language=<?php echo $language ?>&task=GetMerchantsByIds";
 	if(listToCheck!='')
 	
 	var imgPath = "<?php echo $merchantImagePath ?>";
 	var imgPathError = "<?php echo $merchantImagePathError ?>";
 
-	jQuery.post(urlCheck, query, function(data) {
+	jQuery.post(bfi_variable.bfi_urlCheck, query, function(data) {
 
 				if(typeof callfilterloading === 'function'){
 					callfilterloading();
@@ -460,17 +448,8 @@ function getlist(){
 }
 
 function getDiscountsAjaxInformations(discountIds,obj, fn){
-	if (cultureCode.length>1)
-	{
-		cultureCode = cultureCode.substring(0, 2).toLowerCase();
-	}
-	if (defaultcultureCode.length>1)
-	{
-		defaultcultureCode = defaultcultureCode.substring(0, 2).toLowerCase();
-	}
-
 	var query = "discountId=" + discountIds + "&language=<?php echo $language ?>&task=getDiscountDetails";
-	jQuery.post(urlCheck, query, function(data) {
+	jQuery.post(bfi_variable.bfi_urlCheck, query, function(data) {
 			$html = '';
 			jQuery.each(data || [], function(key, val) {
 				var name = val.Name;
@@ -551,22 +530,17 @@ jQuery(document).ready(function() {
 
 });
 
-
 	function createMarkers(data, oms, bounds, currentMap) {
 		jQuery.each(data, function(key, val) {
 			if (val.XGooglePos == '' || val.YGooglePos == '' || val.XGooglePos == null || val.YGooglePos == null)
 				return true;
-			var url = "<?php echo $formAction; ?>?merchantId=" + val.MerchantId+ '&task=getmarketinfomerchant';
-//			var url = "<?php echo $url_merchant_page; ?>" + val.MerchantId + '-' + val.MerchantName + '/mapspopup?fromsearch=1';
-
-//			url += '?format=raw&layout=map&merchantId=' + val.MerchantId;
-			
+			var query = "merchantId=" + val.MerchantId+ '&language=<?php echo $language ?>&task=getmarketinfomerchant';
 			var marker = new google.maps.Marker({
 				position: new google.maps.LatLng(val.XGooglePos, val.YGooglePos),
 				map: currentMap
 			});
 
-			marker.url = url;
+			marker.url = bfi_variable.bfi_urlCheck + ((bfi_variable.bfi_urlCheck.indexOf('?') > -1)? "&" :"?") + query;
 			marker.extId = val.MerchantId;
 
 			oms.addMarker(marker);

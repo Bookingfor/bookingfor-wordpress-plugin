@@ -811,27 +811,6 @@ class BFI_Controller {
 		if(empty($formData)){
 		}
 		
-//		//Creazione utente se non esistente
-//		if(!is_user_logged_in()) {
-//		  $email_address = $formData['Email'];
-//		  $password = $formData['Password'];
-//		  if( null == username_exists( $email_address ) ) {
-//			$user_id = wp_create_user( $email_address, $password, $email_address );
-//			wp_update_user(
-//			  array(
-//				'ID'          =>    $user_id,
-//				'nickname'    =>    $email_address
-//			  )
-//			);
-//			$user = new WP_User( $user_id );
-//			wp_mail( $email_address, 'Welcome!', 'Your Password: ' . $password );
-//			$creds = array( 'user_login' =>  $email_address, 'user_password' => $password, 'remember' => 0 );
-//			$user = wp_signon( $creds, false );
-//			if ( is_wp_error($user) ): echo $user->get_error_message(); endif;
-//			wp_set_current_user($user->ID);
-//		  }
-//		}
-
 		$customer = BFCHelper::getCustomerData($formData);
 
 		$userNotes = $formData['note'];
@@ -842,21 +821,22 @@ class BFI_Controller {
 		$OrderJson = $formData['hdnOrderData'];
 		$bookingTypeSelected = $formData['bookingtypeselected'];
 
-		$suggestedStays =  BFCHelper::CreateOrder($OrderJson,$cultureCode,$bookingTypeSelected);
+//		$suggestedStays =  BFCHelper::CreateOrder($OrderJson,$cultureCode,$bookingTypeSelected);
+		$suggestedStays = null;
 
-		$listCartorderid = array();
-		// recupero tutti i cartorderid per la cancellazione del carrello
-			$orderModel = json_decode(stripslashes($OrderJson));
-            if ($orderModel->Resources != null && count($orderModel->Resources) > 0 )
-            {
-                foreach ($orderModel->Resources as $resource)
-                {
-					if(!empty($resource->CartOrderId)){
-						$listCartorderid[] = $resource->CartOrderId;
-					}
-				}
-			}
-		$listCartorderidstr = implode(",",$listCartorderid);
+//		$listCartorderid = array();
+//		// recupero tutti i cartorderid per la cancellazione del carrello
+//			$orderModel = json_decode(stripslashes($OrderJson));
+//            if ($orderModel->Resources != null && count($orderModel->Resources) > 0 )
+//            {
+//                foreach ($orderModel->Resources as $resource)
+//                {
+//					if(!empty($resource->CartOrderId)){
+//						$listCartorderid[] = $resource->CartOrderId;
+//					}
+//				}
+//			}
+//		$listCartorderidstr = implode(",",$listCartorderid);
 		
 //		$suggestedStay = json_decode(stripslashes($formData['staysuggested']));
 //		$req = json_decode(stripslashes($formData['stayrequest']), true);
@@ -872,10 +852,12 @@ class BFI_Controller {
 //		$customerDatas = array($customerData);
 
 		$ccdata = null;
-		if (BFCHelper::canAcquireCCData($formData)) { 
-			$ccdata = json_encode(BFCHelper::getCCardData($formData));
-			$ccdata = BFCHelper::encrypt($ccdata);
-			}
+//		if (BFCHelper::canAcquireCCData($formData)) { 
+		$ccdata = BFCHelper::getCCardData($formData);
+		if (!empty($ccdata)) {
+			$ccdata = BFCHelper::encrypt(json_encode($ccdata));
+		}
+//			}
 
 		$orderData = array(
 				'customerData' =>  array($customer),
@@ -904,6 +886,8 @@ class BFI_Controller {
 			$processOrder=false;
 		}
 
+		$tmpUserId = BFCHelper::bfi_get_userId();
+		$currCart = BFCHelper::GetCartByExternalUser($tmpUserId, $language, true);
 
 		$order = BFCHelper::setOrder(
                 $orderData['customerData'], 
@@ -926,15 +910,14 @@ class BFI_Controller {
 			$redirect = $redirecterror;
 		}
 		if (!empty($order)){
-
-			// cancello il carrello
-			BFCHelper::setSession('hdnBookingType', '', 'bfi-cart');
-			BFCHelper::setSession('hdnOrderData', '', 'bfi-cart');
-			if(!empty($listCartorderidstr)){
-				$tmpUserId = bfi_get_userId();
-				$model = new BookingForConnectorModelOrders;
-				$currCart = $model->DeleteFromCartByExternalUser($tmpUserId, $cultureCode, $listCartorderidstr);
-			}	
+//			// cancello il carrello
+//			BFCHelper::setSession('hdnBookingType', '', 'bfi-cart');
+//			BFCHelper::setSession('hdnOrderData', '', 'bfi-cart');
+//			if(!empty($listCartorderidstr)){
+//				$tmpUserId = bfi_get_userId();
+//				$model = new BookingForConnectorModelOrders;
+//				$currCart = $model->DeleteFromCartByExternalUser($tmpUserId, $cultureCode, $listCartorderidstr);
+//			}	
 
 			
 			if(!empty($isgateway) && ($isgateway =="true" ||$isgateway =="1")){
@@ -946,13 +929,13 @@ class BFI_Controller {
 
 			}else{
 				$numAdults = 0;
-				if(isset($suggestedStays->Paxes)){
-					$persons= explode("|", $suggestedStays->Paxes);
-					foreach($persons as $person) {
-						$totper = explode(":", $person);
-						$numAdults += (int)$totper[1];
-					}
-				}
+//				if(isset($suggestedStays->Paxes)){
+//					$persons= explode("|", $suggestedStays->Paxes);
+//					foreach($persons as $person) {
+//						$totper = explode(":", $person);
+//						$numAdults += (int)$totper[1];
+//					}
+//				}
 
 				$act = "OrderResource";
 				if(!empty($order->OrderType) && strtolower($order->OrderType) =="b"){
@@ -970,7 +953,7 @@ class BFI_Controller {
 
 				$redirect = $redirect . 'act=' . $act  
 				 . '&orderid=' . $order->OrderId 
-				 . '&merchantid=' . $order->MerchantId 
+				 . (!empty($order->MerchantId )?'&merchantid=' . $order->MerchantId :"") 
 				 . '&OrderType=' . $order->OrderType 
 				 . '&OrderTypeId=' . $order->OrderTypeId 
 				 . '&totalamount=' . ($order->TotalAmount *100)
@@ -995,20 +978,14 @@ class BFI_Controller {
 		BFCHelper::setSession('hdnBookingType', '', 'bfi-cart');
 		BFCHelper::setSession('hdnOrderData', '', 'bfi-cart');
 		$OrderJson = stripslashes(BFCHelper::getVar("hdnOrderData"));
+		$bfiResetCart = (BFCHelper::getVar("bfiResetCart","0"));
 		$language = isset($_REQUEST['language']) ? $_REQUEST['language'] : '' ;
 		$return = null;
 		if(!empty($OrderJson)){
-//			$recalculateOrder=BFCHelper::getVar("recalculateOrder");
-//			if ($recalculateOrder == "1") {
-//				$bookingType = stripslashes(BFCHelper::getVar("hdnBookingType"));
-//				$currorder = BFCHelper::calculateOrder($OrderJson,$language,$bookingType);
-//				$currorder->SearchModel->FromDate = $currorder->SearchModel->FromDate->format('d/m/Y');
-//				$currorder->SearchModel->ToDate = $currorder->SearchModel->ToDate->format('d/m/Y');
-//				$OrderJson = stripslashes(json_encode( $currorder ));
-//			}			
-			$tmpUserId = bfi_get_userId();
+			$tmpUserId = BFCHelper::bfi_get_userId();
 			$model = new BookingForConnectorModelOrders;
-			$currCart = $model->AddToCartByExternalUser($tmpUserId, $language, $OrderJson);
+//			$currCart = BFCHelper::AddToCartByExternalUser($tmpUserId, $language, $OrderJson, $bfiResetCart);
+			$currCart = BFCHelper::AddToCart($tmpUserId, $language, $OrderJson, $bfiResetCart);
 			if(!empty($currCart)){
 				$return = json_encode($currCart);
 			}
@@ -1027,26 +1004,25 @@ class BFI_Controller {
 		}
 
 		if(!empty($CartOrderId)){
-			$tmpUserId = bfi_get_userId();
-			$model = new BookingForConnectorModelOrders;
-			$currCart = $model->DeleteFromCartByExternalUser($tmpUserId, $language, $CartOrderId);
+			$tmpUserId = BFCHelper::bfi_get_userId();
+			$currCart = BFCHelper::DeleteFromCartByExternalUser($tmpUserId, $language, $CartOrderId);
 			wp_redirect($url_cart_page);
 			exit;
 
 //			if(!empty($currCart)){
 //				$return = json_encode($currCart);
 //			}
-		}else{
-			$resources = BFCHelper::getSession('hdnOrderData', '', 'bfi-cart');
-			if(!empty($resources)){
-				$resources = json_decode($resources,true);
-				unset($resources[$CartOrderId]);
-				$resources = array_values($resources);
-				$currResourcesStr = json_encode($resources);
-				BFCHelper::setSession('hdnOrderData', $currResourcesStr, 'bfi-cart');
-			}
-			wp_redirect($url_cart_page);
-			exit;
+//		}else{
+//			$resources = BFCHelper::getSession('hdnOrderData', '', 'bfi-cart');
+//			if(!empty($resources)){
+//				$resources = json_decode($resources,true);
+//				unset($resources[$CartOrderId]);
+//				$resources = array_values($resources);
+//				$currResourcesStr = json_encode($resources);
+//				BFCHelper::setSession('hdnOrderData', $currResourcesStr, 'bfi-cart');
+//			}
+//			wp_redirect($url_cart_page);
+//			exit;
 		
 		}
 		$base_url = get_site_url();
@@ -1058,6 +1034,27 @@ class BFI_Controller {
 		}
 		wp_redirect($base_url);
 		exit;
+	}
+
+	function addDiscountCodesToCart(){		
+		$bficoupons = BFCHelper::getVar("bficoupons");
+		$language = BFCHelper::getVar("bfilanguage");
+//		$redirect = JRoute::_('index.php?option=com_bookingforconnector&view=cart');
+		$cartdetails_page = get_post( bfi_get_page_id( 'cartdetails' ) );
+		$url_cart_page = get_permalink( $cartdetails_page->ID );
+		$usessl = COM_BOOKINGFORCONNECTOR_USESSL;
+		if($usessl){
+			$url_cart_page = str_replace( 'http:', 'https:', $url_cart_page );
+		}
+		if(!empty($bficoupons)){
+			$tmpUserId = BFCHelper::bfi_get_userId();
+			$currCart = BFCHelper::AddDiscountCodesCartByExternalUser($tmpUserId, $language, $bficoupons);
+		}
+		wp_redirect($url_cart_page);
+		exit;
+//		$app = JFactory::getApplication();
+//		$app->redirect($redirect, false);
+//		$app->close();
 	}
 
 	public function SearchByText() {
@@ -1080,5 +1077,109 @@ class BFI_Controller {
 		}
 		echo $return;
 	}
+
+	function getmarketinfomerchant(){
+		$resource_id=BFCHelper::getVar('merchantId');
+		$language=BFCHelper::getVar('language');
+		$merchant = BFCHelper::getMerchantFromServicebyId($resource_id);
+		$merchantName = BFCHelper::getLanguage($merchant->Name, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
+		$indirizzo = isset($merchant->AddressData->Address)?$merchant->AddressData->Address:"";
+		$cap = isset($merchant->AddressData->ZipCode)?$merchant->AddressData->ZipCode:""; 
+		$comune = isset($merchant->AddressData->CityName)?$merchant->AddressData->CityName:"";
+		$stato = isset($merchant->AddressData->StateName)?$merchant->AddressData->StateName:"";
+		
+//		$db   = JFactory::getDBO();
+//		$uri  = 'index.php?option=com_bookingforconnector&view=merchantdetails';
+//		$db->setQuery('SELECT id FROM #__menu WHERE link LIKE '. $db->Quote( $uri ) .' AND (language='. $db->Quote($language) .' OR language='.$db->Quote('*').') AND published = 1 LIMIT 1' );
+//		$itemId = intval($db->loadResult());
+//		$currUriMerchant = $uri.'&merchantId=' . $merchant->MerchantId . ':' . BFCHelper::getSlug($merchantName);
+//		if ($itemId<>0)
+//			$currUriMerchant.='&Itemid='.$itemId;
+//		$routeMerchant = JRoute::_($currUriMerchant.'&fromsearch=1');
+
+		$merchantdetails_page = get_post( bfi_get_page_id( 'merchantdetails' ) );
+		$url_merchant_page = get_permalink( $merchantdetails_page->ID );
+		$routeMerchant = $url_merchant_page . $merchant->MerchantId.'-'.BFI()->seoUrl($merchant->Name).'?fromsearch=1';
+
+		$output = '<div class="bfi-mapdetails">
+					<div class="bfi-item-title">
+						<a href="'.$routeMerchant.'" target="_blank">'.$merchant->Name.'</a> 
+					</div>
+					<div class="bfi-item-address"><span class="street-address">'.$indirizzo .'</span>, <span class="postal-code ">'.$cap .'</span> <span class="locality">'.$comune .'</span>, <span class="region">'.$stato .'</span></div>
+				</div>';    
+		die($output);    	
+	}
+
+	function getmarketinforesource(){
+		$resource_id=BFCHelper::getVar('resourceId');
+		$language=BFCHelper::getVar('language');
+		$resource = BFCHelper::GetResourcesById($resource_id);
+		$merchant = $resource->Merchant;
+		$resourceName = BFCHelper::getLanguage($resource->Name, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
+		$indirizzo = isset($resource->Address)?$resource->Address:"";
+		$cap = isset($resource->ZipCode)?$resource->ZipCode:""; 
+		$comune = isset($resource->CityName)?$resource->CityName:"";
+		$stato = isset($resource->StateName)?$resource->StateName:"";
+		
+//		$db   = JFactory::getDBO();
+//		$uri  = 'index.php?option=com_bookingforconnector&view=resource';
+//		$db->setQuery('SELECT id FROM #__menu WHERE link LIKE '. $db->Quote( $uri ) .' AND (language='. $db->Quote($language) .' OR language='.$db->Quote('*').') AND published = 1 LIMIT 1' );
+//		$itemId = intval($db->loadResult());
+//		$currUriresource = $uri.'&resourceId=' . $resource->ResourceId . ':' . BFCHelper::getSlug($resourceName);
+//		if ($itemId<>0)
+//			$currUriresource.='&Itemid='.$itemId;
+//		if (!empty($resource->RateplanId)){
+//			 $currUriresource .= "&pricetype=" . $resource->RateplanId;
+//		}
+//		$resourceRoute = JRoute::_($currUriresource.'&fromsearch=1');
+
+		$accommodationdetails_page = get_post( bfi_get_page_id( 'accommodationdetails' ) );
+		$url_resource_page = get_permalink( $accommodationdetails_page->ID );
+		$resourceRoute = $url_resource_page . $resource->ResourceId .'-'.BFI()->seoUrl($resourceName).'?fromsearch=1';
+		if (!empty($resource->RateplanId)){
+			 $resourceRoute .= "&pricetype=" . $resource->RateplanId;
+		}
+
+		$output = '<div class="bfi-mapdetails">
+					<div class="bfi-item-title">
+						<a href="'.$resourceRoute.'" target="_blank">'.$resource->Name.'</a> 
+					</div>
+					<div class="bfi-item-address"><span class="street-address">'.$indirizzo .'</span>, <span class="postal-code ">'.$cap .'</span> <span class="locality">'.$comune .'</span>, <span class="region">'.$stato .'</span></div>
+				</div>';    
+		die($output);    	
+	}
+	function getmarketinfocondominium(){
+		$resource_id=BFCHelper::getVar('resourceId');
+		$language=BFCHelper::getVar('language');
+		$resource = BFCHelper::getCondominiumFromServicebyId($resource_id);
+		$resourceName = BFCHelper::getLanguage($resource->Name, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
+		$indirizzo = isset($resource->Address)?$resource->Address:"";
+		$cap = isset($resource->ZipCode)?$resource->ZipCode:""; 
+		$comune = isset($resource->CityName)?$resource->CityName:"";
+		$stato = isset($resource->StateName)?$resource->StateName:"";
+		
+//		$db   = JFactory::getDBO();
+//		$uri  = 'index.php?option=com_bookingforconnector&view=condominium';
+//		$db->setQuery('SELECT id FROM #__menu WHERE link LIKE '. $db->Quote( $uri ) .' AND (language='. $db->Quote($language) .' OR language='.$db->Quote('*').') AND published = 1 LIMIT 1' );
+//		$itemId = intval($db->loadResult());
+//		$currUriresource = $uri.'&resourceId=' . $resource->CondominiumId . ':' . BFCHelper::getSlug($resourceName);
+//		if ($itemId<>0)
+//			$currUriresource.='&Itemid='.$itemId;
+//		$resourceRoute = JRoute::_($currUriresource.'&fromsearch=1');
+
+		$condominiumdetails_page = get_post( bfi_get_page_id( 'condominiumdetails' ) );
+		$url_condominium_page = get_permalink( $condominiumdetails_page->ID );
+		$resourceRoute = $url_condominium_page . $resource->CondominiumId.'-'.BFI()->seoUrl($resourceName).'?fromsearch=1';
+
+		$output = '<div class="bfi-mapdetails">
+					<div class="bfi-item-title">
+						<a href="'.$resourceRoute.'" target="_blank">'.$resource->Name.'</a> 
+					</div>
+					<div class="bfi-item-address"><span class="street-address">'.$indirizzo .'</span>, <span class="postal-code ">'.$cap .'</span> <span class="locality">'.$comune .'</span>, <span class="region">'.$stato .'</span></div>
+				</div>';    
+		die($output);    	
+	}
+
+
 }
 endif;

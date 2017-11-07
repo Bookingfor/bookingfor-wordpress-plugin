@@ -211,15 +211,6 @@ if ( $title ) {
 	
 ?>
 
-
-<!-- start of sidebar for payment form login widghet  -->
-<script type="text/javascript">
-	var urlCheck = "<?php echo $base_url ?>/bfi-api/v1/task";	
-	var cultureCode = '<?php echo $language ?>';
-	var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
-//-->
-</script>
-
 <?php if(!preg_match("/form/",$_SERVER['REQUEST_URI'])){ ?>
 
 <div class="bfi-modbookingforconnector <?php echo $moduleclass_sfx ?> ">
@@ -236,7 +227,7 @@ if ( $title ) {
 		</div>
 		<div class="bfi-merchant-simple bfi-text-center">
 			<span class="street-address"><?php echo $indirizzo ?></span>, <span class="postal-code "><?php echo $cap ?></span> <span class="locality"><?php echo $comune ?></span> <span class="region">(<?php echo $provincia ?>)</span><br />
-			<span class="tel"><a  href="javascript:void(0);" onclick="bookingfor.getData(urlCheck,'merchantid=<?php echo $merchant->MerchantId?>&task=GetPhoneByMerchantId&language=' + cultureCode,this,'<?php echo  addslashes($merchant->Name) ?>','PhoneView')"  id="phone<?php echo $merchant->MerchantId?>"><?php _e('Show phone', 'bfi'); ?></a></span> - <?php if ($merchantSiteUrl != ''):?>
+			<span class="tel"><a  href="javascript:void(0);" onclick="bookingfor.getData(bfi_variable.bfi_urlCheck,'merchantid=<?php echo $merchant->MerchantId?>&task=GetPhoneByMerchantId&language=' + cultureCode,this,'<?php echo  addslashes($merchant->Name) ?>','PhoneView')"  id="phone<?php echo $merchant->MerchantId?>"><?php _e('Show phone', 'bfi'); ?></a></span> - <?php if ($merchantSiteUrl != ''):?>
 				<span class="website"><a target="_blank" href="<?php echo $uriMerchantRedirect; ?>"><?php _e('Web site', 'bfi'); ?></a></span>
 			<?php endif;?>
 		</div>

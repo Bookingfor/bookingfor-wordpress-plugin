@@ -63,9 +63,10 @@ function bfi_selecttimeslot(currEl){
 	var newValStart = new Date(fromDate + "T" + currSelect[0] + ":00Z" );
 	var newValEnd = new Date(fromDate + "T" + currSelect[1] + ":00Z" );
 	var diffMs = (newValEnd - newValStart);
-	var duration =  Math.floor((diffMs/1000)/60/60);
+	var duration =  Math.round(Math.floor((diffMs/1000)/60/60) * 100) / 100;
 
-	var currTr = jQuery('.bfi-timeslot[data-sourceid="'+sourceId+'"]');
+//	var currTr = jQuery('.bfi-timeslot[data-sourceid="'+sourceId+'"]');
+    var currTr = jQuery(bfi_currTRselected).find(".bfi-timeslot");
 	var currCheckin =currTr.find(".bfi-time-checkin").first();
 	var currCheckinhours =currTr.find(".bfi-time-checkin-hours").first();
 	var currCheckout =currTr.find(".bfi-time-checkout").first();

@@ -133,13 +133,6 @@ if (!empty($merchant->LogoUrl)){
 <?php echo json_encode($payload); ?>
 // ]]></script>
 
-<script type="text/javascript">
-<!--
-var urlCheck = "<?php echo $base_url ?>/bfi-api/v1/task";	
-var cultureCode = '<?php echo $language ?>';
-var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
-//-->
-</script>
 <div class="bfi-content">	
 
 	<div class="bfi-title-name"><?php echo  $resourceName?> - <span class="bfi-cursor"><?php echo  $merchantName?></span></div>

@@ -75,13 +75,6 @@ if(empty($resourceLon) && !empty($merchant->YGooglePos)){
 $showResourceMap = (($resourceLat != null) && ($resourceLon !=null) );
 $htmlmarkerpoint = "&markers=color:blue%7C" . $resourceLat . "," . $resourceLon;
 
-
-$indirizzo = isset($resource->Address)?$resource->Address:"";
-$cap = isset($resource->ZipCode)?$resource->ZipCode:""; 
-$comune = isset($resource->CityName)?$resource->CityName:"";
-$stato = isset($resource->StateName)?$resource->StateName:"";
-
-
 $merchantRules = "";
 if(isset($merchant->Rules)){
 	$merchantRules = BFCHelper::getLanguage($merchant->Rules, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags'));
@@ -148,14 +141,6 @@ if (!empty($merchant->LogoUrl)){
 <script type="application/ld+json">// <![CDATA[
 <?php echo json_encode($payload); ?>
 // ]]></script>
-
-<script type="text/javascript">
-<!--
-var urlCheck = "<?php echo $base_url ?>/bfi-api/v1/task";	
-var cultureCode = '<?php echo $language ?>';
-var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
-//-->
-</script>
 
 <div class="bfi-content bfi-hideonextra">	
 	
@@ -367,10 +352,6 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 		});
 
 		var rateplansTags = [];
-
-		var  pagelist = "<?php echo $routeSearch; ?>";
-		
-//		jQuery("#divcalculator").load(pagelist, function() {});
 
 		<?php if(isset($_REQUEST["pricetype"])){ ?>	
 			

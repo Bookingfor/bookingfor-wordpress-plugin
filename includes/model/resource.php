@@ -55,6 +55,7 @@ class BookingForConnectorModelResource
 	private $urlGetListCheckInDayPerTimes = null;
 	private $urlGetMostRestrictivePolicyByIds = null;
 	private $urlGetPolicyById = null;
+	private $urlGetPolicyByIds = null;
 
 	public function __construct($config = array())
 	{
@@ -108,6 +109,7 @@ class BookingForConnectorModelResource
 		$this->urlGetListCheckInDayPerTimes = '/GetListCheckInDayPerTimes';
 		$this->urlGetMostRestrictivePolicyByIds = '/GetMostRestrictivePolicyByIds';
 		$this->urlGetPolicyById = '/GetPolicyById';
+		$this->urlGetPolicyByIds = '/GetPolicyByIds';
 
 	}
 
@@ -813,6 +815,32 @@ class BookingForConnectorModelResource
 			$res = json_decode($r);
 			if (!empty($res->d->GetPolicyById)){
 				$types = $res->d->GetPolicyById;
+			}elseif(!empty($res->d)){
+				$types = $res->d;
+			}
+		}
+		return $types;
+	}
+	public function GetPolicyByIds($ids, $cultureCode) {
+		if(empty($cultureCode)){
+			$cultureCode = $GLOBALS['bfi_lang'];
+		}
+		$options = array(
+			'path' => $this->urlGetPolicyByIds,
+			'data' => array(
+					'ids' => '\'' . $ids. '\'',
+					'cultureCode' => '\'' . $cultureCode . '\'',
+					'$format' => 'json'
+				)
+			);
+		$url = $this->helper->getQuery($options);
+		$types = null;
+		
+		$r = $this->helper->executeQuery($url);
+		if (isset($r)) {
+			$res = json_decode($r);
+			if (!empty($res->d->GetPolicyByIds)){
+				$types = $res->d->GetPolicyByIds;
 			}elseif(!empty($res->d)){
 				$types = $res->d;
 			}

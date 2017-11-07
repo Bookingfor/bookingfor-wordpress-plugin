@@ -23,16 +23,6 @@ $url_page_RealEstate = get_permalink( $searchOnSell_page->ID );
 $searchAvailability_page = get_post( bfi_get_page_id( 'searchavailability' ) );
 $url_page_Resources = get_permalink( $searchAvailability_page->ID );
 
-if(COM_BOOKINGFORCONNECTOR_MONTHINCALENDAR==1){
-?>
-	<style type="text/css">
-		.ui-datepicker-trigger.activeclass:after {
-		  top: 95px !important;
-		}
-	</style>
-<?php
-}
-
 $parsRealEstate = BFCHelper::getSearchOnSellParamsSession();
 $parsResource = BFCHelper::getSearchParamsSession();
 
@@ -149,7 +139,9 @@ if ($checkin == $checkout){
 	$checkout->modify($checkoutspan);
 }
 
-
+////only for Joomla
+//$checkin = new JDate($checkin->format('Y-m-d')); 
+//$checkout = new JDate($checkout->format('Y-m-d')); 
 
 $duration = $checkin->diff($checkout);
 
@@ -169,6 +161,7 @@ $showMapIcon = ( !empty($tablistResources) && ! empty( $instance['showMapIcon'] 
 $showSearchText = ( !empty($tablistResources) && ! empty( $instance['showSearchText'] ) ) ? esc_attr($instance['showSearchText']) : '0';
 $showAccomodations = ( !empty($tablistResources) && ! empty( $instance['showAccomodations'] ) ) ? esc_attr($instance['showAccomodations']) : '0';
 $showDateRange = ( !empty($tablistResources) && ! empty( $instance['showDateRange'] ) ) ? esc_attr($instance['showDateRange']) : '0';
+$onlystay = ( !empty($tablistResources) && ! empty( $instance['onlystay'] ) ) ? ($instance['onlystay']) : '0';
 
 if($showSearchText) {
 	$showLocation = '0';
@@ -219,8 +212,8 @@ $availabilityTypesSelectedActivities = ( ! empty( $instance['availabilitytypesac
 $itemTypesSelectedBooking = ( ! empty( $instance['itemtypesbooking'] ) ) ? $instance['itemtypesbooking'] : array();
 $itemTypesSelectedActivities = ( ! empty( $instance['itemtypesactivities'] ) ) ? $instance['itemtypesactivities'] : array();
 
-$groupBySelectedBooking = ( ! empty( $instance['groupbybooking'] ) ) ? $instance['groupbybooking'] :  array(0);
-$groupBySelectedActivities = ( ! empty( $instance['groupbyactivities'] ) ) ? $instance['groupbyactivities'] : array(0);
+$groupBySelectedBooking = ( ! empty( $instance['groupbybooking'] ) ) ? $instance['groupbybooking'] : [0];
+$groupBySelectedActivities = ( ! empty( $instance['groupbyactivities'] ) ) ? $instance['groupbyactivities'] : [0];
 
 
 $tmpMerchantCategoryIdResource = (strpos($merchantCategoryIdResource, ',') !== FALSE )?"0":$merchantCategoryIdResource;
@@ -229,7 +222,7 @@ $tmpmasterTypeId = (strpos($masterTypeId, ',') !== FALSE )?"0":$masterTypeId;
 if($showAccomodations || $showAccomodationsOnSell){
 	if(!empty($merchantCategoriesSelectedBooking) || !empty($merchantCategoriesSelectedActivities) || !empty($merchantCategoriesSelectedRealEstate) ){
 //		$allMerchantCategories = BFCHelper::getMerchantCategories();
-		$allMerchantCategories = BFCHelper::getMerchantCategoriesForRequest($language);
+		$allMerchantCategories = BFCHelper::getMerchantCategories($language);
 
 		if(!empty($merchantCategoriesSelectedBooking) || !empty($merchantCategoriesSelectedActivities) ){
 			$listmerchantCategoriesResource = '<option value="0">'.($showdirection?__('Tipology', 'bfi'):__('All', 'bfi')).'</option>';
@@ -287,8 +280,6 @@ if($showAccomodations || $showAccomodationsOnSell){
 		}
 	}
 }
-
-
 
 $blockmonths = '[14]';
 $blockdays = '[7]';
@@ -430,6 +421,7 @@ if($countPaxes>0){
 }
 
 $showChildrenagesmsg = isset($_REQUEST['showmsgchildage']) ? $_REQUEST['showmsgchildage'] : 0;
+$tabActive = "";
 
 ?>
 <?php 
@@ -438,10 +430,7 @@ echo $before_widget;
 if ( $title ) {
   echo $before_title . $title . $after_title;
 }
-$tabActive = "";
-
 ?>
-
 <div class="bfi-mod-bookingforsearch" id="bfisearch<?php echo $currModID ?>" >
     <ul class="bfi-tabs" id="navbookingforsearch<?php echo $currModID ?>" style="<?php echo (count($tablistSelected)>1) ?"": "display:none" ?>">
 		<?php if(in_array(0, $tablistSelected)){ ?>
@@ -493,9 +482,9 @@ $tabActive = "";
         </li>
 		<?php }  ?>
     </ul>
-    <div class="tab-content">
+    <div class="bfi-tab-content tab-content">
 <?php if(!empty($tablistResources)){ ?>
-        <div id="bfisearchtab<?php echo $currModID ?>" class="tab-pane fade active in">
+        <div id="bfisearchtab<?php echo $currModID ?>" class="tab-pane fade in">
 		<form action="<?php echo $url_page_Resources; ?>" method="get" id="searchform<?php echo $currModID ?>" class="bfi-form-<?php echo $showdirection?"horizontal":"vertical"; ?> ">
 				<?php if($showSearchText) { ?>
 					<div class="bfi_destination bfi-container">
@@ -682,7 +671,7 @@ $tabActive = "";
 			</div>
 			<div class="bfi-clearboth"></div>
 			<input type="hidden" value="<?php echo uniqid('', true)?>" name="searchid" />
-			<input type="hidden" name="onlystay" value="1">
+			<input type="hidden" name="onlystay" value="<?php echo $onlystay ?>">
 			<input type="hidden" name="persons" value="<?php echo $nad + $nse + $nch?>" id="searchformpersons<?php echo $currModID ?>">
 			<input type="hidden" name="adults" value="<?php echo $nad?>" id="searchformpersonsadult<?php echo $currModID ?>">
 			<input type="hidden" name="seniores" value="<?php echo $nse?>" id="searchformpersonssenior<?php echo $currModID ?>">
@@ -722,7 +711,7 @@ $tabActive = "";
         </div>
 <?php }  ?>
 <?php if(!empty($tablistRealEstate)){ ?>
-		<div id="bfisearchselling<?php echo $currModID ?>" class="tab-pane fade <?php echo (empty($tablistResources)) ?"active in": "" ?>">
+		<div id="bfisearchselling<?php echo $currModID ?>" class="tab-pane fade in">
 		<form action="<?php echo $url_page_RealEstate; ?>" method="get" id="searchformonsellunit<?php echo $currModID ?>" class=" ">			
 			<div  id="searchBlock<?php echo $currModID ?>" class="bfi-form-<?php echo $showdirection?"horizontal":"vertical"; ?> bfi-row">
 				<?php if($showContract){ ?>
@@ -895,11 +884,7 @@ $googlemapsapykey = '<?php echo COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY?>';
 $startzoom = <?php echo COM_BOOKINGFORCONNECTOR_GOOGLE_STARTZOOM?>;
 msg1 = "<?php _e('We\'re processing your request', 'bfi') ?>";
 msg2 = "<?php _e('Please be patient', 'bfi') ?>";
-
-var urlCheck = "<?php echo $base_url ?>/bfi-api/v1/task";	
-var cultureCode = '<?php echo $language ?>';
-var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
-	//-->
+//-->
 	</script>
 
 <?php if(!empty($tablistRealEstate)){ ?>
@@ -1043,16 +1028,18 @@ function insertNight<?php echo $currModID ?>(){
 		days  = Math.ceil(diff/1000/60/60/24);
 
 		var resbynight = jQuery(jQuery('#<?php echo $checkinId; ?>')).closest("form").find(".resbynighthd").first();
-		var resbynight_str = resbynight.val().split(",");
-		if(resbynight_str.indexOf("0") !== -1 || resbynight_str.indexOf("1") !== -1 ){
-			jQuery("#divcalendarnightsearch<?php echo $currModID ?>").show();
-			var strSummaryDays = "" +days+" <?php echo strtolower (__('Nights', 'bfi')) ?>";
-			if (jQuery(resbynight).val() == 0) {
-				days += 1;
-				strSummaryDays ="" +days+" <?php echo strtolower (__('Days', 'bfi')) ?>";
+		if(resbynight.length){
+			var resbynight_str = resbynight.val().split(",");
+			if(resbynight_str.indexOf("0") !== -1 || resbynight_str.indexOf("1") !== -1 ){
+				jQuery("#divcalendarnightsearch<?php echo $currModID ?>").show();
+				var strSummaryDays = "" +days+" <?php echo strtolower (__('Nights', 'bfi')) ?>";
+				if (jQuery(resbynight).val() == 0) {
+					days += 1;
+					strSummaryDays ="" +days+" <?php echo strtolower (__('Days', 'bfi')) ?>";
+				}
+				if(days<1){strSummaryDays ="";}
+				jQuery('#calendarnight<?php echo $durationId ?>').html(strSummaryDays);
 			}
-			if(days<1){strSummaryDays ="";}
-			jQuery('#calendarnight<?php echo $durationId ?>').html(strSummaryDays);
 		}
 
 
@@ -1224,6 +1211,11 @@ function checkChildrenSearch<?php echo $currModID ?>(nch,showMsg) {
 }
 jQuery(function() {
 
+	//correction for joomla!
+//	var baseElements = document.getElementsByTagName("base"); 
+//	if( baseElements.length>0 ) {
+//		baseElements[0].href = document.location.href;
+//	}
 <?php if($showDateRange){ ?>
 	jQuery("#<?php echo $checkinId; ?>").datepicker({
 		defaultDate: "+2d"
@@ -1304,7 +1296,7 @@ jQuery(function() {
 
 	jQuery("#searchtext<?php echo $currModID ?>").autocomplete({
         source: function( request, response ) {
-          jQuery.getJSON(urlCheck, {
+          jQuery.getJSON(bfi_variable.bfi_urlCheck, {
             task: "SearchByText",
             bfi_term: request.term,
 			bfi_maxresults: 5
@@ -1368,7 +1360,7 @@ jQuery(function() {
 	// vendite
 	jQuery("#searchtextonsell<?php echo $currModID ?>").autocomplete({
         source: function( request, response ) {
-          jQuery.getJSON(urlCheck, {
+          jQuery.getJSON(bfi_variable.bfi_urlCheck, {
             task: "SearchByText",
             bfi_term: request.term,
 			bfi_maxresults: 5,
@@ -1446,6 +1438,15 @@ jQuery(function() {
 		});
 		 jQuery("#filtersServicesSearch<?php echo $currModID ?>").val(jQuery.unique(active_keys.toArray()).join(","));
 	});
+
+	//disable choosen
+
+	try
+	{
+	jQuery("#bfisearch<?php echo $currModID ?>").find("select").chosen("destroy") ;
+	}
+	catch (e) {
+	}
 });
 
 function countPersone<?php echo $currModID ?>() {
@@ -1546,6 +1547,7 @@ function showhideCategories<?php echo $currModID ?>() {
 
 		jQuery("#searchtypetab<?php echo $currModID ?>").val("0");
 <?php if($showDateRange){ ?>	
+
 		var d = jQuery('#<?php echo $checkinId; ?>').datepicker('getDate');
 		if (jQuery(resbynight).val() == 1) {
 			d.setDate(d.getDate() + 1);
@@ -1619,7 +1621,7 @@ function showhideCategories<?php echo $currModID ?>() {
 			jQuery("#merchantCategoryId<?php echo $currModID ?>").closest("div").hide();
 			currMerchantCategory.find('option:eq(0)').val(0);
 		}
-		if(unitCategoriesSelectedActivities.length>1){
+		if(unitCategoriesSelectedActivities.length>0){
 			jQuery("#masterTypeId<?php echo $currModID ?>").closest("div").show();
             for (var i = 0; i < unitCategoriesSelectedActivities.length; i++) {
 				var currUC = unitCategoriesResource[unitCategoriesSelectedActivities[i]];
@@ -1640,9 +1642,11 @@ function showhideCategories<?php echo $currModID ?>() {
 	
 <?php if($showDateRange){ ?>	
 	jQuery("#divcalendarnightsearch<?php echo $currModID ?>").hide();
-	var resbynight_str = resbynight.val().split(",");
-	if(resbynight_str.indexOf("0") !== -1 || resbynight_str.indexOf("1") !== -1 ){
-		jQuery("#divcalendarnightsearch<?php echo $currModID ?>").show();
+	if(resbynight.length){
+		var resbynight_str = resbynight.val().split(",");
+		if(resbynight_str.indexOf("0") !== -1 || resbynight_str.indexOf("1") !== -1 ){
+			jQuery("#divcalendarnightsearch<?php echo $currModID ?>").show();
+		}
 	}
 <?php } ?>
 

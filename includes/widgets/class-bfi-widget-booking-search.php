@@ -96,7 +96,8 @@ function form($instance) {
 		$days[$i-4]=date_i18n('l',$dateObj->getTimestamp());
 	}
 
-	$allMerchantCategories = BFCHelper::getMerchantCategories();
+//	$allMerchantCategories = BFCHelper::getMerchantCategories();
+	$allMerchantCategories = BFCHelper::getMerchantCategories($language);
 	$merchantCategories = array();
 	if (!empty($allMerchantCategories))
 	{

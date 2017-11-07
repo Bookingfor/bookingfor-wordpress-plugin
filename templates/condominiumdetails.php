@@ -9,6 +9,20 @@ $language = $GLOBALS['bfi_lang'];
 ?>
 <?php
 	$layout = get_query_var( 'bfi_layout', '' );
+	$model = new BookingForConnectorModelCondominiums;
+	$resource = $model->getCondominiumFromService($resource_id,$language);	 
+	$merchant = $resource->Merchant;
+	$currencyclass = bfi_get_currentCurrency();
+	$merchants = array();
+	$merchants[] = $resource->MerchantId;
+
+	if(empty($resource)){
+	  global $wp_query;
+	  $wp_query->set_404();
+	  status_header( 404 );
+	  get_template_part( 404 );
+	  exit();		
+	}
 	
 	if(!isset($_GET['task']) && ($layout !=_x('inforequestpopup', 'Page slug', 'bfi' )) && ($layout !=_x('mapspopup', 'Page slug', 'bfi' ))  ) {
 
@@ -21,16 +35,7 @@ $language = $GLOBALS['bfi_lang'];
 		 * @hooked bookingfor_output_content_wrapper - 10 (outputs opening divs for the content)
 		 * @hooked bookingfor_breadcrumb - 20
 		 */
-		$model = new BookingForConnectorModelCondominiums;
-		$resource = $model->getCondominiumFromService($resource_id,$language);	 
 				
-		if(empty($resource)){
-		  global $wp_query;
-		  $wp_query->set_404();
-		  status_header( 404 );
-		  get_template_part( 404 );
-		  exit();		
-		}
 		do_action( 'bookingfor_before_main_content' );
 		if(isset($_REQUEST['newsearch'])){
 			bfi_setSessionFromSubmittedData();
@@ -48,11 +53,6 @@ $language = $GLOBALS['bfi_lang'];
 
 	$sendAnalytics =false;
 	$criteoConfig = null;
-	$merchants = array();
-	$merchants[] = $resource->MerchantId;
-	$merchant = $resource->Merchant;
-	$cartType = 1; //$merchant->CartType;
-	$currencyclass = bfi_get_currentCurrency();
 
 
 	switch ( $layout) {
@@ -100,13 +100,8 @@ $language = $GLOBALS['bfi_lang'];
 				echo "//--></script>";
 		}
 	
-//	wp_enqueue_script('bf_cart_type', BFI()->plugin_url() . '/assets/js/bf_cart_type_'.$cartType.'.js');
-	if($cartType ==0 ){
-		wp_enqueue_script('bf_cart_type', BFI()->plugin_url() . '/assets/js/bf_cart_type_0.js',array(),BFI_VERSION);
-	}else{
-		wp_enqueue_script('bf_cart_type', BFI()->plugin_url() . '/assets/js/bf_cart_type_1.js',array(),BFI_VERSION);
-	}
 
+	wp_enqueue_script('bf_cart_type', BFI()->plugin_url() . '/assets/js/bf_cart_type_1.js',array(),BFI_VERSION);
 	wp_enqueue_script('bf_appTimePeriod', BFI()->plugin_url() . '/assets/js/bf_appTimePeriod.js',array(),BFI_VERSION);
 	wp_enqueue_script('bf_appTimeSlot', BFI()->plugin_url() . '/assets/js/bf_appTimeSlot.js',array(),BFI_VERSION);
 
@@ -141,9 +136,9 @@ $language = $GLOBALS['bfi_lang'];
 //	$model->setItemPerPage(COM_BOOKINGFORCONNECTOR_ITEMPERPAGE);
 //	$resource = $model->getItem($resource_id);	 
 
-	$model = new BookingForConnectorModelCondominiums;
-	$resource = $model->getCondominiumFromService($resource_id,$language);	 
-	$currencyclass = bfi_get_currentCurrency();
+//	$model = new BookingForConnectorModelCondominiums;
+//	$resource = $model->getCondominiumFromService($resource_id,$language);	 
+//	$currencyclass = bfi_get_currentCurrency();
 	
 //	$model = new BookingForConnectorModelMerchantDetails;
 //	$merchant = $model->getItem($merchant_id);	 
@@ -152,8 +147,6 @@ $language = $GLOBALS['bfi_lang'];
 		if(!empty(BFCHelper::getVar('refreshcalc',''))){
 			bfi_setSessionFromSubmittedData();
 		}
-		$merchants = array();
-		$merchants[] = $resource->MerchantId;
 		$criteoConfig = null;
 		if(COM_BOOKINGFORCONNECTOR_CRITEOENABLED){
 			$criteoConfig = BFCHelper::getCriteoConfiguration(2, $merchants);
@@ -162,7 +155,6 @@ $language = $GLOBALS['bfi_lang'];
 		
 		$_SESSION['search.params']['resourceId'] = $resource_id;
 		$output = '';
-		$merchant = $resource->Merchant;
 		$resourceId = 0;
 		$condominiumId = $resource->condominiumId;
 

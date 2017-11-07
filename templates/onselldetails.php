@@ -4,13 +4,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
  ?>
 <?php
-$resource_id = get_query_var( 'resource_id', 0 )
-
-
-?>
-<?php
-
+	$resource_id = get_query_var( 'resource_id', 0 );
+	$language = $GLOBALS['bfi_lang'];
 	$layout = get_query_var( 'bfi_layout', '' );
+	$sitename = sanitize_key( get_bloginfo( 'name' ) );
+
+
 	if(!isset($_GET['task']) && ($layout !=_x('inforequestpopup', 'Page slug', 'bfi' )) && ($layout !=_x('mapspopup', 'Page slug', 'bfi' ))  ) {
 
 	get_header( 'onselldetails' );
@@ -98,10 +97,9 @@ $resource_id = get_query_var( 'resource_id', 0 )
 			include(BFI()->plugin_path().'/templates/onselldetails/resourcedetails.php'); // merchant template
 	}
 
-
+		add_action('bfi_head', 'bfi_google_analytics_EEc', 10, 1);
+		do_action('bfi_head', "");
 		if($sendAnalytics && COM_BOOKINGFORCONNECTOR_GAENABLED == 1 && !empty(COM_BOOKINGFORCONNECTOR_GAACCOUNT) && COM_BOOKINGFORCONNECTOR_EECENABLED == 1) {
-			add_action('wp_head', 'bfi_google_analytics_EEc', 10, 1);
-			do_action('wp_head', $listName);
 			$obj = new stdClass;
 			$obj->id = "" . $resource->ResourceId . " - Sales Resource";
 			$obj->name = $resource->Name;
@@ -111,7 +109,7 @@ $resource_id = get_query_var( 'resource_id', 0 )
 //			$document->addScriptDeclaration('callAnalyticsEEc("addProduct", [' . json_encode($obj) . '], "item");');
 			echo '<script type="text/javascript"><!--
 			';
-			echo ('callAnalyticsEEc("addProduct", ' . json_encode($obj) . ', "list");');
+				echo ('callAnalyticsEEc("addProduct", [' . json_encode($obj) . '], "item");');
 			echo "//--></script>";
 		}
 

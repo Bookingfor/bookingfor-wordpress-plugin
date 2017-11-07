@@ -27,13 +27,28 @@ $routeThanksKo = $routeMerchant .'/'. _x('errors', 'Page slug', 'bfi' );
 
 //$privacy = BFCHelper::GetPrivacy($language);
 
+/*---------------IMPOSTAZIONI SEO----------------------*/
+	$payload["@type"] = "Organization";
+	$payload["@context"] = "http://schema.org";
+	$payload["name"] = $merchantName;
+	$payload["description"] = $merchantDescriptionSeo;
+	$payload["url"] = $routeSeo; 
+	if (!empty($merchant->LogoUrl)){
+		$payload["logo"] = "https:".BFCHelper::getImageUrlResized('merchant',$merchant->LogoUrl, 'logobig');
+	}
+/*--------------- FINE IMPOSTAZIONI SEO----------------------*/
+
 ?>
+<script type="application/ld+json">// <![CDATA[
+<?php echo json_encode($payload,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE); ?>
+// ]]></script>
 <div class="bfi-content">
 	<?php //include('merchant-head.php'); ?>
 	<?php if (!empty($offer)){ ?>
 	<div>
 		<?php
 			$offer->OfferId =  $offer->VariationPlanId;
+			$currvariationPlanId = $offer->VariationPlanId;
 //			$offer->Price = $offer->Value;
 			$formRoute = $routeMerchant . '/?task=getMerchantResources&variationPlanId=' . $offer->OfferId;
 
@@ -51,7 +66,7 @@ $routeThanksKo = $routeMerchant .'/'. _x('errors', 'Page slug', 'bfi' );
 
 			}
 		?>
-		<div class="bfi-title-name"><?php echo  $offer->Name?> </div>
+		<div class="bfi-title-name"><h1><?php echo  $offer->Name?></h1> </div>
 		<div class="bfi-clearfix "></div>
 	
 		<ul class="bfi-menu-top">
@@ -82,9 +97,16 @@ $routeThanksKo = $routeMerchant .'/'. _x('errors', 'Page slug', 'bfi' );
 		</div>
 		<?php } ?>
 		<div class="bfi-clearfix "></div>
-	
-		<a name="calc"></a>
-		<div id="divcalculator"><div style="padding:10px;text-align:center;"><i class="fa fa-spinner fa-spin fa-3x fa-fw margin-bottom"></i><span class="sr-only">Loading...</span></div></div>
+			<a name="calc"></a>
+			<div id="divcalculator">
+				<?php 
+				$resourceId = 0;
+				$condominiumId = 0;
+
+				include(BFI()->plugin_path().'/templates/search_details.php'); //merchant temp ?>
+					
+
+			</div>
 	</div>
 	
 	<?php }else{?>
@@ -98,13 +120,6 @@ $routeThanksKo = $routeMerchant .'/'. _x('errors', 'Page slug', 'bfi' );
 
 </div>
 <script type="text/javascript">
-<!--
-var urlCheck = "<?php echo $base_url ?>/bfi-api/v1/task";	
-var cultureCode = '<?php echo $language ?>';
-var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
-//-->
-</script>
-<script type="text/javascript">
 jQuery(function($)
 		{
 			jQuery('.bfcmenu li a').click(function(e) {
@@ -112,10 +127,6 @@ jQuery(function($)
 				jQuery('html, body').animate({ scrollTop: jQuery(jQuery(this).attr("rel")).offset().top }, 2000);
 			});
 			
-			//$("#firstresources").hide();
-			
-			$("#divcalculator").load('<?php echo $formRoute?>', function() {
-			});
 		});
 
 </script>

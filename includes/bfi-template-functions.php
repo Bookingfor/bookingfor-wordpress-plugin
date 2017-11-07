@@ -99,23 +99,34 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 
-/**
- * Output generator tag to aid debugging.
- *
- * @access public
- */
-function bfi_generator_tag( $gen, $type ) {
-	switch ( $type ) {
-		case 'html':
-			$gen .= "\n" . '<meta name="generator" content="bookingfor ' . esc_attr( BFI_VERSION ) . '">';
-			break;
-		case 'xhtml':
-			$gen .= "\n" . '<meta name="generator" content="bookingfor ' . esc_attr( BFI_VERSION ) . '" />';
-			break;
+	/**
+	 * Output generator tag to aid debugging.
+	 *
+	 * @access public
+	 */
+	function bfi_generator_tag( $gen, $type ) {
+		switch ( $type ) {
+			case 'html':
+				$gen .= "\n" . '<meta name="generator" content="bookingfor ' . esc_attr( BFI_VERSION ) . '">';
+				break;
+			case 'xhtml':
+				$gen .= "\n" . '<meta name="generator" content="bookingfor ' . esc_attr( BFI_VERSION ) . '" />';
+				break;
+		}
+		return $gen;
 	}
-	return $gen;
-}
 
+	function bfi_add_meta_keywords($keywords) {
+		echo '<meta name="keywords" content="', esc_attr( strip_tags( stripslashes( $keywords ) ) ), '"/>', "\n";
+	}
+
+	function bfi_add_meta_description($description) {
+		echo '<meta name="description" content="', esc_attr( strip_tags( stripslashes( $description) ) ), '"/>', "\n";
+	}
+
+	function bfi_add_meta_robots() {
+		echo '<meta name="robots" content="index,follow"/>', "\n";
+	}
 	function bfi_generator_recaptcha_foot( ) {
 		if(!empty(COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLERECAPTCHAKEY)){
 		?><script src="https://www.google.com/recaptcha/api.js?onload=BFIInitReCaptcha2&render=explicit" async defer></script><?php
@@ -155,116 +166,123 @@ function bfi_generator_tag( $gen, $type ) {
 			<!-- Google Analytics -->
 			<script type="text/javascript">
 			<!--
-						ga("require", "ec");
-						bookingfor_eeccreated = true;
-						
-						function initAnalyticsBFEvents() {
-							jQuery("body").on("click", "#grid-view, #list-view", function(e) {
-								if(e.originalEvent) {
-									//var listname = "<?php echo $listName ?> - " + (jQuery(this).attr("id") == "grid-view" ? "Grid View" : "List View");
-									callAnalyticsEEc("", "", (jQuery(this).attr("id") == "grid-view" ? "GridView" : "ListView"), null, "changeView", "View&Sort");
-								}
-							});
-							jQuery("body").on("click", ".bfi-sort-item", function(e){
-								if(e.originalEvent) {
-									var listname = "OrderBy";
-									var sortType = "";
-									switch(jQuery(this).attr("rel").split("|")[0].toLowerCase()) {
-										case "reviewvalue":
-											sortType = "GuestRating";
-											break;
-										case "stay":
-										case "price":
-											sortType = "Price";
-											break;
-										case "offer":
-											sortType = "Offer";
-											break;
-										case "addedon":
-											sortType = "AddedDate";
-											break;
-										case "name":
-											sortType = "Name";
-											break;
+							ga("require", "ec");
+							bookingfor_eeccreated = true;
+							
+							function initAnalyticsBFEvents() {
+								jQuery("body").on("click", "#grid-view, #list-view", function(e) {
+									if(e.originalEvent) {
+										callAnalyticsEEc("", "", (jQuery(this).attr("id") == "grid-view" ? "GridView" : "ListView"), null, "changeView", "View&Sort");
 									}
-									if(!jQuery.trim(sortType).length) { return; }
-									listname += sortType;
-									callAnalyticsEEc("", "", listname, null, "changeSort", "View&Sort");
-								}
-							});
-							jQuery("body").on("mouseup", ".eectrack", function(e) {
-								if( e.which <= 2 ) {
-									callAnalyticsEEc("addProduct", [{
-										id: jQuery(this).attr("data-id") + " - " + jQuery(this).attr("data-type"),
-										name: jQuery(this).attr("data-itemname"), 
-										category: jQuery(this).attr("data-category"),
-										brand: jQuery(this).attr("data-brand"), 
-										//variant: jQuery(this).attr("data-type"),
-										position: parseInt(jQuery(this).attr("data-index")), 
-									}], "viewDetail", null, jQuery(this).attr("data-id"), jQuery(this).attr("data-type"));
-								}
-							});
-						}
-						
-						function callAnalyticsEEc(type, items, actiontype, list, actiondetail, itemtype) {
-							list = list && jQuery.trim(list).length ? list : "<?php echo $listName ?>";
-							switch(type) {
-								case "addProduct":
-									if(!items.length) { return; }
-									jQuery.each(items, function(i, itm) {
-										ga("ec:addProduct", itm);
-									});
-									break;
-								case "addImpression":
-									if(!items.length) { return; }
-									jQuery.each(items, function(i, itm) {
-										itm.list = list;
-										ga("ec:addImpression", itm);
-									});
-									break;
+								});
+								jQuery("body").on("click", ".bfi-sort-item", function(e){
+									if(e.originalEvent) {
+										var listname = "OrderBy";
+										var sortType = "";
+										switch(jQuery(this).attr("rel").split("|")[0].toLowerCase()) {
+											case "reviewvalue":
+												sortType = "GuestRating";
+												break;
+											case "stay":
+											case "price":
+												sortType = "Price";
+												break;
+											case "offer":
+												sortType = "Offer";
+												break;
+											case "addedon":
+												sortType = "AddedDate";
+												break;
+											case "name":
+												sortType = "Name";
+												break;
+										}
+										if(!jQuery.trim(sortType).length) { return; }
+										listname += sortType;
+										callAnalyticsEEc("", "", listname, null, "changeSort", "View&Sort");
+									}
+								});
+								jQuery("body").on("mouseup", ".eectrack", function(e) {
+									var currList = jQuery(this).attr("data-list") || null;
+
+									if( e.which <= 2 ) {
+										callAnalyticsEEc("addProduct", [{
+											id: jQuery(this).attr("data-id") + " - " + jQuery(this).attr("data-type"),
+											name: jQuery(this).attr("data-itemname"), 
+											category: jQuery(this).attr("data-category"),
+											brand: jQuery(this).attr("data-brand"), 
+											//variant: jQuery(this).attr("data-type"),
+											position: parseInt(jQuery(this).attr("data-index")), 
+										}], "viewDetail", currList, jQuery(this).attr("data-id"), jQuery(this).attr("data-type"));
+									}
+								});
 							}
 							
-							switch(actiontype.toLowerCase()) {
-								case "click":
-									ga("ec:setAction", "click", {"list": list});
-									ga("send", "event", "Bookingfor", "click", list);
-									break;
-								case "item":
-									ga("ec:setAction", "detail");
-									ga("send","pageview");
-									bookingfor_gapageviewsent++;
-									break;
-								case "checkout":
-								case "checkout_option":
-									ga("ec:setAction", actiontype, actiondetail);
-									ga("send","pageview");
-									bookingfor_gapageviewsent++;
-									break;
-								case "addtocart":
-									ga("set", "&cu", "EUR");
-									ga("ec:setAction", "add", actiondetail);
-									ga("send", "event", "Bookingfor - " + itemtype, "click", "addToCart");
-									bookingfor_gapageviewsent++;
-									break;
-								case "purchase":
-									ga("set", "&cu", "EUR");
-									ga("ec:setAction", "purchase", actiondetail);
-									ga("send","pageview");
-									bookingfor_gapageviewsent++;
-								case "list":
-									ga("send","pageview");
-									bookingfor_gapageviewsent++;
-									break;
-								default:
-									ga("ec:setAction", "click", {"list": list});
-									ga("send", "event", "Bookingfor - " + itemtype, actiontype, actiondetail);
-									break;
+							function callAnalyticsEEc(type, items, actiontype, list, actiondetail, itemtype) {
+								list = list && jQuery.trim(list).length ? list : "<?php echo $listName ?>";
+								switch(type) {
+									case "addProduct":
+										if(!items.length) { return; }
+										jQuery.each(items, function(i, itm) {
+											ga("ec:addProduct", itm);
+										});
+										break;
+									case "addImpression":
+										if(!items.length) { return; }
+										jQuery.each(items, function(i, itm) {
+											itm.list = list;
+											ga("ec:addImpression", itm);
+										});
+										break;
+								}
+								
+								switch(actiontype.toLowerCase()) {
+									case "click":
+										ga("ec:setAction", "click", {"list": list});
+										ga("send", "event", "Bookingfor", "click", list);
+										break;
+									case "item":
+										ga("ec:setAction", "detail");
+										ga("send","pageview");
+										bookingfor_gapageviewsent++;
+										break;
+									case "checkout":
+									case "checkout_option":
+										ga("ec:setAction", actiontype, actiondetail);
+										ga("send","pageview");
+										bookingfor_gapageviewsent++;
+										break;
+									case "addtocart":
+										ga("set", "&cu", "<?php echo BFCHelper::$currencyCode[bfi_get_defaultCurrency()] ?>");
+										ga("ec:setAction", "add", actiondetail);
+										ga("send", "event", "Bookingfor - " + itemtype, "click", "addToCart");
+										bookingfor_gapageviewsent++;
+										break;
+									case "removefromcart":
+										ga("set", "&cu", "<?php echo BFCHelper::$currencyCode[bfi_get_defaultCurrency()] ?>");
+										ga("ec:setAction", "remove", actiondetail);
+										ga("send", "event", "Bookingfor - " + itemtype, "click", "addToCart");
+										bookingfor_gapageviewsent++;
+										break;
+									case "purchase":
+										ga("set", "&cu", "<?php echo BFCHelper::$currencyCode[bfi_get_defaultCurrency()] ?>");
+										ga("ec:setAction", "purchase", actiondetail);
+										ga("send","pageview");
+										bookingfor_gapageviewsent++;
+									case "list":
+										ga("send","pageview");
+										bookingfor_gapageviewsent++;
+										break;
+									default:
+										ga("ec:setAction", "click", {"list": list});
+										ga("send", "event", "Bookingfor - " + itemtype, actiontype, actiondetail);
+										break;
+								}
 							}
-						}
-						
-						jQuery(function(){
-							initAnalyticsBFEvents();
-						});
+							
+							jQuery(function(){
+								initAnalyticsBFEvents();
+							});
 			//-->
 			</script><?php
 		}

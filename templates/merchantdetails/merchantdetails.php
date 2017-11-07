@@ -59,10 +59,10 @@ $showMap = (($resourceLat != null) && ($resourceLon !=null) );
 
 $modelmerchant =  new BookingForConnectorModelMerchantDetails;
 
-$indirizzo = isset($merchant->AddressData->Address)?$merchant->AddressData->Address:"";
-$cap = isset($merchant->AddressData->ZipCode)?$merchant->AddressData->ZipCode:""; 
-$comune = isset($merchant->AddressData->CityName)?$merchant->AddressData->CityName:"";
-$stato = isset($merchant->AddressData->StateName)?$merchant->AddressData->StateName:"";
+//$indirizzo = isset($merchant->AddressData->Address)?$merchant->AddressData->Address:"";
+//$cap = isset($merchant->AddressData->ZipCode)?$merchant->AddressData->ZipCode:""; 
+//$comune = isset($merchant->AddressData->CityName)?$merchant->AddressData->CityName:"";
+//$stato = isset($merchant->AddressData->StateName)?$merchant->AddressData->StateName:"";
 
 //	$modelResource = new BookingForConnectorModelResource;
 //	$images = array();
@@ -101,14 +101,6 @@ if(!empty($fromSearch)){
 	$routeSearch .= "/?task=getMerchantResources";
 }
 
-$payload["@type"] = "Organization";
-$payload["@context"] = "http://schema.org";
-$payload["name"] = $merchant->Name;
-$payload["description"] = BFCHelper::getLanguage($merchant->Description, $language, null, array( 'striptags'=>'striptags', 'bbcode'=>'bbcode','ln2br'=>'ln2br'));
-$payload["url"] = ($isportal)? $routeMerchant: $base_url; 
-if (!empty($merchant->LogoUrl)){
-	$payload["logo"] = "https:".BFCHelper::getImageUrlResized('merchant',$merchant->LogoUrl, 'logobig');
-}
 $rating = $merchant->Rating;
 if ($rating>9 )
 {
@@ -117,25 +109,49 @@ if ($rating>9 )
 $reviewavg = isset($merchant->Avg) ? $merchant->Avg->Average : 0;
 $reviewcount = isset($merchant->Avg) ? $merchant->Avg->Count : 0;
 $resourceDescription = BFCHelper::getLanguage($merchant->Description, $language, null, array( 'striptags'=>'striptags', 'bbcode'=>'bbcode','ln2br'=>'ln2br')) ;
-$merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
+$merchantName = BFCHelper::getLanguage($merchant->Name, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
+
+/*---------------IMPOSTAZIONI SEO----------------------*/
+
+//moved before "get_header"
+//	$merchantDescriptionSeo = BFCHelper::getLanguage($merchant->Description, $language, null, array( 'nobr'=>'nobr', 'bbcode'=>'bbcode', 'striptags'=>'striptags')) ;
+//	if (!empty($merchantDescriptionSeo) && strlen($merchantDescriptionSeo) > 170) {
+//	    $merchantDescriptionSeo = substr($merchantDescriptionSeo,0,170);
+//	}
+//	$titleHead = "$merchantName ($comune, $stato) - $merchant->MainCategoryName - $sitename";
+//	$keywordsHead = "$merchantName, $comune, $stato, $merchant->MainCategoryName";
+//	$routeSeo = ($isportal)? $routeMerchant: $base_url;
+
+//		$this->document->setTitle($titleHead);
+//		$this->document->setDescription($merchantDescriptionSeo);
+//		$this->document->setMetadata('keywords', $keywordsHead);
+//		$this->document->setMetadata('robots', "index,follow");
+//		
+//		$this->document->setMetadata('og:type', "Organization");
+//		$this->document->setMetadata('og:title', $titleHead);
+//		$this->document->setMetadata('og:description', $merchantDescriptionSeo);
+//		$this->document->setMetadata('og:url', $routeSeo);
+
+	$payload["@type"] = "Organization";
+	$payload["@context"] = "http://schema.org";
+	$payload["name"] = $merchantName;
+	$payload["description"] = BFCHelper::getLanguage($merchant->Description, $language, null, array( 'striptags'=>'striptags', 'bbcode'=>'bbcode','ln2br'=>'ln2br'));
+	$payload["url"] = ($isportal)? $routeMerchant: $base_url; 
+	if (!empty($merchant->LogoUrl)){
+		$payload["logo"] = "https:".BFCHelper::getImageUrlResized('merchant',$merchant->LogoUrl, 'logobig');
+	}
+/*--------------- FINE IMPOSTAZIONI SEO----------------------*/
 ?>
 <script type="application/ld+json">// <![CDATA[
 <?php echo json_encode($payload); ?>
 // ]]></script>
-<script type="text/javascript">
-<!--
-var urlCheck = "<?php echo $base_url ?>/bfi-api/v1/task";	
-var cultureCode = '<?php echo $language ?>';
-var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
-//-->
-</script>
 <div class="bfi-content bfi-hideonextra">
 
 	<?php if($reviewcount>0){ ?>
 	<div class="bfi-row">
 		<div class="bfi-col-md-10">
 	<?php } ?>
-		<div class="bfi-title-name bfi-hideonextra"><?php echo  $merchant->Name?>
+		<div class="bfi-title-name bfi-hideonextra"><h1><?php echo  $merchant->Name?></h1>
 			<span class="bfi-item-rating">
 				<?php for($i = 0; $i < $rating; $i++) { ?>
 				<i class="fa fa-star"></i>
@@ -189,7 +205,12 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 	
 	<?php if ($merchant->HasResources){?>
 		<a name="calc"></a>
-		<div id="divcalculator"><div style="padding:10px;text-align:center;"><i class="fa fa-spinner fa-spin fa-3x fa-fw margin-bottom"></i><span class="sr-only">Loading...</span></div></div>
+			<div id="divcalculator">
+				<?php 
+				$resourceId = 0;
+				$condominiumId = 0;
+				include(BFI()->plugin_path().'/templates/search_details.php'); //merchant temp ?>
+			</div>
 	<?php } ?>	
 	
 	
@@ -307,7 +328,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 		{
 			bfiTagsMgLoaded=true;
 			var queryMG = "task=getMerchantGroups";
-			jQuery.post(urlCheck, queryMG, function(data) {
+			jQuery.post(bfi_variable.bfi_urlCheck, queryMG, function(data) {
 					if(data!=null){
 						jQuery.each(JSON.parse(data) || [], function(key, val) {
 							if (val.ImageUrl!= null && val.ImageUrl!= '') {
@@ -351,10 +372,6 @@ jQuery(function($) {
 		jQuery('html, body').animate({ scrollTop: jQuery(".bfi-ratingslist").offset().top }, 2000);
 	});
 
-	var  pagelist = "<?php echo $routeSearch; ?>";	
-	  jQuery("#divcalculator").load(pagelist, function() {
-	});
-	
 	bfiGetTagsMg();
 	jQuery('[data-toggle="tooltip"]').tooltip({
 			position : { my: 'center bottom', at: 'center top-10' },

@@ -36,7 +36,7 @@ function bfi_setSessionFromSubmittedData() {
 		//$merchantResults = !empty($merchantCategoryId) && in_array($merchantCategoryId, BFCHelper::getCategoryMerchantResults($cultureCode));
 		$merchantResults = ($groupresulttype==1);
 	}
-
+	$currParamInSession = BFCHelper::getSearchParamsSession();
 	$currParam = array(
 		'searchid' => isset($_REQUEST['searchid']) ? $_REQUEST['searchid'] : '',
 		'searchtypetab' => isset($_REQUEST['searchtypetab']) ? $_REQUEST['searchtypetab'] : '',
@@ -79,12 +79,12 @@ function bfi_setSessionFromSubmittedData() {
 		'rateplanId' => isset($_REQUEST['pricetype']) ? $_REQUEST['pricetype'] : '',
 		'variationPlanId' => isset($_REQUEST['variationPlanId']) ? $_REQUEST['variationPlanId'] : '',
 		'gotCalculator' => isset($_REQUEST['gotCalculator']) ? $_REQUEST['gotCalculator'] : '',
-		'totalDiscounted' => isset($_SESSION['search.params']['totalDiscounted']) ? $_SESSION['search.params']['totalDiscounted'] : '',
-		'suggestedstay' => isset($_SESSION['search.params']['suggestedstay']) ? $_SESSION['search.params']['suggestedstay'] : '',
+		'totalDiscounted' => isset($currParamInSession['totalDiscounted']) ? $currParamInSession['totalDiscounted'] : '',
+		'suggestedstay' => isset($currParamInSession['suggestedstay']) ?$currParamInSession['suggestedstay'] : '',
 		'points' => BFCHelper::getVar('searchType')=="1" ? BFCHelper::getVar('points') : "",
 	);
 		
-	$_SESSION['search.params'] = $currParam;
+	BFCHelper::setSearchParamsSession($currParam);
 }
 
 
@@ -416,59 +416,6 @@ function bfi_help_tip( $tip, $allow_html = false ) {
 		}
 	}
 	
-	// processamento ulteriori pagamenti & donazioni
-	function bfi_processOrderPayment($actionmode,$item,$lang, $debugMode = false) {
-		$classProcessor = 'BFI_'. $actionmode . 'Processor';
-		$orderId = $item->order->OrderId;
-		
-		if (class_exists($classProcessor)){
-			$processor = new $classProcessor();
-	
-			if($actionmode=="virtualpay" || $actionmode=="paypalexpress" || $actionmode=="bnlpositivity"){
-//				$processor = new classProcessor($data=data);
-				$data = explode("|",$item->merchantPayment->Data);
-				$processor->data = $data;
-			}
-			if( $actionmode=="paypalexpress" || $actionmode=="bnlpositivity" || $actionmode=="wspayform"){
-//				$processor = new classProcessor($data=data);
-				$processor->order = $item->order;
-			}
-
-
-			$result = $processor->getResult(null,$debugMode);
-			$bankId = $processor->getBankId();
-			$amount = $processor->getAmount();
-
-			$paymentData ='';
-			foreach($_SERVER as $key_name => $key_value) {
-				if  ($paymentData!='') $paymentData .=  '&'; 
-				$paymentData .= str_replace('$', '', $key_name) . " = " . urlencode($key_value);
-			}
-			foreach($_POST as $key_name => $key_value) {
-				if  ($paymentData!='') $paymentData .=  '&';
-				$paymentData .= str_replace('$', '', $key_name) . " = " . urlencode($key_value);
-			}			
-
-			
-			/*$paymentData = iconv('UTF-8','UTF-8//IGNORE',$paymentData);*/
-			if ($actionmode!="setefi" && $actionmode!="activa"){
-				if ($orderId>0){
-				if ($result){
-					$order = BFCHelper::setOrderPayment($orderId,5,true,$amount,$bankId,$paymentData,$lang,false);
-					$result = ($order!=null);
-				}else{
-					$order = BFCHelper::setOrderPayment($orderId,7,false,$amount,$bankId,$paymentData,$lang,false);
-				}
-				}
-
-				if(method_exists($processor, 'responseRedir')){
-					$processor->responseRedir($order->OrderId, $result);
-				}
-				
-			}
-			return $result;
-		}
-	}
 	function bfi_remove_querystring_var($url, $key) { 
 		$url = preg_replace('/(.*)(?|&)' . $key . '=[^&]+?(&)(.*)/i', '$1$2$4', $url . '&'); 
 		$url = substr($url, 0, -1); 
@@ -510,22 +457,22 @@ function bfi_help_tip( $tip, $allow_html = false ) {
 		}
 	}
 
-	function bfi_get_userId() {
-		$tmpUserId = BFCHelper::getSession('tmpUserId', null , 'com_bookingforconnector');
-		if(empty($tmpUserId)){
-			$uid = get_current_user_id();
-			$user = get_user_by('id', $uid);
-			if (!empty($user->ID)) {
-				$tmpUserId = $user->ID."|". $user->user_login . "|" . $_SERVER["SERVER_NAME"];
-			}
-			if(empty($tmpUserId)){
-				$tmpUserId = uniqid($_SERVER["SERVER_NAME"]);
-			}
-			BFCHelper::setSession('tmpUserId', $tmpUserId , 'com_bookingforconnector');
-		}
-
-		return $tmpUserId;
-	}
+//	function bfi_get_userId() {
+//		$tmpUserId = BFCHelper::getSession('tmpUserId', null , 'com_bookingforconnector');
+//		if(empty($tmpUserId)){
+//			$uid = get_current_user_id();
+//			$user = get_user_by('id', $uid);
+//			if (!empty($user->ID)) {
+//				$tmpUserId = $user->ID."|". $user->user_login . "|" . $_SERVER["SERVER_NAME"];
+//			}
+//			if(empty($tmpUserId)){
+//				$tmpUserId = uniqid($_SERVER["SERVER_NAME"]);
+//			}
+//			BFCHelper::setSession('tmpUserId', $tmpUserId , 'com_bookingforconnector');
+//		}
+//
+//		return $tmpUserId;
+//	}
 
 	function bfi_get_defaultCurrency() {
 		$tmpDefaultCurrency = BFCHelper::getSession('defaultcurrency', null , 'com_bookingforconnector');

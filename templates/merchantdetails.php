@@ -5,27 +5,25 @@ if ( ! defined( 'ABSPATH' ) ) {
  ?>
 <?php
 $merchant_id = get_query_var( 'merchant_id', 0 );
+$language = $GLOBALS['bfi_lang'];
 ?>
 <?php
+	$sitename = sanitize_key( get_bloginfo( 'name' ) );
 	$layout = get_query_var( 'bfi_layout', '' );
+	$isportal = COM_BOOKINGFORCONNECTOR_ISPORTAL;
+
+	$model = new BookingForConnectorModelMerchantDetails;
+	$merchant = $model->getItem($merchant_id);	 
+
+	$indirizzo = isset($merchant->AddressData->Address)?$merchant->AddressData->Address:"";
+	$cap = isset($merchant->AddressData->ZipCode)?$merchant->AddressData->ZipCode:""; 
+	$comune = isset($merchant->AddressData->CityName)?$merchant->AddressData->CityName:"";
+	$stato = isset($merchant->AddressData->StateName)?$merchant->AddressData->StateName:"";
+	$merchantName = BFCHelper::getLanguage($merchant->Name, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
+
 
 	if(!isset($_GET['task']) &&  ($layout !=_x('contactspopup', 'Page slug', 'bfi' ) &&  ($layout != _x('mapspopup', 'Page slug', 'bfi' )) &&  ($layout != _x('thankspopup', 'Page slug', 'bfi' )) )) {
 
-	get_header( 'merchantdetails' );
-?>
- <?php
-		/**
-		 * bookingfor_before_main_content hook.
-		 *
-		 * @hooked bookingfor_output_content_wrapper - 10 (outputs opening divs for the content)
-		 * @hooked bookingfor_breadcrumb - 20
-		 */
-		do_action( 'bookingfor_before_main_content' );
-		$model = new BookingForConnectorModelMerchantDetails;
-		$merchant = $model->getItem($merchant_id);	 
-	?>
-	
-<?php
 	$model->setMerchantId($merchant_id);
 	$model->setItemPerPage(COM_BOOKINGFORCONNECTOR_ITEMPERPAGE);
 
@@ -36,16 +34,34 @@ $merchant_id = get_query_var( 'merchant_id', 0 );
 	$type = "";
 	$sendAnalytics = true;
 	$layoutcriteo = "";
-	
-	$cartType = 1; //$merchant->CartType;
+	$listNameAnalytics =  BFCHelper::getVar('lna','0');
 
+	$total = 0;
+	$resources = null;
+	$offers = null;
+	$offer = null;
+	$ratings = null;
+	$summaryRatings = null;
+
+/*---------------IMPOSTAZIONI SEO----------------------*/
+	$merchantDescriptionSeo = BFCHelper::getLanguage($merchant->Description, $language, null, array( 'nobr'=>'nobr', 'bbcode'=>'bbcode', 'striptags'=>'striptags')) ;
+	if (!empty($merchantDescriptionSeo) && strlen($merchantDescriptionSeo) > 170) {
+	    $merchantDescriptionSeo = substr($merchantDescriptionSeo,0,170);
+	}
+
+	$titleHead = "$merchantName ($comune, $stato) - $merchant->MainCategoryName - $sitename";
+	$keywordsHead = "$merchantName, $comune, $stato, $merchant->MainCategoryName";
+	$merchantNameTrack =  BFCHelper::string_sanitize($merchantName);
+	$merchantCategoryNameTrack =  BFCHelper::string_sanitize($merchant->MainCategoryName);
+	
 	switch ( $layout) {
 		case _x( 'resources', 'Page slug', 'bfi' ):
+			$titleHead = "$merchantName ($comune, $stato) - " . _x( 'resources', 'Page slug', 'bfi' ) . " - $sitename";
+			$keywordsHead = "$merchantName, $comune, $stato, $merchant->MainCategoryName, " . _x( 'resources', 'Page slug', 'bfi' ) ;
+
 			$resources = $model->getItems('',0, $merchant_id);
 			$total = $model->getTotal();
-			include(BFI()->plugin_path().'/templates/merchantdetails/resources.php'); // merchant template
-			
-			$listName = "Resources List";
+			$listNameAnalytics =  5;
 			$type = "Resource";
 			$itemType = 1;
 			if ($resources  != null){
@@ -56,33 +72,13 @@ $merchant_id = get_query_var( 'merchant_id', 0 );
 					$totalItems[] = $obj;
 				}
 			}
-
-		
-		break;
-		case _x( 'onsellunits', 'Page slug', 'bfi' ):
-			$resources = $model->getItems('onsellunits',0, $merchant_id);
-			$total = $model->getTotal("onsellunits");
-			include(BFI()->plugin_path().'/templates/merchantdetails/onsellunits.php'); // merchant template
-
-			$listName = "Sales Resources Merchant List";
-			$type = "Sales Resource";
-			$itemType = 1;
-			if ($resources  != null){
-				foreach ($resources as $key => $value) {
-					$obj = new stdClass;
-					$obj->Id = $value->ResourceId;
-					$obj->Name = $value->Name;
-					$totalItems[] = $obj;
-				}
-			}
-
 		break;
 		case _x('offers', 'Page slug', 'bfi' ):
+			$titleHead = "$merchantName ($comune, $stato) - " . _x('offers', 'Page slug', 'bfi' ) . " - $sitename";
+			$keywordsHead = "$merchantName, $comune, $stato, $merchant->MainCategoryName, " . _x('offers', 'Page slug', 'bfi' ) ;
 			$offers = $model->getItems('offers',0, $merchant_id);
 			$total = $model->getTotal('offers');
-			include(BFI()->plugin_path().'/templates/merchantdetails/offers.php'); // merchant template
-
-			$listName = "Offers List";
+			$listNameAnalytics =  6;
 			$type = "Offer";
 			$itemType = 1;
 			if ($offers  != null){
@@ -95,89 +91,67 @@ $merchant_id = get_query_var( 'merchant_id', 0 );
 			}
 
 		break;
+		case _x( 'onsellunits', 'Page slug', 'bfi' ):
+			$titleHead = "$merchantName ($comune, $stato) - " . _x( 'onsellunits', 'Page slug', 'bfi' ) . " - $sitename";
+			$keywordsHead = "$merchantName, $comune, $stato, $merchant->MainCategoryName, " . _x( 'onsellunits', 'Page slug', 'bfi' ) ;
+			$resources = $model->getItems('onsellunits',0, $merchant_id);
+			$total = $model->getTotal("onsellunits");
+			$listNameAnalytics =  7;
+			$type = "Sales Resource";
+			$itemType = 1;
+			if ($resources  != null){
+				foreach ($resources as $key => $value) {
+					$obj = new stdClass;
+					$obj->Id = $value->ResourceId;
+					$obj->Name = $value->Name;
+					$totalItems[] = $obj;
+				}
+			}
+
+		break;
 		case _x('offer', 'Page slug', 'bfi' ):
 			$offerId = get_query_var( 'bfi_id', 0 );
 			if(!empty($offerId)){
 				$offer = $model->getMerchantOfferFromService($offerId);
-				include(BFI()->plugin_path().'/templates/merchantdetails/offer-details.php'); // merchant template
-
-				$listName = "Offers Page";
+				$merchantDescriptionSeo = BFCHelper::getLanguage($offer->Description, $language, null, array( 'nobr'=>'nobr', 'bbcode'=>'bbcode', 'striptags'=>'striptags')) ;
+				if (!empty($merchantDescriptionSeo) && strlen($merchantDescriptionSeo) > 170) {
+					$merchantDescriptionSeo = substr($merchantDescriptionSeo,0,170);
+				}
+				$titleHead = "$merchantName: $offer->Name ($comune, $stato) - $merchant->MainCategoryName - " . _x('offer', 'Page slug', 'bfi' ) . " - $sitename";
+				$keywordsHead = "$offer->Name, $merchantName, $comune, $stato, $merchant->MainCategoryName, " . _x('offer', 'Page slug', 'bfi' ) ;
 				$type = "Offer";
 				$itemType = 0;
 				$obj = new stdClass;
 				$obj->Id = $offer->VariationPlanId;
 				$obj->Name = $offer->Name;
 				$totalItems[] = $obj;
-
 			}
 		break;
 		case _x('thanks', 'Page slug', 'bfi' ):
-			include(BFI()->plugin_path().'/templates/merchantdetails/thanks.php'); // merchant template
-
 			$layoutcriteo = "thanks";
 			$itemType = 2;
-
 		break;
 		case _x('errors', 'Page slug', 'bfi' ):
-			include(BFI()->plugin_path().'/templates/merchantdetails/errors.php'); // merchant template
 			$sendAnalytics = false;
 		break;
-		case _x('packages', 'Page slug', 'bfi' ):
-			$packages = $model->getItems('packages',0, $merchant_id);
-			$total = $model->getTotal('packages');
-			include(BFI()->plugin_path().'/templates/merchantdetails/packages.php'); // merchant template
-			
-			$listName = "Packages List";
-			$type = "Package";
-			$itemType = 1;
-			if ($packages  != null){
-				foreach ($packages as $key => $value) {
-					$obj = new stdClass;
-					$obj->Id = $value->PackageId;
-					$obj->Name = $value->Name;
-					$totalItems[] = $obj;
-				}
-			}
-		break;
-		case _x('package', 'Page slug', 'bfi' ):
-			$packageId = get_query_var( 'bfi_id', 0 );
-			if(!empty($packageId)){
-				$offer = $model->getMerchantPackageFromService($packageId);
-				include(BFI()->plugin_path().'/templates/merchantdetails/package-details.php'); // merchant template
-				
-				$listName = "Packages Page";
-				$type = "Package";
-				$itemType = 0;
-				$obj = new stdClass;
-				$obj->Id = $offer->PackageId;
-				$obj->Name = $offer->Name;
-				$totalItems[] = $obj;
-			}
-
-
-		break;
 		case _x('reviews', 'Page slug', 'bfi' ):
+			$titleHead = "$merchantName ($comune, $stato) - " . _x('reviews', 'Page slug', 'bfi' ) . " - $sitename";
+			$keywordsHead = "$merchantName, $comune, $stato, $merchant->MainCategoryName, " . _x('reviews', 'Page slug', 'bfi' ) ;
 			if(isset($_POST) && !empty($_POST)) {
 				$_SESSION['ratings']['filters']['typologyid'] = $_POST['filters']['typologyid'];
 			}
 			$ratings = $model->getItems('ratings',0, $merchant_id);
 			$total = $model->getTotal('ratings');
 			$summaryRatings = $model->getMerchantRatingAverageFromService($merchant_id);
-			include(BFI()->plugin_path().'/templates/merchantdetails/reviews.php'); // merchant template
 			$sendAnalytics = false;
 		break;
 		case _x('review', 'Page slug', 'bfi' ):
-			include(BFI()->plugin_path().'/templates/merchantdetails/review.php'); // merchant template
 			$sendAnalytics = false;
 		break;
 		case _x('redirect', 'Page slug', 'bfi' ):
-			include(BFI()->plugin_path().'/templates/merchantdetails/redirect.php'); // merchant template
 			$sendAnalytics = false;
 		break;		
 		default:
-			include(BFI()->plugin_path().'/templates/merchantdetails/merchantdetails.php'); // merchant template
-
-			$listName = "Merchants Page";
 			$type = "Merchant";
 			$itemType = 0;
 			$obj = new stdClass;
@@ -187,6 +161,71 @@ $merchant_id = get_query_var( 'merchant_id', 0 );
 			$layoutcriteo = "default";
 
 	}
+	
+	$listName = BFCHelper::$listNameAnalytics[$listNameAnalytics];
+	$analyticsListName = $listName;
+
+	if ( defined('WPSEO_VERSION') ) {
+				add_filter( 'wpseo_title', function() use ($titleHead) {return	$titleHead;} , 10, 1 );
+				add_filter( 'wpseo_metakey', function() use ($keywordsHead) {return $keywordsHead; } , 10, 1  );
+				add_filter( 'wpseo_metadesc', function() use ($merchantDescriptionSeo) {return $merchantDescriptionSeo; } , 10, 1 );
+				add_filter( 'wpseo_robots', function() {return "index,follow"; } , 10, 1 );
+	}else{
+		add_filter( 'wp_title', function() use ($titleHead) {return	$titleHead;} , 10, 1 );
+		add_action( 'wp_head', function() use ($keywordsHead) {return bfi_add_meta_keywords($keywordsHead); }, 10, 1);
+		add_action( 'wp_head', function() use ($merchantDescriptionSeo) {return bfi_add_meta_description($merchantDescriptionSeo); } , 10, 1 );
+		add_action( 'wp_head', 'bfi_add_meta_robots', 10, 1);
+	}
+
+
+
+	get_header( 'merchantdetails' );
+?>
+ <?php
+		/**
+		 * bookingfor_before_main_content hook.
+		 *
+		 * @hooked bookingfor_output_content_wrapper - 10 (outputs opening divs for the content)
+		 * @hooked bookingfor_breadcrumb - 20
+		 */
+		do_action( 'bookingfor_before_main_content' );
+	?>
+	
+<?php
+	
+	switch ( $layout) {
+		case _x( 'resources', 'Page slug', 'bfi' ):
+			include(BFI()->plugin_path().'/templates/merchantdetails/resources.php'); // merchant template
+		break;
+		case _x('offers', 'Page slug', 'bfi' ):
+			include(BFI()->plugin_path().'/templates/merchantdetails/offers.php'); // merchant template
+		break;
+		case _x( 'onsellunits', 'Page slug', 'bfi' ):
+			include(BFI()->plugin_path().'/templates/merchantdetails/onsellunits.php'); // merchant template
+		break;
+		case _x('offer', 'Page slug', 'bfi' ):
+			if(!empty($offer)){
+				include(BFI()->plugin_path().'/templates/merchantdetails/offer-details.php'); // merchant template
+			}
+		break;
+		case _x('thanks', 'Page slug', 'bfi' ):
+			include(BFI()->plugin_path().'/templates/merchantdetails/thanks.php'); // merchant template
+		break;
+		case _x('errors', 'Page slug', 'bfi' ):
+			include(BFI()->plugin_path().'/templates/merchantdetails/errors.php'); // merchant template
+		break;
+		case _x('reviews', 'Page slug', 'bfi' ):
+			include(BFI()->plugin_path().'/templates/merchantdetails/reviews.php'); // merchant template
+		break;
+		case _x('review', 'Page slug', 'bfi' ):
+			include(BFI()->plugin_path().'/templates/merchantdetails/review.php'); // merchant template
+		break;
+		case _x('redirect', 'Page slug', 'bfi' ):
+			include(BFI()->plugin_path().'/templates/merchantdetails/redirect.php'); // merchant template
+		break;		
+		default:
+			include(BFI()->plugin_path().'/templates/merchantdetails/merchantdetails.php'); // merchant template
+	}
 
 		if(COM_BOOKINGFORCONNECTOR_CRITEOENABLED && ($layoutcriteo == "thanks" || $layoutcriteo == "default")) {
 			$merchants = array();
@@ -194,14 +233,12 @@ $merchant_id = get_query_var( 'merchant_id', 0 );
 			if($layoutcriteo == "thanks") {								
 				$orderid = isset($_REQUEST['orderid'])?$_REQUEST['orderid']:0;
 				$criteoConfig = BFCHelper::getCriteoConfiguration(4, $merchants, $orderid);	
-			} else if ($layout == "") {
+			} else if ($layout == "default") {
 				$criteoConfig = BFCHelper::getCriteoConfiguration(2, $merchants);
 			}
 			if(isset($criteoConfig) && isset($criteoConfig->enabled) && $criteoConfig->enabled && count($criteoConfig->merchants) > 0) {
 //				$document->addScript('//static.criteo.net/js/ld/ld.js');
 				echo '<script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script>';
-
-
 				if($layoutcriteo == "thanks") {
 //					$document->addScriptDeclaration('window.criteo_q = window.criteo_q || []; 
 //					window.criteo_q.push( 
@@ -211,15 +248,14 @@ $merchant_id = get_query_var( 'merchant_id', 0 );
 //						{ event: "trackTransaction", id: "' . $criteoConfig->transactionid . '",  item: [' . json_encode($criteoConfig->orderdetails) . '] }
 //					);');
 					echo '<script type="text/javascript"><!--
-					';
-					echo ('window.criteo_q = window.criteo_q || []; 
+					window.criteo_q = window.criteo_q || []; 
 					window.criteo_q.push( 
 						{ event: "setAccount", account: ' . $criteoConfig->campaignid . '}, 
 						{ event: "setSiteType", type: "d" }, 
 						{ event: "setEmail", email: "" }, 
 						{ event: "trackTransaction", id: "' . $criteoConfig->transactionid . '",  item: [' . json_encode($criteoConfig->orderdetails) . '] }
-					);');
-					echo "//--></script>";
+					);
+					//--></script>';
 				} else if ($layoutcriteo == "default") {
 //					$document->addScriptDeclaration('window.criteo_q = window.criteo_q || []; 
 //					window.criteo_q.push( 
@@ -229,15 +265,14 @@ $merchant_id = get_query_var( 'merchant_id', 0 );
 //						{ event: "viewItem", item: "' . $criteoConfig->merchants[0] . '" }
 //					);');
 					echo '<script type="text/javascript"><!--
-					';
-					echo ('window.criteo_q = window.criteo_q || []; 
+					window.criteo_q = window.criteo_q || []; 
 					window.criteo_q.push( 
 						{ event: "setAccount", account: ' . $criteoConfig->campaignid . '}, 
 						{ event: "setSiteType", type: "d" }, 
 						{ event: "setEmail", email: "" }, 
 						{ event: "viewItem", item: "' . $criteoConfig->merchants[0] . '" }
-					);');
-					echo "//--></script>";
+					);
+					//--></script>';
 
 				}
 			}
@@ -245,6 +280,7 @@ $merchant_id = get_query_var( 'merchant_id', 0 );
 
 		add_action('bfi_head', 'bfi_google_analytics_EEc', 10, 1);
 		do_action('bfi_head', $listName);
+				
 		if($sendAnalytics && COM_BOOKINGFORCONNECTOR_GAENABLED == 1 && !empty(COM_BOOKINGFORCONNECTOR_GAACCOUNT) && COM_BOOKINGFORCONNECTOR_EECENABLED == 1) {
 			$item = $merchant;
 				switch($itemType) {
@@ -339,12 +375,7 @@ $merchant_id = get_query_var( 'merchant_id', 0 );
 				}
 		}
 	
-	if($cartType ==0 ){
-		wp_enqueue_script('bf_cart_type', BFI()->plugin_url() . '/assets/js/bf_cart_type_0.js',array(),BFI_VERSION);
-	}else{
-		wp_enqueue_script('bf_cart_type', BFI()->plugin_url() . '/assets/js/bf_cart_type_1.js',array(),BFI_VERSION);
-	}
-
+	wp_enqueue_script('bf_cart_type', BFI()->plugin_url() . '/assets/js/bf_cart_type_1.js',array(),BFI_VERSION);
 	wp_enqueue_script('bf_appTimePeriod', BFI()->plugin_url() . '/assets/js/bf_appTimePeriod.js',array(),BFI_VERSION);
 	wp_enqueue_script('bf_appTimeSlot', BFI()->plugin_url() . '/assets/js/bf_appTimeSlot.js',array(),BFI_VERSION);
 
@@ -373,8 +404,8 @@ $merchant_id = get_query_var( 'merchant_id', 0 );
   else {
     $task = BFCHelper::getVar('task','');
 	
-	$model = new BookingForConnectorModelMerchantDetails;
-	$merchant = $model->getItem($merchant_id);	 
+//	$model = new BookingForConnectorModelMerchantDetails;
+//	$merchant = $model->getItem($merchant_id);	 
 	$currencyclass = bfi_get_currentCurrency();
 	$resourceId = 0;
 	$condominiumId = 0;

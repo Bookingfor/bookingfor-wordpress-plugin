@@ -19,16 +19,6 @@ $isportal = COM_BOOKINGFORCONNECTOR_ISPORTAL;
 $showdata = COM_BOOKINGFORCONNECTOR_SHOWDATA;
 
 $resourceImageUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s6.jpeg";
-//$merchantLogoUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s1.jpeg";
-//
-//$resourceLogoPath = BFCHelper::getImageUrlResized('onsellunits',"[img]", 'medium');
-//$resourceLogoPathError = BFCHelper::getImageUrl('onsellunits',"[img]", 'medium');
-//
-//$merchantImageUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s6.jpeg";
-//$merchantLogoUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s6.jpeg";
-//
-//$merchantLogoPath = BFCHelper::getImageUrlResized('merchant',"[img]", 'logomedium');
-//$merchantLogoPathError = BFCHelper::getImageUrl('merchant',"[img]", 'logomedium');
 
 $searchOnSell_page = get_post( bfi_get_page_id( 'searchonsell' ) );
 $formAction = get_permalink( $searchOnSell_page->ID );
@@ -81,12 +71,14 @@ $uri = $url_resource_page;
 
 <div class="bfi-clearfix"></div>
 <div id="bfi-list" class="bfi-row bfi-list">
-	<?php foreach ($results as $result):?>
+	<?php foreach ($results as $currKey => $result){?>
 		<?php 
 		$resourceImageUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s6.jpeg";
 
 		$resource = $result;
 		$resourceName = BFCHelper::getLanguage($result->Name, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
+		$merchantName = $resource->MerchantName;
+
 		if (!empty($result->OnSellUnitId)){
 			$resource->ResourceId = $result->OnSellUnitId;
 		}
@@ -112,11 +104,11 @@ $uri = $url_resource_page;
 		
 		$currUriresource = $uri.$resource->ResourceId.'-'.BFI()->seoUrl($resourceName);
 		
-		$resourceRoute = $route = $currUriresource;		
+		$resourceRoute = $route = $currUriresource.$fromsearchparam;		
 		
 		$routeMerchant = "";
 		if($isportal){
-			$routeMerchant = $url_merchant_page . $result->MerchantId .'-' .BFI()->seoUrl($result->MerchantName);
+			$routeMerchant = $url_merchant_page . $result->MerchantId .'-' .BFI()->seoUrl($result->MerchantName).$fromsearchparam;
 		}
 		
 
@@ -124,38 +116,41 @@ $uri = $url_resource_page;
 			$resourceImageUrl = BFCHelper::getImageUrlResized('onsellunits',$result->ImageUrl, 'medium');
 		}
 		$resource->RatingsContext = 0;	//set 0 so not show 
-		$resource->MrcName = $resource->MerchantName;
 		
-		$rating = $resource->Rating;
-		if ($rating>9 )
-		{
-			$rating = $rating/10;
-		}
+		$rating = 0;	//set 0 so not show 
 		$ratingMrc= 0;	//set 0 so not show 
+//		$rating = $resource->Rating;
+//		if ($rating>9 )
+//		{
+//			$rating = $rating/10;
+//		}
 //		$ratingMrc = $resource->MrcRating;
 //		if ($ratingMrc>9 )
 //		{
 //			$ratingMrc = $ratingMrc/10;
 //		}
+		$resourceNameTrack =  BFCHelper::string_sanitize($resourceName);
+		$merchantNameTrack =  BFCHelper::string_sanitize($merchantName);
+		$merchantCategoryNameTrack =  BFCHelper::string_sanitize($resource->MerchantCategoryName);
 	?>
 	<div class="bfi-col-sm-6 bfi-item">
 		<div class="bfi-row bfi-sameheight" >
 			<div class="bfi-col-sm-3 bfi-img-container">
-				<a href="<?php echo $resourceRoute ?>" style='background: url("<?php echo $resourceImageUrl; ?>") center 25% / cover;'><img src="<?php echo $resourceImageUrl; ?>" class="bfi-img-responsive" /></a> 
+				<a href="<?php echo $resourceRoute ?>" style='background: url("<?php echo $resourceImageUrl; ?>") center 25% / cover;' target="_blank" class="eectrack" data-type="Sales Resource" data-id="<?php echo $resource->ResourceId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><img src="<?php echo $resourceImageUrl; ?>" class="bfi-img-responsive" /></a> 
 			</div>
 			<div class="bfi-col-sm-9 bfi-details-container">
 				<!-- merchant details -->
 				<div class="bfi-row" >
 					<div class="bfi-col-sm-12">
 						<div class="bfi-item-title">
-							<a href="<?php echo $resourceRoute ?>" id="nameAnchor<?php echo $resource->ResourceId?>" target="_blank"><?php echo  $resourceName?></a> 
+							<a href="<?php echo $resourceRoute ?>" id="nameAnchor<?php echo $resource->ResourceId?>" target="_blank" class="eectrack" data-type="Sales Resource" data-id="<?php echo $resource->ResourceId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo  $resourceName?></a> 
 							<span class="bfi-item-rating">
 								<?php for($i = 0; $i < $rating; $i++) { ?>
 									<i class="fa fa-star"></i>
 								<?php } ?>	             
 							</span>
 							<?php if($isportal) { ?>
-								- <a href="<?php echo $routeMerchant?>" class="bfi-subitem-title" target="_blank"><?php echo $resource->MrcName; ?></a>
+								- <a href="<?php echo $routeMerchant?>" class="bfi-subitem-title eectrack" target="_blank" data-type="Merchant" data-id="<?php echo $resource->MerchantId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $merchantNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo $merchantName; ?></a>
 								<span class="bfi-item-rating">
 									<?php for($i = 0; $i < $ratingMrc; $i++) { ?>
 										<i class="fa fa-star"></i>
@@ -213,7 +208,7 @@ $uri = $url_resource_page;
 					
 					</div>
 					<div class="bfi-col-sm-3 bfi-text-right">
-							<a href="<?php echo $resourceRoute ?>" class="bfi-btn" target="_blank"><?php echo _e('Details' , 'bfi')?></a>
+							<a href="<?php echo $resourceRoute ?>" class="bfi-btn eectrack" target="_blank" data-type="Sales Resource" data-id="<?php echo $resource->ResourceId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo _e('Details' , 'bfi')?></a>
 					</div>
 				</div>
 				<div class="bfi-clearfix"></div>
@@ -225,7 +220,7 @@ $uri = $url_resource_page;
 		<?php 
 		$listsId[]= $result->ResourceId;
 		?>
-	<?php endforeach; ?>
+	<?php } ?>
 </div>
 </div>
 <script type="text/javascript">
@@ -268,12 +263,10 @@ if (localStorage.getItem('display')) {
 	}
 }
 
-var urlCheck = "<?php echo $base_url ?>/bfi-api/v1/task";
 var listToCheck = "<?php echo implode(",", $listsId) ?>";
 var strAddressSimple = " ";
 var strAddress = "[indirizzo] - [cap] - [comune] ([provincia])";
 
-var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 var onsellunitDaysToBeNew = '<?php echo BFCHelper::$onsellunitDaysToBeNew ?>';
 var nowDate =  new Date();
 var newFromDate =  new Date();
@@ -292,40 +285,12 @@ function getAjaxInformations(){
 	if (!loaded)
 	{
 		loaded=true;
-		if (cultureCode.length>1)
-		{
-			cultureCode = cultureCode.substring(0, 2).toLowerCase();
-		}
-		if (defaultcultureCode.length>1)
-		{
-			defaultcultureCode = defaultcultureCode.substring(0, 2).toLowerCase();
-		}
-		var query = "resourcesId=" + listToCheck + "&language=<?php echo $language ?>";
-			query +="&task=GetResourcesOnSellByIds";
+		var query = "resourcesId=" + listToCheck + "&language=<?php echo $language ?>&task=GetResourcesOnSellByIds";
 
-//		jQuery.getJSON(urlCheck + "?" + query, function(data) {
-		jQuery.post(urlCheck, query, function(data) {
+		jQuery.post(bfi_variable.bfi_urlCheck, query, function(data) {
 				jQuery.each(data || [], function(key, val) {
 
 				$html = '';
-
-//				var addressData ="";
-//				var arrData = new Array();
-//				if (val.IsAddressVisible)
-//				{
-//					if(val.Address!= null && val.Address!=''){
-//						arrData.push(val.Address);
-//					}
-//				}
-//				if(val.LocationZone!= null && val.LocationZone!=''){
-//					arrData.push(val.LocationZone);
-//				}
-//				if(val.LocationName!= null && val.LocationName!=''){
-//					arrData.push(val.LocationName);
-//				}
-//				addressData = arrData.join(" - ");
-//				addressData = strAddressSimple + addressData;
-//				jQuery("#address"+val.ResourceId).append(addressData);
 
 				var $indirizzo = "";
 				var $cap = "";
@@ -345,8 +310,6 @@ function getAjaxInformations(){
 				addressData = addressData.replace("[comune]",$comune);
 				addressData = addressData.replace("[provincia]",$provincia);
 				jQuery("#address"+val.ResourceId).html(addressData);
-
-//					jQuery(".address"+val.ResourceId).html(addressData);
 					
 				if(val.AddedOn!= null){
 					var parsedDate = new Date(parseInt(val.AddedOn.substr(6)));
@@ -424,7 +387,7 @@ function getAjaxInformations(){
 	}
 
 
-<?php if(count($results)>0): ?>
+<?php if(count($results)>0){?>
 	
 jQuery(document).ready(function() {
 	getAjaxInformations();
@@ -449,7 +412,7 @@ jQuery(document).ready(function() {
 	})
 
 });
-<?php endif; ?>
+<?php } ?>
 
 
 //-->

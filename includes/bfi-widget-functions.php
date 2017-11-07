@@ -20,7 +20,7 @@ include_once( 'widgets/class-bfi-widget-merchant-vcard.php' );
 include_once( 'widgets/class-bfi-widget-merchant.php' );
 include_once( 'widgets/class-bfi-widget-booking-search.php' );
 include_once( 'widgets/class-bfi-widget-booking-currency-switcher.php' );
-//include_once( 'widgets/class-bfi-widget-booking-cart.php' );
+include_once( 'widgets/class-bfi-widget-booking-cart.php' );
 
 /**
  * Register Widgets.
@@ -33,6 +33,6 @@ function bfi_register_widgets() {
 	register_widget( 'BFI_Widget_Merchant_Vcard' );
 	register_widget( 'BFI_Widget_Merchants' );
 	register_widget( 'BFI_Widget_Currency_Switcher' );
-//	register_widget( 'BFI_Widget_Cart' );
+	register_widget( 'BFI_Widget_Cart' );
 }
 add_action( 'widgets_init', 'bfi_register_widgets' );

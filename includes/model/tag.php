@@ -558,6 +558,20 @@ class BookingForConnectorModelTags
 		$searchid = "resources".$tagId ;
 
 		$merchantResults = $params['show_grouped'];
+
+		$currParamInSession = BFCHelper::getSearchParamsSession();
+				
+		if(isset($currParamInSession) && $currParamInSession != null ){
+			$currParamInSession['onlystay'] == false;
+			$searchid = isset($currParamInSession['searchid']) ? $currParamInSession['searchid'] :  uniqid('', true);;
+		}else{
+			$currParamInSession = null;
+			$currParamInSession['onlystay'] == false;
+			$searchid =  uniqid('', true);
+		}
+		$currParamInSession['searchid'] = $searchid;
+
+		BFCHelper::setSearchParamsSession($currParamInSession);
 //		$condominiumsResults = $params['condominiumsResults'];
 		
 		$sessionkey = 'tags.' . $searchid . '.results';
@@ -578,39 +592,38 @@ class BookingForConnectorModelTags
 ////			BFCHelper::setFilterSearchParamsSession(null);
 //		}
 		
-		if ($results == null) {
-			$options = array(
-				'path' => $this->urlResources,
-				'data' => array(
-						'$format' => 'json',
-						'topRresult' => 0,
-						'calculate' => 0,
-						'checkAvailability' => 0,
-						'cultureCode' =>  BFCHelper::getQuotedString($language),
-						'lite' => 1,
-						'tagids' => BFCHelper::getQuotedString($tagId)
-				)
-			);
+		$options = array(
+			'path' => $this->urlResources,
+			'data' => array(
+					'$format' => 'json',
+					'topRresult' => 0,
+					'calculate' => 0,
+					'checkAvailability' => 0,
+					'cultureCode' =>  BFCHelper::getQuotedString($language),
+					'lite' => 1,
+					'tagids' => BFCHelper::getQuotedString($tagId)
+			)
+		);
 
-			if(!$ignorePagination){
-				if (isset($start) && $start >= 0) {
-					$options['data']['skip'] = $start;
-				}
-				
-				if (isset($limit) && $limit > 0) {
-					$options['data']['topRresult'] = $limit;
-				}
+		if(!$ignorePagination){
+			if (isset($start) && $start >= 0) {
+				$options['data']['skip'] = $start;
 			}
+			
+			if (isset($limit) && $limit > 0) {
+				$options['data']['topRresult'] = $limit;
+			}
+		}
 
-//				$params['merchantResults'] = ($results->GroupResultType==1);
-//				$params['condominiumsResults'] = ($results->GroupResultType==2);
-//
 			if (!empty($merchantResults) ) {
-				$options['data']['groupResultType'] = 1;
+				$options['data']['groupResultType'] = $merchantResults;
 //				if ($groupresulttype==1 || $groupresulttype==2) { //onbly for merchants 
-//					$options['data']['getBestGroupResult'] = 1;
+					$options['data']['getBestGroupResult'] = 1;
 //				}
 			}
+		if (isset($searchid) && $searchid !='') {
+			$options['data']['searchid'] = '\'' . $searchid. '\'';
+		}
 
 //			$this->applyDefaultFilter($options);
 
@@ -627,162 +640,28 @@ class BookingForConnectorModelTags
 				}elseif(!empty($res->d)){
 					$results = $res->d;
 				}
-//				try {				
-//					if (!empty($results)) {
-//						
-//						echo "<pre>";
-//						echo print_r($results);
-//						echo "</pre>";
-//						
-//						shuffle($results);
-//					}
-//				} catch (Exception $e) {
-//					//echo 'Caught exception: ',  $e->getMessage(), "\n";
-//				}
 			}
-
-			// saves parameters into session
-//			BFCHelper::setSearchParamsSession($params);
-//		try {							
-//			// save current search in session to disable all further calculations upon reordering and filtering
-//			$compr = base64_encode(gzcompress(json_encode($results),true));
-//		} catch (Exception $e) {
-//			echo 'Caught exception: ',  $e->getMessage(), "\n";
-//		}
-
-//			BFCHelper::setSession($sessionkey, $compr); //$_SESSION[$sessionkey] = $results;
-			
-			//ciclo per filtrare i possibili filtri
-//			$filtersenabled = array();
-//			
-//			$filtersenabled['count'] = 0;
-						
-//			if(!empty($results)){
-			
-//				$filtersenabled['count'] = count($results);
-
-//				//per condominiumsResults non è necessario filtrare i condomini per caratteristiche, sio basano sulle risorse
-//				if ($merchantResults) {
-//					$tmpstars = array_unique(array_map(function ($i) { return $i->MrcRating; }, $results));
-//					$filtersenabled['stars'] = implode(',',$tmpstars);
-//					$tmplocationzones = array_unique(array_map(function ($i) { return $i->MrcZoneId; }, $results));	
-//					$filtersenabled['locationzones'] = implode(',',$tmplocationzones);
-//				}else{
-//					$tmpstars = array_unique(array_map(function ($i) { return $i->ResRating; }, $results));
-//					$filtersenabled['stars'] = implode(',',$tmpstars);
-//					$tmplocationzones = array_unique(array_map(function ($i) { return $i->ResZoneId; }, $results));	
-//					$filtersenabled['locationzones'] = implode(',',$tmplocationzones);
-//				}
-//
-//				$tmpmastertypologies = array_unique(array_map(function ($i) { return $i->MasterTypologyId; }, $results));	
-//				$filtersenabled['mastertypologies'] = implode(',',$tmpmastertypologies);
-
-				
-//				// elenco merchantGroup presenti nella ricerca
-//				$tmpmerchantgroups = array_unique(explode(",",array_reduce($results, 
-//						function($returnedList, $item){
-//							$val =  preg_replace('/\s+/', '', $item->MrcTagsIdList);
-//							if (!empty($val)) {
-//								$returnedList .= "," .$val;
-//							}
-//							return $returnedList;
-//						}
-//						)));
-//				foreach( $tmpmerchantgroups as $key => $value ) {
-//					if( empty( $tmpmerchantgroups[ $key ] ) )
-//						unset( $tmpmerchantgroups[ $key ] );
-//				}		
-//				$filtersenabled['merchantgroups'] = implode(',',$tmpmerchantgroups);
-				
-				// elenco Servizi presenti nella ricerca
-//				$tmpservices = array_unique(explode(",",array_reduce($results,
-//						function($returnedList, $item){
-//							$val =  preg_replace('/\s+/', '', $item->MrcServiceIdList);
-//							if (!empty($val)) {
-//								$returnedList .= "," .$val;
-//							}								
-//							$val =  preg_replace('/\s+/', '', $item->ResServiceIdList);
-//							if (!empty($val)) {
-//								$returnedList .= "," .$val;
-//							}
-//							
-//							return $returnedList;
-//						}
-//				)));
-//				foreach( $tmpservices as $key => $value ) {
-//					if( empty( $tmpservices[ $key ] ) )
-//						unset( $tmpservices[ $key ] );
-//				}
-//				$filtersenabled['services'] = implode(',',$tmpservices);
-//				
-//				// elenco BookingType presenti nella ricerca
-//				$tmpbookingtype = array_unique(array_map(function ($i) { return $i->BookingType; }, $results));
-//				foreach( $tmpbookingtype as $key => $value ) {
-//					if( empty( $tmpbookingtype[ $key ] ) )
-//						unset( $tmpbookingtype[ $key ] );
-//				}
-//				$filtersenabled['bookingtypes'] = implode(',',$tmpbookingtype);
-//				
-////				$tmpoffers = array_unique(array_map(function ($i) { return $i->TotalPrice>$i->Price; }, $results));	
-//				$tmpoffers = array_unique(array_map(function ($i) { return $i->IsOffer; }, $results));	
-////				$tmpoffers = array_unique(array_map(function ($i) { return !empty($i->DiscountId); }, $results));	
-//				foreach( $tmpoffers as $key => $value ) {
-//					if( empty( $tmpoffers[ $key ] ) )
-//						unset( $tmpoffers[ $key ] );
-//				}
-//				$filtersenabled['offers'] = implode(',',$tmpoffers);
-//
-//
-//
-//				$prices = array_map(function ($i) { return $i->Price; }, $results) ;
-//
-//				$filtersenabled['pricemin'] = round(min($prices)-1, 0, PHP_ROUND_HALF_DOWN);
-//				$filtersenabled['pricemax'] =  round(max($prices)+1, 0, PHP_ROUND_HALF_UP);
-
-//			}
-						
-//			BFCHelper::setEnabledFilterSearchParamsSession($filtersenabled);
-		}
-
-//		$results = $this->filterResults($results);
-
-		// ordering is taking place here only for simple results, merchants are ordered by the grouping function
-//		if (isset($ordering) && !$merchantResults && !empty($results)) {
-//			switch (strtolower($ordering)) {
-//				case 'stay':
-//					usort($results, function($a,$b) use ( $ordering, $direction) {
-//						return BFCHelper::orderBy($a, $b, 'TotalPrice', $direction);
-//					});
-//					break;
-//				case 'rooms':
-//					usort($results, function($a,$b) use ( $ordering, $direction) {
-//						return BFCHelper::orderBy($a, $b, 'Rooms', $direction);
-//					});
-//					break;
-//				case 'offer':
-//					usort($results, function($a,$b) use ( $ordering, $direction) {
-////						return BFCHelper::orderBySingleDiscount($a, $b, $direction);
-//						return BFCHelper::orderBy($a, $b, 'PercentVariation', $direction);
-//					});
-//					break;
-//			}
-//		}
-								
-//		if ($condominiumsResults && !empty($results)) {
-//			// grouping and ordering
-//						$results = $this->groupResultsByCondominium($results);
-//		}
-
-//		if ($merchantResults && !empty($results)) {
-//			// grouping and ordering
-//			$results = $this->groupResultsByMerchant($results, $ordering, $direction);
-//		}
+		if(!empty($results)){
+			$params['show_grouped'] = ($results->GroupResultType==1);
+			$params['groupresulttype'] = ($results->GroupResultType==1);
+			if ($results->GroupResultType==1) {
+			    $params['merchantTagIds'] = $tagId;
+			}else{
+			    $params['productTagIds'] = $tagId;
+				}
 		
+		
+//			$params['condominiumsResults'] = ($results->GroupResultType==2);
+			$merchantResults = $params['show_grouped'];
+//			$condominiumsResults = $params['condominiumsResults'];
+		}
+		$resultsItems = null;
 
-//		$this->count =  count($results);
-
-		$this->count = $results->ItemsCount;
-		$resultsItems = json_decode($results->ItemsString);
+		if(isset($results->ItemsCount)){
+			$this->count = $results->ItemsCount;
+			$resultsItems = json_decode($results->ItemsString);
+		}
+		BFCHelper::setSearchParamsSession($params);
 				
 	
 //		if (! $ignorePagination && isset($start) && (isset($limit) && $limit > 0 ) && !empty($results)) {

@@ -22,9 +22,9 @@
 //console.log(list_tag );
 			for (index = 0; index < list_tag.length; ++index) {
 				var regex = new RegExp("\[" + list_tag[index] + "(.*?)?\](?:(.+?)?\[\\/" + list_tag[index] +"\])?", "g");
-console.log(list_tag[index] );
-console.log("\[" + list_tag[index] + "(.*?)?\](?:(.+?)?\[\\/" + list_tag[index] +"\])?" );
-console.log(regex.exec(content));
+//console.log(list_tag[index] );
+//console.log("\[" + list_tag[index] + "(.*?)?\](?:(.+?)?\[\\/" + list_tag[index] +"\])?" );
+//console.log(regex.exec(content));
 //				content = content.replace(regex, function( all,attr,con) {
 //					return htmltag( 'wp-bfi_panel', attr , con);
 //				});
@@ -154,7 +154,7 @@ console.log(regex.exec(content));
 			if ( e.target.nodeName == 'IMG' && e.target.className.indexOf('wp-bfi_panel') > -1 ) {
 				var title = e.target.attributes['data-sh-attr'].value;
 				title = window.decodeURIComponent(title);
-				console.log(title);
+//				console.log(title);
 				var content = e.target.attributes['data-sh-content'].value;
 				editor.execCommand('bfi_panel_popup','',{
 					header : getAttr(title,'header'),

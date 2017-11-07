@@ -23,7 +23,7 @@ class BFI_Install {
 	 * Hook in tabs.
 	 */
 	public static function init() {
-		add_filter( 'wpmu_drop_tables', array( __CLASS__, 'wpmu_drop_tables' ) );
+//		add_filter( 'wpmu_drop_tables', array( __CLASS__, 'wpmu_drop_tables' ) );
 	}
 
 	/**
@@ -33,7 +33,7 @@ class BFI_Install {
 		global $wpdb;
 
 		self::create_pages();
-		self::create_tables();
+//		self::create_tables();
 		BFI_Post_types::register_post_types();
 
 		do_action( 'bookingfor_installed' );
@@ -170,45 +170,39 @@ class BFI_Install {
 		return $page_id;
 	}
 
-	private static function create_tables() {
-		global $wpdb;
-		$charset_collate = $wpdb->get_charset_collate();
-		$table_name = $wpdb->prefix . 'bfi_custom_route';
-		if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
-			$sql = "CREATE TABLE $table_name (
-			id mediumint(9) NOT NULL AUTO_INCREMENT,
-			title longtext NOT NULL,
-			route longtext NOT NULL,
-			showrating mediumint(9) NOT NULL,
-			showdata mediumint(9) NOT NULL,
-			startswith longtext,
-			categoryid longtext NOT NULL,
-			UNIQUE KEY id (id)
-			) $charset_collate;";
-
-			require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-			dbDelta( $sql );
-		}
-	}
-
-
-
-
-
-
+//	private static function create_tables() {
+//		global $wpdb;
+//		$charset_collate = $wpdb->get_charset_collate();
+//		$table_name = $wpdb->prefix . 'bfi_custom_route';
+//		if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
+//			$sql = "CREATE TABLE $table_name (
+//			id mediumint(9) NOT NULL AUTO_INCREMENT,
+//			title longtext NOT NULL,
+//			route longtext NOT NULL,
+//			showrating mediumint(9) NOT NULL,
+//			showdata mediumint(9) NOT NULL,
+//			startswith longtext,
+//			categoryid longtext NOT NULL,
+//			UNIQUE KEY id (id)
+//			) $charset_collate;";
+//
+//			require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+//			dbDelta( $sql );
+//		}
+//	}
 
 	/**
 	 * Uninstall tables when MU blog is deleted.
 	 * @param  array $tables
 	 * @return string[]
 	 */
-	public static function wpmu_drop_tables( $tables ) {
-		global $wpdb;
-
-		$tables[] = $wpdb->prefix . 'bfi_custom_route';
-
-		return $tables;
-	}
+//	public static function wpmu_drop_tables( $tables ) {
+//		global $wpdb;
+//
+//		$tables[] = $wpdb->prefix . 'bfi_custom_route';
+//
+//		return $tables;
+//	}
 
 	/**
 	 * Get slug from path

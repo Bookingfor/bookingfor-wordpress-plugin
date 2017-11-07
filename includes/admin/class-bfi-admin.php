@@ -36,7 +36,6 @@ class BFI_Admin {
 
 		add_menu_page("BookingFor", "BookingFor", "manage_options", "bfi-settings", null, $icon, '99.3');
 		add_submenu_page('bfi-settings',"BookingFor Settings", "Settings", "manage_options", "bfi-settings", array( $this, 'bfi_settings_page' ));
-//		add_submenu_page('bfi-settings',"BookingFor Merchant Lists", "Merchant Lists", "manage_options", "bfi-merchants-list", array( $this, 'bfi_merchant_lists_page' ));
 	}
 
 
@@ -174,12 +173,6 @@ class BFI_Admin {
 	public function bfi_settings_page(){
 		include('views/html-admin-settings.php');
 	}
-
-	public function bfi_merchant_lists_page() {
-		global $wpdb;
-	   $results = $wpdb->get_results( 'SELECT * FROM ' . $wpdb->prefix . 'bfi_custom_route', OBJECT);
-	   include('templates/merchantlist-routers.php');
-	}
 	
 	
 	public function display_bfi_subscription_key_element()
@@ -260,20 +253,18 @@ class BFI_Admin {
 		<?php
 	}
 
-	public function display_bfi_bootstrapversion_key_element(){
+	public function display_bfi_showbadge_key_element()
+	{
 		?>
-		<select id="bfi_bootstrapversion_key" name="bfi_bootstrapversion_key">
-			<option value="2" <?php echo get_option('bfi_bootstrapversion_key',2) == 2 ? "selected" : "" ?>>2</option>
-			<option value="3" <?php echo get_option('bfi_bootstrapversion_key',2) == 3 ? "selected" : "" ?>>3</option>
-		</select>
-	<?php
+			<input type="checkbox" id="bfi_showbadge_key" name="bfi_showbadge_key" value="1" <?php checked(get_option('bfi_showbadge_key',0), 1, true ); ?> />
+		<?php
 	}
 
-	public function display_bfi_bootstrapinclude_key_element(){
+	public function display_bfi_enablecoupon_key_element()
+	{
 		?>
-		<input type="checkbox" id="bfi_bootstrapinclude_key" name="bfi_bootstrapinclude_key" value="1" <?php checked(get_option('bfi_bootstrapinclude_key',0), 1, true ); ?> />
-		(only if is not implemented into your current theme)
-	<?php
+			<input type="checkbox" id="bfi_enablecoupon_key" name="bfi_enablecoupon_key" value="1" <?php checked(get_option('bfi_enablecoupon_key',0), 1, true ); ?> />
+		<?php
 	}
 
 	public function display_bfi_urlproxy_key_element()
@@ -450,12 +441,6 @@ class BFI_Admin {
 						'702' => __('Singapore dollar', 'bfi'),  
 						'826' => __('Pound sterling ', 'bfi')                            
 					);
-		if(empty($currencyExchanges) || count($currencyExchanges)<2){
-				?>
-				<input type="text" name="bfi_currentcurrency_key" id="bfi_currentcurrency_key" value="<?php echo get_option('bfi_currentcurrency_key',$defaultCurrency); ?>"  style="line-height:normal;" /> 
-				<?php 			
-			
-		}else{
 		?>
 		<select id="bfi_currentcurrency_key" name="bfi_currentcurrency_key">
 		<?php 
@@ -468,7 +453,6 @@ class BFI_Admin {
 		</select>
 		<?php
 
-		}
 		
 	}
 
@@ -479,10 +463,7 @@ class BFI_Admin {
 		
 		add_settings_field("bfi_subscription_key", "Subscription Key *",  array( $this, 'display_bfi_subscription_key_element'), "bfi-options", "section");
 		add_settings_field("bfi_api_key", "API Key *",  array( $this, 'display_bfi_api_key_element'), "bfi-options", "section");
-		add_settings_field("bfi_form_key", "Referrer *",  array( $this, 'display_bfi_form_key_element'), "bfi-options", "section");
-//		add_settings_field("bfi_bootstrapversion_key", "Bootstrap Version",  array( $this, 'display_bfi_bootstrapversion_key_element'), "bfi-options", "section");
-//		add_settings_field("bfi_bootstrapinclude_key", "Load local Bootstrap Version",  array( $this, 'display_bfi_bootstrapinclude_key_element'), "bfi-options", "section");
-		
+		add_settings_field("bfi_form_key", "Referrer *",  array( $this, 'display_bfi_form_key_element'), "bfi-options", "section");		
 		
 		add_settings_field("bfi_currentcurrency_key", "Default currency",  array( $this, 'display_bfi_currentcurrency_key_element'), "bfi-options", "section");
 		add_settings_field("bfi_usessl_key", "Use SSL",  array( $this, 'display_bfi_usessl_key_element'), "bfi-options", "section");
@@ -495,6 +476,8 @@ class BFI_Admin {
 		add_settings_field("bfi_isportal_key", "Multimerchant", array( $this, 'display_bfi_isportal_key_element'), "bfi-options", "section");
 		add_settings_field("bfi_showdata_key", "Show Descriptions on lists", array( $this, 'display_bfi_showdata_key_element'), "bfi-options", "section");
 		add_settings_field("bfi_sendtocart_key", "Send guest directly to cart", array( $this, 'display_bfi_sendtocart_key_element'), "bfi-options", "section");
+		add_settings_field("bfi_showbadge_key", "Show badge number items on cart", array( $this, 'display_bfi_showbadge_key_element'), "bfi-options", "section");
+		add_settings_field("bfi_enablecoupon_key", "Enable coupon feature", array( $this, 'display_bfi_enablecoupon_key_element'), "bfi-options", "section");
 
 
 		add_settings_section("sectionmaps", "Maps Settings", null, "bfi-options");
@@ -540,11 +523,9 @@ class BFI_Admin {
 		register_setting("section", "bfi_isportal_key");
 		register_setting("section", "bfi_showdata_key");
 		register_setting("section", "bfi_sendtocart_key");
-		
-//		register_setting("section", "bfi_bootstrapversion_key");
-//		register_setting("section", "bfi_bootstrapinclude_key");		
-		
-
+		register_setting("section", "bfi_showbadge_key");
+		register_setting("section", "bfi_enablecoupon_key");
+			
 		register_setting("section", "bfi_posx_key");
 		register_setting("section", "bfi_posy_key");
 		register_setting("section", "bfi_startzoom_key");

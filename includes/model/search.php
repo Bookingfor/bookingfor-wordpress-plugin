@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * BookingForConnectorModelMerchants Model
  */
-if ( ! class_exists( 'BookingForConnectorModelSearch' ) ) :
+if ( ! class_exists( 'BookingForConnectorModelSearch' ) ) {
 
 class BookingForConnectorModelSearch
 {
@@ -60,7 +60,7 @@ class BookingForConnectorModelSearch
 	}
 
 	public function applyDefaultFilter(&$options) {
-		$params = $_SESSION['search.params'];
+		$params = BFCHelper::getSearchParamsSession();
 
 		$searchid = isset($params['searchid']) ? $params['searchid'] : '';
 		$masterTypeId = $params['masterTypeId'];
@@ -76,7 +76,7 @@ class BookingForConnectorModelSearch
 		$stateIds = $params['stateIds'];
 		$regionIds = $params['regionIds'];
 		$cityIds = $params['cityIds'];
-		$merchantIds = $params['merchantIds'];
+		$merchantIds = isset($params['merchantIds']) ? $params['merchantIds'] : '';
 		$merchantTagIds = $params['merchantTagIds'];
 		$productTagIds = $params['productTagIds'];
 		
@@ -95,6 +95,7 @@ class BookingForConnectorModelSearch
 		$refid = $params['refid'].'';
 		if (!empty($refid) or !empty($resourceName))  {
 			$options['data']['calculate'] = 0;
+			$options['data']['checkAvailability'] = 0;
 			
 			if (isset($refid) && $refid <> "" ) {
 				$options['data']['refId'] = '\''.$refid.'\'';
@@ -107,6 +108,7 @@ class BookingForConnectorModelSearch
 			$onlystay = $params['onlystay'];
 				
 			$options['data']['calculate'] = $onlystay;
+			$options['data']['checkAvailability'] = $onlystay;
 			
 			if (isset($params['locationzone']) ) {
 				$locationzone = $params['locationzone'];
@@ -190,10 +192,6 @@ class BookingForConnectorModelSearch
 			$options['data']['searchid'] = '\'' . $searchid. '\'';
 		}
 
-		if (isset($searchid) && $searchid !='') {
-			$options['data']['searchid'] = '\'' . $searchid. '\'';
-		}
-		
 		if (isset($merchantId) && $merchantId > 0) {
 			$options['data']['merchantid'] = $merchantId;
 		}
@@ -312,7 +310,7 @@ class BookingForConnectorModelSearch
 		$this->currentOrdering = $ordering;
 		$this->currentDirection = $direction;
 
-		$params = $_SESSION['search.params'];
+		$params = BFCHelper::getSearchParamsSession();
 				
 		$searchid = isset($params['searchid']) ? $params['searchid'] : '';
 		$newsearch = isset($params['newsearch']) ? $params['newsearch'] : '0';
@@ -336,13 +334,11 @@ class BookingForConnectorModelSearch
 			
 
 		if ($results == null) {
-//			echo 'No result: <br />';
 			$options = array(
 				'path' => $this->urlSearch,
 				'data' => array(
 						'$format' => 'json',
 						'topRresult' => 0,
-//						'calculate' => 1, // spostato nell'applicazione dei filtri altrimenti mi calcola i prezzi anche se non voglio
 						'lite' => 1
 				)
 			);
@@ -388,19 +384,13 @@ class BookingForConnectorModelSearch
 			}
 			BFCHelper::setEnabledFilterSearchParamsSession($filtersenabled);
 		}
-				
-		$this->count = $results->ItemsCount;
-		$resultsItems = json_decode($results->ItemsString);
+		$resultsItems = null;
 
-//		if (! $ignorePagination && isset($start) && (isset($limit) && $limit > 0 ) && !empty($results)) {
-//
-//			$results = array_slice($results, $start, $limit);
-//			$params = $_SESSION['search.params'];
-//			$checkin = $params['checkin'];
-//			$duration = $params['duration'];
-//			$persons = $params['paxes'];
-//			$paxages = $params['paxages'];
-//		}
+		if(isset($results->ItemsCount)){
+			$this->count = $results->ItemsCount;
+			$resultsItems = json_decode($results->ItemsString);
+		}
+				
 		if($jsonResult && !empty($resultsItems))	{
 			$arr = array();
 
@@ -433,7 +423,6 @@ class BookingForConnectorModelSearch
 				$arr[] = $val;
 			}
 			
-			
 			return json_encode($arr);
 				
 		}
@@ -448,7 +437,7 @@ class BookingForConnectorModelSearch
 			return $this->count;
 		}
 		else{
-		$this->getItems();
+			$this->retrieveItems();
 		}
 
 	}
@@ -493,7 +482,18 @@ class BookingForConnectorModelSearch
 	}
         
 	public function getItems($ignorePagination = false, $jsonResult = false, $start = 0, $count = 20) {
-		
+		if ($this->currentData !== null){
+			return $this->currentData;
+		}
+		else{
+//			$start = $this->getState('list.start'); 
+//			$count = $this->getState('list.limit');
+			$this->retrieveItems($ignorePagination, $jsonResult, $start, $count);
+		}
+		return $this->currentData;
+	}
+
+	public function retrieveItems($ignorePagination = false, $jsonResult = false, $start = 0, $count = 20) {
 		if(!empty($_REQUEST['filter_order']) ){
 			$items = $this->getSearchResults(
 				$start,
@@ -503,27 +503,17 @@ class BookingForConnectorModelSearch
 				$ignorePagination,
 				$jsonResult
 			);
-		}
-		else {
+		} else {
 			$items = $this->getSearchResults(
-				
 				$start,
 				$count,
 				'',
 				'',
 				$ignorePagination,
 				$jsonResult
-				
-				);
+			);
 		}
-		
-    // if(!empty($_POST['filter_order']) ){
-		
-	//	return $tempj;
-		//} 
-	//else {
-		return $items;
-	//	}
+		$this->currentData = $items;
 	}
 	
 	public function SearchResult($term, $language, $limit, $onlyLocations=0) {
@@ -563,4 +553,4 @@ class BookingForConnectorModelSearch
 		return $results;
 	}
 }
-endif;
+}

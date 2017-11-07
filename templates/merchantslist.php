@@ -57,13 +57,13 @@ get_header(); ?>
 		
 	$total = $model->getTotal();
 	$items = $model->getItems();
-	
+		
 	$merchants = is_array($items) ? $items : array();
+	add_action('wp_head', 'bfi_google_analytics_EEc', 10, 1);
+	do_action('wp_head', "Merchants List");
 	if( count($items) > 0){
 		include(BFI()->plugin_path().'/templates/merchantslist/merchantslist.php'); // merchant template
 
-		add_action('wp_head', 'bfi_google_analytics_EEc', 10, 1);
-		do_action('wp_head', "Merchants List");
 	}
 
 	if(COM_BOOKINGFORCONNECTOR_CRITEOENABLED){

@@ -15,139 +15,124 @@ if(defined('ICL_LANGUAGE_CODE') &&  class_exists('SitePress')){
 $isportal = COM_BOOKINGFORCONNECTOR_ISPORTAL;
 $showdata = COM_BOOKINGFORCONNECTOR_SHOWDATA;
 
-
 $showmap = true;
 if($total<1){
 	$showmap = false;
 }
 
+$currParam = BFCHelper::getSearchParamsSession();
+$merchantResults = $currParam['merchantResults'];
+$condominiumsResults = $currParam['condominiumsResults'];
 
 ?>
+<div id="bfi-merchantlist"> 
+	<?php if ($total > 0){ ?>
+	<?php 
+		if($merchantResults) {
+			$merchants = $items ;
+			include('default_merchants.php');
+		}
+		elseif ($condominiumsResults) {
+			$merchants = $items ;
+			include('default_condominiums.php');
+		}
+		else {
+			$results = $items ;
+			include('default_resources.php');
+		}
+		?>
+		<?php
+		if( get_option('permalink_structure') ) {
+			$format = 'page/%#%/';
+		} else {
+			$format = '?paged=%#%';
+		}
+			$url = esc_url( get_permalink() ); 
+		  $pagination_args = array(
+			'base'            => $url. '%_%',
+			'format'          => $format, //'?page=%#%',
+			'total'           => $pages,
+			'current'         => $page,
+			'show_all'        => false,
+			'end_size'        => 5,
+			'mid_size'        => 2,
+			'prev_next'       => true,
+			'prev_text'       => __('&laquo;'),
+			'next_text'       => __('&raquo;'),
+			'type'            => 'plain',
+			'add_args'        => false,
+			'add_fragment'    => ''
+		  );
 
 
-<script type="text/javascript">
-<!--
-var urlCheck = "<?php echo $base_url ?>/bfi-api/v1/task";
-var cultureCode = '<?php echo $language ?>';
-//-->
-</script>
-<div id="bfi-merchantlist"> <?php  // var_dump($this); ?>
-<div id="com_bookingforconnector-items-container-wrapper">
- 	<?php 
-//	if (isset($params['checkin'])): 
-	?>
 
-<?php if ($total > 0){ ?>
-		<div class="com_bookingforconnector-items-container">
-			<?php 
-				if($merchantResults) {
-					$merchants = $items ;
-					include('list-merchants.php');
-				}
-				elseif ($condominiumsResults) {
-					$merchants = $items ;
-					include('list-condomonium.php');
-				}
-				else {
-					$results = $items ;
-					include('list-resources.php');
-				}
+		global $bfi_query_arg;
+		$bfi_query_arg = array();
+		add_filter( 'get_pagenum_link', 'bfi_remove_date_get_pagenum_link',1 );
+		function bfi_remove_date_get_pagenum_link( $url ) {
+			global $bfi_query_arg;
+			$checkinFromUrl = filter_input( INPUT_GET, 'checkin');
+			if(!empty($checkinFromUrl)){
+				$bfi_query_arg['checkin'] = rawurlencode($checkinFromUrl);
+				$url = remove_query_arg( 'checkin', $url );
+			}
+			$checkoutFromUrl = filter_input( INPUT_GET, 'checkout');
+			if(!empty($checkoutFromUrl)){
+				$bfi_query_arg['checkout'] = rawurlencode($checkoutFromUrl);
+				$url = remove_query_arg( 'checkout', $url );
+			}
 			
-				?>
-				<?php //endif; ?>
-		</div>
-<?php
-if( get_option('permalink_structure') ) {
-	$format = 'page/%#%/';
-} else {
-	$format = '?paged=%#%';
-}
-	$url = esc_url( get_permalink() ); 
-  $pagination_args = array(
-    'base'            => $url. '%_%',
-    'format'          => $format, //'?page=%#%',
-    'total'           => $pages,
-    'current'         => $page,
-    'show_all'        => false,
-    'end_size'        => 5,
-    'mid_size'        => 2,
-    'prev_next'       => true,
-    'prev_text'       => __('&laquo;'),
-    'next_text'       => __('&raquo;'),
-    'type'            => 'plain',
-    'add_args'        => false,
-    'add_fragment'    => ''
-  );
-
-
-
-global $bfi_query_arg;
-$bfi_query_arg = array();
-add_filter( 'get_pagenum_link', 'bfi_remove_date_get_pagenum_link',1 );
-function bfi_remove_date_get_pagenum_link( $url ) {
-	global $bfi_query_arg;
-	$checkinFromUrl = filter_input( INPUT_GET, 'checkin');
-	if(!empty($checkinFromUrl)){
-		$bfi_query_arg['checkin'] = rawurlencode($checkinFromUrl);
-		$url = remove_query_arg( 'checkin', $url );
-	}
-	$checkoutFromUrl = filter_input( INPUT_GET, 'checkout');
-	if(!empty($checkoutFromUrl)){
-		$bfi_query_arg['checkout'] = rawurlencode($checkoutFromUrl);
-		$url = remove_query_arg( 'checkout', $url );
-	}
-	
-	return  $url;
-}
-
-add_filter( 'paginate_links', function( $link )
-{
-	global $bfi_query_arg;
-	$filter_order = filter_input( INPUT_POST, 'filter_order');
-	if(!empty($filter_order)){
-		$link = remove_query_arg( 'filter_order', $link );
-		$link = add_query_arg('filterorder' , $filter_order , $link);
-	}else{
-		$filter_order = filter_input( INPUT_GET, 'filter_order');
-		if(!empty($filter_order)){
-			$link = remove_query_arg( 'filter_order', $link );
-			$link = add_query_arg('filterorder' , $filter_order , $link);
+			return  $url;
 		}
-	}
-	$filter_order_dir = filter_input( INPUT_POST, 'filter_order_Dir');
-	if(!empty($filter_order_dir)){
-		$link = remove_query_arg( 'filter_order_Dir', $link );
-		$link = add_query_arg('filterorderdir' , $filter_order_dir , $link);
-	}else{
-		$filter_order_dir = filter_input( INPUT_GET, 'filter_order_Dir');
-		if(!empty($filter_order_dir)){
-			$link = remove_query_arg( 'filter_order_Dir', $link );
-			$link = add_query_arg('filterorderdir' , $filter_order_dir , $link);
-		}
-	}
 
-	if(!empty($bfi_query_arg)){
-		$link =  add_query_arg($bfi_query_arg , $link);
-	}
+		add_filter( 'paginate_links', function( $link )
+		{
+			global $bfi_query_arg;
+			$filter_order = filter_input( INPUT_POST, 'filter_order');
+			if(!empty($filter_order)){
+				$link = remove_query_arg( 'filter_order', $link );
+				$link = add_query_arg('filterorder' , $filter_order , $link);
+			}else{
+				$filter_order = filter_input( INPUT_GET, 'filter_order');
+				if(!empty($filter_order)){
+					$link = remove_query_arg( 'filter_order', $link );
+					$link = add_query_arg('filterorder' , $filter_order , $link);
+				}
+			}
+			$filter_order_dir = filter_input( INPUT_POST, 'filter_order_Dir');
+			if(!empty($filter_order_dir)){
+				$link = remove_query_arg( 'filter_order_Dir', $link );
+				$link = add_query_arg('filterorderdir' , $filter_order_dir , $link);
+			}else{
+				$filter_order_dir = filter_input( INPUT_GET, 'filter_order_Dir');
+				if(!empty($filter_order_dir)){
+					$link = remove_query_arg( 'filter_order_Dir', $link );
+					$link = add_query_arg('filterorderdir' , $filter_order_dir , $link);
+				}
+			}
 
-	$link = filter_input( INPUT_GET, 'newsearch' ) ? remove_query_arg( 'newsearch', $link ) : $link;
+			if(!empty($bfi_query_arg)){
+				$link =  add_query_arg($bfi_query_arg , $link);
+			}
 
-	$link = str_replace('filterorder=',"filter_order=",$link);
-	$link = str_replace('filterorderdir=',"filter_order_Dir=",$link);
+			$link = filter_input( INPUT_GET, 'newsearch' ) ? remove_query_arg( 'newsearch', $link ) : $link;
 
-	return $link;
-} );
+			$link = str_replace('filterorder=',"filter_order=",$link);
+			$link = str_replace('filterorderdir=',"filter_order_Dir=",$link);
 
-  $paginate_links = paginate_links($pagination_args);
-    if ($paginate_links) {
-      echo "<nav class='bfi-pagination'>";
-//      echo "<span class='page-numbers page-num'>Page " . $page . " of " . $numpages . "</span> ";
-      echo "<span class='page-numbers page-num'>".__('Page', 'bfi')." </span> ";
-      print $paginate_links;
-      echo "</nav>";
-    }
-	 ?>
-<?php }else{ ?>
+			return $link;
+		} );
+
+		  $paginate_links = paginate_links($pagination_args);
+			if ($paginate_links) {
+			  echo "<nav class='bfi-pagination'>";
+		//      echo "<span class='page-numbers page-num'>Page " . $page . " of " . $numpages . "</span> ";
+			  echo "<span class='page-numbers page-num'>".__('Page', 'bfi')." </span> ";
+			  print $paginate_links;
+			  echo "</nav>";
+			}
+			 ?>
+	<?php }else{ ?>
 <div class="bfi-content">
 		<div class="bfi-noresults">
 		<?php _e('No result available', 'bfi') ?>
@@ -223,12 +208,15 @@ add_filter( 'paginate_links', function( $link )
 </div>
 
 <?php } ?>
-		<div class="bfi-clearboth"></div>		
-</div>
+	<div class="bfi-clearboth"></div>		
 </div>
 <script type="text/javascript">
 <!--
 jQuery(document).ready(function() {
+	if(typeof jQuery.fn.button.noConflict !== 'undefined'){
+		var btn = jQuery.fn.button.noConflict(); // reverts $.fn.button to jqueryui btn
+		jQuery.fn.btn = btn; // assigns bootstrap button functionality to $.fn.btn
+	}
 	jQuery('#list-view').click(function() {
 		jQuery('.bfi-view-changer-selected').html(jQuery(this).html());
 		jQuery('#bfi-list').removeClass('bfi-grid-group')
@@ -302,7 +290,7 @@ $posy = COM_BOOKINGFORCONNECTOR_GOOGLE_POSY;
 $startzoom = COM_BOOKINGFORCONNECTOR_GOOGLE_STARTZOOM;
 $googlemapsapykey = COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY;
 	
-	?>
+?>
 <div class="bfi-clearboth"></div>
 <div id="bfi-maps-popup"></div>
 
@@ -335,7 +323,9 @@ $googlemapsapykey = COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY;
 		}
 		
 		function openGoogleMapSearch() {
-
+			if(jQuery( "#bfi-maps-popup").length == 0) {
+				jQuery("body").append("<div id='bfi-maps-popup'></div>");
+			}
 			if (typeof google !== 'object' || typeof google.maps !== 'object'){
 				var script = document.createElement("script");
 				script.type = "text/javascript";
@@ -368,7 +358,6 @@ var bfiCurrMarkerId = 0;
 						showMarkerInfo(marker);
 					});
 					if (!markersLoading) {
-//						jQuery.getJSON(urlCheck + '?' + 'task=searchjson&newsearch=0', function(data) {
 						var query = "task=searchjson&newsearch=0";
 						var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
 						for(var i = 0; i < hashes.length; i++)
@@ -379,7 +368,7 @@ var bfiCurrMarkerId = 0;
 							}
 						}
 
-						jQuery.post(urlCheck, query, function(data) {
+						jQuery.post(bfi_variable.bfi_urlCheck, query, function(data) {
 
 								createMarkers(data, oms, bounds, mapSearch);
 								if (oms.getMarkers().length > 0) {
@@ -403,18 +392,6 @@ var bfiCurrMarkerId = 0;
 		}
 	}
 
-	function toggleMap() {
-		jQuery('#mapcontainer').toggle();
-		if (jQuery('#mapcontainer').is(":visible")) {
-			openGoogleMapSearch();
-		}
-	}
-
-	function showMap() {
-//		jQuery('#mapcontainer').hide();
-//		toggleMap();
-		jQuery('#maptab').click();
-	}
 
 	function showMarker(extId) {
 		if(jQuery( "#bfi-maps-popup").length ){
@@ -465,11 +442,15 @@ var bfiCurrMarkerId = 0;
 	}
 //-->
 </script>
-<?php }else{ // showmap ?>
+<?php }else{ // showmap 
+	if ($total > 0){ 
+?>
 <script type="text/javascript">
 <!--
 		function openGoogleMapSearch() {}
 //-->
 </script>
 
-<?php } // showmap ?>
+<?php
+	}
+} // showmap ?>

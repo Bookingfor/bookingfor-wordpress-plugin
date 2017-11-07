@@ -52,11 +52,25 @@ if ($rating>9 )
 	$rating = $rating/10;
 } 
 
+/*---------------IMPOSTAZIONI SEO----------------------*/
+	$payload["@type"] = "Organization";
+	$payload["@context"] = "http://schema.org";
+	$payload["name"] = $merchantName;
+	$payload["description"] = $merchantDescriptionSeo;
+	$payload["url"] = $routeSeo; 
+	if (!empty($merchant->LogoUrl)){
+		$payload["logo"] = "https:".BFCHelper::getImageUrlResized('merchant',$merchant->LogoUrl, 'logobig');
+	}
+/*--------------- FINE IMPOSTAZIONI SEO----------------------*/
+
 ?>
+<script type="application/ld+json">// <![CDATA[
+<?php echo json_encode($payload,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE); ?>
+// ]]></script>
 
 <div class="bfi-content">
 	<?php //echo JHTML::link(JRoute::_('index.php?option=com_bookingforconnector&view=merchantdetails&merchantId=' . $merchant->MerchantId . ':' . BFCHelper::getSlug($merchant->Name),true,-1), JTEXT::_('COM_BOOKINGFORCONNECTOR_MERCHANTS_VIEW_MERCHANTDETAILS_RATING_RETURN') ,array('class' => ' bfi-pull-right'));?>
-	<div class="bfi-title-name"><?php echo  $merchant->Name?> 
+	<div class="bfi-title-name"><h1><?php echo  $merchant->Name?></h1> 
 		<span class="bfi-item-rating">
 		  <?php for($i = 0; $i < $rating; $i++) { ?>
 		  <i class="fa fa-star"></i>

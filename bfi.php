@@ -2,7 +2,7 @@
 /*
 Plugin Name: BookingFor
 Description: BookingFor integration Code for Wordpress
-Version: 3.1.3
+Version: 3.1.4
 Author: BookingFor
 Author URI: http://www.bookingfor.com/
 */
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'BookingFor' ) ) :
 final class BookingFor {
 	
-	public $version = '3.1.3';
+	public $version = '3.1.4';
 	public $currentOrder = null;
 	
 	protected static $_instance = null;
@@ -80,6 +80,8 @@ final class BookingFor {
 		$isportal = get_option('bfi_isportal_key', 1);
 		$showdata = get_option('bfi_showdata_key', 1);
 		$sendtocart = get_option('bfi_sendtocart_key', 0);
+		$showbadge = get_option('bfi_showbadge_key', 0);
+		$enablecoupon = get_option('bfi_enablecoupon_key', 0);
 		
 		$usessl = get_option('bfi_usessl_key',0);
 		$ssllogo = get_option('bfi_ssllogo_key','');
@@ -151,6 +153,8 @@ final class BookingFor {
 		$this->define( 'COM_BOOKINGFORCONNECTOR_ISPORTAL', $isportal );
 		$this->define( 'COM_BOOKINGFORCONNECTOR_SHOWDATA', $showdata );
 		$this->define( 'COM_BOOKINGFORCONNECTOR_SENDTOCART', $sendtocart );
+		$this->define( 'COM_BOOKINGFORCONNECTOR_SHOWBADGE', $showbadge );
+		$this->define( 'COM_BOOKINGFORCONNECTOR_ENABLECOUPON', $enablecoupon );
 		
 		$this->define( 'COM_BOOKINGFORCONNECTOR_USESSL', $usessl );
 		$this->define( 'COM_BOOKINGFORCONNECTOR_SSLLOGO', $ssllogo );
@@ -200,7 +204,8 @@ final class BookingFor {
 			add_action( 'wp_enqueue_scripts', array( $this , 'bfi_load_scripts' ) ,1 ); // spostata priorità altrimenti sovrascrive template
 //			add_action( 'wp_enqueue_scripts', array( $this , 'bfi_load_scripts_locale' ) );
 			add_action ( 'wp_head', array( $this , 'bfi_js_variables' ) );
-
+//remove canonical 
+add_filter( 'wpseo_canonical', '__return_false' );
 		}
 		if ( $this->is_request( 'admin' ) ) {
 			add_action( 'admin_enqueue_scripts', array( $this , 'bfi_load_admin_scripts' ) );
@@ -388,7 +393,7 @@ final class BookingFor {
 	public function bfi_js_variables(){
 		$cartdetails_page = get_post( bfi_get_page_id( 'cartdetails' ) );
 		$url_cart_page = get_permalink( $cartdetails_page->ID );
-		if($usessl){
+		if(COM_BOOKINGFORCONNECTOR_USESSL){
 			$url_cart_page = str_replace( 'http:', 'https:', $url_cart_page );
 		}
 		
@@ -404,6 +409,7 @@ final class BookingFor {
 				"CurrencyExchanges":<?php echo json_encode(BFCHelper::getCurrencyExchanges()); ?>,
 				"bfi_defaultdisplay":<?php echo json_encode(COM_BOOKINGFORCONNECTOR_DEFAULTDISPLAYLIST); ?>,
 				"bfi_sendtocart":<?php echo json_encode(COM_BOOKINGFORCONNECTOR_SENDTOCART); ?>,			
+				"bfi_eecenabled":<?php echo json_encode(COM_BOOKINGFORCONNECTOR_EECENABLED); ?>,			
 				"bfi_carturl":"<?php echo $url_cart_page; ?>",			
 			};
 		/* ]]> */

@@ -4,24 +4,89 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
  ?>
 <?php
-$resource_id = get_query_var( 'resource_id', 0 );
-$language = $GLOBALS['bfi_lang'];
-?>
-<?php
+	$resource_id = get_query_var( 'resource_id', 0 );
+	$language = $GLOBALS['bfi_lang'];
 	$layout = get_query_var( 'bfi_layout', '' );
-
-if($_SERVER['REQUEST_METHOD'] !== 'POST' && $layout==  _x('form', 'Page slug', 'bfi' )  ){
+	$sitename = sanitize_key( get_bloginfo( 'name' ) );
 	$model = new BookingForConnectorModelResource;
+	$model->setResourceId($resource_id);
+	$model->setItemPerPage(COM_BOOKINGFORCONNECTOR_ITEMPERPAGE);
 	$resource = $model->getItem($resource_id);	 
-	$accommodationdetails_page = get_post( bfi_get_page_id( 'accommodationdetails' ) );
-	$url_resource_page = get_permalink( $accommodationdetails_page->ID );
-	$resourceName = BFCHelper::getLanguage($resource->Name, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
-	$route = $url_resource_page.$resource->ResourceId.'-'.BFI()->seoUrl($resourceName);
-	wp_redirect($route);
-	exit();
-}
+	if(empty($resource)){
+	  global $wp_query;
+	  $wp_query->set_404();
+	  status_header( 404 );
+	  get_template_part( 404 );
+	  exit();		
+	}
+	$currencyclass = bfi_get_currentCurrency();
+	$merchant = $resource->Merchant;
+	$merchants = array();
+	$merchants[] = $resource->MerchantId;
+
+	$resourceName = BFCHelper::getLanguage($resource->Name, $language, null, array('nobr'=>'nobr', 'striptags'=>'striptags')); 
+	$merchantName = BFCHelper::getLanguage($merchant->Name, $language, null, array('nobr'=>'nobr', 'striptags'=>'striptags')); 
+	$resourceDescription = BFCHelper::getLanguage($resource->Description, $language, null, array('ln2br'=>'ln2br', 'bbcode'=>'bbcode', 'striptags'=>'striptags'));
+
+	$indirizzo = isset($resource->Address)?$resource->Address:"";
+	$cap = isset($resource->ZipCode)?$resource->ZipCode:""; 
+	$comune = isset($resource->CityName)?$resource->CityName:"";
+	$stato = isset($resource->StateName)?$resource->StateName:"";
+
+/*---------------IMPOSTAZIONI SEO----------------------*/
+	$merchantDescriptionSeo = BFCHelper::getLanguage($merchant->Description, $language, null, array( 'nobr'=>'nobr', 'bbcode'=>'bbcode', 'striptags'=>'striptags')) ;
+	$resourceDescriptionSeo = BFCHelper::getLanguage($resource->Description, $language, null, array( 'nobr'=>'nobr', 'bbcode'=>'bbcode', 'striptags'=>'striptags')) ;
+	if (!empty($merchantDescriptionSeo) && strlen($merchantDescriptionSeo) > 170) {
+	    $merchantDescriptionSeo = substr($merchantDescriptionSeo,0,170);
+	}
+	if (!empty($resourceDescriptionSeo) && strlen($resourceDescriptionSeo) > 170) {
+	    $resourceDescriptionSeo = substr($resourceDescriptionSeo,0,170);
+	}
+
+	$titleHead = "$merchantName: $resourceName ($comune, $stato) - $merchant->MainCategoryName - $sitename";
+	$keywordsHead = "$merchantName, $resourceName, $comune, $stato, $merchant->MainCategoryName";
+
+//	$this->document->setTitle($titleHead);
+//	$this->document->setDescription($resourceDescriptionSeo);
+//	$this->document->setMetadata('keywords', $keywordsHead);
+//	$this->document->setMetadata('robots', "index,follow");
+//	$this->document->setMetadata('og:title', $titleHead);
+//	$this->document->setMetadata('og:description', $resourceDescriptionSeo);
+//	$this->document->setMetadata('og:url', $resourceRouteSeo);
+
+//	$payload["@type"] = "Organization";
+//	$payload["@context"] = "http://schema.org";
+//	$payload["name"] = $merchantName;
+//	$payload["description"] = $merchantDescriptionSeo;
+//	$payload["url"] = $routeSeo; 
+//	if (!empty($merchant->LogoUrl)){
+//		$payload["logo"] = "https:".BFCHelper::getImageUrlResized('merchant',$merchant->LogoUrl, 'logobig');
+//	}
+//
+//	$payloadresource["@type"] = "Product";
+//	$payloadresource["@context"] = "http://schema.org";
+//	$payloadresource["name"] = $resourceName;
+//	$payloadresource["description"] = $resourceDescriptionSeo;
+//	$payloadresource["url"] = $resourceRouteSeo; 
+//	if (!empty($resource->ImageUrl)){
+//		$payloadresource["image"] = "https:".BFCHelper::getImageUrlResized('resources',$resource->ImageUrl, 'logobig');
+//	}
+/*--------------- FINE IMPOSTAZIONI SEO----------------------*/
 	
 	if(!isset($_GET['task']) && ($layout !=_x('inforequestpopup', 'Page slug', 'bfi' )) && ($layout !=_x('mapspopup', 'Page slug', 'bfi' ))  ) {
+
+	if ( defined('WPSEO_VERSION') ) {
+				add_filter( 'wpseo_title', function() use ($titleHead) {return	$titleHead;} , 10, 1 );
+				add_filter( 'wpseo_metakey', function() use ($keywordsHead) {return $keywordsHead; } , 10, 1  );
+				add_filter( 'wpseo_metadesc', function() use ($resourceDescriptionSeo) {return $resourceDescriptionSeo; } , 10, 1 );
+				add_filter( 'wpseo_robots', function() {return "index,follow"; } , 10, 1 );
+	}else{
+		add_filter( 'wp_title', function() use ($titleHead) {return	$titleHead;} , 10, 1 );
+		add_action( 'wp_head', function() use ($keywordsHead) {return bfi_add_meta_keywords($keywordsHead); }, 10, 1);
+		add_action( 'wp_head', function() use ($resourceDescriptionSeo) {return bfi_add_meta_description($resourceDescriptionSeo); } , 10, 1 );
+		add_action( 'wp_head', 'bfi_add_meta_robots', 10, 1);
+	}
+
 
 	get_header( );
 ?>
@@ -32,15 +97,6 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST' && $layout==  _x('form', 'Page slug', '
 		 * @hooked bookingfor_output_content_wrapper - 10 (outputs opening divs for the content)
 		 * @hooked bookingfor_breadcrumb - 20
 		 */
-		$model = new BookingForConnectorModelResource;
-		$resource = $model->getItem($resource_id);	 
-		if(empty($resource)){
-		  global $wp_query;
-		  $wp_query->set_404();
-		  status_header( 404 );
-		  get_template_part( 404 );
-		  exit();		
-		}
 		do_action( 'bookingfor_before_main_content' );
 		if(isset($_REQUEST['newsearch'])){
 			bfi_setSessionFromSubmittedData();
@@ -53,141 +109,12 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST' && $layout==  _x('form', 'Page slug', '
 	
 <?php
 //	$layout = get_query_var( 'bfi_layout', '' );
-	$model->setResourceId($resource_id);
-	$model->setItemPerPage(COM_BOOKINGFORCONNECTOR_ITEMPERPAGE);
 
 	$sendAnalytics =false;
 	$criteoConfig = null;
-	$merchants = array();
-	$merchants[] = $resource->MerchantId;
-	$merchant = $resource->Merchant;
-	$cartType = 1; //$merchant->CartType;
-	$currencyclass = bfi_get_currentCurrency();
 
 
 	switch ( $layout) {
-		case  _x('form', 'Page slug', 'bfi' ) :
-			
-//*------------------------------------------------------------------------------------------------------------------------------------------------*/
-			$allstays = $model->getStay($language,null,true);
-//			$allstays = $model->getStay(isset($this->params['refreshcalc']));
-			
-			$stay = null;
-			
-		if(is_array($allstays) && (!isset($pars['pricetype']) || empty($pars['pricetype']))) {
-				$selStay = array_values(array_filter($allstays, function($st) {
-					return $st->SuggestedStay->Available && $st->TotalAmount > 0;
-				}));
-				if(count($selStay) > 0) {
-					$pars['pricetype'] = $selStay[0]->RatePlanId;
-				}
-			}
-			
-			if(is_array($allstays) && isset($pars['pricetype'])) {
-				$selStay = array_values(array_filter($allstays, function($st) use ($pars) {
-					return $pars['pricetype'] == $st->RatePlanId;
-				}));
-				if(count($selStay) > 0) {
-					$stay = $selStay[0];
-				}
-			}
-				$total = 0;
-				$totalDiscounted = 0;
-				$totalWithVariation = 0;
-
-				$newAllStays = array();
-				if(!empty($stay)){
-					$resource->Availability = $stay->SuggestedStay->Availability;
-					$stay->CalculatedPricesDetails = json_decode($stay->CalculatedPricesString);
-					$stay->SelectablePrices = json_decode($stay->CalculablePricesString);
-					$stay->CalculatedPackages = json_decode($stay->PackagesString);
-					$stay->DiscountVariation = null;
-
-					// only here
-					$resource->BookingType = $stay->SuggestedStay->BookingType;
-
-					if(!empty($stay->Discount)){
-						$stay->DiscountVariation = $stay->Discount;
-
-					}
-					$stay->SupplementVariation =null;
-					if(!empty($stay->Supplement)){
-						$stay->SupplementVariation = $stay->Supplement;
-					}
-						
-					$allVar = json_decode($stay->AllVariationsString);
-					$stay->Variations= [];
-					$stay->SimpleDiscountIds = [];
-					foreach ($allVar as $currVar) {
-						if(empty($currVar->IsExclusive)){
-							$stay->Variations[] = $currVar;
-							$stay->SimpleDiscountIds[] = $currVar->VariationPlanId;
-						}
-					}
-					if(isset($stay->BookingTypes)) {
-						$item->MerchantBookingTypes  = $stay->BookingTypes;
-					}
-					if(isset($stay->SelectablePrices)) {
-						$Extras =  $stay->SelectablePrices;
-					}
-					$suggestedStay = $stay->SuggestedStay;
-
-					if(!empty($suggestedStay->TotalPrice)){
-						$total = (float)$suggestedStay->TotalPrice;
-					}
-					if(!empty($suggestedStay->DiscountedPrice)){
-						$totalDiscounted = (float)$suggestedStay->DiscountedPrice;
-					}
-					$totalWithVariation = $totalDiscounted;
-					//TODO: cosa farne dei pacchetti nel calcolo singolo della risorsa?
-					/*
-					if(!empty($stay->CalculatedPackages)){
-						foreach ($stay->CalculatedPackages as $pkg) {
-							//$totalDiscounted = $totalDiscounted + $pkg->SuggestedStay->DiscountedPrice;
-							//$total = $total + $pkg->SuggestedStay->DiscountedPrice;
-							
-							
-							$totalDiscounted = $totalDiscounted + $pkg->DiscountedAmount;
-							$total = $total + $pkg->DiscountedAmount;
-						}
-					}
-					*/
-					if(!empty($stay->Variations)){
-						foreach ($stay->Variations as $var) {
-							$var->TotalPackagesAmount = 0;
-							foreach ($stay->CalculatedPackages as $pkg) {
-								foreach($pkg->Variations as $pvar) {
-									if($pvar->VariationPlanId == $var->VariationPlanId){
-										$var->TotalPackagesAmount +=  $pvar->TotalAmount;
-										break;
-									}
-								}
-							}
-						}
-					}
-				}
-
-/*--------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-			if(COM_BOOKINGFORCONNECTOR_CRITEOENABLED){
-				$criteoConfig = BFCHelper::getCriteoConfiguration(3, $merchants);	
-				if(isset($criteoConfig) && isset($criteoConfig->enabled) && $criteoConfig->enabled && count($criteoConfig->merchants) > 0) {
-					echo '<script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script>';
-					echo '<script type="text/javascript"><!--
-					';
-					echo ('window.criteo_q = window.criteo_q || []; 
-					window.criteo_q.push( 
-						{ event: "setAccount", account: '. $criteoConfig->campaignid .'}, 
-						{ event: "setSiteType", type: "d" }, 
-						{ event: "setEmail", email: "" }, 
-						{ event: "viewBasket", item: [{ id: "' . $criteoConfig->merchants[0] . '", price: ' . $totalDiscounted . ', quantity: 1 }] }
-					);');
-					echo "//--></script>";
-				}	
-			}
-
-
-			include(BFI()->plugin_path().'/templates/resourcedetails/form.php'); // merchant template
-		break;
 		case _x('review', 'Page slug', 'bfi' ):
 			include(BFI()->plugin_path().'/templates/resourcedetails/review.php'); // merchant template
 		break;
@@ -217,31 +144,25 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST' && $layout==  _x('form', 'Page slug', '
 						
 			
 			include(BFI()->plugin_path().'/templates/resourcedetails/resourcedetails.php'); // merchant template
-			$sendAnalytics = $resource->IsCatalog;
+			$sendAnalytics = true; //$resource->IsCatalog;
 	}
 
 		add_action('bfi_head', 'bfi_google_analytics_EEc', 10, 1);
-		do_action('bfi_head', "Merchant Resources Search List");
+		do_action('bfi_head', "");
 		if($sendAnalytics && COM_BOOKINGFORCONNECTOR_GAENABLED == 1 && !empty(COM_BOOKINGFORCONNECTOR_GAACCOUNT) && COM_BOOKINGFORCONNECTOR_EECENABLED == 1) {
 				$obj = new stdClass;
 				$obj->id = "" . $resource->ResourceId . " - Resource";
 				$obj->name = $resource->Name;
 				$obj->category = $resource->MerchantCategoryName;
 				$obj->brand = $resource->MerchantName;
-				$obj->variant = 'CATALOG';
+				$obj->variant = $resource->IsCatalog ? 'CATALOG': 'NS';
 				echo '<script type="text/javascript"><!--
 				';
 				echo ('callAnalyticsEEc("addProduct", [' . json_encode($obj) . '], "item");');
 				echo "//--></script>";
 		}
 	
-//	wp_enqueue_script('bf_cart_type', BFI()->plugin_url() . '/assets/js/bf_cart_type_'.$cartType.'.js');
-	if($cartType ==0 ){
-		wp_enqueue_script('bf_cart_type', BFI()->plugin_url() . '/assets/js/bf_cart_type_0.js',array(),BFI_VERSION);
-	}else{
-		wp_enqueue_script('bf_cart_type', BFI()->plugin_url() . '/assets/js/bf_cart_type_1.js',array(),BFI_VERSION);
-	}
-
+	wp_enqueue_script('bf_cart_type', BFI()->plugin_url() . '/assets/js/bf_cart_type_1.js',array(),BFI_VERSION);
 	wp_enqueue_script('bf_appTimePeriod', BFI()->plugin_url() . '/assets/js/bf_appTimePeriod.js',array(),BFI_VERSION);
 	wp_enqueue_script('bf_appTimeSlot', BFI()->plugin_url() . '/assets/js/bf_appTimeSlot.js',array(),BFI_VERSION);
 
@@ -270,12 +191,6 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST' && $layout==  _x('form', 'Page slug', '
   }
   else {
     $task = BFCHelper::getVar('task','');
-
-	$model = new BookingForConnectorModelResource;
-	$model->setResourceId($resource_id);
-	$model->setItemPerPage(COM_BOOKINGFORCONNECTOR_ITEMPERPAGE);
-	$resource = $model->getItem($resource_id);	 
-	$currencyclass = bfi_get_currentCurrency();
 	
 //	$model = new BookingForConnectorModelMerchantDetails;
 //	$merchant = $model->getItem($merchant_id);	 
@@ -284,8 +199,6 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST' && $layout==  _x('form', 'Page slug', '
 		if(!empty(BFCHelper::getVar('refreshcalc',''))){
 			bfi_setSessionFromSubmittedData();
 		}
-		$merchants = array();
-		$merchants[] = $resource->MerchantId;
 		$criteoConfig = null;
 		if(COM_BOOKINGFORCONNECTOR_CRITEOENABLED){
 			$criteoConfig = BFCHelper::getCriteoConfiguration(2, $merchants);
@@ -294,7 +207,6 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST' && $layout==  _x('form', 'Page slug', '
 		
 		$_SESSION['search.params']['resourceId'] = $resource_id;
 		$output = '';
-		$merchant = $resource->Merchant;
 		$resourceId = $resource->ResourceId;
 		$condominiumId = 0;
 
@@ -307,8 +219,6 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST' && $layout==  _x('form', 'Page slug', '
 				case _x('inforequestpopup', 'Page slug', 'bfi' ):
 					
 					$merchant_id = $resource->MerchantId;
-					$model = new BookingForConnectorModelMerchantDetails;
-					$merchant = $model->getItem($merchant_id);
 					$currentView = 'resource';
 					$orderType = "c";
 					$task = "sendInforequest";
@@ -346,10 +256,7 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST' && $layout==  _x('form', 'Page slug', '
 					}
 					$checkinId = uniqid('checkin');
 					$checkoutId = uniqid('checkout');
-
 				$output = '';
-					$model = new BookingForConnectorModelResource;
-					$resource = $model->getItem($resource_id);	 
 					include(BFI()->plugin_path().'/templates/merchant-sidebar-contact.php'); // merchant template
 				die($output);
 				break;

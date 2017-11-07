@@ -244,6 +244,10 @@ class bfi_Shortcodes {
 		
 		$merchants = is_array($items) ? $items : array();
 		ob_start();
+		$listNameAnalytics =4;
+		$listName = BFCHelper::$listNameAnalytics[$listNameAnalytics];// "Resources Search List";
+		add_action('bfi_head', 'bfi_google_analytics_EEc', 10, 1);
+		do_action('bfi_head', $listName);
 
 		include(BFI()->plugin_path().'/templates/merchantslist/merchantslist.php');
 		
@@ -393,10 +397,18 @@ class bfi_Shortcodes {
 		 $item = $resourcesmodel->getItem();
 //		$items = $resourcesmodel->getItems();
 
+		$category = 0;
+		$showGrouped = 0;
+		$list = "";
+		$listNameAnalytics = 0;
+		$totalItems = array();
+		$sendData = true;
+
 		if(!empty($item)) {
 		ob_start();
 			$category = $item->SelectionCategory;
 			if ($category  == 1) {
+				$listNameAnalytics = 1;
 				$items = $resourcesmodel->getItemsMerchants();
 				$total = $resourcesmodel->getTotalMerchants();
 				$filter_order = $resourcesmodel->getOrdering();
@@ -406,14 +418,27 @@ class bfi_Shortcodes {
 				include(BFI()->plugin_path().'/templates/merchantslist/merchantslist.php');
 			}
 			if ($category == 2) {
+				$listNameAnalytics = 7;
 				$items = $resourcesmodel->getItemsOnSellUnit();
 				$total = $resourcesmodel->getTotalResources();
 				$resources = is_array($items) ? $items : array();
 				include(BFI()->plugin_path().'/templates/onsellunits.php');
 			}
 			if ($category == 4) {
+				$listNameAnalytics = 5;
 				$items = $resourcesmodel->getItemsResources();
 				$total = $resourcesmodel->getTotalResources();
+				if (!empty($items)) {
+					foreach($items as $mrckey => $mrcValue) {
+						$obj = new stdClass();
+						$obj->Id = $mrcValue->ResourceId . " - Resource";
+						$obj->MerchantId = $mrcValue->MerchantId;
+						$obj->MrcCategoryName = $mrcValue->DefaultLangMrcCategoryName;
+						$obj->Name = $mrcValue->ResName;
+						$obj->MrcName = $mrcValue->MrcName;
+						$obj->Position = $mrckey;
+						$totalItems[] = $obj;
+					}
 				if  ($currParam['show_grouped'] == true) {
 					$merchants = is_array($items) ? $items : array();
 					include(BFI()->plugin_path().'/templates/resources_grouped.php');
@@ -422,9 +447,43 @@ class bfi_Shortcodes {
 					include(BFI()->plugin_path().'/templates/resources.php');
 				}
 			}
+		$listName = BFCHelper::$listNameAnalytics[$listNameAnalytics];// "Resources Search List";
+		if(count($totalItems) > 0 && COM_BOOKINGFORCONNECTOR_GAENABLED == 1 && !empty(COM_BOOKINGFORCONNECTOR_GAACCOUNT) && COM_BOOKINGFORCONNECTOR_EECENABLED == 1) {
+		
+		add_action('bfi_head', 'bfi_google_analytics_EEc', 10, 1);
+		do_action('bfi_head', $listName);
+
+			$allobjects = array();
+			$initobjects = array();
+			foreach ($totalItems as $key => $value) {
+				$obj = new stdClass;
+				$obj->id = "" . $value->Id;
+				if(isset($value->GroupId) && !empty($value->GroupId)) {
+					$obj->groupid = $value->GroupId;
+				}
+				$obj->name = $value->Name;
+				$obj->category = $value->MrcCategoryName;
+				$obj->brand = $value->MrcName;
+				$obj->position = $value->Position;
+				if(!isset($value->ExcludeInitial) || !$value->ExcludeInitial) {
+					$initobjects[] = $obj;
+				} else {
+					///$obj->merchantid = $value->MerchantId;
+					//$allobjects[] = $obj;
+				}
+			}
+			echo '<script type="text/javascript"><!--
+			';
+			echo ('var currentResources = ' .json_encode($allobjects) . ';
+			var initResources = ' .json_encode($initobjects) . ';
+			' . ($sendData ? 'callAnalyticsEEc("addImpression", initResources, "list");' : ''));
+			echo "//--></script>";
+
+		}
 
 			$return = ob_get_contents();
 			ob_end_clean();
+		}
 		}
 		return $return ;
 //		return self::shortcode_wrapper( array( 'WC_Shortcode_Checkout', 'output' ), $atts );

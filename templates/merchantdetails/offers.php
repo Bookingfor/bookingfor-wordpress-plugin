@@ -13,6 +13,7 @@ if(defined('ICL_LANGUAGE_CODE') &&  class_exists('SitePress')){
 		}
 }
 $isportal = COM_BOOKINGFORCONNECTOR_ISPORTAL;
+$fromsearchparam = "?lna=".$listNameAnalytics;
 
 $merchantdetails_page = get_post( bfi_get_page_id( 'merchantdetails' ) );
 $url_merchant_page = get_permalink( $merchantdetails_page->ID );
@@ -31,17 +32,24 @@ if ($rating>9 )
 	$rating = $rating/10;
 }
 
+/*---------------IMPOSTAZIONI SEO----------------------*/
+	$payload["@type"] = "Organization";
+	$payload["@context"] = "http://schema.org";
+	$payload["name"] = $merchantName;
+	$payload["description"] = $merchantDescriptionSeo;
+	$payload["url"] = $routeSeo; 
+	if (!empty($merchant->LogoUrl)){
+		$payload["logo"] = "https:".BFCHelper::getImageUrlResized('merchant',$merchant->LogoUrl, 'logobig');
+	}
+/*--------------- FINE IMPOSTAZIONI SEO----------------------*/
+
 ?>
-<script type="text/javascript">
-<!--
-var urlCheck = "<?php echo $base_url ?>/bfi-api/v1/task";	
-var cultureCode = '<?php echo $language ?>';
-var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
-//-->
-</script>
+<script type="application/ld+json">// <![CDATA[
+<?php echo json_encode($payload,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE); ?>
+// ]]></script>
 <div class="bfi-content">
 <div class="bfi-row">
-	<div class="bfi-title-name bfi-hideonextra"><?php echo  $merchant->Name?>
+	<div class="bfi-title-name bfi-hideonextra"><h1><?php echo  $merchant->Name?></h1>
 		<span class="bfi-item-rating">
 			<?php for($i = 0; $i < $rating; $i++) { ?>
 			<i class="fa fa-star"></i>
@@ -64,30 +72,31 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 <div class="bfi-clearfix"></div>
 	<?php if ($offers != null){ ?>
 		<div id="bfi-list" class="bfi-row bfi-list">
-			<?php foreach($offers as $resource){ ?>
+			<?php foreach($offers as $currKey=>$resource){ ?>
 			<?php
 		$resourceImageUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s6.jpeg";
 		$resourceName = BFCHelper::getLanguage($resource->Name, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
 		$resourceDescription = BFCHelper::getLanguage($resource->Description, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
 //		$currUriresource = $uri.$resource->VariationPlanId.'-'.BFI()->seoUrl($resourceName);
 		
-		$resourceRoute = $routeMerchant.'/'._x('offer', 'Page slug', 'bfi' ).'/'. $resource->VariationPlanId . '-' . BFCHelper::getSlug($resourceName);
+		$resourceRoute = $routeMerchant.'/'._x('offer', 'Page slug', 'bfi' ).'/'. $resource->VariationPlanId . '-' . BFCHelper::getSlug($resourceName).$fromsearchparam;
 		if(!empty($resource->DefaultImg)){
 			$resourceImageUrl = BFCHelper::getImageUrlResized('variationplans',$resource->DefaultImg, 'medium');
 		}
+		$resourceNameTrack =  BFCHelper::string_sanitize($resourceName);
 
 			?>
 				<div class="bfi-col-sm-6 bfi-item">
 					<div class="bfi-row bfi-sameheight" >
 						<div class="bfi-col-sm-3 bfi-img-container">
-							<a href="<?php echo $resourceRoute ?>" style='background: url("<?php echo $resourceImageUrl; ?>") center 25% / cover;'><img src="<?php echo $resourceImageUrl; ?>" class="bfi-img-responsive" /></a> 
+							<a href="<?php echo $resourceRoute ?>" style='background: url("<?php echo $resourceImageUrl; ?>") center 25% / cover;' target="_blank" class="eectrack" data-type="Offer" data-id="<?php echo $resource->VariationPlanId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>" data-list="<?php echo $analyticsListName; ?>"><img src="<?php echo $resourceImageUrl; ?>" class="bfi-img-responsive" /></a> 
 						</div>
 						<div class="bfi-col-sm-9 bfi-details-container">
 							<!-- merchant details -->
 							<div class="bfi-row" >
 								<div class="bfi-col-sm-10">
 									<div class="bfi-item-title">
-										<a href="<?php echo $resourceRoute ?>" id="nameAnchor<?php echo $resource->VariationPlanId?>" target="_blank"><?php echo  $resource->Name ?></a> 
+										<a href="<?php echo $resourceRoute ?>" id="nameAnchor<?php echo $resource->VariationPlanId?>" target="_blank" class="eectrack" data-type="Offer" data-id="<?php echo $resource->VariationPlanId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>" data-list="<?php echo $analyticsListName; ?>"><?php echo  $resource->Name ?></a> 
 									</div>
 									<div class="bfi-description"><?php echo $resourceDescription ?></div>
 								</div>
@@ -100,7 +109,7 @@ var defaultcultureCode = '<?php echo BFCHelper::$defaultFallbackCode ?>';
 								
 								</div>
 								<div class="bfi-col-sm-4 bfi-text-right">
-										<a href="<?php echo $resourceRoute ?>" class="bfi-btn" target="_blank"><?php echo _e('Details' , 'bfi')?></a>
+										<a href="<?php echo $resourceRoute ?>" class="bfi-btn eectrack" target="_blank" data-type="Offer" data-id="<?php echo $resource->VariationPlanId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>" data-list="<?php echo $analyticsListName; ?>"><?php echo _e('Details' , 'bfi')?></a>
 								</div>
 							</div>
 							<!-- end resource details -->

@@ -1,5 +1,7 @@
-<!-- merchant details -->
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
 $merchantSiteUrl = '';
 $mrcindirizzo = "";
@@ -30,7 +32,6 @@ if (empty($merchant->AddressData)){
 
 
 $uriMerchant = $routeMerchant;
-$route = $routeMerchant;
 
 $uriMerchantResources = $uriMerchant .'/'._x( 'resources', 'Page slug', 'bfi' ).'?limitstart=0';
 $uriMerchantOffers = $uriMerchant .'/'._x('offers', 'Page slug', 'bfi' ).'?limitstart=0';
@@ -57,7 +58,7 @@ if(BFI()->isResourceOnSellPage() && !empty($resource_id)){
 		<div class="bfi-row bfi-merchant-simple bfi-hideonextra">
 			<div class="bfi-col-md-4">
 					<div class="bfi-vcard-name">
-						<a <?php if($isportal) { ?> href="<?php echo $route?>"<?php } ?>><?php echo  $merchant->Name?></a>
+						<a href="<?php echo ($isportal)?$routeMerchant :"/";?>"><?php echo  $merchant->Name?></a>
 						<span class="bfi-item-rating">
 						<?php for($i = 0; $i < $merchant->Rating ; $i++) { ?>
 						  <i class="fa fa-star"></i>
@@ -66,7 +67,7 @@ if(BFI()->isResourceOnSellPage() && !empty($resource_id)){
 					</div>
 					<div class="bfi-row ">
 						<div class="bfi-col-md-5 bfi-vcard-logo-box">
-							<div class="bfi-vcard-logo"><a <?php if($isportal) { ?> href="<?php echo $route?>"<?php } ?>><img src="<?php echo $merchantLogo?>" /></a></div>	
+							<div class="bfi-vcard-logo"><a href="<?php echo ($isportal)?$routeMerchant :"/";?>"><img src="<?php echo $merchantLogo?>" /></a></div>	
 						</div>
 						<div class="bfi-col-md-7 bfi-pad0-10 bfi-street-address-block">
 							
@@ -75,7 +76,7 @@ if(BFI()->isResourceOnSellPage() && !empty($resource_id)){
 						<?php if($isportal) { ?>
 							<div class="bfi-row bfi-text-center bfi-marchant-ref">
 								<div class="bfi-text-center">
-									<span class="tel "><a  href="javascript:void(0);" onclick="bookingfor.getData(urlCheck,'merchantid=<?php echo $merchant->MerchantId?>&task=GetPhoneByMerchantId&language=' + cultureCode,this,'<?php echo  addslashes($merchant->Name) ?>','PhoneView')"  id="phone<?php echo $merchant->MerchantId?>" class="bfi-btn bfi-alternative2"><?php _e('Show phone', 'bfi'); ?></a></span>
+									<span class="tel "><a  href="javascript:void(0);" onclick="bookingfor.getData(bfi_variable.bfi_urlCheck,'merchantid=<?php echo $merchant->MerchantId?>&task=GetPhoneByMerchantId&language=' + cultureCode,this,'<?php echo  addslashes($merchant->Name) ?>','PhoneView')"  id="phone<?php echo $merchant->MerchantId?>" class="bfi-btn bfi-alternative2"><?php _e('Show phone', 'bfi'); ?></a></span>
 									<?php if ($merchantSiteUrl != ''):?><span class="website"><a target="_blank" href="<?php echo $uriMerchantRedirect; ?>" class="bfi-btn bfi-alternative2"><?php _e('Web site', 'bfi'); ?></a></span>
 									<?php endif;?>
 								</div>

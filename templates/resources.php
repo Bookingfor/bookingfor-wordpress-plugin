@@ -159,7 +159,7 @@ $listName = BFCHelper::$listNameAnalytics[$listNameAnalytics];// "Resources Sear
 							<a href="javascript:void(0);" onclick="showMarker(<?php echo $resource->ResourceId?>)"><span id="address<?php echo $resource->ResourceId?>"></span></a>
 							<div class="bfi-hide" id="markerInfo<?php echo $resource->ResourceId?>">
 									<div class="bfi-item-title">
-										<a href="<?php echo $routeMerchant ?>" target="_blank" ><?php echo  $resource->Name  ?></a> 
+										<a href="<?php echo $resourceRoute ?>" target="_blank" ><?php echo  $resource->Name  ?></a> 
 										<span class="bfi-item-rating">
 											<?php for($i = 0; $i < $rating; $i++) { ?>
 												<i class="fa fa-star"></i>

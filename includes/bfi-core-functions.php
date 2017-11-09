@@ -444,7 +444,7 @@ function bfi_help_tip( $tip, $allow_html = false ) {
 
 		return false;
 	}
-	add_filter("preprocess_comment", "bfi_verify_captcha");
+//	add_filter("preprocess_comment", "bfi_verify_captcha");
 	function bfi_display_captcha($idrecaptcha) {
 		if( !empty(COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLERECAPTCHAKEY) && !empty(COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLERECAPTCHASECRETKEY)  ){
 			$currCaptcha = '<div id="' . $idrecaptcha . '"  class="g-recaptcha bfi-recaptcha" ' . 

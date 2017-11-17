@@ -1647,7 +1647,10 @@ label.bfi-lblcheckzone {
   right: auto;
   bottom: auto;
 }
-
+.bfi-table-cart > thead > tr > th:nth-child(2),
+.bfi-table-cart > tbody > tr > td:nth-child(2) {
+display:none;
+}
 @media (min-width: 768px) {
 	.bfi-grid-group-item.bfi-list-group-item .bfi-sameheight {
 		min-height: 100%;

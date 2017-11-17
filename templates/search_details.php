@@ -630,7 +630,7 @@ $showResult= " bfi-hide";
 			<thead>
 				<tr>
 					<th><?php _e('Information', 'bfi') ?></th>
-					<th><div><?php _e('For', 'bfi') ?></div></th>
+					<th><div><!-- <?php _e('For', 'bfi') ?> --></div></th>
 					<th ><div><?php _e('Price', 'bfi') ?></div></th>
 					<th><div><?php _e('Options', 'bfi') ?></div></th>
 					<th><div><?php _e('Qt.', 'bfi') ?></div></th>
@@ -1425,7 +1425,7 @@ if($currRateplan->RatePlan->IncludedMeals >-1){
 			<thead>
 				<tr>
 					<th><?php _e('Information', 'bfi') ?></th>
-					<th><div><?php _e('For', 'bfi') ?></div></th>
+					<th><div><!-- <?php _e('For', 'bfi') ?> --></div></th>
 					<th ><div><?php _e('Price', 'bfi') ?></div></th>
 					<th><div><?php _e('Options', 'bfi') ?></div></th>
 					<th><div><?php _e('Qt.', 'bfi') ?></div></th>
@@ -1450,6 +1450,10 @@ if($currRateplan->RatePlan->IncludedMeals >-1){
 
    
 										$loadScriptTimePeriod = true;
+										
+										$timeDurationview = $currDiff->h + round(($currDiff->i/60), 2);
+										$timeDuration = abs((new DateTime())->setTimeStamp(0)->add($currDiff)->getTimeStamp() / 60); 										
+
 										array_push($allTimePeriodResourceId, $selPrice->RelatedProductId );
 //										$currCheckInString = date_i18n('D',$currCheckIn->getTimestamp()) ." " . $currCheckIn->format("d") ." " . date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y");
 //										$currCheckOutString = date_i18n('D',$currCheckOut->getTimestamp()) ." " . $currCheckOut->format("d") ." " . date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y");
@@ -1457,30 +1461,37 @@ if($currRateplan->RatePlan->IncludedMeals >-1){
 //										$currCheckOutHour = $currCheckOut->format('H:i');
 //										$currDiffString = $currDiff->format('%h') ;
 
-$currCheckInString = __('Select a period', 'bfi');
-$currCheckOutString = "";
-$currCheckInHour = "";
-$currCheckOutHour = "";
-$currDiffString = "-";
-
+//$currCheckInString = __('Select a period', 'bfi');
+//$currCheckOutString = "";
+//$currCheckInHour = "";
+//$currCheckOutHour = "";
+//$currDiffString = "-";
+//
 									?>
-										<div class="bfi-timeperiod bfi-cursor" id="bfi-timeperiod-<?php echo $selPrice->RelatedProductId ?>" data-resid="<?php echo $selPrice->RelatedProductId ?>" data-checkin="<?php echo $currCheckIn->format('Ymd') ?>">
+										<div class="bfi-timeperiod bfi-cursor" id="bfi-timeperiod-<?php echo $selPrice->RelatedProductId ?>" 
+											data-resid="<?php echo $selPrice->RelatedProductId ?>" 
+											data-checkin="<?php echo $currCheckIn->format('Ymd') ?>"
+											data-checkintime="<?php echo $currCheckIn->format('YmdHis') ?>"
+											data-timeminstart="<?php echo $currCheckIn->format('His') ?>"
+											data-timeminend="<?php echo $currCheckOut->format('His') ?>"
+											data-duration="<?php echo $timeDuration ?>"
+											>
 											<div class="bfi-row ">
 												<div class="bfi-col-md-3 bfi-title"><?php _e('Check-in', 'bfi') ?>
 												</div>	
-												<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo $currCheckInString; ?></span> <span class="bfi-hide">-</span> <span class="bfi-time-checkin-hours bfi-hide"><?php echo $currCheckInHour; ?></span>
+												<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkin"><?php echo date_i18n('D',$currCheckIn->getTimestamp()) ?> <?php echo $currCheckIn->format("d") ?> <?php echo date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y") ?></span> - <span class="bfi-time-checkin-hours"><?php echo $currCheckIn->format('H:i') ?></span>
 												</div>	
 											</div>	
 											<div class="bfi-row ">
 												<div class="bfi-col-md-3 bfi-title"><?php _e('Check-out', 'bfi') ?>
 												</div>	
-												<div class="bfi-col-md-9 bfi-time bfi-text-right bfi-hide"><span class="bfi-time-checkout"><?php  echo $currCheckOutString; ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOutHour; ?></span>
+												<div class="bfi-col-md-9 bfi-time bfi-text-right"><span class="bfi-time-checkout"><?php echo date_i18n('D',$currCheckOut->getTimestamp()) ?> <?php echo $currCheckOut->format("d") ?> <?php echo date_i18n('M',$currCheckOut->getTimestamp()).' '.$currCheckOut->format("Y") ?></span> - <span class="bfi-time-checkout-hours"><?php echo $currCheckOut->format('H:i') ?></span>
 												</div>	
 											</div>	
 											<div class="bfi-row">
 												<div class="bfi-col-md-3 "><?php _e('Total', 'bfi') ?>:
 												</div>	
-												<div class="bfi-col-md-9 bfi-text-right bfi-hide"><span class="bfi-total-duration"><?php echo $currDiffString; ?></span> <?php _e('hours', 'bfi') ?>
+												<div class="bfi-col-md-9 bfi-text-right"><span class="bfi-total-duration"><?php echo $timeDurationview  ?></span> <?php _e('hours', 'bfi') ?>
 												</div>	
 											</div>	
 										</div>
@@ -1553,7 +1564,28 @@ $currDiffString = "-";
 							?>
 
 					</td>
-					<td><!-- Min/Max -->
+					<td>
+						<!-- Min/Max -->
+						<?php if (isset($selPrice->CalculationType) && !empty($selPrice->CalculationType)){?>
+							<?php 
+								if ($nad>0) {
+									?>
+									<div class="bfi-icon-paxes">
+										<i class="fa fa-user"></i> x <b><?php echo $nad ?></b>
+									<?php 
+										if (($nse+$nch)>0) {
+											?>
+											+ <br />
+												<span class="bfi-redux"><i class="fa fa-user"></i></span> x <b><?php echo ($nse+$nch) ?></b>
+											<?php 
+											
+										}
+									?>
+									</div>
+									<?php 
+								}
+							?>
+						<?php } ?>
 					</td>
 					<td style="text-align:center;"><!-- price -->
 						<?php
@@ -1583,10 +1615,10 @@ $currDiffString = "-";
 			{
 				array_push($availability, $i);
 			}
-			if ($selPrice->AvailabilityType == 2){
-				$availability = array(0);
-				$clickFunction ="bfi_updateQuoteService();";
-			}
+//			if ($selPrice->AvailabilityType == 2){
+//				$availability = array(0);
+//				$clickFunction ="bfi_updateQuoteService();";
+//			}
 
 				$extraNameTrack =  BFCHelper::string_sanitize($selPrice->Name);
 				$currratePlanName =  BFCHelper::string_sanitize($currRateplan->RatePlan->Name);

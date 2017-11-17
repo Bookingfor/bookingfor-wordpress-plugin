@@ -357,6 +357,13 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 			return $model->getMerchantOfferFromService($offerId, $language);
 		}
 
+		public static function getCondominiumFromServicebyId($resourceId) {
+//			JModelLegacy::addIncludePath(JPATH_ROOT. DIRECTORY_SEPARATOR .'components' . DIRECTORY_SEPARATOR . 'com_bookingforconnector'. DIRECTORY_SEPARATOR . 'models', 'BookingForConnectorModel');
+//			$model = JModelLegacy::getInstance('Condominium', 'BookingForConnectorModel');
+			$model = new BookingForConnectorModelCondominiums;
+			return $model->getCondominiumFromService($resourceId);
+		}
+
 	//	public static function getRatingByMerchantId($merchantId) {
 	//		JModelLegacy::addIncludePath(JPATH_ROOT. DIRECTORY_SEPARATOR .'components' . DIRECTORY_SEPARATOR . 'com_bookingforconnector'. DIRECTORY_SEPARATOR . 'models', 'BookingForConnectorModel');
 	//		$model = JModelLegacy::getInstance('MerchantDetails', 'BookingForConnectorModel');

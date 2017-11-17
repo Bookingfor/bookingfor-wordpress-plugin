@@ -159,6 +159,7 @@ foreach ($merchants as $currKey => $merchant){
 		$classofferdisplay = "bfi-highlight";
 	}
 	$resourceRoute .= $fromsearchparam;
+	$routeMerchant .= $fromsearchparam;
 	if (!empty($merchant->RateplanId)){
 		$resourceRoute .= "&pricetype=" . $merchant->RateplanId;
 	}

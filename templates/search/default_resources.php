@@ -176,25 +176,28 @@ $onlystay =  true;
 //			if(!empty($resource->LogoUrl)){
 //				$merchantLogoUrl =  BFCHelper::getImageUrlResized('merchant',$resource->LogoUrl, 'logomedium');
 //			}
+		$resourceNameTrack =  BFCHelper::string_sanitize($resourceName);
+		$merchantNameTrack =  BFCHelper::string_sanitize($merchantName);
+		$merchantCategoryNameTrack =  BFCHelper::string_sanitize($resource->MrcCategoryName);
 	?>
 	<div class="bfi-col-sm-6 bfi-item">
 		<div class="bfi-row bfi-sameheight" >
 			<div class="bfi-col-sm-3 bfi-img-container">
-				<a href="<?php echo $resourceRoute ?>" style='background: url("<?php echo $resourceImageUrl; ?>") center 25%;background-size: cover;' target="_blank"><img src="<?php echo $resourceImageUrl; ?>" class="bfi-img-responsive" /></a> 
+				<a href="<?php echo $resourceRoute ?>" style='background: url("<?php echo $resourceImageUrl; ?>") center 25%;background-size: cover;' target="_blank" class="eectrack" data-type="Resource" data-id="<?php echo $resource->ResourceId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><img src="<?php echo $resourceImageUrl; ?>" class="bfi-img-responsive" /></a> 
 			</div>
 			<div class="bfi-col-sm-9 bfi-details-container">
 				<!-- merchant details -->
 				<div class="bfi-row" >
 					<div class="bfi-col-sm-10">
 						<div class="bfi-item-title">
-							<a href="<?php echo $resourceRoute ?>" id="nameAnchor<?php echo $resource->ResourceId?>" target="_blank"><?php echo  $resourceName ?></a> 
+							<a href="<?php echo $resourceRoute ?>" id="nameAnchor<?php echo $resource->ResourceId?>" target="_blank" class="eectrack" data-type="Resource" data-id="<?php echo $resource->ResourceId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo  $resourceName ?></a> 
 							<span class="bfi-item-rating">
 								<?php for($i = 0; $i < $rating; $i++) { ?>
 									<i class="fa fa-star"></i>
 								<?php } ?>	             
 							</span>
 							<?php if($isportal) { ?>
-								- <a href="<?php echo $routeMerchant?>" class="bfi-subitem-title" target="_blank"><?php echo $resource->MrcName; ?></a>
+								- <a href="<?php echo $routeMerchant?>" class="bfi-subitem-title eectrack" target="_blank" data-type="Merchant" data-id="<?php echo $resource->MerchantId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $merchantNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo $resource->MrcName; ?></a>
 								<span class="bfi-item-rating">
 									<?php for($i = 0; $i < $ratingMrc; $i++) { ?>
 										<i class="fa fa-star"></i>
@@ -217,8 +220,8 @@ $onlystay =  true;
 									$totalInt = BFCHelper::convertTotal(number_format((float)$resource->ResAVG, 1, '.', ''));
 
 									?>
-									<a class="bfi-avg-value" href="<?php echo $resourceRoute ?>" target="_blank"><?php echo $rating_text['merchants_reviews_text_value_'.$totalInt] . " " . number_format((float)$resource->ResAVG, 1, '.', '') ?></a><br />
-									<a class="bfi-avg-count" href="<?php echo $resourceRoute ?>" target="_blank"><?php echo sprintf(__('%s reviews' , 'bfi'),$resource->ResAVGCount) ?></a>
+									<a class="bfi-avg-value eectrack" href="<?php echo $resourceRoute ?>" target="_blank" data-type="Resource" data-id="<?php echo $resource->ResourceId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo $rating_text['merchants_reviews_text_value_'.$totalInt] . " " . number_format((float)$resource->ResAVG, 1, '.', '') ?></a><br />
+									<a class="bfi-avg-count eectrack" href="<?php echo $resourceRoute ?>" target="_blank" data-type="Resource" data-id="<?php echo $resource->ResourceId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo sprintf(__('%s reviews' , 'bfi'),$resource->ResAVGCount) ?></a>
 								<?php }else{ ?>
 									<!-- <a class="bfi-avg-leaverating " href="<?php echo $routeRatingform ?>"><?php _e('Would you like to leave your review?', 'bfi') ?></a> -->
 								<?php } ?>
@@ -276,7 +279,7 @@ $onlystay =  true;
 								}
 							}
 						} else {?>
-							<a href="<?php echo $resourceRoute ?>" class="bfi-btn <?php echo $btnClass ?>" target="_blank"><?php echo _e('Details' , 'bfi')?></a>
+							<a href="<?php echo $resourceRoute ?>" class="bfi-btn <?php echo $btnClass ?> eectrack" target="_blank" data-type="Resource" data-id="<?php echo $resource->ResourceId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo _e('Details' , 'bfi')?></a>
 						<?php } ?>
 					</div>
 				</div>

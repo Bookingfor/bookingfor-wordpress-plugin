@@ -15,7 +15,7 @@ $rating_text = array('merchants_reviews_text_value_0' => __('Very poor', 'bfi'),
 						'merchants_reviews_text_value_10' => __('Exceptional', 'bfi'),                                 
 					);
 
-$fromsearchparam = "&fromsearch=1&lna=".$listNameAnalytics;
+$fromsearchparam = "?fromsearch=1&lna=".$listNameAnalytics;
 
 $checkin = BFCHelper::getStayParam('checkin', new DateTime());
 $checkout = BFCHelper::getStayParam('checkout', new DateTime());
@@ -123,7 +123,6 @@ foreach ($merchants as $currKey => $merchant){
 
 	$routeMerchant = $url_merchant_page . $merchant->MerchantId.'-'.BFI()->seoUrl($merchant->MrcName);
 	$routeCondominium = $url_condominium_page . $merchant->CondominiumId.'-'.BFI()->seoUrl($merchant->GrpName);
-	$routeCondominium .= "?fromsearch=1";
 //	$routeCondominium = $url_condominium_page . $merchant->CondominiumId.'-toreplace-';
 	
 	$routeRating = $routeMerchant .'/'._x('reviews', 'Page slug', 'bfi' );
@@ -166,6 +165,7 @@ foreach ($merchants as $currKey => $merchant){
 		$classofferdisplay = "bfi-highlight";
 	}
 	$resourceRoute .= $fromsearchparam;
+	$routeCondominium .= $fromsearchparam;
 	if (!empty($merchant->RateplanId)){
 		$resourceRoute .= "&pricetype=" . $merchant->RateplanId;
 	}
@@ -177,6 +177,12 @@ foreach ($merchants as $currKey => $merchant){
 		}
 	}
 	
+	$ratingMrc = $merchant->MrcRating;
+	if ($ratingMrc>9 )
+	{
+		$ratingMrc = $ratingMrc/10;
+	}
+
 	$resourceDataTypeTrack =  ($isCondominium)?"Resource Group":"Resource";
 	$resourceNameTrack =  BFCHelper::string_sanitize($currName);
 	$merchantNameTrack =  BFCHelper::string_sanitize($merchantName);
@@ -196,6 +202,14 @@ foreach ($merchants as $currKey => $merchant){
 					<div class="bfi-col-sm-12">
 						<div class="bfi-item-title">
 							<a href="<?php echo $routeCondominium ?>" id="nameAnchor<?php echo $merchant->CondominiumId?>" target="_blank" class="eectrack" data-type="<?php echo $resourceDataTypeTrack ?>" data-id="<?php echo $merchant->ResourceId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo  $currName ?></a> 
+							<?php if($isportal) { ?>
+								- <a href="<?php echo $routeMerchant?>" class="bfi-subitem-title eectrack" target="_blank" data-type="Merchant" data-id="<?php echo $resource->MerchantId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $merchantNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo $merchantName; ?></a>
+								<span class="bfi-item-rating">
+									<?php for($i = 0; $i < $ratingMrc; $i++) { ?>
+										<i class="fa fa-star"></i>
+									<?php } ?>	             
+								</span>
+							<?php } ?>
 						</div>
 						<div class="bfi-item-address">
 							<?php if ($showMerchantMap){?>
@@ -338,9 +352,9 @@ foreach ($merchants as $currKey => $merchant){
 					</div>
 					<div class="bfi-col-sm-3 bfi-text-right">
 						<?php if ($merchant->Price > 0){ ?>
-								<a href="<?php echo $resourceRoute ?>" class="bfi-btn eectrack <?php echo $btnClass ?>" target="_blank" data-type="Resource" data-id="<?php echo $merchant->ResourceId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo $btnText ?></a>
+								<a href="<?php echo $routeCondominium ?>" class="bfi-btn eectrack <?php echo $btnClass ?>" target="_blank" data-type="<?php echo $resourceDataTypeTrack ?>" data-id="<?php echo $merchant->ResourceId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo $btnText ?></a>
 						<?php }else{ ?>
-								<a href="<?php echo $resourceRoute ?>" class="bfi-btn eectrack <?php echo $btnClass ?>" target="_blank" data-type="Resource" data-id="<?php echo $merchant->ResourceId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo _e('Request' , 'bfi')?></a>
+								<a href="<?php echo $routeCondominium ?>" class="bfi-btn eectrack <?php echo $btnClass ?>" target="_blank" data-type="<?php echo $resourceDataTypeTrack ?>" data-id="<?php echo $merchant->ResourceId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo _e('Request' , 'bfi')?></a>
 						<?php } ?>
 					</div>
 				</div>

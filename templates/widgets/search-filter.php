@@ -680,7 +680,7 @@ function bfi_applyfilterdata(){
 		$this.css('width','auto');
 		$this.css('white-space','nowrap');
 		var divWidth = $this.width();
-		$this.width(divWidthBefore);
+		$this.width(divWidthBefore+1);
 		$this.css('white-space','normal');
 		if(divWidthBefore< divWidth && !$this.attr('title') ){
 			$this.attr('title', $this.text());

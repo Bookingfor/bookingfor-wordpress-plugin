@@ -6,7 +6,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 $images = array();
 
 if(!empty($merchant->ImageData)) {
-	foreach(explode(', ', $merchant->ImageData) as $image) {
+	$imageData = preg_replace('/\s+/', '', $merchant->ImageData);
+	foreach(explode(',', $imageData) as $image) {
 		if (!empty($image)){
 			$images[] = array('type' => 'image', 'data' => $image);
 		}
@@ -20,7 +21,8 @@ if(!empty($merchant->PlanimetryData)) {
 	}
 }
 if(!empty($merchant->VideoData)) {	
-	foreach(explode(',', $merchant->VideoData) as $image) {
+	$videoData = preg_replace('/\s+/', '', $merchant->VideoData);
+	foreach(explode(',', $videoData) as $image) {
 		if (!empty($image)){
 			$images[] =  array('type' => 'video', 'data' => $image);
 		}

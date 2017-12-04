@@ -25,7 +25,7 @@ $fromsearchparam = "?lna=".$listNameAnalytics;
 
 $merchantdetails_page = get_post( bfi_get_page_id( 'merchantdetails' ) );
 $url_merchant_page = get_permalink( $merchantdetails_page->ID );
-$routeMerchant = $url_merchant_page . $merchant->MerchantId.'-'.BFI()->seoUrl($merchant->Name).$fromsearchparam;
+$routeMerchant = $url_merchant_page . $merchant->MerchantId.'-'.BFI()->seoUrl($merchant->Name);
 
 $onselldetails_page = get_post( bfi_get_page_id( 'onselldetails' ) );
 $url_resource_page = get_permalink( $onselldetails_page->ID );
@@ -153,7 +153,7 @@ $listsId = array();
 								<?php } ?>	             
 							</span>
 							<?php if($isportal){ ?>
-							- <a href="<?php echo $routeMerchant?>" class="bfi-subitem-title eectrack" target="_blank" data-type="Merchant" data-id="<?php echo $resource->MerchantId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $merchantNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>" data-list="<?php echo $analyticsListName; ?>"><?php echo $resource->MerchantName; ?></a>
+							- <a href="<?php echo $routeMerchant.$fromsearchparam?>" class="bfi-subitem-title eectrack" target="_blank" data-type="Merchant" data-id="<?php echo $resource->MerchantId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $merchantNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>" data-list="<?php echo $analyticsListName; ?>"><?php echo $resource->MerchantName; ?></a>
 							<?php } ?>
 							<span class="bfi-item-rating">
 								<?php for($i = 0; $i < $ratingMrc; $i++) { ?>

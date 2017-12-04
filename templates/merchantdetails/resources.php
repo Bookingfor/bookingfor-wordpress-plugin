@@ -22,7 +22,7 @@ $fromsearchparam = "?lna=".$listNameAnalytics;
 
 $merchantdetails_page = get_post( bfi_get_page_id( 'merchantdetails' ) );
 $url_merchant_page = get_permalink( $merchantdetails_page->ID );
-$routeMerchant = $url_merchant_page . $merchant->MerchantId.'-'.BFI()->seoUrl($merchant->Name).$fromsearchparam;
+$routeMerchant = $url_merchant_page . $merchant->MerchantId.'-'.BFI()->seoUrl($merchant->Name);
 
 $accommodationdetails_page = get_post( bfi_get_page_id( 'accommodationdetails' ) );
 $url_resource_page = get_permalink( $accommodationdetails_page->ID );
@@ -46,7 +46,7 @@ $listsId = array();
 	$payload["@context"] = "http://schema.org";
 	$payload["name"] = $merchantName;
 	$payload["description"] = BFCHelper::getLanguage($merchant->Description, $language, null, array( 'striptags'=>'striptags', 'bbcode'=>'bbcode','ln2br'=>'ln2br'));
-	$payload["url"] = ($isportal)? $routeMerchant: $base_url; 
+	$payload["url"] = ($isportal)? $routeMerchant.$fromsearchparam: $base_url; 
 	if (!empty($merchant->LogoUrl)){
 		$payload["logo"] = "https:".BFCHelper::getImageUrlResized('merchant',$merchant->LogoUrl, 'logobig');
 	}
@@ -97,7 +97,7 @@ $listsId = array();
 		$resourceImageUrl = BFI()->plugin_url() . "/assets/images/defaults/default-s6.jpeg";
 
 		$resourceName = BFCHelper::getLanguage($resource->Name, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
-		$resourceDescription = BFCHelper::getLanguage($resource->Description, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
+		$resourceDescription = BFCHelper::getLanguage($resource->Description, $language, null, array( 'ln2br'=>'ln2br', 'bbcode'=>'bbcode', 'striptags'=>'striptags')); 
 
 		$resourceLat = $resource->XPos;
 		$resourceLon = $resource->YPos;
@@ -146,7 +146,7 @@ $listsId = array();
 								<?php } ?>	             
 							</span>
 							<?php if($isportal){ ?>
-							- <a href="<?php echo $routeMerchant?>" class="bfi-subitem-title eectrack" target="_blank" data-type="Merchant" data-id="<?php echo $resource->MerchantId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $merchantNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>" data-list="<?php echo $analyticsListName; ?>"><?php echo $merchantName; ?></a>
+							- <a href="<?php echo $routeMerchant.$fromsearchparam?>" class="bfi-subitem-title eectrack" target="_blank" data-type="Merchant" data-id="<?php echo $resource->MerchantId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $merchantNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>" data-list="<?php echo $analyticsListName; ?>"><?php echo $merchantName; ?></a>
 							<?php } ?>
 							<span class="bfi-item-rating">
 								<?php for($i = 0; $i < $ratingMrc; $i++) { ?>

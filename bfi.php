@@ -306,6 +306,7 @@ add_filter( 'wpseo_canonical', '__return_false' );
 			include_once('includes/model/resources.php' );
 			include_once('includes/model/portal.php' );
 			include_once('includes/model/tag.php');
+			include_once('includes/model/onsellunits.php' );
 		}
 		include_once( 'includes/class-bfi-query.php' ); // The main query class
 		include_once( 'includes/class-bfi-shortcodes.php' );                     // Shortcodes class

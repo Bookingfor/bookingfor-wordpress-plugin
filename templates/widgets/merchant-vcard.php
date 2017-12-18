@@ -302,7 +302,7 @@ function openGoogleMapBF() {
 			if (typeof google !== "undefined" || typeof google !== 'object' || typeof google.maps !== 'object'){
 				var script = document.createElement("script");
 				script.type = "text/javascript";
-				script.src = "http://maps.google.com/maps/api/js?key=<?php echo $googlemapsapykey ?>&callback=handleApiReadyBF";
+				script.src = "//maps.google.com/maps/api/js?key=<?php echo $googlemapsapykey ?>&callback=handleApiReadyBF";
 				document.body.appendChild(script);
 
 			}else{

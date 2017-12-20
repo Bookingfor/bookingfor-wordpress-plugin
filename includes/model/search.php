@@ -248,7 +248,15 @@ class BookingForConnectorModelSearch
 				$options['data']['masterTypeIds'] = BFCHelper::getQuotedString(str_replace("|",",",$filters['resourcescategories'])) ;
 			}
 			if(!empty( $filters['rating'] )){
-				$options['data']['ratingIds'] = BFCHelper::getQuotedString(str_replace("|",",",$filters['rating'])) ;
+				if (isset($groupresulttype) ) {
+					if ($groupresulttype==1 ) { //onbly for merchants 
+						$options['data']['mrcRatingIds'] = BFCHelper::getQuotedString(str_replace("|",",",$filters['rating'])) ;
+					}else{
+						$options['data']['resRatingIds'] = BFCHelper::getQuotedString(str_replace("|",",",$filters['rating'])) ;
+					}
+				}else{
+					$options['data']['ratingIds'] = BFCHelper::getQuotedString(str_replace("|",",",$filters['rating'])) ;
+				}
 			}
 			if(!empty( $filters['avg'] )){
 				if (isset($groupresulttype) ) {

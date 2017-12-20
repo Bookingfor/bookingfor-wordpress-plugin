@@ -141,8 +141,12 @@ foreach ($firstFilters as $filter){
 			}
 			break; 
 		case 'mrcrating':
-			if(!empty( $filter->Items )){
-				foreach ($filter->Items as $item ) {
+				$allItems = $filter->Items;
+				usort($allItems, function($a, $b)
+				{
+					return strcmp($b->Id,$a->Id);
+				});
+				foreach ($allItems as $item ) {
 				   $filtersMerchantsRating[$item->Id] = $item;
 				}
 			}

@@ -141,14 +141,13 @@ foreach ($firstFilters as $filter){
 			}
 			break; 
 		case 'mrcrating':
-				$allItems = $filter->Items;
-				usort($allItems, function($a, $b)
-				{
-					return strcmp($b->Id,$a->Id);
-				});
-				foreach ($allItems as $item ) {
-				   $filtersMerchantsRating[$item->Id] = $item;
-				}
+			$allItems = $filter->Items;
+			usort($allItems, function($a, $b)
+			{
+				return strcmp($b->Id,$a->Id);
+			});
+			foreach ($allItems as $item ) {
+			   $filtersMerchantsRating[$item->Id] = $item;
 			}
 			break; 
 		case 'mrcavg':

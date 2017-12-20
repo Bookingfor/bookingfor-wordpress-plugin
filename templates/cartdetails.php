@@ -762,10 +762,10 @@ if(!empty( $policy )){
 			$currValue = $policy->CancellationBaseValue;
 			break;
 		case strstr($policy->CancellationBaseValue ,'d'):
-			$currValue = rtrim($policy->CancellationBaseValue,"d") .' days';
+			$currValue = rtrim($policy->CancellationBaseValue,"d") .' '. __('days', 'bfi');
 			break;
 		case strstr($policy->CancellationBaseValue ,'n'):
-			$currValue = rtrim($policy->CancellationBaseValue,"n") .' days';
+			$currValue = rtrim($policy->CancellationBaseValue,"n") .' '. __('days', 'bfi');
 			break;
 	}
 	$currValuebefore = $policy->CancellationValue;
@@ -774,10 +774,10 @@ if(!empty( $policy )){
 			$currValuebefore = $policy->CancellationValue;
 			break;
 		case strstr($policy->CancellationValue ,'d'):
-			$currValuebefore = rtrim($policy->CancellationValue,"d") .' days';
+			$currValuebefore = rtrim($policy->CancellationValue,"d") .' '. __('days', 'bfi');
 			break;
 		case strstr($policy->CancellationValue ,'n'):
-			$currValuebefore = rtrim($policy->CancellationValue,"n") .' days';
+			$currValuebefore = rtrim($policy->CancellationValue,"n") .' '. __('days', 'bfi');
 			break;
 	}
 	if($policy->CanBeCanceled){
@@ -809,16 +809,16 @@ if(!empty( $policy )){
 				if(!empty( $policy->CancellationTime )){					
 					switch (true) {
 						case strstr($policy->CancellationTime ,'d'):
-							$currTimeBefore = rtrim($policy->CancellationTime,"d") .' days';	
+							$currTimeBefore = rtrim($policy->CancellationTime,"d") .' '. __('days', 'bfi');
 							break;
 						case strstr($policy->CancellationTime ,'h'):
-							$currTimeBefore = rtrim($policy->CancellationTime,"h") .' hours';	
+							$currTimeBefore = rtrim($policy->CancellationTime,"h") .' '. __('hours', 'bfi');	
 							break;
 						case strstr($policy->CancellationTime ,'w'):
-							$currTimeBefore = rtrim($policy->CancellationTime,"w") .' weeks';	
+							$currTimeBefore = rtrim($policy->CancellationTime,"w") .' '. __('weeks', 'bfi');	
 							break;
 						case strstr($policy->CancellationTime ,'m'):
-							$currTimeBefore = rtrim($policy->CancellationTime,"m") .' months';	
+							$currTimeBefore = rtrim($policy->CancellationTime,"m") .' '. __('months', 'bfi');
 							break;
 					}
 				}
@@ -1659,7 +1659,7 @@ if(!empty($bookingTypes)){
 				<span class="text-nowrap bfi-summary-body-resourceprice-total bfi_<?php echo $currencyclass ?>"  id="totaldeposit"></span>	
 			</div>	
 		</div>
-		<div class="clear"></div>
+		<div class="bfi-clearfix"></div>
 
 <div style="display:none;" id="bfi-ccInformations" class="borderbottom paymentoptions">
 		<h2><?php _e('Credit card details', 'bfi') ?></h2>
@@ -1753,18 +1753,21 @@ if (count($allPolicyHelp)>0) {
 
 <?php echo $currPoliciesDescriptions; ?></textarea>
 		</div>
+		<div class="bfi-clearfix"></div>
 		<?php } ?>
 		<div class=" bfi-checkbox-wrapper">
 				<input name="form[accettazione]" id="agree" aria-invalid="true" aria-required="true" type="checkbox" required title="<?php _e('Mandatory', 'bfi') ?>">
 				<label class="bfi-shownextelement"><?php _e('I accept personal data treatment', 'bfi') ?></label>
 				<textarea name="form[privacy]" class="bfi-col-md-12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php echo $privacy ?></textarea>    
 		</div>
+		<div class="bfi-clearfix"></div>
 <?php if(!empty($additionalPurpose)) { ?>
 		<div class=" bfi-checkbox-wrapper">
 				<input name="form[accettazioneadditionalPurpose]" class="checkbox" id="agreeadditionalPurpose" aria-invalid="true" aria-required="false" type="checkbox" title="<?php _e('Mandatory', 'bfi') ?>">
 				<label class="bfi-shownextelement"><?php _e('I accept additional purposes', 'bfi') ?></label>
 				<textarea name="form[additionalPurpose]" class="bfi-col-md-12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php echo $additionalPurpose ?></textarea>    
 		</div>
+		<div class="bfi-clearfix"></div>
 <?php } ?>
 
 		<?php bfi_display_captcha($idrecaptcha);  ?>
@@ -2232,7 +2235,6 @@ jQuery(document).ready(function () {
 	//-->
 	</script>	
 </form>
-</div>		
 </div>		
 </div>		
 		<?php 

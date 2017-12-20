@@ -361,8 +361,29 @@ if(!empty($MerchantDetail->AcceptanceCheckIn) && !empty($MerchantDetail->Accepta
 	$tmpAcceptanceCheckOut=$MerchantDetail->AcceptanceCheckOut;
 	$tmpAcceptanceCheckIns = explode('-', $tmpAcceptanceCheckIn);
 	$tmpAcceptanceCheckOuts = explode('-', $tmpAcceptanceCheckOut);	
-	list($mrcAcceptanceCheckInHours,$mrcAcceptanceCheckInMins,$mrcAcceptanceCheckInSecs) = explode(':',$tmpAcceptanceCheckIns[0].":1");
-	list($mrcAcceptanceCheckOutHours,$mrcAcceptanceCheckOutMins,$mrcAcceptanceCheckOutSecs) = explode(':',$tmpAcceptanceCheckOuts[1].":1");
+	$correctAcceptanceCheckIns = $tmpAcceptanceCheckIns[0];
+	if(empty( $correctAcceptanceCheckIns )){
+		$correctAcceptanceCheckIns = $tmpAcceptanceCheckIns[1];
+	}
+	if(empty( $correctAcceptanceCheckIns )){
+		$correctAcceptanceCheckIns = "0:0";
+	}
+	$correctAcceptanceCheckOuts = $tmpAcceptanceCheckOuts[1];
+	if(empty( $correctAcceptanceCheckOuts )){
+		$correctAcceptanceCheckOuts = $tmpAcceptanceCheckOuts[0];
+	}
+	if(empty( $correctAcceptanceCheckOuts )){
+		$correctAcceptanceCheckOuts = "0:0";
+	}
+	if (strpos($correctAcceptanceCheckIns, ":") === false) {
+		$correctAcceptanceCheckIns .= ":0";
+	}
+	if (strpos($correctAcceptanceCheckOuts, ":") === false) {
+		$correctAcceptanceCheckOuts .= ":0";
+	}
+
+	list($mrcAcceptanceCheckInHours,$mrcAcceptanceCheckInMins,$mrcAcceptanceCheckInSecs) = explode(':',$correctAcceptanceCheckIns.":1");
+	list($mrcAcceptanceCheckOutHours,$mrcAcceptanceCheckOutMins,$mrcAcceptanceCheckOutSecs) = explode(':',$correctAcceptanceCheckOuts.":1");
 }
 
 ?>

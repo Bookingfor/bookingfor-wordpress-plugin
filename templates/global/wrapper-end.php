@@ -22,6 +22,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 $template = get_option( 'template' );
 
 switch( $template ) {
+	case 'BookYourTravel':
+	$page_custom_fields = get_post_custom( $page_id);
+	$page_sidebar_positioning = null;
+	if (isset($page_custom_fields['page_sidebar_positioning'])) {
+		$page_sidebar_positioning = $page_custom_fields['page_sidebar_positioning'][0];
+		$page_sidebar_positioning = empty($page_sidebar_positioning) ? '' : $page_sidebar_positioning;
+	}
+    ?>
+    	</section>
+	<!--//full-width content--> 
+	<?php 
+	if ($page_sidebar_positioning == 'both' || $page_sidebar_positioning == 'right')
+		get_sidebar('right');
+	?>
+</div>
+
+    <?php 
+    
+    break;
 	case 'twentyeleven' :
 		echo '</div>';
 		get_sidebar( 'searchavailability' );

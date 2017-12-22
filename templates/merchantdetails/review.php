@@ -456,4 +456,11 @@ if ($rating>9 )
 			
 
 	  });
+	jQuery(window).load(function() {
+		if (!!jQuery.uniform){
+			jQuery.uniform.restore(jQuery("#formRating select"));
+		}
+	});
+
+
 </script>

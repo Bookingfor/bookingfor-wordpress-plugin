@@ -482,7 +482,7 @@ if ( $title ) {
         </li>
 		<?php }  ?>
     </ul>
-    <div class="bfi-tab-content tab-content">
+    <div class="bfi-tab-content tab-content initial">
 <?php if(!empty($tablistResources)){ ?>
         <div id="bfisearchtab<?php echo $currModID ?>" class="tab-pane fade in">
 		<form action="<?php echo $url_page_Resources; ?>" method="get" id="searchform<?php echo $currModID ?>" class="bfi-form-<?php echo $showdirection?"horizontal":"vertical"; ?> ">
@@ -702,7 +702,7 @@ if ( $title ) {
 				<div class="bfi-pull-right" style="cursor:pointer;color:red">&nbsp;<i class="fa fa-times-circle" aria-hidden="true" onclick="jQuery('#bfi_lblchildrenages<?php echo $currModID ?>').webuiPopover('destroy');"></i></div>
 				<?php echo sprintf(__('We preset your children\'s ages to %s years old - but if you enter their actual ages, you might be able to find a better price.', 'bfi'),COM_BOOKINGFORCONNECTOR_CHILDRENSAGE) ?>
 			</div>
-			<input type="hidden" name="availabilitytype" class="resbynighthd" value="1" id="hdAvailabilityType<?php echo $checkoutId; ?>" />
+			<input type="hidden" name="availabilitytype" class="resbynighthd" value="1" />
 			<input type="hidden" name="itemtypes" class="itemtypeshd" value="0" id="hdItemTypes<?php echo $checkoutId; ?>" />
 			<input type="hidden" name="groupresulttype" class="groupresulttypehd" value="1" id="hdSearchGroupby<?php echo $checkoutId; ?>" />
 
@@ -860,7 +860,7 @@ if ( $title ) {
 			<input type="hidden" value="<?php echo $language ?>" name="cultureCode" />
 			<input type="hidden" value="<?php echo $pointsonsell ?>" name="points" id="pointsonsell<?php echo $currModID ?>" />
 			<input type="hidden" value="<?php echo $services ?>" name="servicesonsell" id="servicesonsell<?php echo $currModID ?>" />
-			<input type="hidden" name="availabilitytype" class="resbynighthd" value="1" id="hdAvailabilityType<?php echo $checkoutId; ?>" />
+			<input type="hidden" name="availabilitytype" class="resbynighthd" value="1" />
 			<input type="hidden" value="" name="stateIds" />
 			<input type="hidden" value="" name="regionIds" />
 			<input type="hidden" value="" name="cityIds" />
@@ -1257,6 +1257,7 @@ jQuery(function() {
 	jQuery("#bfisearch<?php echo $currModID ?>").tabs();
 	var index = jQuery('#bfisearch<?php echo $currModID ?> li[data-searchtypeid="<?php echo $searchtypetab ?>"] a').parent().index();
 	jQuery("#bfisearch<?php echo $currModID ?>").tabs("option", "active", index);
+	jQuery("#bfisearch<?php echo $currModID ?> .tab-content").show();
 	
 	jQuery('#BtnResource<?php echo $currModID ?>').click(function(e) {
 		e.preventDefault();
@@ -1664,6 +1665,10 @@ function showhideCategories<?php echo $currModID ?>() {
     })
 
     jQuery('.bfi-showperson-text').on('click', function (event, ui) {
+		if (!!jQuery.uniform){
+			jQuery.uniform.restore(jQuery("#bfishowperson<?php echo $currModID ?> select"));
+		}
+
 		jQuery( "#bfishowperson<?php echo $currModID ?>" ).dialog({
 			title: "<?php _e('Guest', 'bfi'); ?>",
 			height: 'auto',
@@ -1678,6 +1683,11 @@ function showhideCategories<?php echo $currModID ?>() {
 		});
     })
 
+	jQuery(window).load(function() {
+		if (!!jQuery.uniform){
+			jQuery.uniform.restore(jQuery("#bfishowperson<?php echo $currModID ?> select"));
+		}
+	});
 
 //-->
 </script>

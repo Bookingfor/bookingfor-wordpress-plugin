@@ -256,7 +256,7 @@ class BFI_Admin {
 	public function display_bfi_showbadge_key_element()
 	{
 		?>
-			<input type="checkbox" id="bfi_showbadge_key" name="bfi_showbadge_key" value="1" <?php checked(get_option('bfi_showbadge_key',0), 1, true ); ?> />
+			<input type="checkbox" id="bfi_showbadge_key" name="bfi_showbadge_key" value="1" <?php checked(get_option('bfi_showbadge_key',1), 1, true ); ?> />
 		<?php
 	}
 
@@ -476,7 +476,7 @@ class BFI_Admin {
 		add_settings_field("bfi_isportal_key", "Multimerchant", array( $this, 'display_bfi_isportal_key_element'), "bfi-options", "section");
 		add_settings_field("bfi_showdata_key", "Show Descriptions on lists", array( $this, 'display_bfi_showdata_key_element'), "bfi-options", "section");
 		add_settings_field("bfi_sendtocart_key", "Send guest directly to cart", array( $this, 'display_bfi_sendtocart_key_element'), "bfi-options", "section");
-		add_settings_field("bfi_showbadge_key", "Show badge number items on cart", array( $this, 'display_bfi_showbadge_key_element'), "bfi-options", "section");
+//		add_settings_field("bfi_showbadge_key", "Show badge number items on cart", array( $this, 'display_bfi_showbadge_key_element'), "bfi-options", "section");
 		add_settings_field("bfi_enablecoupon_key", "Enable coupon feature", array( $this, 'display_bfi_enablecoupon_key_element'), "bfi-options", "section");
 
 
@@ -523,7 +523,7 @@ class BFI_Admin {
 		register_setting("section", "bfi_isportal_key");
 		register_setting("section", "bfi_showdata_key");
 		register_setting("section", "bfi_sendtocart_key");
-		register_setting("section", "bfi_showbadge_key");
+//		register_setting("section", "bfi_showbadge_key");
 		register_setting("section", "bfi_enablecoupon_key");
 			
 		register_setting("section", "bfi_posx_key");

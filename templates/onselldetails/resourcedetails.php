@@ -23,7 +23,8 @@ $accommodationdetails_page = get_post( bfi_get_page_id( 'accommodationdetails' )
 $url_resource_page = get_permalink( $accommodationdetails_page->ID );
 $resourceName = BFCHelper::getLanguage($resource->Name, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
 $merchantName = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
-$resourceDescription = BFCHelper::getLanguage($resource->Description, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'striptags'=>'striptags'));
+$resourceDescription = BFCHelper::getLanguage($resource->Description, $GLOBALS['bfi_lang'], null, array('striptags'=>'striptags', 'bbcode'=>'bbcode','ln2br'=>'ln2br'));
+$resourceDescriptionSeo = BFCHelper::getLanguage($resource->Description, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'bbcode'=>'bbcode', 'striptags'=>'striptags'));
 $uri = $url_resource_page.$resource->ResourceId.'-'.BFI()->seoUrl($resourceName);
 
 $isportal = COM_BOOKINGFORCONNECTOR_ISPORTAL;
@@ -110,7 +111,7 @@ $searchedRequest =  array(
 $payloadresource["@type"] = "Product";
 $payloadresource["@context"] = "http://schema.org";
 $payloadresource["name"] = $resourceName;
-$payloadresource["description"] = $resourceDescription;
+$payloadresource["description"] = $resourceDescriptionSeo;
 $payloadresource["url"] = $resourceRoute; 
 if (!empty($resource->ImageUrl)){
 	$payloadresource["image"] = "https:".BFCHelper::getImageUrlResized('onsellunits',$resource->ImageUrl, 'logobig');
@@ -152,7 +153,18 @@ if (!empty($merchant->LogoUrl)){
 	</ul>
 </div>
 	<div class="bfi-resourcecontainer-gallery">
-		<?php  include('resource-gallery.php');  ?>
+	<?php  
+			$bfiSourceData = 'onsellunits';
+			$bfiImageData = null;
+			$bfiVideoData = null;
+			if(!empty($resource->ImageData)) {
+				$bfiImageData = $resource->ImageData;
+			}
+			if(!empty($resource->VideoData)) {
+				$bfiVideoData = $resource->VideoData;
+			}
+			include(BFI()->plugin_path().'/templates/gallery.php');
+	?>
 	</div>
 
 <div class="bfi-content">	
@@ -163,14 +175,41 @@ if (!empty($merchant->LogoUrl)){
 		<div class="bfi-col-md-4">
 			<div class=" bfi-feature-data">
 				<strong><?php _e('In short', 'bfi') ?></strong>
-				<?php if(isset($resource->Area) && $resource->Area>0  ): ?><?php _e('Floor area', 'bfi') ?>: <?php echo $resource->Area ?> m&sup2; <br /><?php endif ?>
-				<?php if ($resource->MaxCapacityPaxes>0):?>
+				<?php if(isset($resource->Area) && $resource->Area>0  ){ ?><?php _e('Floor area', 'bfi') ?>: <?php echo $resource->Area ?> m&sup2; <br /><?php } ?>
+				<?php if ($resource->MaxCapacityPaxes>0){?>
 					<br />
-					<?php if ($resource->MinCapacityPaxes<$resource->MaxCapacityPaxes):?>
+					<?php if ($resource->MinCapacityPaxes<$resource->MaxCapacityPaxes){?>
 						<?php _e('Min paxes', 'bfi') ?>: <?php echo $resource->MinCapacityPaxes ?><br />
-					<?php endif ?>
+					<?php } ?>
 					<?php _e('Max paxes', 'bfi') ?>: <?php echo $resource->MaxCapacityPaxes ?><br />
-				<?php endif ?>
+				<?php } ?>
+				<?php if(isset($resource->AttachmentsString) && !empty($resource->AttachmentsString)){
+					?>
+					<div  class="bfi-attachmentfiles">
+					<?php 
+								
+					$resourceAttachments = json_decode($resource->AttachmentsString);
+					
+					foreach ($resourceAttachments as $keyAttachment=> $resourceAttachment) {
+						if ($keyAttachment>COM_BOOKINGFORCONNECTOR_MAXATTACHMENTFILES) {
+							break;
+						}
+						$resourceAttachmentName = $resourceAttachment->Name;
+						$resourceAttachmentExtension= "";
+						
+						$path_parts = pathinfo($resourceAttachmentName);
+						if(!empty( $path_parts['extension'])){
+							$resourceAttachmentExtension = $path_parts['extension'];
+							$resourceAttachmentName =  str_replace(".".$resourceAttachmentExtension, "", $resourceAttachmentName);
+						}
+						$resourceAttachmentIcon = bfi_get_file_icon($resourceAttachmentExtension);
+						?>
+						<?php echo $resourceAttachmentIcon ?> <a href="<?php echo $resourceAttachment->LinkValue ?>" target="_blank"><?php echo $resourceAttachmentName ?></a><br />
+						<?php 
+					}
+				?>
+					</div>
+				<?php } ?>
 			</div>
 					<!-- AddToAny BEGIN -->
 					<a class="bfi-btn bfi-alternative2 bfi-pull-right a2a_dd"  href="http://www.addtoany.com/share_save" ><i class="fa fa-share-alt"></i> <?php _e('Share', 'bfi') ?></a>

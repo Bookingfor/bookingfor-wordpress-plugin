@@ -2594,6 +2594,9 @@ jQuery(document).ready(function () {
 	
 	jQuery('.bfi-showperson-text-calculator').on('click', function (event, ui) {
 //debugger;
+		if (!!jQuery.uniform){
+			jQuery.uniform.restore(jQuery("#bfishowpersoncalculator select"));
+		}
 		var clone = jQuery("#bfishowpersoncalculator").clone().attr('id', 'dialogIdClone');
 		var original = jQuery("#bfishowpersoncalculator");
 			var selects = jQuery(original).find("select");

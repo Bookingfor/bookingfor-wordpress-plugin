@@ -119,7 +119,7 @@ if(BFI()->isResourceOnSellPage() && !empty($resource_id)){
 						<?php } ?>
 					</div>
 					<?php if(!empty($merchant->OtherDetails) ){ ?>
-						<div class="applyshorten"><?php echo BFCHelper::getLanguage($merchant->OtherDetails, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags'))  ?></div>
+						<div class="applyshorten"><?php echo BFCHelper::getLanguage($merchant->OtherDetails, $language, null, array('ln2br'=>'ln2br', 'bbcode'=>'bbcode', 'striptags'=>'striptags'))  ?></div>
 					<?php } ?>					
 				<?php 
 				}
@@ -130,3 +130,17 @@ if(BFI()->isResourceOnSellPage() && !empty($resource_id)){
 		</div>	
 	</div>
 </div>
+<script type="text/javascript">
+<!--
+jQuery(function($){
+
+	var bfishortenOption = {
+		moreText: "+ <?php _e('Details', 'bfi') ?>",
+		lessText: " - <?php _e('Details', 'bfi') ?>",
+		showChars: '250'
+	};
+	jQuery(".applyshorten").shorten(bfishortenOption);
+});
+
+//-->
+</script>

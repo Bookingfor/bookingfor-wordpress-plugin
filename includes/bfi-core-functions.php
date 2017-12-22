@@ -348,79 +348,26 @@ add_action( 'after_setup_theme', 'bfi_template_debug_mode', 20 );
  * @param  bool   $allow_html Allow sanitized HTML if true or escape
  * @return string
  */
-function bfi_help_tip( $tip, $allow_html = false ) {
-	if ( $allow_html ) {
-		$tip = bfi_sanitize_tooltip( $tip );
-	} else {
-		$tip = esc_attr( $tip );
-	}
+if ( ! function_exists( 'bfi_help_tip' ) ) {
+	function bfi_help_tip( $tip, $allow_html = false ) {
+		if ( $allow_html ) {
+			$tip = bfi_sanitize_tooltip( $tip );
+		} else {
+			$tip = esc_attr( $tip );
+		}
 
-	return '<span class="bookingfor-help-tip" data-tip="' . $tip . '"></span>';
+		return '<span class="bookingfor-help-tip" data-tip="' . $tip . '"></span>';
+	}
 }
 
-	function bfi_inizializePayment($orderId) {
-		$order = BFCHelper::setOrderStatus($orderId,1,false,false,'');
-	}
-	function bfi_processPayment($actionmode,$item, $debugMode = false) {
-		$classProcessor = 'BFI_' . $actionmode . 'Processor';
-		$orderId = $item->order->OrderId;
-		$data =null;
-
-		if (class_exists($classProcessor)){
-
-//			if($actionmode=="virtualpay" || $actionmode=="paypalexpress" || $actionmode=="bnlpositivity"){
-//				$data = explode("|",$item->merchantPayment->Data);
-//			}
-////			if( $actionmode=="paypalexpress" || $actionmode=="bnlpositivity"){
-////				$processor->order = $this->item->order;
-////			}
-//			$processor = new $classProcessor($item->order, null, $debugMode, $data);
-			$processor = new $classProcessor();
-	
-			if($actionmode=="virtualpay" || $actionmode=="paypalexpress" || $actionmode=="bnlpositivity"){
-//				$processor = new classProcessor($data=data);
-				$data = explode("|",$item->merchantPayment->Data);
-				$processor->data = $data;
-			}
-			if( $actionmode=="paypalexpress" || $actionmode=="bnlpositivity" || $actionmode=="wspayform"){
-//				$processor = new classProcessor($data=data);
-				$processor->order = $item->order;
-			}
-
-			$result = $processor->getResult(null,$debugMode );
-
-			$paymentData ='';
-			foreach($_SERVER as $key_name => $key_value) {
-				if  ($paymentData!='') $paymentData .=  '&'; 
-				$paymentData .= str_replace('$', '', $key_name) . " = " . urlencode($key_value);
-			}
-			foreach($_POST as $key_name => $key_value) {
-				if  ($paymentData!='') $paymentData .=  '&';
-				$paymentData .= str_replace('$', '', $key_name) . " = " . urlencode($key_value);
-			}			
-			
-			/*$paymentData = iconv('UTF-8','UTF-8//IGNORE',$paymentData);*/
-			
-			if ($actionmode!="setefi" && $actionmode!="activa"){
-				if ($result){
-					$order = BFCHelper::setOrderStatus($orderId,5,true,false,$paymentData);
-					$result = ($order!=null);
-				}else{
-					$order = BFCHelper::setOrderStatus($orderId,7,false,false,$paymentData);
-				}
-				if(method_exists($processor, 'responseRedir')){
-					$processor->responseRedir($order->OrderId, $result);
-				}
-			}
-			return $result;
-		}
-	}
-	
+if ( ! function_exists( 'bfi_remove_querystring_var' ) ) {
 	function bfi_remove_querystring_var($url, $key) { 
 		$url = preg_replace('/(.*)(?|&)' . $key . '=[^&]+?(&)(.*)/i', '$1$2$4', $url . '&'); 
 		$url = substr($url, 0, -1); 
 		return $url; 
 	}
+}
+if ( ! function_exists( 'bfi_add_querystring_var' ) ) {
 	function bfi_add_querystring_var($url, $key, $value) {
 		$url = preg_replace('/(.*)(?|&)' . $key . '=[^&]+?(&)(.*)/i', '$1$2$4', $url . '&');
 		$url = substr($url, 0, -1);
@@ -430,6 +377,8 @@ function bfi_help_tip( $tip, $allow_html = false ) {
 			return ($url . '&' . $key . '=' . $value);
 		}
 	}
+}
+if ( ! function_exists( 'bfi_verify_captcha' ) ) {
 	function bfi_verify_captcha( $parameter = true )
 	{
 		if( isset( $_POST['g-recaptcha-response'] ) && !empty(COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLERECAPTCHASECRETKEY) )
@@ -444,7 +393,9 @@ function bfi_help_tip( $tip, $allow_html = false ) {
 
 		return false;
 	}
+}
 //	add_filter("preprocess_comment", "bfi_verify_captcha");
+if ( ! function_exists( 'bfi_display_captcha' ) ) {
 	function bfi_display_captcha($idrecaptcha) {
 		if( !empty(COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLERECAPTCHAKEY) && !empty(COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLERECAPTCHASECRETKEY)  ){
 			$currCaptcha = '<div id="' . $idrecaptcha . '"  class="g-recaptcha bfi-recaptcha" ' . 
@@ -456,7 +407,7 @@ function bfi_help_tip( $tip, $allow_html = false ) {
 			echo $currCaptcha;
 		}
 	}
-
+}
 //	function bfi_get_userId() {
 //		$tmpUserId = BFCHelper::getSession('tmpUserId', null , 'com_bookingforconnector');
 //		if(empty($tmpUserId)){
@@ -474,6 +425,7 @@ function bfi_help_tip( $tip, $allow_html = false ) {
 //		return $tmpUserId;
 //	}
 
+if ( ! function_exists( 'bfi_get_defaultCurrency' ) ) {
 	function bfi_get_defaultCurrency() {
 		$tmpDefaultCurrency = BFCHelper::getSession('defaultcurrency', null , 'com_bookingforconnector');
 		if(empty($tmpDefaultCurrency)){
@@ -482,6 +434,8 @@ function bfi_help_tip( $tip, $allow_html = false ) {
 		}
 		return $tmpDefaultCurrency;
 	}
+}
+if ( ! function_exists( 'bfi_get_currentCurrency' ) ) {
 	function bfi_get_currentCurrency() {
 		$tmpCurrentCurrency = BFCHelper::getSession('currentcurrency', COM_BOOKINGFORCONNECTOR_CURRENTCURRENCY , 'com_bookingforconnector');
 		if(empty($tmpCurrentCurrency)){
@@ -490,6 +444,8 @@ function bfi_help_tip( $tip, $allow_html = false ) {
 		}
 		return $tmpCurrentCurrency;
 	}
+}
+if ( ! function_exists( 'bfi_set_currentCurrency' ) ) {
 	function bfi_set_currentCurrency($selectedCurrency) {
 		$tmpCurrentCurrency = BFCHelper::getSession('currentcurrency', null , 'com_bookingforconnector');
 		$tmpCurrencyExchanges = BFCHelper::getCurrencyExchanges();
@@ -499,6 +455,8 @@ function bfi_help_tip( $tip, $allow_html = false ) {
 		}
 		return $tmpCurrentCurrency;
 	}
+}
+if ( ! function_exists( 'bfi_get_currencyExchanges' ) ) {
 	function bfi_get_currencyExchanges() {
 		$tmpCurrencyExchanges = BFCHelper::getSession('currencyexchanges', null , 'com_bookingforconnector');
 		if(empty($tmpCurrencyExchanges)){
@@ -507,3 +465,44 @@ function bfi_help_tip( $tip, $allow_html = false ) {
 		}
 		return $tmpCurrencyExchanges;
 	}
+}
+if ( ! function_exists( 'bfi_get_file_icon' ) ) {
+	function bfi_get_file_icon($fileExtension) {
+	  $iconFile = '<i class="fa fa-file-o"></i>';
+	  if (empty($fileExtension)) {
+	      return $iconFile;
+	  }
+	  $fileExtension = strtolower($fileExtension);
+	  // List of official MIME Types: http://www.iana.org/assignments/media-types/media-types.xhtml
+	  static $font_awesome_file_icon_classes = array(
+		// Images
+		'gif' => '<i class="fa fa-file-image-o"></i>',
+		'jpeg' => '<i class="fa fa-file-image-o"></i>',
+		'jpg' => '<i class="fa fa-file-image-o"></i>',
+		'png' => '<i class="fa fa-file-image-o"></i>',
+		// Audio
+		'mp3' => '<i class="fa fa-file-audio-o"></i>',
+		'wma' => '<i class="fa fa-file-audio-o"></i>',
+			
+		// Video
+		'avi' => '<i class="fa fa-file-video-o"></i>',
+		'flv' => '<i class="fa fa-file-video-o"></i>',
+		'mpg' => '<i class="fa fa-file-video-o"></i>',
+		'mpeg' => '<i class="fa fa-file-video-o"></i>',
+		// Documents
+		'pdf' => '<i class="fa fa-file-pdf-o"></i>',
+		'txt' => '<i class="fa fa-file-text-o"></i>',
+		'html' => '<i class="fa fa-file-code-o"></i>',
+		'json' => '<i class="fa fa-file-code-o"></i>',
+		// Archives
+		'gzip' => '<i class="fa fa-file-archive-o"></i>',
+		'zip' => '<i class="fa fa-file-archive-o"></i>',
+	  );
+
+	  if (isset($font_awesome_file_icon_classes[$fileExtension])) {
+		$iconFile = $font_awesome_file_icon_classes[$fileExtension];
+	  }
+
+	  return $iconFile;
+	}
+}

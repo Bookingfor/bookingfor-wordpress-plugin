@@ -184,7 +184,18 @@ $merchantName = BFCHelper::getLanguage($merchant->Name, $language, null, array('
 </div>
 	
 	<div class="bfi-resourcecontainer-gallery">
-		<?php  include('merchant-gallery.php');  ?>
+	<?php  
+			$bfiSourceData = 'merchant';
+			$bfiImageData = null;
+			$bfiVideoData = null;
+			if(!empty($merchant->ImageData)) {
+				$bfiImageData = $merchant->ImageData;
+			}
+			if(!empty($merchant->VideoData)) {
+				$bfiVideoData = $merchant->VideoData;
+			}
+			include(BFI()->plugin_path().'/templates/gallery.php');
+	?>
 	</div>
 <div class="bfi-content">
 	<div class="bfi-row">
@@ -195,6 +206,33 @@ $merchantName = BFCHelper::getLanguage($merchant->Name, $language, null, array('
 			<div class="bfi-feature-data">
 				<strong><?php _e('In short', 'bfi') ?></strong>
 				<div id="bfi-merchant-tags"></div>
+				<?php if(isset($merchant->AttachmentsString) && !empty($merchant->AttachmentsString)){
+					?>
+					<div  class="bfi-attachmentfiles">
+					<?php 
+								
+					$resourceAttachments = json_decode($merchant->AttachmentsString);
+					
+					foreach ($resourceAttachments as $keyAttachment=> $resourceAttachment) {
+					    if ($keyAttachment>COM_BOOKINGFORCONNECTOR_MAXATTACHMENTFILES) {
+					        break;
+					    }
+						$resourceAttachmentName = $resourceAttachment->Name;
+						$resourceAttachmentExtension= "";
+						
+						$path_parts = pathinfo($resourceAttachmentName);
+						if(!empty( $path_parts['extension'])){
+							$resourceAttachmentExtension = $path_parts['extension'];
+							$resourceAttachmentName =  str_replace(".".$resourceAttachmentExtension, "", $resourceAttachmentName);
+						}
+						$resourceAttachmentIcon = bfi_get_file_icon($resourceAttachmentExtension);
+						?>
+					    <?php echo $resourceAttachmentIcon ?> <a href="<?php echo $resourceAttachment->LinkValue ?>" target="_blank"><?php echo $resourceAttachmentName ?></a><br />
+					    <?php 
+					}
+				?>
+					</div>
+				<?php } ?>
 			</div>
 				<!-- AddToAny BEGIN -->
 				<a class="bfi-btn bfi-alternative2 bfi-pull-right a2a_dd"  href="http://www.addtoany.com/share_save" ><i class="fa fa-share-alt"></i> <?php _e('Share', 'bfi') ?></a>

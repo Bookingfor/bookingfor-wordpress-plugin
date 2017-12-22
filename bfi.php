@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'BookingFor' ) ) :
 final class BookingFor {
 	
-	public $version = '3.1.4';
+	public $version = '3.2.0';
 	public $currentOrder = null;
 	
 	protected static $_instance = null;
@@ -80,7 +80,7 @@ final class BookingFor {
 		$isportal = get_option('bfi_isportal_key', 1);
 		$showdata = get_option('bfi_showdata_key', 1);
 		$sendtocart = get_option('bfi_sendtocart_key', 0);
-		$showbadge = get_option('bfi_showbadge_key', 0);
+		$showbadge = 1;// get_option('bfi_showbadge_key', 1);
 		$enablecoupon = get_option('bfi_enablecoupon_key', 0);
 		
 		$usessl = get_option('bfi_usessl_key',0);
@@ -131,6 +131,7 @@ final class BookingFor {
 		$this->define( 'COM_BOOKINGFORCONNECTOR_ORDERURL', $bfiBaseUrl .'/Public/{language}/orderlogin' );
 		$this->define( 'COM_BOOKINGFORCONNECTOR_PAYMENTURL', $bfiBaseUrl .'/Public/{language}/payment/' );
 		$this->define( 'COM_BOOKINGFORCONNECTOR_CURRENTCURRENCY', $bfi_currentcurrency );
+		$this->define( 'COM_BOOKINGFORCONNECTOR_MAXATTACHMENTFILES', 3 );
 		
 		$this->define( 'COM_BOOKINGFORCONNECTOR_IMGURL', $subscriptionkey . '/bookingfor/images' );
 		$this->define( 'COM_BOOKINGFORCONNECTOR_IMGURL_CDN', '//cdnbookingfor.blob.core.windows.net/' );
@@ -204,8 +205,8 @@ final class BookingFor {
 			add_action( 'wp_enqueue_scripts', array( $this , 'bfi_load_scripts' ) ,1 ); // spostata priorità altrimenti sovrascrive template
 //			add_action( 'wp_enqueue_scripts', array( $this , 'bfi_load_scripts_locale' ) );
 			add_action ( 'wp_head', array( $this , 'bfi_js_variables' ) );
-//remove canonical 
-add_filter( 'wpseo_canonical', '__return_false' );
+			//remove canonical 
+			add_filter( 'wpseo_canonical', '__return_false' );
 		}
 		if ( $this->is_request( 'admin' ) ) {
 			add_action( 'admin_enqueue_scripts', array( $this , 'bfi_load_admin_scripts' ) );
@@ -359,6 +360,11 @@ add_filter( 'wpseo_canonical', '__return_false' );
 		wp_enqueue_style('magnificpopup', plugins_url( 'assets/css/magnific-popup.css', __FILE__ ),array(),$this->version,'all');
 		wp_enqueue_style('webuipopover', plugins_url( 'assets/js/webui-popover/jquery.webui-popover.min.css', __FILE__ ),array(),$this->version,'all');
 		wp_enqueue_style('bookingfor', plugins_url( 'assets/css/bookingfor.css', __FILE__ ),array(),$this->version,'all');
+
+		$template = strtolower(get_option( 'template' ));		
+		if ( file_exists(BFI()->plugin_path() . '/assets/css/theme/bookingfor' . $template . '.css') ) {
+						wp_enqueue_style('bookingfor' . $template, plugins_url( 'assets/css/theme/bookingfor' . $template . '.css', __FILE__ ),array(),$this->version,'all');
+		}
 
 		wp_enqueue_script('jquery');
 		

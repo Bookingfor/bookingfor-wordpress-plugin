@@ -2233,6 +2233,13 @@ jQuery(document).ready(function () {
 	getAjaxInformationsResGrp();
 });
 	//-->
+	jQuery(window).load(function() {
+		if (!!jQuery.uniform){
+			jQuery.uniform.restore(jQuery("#bfi-resourcedetailsrequest select"));
+		}
+	});
+
+
 	</script>	
 </form>
 </div>		

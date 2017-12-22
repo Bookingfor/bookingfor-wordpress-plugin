@@ -89,7 +89,7 @@ if (empty($duration)) {
 
 $searchid = isset($_GET['searchid']) ? $_GET['searchid'] : '';
 $searchtypetab = isset($_GET['searchtypetab']) ? $_GET['searchtypetab'] : '';;
-$isMerchantResults = $pars['merchantResults'];
+$isMerchantResults = !empty($pars['merchantResults']) ? $pars['merchantResults']: 0;
 
 $filtersMerchantsServices = array();
 $filtersMerchantsTags = array();

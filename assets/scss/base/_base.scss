@@ -17,6 +17,9 @@
 #bfi-merchantlist, .bfi-widget_booking_search, .bfi-widget_booking_search.ui-widget, .bfi-searchfilter, .bfi-content, .bfi-widget_merchant_vcard, .bfi-modbookingforconnector, .bfi-table-responsive, .bfi-table, #bfi-calculatorForm, .bfi-titleform, .bfi-options-popover, .bfi-datepicker button, .bfi-wait, .bfi-rating-container, .webui-popover-bfi-webuipopover, .bfi-tooltip, .bfi-labels-marker, .bfi-mod-bookingforsearch .ui-widget-content, .bfi-mod-bookingforsearch .ui-widget-content label, .bfi-mod-bookingforsearch.ui-widget input, .bfi-dialog.ui-widget, .bfi-dialog.ui-widget button, .bfi-guest .ui-widget-content, .bfi-timeslot-change input, .bfi-dialog.ui-widget select, .bfi-currency-switcher input, .bfi-autocomplete, .bfi-pagination, .bfi-currency-switcher, .bfi-mod-bookingforsearch .ui-state-default a, .bfi-payment-form label, .bfi-area-detail-tabs.ui-widget-content {
 	@extend .bfi
 }
+.bfi-datepicker button{
+	position:static;
+}
 .bfi-clearfix {
 	@include clearfix;
 }
@@ -56,6 +59,13 @@
     color: $link-secondary;
   }
 }
+.bfi-attachmentfiles a{
+	&:link, &:visited {
+		color:$color12;
+		text-decoration:underline;
+	}
+}
+
 .bfi-content .bfi-table-cart a {
 	&:link, &:visited {
 		color: $color1;
@@ -661,7 +671,7 @@ a.bfi-resname:link, a.bfi-resname:hover, .bfi-resname a {
     font-weight: $font-weight-bold;
 }
 .bfi-img-searchdetails {
-    display: inline-block;
+    display: block;
     max-width: 100%;
     border: 0;
 }
@@ -819,9 +829,14 @@ a.bfi-resname:link, a.bfi-resname:hover, .bfi-resname a {
 		}
 	}
 }
+.bfi-tab-content.tab-content{
+	float:none;
+	width:100%;
+}
  .bfi-tab-content .ui-tabs-panel{
 	padding : 10px 10px;
 }
+.bfi-tab-content>.tab-pane{visibility:visible}
 .bfi-mod-bookingforsearch .bfi-form-vertical .bfi-searchbutton-wrapper {
 		margin: 10px auto 0 auto;
 		text-align: center;
@@ -870,6 +885,10 @@ a.bfi-resname:link, a.bfi-resname:hover, .bfi-resname a {
 .bfi-menu-small li {
 	display: table-cell;
 	width: 1%;
+	padding: 0;
+	&:before {
+		display:none;
+	}
 }
 .bfi-merchant-simple .bfi-menu-small li {
 	display: inline;	

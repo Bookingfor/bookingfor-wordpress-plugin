@@ -995,26 +995,28 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 							break;
 						case 'bbcode':
 							$search = array (
-								'[b]', '[/b]',
-									'[i]', '[/i]',
-									'[u]', '[/u]',
-									'[s]','[/s]',
-									'[ul]','[/ul]',
-									'[li]', '[/li]',
-									'[ol]', '[/ol]'
+								'~\[b\](.*?)\[/b\]~s',
+								'~\[i\](.*?)\[/i\]~s',
+								'~\[u\](.*?)\[/u\]~s',
+								'~\[s\](.*?)\[/s\]~s',
+								'~\[ul\](.*?)\[/ul\]~s',
+								'~\[li\](.*?)\[/li\]~s',
+								'~\[ol\](.*?)\[/ol\]~s',
+								'~\[size=(.*?)\](.*?)\[/size\]~s',
+								'/(?<=<ul>|<\/li>)\s*?(?=<\/ul>|<li>)/is'
 							);
-
 							$replace = array (
-								'<b>', '</b>',
-									'<i>', '</i>',
-									'<u>', '</u>',
-									'<s>', '</s>',
-									'<ul>','</ul>',
-									'<li>','</li>',
-									'<ol>','</ol>'
+								'<b>$1</b>',
+								'<i>$1</i>',
+								'<u>$1</u>',
+								'<s>$1</s>',
+								'<ul>$1</ul>',
+								'<li>$1</li>',
+								'<ol>$1</ol>',
+								'<font size="$1">$2</font>',
+								''
 							);
-							$retVal = str_replace($search, $replace, $retVal);
-							$retVal = preg_replace('/(?<=<ul>|<\/li>)\s*?(?=<\/ul>|<li>)/is', '', $retVal); // cleen for br
+							$retVal = preg_replace($search, $replace, $retVal); // cleen for br
 
 							break;
 						default:

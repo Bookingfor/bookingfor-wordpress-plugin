@@ -382,7 +382,7 @@ function getlist(){
 				}
 
 				if (val.Description!= null && val.Description != ''){
-					$html += bookingfor.nl2br(jQuery("<p>" + val.Description + "</p>").text());
+					$html += bookingfor.nl2br(jQuery("<p>" + bookingfor.stripbbcode(val.Description) + "</p>").text());
 					jQuery("#bfidescription"+val.MerchantId).data('jquery.shorten', false);
 					jQuery("#bfidescription"+val.MerchantId).html($html);
 					jQuery("#bfidescription"+val.MerchantId).shorten(shortenOption);

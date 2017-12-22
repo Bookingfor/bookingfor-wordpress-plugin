@@ -1,5 +1,5 @@
 var bookingfor = new function() {
-    this.version = "3.1.4";
+    this.version = "3.2.0";
 	this.bsVersion = ( typeof jQuery.fn.typeahead !== 'undefined' ? 2 : 3 );
     this.offersLoaded = [];
 

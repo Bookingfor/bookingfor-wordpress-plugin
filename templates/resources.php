@@ -374,7 +374,7 @@ function getlist(){
 				
 <?php if($showdata): ?>
 				if (val.Resource.Description!= null && val.Resource.Description != ''){
-					$html += bookingfor.nl2br(jQuery("<p>" + val.Resource.Description + "</p>").text());
+					$html += bookingfor.nl2br(jQuery("<p>" + bookingfor.stripbbcode(val.Resource.Description) + "</p>").text());
 				}
 				jQuery("#descr"+val.Resource.ResourceId).data('jquery.shorten', false);
 				jQuery("#descr"+val.Resource.ResourceId).html($html);

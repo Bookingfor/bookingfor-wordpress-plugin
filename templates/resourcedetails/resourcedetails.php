@@ -21,7 +21,8 @@ $accommodationdetails_page = get_post( bfi_get_page_id( 'accommodationdetails' )
 $url_resource_page = get_permalink( $accommodationdetails_page->ID );
 $resourceName = BFCHelper::getLanguage($resource->Name, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
 $merchantName = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
-$resourceDescription = BFCHelper::getLanguage($resource->Description, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'bbcode'=>'bbcode', 'striptags'=>'striptags'));
+$resourceDescription = BFCHelper::getLanguage($resource->Description, $GLOBALS['bfi_lang'], null, array('striptags'=>'striptags', 'bbcode'=>'bbcode','ln2br'=>'ln2br'));
+$resourceDescriptionSeo = BFCHelper::getLanguage($resource->Description, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'bbcode'=>'bbcode', 'striptags'=>'striptags'));
 $uri = $url_resource_page.$resource->ResourceId.'-'.BFI()->seoUrl($resourceName);
 
 $isportal = COM_BOOKINGFORCONNECTOR_ISPORTAL;
@@ -119,7 +120,7 @@ if ($merchant->RatingsContext != NULL && $merchant->RatingsContext > 0) {
 $payloadresource["@type"] = "Product";
 $payloadresource["@context"] = "http://schema.org";
 $payloadresource["name"] = $resourceName;
-$payloadresource["description"] = $resourceDescription;
+$payloadresource["description"] = $resourceDescriptionSeo;
 $payloadresource["url"] = $resourceRoute; 
 if (!empty($resource->ImageUrl)){
 	$payloadresource["image"] = "https:".BFCHelper::getImageUrlResized('resources',$resource->ImageUrl, 'logobig');
@@ -175,7 +176,18 @@ if (!empty($merchant->LogoUrl)){
 </div>
 
 <div class="bfi-resourcecontainer-gallery bfi-hideonextra">
-	<?php  include('resource-gallery.php');  ?>
+	<?php  
+			$bfiSourceData = 'resources';
+			$bfiImageData = null;
+			$bfiVideoData = null;
+			if(!empty($resource->ImageData)) {
+				$bfiImageData = $resource->ImageData;
+			}
+			if(!empty($resource->VideoData)) {
+				$bfiVideoData = $resource->VideoData;
+			}
+			include(BFI()->plugin_path().'/templates/gallery.php');
+	?>
 </div>
 
 <div class="bfi-content">	
@@ -228,6 +240,33 @@ if (!empty($merchant->LogoUrl)){
 						<?php } ?>
 					</tr>
 				</table>
+				<?php } ?>
+				<?php if(isset($resource->AttachmentsString) && !empty($resource->AttachmentsString)){
+					?>
+					<div  class="bfi-attachmentfiles">
+					<?php 
+								
+					$resourceAttachments = json_decode($resource->AttachmentsString);
+					
+					foreach ($resourceAttachments as $keyAttachment=> $resourceAttachment) {
+						if ($keyAttachment>COM_BOOKINGFORCONNECTOR_MAXATTACHMENTFILES) {
+							break;
+						}
+						$resourceAttachmentName = $resourceAttachment->Name;
+						$resourceAttachmentExtension= "";
+						
+						$path_parts = pathinfo($resourceAttachmentName);
+						if(!empty( $path_parts['extension'])){
+							$resourceAttachmentExtension = $path_parts['extension'];
+							$resourceAttachmentName =  str_replace(".".$resourceAttachmentExtension, "", $resourceAttachmentName);
+						}
+						$resourceAttachmentIcon = bfi_get_file_icon($resourceAttachmentExtension);
+						?>
+						<?php echo $resourceAttachmentIcon ?> <a href="<?php echo $resourceAttachment->LinkValue ?>" target="_blank"><?php echo $resourceAttachmentName ?></a><br />
+						<?php 
+					}
+				?>
+					</div>
 				<?php } ?>
 			</div>
 					<!-- AddToAny BEGIN -->

@@ -908,6 +908,9 @@ a.bfi-resname:link, a.bfi-resname:hover, .bfi-resname a {
 	    padding: 0;
 	    margin: 0 0 9px 25px;
 	}
+	& li {
+	    list-style-type: disc;
+	}
 }
 .bfi-container select{
 	margin: 0px;

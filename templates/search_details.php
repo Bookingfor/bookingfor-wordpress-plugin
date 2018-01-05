@@ -2358,8 +2358,8 @@ window.criteo_q.push(
         var txtSelectADay = "<?php _e('Please, select a day', 'bfi') ?>";
         var daysToEnableTimePeriod = <?php echo json_encode($listDayTP) ?>; 
         var strbuttonTextTimePeriod = "<?php echo date_i18n('D',$checkin->getTimestamp()) ?> <?php echo $checkin->format("d") ?> <?php echo date_i18n('M',$checkin->getTimestamp()).' '.$checkin->format("Y") ?>";
-        var urlGetCompleteRatePlansStay = bfi_variable.bfi_urlCheck + ((bfi_variable.bfi_urlCheck.indexOf('?') > -1)? "&" :"?") + '?task=getCompleteRateplansStay';
-        var urlGetListCheckInDayPerTimes = bfi_variable.bfi_urlCheck + ((bfi_variable.bfi_urlCheck.indexOf('?') > -1)? "&" :"?") + '?task=getListCheckInDayPerTimes';
+        var urlGetCompleteRatePlansStay = bfi_variable.bfi_urlCheck + ((bfi_variable.bfi_urlCheck.indexOf('?') > -1)? "&" :"?") + 'task=getCompleteRateplansStay';
+        var urlGetListCheckInDayPerTimes = bfi_variable.bfi_urlCheck + ((bfi_variable.bfi_urlCheck.indexOf('?') > -1)? "&" :"?") + 'task=getListCheckInDayPerTimes';
 
 		var dialogTimeperiod;
 		jQuery(document).ready(function() {

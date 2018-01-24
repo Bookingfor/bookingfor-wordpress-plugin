@@ -1,5 +1,5 @@
 var bookingfor = new function() {
-    this.version = "3.2.0";
+    this.version = "3.2.1";
 	this.bsVersion = ( typeof jQuery.fn.typeahead !== 'undefined' ? 2 : 3 );
     this.offersLoaded = [];
 
@@ -114,6 +114,7 @@ var bookingfor = new function() {
 
 	this.stripbbcode = function (str, is_xhtml) {   
 		str = (str + '').replace(/\[(\w+)[^\]]*](.*?)\[\/\1]/g, '$2');
+		str = str.replace(/(\[size\=[\d]\]|\[\/size\])+/g, '');
 		str = str.replace(/(\[ul\]|\[\/ul\]|\[ol\]|\[\/ol\])+/g, '');
 		return str;
 	};

@@ -2,7 +2,7 @@
 /*
 Plugin Name: BookingFor
 Description: BookingFor integration Code for Wordpress
-Version: 3.1.4
+Version: 3.2.1
 Author: BookingFor
 Author URI: http://www.bookingfor.com/
 */
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'BookingFor' ) ) :
 final class BookingFor {
 	
-	public $version = '3.2.0';
+	public $version = '3.2.1';
 	public $currentOrder = null;
 	
 	protected static $_instance = null;
@@ -370,7 +370,7 @@ final class BookingFor {
 		
 		wp_enqueue_script('validate', plugins_url( 'assets/js/jquery-validation/jquery.validate.min.js', __FILE__ ),array(),$this->version);
 		wp_enqueue_script('validateadditional', plugins_url( 'assets/js/jquery-validation/additional-methods.min.js', __FILE__ ),array(),$this->version);
-		wp_enqueue_script('validateadditionalcustom', plugins_url( 'assets/js/jquery.validate.additional-custom-methods.js', __FILE__ ),array(),$this->version);
+		wp_enqueue_script('validateadditionalcustom', plugins_url( 'assets/js/jquery.validate.additional-custom-methods.js', __FILE__ ),array(),$this->version,true);
 		
 		wp_enqueue_script('rating', plugins_url( 'assets/js/jquery.rating.pack.js', __FILE__ ),array(),$this->version);
 		wp_enqueue_script('magnificpopup', plugins_url( 'assets/js/jquery.magnific-popup.min.js', __FILE__ ),array(),$this->version);
@@ -518,9 +518,9 @@ final class BookingFor {
 //			$this->bfi_load_scripts_locale();
 			
 			//
-			remove_filter( 'the_content', 'wpautop' ); //Cambia le doppie interruzioni di riga nel testo in paragrafi HTML (<p>...</p>). https://codex.wordpress.org/it:Riferimento_funzioni/wpautop
-			remove_filter( 'the_content', 'convert_chars' );
-			remove_filter( 'the_content', 'wptexturize' );
+//			remove_filter( 'the_content', 'wpautop' ); //Cambia le doppie interruzioni di riga nel testo in paragrafi HTML (<p>...</p>). https://codex.wordpress.org/it:Riferimento_funzioni/wpautop
+//			remove_filter( 'the_content', 'convert_chars' );
+//			remove_filter( 'the_content', 'wptexturize' );
 		}
 
 		

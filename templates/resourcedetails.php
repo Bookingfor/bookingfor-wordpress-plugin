@@ -113,10 +113,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 	$sendAnalytics =false;
 	$criteoConfig = null;
 
+	$paramRef = array(
+		"merchant"=>$merchant,
+		"resource"=>$resource,
+		"indirizzo"=>$indirizzo,
+		"cap"=>$cap,
+		"comune"=>$comune,
+		"stato"=>$stato,
+		"resource_id"=>$resource_id,
+		"currencyclass"=>$currencyclass,
+		);
 
 	switch ( $layout) {
 		case _x('review', 'Page slug', 'bfi' ):
-			include(BFI()->plugin_path().'/templates/resourcedetails/review.php'); // merchant template
+			bfi_get_template("resourcedetails/review.php",$paramRef);	
+//			include(BFI()->plugin_path().'/templates/resourcedetails/review.php'); // merchant template
 		break;
 		default:
 			if(COM_BOOKINGFORCONNECTOR_CRITEOENABLED){
@@ -142,8 +153,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 				}
 			}
 						
-			
-			include(BFI()->plugin_path().'/templates/resourcedetails/resourcedetails.php'); // merchant template
+			bfi_get_template("resourcedetails/resourcedetails.php",$paramRef);	
+//			include(BFI()->plugin_path().'/templates/resourcedetails/resourcedetails.php'); // merchant template
 			$sendAnalytics = true; //$resource->IsCatalog;
 	}
 
@@ -210,7 +221,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		$resourceId = $resource->ResourceId;
 		$condominiumId = 0;
 
-		include(BFI()->plugin_path().'/templates/search_details.php'); //merchant temp 
+		bfi_get_template("search_details.php",array("resource"=>$resource,"merchant"=>$merchant,"resourceId"=>$resourceId,"condominiumId"=>$condominiumId,"currencyclass"=>$currencyclass));	
+//		include(BFI()->plugin_path().'/templates/search_details.php'); //merchant temp 
 		die($output);
 	}   
 	//------------------------------
@@ -256,12 +268,34 @@ if ( ! defined( 'ABSPATH' ) ) {
 					}
 					$checkinId = uniqid('checkin');
 					$checkoutId = uniqid('checkout');
-				$output = '';
-					include(BFI()->plugin_path().'/templates/merchant-sidebar-contact.php'); // merchant template
-				die($output);
-				break;
+					$output = '';
+					$paramRef = array(
+						"merchant"=>$merchant,
+						"layout"=>$layout,
+						"currentView"=>$currentView,
+						"resource"=>$resource,
+						"popupview"=>$popupview,
+						"task"=>$task,
+						"checkoutId"=>$checkoutId,
+						"checkinId"=>$checkinId,
+						"orderType"=>$orderType,
+						"routeThanks"=>$routeThanks,
+						"routeThanksKo"=>$routeThanksKo,
+						"paxes"=>$paxes,
+						"checkin"=>$checkin,
+						"checkout"=>$checkout
+						);
+
+					bfi_get_template("merchant-sidebar-contact.php",$paramRef);	
+//					include(BFI()->plugin_path().'/templates/merchant-sidebar-contact.php'); // merchant template
+					die($output);
+					break;
 				case _x('mapspopup', 'Page slug', 'bfi' ):
-					include(BFI()->plugin_path().'/templates/resourcedetails/mapspopup.php'); // merchant template
+					$paramRef = array(
+						"resource"=>$resource
+						);
+					bfi_get_template("resourcedetails/mapspopup.php",$paramRef);	
+//					include(BFI()->plugin_path().'/templates/resourcedetails/mapspopup.php'); // merchant template
 				die();
 				break;
 			}

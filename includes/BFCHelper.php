@@ -379,14 +379,21 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 	//		$model = JModelLegacy::getInstance('Ratings', 'BookingForConnectorModel');
 	//		return $model->getTotalRatingsByOrderId($orderId);
 	//	}	
-	//	public static function getResourceRatingAverage($merchantId, $resourceId) {
-	//		JModelLegacy::addIncludePath(JPATH_ROOT. DIRECTORY_SEPARATOR .'components' . DIRECTORY_SEPARATOR . 'com_bookingforconnector'. DIRECTORY_SEPARATOR . 'models', 'BookingForConnectorModel');
-	//		$model = JModelLegacy::getInstance('Resource', 'BookingForConnectorModel');
-	//		return $model->getRatingAverageFromService($merchantId, $resourceId);
-	//	}
+		public static function getResourceRatingAverage($merchantId, $resourceId) {
+//			JModelLegacy::addIncludePath(JPATH_ROOT. DIRECTORY_SEPARATOR .'components' . DIRECTORY_SEPARATOR . 'com_bookingforconnector'. DIRECTORY_SEPARATOR . 'models', 'BookingForConnectorModel');
+//			$model = JModelLegacy::getInstance('Resource', 'BookingForConnectorModel');
+			$model = new BookingForConnectorModelResource;
+			return $model->getRatingAverageFromService($merchantId, $resourceId);
+		}
+		public static function getResourceRating($start = 0, $limit=5, $resourceId=0) {
+//			JModelLegacy::addIncludePath(JPATH_ROOT. DIRECTORY_SEPARATOR .'components' . DIRECTORY_SEPARATOR . 'com_bookingforconnector'. DIRECTORY_SEPARATOR . 'models', 'BookingForConnectorModel');
+//			$model = JModelLegacy::getInstance('Resource', 'BookingForConnectorModel');
+			$model = new BookingForConnectorModelResource;
+			return $model->getRatingsFromService($start, $limit, $resourceId);
+		}
 
 		public static function getMerchantGroupsByMerchantId($merchantId) {
-			JModelLegacy::addIncludePath(JPATH_ROOT. DIRECTORY_SEPARATOR .'components' . DIRECTORY_SEPARATOR . 'com_bookingforconnector'. DIRECTORY_SEPARATOR . 'models', 'BookingForConnectorModel');
+//			JModelLegacy::addIncludePath(JPATH_ROOT. DIRECTORY_SEPARATOR .'components' . DIRECTORY_SEPARATOR . 'com_bookingforconnector'. DIRECTORY_SEPARATOR . 'models', 'BookingForConnectorModel');
 			$model = new BookingForConnectorModelMerchantDetails;
 			return $model->getMerchantGroupsByMerchantIdFromService($merchantId);
 		}
@@ -1294,6 +1301,13 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 			return $counter;
 		}
 		
+		public static function getCookie($cookieName, $defaultValue=null) {
+//			$app = JFactory::getApplication();
+//			$cookieValue = $app->input->cookie->get($cookieName, $defaultValue);
+			$cookieValue = $_COOKIE[$cookieName];
+			return $cookieValue;
+		}
+
 		public static function IsInFavourites($id) {
 			$varCook = BFCHelper::getCookie(self::$favouriteCookieName);
 			if (isset($varCook))
@@ -1340,10 +1354,11 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 					$counter = count($arr);
 					$lisTordersCookie = (string)implode("_", $arr);				
 				}
-				$config = JFactory::getConfig();
-				$cookie_domain = $config->get('cookie_domain', '');
-				$cookie_path = $config->get('cookie_path', '/');
-				$ok = setcookie(self::$ordersCookieName, $lisTordersCookie, $expire, $cookie_path, '');
+//				$config = JFactory::getConfig();
+//				$cookie_domain = $config->get('cookie_domain', '');
+//				$cookie_path = $config->get('cookie_path', '/');
+//				$ok = setcookie(self::$ordersCookieName, $lisTordersCookie, $expire, $cookie_path, '');
+				$ok = setcookie(self::$ordersCookieName, $lisTordersCookie, $expire);
 				return $counter;
 			}
 					
@@ -1473,6 +1488,7 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 			$pars['condominiumsResults'] = !empty($params['condominiumsResults']) ? $params['condominiumsResults']: 0;
 			$pars['productTagIds'] = !empty($params['productTagIds']) ? $params['productTagIds']:"";
 			$pars['merchantTagIds'] = !empty($params['merchantTagIds']) ? $params['merchantTagIds']:"";
+			$pars['merchantIds'] = !empty($params['merchantIds']) ? $params['merchantIds']:"";
 
 			if(isset($params['merchantId'])){
 				$pars['merchantId'] = $params['merchantId'];

@@ -810,6 +810,7 @@ class BFI_Controller {
 		$formData = $_POST['form'];
 		if(empty($formData)){
 		}
+		$language = isset($_REQUEST['language']) ? $_REQUEST['language'] : '' ;
 		
 		$customer = BFCHelper::getCustomerData($formData);
 
@@ -818,6 +819,7 @@ class BFI_Controller {
 		$merchantId = $formData['merchantId'];
 		$orderType = $formData['orderType'];
 		$label = $formData['label'];
+		$label = $this->formlabel;
 		$OrderJson = $formData['hdnOrderData'];
 		$bookingTypeSelected = $formData['bookingtypeselected'];
 
@@ -876,7 +878,7 @@ class BFI_Controller {
 		if(isset($formData['pricetype'])){
 			$orderData['pricetype'] = $formData['pricetype'];
 		}
-		$orderData['label'] = $formData['label'];
+		$orderData['label'] = $this->formlabel;;
 		$orderData['checkin_eta_hour'] = $formData['checkin_eta_hour'];
 		$orderData['merchantBookingTypeId'] = $formData['bookingtypeselected'];
 		$orderData['policyId'] = $formData['policyId'];
@@ -904,7 +906,6 @@ class BFI_Controller {
 				$orderData['merchantBookingTypeId'],
 				$orderData['policyId']
                 );
-
 		if (empty($order)){
 			$order ="";
 			$redirect = $redirecterror;

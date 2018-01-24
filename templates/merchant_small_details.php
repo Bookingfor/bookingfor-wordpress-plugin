@@ -2,6 +2,18 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
+$base_url = get_site_url();
+
+$language = $GLOBALS['bfi_lang'];
+$languageForm ='';
+if(defined('ICL_LANGUAGE_CODE') &&  class_exists('SitePress')){
+		global $sitepress;
+		if($sitepress->get_current_language() != $sitepress->get_default_language()){
+			$languageForm = "/" .ICL_LANGUAGE_CODE;
+		}
+}
+$isportal = COM_BOOKINGFORCONNECTOR_ISPORTAL;
+$showdata = COM_BOOKINGFORCONNECTOR_SHOWDATA;
 
 $merchantSiteUrl = '';
 $mrcindirizzo = "";
@@ -50,7 +62,9 @@ if(BFI()->isResourcePage() && !empty($resource_id)){
 if(BFI()->isResourceOnSellPage() && !empty($resource_id)){
 	$uriMerchantInfoRequest .= '/'.$resource_id .'-'._x( 'properties-for-sale', 'Page slug', 'bfi' );
 }
-
+if(BFI()->isCondominiumPage() && !empty($resource_id)){
+	$uriMerchantInfoRequest .= '/'.$resource_id .'-'._x( 'condominiumdetails', 'Page slug', 'bfi' );
+}
 ?>
 <div class=" bfi-hideonextra">
 	<br />

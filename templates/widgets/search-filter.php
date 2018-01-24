@@ -56,7 +56,7 @@ $avg_text = array('-1' => __('Unrated', 'bfi'),
 					);
 
 
-$formAction = (isset($_SERVER['HTTPS']) ? "https" : "http") . ':' . (( $_SERVER['HTTPS']=='80' || $_SERVER['HTTPS']=='443' ) ? '' : $port) ."//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$formAction = (isset($_SERVER['HTTPS']) ? "https" : "http") . ':' ."//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
 $page = bfi_get_current_page() ;
 if(!empty($page)){
@@ -70,8 +70,56 @@ $formAction = filter_input( INPUT_GET, 'newsearch' )
 //$locationZones = BFCHelper::getLocationZones();
 //$masterTypologies = BFCHelper::getMasterTypologies();
 //$merchantGroups = BFCHelper::getTags($language,"1,4");
+bfi_setSessionFromSubmittedData();
 
 $pars = BFCHelper::getSearchParamsSession();
+
+$newsearch = isset($pars['newsearch']) ? $pars['newsearch'] : '0';
+
+if (empty($GLOBALS['bfSearched'])) {
+	 if($newsearch == "1"){
+		BFCHelper::setFilterSearchParamsSession(null);
+		$searchmodel = new BookingForConnectorModelSearch;
+		$items =  array();
+		$total = 0;
+		$currSorting = "";
+		$filterinsession = null;
+		$start = 0;
+		if (isset($pars['checkin']) && isset($pars['checkout'])){
+			$now = new DateTime();
+			$checkin = isset($pars['checkin']) ? $pars['checkin'] : new DateTime();
+			$checkout = isset($pars['checkout']) ? $pars['checkout'] : new DateTime();
+
+			$availabilitytype = isset($pars['availabilitytype']) ? $pars['availabilitytype'] : "1";
+			
+			$availabilitytype = explode(",",$availabilitytype);
+			if (($checkin == $checkout && (!in_array("0",$availabilitytype) && !in_array("2",$availabilitytype)&& !in_array("3",$availabilitytype) ) ) || $checkin->diff($checkout)->format("%a") <0 || $checkin < $now ){
+				$nodata = true;
+			}else{
+				$filterinsession = BFCHelper::getFilterSearchParamsSession();
+				$items = $searchmodel->getItems(false, false, $start,COM_BOOKINGFORCONNECTOR_ITEMPERPAGE);
+				
+				$items = is_array($items) ? $items : array();
+						
+				$total=$searchmodel->getTotal();
+				$currSorting=$searchmodel->getOrdering() . "|" . $searchmodel->getDirection();
+			}
+
+		}
+		$GLOBALS['bfSearchedItems'] = $items;
+		$GLOBALS['bfSearchedItemsTotal'] = $total;
+		$GLOBALS['bfSearchedItemsCurrSorting'] = $currSorting;
+		$GLOBALS['bfSearched'] = 1;
+	}else{
+		$filtersselected = BFCHelper::getVar('filters', null);
+		if ($filtersselected == null) { //provo a recuperarli dalla sessione...
+			$filtersselected = BFCHelper::getFilterSearchParamsSession();
+		}
+		BFCHelper::setFilterSearchParamsSession($filtersselected);
+	}
+}
+
+$filtersSelected = BFCHelper::getFilterSearchParamsSession();
 
 $masterTypeId = isset($pars['masterTypeId']) ? $pars['masterTypeId'] : '';
 $merchantCategoryId = isset($pars['merchantCategoryId']) ? $pars['merchantCategoryId'] : '';
@@ -357,7 +405,6 @@ foreach ($filterscount as $filter){
 	} 
 }
 
-$filtersSelected = BFCHelper::getFilterSearchParamsSession();
 
 $filtersPriceValue = "";
 $filtersResourcesCategoriesValue = "";
@@ -751,4 +798,4 @@ jQuery(document).ready(function() {
 <?php echo $after_widget; ?>
 <div class="bfi-clearboth"></div>
 <?php } ?>
-<?php include('search-filter-merchants.php');?>
+<?php bfi_get_template("widgets/search-filter-merchants.php"); ?>

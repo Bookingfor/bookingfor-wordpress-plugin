@@ -33,6 +33,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	$listName = "";
 	$sendAnalytics = true;
 
+	$paramRef = array(
+		"merchant"=>$merchant,
+		"resource"=>$resource,
+		"resource_id"=>$resource_id,
+		);
+
 	switch ( $layout) {
 //		case 'form' :
 //			include(BFI()->plugin_path().'/templates/onselldetails/form.php'); // merchant template
@@ -88,13 +94,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 //			include(BFI()->plugin_path().'/templates/merchantdetails/review.php'); // merchant template
 //		break;
 		case _x('mapspopup', 'Page slug', 'bfi' ):
-			include(BFI()->plugin_path().'/templates/onselldetails/mapspopup.php'); // merchant template
+			bfi_get_template("onselldetails/mapspopup.php",$paramRef);	
+//			include(BFI()->plugin_path().'/templates/onselldetails/mapspopup.php'); // merchant template
 			die();
 		break;
 		
 		default:
 			$listName = "Sales Resources Page";
-			include(BFI()->plugin_path().'/templates/onselldetails/resourcedetails.php'); // merchant template
+//			include(BFI()->plugin_path().'/templates/onselldetails/resourcedetails.php'); // merchant template
+			$paramRef = array(
+				"merchant"=>$merchant,
+				"resource"=>$resource,
+				"listName"=>$listName,
+				"resource_id"=>$resource_id,
+				);
+			bfi_get_template("onselldetails/resourcedetails.php",$paramRef);	
 	}
 
 		add_action('bfi_head', 'bfi_google_analytics_EEc', 10, 1);
@@ -145,15 +159,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 //	$model = new BookingForConnectorModelMerchantDetails;
 //	$merchant = $model->getItem($merchant_id);	 
 //
-	if($task == 'getMerchantResources') {
-		if(!empty(BFCHelper::getVar('refreshcalc',''))){
-			bfi_setSessionFromSubmittedData();
-		}
-
-		$output = '';
-		include(BFI()->plugin_path().'/templates/onselldetails/search.php'); //merchant temp 
-		die($output);
-	}   
+//	if($task == 'getMerchantResources') {
+//		if(!empty(BFCHelper::getVar('refreshcalc',''))){
+//			bfi_setSessionFromSubmittedData();
+//		}
+//
+//		$output = '';
+//		bfi_get_template("onselldetails/search.php",array("total"=>$total,"items"=>$items,"pages"=>$pages,"page"=>$page,"currencyclass"=>$currencyclass,"listNameAnalytics"=>$listNameAnalytics));	
+//		die($output);
+//	}   
 	//------------------------------
 	if(empty($task)){
 			switch ( $layout) {
@@ -200,12 +214,34 @@ if ( ! defined( 'ABSPATH' ) ) {
 					$checkinId = uniqid('checkin');
 					$checkoutId = uniqid('checkout');
 
-				$output = '';
-					include(BFI()->plugin_path().'/templates/merchant-sidebar-contact.php'); // merchant template
-				die($output);
-				break;
+					$output = '';
+					$paramRef = array(
+						"merchant"=>$merchant,
+						"layout"=>$layout,
+						"currentView"=>$currentView,
+						"resource"=>$resource,
+						"popupview"=>$popupview,
+						"task"=>$task,
+						"checkoutId"=>$checkoutId,
+						"checkinId"=>$checkinId,
+						"orderType"=>$orderType,
+						"routeThanks"=>$routeThanks,
+						"routeThanksKo"=>$routeThanksKo,
+						"paxes"=>$paxes,
+						"checkin"=>$checkin,
+						"checkout"=>$checkout
+						);
+
+					bfi_get_template("merchant-sidebar-contact.php",$paramRef);	
+//					include(BFI()->plugin_path().'/templates/merchant-sidebar-contact.php'); // merchant template
+					die($output);
+					break;
 				case _x('mapspopup', 'Page slug', 'bfi' ):
-					include(BFI()->plugin_path().'/templates/onselldetails/mapspopup.php'); // merchant template
+					$paramRef = array(
+						"resource"=>$resource
+						);
+					bfi_get_template("onselldetails/mapspopup.php",$paramRef);	
+//					include(BFI()->plugin_path().'/templates/onselldetails/mapspopup.php'); // merchant template
 					die();
 				break;
 			}

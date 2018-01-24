@@ -177,7 +177,7 @@ $onlystay =  true;
 //				$merchantLogoUrl =  BFCHelper::getImageUrlResized('merchant',$resource->LogoUrl, 'logomedium');
 //			}
 		$resourceNameTrack =  BFCHelper::string_sanitize($resourceName);
-		$merchantNameTrack =  BFCHelper::string_sanitize($merchantName);
+		$merchantNameTrack =  BFCHelper::string_sanitize($resource->MrcName);
 		$merchantCategoryNameTrack =  BFCHelper::string_sanitize($resource->MrcCategoryName);
 	?>
 	<div class="bfi-col-sm-6 bfi-item">

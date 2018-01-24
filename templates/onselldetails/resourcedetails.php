@@ -163,7 +163,7 @@ if (!empty($merchant->LogoUrl)){
 			if(!empty($resource->VideoData)) {
 				$bfiVideoData = $resource->VideoData;
 			}
-			include(BFI()->plugin_path().'/templates/gallery.php');
+			bfi_get_template("gallery.php",array("merchant"=>$merchant,"bfiSourceData"=>$bfiSourceData,"bfiImageData"=>$bfiImageData,"bfiVideoData"=>$bfiVideoData));	
 	?>
 	</div>
 
@@ -379,7 +379,9 @@ echo("</tr>\n");
 	<?php endif ?>
 
 	<div class="bfi-clearboth"></div>
-	<?php  include(BFI()->plugin_path().'/templates/merchant_small_details.php');  ?>
+	<?php  
+	bfi_get_template("merchant_small_details.php",array("resource_id"=>$resource_id,"merchant"=>$merchant,"routeMerchant"=>$routeMerchant));	
+	?>
 
 <?php if (($showResourceMap)) :?>
 <br /><br />

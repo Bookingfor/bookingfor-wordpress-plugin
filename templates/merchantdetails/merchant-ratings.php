@@ -4,8 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <div >
-	<?php
-   
+	<?php   
    $list = array (__('All reviewers', 'bfi'), __('Solo travellers', 'bfi'), __('Groups', 'bfi'), __('Young couplet', 'bfi'), __('Mature couples', 'bfi'), __('Families with young children', 'bfi'), __('Family with older children', 'bfi'));
 
    if(isset($summaryRatings)) {

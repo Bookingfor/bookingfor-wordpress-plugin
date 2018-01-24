@@ -145,8 +145,11 @@ function form($instance) {
 		extract( $args );
 		// these are the widget options
 		$title = apply_filters('widget_title', $instance['title']);
+		$args["title"] =  $title;
+		$args["instance"] =  $instance;
+		bfi_get_template("widgets/merchants.php",$args);	
 
-		include(BFI()->plugin_path() .'/templates/widgets/merchants.php');
+//		include(BFI()->plugin_path() .'/templates/widgets/merchants.php');
 
 //		$this->widget_end( $args );
 	}

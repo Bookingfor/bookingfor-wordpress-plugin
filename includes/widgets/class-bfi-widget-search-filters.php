@@ -59,7 +59,10 @@ class BFI_Widget_Search_Filters extends WP_Widget {
 		
         $title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : "";
 		$title = apply_filters('widget_title', $title );
-		include(BFI()->plugin_path() .'/templates/widgets/search-filter.php');
+		$args["title"] =  $title;
+		$args["instance"] =  $instance;
+		bfi_get_template("widgets/search-filter.php",$args);	
+//		include(BFI()->plugin_path() .'/templates/widgets/search-filter.php');
 
 //		$this->widget_end( $args );
 	}

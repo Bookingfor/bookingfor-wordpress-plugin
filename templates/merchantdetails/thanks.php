@@ -30,5 +30,7 @@ $routeThanksKo = $routeMerchant .'/'. _x('errors', 'Page slug', 'bfi' );
 <br />
 <?php _e('Thank you for having chosen us.', 'bfi') ?>
 <div class="bfi-clearboth"></div>
-<?php  include(BFI()->plugin_path().'/templates/merchant_small_details.php');  ?>
+<?php  
+bfi_get_template("merchant_small_details.php",array("merchant"=>$merchant,"routeMerchant"=>$routeMerchant));	
+?>
 </div>

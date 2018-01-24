@@ -147,7 +147,8 @@ class bfi_Shortcodes {
 	 */
 	public static function bfi_shortcode_search( $atts ) {
 		ob_start();
-		include(BFI()->plugin_path().'/templates/widgets/booking-search.php');
+		bfi_get_template("widgets/booking-search.php",array("instance" =>$atts));	
+//		include(BFI()->plugin_path().'/templates/widgets/booking-search.php');
 		$return = ob_get_contents();
 		ob_end_clean();
 		return $return ;
@@ -155,7 +156,8 @@ class bfi_Shortcodes {
 
 	public static function bfi_shortcode_currencyswitcher( $atts ) {
 		ob_start();
-		include(BFI()->plugin_path().'/templates/widgets/currency-switcher.php');
+		bfi_get_template("widgets/currency-switcher.php",array("instance" =>$atts));	
+//		include(BFI()->plugin_path().'/templates/widgets/currency-switcher.php');
 		$return = ob_get_contents();
 		ob_end_clean();
 		return $return ;
@@ -187,7 +189,8 @@ class bfi_Shortcodes {
 		 $instance['descmaxchars'] = $atts['descmaxchars'];
 
 		ob_start();
-		include(BFI()->plugin_path().'/templates/widgets/merchants.php');
+		bfi_get_template("widgets/merchants.php",array("instance" =>$instance,"tags" =>$tags));	
+//		include(BFI()->plugin_path().'/templates/widgets/merchants.php');
 		$return = ob_get_contents();
 		ob_end_clean();
 		return $return ;
@@ -249,7 +252,16 @@ class bfi_Shortcodes {
 		add_action('bfi_head', 'bfi_google_analytics_EEc', 10, 1);
 		do_action('bfi_head', $listName);
 
-		include(BFI()->plugin_path().'/templates/merchantslist/merchantslist.php');
+//		include(BFI()->plugin_path().'/templates/merchantslist/merchantslist.php');
+		$paramRef = array(
+			"merchants"=>$merchants,
+			"total"=>$total,
+			"items"=>$items,
+			"currParam"=>$currParam,
+			"filter_order"=>$filter_order,
+			"filter_order_Dir"=>$filter_order_Dir
+			);
+		bfi_get_template("merchantslist/merchantslist.php",$paramRef);	
 		
 		
 //		echo "<pre>total: ";
@@ -306,7 +318,18 @@ class bfi_Shortcodes {
 		$results = is_array($items) ? $items : array();
 
 		ob_start();
-		include(BFI()->plugin_path().'/templates/resources.php');
+		$paramRef = array(
+			"merchants"=>$merchants,
+			"resources"=>$resources,
+			"results"=>$results,
+			"total"=>$total,
+			"items"=>$items,
+			"currParam"=>$currParam,
+			"filter_order"=>$filter_order,
+			"filter_order_Dir"=>$filter_order_Dir,
+			);
+		bfi_get_template("resources.php",$paramRef);	
+//		include(BFI()->plugin_path().'/templates/resources.php');
 		$return = ob_get_contents();
 		ob_end_clean();
 		return $return ;
@@ -415,14 +438,35 @@ class bfi_Shortcodes {
 				$filter_order_Dir = $resourcesmodel->getDirection();
 
 				$merchants = is_array($items) ? $items : array();
-				include(BFI()->plugin_path().'/templates/merchantslist/merchantslist.php');
+
+				$paramRef = array(
+					"merchants"=>$merchants,
+					"total"=>$total,
+					"items"=>$items,
+					"listNameAnalytics"=>$listNameAnalytics,
+					"filter_order"=>$filter_order,
+					"filter_order_Dir"=>$filter_order_Dir
+					);
+				bfi_get_template("merchantslist/merchantslist.php",$paramRef);	
+//				include(BFI()->plugin_path().'/templates/merchantslist/merchantslist.php');
 			}
 			if ($category == 2) {
 				$listNameAnalytics = 7;
 				$items = $resourcesmodel->getItemsOnSellUnit();
 				$total = $resourcesmodel->getTotalResources();
+				$filter_order = $resourcesmodel->getOrdering();
+				$filter_order_Dir = $resourcesmodel->getDirection();
 				$resources = is_array($items) ? $items : array();
-				include(BFI()->plugin_path().'/templates/onsellunits.php');
+				$paramRef = array(
+					"resources"=>$resources,
+					"total"=>$total,
+					"items"=>$items,
+					"listNameAnalytics"=>$listNameAnalytics,
+					"filter_order"=>$filter_order,
+					"filter_order_Dir"=>$filter_order_Dir
+					);
+				bfi_get_template("onsellunits.php",$paramRef);	
+//				include(BFI()->plugin_path().'/templates/onsellunits.php');
 			}
 			if ($category == 4) {
 				$listNameAnalytics = 5;
@@ -441,10 +485,28 @@ class bfi_Shortcodes {
 					}
 					if  ($currParam['show_grouped'] == true) {
 						$merchants = is_array($items) ? $items : array();
-						include(BFI()->plugin_path().'/templates/resources_grouped.php');
+						$paramRef = array(
+							"merchants"=>$merchants,
+							"total"=>$total,
+							"items"=>$items,
+							"listNameAnalytics"=>$listNameAnalytics,
+//							"filter_order"=>$filter_order,
+//							"filter_order_Dir"=>$filter_order_Dir
+							);
+						bfi_get_template("resources_grouped.php",$paramRef);	
+//						include(BFI()->plugin_path().'/templates/resources_grouped.php');
 					}else{
 						$resources = is_array($items) ? $items : array();
-						include(BFI()->plugin_path().'/templates/resources.php');
+						$paramRef = array(
+							"resources"=>$resources,
+							"total"=>$total,
+							"items"=>$items,
+							"listNameAnalytics"=>$listNameAnalytics,
+//							"filter_order"=>$filter_order,
+//							"filter_order_Dir"=>$filter_order_Dir
+							);
+						bfi_get_template("resources.php",$paramRef);	
+//						include(BFI()->plugin_path().'/templates/resources.php');
 					}
 				}
 			}

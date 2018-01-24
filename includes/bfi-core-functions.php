@@ -83,7 +83,6 @@ function bfi_setSessionFromSubmittedData() {
 		'suggestedstay' => isset($currParamInSession['suggestedstay']) ?$currParamInSession['suggestedstay'] : '',
 		'points' => BFCHelper::getVar('searchType')=="1" ? BFCHelper::getVar('points') : "",
 	);
-		
 	BFCHelper::setSearchParamsSession($currParam);
 }
 
@@ -93,17 +92,17 @@ function bfi_get_template_part( $slug, $name = '' ) {
 
 	// Look in yourtheme/slug-name.php and yourtheme/bookingfor/slug-name.php
 	if ( $name && ! BFI_TEMPLATE_DEBUG_MODE ) {
-		$template = locate_template( array( "{$slug}-{$name}.php", WC()->template_path() . "{$slug}-{$name}.php" ) );
+		$template = locate_template( array( "{$slug}-{$name}.php", BFI()->template_path() . "{$slug}-{$name}.php" ) );
 	}
 
 	// Get default slug-name.php
-	if ( ! $template && $name && file_exists( WC()->plugin_path() . "/templates/{$slug}-{$name}.php" ) ) {
-		$template = WC()->plugin_path() . "/templates/{$slug}-{$name}.php";
+	if ( ! $template && $name && file_exists( BFI()->plugin_path() . "/templates/{$slug}-{$name}.php" ) ) {
+		$template = BFI()->plugin_path() . "/templates/{$slug}-{$name}.php";
 	}
 
 	// If template file doesn't exist, look in yourtheme/slug.php and yourtheme/bookingfor/slug.php
 	if ( ! $template && ! BFI_TEMPLATE_DEBUG_MODE ) {
-		$template = locate_template( array( "{$slug}.php", WC()->template_path() . "{$slug}.php" ) );
+		$template = locate_template( array( "{$slug}.php", BFI()->template_path() . "{$slug}.php" ) );
 	}
 
 	// Allow 3rd party plugins to filter template file from their plugin.
@@ -129,7 +128,6 @@ function bfi_get_template( $template_name, $args = array(), $template_path = '',
 	}
 
 	$located = bfi_locate_template( $template_name, $template_path, $default_path );
-
 	if ( ! file_exists( $located ) ) {
 		_doing_it_wrong( __FUNCTION__, sprintf( '<code>%s</code> does not exist.', $located ), '2.1' );
 		return;

@@ -46,7 +46,7 @@ $route = str_replace("{language}", substr($language,0,2), COM_BOOKINGFORCONNECTO
 
 ?>		<form action="<?php echo  $route ?>" method="post" class="bfi-form-vertical" id="formCheckMode" target="_blank">
 			<div class="bfi-form-field">		
-				<?php include(BFI()->plugin_path().'/templates/orderdetails/default_checkmode'.$checkmode.'.php'); // merchant template?>
+				<?php bfi_get_template("orderdetails/default_checkmode'.$checkmode.'.php"); ?>
 				<input type="hidden" id="cultureCode" name="cultureCode" value="<?php echo $language;?>" />
 				<input type="hidden" id="actionform" name="actionform" value="login" />
 				<input name="checkmode" type="hidden" value="<?php echo $checkmode;?>">

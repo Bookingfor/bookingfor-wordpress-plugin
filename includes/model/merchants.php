@@ -20,7 +20,7 @@ class BookingForConnectorModelMerchants
 	private $urlMerchantCategoriesRequest = null;
 	private $urlGetServicesByMerchantsCategoryId = null;
 	private $params = null;
-	private $itemPerPage = null;
+	private $itemPerPage = 20;
 	private $ordering = null;
 	private $direction = null;
 
@@ -109,6 +109,10 @@ class BookingForConnectorModelMerchants
 //		$groupresulttype = $params['groupresulttype'];
 
 		$cultureCode =  isset($params['cultureCode']) ? $params['cultureCode'] : ''; 
+		if(empty( $cultureCode )){
+//			$cultureCode = JFactory::getLanguage()->getTag();
+			$cultureCode = $GLOBALS['bfi_lang'];
+		}
 		
 		$options['data']['calculate'] = 0;
 		$options['data']['checkAvailability'] = 0;
@@ -218,6 +222,11 @@ class BookingForConnectorModelMerchants
 			if(!empty( $filters['merchantsservices'] )){
 				$options['data']['merchantServiceIds'] = BFCHelper::getQuotedString(str_replace("|",",",$filters['merchantsservices'])) ;
 			}
+
+			if(!empty( $filters['merchantscategories'] )){
+				$options['data']['merchantCategoryIds'] = BFCHelper::getQuotedString(str_replace("|",",",$filters['merchantscategories'])) ;
+			}
+
 
 			if(!empty( $filters['zones'] )){
 				$options['data']['zoneIds'] = BFCHelper::getQuotedString(str_replace("|",",",$filters['zones'])) ;
@@ -751,6 +760,7 @@ class BookingForConnectorModelMerchants
 //		return $items;
 //	}
 	public function getItems($ignorePagination = false, $jsonResult = false, $start = 0, $count = 20) {
+		
 		if ($this->currentData !== null){
 			return $this->currentData;
 		}
@@ -763,6 +773,8 @@ class BookingForConnectorModelMerchants
 	}
 
 	public function retrieveItems($ignorePagination = false, $jsonResult = false, $start = 0, $count = 20) {
+		
+		$count = $this->itemPerPage;
 		if(!empty($_REQUEST['filter_order']) ){
 			$items = $this->getSearchResults(
 				$start,
@@ -792,12 +804,12 @@ class BookingForConnectorModelMerchants
 		}
 		else{
 			$this->retrieveItems();
+			return $this->count;
 		}
 
 	}
 
 	public function getSearchResults($start, $limit, $ordering, $direction, $ignorePagination = false, $jsonResult = false) {
-
 		$this->currentOrdering = $ordering;
 		$this->currentDirection = $direction;
 		$params = array();
@@ -810,7 +822,7 @@ class BookingForConnectorModelMerchants
 
 			BFCHelper::setSearchMerchantParamsSession(null);
 			BFCHelper::setFilterSearchMerchantParamsSession(null);
-			$start = 0;
+//			$start = 0;
 //			$this->setState('list.start',$start);
 			$params['startswith'] = $firstParams['startswith'];
 			$params['rating'] = $firstParams['rating'];
@@ -833,7 +845,6 @@ class BookingForConnectorModelMerchants
 			
 
 		if ($results == null) {
-//			echo 'No result: <br />';
 			$options = array(
 				'path' => $this->urlSearch,
 				'data' => array(
@@ -843,6 +854,7 @@ class BookingForConnectorModelMerchants
 			);
 			
 			if(!$ignorePagination){
+	
 				if (isset($start) && $start >= 0) {
 					$options['data']['skip'] = $start;
 				}

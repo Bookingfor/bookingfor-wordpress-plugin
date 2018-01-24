@@ -43,7 +43,6 @@ $routeThanksKo = $routeMerchant .'/'. _x('errors', 'Page slug', 'bfi' );
 <?php echo json_encode($payload,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE); ?>
 // ]]></script>
 <div class="bfi-content">
-	<?php //include('merchant-head.php'); ?>
 	<?php if (!empty($offer)){ ?>
 	<div>
 		<?php
@@ -86,7 +85,8 @@ $routeThanksKo = $routeMerchant .'/'. _x('errors', 'Page slug', 'bfi' );
 			if(!empty($offer->VideoData)) {
 				$bfiVideoData = $offer->VideoData;
 			}
-			include(BFI()->plugin_path().'/templates/gallery.php');
+//			include(BFI()->plugin_path().'/templates/gallery.php');
+			bfi_get_template("gallery.php",array("merchant"=>$merchant,"bfiSourceData"=>$bfiSourceData,"bfiImageData"=>$bfiImageData,"bfiVideoData"=>$bfiVideoData));	
 	?>
 
 		</div>
@@ -138,8 +138,9 @@ $routeThanksKo = $routeMerchant .'/'. _x('errors', 'Page slug', 'bfi' );
 				<?php 
 				$resourceId = 0;
 				$condominiumId = 0;
+				bfi_get_template("search_details.php",array("merchant"=>$merchant,"resourceId"=>$resourceId,"condominiumId"=>$condominiumId,"currvariationPlanId"=>$currvariationPlanId,"currencyclass"=>$currencyclass));	
 
-				include(BFI()->plugin_path().'/templates/search_details.php'); //merchant temp ?>
+				//include(BFI()->plugin_path().'/templates/search_details.php'); //merchant temp ?>
 					
 
 			</div>
@@ -152,7 +153,9 @@ $routeThanksKo = $routeMerchant .'/'. _x('errors', 'Page slug', 'bfi' );
 	<?php } ?>
 
 	<div class="bfi-clearboth"></div>
-	<?php  include(BFI()->plugin_path().'/templates/merchant_small_details.php');  ?>
+<?php
+bfi_get_template("merchant_small_details.php",array("merchant"=>$merchant,"routeMerchant"=>$routeMerchant));	
+?>
 
 </div>
 <script type="text/javascript">

@@ -23,6 +23,9 @@ $template = get_option( 'template' );
 
 switch( $template ) {
 	case 'BookYourTravel':
+	global $post, $bookyourtravel_theme_globals;
+
+	$page_id = $post->ID;
 	$page_custom_fields = get_post_custom( $page_id);
 	$page_sidebar_positioning = null;
 	if (isset($page_custom_fields['page_sidebar_positioning'])) {

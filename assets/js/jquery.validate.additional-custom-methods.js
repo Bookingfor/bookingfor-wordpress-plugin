@@ -1,3 +1,4 @@
+jQuery(document).ready(function() {
 jQuery.validator.addMethod(
 	"greaterThanDateITA",  
 	function(value, element, param) {      
@@ -48,3 +49,34 @@ jQuery.validator.addMethod("notEqual", function(value, element, param) {
   return this.optional(element) || value != param;
 }, "Please specify a different (non-default) value");
  
+jQuery.validator.addMethod("vatCode", function (value, element) {
+	value = value.replace(/\s+/g, "").toUpperCase();
+	jQuery(element).val(value);
+	return this.optional(element) ||
+		(
+			value.length == 16 &&
+			value.match(/^[a-zA-Z]{6}\d{2}[a-zA-Z]\d{2}[a-zA-Z]\d{3}[a-zA-Z]$/) &&
+			bficodiceFISCALE(value)
+		);
+});
+
+function bficodiceFISCALE(cfins) {
+	 var cf = cfins.toUpperCase();
+	 var cfReg = /^[A-Z]{6}\d{2}[A-Z]\d{2}[A-Z]\d{3}[A-Z]$/;
+	 if (!cfReg.test(cf))
+	 return false;
+
+	 var set1 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	 var set2 = "ABCDEFGHIJABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	 var setpari = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	 var setdisp = "BAKPLCQDREVOSFTGUHMINJWZYX";
+	 var s = 0;
+	 for( i = 1; i <= 13; i += 2 )
+	 s += setpari.indexOf( set2.charAt( set1.indexOf( cf.charAt(i) )));
+	 for( i = 0; i <= 14; i += 2 )
+	 s += setdisp.indexOf( set2.charAt( set1.indexOf( cf.charAt(i) )));
+	 if ( s%26 != cf.charCodeAt(15)-'A'.charCodeAt(0) )
+	 return false;
+	 return true;
+}
+});      

@@ -409,7 +409,7 @@ class BookingForConnectorModelSearch
 					$val->MerchantId = $result->MerchantId; 
 					$val->XGooglePos = $result->MrcLat;
 					$val->YGooglePos = $result->MrcLng;
-					$val->MerchantName = BFCHelper::getSlug($result->MrcName);
+					$val->MerchantName = BFCHelper::string_sanitize($result->MrcName);
 				}
 				elseif ($condominiumsResults){
 					$val->Resource = new StdClass;
@@ -417,7 +417,7 @@ class BookingForConnectorModelSearch
 					$val->Resource->ResourceId = $result->ResourceId;
 					$val->Resource->XGooglePos = $result->ResLat;
 					$val->Resource->YGooglePos = $result->ResLng;
-					$val->Resource->ResourceName = BFCHelper::getSlug($result->ResName);
+					$val->Resource->ResourceName = BFCHelper::string_sanitize($result->ResName);
 					$val->Resource->Price = $result->Price;
 				}
 				else { 
@@ -425,7 +425,7 @@ class BookingForConnectorModelSearch
 					$val->Resource->ResourceId = $result->ResourceId;
 					$val->Resource->XGooglePos = $result->ResLat;
 					$val->Resource->YGooglePos = $result->ResLng;
-					$val->Resource->ResourceName = BFCHelper::getSlug($result->ResName);
+					$val->Resource->ResourceName = BFCHelper::string_sanitize($result->ResName);
 					$val->Resource->Price = $result->Price;
 				}
 				$arr[] = $val;
@@ -446,6 +446,7 @@ class BookingForConnectorModelSearch
 		}
 		else{
 			$this->retrieveItems();
+			return $this->count;
 		}
 
 	}

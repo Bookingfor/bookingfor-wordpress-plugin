@@ -25,8 +25,15 @@ $currencyclass = bfi_get_currentCurrency();
 $isportal = COM_BOOKINGFORCONNECTOR_ISPORTAL;
 $usessl = COM_BOOKINGFORCONNECTOR_USESSL;
 $enablecoupon = COM_BOOKINGFORCONNECTOR_ENABLECOUPON;
+$currPolicy = null;
+$currPolicyId = null;
+$totalOrder = 0;
+$totalCouponDiscount = 0;
+$checkAnalytics = true;
+$listName = "Cart Page";			
 
 $layout = get_query_var( 'bfi_layout', '' );
+$itemType = 0;
 
 if ($layout == 'thanks') {
 	$listName = "Cart Page";
@@ -40,12 +47,12 @@ if($checkAnalytics && $analyticsEnabled ) {
 	$checkAnalytics = true;
 	switch($itemType) {
 		case 2:
-			$orderid = 	BFCHelper::getString('orderid');
+			$orderid = 	BFCHelper::getVar('orderid');
 			$traceOrder = BFCHelper::IsInCookieOrders($orderid);
 			if (!$traceOrder) {
 				BFCHelper::AddToCookieOrders($orderid);
 			}
-			$act = 	BFCHelper::getString('act');
+			$act = 	BFCHelper::getVar('act');
 			if(!empty($orderid) && $act!="Contact" && !$traceOrder ){
 //						if(!empty($orderid)){
 				$order = BFCHelper::getSingleOrderFromService($orderid);
@@ -101,8 +108,12 @@ if($checkAnalytics && $analyticsEnabled ) {
 						}
 
 					}
-						$document->addScriptDeclaration('
-						callAnalyticsEEc("addProduct", ' . json_encode($allobjects) . ', "purchase", "", ' . json_encode($purchaseObject) . ');');	
+//						$document->addScriptDeclaration('
+//						callAnalyticsEEc("addProduct", ' . json_encode($allobjects) . ', "purchase", "", ' . json_encode($purchaseObject) . ');');	
+			echo '<script type="text/javascript"><!--
+			';
+			echo ('callAnalyticsEEc("addProduct", ' . json_encode($allobjects) . ', "purchase", "", ' . json_encode($purchaseObject) . ');');
+			echo "//--></script>";
 					
 				}
 				
@@ -137,11 +148,11 @@ jQuery(".bfibadge").html('<?php echo ($currentCartsItems>0) ?$currentCartsItems:
 
 switch ( $layout) {
 	case _x('thanks', 'Page slug', 'bfi' ):
-		include(BFI()->plugin_path().'/templates/thanks.php'); // merchant template
+		bfi_get_template("thanks.php"); 
 
 	break;
 	case _x('errors', 'Page slug', 'bfi' ):
-		include(BFI()->plugin_path().'/templates/errors.php'); // merchant template
+		bfi_get_template("errors.php"); 
 		$sendAnalytics = false;
 	break;
 }
@@ -288,8 +299,9 @@ $allResourceNoBookable = array();
 ?>
 <div class="bfi-content">
 <div class="bfi-cart-title"><?php _e('Secure booking. We protect your information', 'bfi') ?></div>
+						
 
-	<?php  include(BFI()->plugin_path().'/templates/menu_small_booking.php');  ?>
+	<?php bfi_get_template("menu_small_booking.php"); ?>
 <script type="text/javascript">
 <!--
 	jQuery(function()
@@ -442,7 +454,8 @@ if(!empty($MerchantDetail->AcceptanceCheckIn) && !empty($MerchantDetail->Accepta
 				$countPaxes = $res->PaxNumber;
 
 				$nchs = array_slice($nchs,0,$nch);
-				$resource = $resourceDetail[$res->ResourceId];  //$modelMerchant->getItem($merchant_id);	 
+				$resource = $resourceDetail[$res->ResourceId];  //$modelMerchant->getItem($merchant_id);
+				$resourceDescription = BFCHelper::getLanguage($resource->Description, $language, null, array('ln2br'=>'ln2br', 'bbcode'=>'bbcode', 'striptags'=>'striptags'));											
 											
 				$routeResource = $url_resource_page . $resource->ResourceId .'-'.BFI()->seoUrl($resource->Name);
 				
@@ -471,6 +484,10 @@ if(!empty($MerchantDetail->AcceptanceCheckIn) && !empty($MerchantDetail->Accepta
 										<div class="bfi-resname">
 											<a href="<?php echo $routeResource?>" target="_blank"><?php echo $resource->Name ?></a>
 										</div>
+										<?php if(!empty($resourceDescription)) { ?>
+											<div class="bfi-description"><?php echo $resourceDescription ?></div>
+											<br />
+										<?php } ?>
 										<div class="bfi-cart-person">
 											<?php if ($nad > 0): ?><?php echo $nad ?> <?php _e('Adults', 'bfi') ?> <?php endif; ?>
 											<?php if ($nse > 0): ?><?php if ($nad > 0): ?>, <?php endif; ?>
@@ -1418,7 +1435,7 @@ if(!empty($bookingTypes)){
 	$bookingTypesDescArray = array();
 	foreach($bookingTypes as $bt)
 	{
-		$currDesc = BFCHelper::getLanguage($bt->Name, $language) . "<div class='bfi-ccdescr'>" . BFCHelper::getLanguage($bt->Description, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')) . "</div>";
+		$currDesc =  BFCHelper::getLanguage($bt->Name, $language) . "<div class='bfi-ccdescr'>" . BFCHelper::getLanguage($bt->Description, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')) . "</div>";
 		if($bt->AcquireCreditCardData && !empty($bt->Data)){
 
 			$ccimgages = explode("|", $bt->Data);
@@ -1581,6 +1598,10 @@ if(!empty($bookingTypes)){
 							<option value="UZ">Uzbekistan</option>
 							<option value="VE">Venezuela</option>
 						</select>
+				</div><!--/span-->
+				<div class="bfi-vatcode-required">
+					<label><?php _e('Fiscal code', 'bfi'); ?></label>
+					<input type="text" value="" size="20" name="form[VatCode]" id="VatCode" class="vatCode" title="<?php _e('This field is required.', 'bfi') ?>">
 				</div><!--/span-->
 			</div>
 	    </div>
@@ -1778,7 +1799,6 @@ if (count($allPolicyHelp)>0) {
 		<input type="hidden" id="orderType" name="form[orderType]" value="a" />
 		<input type="hidden" id="cultureCode" name="form[cultureCode]" value="<?php echo $language; ?>" />
 		<input type="hidden" id="Fax" name="form[Fax]" value="" />
-		<input type="hidden" id="VatCode" name="form[VatCode]" value="" />
 		<input type="hidden" id="label" name="form[label]" value="<?php echo $formlabel ?>">
 		<input type="hidden" id="resourceId" name="form[resourceId]" value="" /> 
 		<input type="hidden" id="redirect" name="form[Redirect]" value="<?php echo $routeThanks; ?>">
@@ -1982,8 +2002,11 @@ jQuery(function($)
 				},
 		        messages:
 		        {
-
-		        	"form[cc_mese]": "<?php _e('Mandatory', 'bfi') ?>",
+		        	"form[VatCode]" : {
+		        		required: "<?php _e('Mandatory', 'bfi') ?>",
+		        		vatCode: "<?php _e('Please enter a valid code', 'bfi') ?>"
+						},
+					"form[cc_mese]": "<?php _e('Mandatory', 'bfi') ?>",
 		        	"form[cc_anno]": "<?php _e('Mandatory', 'bfi') ?>",
 		        	"form[cc_numero]": "<?php _e('Mandatory', 'bfi') ?>",
 		        },
@@ -2126,7 +2149,17 @@ jQuery(function($)
 						}
 					}
 			}
+			function checkVatRequired(){
+				if (jQuery("#formNation").val() == "IT")
+				{
+					jQuery(".bfi-vatcode-required").show();
+				}else{
+					jQuery(".bfi-vatcode-required").hide();
+				}
+			}
+			jQuery("#formNation").change(function(){ checkVatRequired();});
 			checkBT();
+			checkVatRequired();
 		});
 
 var bfisrv = [];
@@ -2229,12 +2262,15 @@ function bfiUpdateInfo(){
 }
 
 jQuery(document).ready(function () {
+	jQuery(".bfi-description").shorten(shortenOption);
 	getAjaxInformationsSrv();
 	getAjaxInformationsResGrp();
+
 });
 	//-->
 	jQuery(window).load(function() {
 		if (!!jQuery.uniform){
+		jQuery.uniform.restore(jQuery('#bfi-resourcedetailsrequest input[type="checkbox"]'));
 			jQuery.uniform.restore(jQuery("#bfi-resourcedetailsrequest select"));
 		}
 	});

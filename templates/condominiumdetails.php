@@ -81,7 +81,13 @@ $language = $GLOBALS['bfi_lang'];
 			}
 						
 			
-			include(BFI()->plugin_path().'/templates/condominiumdetails/resourcedetails.php'); // merchant template
+			$paramRef = array(
+				"merchant"=>$merchant,
+				"resource"=>$resource,
+				"resource_id"=>$resource_id,
+				);
+			bfi_get_template("condominiumdetails/resourcedetails.php",$paramRef);	
+//			include(BFI()->plugin_path().'/templates/condominiumdetails/resourcedetails.php'); // merchant template
 			$sendAnalytics = $resource->IsCatalog;
 	}
 
@@ -158,7 +164,8 @@ $language = $GLOBALS['bfi_lang'];
 		$resourceId = 0;
 		$condominiumId = $resource->condominiumId;
 
-		include(BFI()->plugin_path().'/templates/search_details.php'); //merchant temp 
+		bfi_get_template("search_details.php",array("resource"=>$resource,"merchant"=>$merchant,"resourceId"=>$resourceId,"condominiumId"=>$condominiumId,"currencyclass"=>$currencyclass));	
+//		include(BFI()->plugin_path().'/templates/search_details.php'); //merchant temp 
 		die($output);
 	}   
 	//------------------------------
@@ -207,14 +214,34 @@ $language = $GLOBALS['bfi_lang'];
 					$checkinId = uniqid('checkin');
 					$checkoutId = uniqid('checkout');
 
-				$output = '';
+					$output = '';
 					$model = new BookingForConnectorModelResource;
 					$resource = $model->getItem($resource_id);	 
-					include(BFI()->plugin_path().'/templates/merchant-sidebar-contact.php'); // merchant template
-				die($output);
-				break;
+					$paramRef = array(
+						"merchant"=>$merchant,
+						"layout"=>$layout,
+						"currentView"=>$currentView,
+						"resource"=>$resource,
+						"popupview"=>$popupview,
+						"task"=>$task,
+						"checkoutId"=>$checkoutId,
+						"checkinId"=>$checkinId,
+						"orderType"=>$orderType,
+						"routeThanks"=>$routeThanks,
+						"routeThanksKo"=>$routeThanksKo,
+						"paxes"=>$paxes,
+						"checkin"=>$checkin,
+						"checkout"=>$checkout
+						);
+
+					bfi_get_template("merchant-sidebar-contact.php",$paramRef);	
+					die($output);
+					break;
 				case _x('mapspopup', 'Page slug', 'bfi' ):
-					include(BFI()->plugin_path().'/templates/resourcedetails/mapspopup.php'); // merchant template
+					$paramRef = array(
+						"resource"=>$resource
+						);
+					bfi_get_template("resourcedetails/mapspopup.php",$paramRef);	
 				die();
 				break;
 			}

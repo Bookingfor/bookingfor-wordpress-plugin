@@ -55,7 +55,10 @@ class BFI_Widget_Cart extends WP_Widget {
         $title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : "";
 		$title = apply_filters('widget_title', $title );
 //		$this->widget_start( $args, $instance );
-		include(BFI()->plugin_path() .'/templates/widgets/cart.php');
+		$args["title"] =  $title;
+		$args["instance"] =  $instance;
+		bfi_get_template("widgets/cart.php",$args);	
+//		include(BFI()->plugin_path() .'/templates/widgets/cart.php');
 //		$this->widget_end( $args );
 	}
 }

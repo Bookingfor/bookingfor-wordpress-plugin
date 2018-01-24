@@ -57,12 +57,61 @@ $avg_text = array('-1' => __('Unrated', 'bfi'),
 					);
 
 
-$formAction = (isset($_SERVER['HTTPS']) ? "https" : "http") . ':' . (( $_SERVER['HTTPS']=='80' || $_SERVER['HTTPS']=='443' ) ? '' : $port) ."//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$formAction = (isset($_SERVER['HTTPS']) ? "https" : "http") . ':' ."//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
 $page = bfi_get_current_page() ;
 if(!empty($page)){
 	$formAction = str_replace('/page/'.$page."/","/",$formAction);
 }
+
+if (empty($GLOBALS['bfSearchedMerchants'])) {
+					$model = new BookingForConnectorModelMerchants;
+					$model->populateState();	
+					$model->setItemPerPage(COM_BOOKINGFORCONNECTOR_ITEMPERPAGE);
+
+					$filter_order = $model->getOrdering();
+					$filter_order_Dir = $model->getDirection();
+
+					$currParam = $model->getParam();
+					$pars = BFCHelper::getSearchParamsSession();
+
+					$merchantCategories = array();
+					$tmpMerchantCategories = array();
+
+					if(!empty($pars) && isset($pars{"merchantCategoryId"})){
+						if(is_array($pars{"merchantCategoryId"})){
+							$tmpMerchantCategories =  $pars{"merchantCategoryId"};
+						}else{
+							array_push($tmpMerchantCategories,$pars{"merchantCategoryId"});
+						}						
+					}
+										
+					foreach($tmpMerchantCategories as $merchantCategory){
+						if (strpos($merchantCategory, '|') !== false) {
+							$aMerchantCategory = explode('|',$merchantCategory);
+							
+							array_push($merchantCategories,$aMerchantCategory[1]);
+						}else{
+							array_push($merchantCategories,$merchantCategory);
+						}
+					}
+
+					$currParam['categoryId'] = !empty($merchantCategories)?$merchantCategories:[];
+					$currParam['rating'] = !empty($rating)?$rating:'';
+					$currParam['cityids'] = !empty($cityids)?$cityids:[];
+					$model->setParam($currParam);
+
+						
+					$total = $model->getTotal();
+					$items = $model->getItems();
+
+					$GLOBALS['bfSearchedMerchantsItems'] = $items;
+					$GLOBALS['bfSearchedMerchantsItemsTotal'] = $total;
+					$GLOBALS['bfSearchedMerchantsItemsCurrSorting'] = $currSorting;
+					$GLOBALS['bfSearchedMerchants'] = 1;
+
+}
+
 
 $formAction = filter_input( INPUT_GET, 'newsearch' )
        ? remove_query_arg( 'newsearch', $formAction )
@@ -80,6 +129,8 @@ $filtersMerchantsTags = array();
 $filtersMerchantsZones = array();
 $filtersMerchantsRating = array();
 $filtersMerchantsAvg = array();
+$filtersMerchantsCategories = array();
+
 $filterscount = BFCHelper::getEnabledFilterSearchMerchantParamsSession();
 $firstFilters = BFCHelper::getFirstFilterSearchMerchantParamsSession();
 
@@ -97,6 +148,13 @@ if (!empty($firstFilters) ) {
 				if(!empty( $filter->Items )){
 					foreach ($filter->Items as $item ) {
 					   $filtersMerchantsTags[$item->Id] = $item;
+					}
+				}
+				break; 
+			case 'mrccategory':
+				if(!empty( $filter->Items )){
+					foreach ($filter->Items as $item ) {
+					   $filtersMerchantsCategories[$item->Id] = $item;
 					}
 				}
 				break; 
@@ -140,6 +198,7 @@ $filtersMerchantsTagsCount = array();
 $filtersMerchantsZonesCount = array();
 $filtersMerchantsRatingCount = array();
 $filtersMerchantsAvgCount = array();
+$filtersMerchantsCategoriesCount = array();
 
 if(!empty( $filterscount )){
 	foreach ($filterscount as $filter){
@@ -158,6 +217,13 @@ if(!empty( $filterscount )){
 					}
 				}
 				break; 
+			case 'mrccategory':
+				if(!empty( $filter->Items )){
+					foreach ($filter->Items as $item ) {
+					   $filtersMerchantsCategoriesCount[$item->Id] = $item->Count;
+					}
+				}
+				break; 				
 			case 'mrczones':
 				if(!empty( $filter->Items )){
 					foreach ($filter->Items as $item ) {
@@ -191,6 +257,7 @@ $filtersAvgValue = "";
 $filtersMerchantsServicesValue = "";
 $filtersZonesValue = "";
 $filtersTagsValue = "";
+$filtersCategoriesValue = "";
 
 if (isset($filtersSelected)) {
 	$filtersRatingValue = isset( $filtersSelected[ 'rating' ] ) ? $filtersSelected[ 'rating' ] : "";
@@ -198,26 +265,31 @@ if (isset($filtersSelected)) {
 	$filtersMerchantsServicesValue = ! empty( $filtersSelected[ 'merchantsservices' ] ) ? $filtersSelected[ 'merchantsservices' ] : "";
 	$filtersZonesValue = ! empty( $filtersSelected[ 'zones' ] ) ? $filtersSelected[ 'zones' ] : "";
 	$filtersTagsValue = ! empty( $filtersSelected[ 'tags' ] ) ? $filtersSelected[ 'tags' ] : "";
+	$filtersCategoriesValue = ! empty( $filtersSelected[ 'merchantscategories' ] ) ? $filtersSelected[ 'merchantscategories' ] : "";
 }
 
 $filtersRating = array();
 $filtersAvg = array();
 $filtersZones = array();
 $filtersTags = array();
+$filtersCategories = array();
 $filtersRatingCount = array();
 $filtersAvgCount = array();
 $filtersZonesCount = array();
 $filtersTagsCount = array();
+$filtersCategoriesCount = array();
 
 
 	$filtersRating = $filtersMerchantsRating;
 	$filtersAvg = $filtersMerchantsAvg;
 	$filtersZones = $filtersMerchantsZones;
 	$filtersTags = $filtersMerchantsTags;
+	$filtersCategories = $filtersMerchantsCategories;
 	$filtersRatingCount = $filtersMerchantsRatingCount;
 	$filtersAvgCount = $filtersMerchantsAvgCount;
 	$filtersZonesCount = $filtersMerchantsZonesCount;
 	$filtersTagsCount = $filtersMerchantsTagsCount;
+	$filtersCategoriesCount = $filtersMerchantsCategoriesCount;
 $minvaluetoshow=1;
 echo $before_widget;
 ?>
@@ -230,6 +302,21 @@ echo $before_widget;
 	<input type="hidden" name="filter_order" class="filterOrder" id="filter_order_filter" value="stay">
 	<input type="hidden"  name="filter_order_Dir" class= "filterOrderDirection"id="filter_order_Dir_filter" value="asc">
 <div id="bfi-filtertoggleMerchant">
+	<?php if (isset($filtersCategories) &&  is_array($filtersCategories) && count($filtersCategories)>0) { 
+	$filtersValueArr = explode ("|",$filtersCategoriesValue);
+	?>
+		<div>
+			<div class="bfi-option-title bfi-option-active"><?php _e('Tipology', 'bfi') ?></div>
+			<div class="bfi-filteroptions">
+				<?php foreach ($filtersCategories as $itemId => $item){?>
+					<a href="javascript:void(0);" rel="<?php echo $itemId ?>" rel1="merchantscategories" class="<?php echo (in_array(strval($itemId), $filtersValueArr, true))?"bfi-filter-active":""; ?>">
+					<span class="bfi-filter-label"><?php echo $item->Name ?></span>
+					<span class="bfi-filter-count"><?php echo BFCHelper::bfi_returnFilterCount($item->Count, $filtersCategoriesCount, $itemId) ?></span>
+					</a>
+				<?php } ?>
+			</div>
+		</div>
+	<?php } ?>
 	<?php if (isset($filtersRating) &&  is_array($filtersRating) && count($filtersRating)>$minvaluetoshow) { 
 	$filtersValueArr = explode ("|",$filtersRatingValue);
 	?>
@@ -305,6 +392,7 @@ echo $before_widget;
 			</div>
 		</div>
 	<?php } ?>	
+
 </div>
 <div class="bfi-clearboth"></div>
 	<input type="hidden" name="filters[rating]" id="filtersRatingsHidden" value="<?php echo $filtersRatingValue ?>" />
@@ -312,6 +400,7 @@ echo $before_widget;
 	<input type="hidden" name="filters[merchantsservices]" id="filtersMerchantsServicesHidden" value="<?php echo $filtersMerchantsServicesValue ?>" />
 	<input type="hidden" name="filters[zones]" id="filtersZonesHidden" value="<?php echo $filtersZonesValue ?>" />
 	<input type="hidden" name="filters[tags]" id="filtersTagsHidden" value="<?php echo $filtersTagsValue ?>" />
+	<input type="hidden" name="filters[merchantscategories]" id="filtersMerchantsCategoriesHidden" value="<?php echo $filtersCategoriesValue ?>" />
 </form>
 </div>
 <?php if(!empty(COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY)){ ?>

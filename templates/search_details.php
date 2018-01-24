@@ -16,6 +16,10 @@ $usessl = COM_BOOKINGFORCONNECTOR_USESSL;
 
 $fromSearch =  BFCHelper::getVar('fromsearch','0');
 $listNameAnalytics =  BFCHelper::getVar('lna','0');
+if(empty( $listNameAnalytics )){
+	$listNameAnalytics = 0;
+}
+
 $currLlistNameAnalytics = BFCHelper::$listNameAnalytics[$listNameAnalytics];
 
 $base_url = get_site_url();
@@ -84,11 +88,17 @@ $startDate = DateTime::createFromFormat('d/m/Y',BFCHelper::getStartDateByMerchan
 $endDate = DateTime::createFromFormat('d/m/Y',BFCHelper::getEndDateByMerchantId($merchant->MerchantId));
 $startDate->setTime(0,0,0);
 $endDate->setTime(0,0,0);
+$aCheckInDates = array();
 
 if(!empty($resourceId)){
 	$resourceName = BFCHelper::getLanguage($resource->Name, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
 	$ProductAvailabilityType = $resource->AvailabilityType;
 	$checkInDates = BFCHelper::getCheckInDates($resource->ResourceId,$startDate);
+		
+	if(!empty( $checkInDates )){
+		$aCheckInDates = explode(',',$checkInDates);
+		$startDate=DateTime::createFromFormat('Ymd',$aCheckInDates[0]);
+	}	
 	$currUriresource  = $uri.$resource->ResourceId.'-'.BFI()->seoUrl($resourceName);
 	$formRoute = $currUriresource .'/?task=getMerchantResources';
 }else{
@@ -193,7 +203,7 @@ if(!empty($variationPlanId)){
 $startDate2 = clone $startDate;
 $startDate2->modify($checkoutspan);
 
-if ($checkin < $startDate){
+if (($checkin < $startDate) || (!empty( $aCheckInDates ) && !in_array($checkin->format('Ymd'),$aCheckInDates)) ){
 	$checkin = clone $startDate;
 	$checkout = clone $checkin;
     $checkout->modify($checkoutspan); 
@@ -681,6 +691,7 @@ $showResult= " bfi-hide";
 				$resourceImageUrl = BFCHelper::getImageUrlResized('resources',$resource->ImageUrl, 'small');
 ?>
 <a class="bfi-link-searchdetails" onclick="bfiGoToTop()" href="<?php echo $currUriresource ?>"><img src="<?php echo $resourceImageUrl; ?>" class="bfi-img-searchdetails" /></a>
+<div class="bfi-clearfix"></div>
 <?php 
 			}
 					$listServices = array();
@@ -818,7 +829,7 @@ foreach($allResourceId as $resId) {
 				$resourceImageUrl = BFCHelper::getImageUrlResized('resources',$res->ImageUrl, 'small');
 ?>
 <a  class="bfi-link-searchdetails" href="<?php echo $formRouteSingle ?>" <?php echo ($resId == $resourceId)? 'onclick="bfiGoToTop()"' :  'target="_blank"' ; ?> ><img src="<?php echo $resourceImageUrl; ?>" class="bfi-img-searchdetails" /></a>
-					<br />
+<div class="bfi-clearfix"></div>
 								<?php
 			}
 /*-----------scelta date e ore--------------------*/	
@@ -1371,7 +1382,7 @@ if($currRateplan->RatePlan->IncludedMeals >-1){
 <?php if(count($allResourceId)>0){ ?>
     <div class="div-selectableprice bfi-table-responsive" style="display:none;">
 
-	<br /><?php  include(BFI()->plugin_path().'/templates/menu_small_booking.php');  ?>
+	<br /><?php  bfi_get_template("menu_small_booking.php");  ?>
 
 <table class="bfi-table bfi-table-bordered bfi-table-resources bfi-table-selectableprice bfi-table-selectableprice-container bfi-table-resources-sticked" style="margin-top: 20px;">
 			<thead>
@@ -1419,6 +1430,7 @@ if($currRateplan->RatePlan->IncludedMeals >-1){
 			$resourceImageUrl = BFCHelper::getImageUrlResized('resources',$currRateplan->ImageUrl, 'small');
 		?>
 		<a  class="bfi-link-searchdetails" href="<?php echo $currUriresource ?>" target="_blank"><img src="<?php echo $resourceImageUrl; ?>" class="bfi-img-searchdetails" /></a>
+		<div class="bfi-clearfix"></div>
 		<?php } ?>
 		<!-- bfi-table-selectableprice -->
 		<table class="bfi-table bfi-table-bordered bfi-table-resources bfi-table-selectableprice" style="margin-top: 20px;">
@@ -2055,7 +2067,7 @@ function checkDateBooking<?php echo $checkinId?>($, obj, selectedDate) {
 	var offsetDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 
 <?php if(!empty($variationPlanMinDuration)) { ?>
-	offsetDate.setDate(offsetDate.getDate() + <?php echo $variationPlanMinDuration-1 //night ?>);
+	offsetDate.setDate(offsetDate.getDate() + <?php echo $variationPlanMinDuration ?>);
 <?php } ?>
 
 	switch (productAvailabilityType) {

@@ -101,7 +101,6 @@ $reviewavg = 0;
 $reviewcount = 0;
 $showReview = false;
 
-
 if ($merchant->RatingsContext != NULL && $merchant->RatingsContext > 0) {
 	$showReview = true;
 	if ($merchant->RatingsContext ==1 && !empty($merchant->Avg)) {
@@ -109,7 +108,7 @@ if ($merchant->RatingsContext != NULL && $merchant->RatingsContext > 0) {
 		$reviewcount =  isset($merchant->Avg) ? $merchant->Avg->Count : 0;
 	}
 	if ($merchant->RatingsContext ==2 || $merchant->RatingsContext ==3 ) {
-		$summaryRatings = $model->getRatingAverageFromService($merchant->MerchantId,$resource->ResourceId);
+		$summaryRatings = BFCHelper::getResourceRatingAverage($merchant->MerchantId,$resource->ResourceId);
 		if(!empty($summaryRatings)){
 			$reviewavg = $summaryRatings->Average;
 			$reviewcount = $summaryRatings->Count;
@@ -186,7 +185,7 @@ if (!empty($merchant->LogoUrl)){
 			if(!empty($resource->VideoData)) {
 				$bfiVideoData = $resource->VideoData;
 			}
-			include(BFI()->plugin_path().'/templates/gallery.php');
+			bfi_get_template("gallery.php",array("merchant"=>$merchant,"bfiSourceData"=>$bfiSourceData,"bfiImageData"=>$bfiImageData,"bfiVideoData"=>$bfiVideoData));	
 	?>
 </div>
 
@@ -285,15 +284,18 @@ if (!empty($merchant->LogoUrl)){
 				<?php 
 				$resourceId = $resource->ResourceId;
 				$condominiumId = 0;
-
-				include(BFI()->plugin_path().'/templates/search_details.php'); //merchant temp ?>
+				bfi_get_template("search_details.php",array("resource"=>$resource,"merchant"=>$merchant,"resourceId"=>$resourceId,"condominiumId"=>$condominiumId,"currencyclass"=>$currencyclass));	
+	
+				//include(BFI()->plugin_path().'/templates/search_details.php'); //merchant temp ?>
 					
 
 			</div>
 		<?php } ?>
 	</div>
 	<div class="bfi-clearboth"></div>
-	<?php  include(BFI()->plugin_path().'/templates/merchant_small_details.php');  ?>
+	<?php  
+	bfi_get_template("merchant_small_details.php",array("resource_id"=>$resource_id,"merchant"=>$merchant,"routeMerchant"=>$routeMerchant));	
+	?>
 
 <?php if (($showResourceMap)) {?>
 <div class="bfi-content-map bfi-hideonextra">
@@ -365,15 +367,15 @@ if (!empty($merchant->LogoUrl)){
 			$summaryRatings = $modelmerchant->getMerchantRatingAverageFromService($merchant->MerchantId);
 			$ratings = $modelmerchant->getItemsRating($merchant->MerchantId);
 		}else{
-			$summaryRatings = $model->getRatingAverageFromService($merchant->MerchantId,$resource->ResourceId);
-			$ratings = $model->getRatingsFromService(0,5,$resource->ResourceId);
+			$summaryRatings = BFCHelper::getResourceRatingAverage($merchant->MerchantId,$resource->ResourceId);
+			$ratings = BFCHelper::getResourceRating(0,5,$resource->ResourceId);
 		}
 		if ( false !== ( $temp_message = get_transient( 'temporary_message' ) )) :
 			echo $temp_message;
 			delete_transient( 'temporary_message' );
 		endif;
 	?>
-		<?php include('resource-ratings.php'); ?>
+		<?php  bfi_get_template('resourcedetails/resource-ratings.php',array("merchant"=>$merchant,"summaryRatings"=>$summaryRatings,"ratings"=>$ratings,"routeMerchant"=>$routeMerchant,"routeRating"=>routeRating));  ?>
 	</div>
 <?php } ?>	
 	<script type="text/javascript">

@@ -54,7 +54,11 @@ class BFI_Widget_Merchant_Vcard extends WP_Widget {
         $title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : "";
 		$title = apply_filters('widget_title', $title );
 //		$this->widget_start( $args, $instance );
-		include(BFI()->plugin_path() .'/templates/widgets/merchant-vcard.php');
+		$args["title"] =  $title;
+		$args["instance"] =  $instance;
+		bfi_get_template("widgets/merchant-vcard.php",$args);	
+
+//		include(BFI()->plugin_path() .'/templates/widgets/merchant-vcard.php');
 //		$this->widget_end( $args );
 	}
 }

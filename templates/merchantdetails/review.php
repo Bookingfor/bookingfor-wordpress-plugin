@@ -328,7 +328,9 @@ if ($rating>9 )
 	</div>
 </form>
 	<div class="bfi-clearboth"></div>
-	<?php  include(BFI()->plugin_path().'/templates/merchant_small_details.php');  ?>
+	<?php  
+	bfi_get_template("merchant_small_details.php",array("merchant"=>$merchant,"routeMerchant"=>$routeMerchant));	
+	?>
 
 </div>
 <script type="text/javascript">

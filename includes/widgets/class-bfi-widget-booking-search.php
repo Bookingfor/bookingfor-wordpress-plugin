@@ -582,8 +582,10 @@ function form($instance) {
 		extract( $args );
 		// these are the widget options
 		$title = apply_filters('widget_title', $instance['title']);
-
-		include(BFI()->plugin_path() .'/templates/widgets/booking-search.php');
+		$args["title"] =  $title;
+		$args["instance"] =  $instance;
+		bfi_get_template("widgets/booking-search.php",$args);	
+//		include(BFI()->plugin_path() .'/templates/widgets/booking-search.php');
 
 //		$this->widget_end( $args );
 	}

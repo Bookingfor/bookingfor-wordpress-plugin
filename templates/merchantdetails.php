@@ -6,6 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php
 $merchant_id = get_query_var( 'merchant_id', 0 );
 $language = $GLOBALS['bfi_lang'];
+$currencyclass = bfi_get_currentCurrency();
 ?>
 <?php
 	$sitename = sanitize_key( get_bloginfo( 'name' ) );
@@ -192,39 +193,66 @@ $language = $GLOBALS['bfi_lang'];
 	?>
 	
 <?php
-	
+	$paramRef = array(
+		"merchant"=>$merchant,
+		"merchant_id"=>$merchant_id,
+		"indirizzo"=>$indirizzo,
+		"cap"=>$cap,
+		"currencyclass"=>$currencyclass,
+		"comune"=>$comune,
+		"stato"=>$stato,
+		"merchantName"=>$merchantName,
+		"listNameAnalytics"=>$listNameAnalytics,
+		"total"=>$total,
+		"resources"=>$resources,
+		"offers"=>$offers,
+		"offer"=>$offer,
+		"ratings"=>$ratings,
+		"summaryRatings"=>$summaryRatings
+		);
 	switch ( $layout) {
 		case _x( 'resources', 'Page slug', 'bfi' ):
-			include(BFI()->plugin_path().'/templates/merchantdetails/resources.php'); // merchant template
+			bfi_get_template("merchantdetails/resources.php",$paramRef);	
+//		include(BFI()->plugin_path().'/templates/merchantdetails/resources.php'); // merchant template
 		break;
 		case _x('offers', 'Page slug', 'bfi' ):
-			include(BFI()->plugin_path().'/templates/merchantdetails/offers.php'); // merchant template
+			bfi_get_template("merchantdetails/offers.php",$paramRef);	
+//			include(BFI()->plugin_path().'/templates/merchantdetails/offers.php'); // merchant template
 		break;
 		case _x( 'onsellunits', 'Page slug', 'bfi' ):
-			include(BFI()->plugin_path().'/templates/merchantdetails/onsellunits.php'); // merchant template
+			bfi_get_template("merchantdetails/onsellunits.php",$paramRef);	
+//			include(BFI()->plugin_path().'/templates/merchantdetails/onsellunits.php'); // merchant template
 		break;
 		case _x('offer', 'Page slug', 'bfi' ):
 			if(!empty($offer)){
-				include(BFI()->plugin_path().'/templates/merchantdetails/offer-details.php'); // merchant template
+				bfi_get_template("merchantdetails/offer-details.php",$paramRef);	
+//				include(BFI()->plugin_path().'/templates/merchantdetails/offer-details.php'); // merchant template
 			}
 		break;
 		case _x('thanks', 'Page slug', 'bfi' ):
-			include(BFI()->plugin_path().'/templates/merchantdetails/thanks.php'); // merchant template
+			bfi_get_template("merchantdetails/thanks.php",$paramRef);	
+//			include(BFI()->plugin_path().'/templates/merchantdetails/thanks.php'); // merchant template
 		break;
 		case _x('errors', 'Page slug', 'bfi' ):
-			include(BFI()->plugin_path().'/templates/merchantdetails/errors.php'); // merchant template
+			bfi_get_template("merchantdetails/errors.php",$paramRef);	
+//			include(BFI()->plugin_path().'/templates/merchantdetails/errors.php'); // merchant template
 		break;
 		case _x('reviews', 'Page slug', 'bfi' ):
-			include(BFI()->plugin_path().'/templates/merchantdetails/reviews.php'); // merchant template
+			bfi_get_template("merchantdetails/reviews.php",$paramRef);	
+//			include(BFI()->plugin_path().'/templates/merchantdetails/reviews.php'); // merchant template
 		break;
 		case _x('review', 'Page slug', 'bfi' ):
-			include(BFI()->plugin_path().'/templates/merchantdetails/review.php'); // merchant template
+			bfi_get_template("merchantdetails/review.php",$paramRef);	
+//			include(BFI()->plugin_path().'/templates/merchantdetails/review.php'); // merchant template
 		break;
 		case _x('redirect', 'Page slug', 'bfi' ):
-			include(BFI()->plugin_path().'/templates/merchantdetails/redirect.php'); // merchant template
+			bfi_get_template("merchantdetails/redirect.php",$paramRef);	
+//			include(BFI()->plugin_path().'/templates/merchantdetails/redirect.php'); // merchant template
 		break;		
 		default:
-			include(BFI()->plugin_path().'/templates/merchantdetails/merchantdetails.php'); // merchant template
+			
+			bfi_get_template("merchantdetails/merchantdetails.php",$paramRef);	
+//			include(BFI()->plugin_path().'/templates/merchantdetails/merchantdetails.php'); // merchant template
 	}
 
 		if(COM_BOOKINGFORCONNECTOR_CRITEOENABLED && ($layoutcriteo == "thanks" || $layoutcriteo == "default")) {
@@ -406,7 +434,6 @@ $language = $GLOBALS['bfi_lang'];
 	
 //	$model = new BookingForConnectorModelMerchantDetails;
 //	$merchant = $model->getItem($merchant_id);	 
-	$currencyclass = bfi_get_currentCurrency();
 	$resourceId = 0;
 	$condominiumId = 0;
 
@@ -423,7 +450,8 @@ $language = $GLOBALS['bfi_lang'];
 		}
 //		include(BFI()->plugin_path().'/templates/merchantdetails/search.php'); //merchant temp 
 		
-		include(BFI()->plugin_path().'/templates/search_details.php'); //merchant temp 
+		bfi_get_template("search_details.php",array("merchant"=>$merchant,"resourceId"=>$resourceId,"condominiumId"=>$condominiumId,"currencyclass"=>$currencyclass));	
+//		include(BFI()->plugin_path().'/templates/search_details.php'); //merchant temp 
 		die($output);
 	} 
 	//------------------------------
@@ -442,22 +470,29 @@ $language = $GLOBALS['bfi_lang'];
 					$routeMerchant = $url_merchant_page . $merchant->MerchantId.'-'.BFI()->seoUrl($merchant->Name);
 					$uriMerchant = $routeMerchant;
 
-			$resource_id = get_query_var( 'bfi_id', 0 );
-			$resourceType = get_query_var( 'bfi_name', 0 );
-if(!empty($resource_id) && $resourceType == _x( 'accommodation-details', 'Page slug', 'bfi' )){
-	$model = new BookingForConnectorModelResource;
-	$resource = $model->getItem($resource_id);
-	$currentView = 'resource';
-	$orderType = "c";
-	$task = "sendInforequest";
-}
-if(!empty($resource_id) && $resourceType == _x( 'properties-for-sale', 'Page slug', 'bfi' )){
-	$model = new BookingForConnectorModelOnSellUnit;
-	$resource = $model->getItem($resource_id);
-	$currentView = 'onsellunit';
-	$orderType = "b";
-	$task = "sendOnSellrequest";
-}
+					$resource_id = get_query_var( 'bfi_id', 0 );
+					$resourceType = get_query_var( 'bfi_name', 0 );
+					if(!empty($resource_id) && $resourceType == _x( 'accommodation-details', 'Page slug', 'bfi' )){
+						$model = new BookingForConnectorModelResource;
+						$resource = $model->getItem($resource_id);
+						$currentView = 'resource';
+						$orderType = "c";
+						$task = "sendInforequest";
+					}
+					if(!empty($resource_id) && $resourceType == _x( 'properties-for-sale', 'Page slug', 'bfi' )){
+						$model = new BookingForConnectorModelOnSellUnit;
+						$resource = $model->getItem($resource_id);
+						$currentView = 'onsellunit';
+						$orderType = "b";
+						$task = "sendOnSellrequest";
+					}
+					if(!empty($resource_id) && $resourceType == _x( 'condominiumdetails', 'Page slug', 'bfi' )){
+						$model = new BookingForConnectorModelCondominiums;
+						$resource = $model->getCondominiumFromService($resource_id);
+						$currentView = 'resource';
+						$orderType = "c";
+						$task = "sendInforequest";
+					}
 
 
 					$routeThanks = $uriMerchant .'/'._x('thankspopup', 'Page slug', 'bfi' );
@@ -489,17 +524,45 @@ if(!empty($resource_id) && $resourceType == _x( 'properties-for-sale', 'Page slu
 					$checkoutId = uniqid('checkout');
 
 				$output = '';
-					include(BFI()->plugin_path().'/templates/merchant-sidebar-contact.php'); // merchant template
+				$paramRef = array(
+					"merchant"=>$merchant,
+					"layout"=>$layout,
+					"currentView"=>$currentView,
+					"currencyclass"=>$currencyclass,
+					"resource"=>$resource,
+					"popupview"=>$popupview,
+					"task"=>$task,
+					"checkoutId"=>$checkoutId,
+					"checkinId"=>$checkinId,
+					"orderType"=>$orderType,
+					"routeThanks"=>$routeThanks,
+					"routeThanksKo"=>$routeThanksKo,
+					"paxes"=>$paxes,
+					"checkin"=>$checkin,
+					"checkout"=>$checkout
+					);
+
+				bfi_get_template("merchant-sidebar-contact.php",$paramRef);	
+
+//					include(BFI()->plugin_path().'/templates/merchant-sidebar-contact.php'); // merchant template
 				die($output);
 				break;
 				case _x('mapspopup', 'Page slug', 'bfi' ):
 //					$merchant = $model->getItem($merchant_id);	
-					include(BFI()->plugin_path().'/templates/merchantdetails/mapspopup.php'); // merchant template
+					$paramRef = array(
+						"merchant"=>$merchant
+						);
+					bfi_get_template("merchantdetails/mapspopup.php",$paramRef);	
+//					include(BFI()->plugin_path().'/templates/merchantdetails/mapspopup.php'); // merchant template
 					die();
 				break;
 				case _x('thankspopup', 'Page slug', 'bfi' ):
 				$output = '';
-					include(BFI()->plugin_path().'/templates/merchantdetails/thanks.php'); // merchant template
+					$paramRef = array(
+						"merchant"=>$merchant
+						);
+					bfi_get_template("merchantdetails/thanks.php",$paramRef);	
+//					include(BFI()->plugin_path().'/templates/merchantdetails/thanks.php'); // merchant template
 				die($output);
 				break;
 

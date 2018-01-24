@@ -92,6 +92,7 @@ if(isset($resource->Rules)){
 	$resourceRules = BFCHelper::getLanguage($resource->Rules, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags'));
 }
 
+$services = [];
 if (!empty($resource->ServiceIdList)){
 	$services=BFCHelper::GetServicesByIds($resource->ServiceIdList, $language);
 }
@@ -212,7 +213,7 @@ if (!empty($merchant->LogoUrl)){
 			if(!empty($resource->VideoData)) {
 				$bfiVideoData = $resource->VideoData;
 			}
-			include(BFI()->plugin_path().'/templates/gallery.php');
+			bfi_get_template("gallery.php",array("merchant"=>$merchant,"bfiSourceData"=>$bfiSourceData,"bfiImageData"=>$bfiImageData,"bfiVideoData"=>$bfiVideoData));	
 	?>
 </div>
 
@@ -311,14 +312,17 @@ if (!empty($merchant->LogoUrl)){
 				<?php 
 				//$resourceId = $resource->ResourceId;
 				$condominiumId = $resource->CondominiumId;
-				include(BFI()->plugin_path().'/templates/search_details.php'); //merchant temp ?>
+				bfi_get_template("search_details.php",array("merchant"=>$merchant,"resourceId"=>$resourceId,"condominiumId"=>$condominiumId,"currencyclass"=>$currencyclass));	
+				//include(BFI()->plugin_path().'/templates/search_details.php'); //merchant temp ?>
 					
 
 			</div>
 		<?php endif; ?>
 	</div>
 	<div class="bfi-clearboth"></div>
-	<?php  include(BFI()->plugin_path().'/templates/merchant_small_details.php');  ?>
+	<?php  
+	bfi_get_template("merchant_small_details.php",array("resource_id"=>$resource_id,"resource"=>$resource,"merchant"=>$merchant,"routeMerchant"=>$routeMerchant));	
+	?>
 
 <?php if (($showResourceMap)) {?>
 <div class="bfi-content-map bfi-hideonextra">
@@ -398,7 +402,7 @@ if (!empty($merchant->LogoUrl)){
 			delete_transient( 'temporary_message' );
 		endif;
 	?>
-		<?php include('resource-ratings.php'); ?>
+		<?php  bfi_get_template('condominiumdetails/resource-ratings.php',array("merchant"=>$merchant,"summaryRatings"=>$summaryRatings,"ratings"=>$ratings,"routeMerchant"=>$routeMerchant,"routeRating"=>routeRating));  ?>
 	</div>
 <?php } ?>	
 	<script type="text/javascript">

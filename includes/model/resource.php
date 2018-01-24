@@ -1787,10 +1787,10 @@ class BookingForConnectorModelResource
 	}
 	
 	public function getCheckInDatesFromService($resourceId = null,$ci= null) {
-		if ($resourceId==null) {
-			$params = $this->getState('params');
-			$resourceId = $params['resourceId'];
-		}
+//		if ($resourceId==null) {
+//			$params = $this->getState('params');
+//			$resourceId = $params['resourceId'];
+//		}
 		if ($ci==null) {
 			$ci =  new DateTime();
 		}
@@ -1827,9 +1827,9 @@ class BookingForConnectorModelResource
 	}
 	
 	public function getCheckOutDatesFromService($resourceId = null,$ci= null) {
-		$params = $_SESSION['search.params'];
 		//$params = $this->getState('params');
 		if ($resourceId==null) {
+			$params = $_SESSION['search.params'];
 			$resourceId = $params['resourceId'];
 		}
 		if ($ci==null) {

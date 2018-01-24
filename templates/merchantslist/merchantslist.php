@@ -36,11 +36,11 @@ $page = bfi_get_current_page() ;
 $pages = 0;
 if($total>0){
 	$pages = ceil($total / COM_BOOKINGFORCONNECTOR_ITEMPERPAGE);
-}
 
+}
 $currSorting= $filter_order . "|" . $filter_order_Dir;
-		$listNameAnalytics =4;
-		$listName = BFCHelper::$listNameAnalytics[$listNameAnalytics];// "Resources Search List";
+$listNameAnalytics =4;
+$listName = BFCHelper::$listNameAnalytics[$listNameAnalytics];// "Resources Search List";
 $fromsearchparam = "?lna=".$listNameAnalytics;
 
 ?>
@@ -108,18 +108,18 @@ $fromsearchparam = "?lna=".$listNameAnalytics;
 				$merchantImageUrl = BFCHelper::getImageUrlResized('merchant',$merchant->DefaultImg, 'medium');
 			}
 			
-			$merchantSiteUrl = '';
-			if ($merchant->SiteUrl != '') {
-				$merchantSiteUrl =$merchant->SiteUrl;
-				if (strpos('http://', $merchantSiteUrl) == false) {
-					$merchantSiteUrl = 'http://' . $merchantSiteUrl;
-				}
-				$merchantSiteUrlstripped = str_replace('http://', "", $merchantSiteUrl);
-				if (strpos($merchantSiteUrlstripped,'?') !== false) {
-					$tmpurl = explode("?",$merchantSiteUrlstripped);
-					$merchantSiteUrlstripped = $tmpurl[0];
-				}
-			}
+//			$merchantSiteUrl = '';
+//			if ($merchant->SiteUrl != '') {
+//				$merchantSiteUrl =$merchant->SiteUrl;
+//				if (strpos('http://', $merchantSiteUrl) == false) {
+//					$merchantSiteUrl = 'http://' . $merchantSiteUrl;
+//				}
+//				$merchantSiteUrlstripped = str_replace('http://', "", $merchantSiteUrl);
+//				if (strpos($merchantSiteUrlstripped,'?') !== false) {
+//					$tmpurl = explode("?",$merchantSiteUrlstripped);
+//					$merchantSiteUrlstripped = $tmpurl[0];
+//				}
+//			}
 			$merchantName = BFCHelper::getLanguage($merchant->Name, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
 			$merchantDescription = BFCHelper::getLanguage($merchant->Description, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
 			$routeMerchant .= $fromsearchparam;
@@ -327,9 +327,6 @@ function getlist(){
 	var query = "merchantsId=" + listToCheck + "&language=<?php echo $language ?>&task=GetMerchantsByIds";
 	if(listToCheck!='')
 	
-	var imgPath = "<?php echo $merchantImagePath ?>";
-	var imgPathError = "<?php echo $merchantImagePathError ?>";
-
 	jQuery.post(bfi_variable.bfi_urlCheck, query, function(data) {
 			var eecitems = [];
 
@@ -499,6 +496,7 @@ function getlist(){
 	function showMarker(extId) {
 		if(jQuery( "#bfi-maps-popup").length ){
 			if(jQuery( "#bfi-maps-popup").hasClass("ui-dialog-content") && jQuery( "#bfi-maps-popup" ).dialog("isOpen" )){
+						jQuery( "#bfi-maps-popup" ).dialog("option", "position", {my: "center", at: "center", of: window});
 						jQuery(oms.getMarkers()).each(function() {
 							if (this.extId != extId) return true; 
 							showMarkerInfo(this);
@@ -529,13 +527,17 @@ function getlist(){
 		}
 	}
 
+	var bfiLastZIndexMarker = 1000;
+
 	function showMarkerInfo(marker) {
 		if (infowindow) infowindow.close();
-			var data = jQuery("#markerInfo"+marker.extId).html();
+		marker.setZIndex(bfiLastZIndexMarker);
+		bfiLastZIndexMarker +=1;
+		var data = jQuery("#markerInfo"+marker.extId).html();
 //			mapSearch.setZoom(17);
-			mapSearch.setCenter(marker.position);
-			infowindow = new google.maps.InfoWindow({ content: data });
-			infowindow.open(mapSearch, marker);
+		mapSearch.setCenter(marker.position);
+		infowindow = new google.maps.InfoWindow({ content: data });
+		infowindow.open(mapSearch, marker);
 	}
 
 

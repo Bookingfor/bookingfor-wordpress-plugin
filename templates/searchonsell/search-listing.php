@@ -21,9 +21,9 @@ $fromsearchparam = "?lna=".$listNameAnalytics;
 
 ?>
 <div id="bfi-merchantlist">
-		<?php if ($total > 0){ ?>
-			<?php include('list-resources.php');?>
-		<?php }else{ ?>
+		<?php if ($total > 0){ 
+			bfi_get_template("searchonsell/list-resources.php",array("results"=>$results,"total"=>$total,"items"=>$items,"pages"=>$pages,"page"=>$page,"currencyclass"=>$currencyclass));	
+			 }else{ ?>
 			<div>
 			<?php _e('No result available', 'bfi') ?>
 			</div>
@@ -190,8 +190,12 @@ $googlemapsapykey = COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY;
 		}
 	}
 
+	var bfiLastZIndexMarker = 1000;
+
 	function showMarkerInfo(marker) {
 		if (infowindow) infowindow.close();
+		marker.setZIndex(bfiLastZIndexMarker);
+		bfiLastZIndexMarker +=1;
 		jQuery.get(marker.url, function (data) {
 			mapSearch.setZoom(17);
 			mapSearch.setCenter(marker.position);

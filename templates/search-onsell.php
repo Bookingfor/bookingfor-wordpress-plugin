@@ -78,7 +78,9 @@ get_header( 'searchonsell' ); ?>
 
     $merchant_ids = '';
 	$results = $items ;
-	include(BFI()->plugin_path().'/templates/searchonsell/search-listing.php');
+	
+	bfi_get_template("searchonsell/search-listing.php",array("results"=>$results,"total"=>$total,"items"=>$items,"pages"=>$pages,"page"=>$page,"currencyclass"=>$currencyclass,"listNameAnalytics"=>$listNameAnalytics));	
+//	include(BFI()->plugin_path().'/templates/searchonsell/search-listing.php');
     $output = '';
     $output = $output. '</div>
     </div>

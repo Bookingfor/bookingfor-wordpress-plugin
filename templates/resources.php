@@ -504,6 +504,7 @@ function getlist(){
 	function showMarker(extId) {
 		if(jQuery( "#bfi-maps-popup").length ){
 			if(jQuery( "#bfi-maps-popup").hasClass("ui-dialog-content") && jQuery( "#bfi-maps-popup" ).dialog("isOpen" )){
+						jQuery( "#bfi-maps-popup" ).dialog("option", "position", {my: "center", at: "center", of: window});
 						jQuery(oms.getMarkers()).each(function() {
 							if (this.extId != extId) return true; 
 							showMarkerInfo(this);
@@ -534,13 +535,17 @@ function getlist(){
 		}
 	}
 
+	var bfiLastZIndexMarker = 1000;
+
 	function showMarkerInfo(marker) {
 		if (infowindow) infowindow.close();
-			var data = jQuery("#markerInfo"+marker.extId).html();
+		marker.setZIndex(bfiLastZIndexMarker);
+		bfiLastZIndexMarker +=1;
+		var data = jQuery("#markerInfo"+marker.extId).html();
 //			mapSearch.setZoom(17);
-			mapSearch.setCenter(marker.position);
-			infowindow = new google.maps.InfoWindow({ content: data });
-			infowindow.open(mapSearch, marker);
+		mapSearch.setCenter(marker.position);
+		infowindow = new google.maps.InfoWindow({ content: data });
+		infowindow.open(mapSearch, marker);
 	}
 	
 jQuery(document).ready(function() {

@@ -30,15 +30,18 @@ $condominiumsResults = $currParam['condominiumsResults'];
 	<?php 
 		if($merchantResults) {
 			$merchants = $items ;
-			include('default_merchants.php');
+			bfi_get_template("search/default_merchants.php",array("merchants"=>$merchants,"total"=>$total,"items"=>$items,"pages"=>$pages,"page"=>$page,"currencyclass"=>$currencyclass,"listNameAnalytics"=>$listNameAnalytics,"totPerson"=>$totPerson,"currSorting"=>$currSorting));	
+//			include('default_merchants.php');
 		}
 		elseif ($condominiumsResults) {
 			$merchants = $items ;
-			include('default_condominiums.php');
+			bfi_get_template("search/default_condominiums.php",array("merchants"=>$merchants,"total"=>$total,"items"=>$items,"pages"=>$pages,"page"=>$page,"currencyclass"=>$currencyclass,"listNameAnalytics"=>$listNameAnalytics,"totPerson"=>$totPerson,"currSorting"=>$currSorting));	
+//			include('default_condominiums.php');
 		}
 		else {
 			$results = $items ;
-			include('default_resources.php');
+			bfi_get_template("search/default_resources.php",array("results"=>$results,"total"=>$total,"items"=>$items,"pages"=>$pages,"page"=>$page,"currencyclass"=>$currencyclass,"listNameAnalytics"=>$listNameAnalytics,"totPerson"=>$totPerson,"currSorting"=>$currSorting));	
+//			include('default_resources.php');
 		}
 		?>
 		<?php
@@ -143,6 +146,11 @@ $condominiumsResults = $currParam['condominiumsResults'];
 //					$cityids = get_post_meta($post->ID, 'cityids', true);
 //					$currURL = esc_url( get_permalink() ); 
 //
+$page = bfi_get_current_page() ;
+$start = ($page - 1) * COM_BOOKINGFORCONNECTOR_ITEMPERPAGE;			
+
+if (empty($GLOBALS['bfSearchedMerchants'])) {
+					
 					$model = new BookingForConnectorModelMerchants;
 					$model->populateState();	
 					$model->setItemPerPage(COM_BOOKINGFORCONNECTOR_ITEMPERPAGE);
@@ -178,15 +186,25 @@ $condominiumsResults = $currParam['condominiumsResults'];
 					$currParam['rating'] = !empty($rating)?$rating:'';
 					$currParam['cityids'] = !empty($cityids)?$cityids:[];
 					$model->setParam($currParam);
-
 						
+					$items = $model->getItems(false, false, $start,COM_BOOKINGFORCONNECTOR_ITEMPERPAGE);
 					$total = $model->getTotal();
-					$items = $model->getItems();
+
+					$GLOBALS['bfSearchedMerchantsItems'] = $items;
+					$GLOBALS['bfSearchedMerchantsItemsTotal'] = $total;
+					$GLOBALS['bfSearchedMerchantsItemsCurrSorting'] = $currSorting;
+					$GLOBALS['bfSearchedMerchants'] = 1;
+}else{
+					$items = $GLOBALS['bfSearchedMerchantsItems'];
+					$total = $GLOBALS['bfSearchedMerchantsItemsTotal'];
+					$currSorting = $GLOBALS['bfSearchedMerchantsItemsCurrSorting'];
+}
 										
 					$merchants = is_array($items) ? $items : array();
 					$analiticsSubject = "'No Results Merchant List'";
 					$nopopupmap=true;
-					include(BFI()->plugin_path().'/templates/merchantslist/merchantslist.php'); // merchant template
+//					include(BFI()->plugin_path().'/templates/merchantslist/merchantslist.php'); // merchant template
+					bfi_get_template("merchantslist/merchantslist.php",array("merchants"=>$merchants,"total"=>$total,"items"=>$items,"pages"=>$pages,"page"=>$page,"currencyclass"=>$currencyclass,"analiticsSubject"=>$analiticsSubject,"nopopupmap"=>$nopopupmap,"filter_order"=>$filter_order,"filter_order_Dir"=>$filter_order_Dir ));	
 				}else{
 					$merchantdetails_page = get_post( bfi_get_page_id( 'merchantdetails' ) );
 					$url_merchant_page = get_permalink( $merchantdetails_page->ID );
@@ -396,6 +414,7 @@ var bfiCurrMarkerId = 0;
 	function showMarker(extId) {
 		if(jQuery( "#bfi-maps-popup").length ){
 			if(jQuery( "#bfi-maps-popup").hasClass("ui-dialog-content") && jQuery( "#bfi-maps-popup" ).dialog("isOpen" )){
+						jQuery( "#bfi-maps-popup" ).dialog("option", "position", {my: "center", at: "center", of: window});
 						jQuery(oms.getMarkers()).each(function() {
 							if (this.extId != extId) return true; 
 	//						var offset = jQuery('#bfi-maps-popup').offset();
@@ -431,8 +450,12 @@ var bfiCurrMarkerId = 0;
 		}
 	}
 
+	var bfiLastZIndexMarker = 1000;
+
 	function showMarkerInfo(marker) {
 		if (infowindow) infowindow.close();
+		marker.setZIndex(bfiLastZIndexMarker);
+		bfiLastZIndexMarker +=1;
 		jQuery.get(marker.url, function (data) {
 			mapSearch.setZoom(17);
 			mapSearch.setCenter(marker.position);

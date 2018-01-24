@@ -38,3 +38,17 @@ Genesis (Agent Focused Pro)
 
 # Translations
 To help in translation http://translate.bookingfor.com/collaboration/
+
+# How to override Bookingfor template files
+
+You can edit the markup and template structure for front-end of your site in an upgrade-safe way using overrides.
+
+Templates files can be found within the /wp-content/plugins/bookingfor/templates/ directory.
+
+Copy the needed file into the directory within your theme named bookingfor (create if it does not exist), keeping the same file structure but removing the templates subdirectory.
+
+For example, if you need to overwrite file /wp-content/plugins/bookingfor/templates/thanks.php, copy this file to /themes/themexxxx/bookingfor folder:
+
+The copied file will now override the bookingfor default template file.
+
+Do not edit these files within the core plugin itself as they are overwritten during the upgrade process and any customizations will be lost.

@@ -6,6 +6,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 $currentView = '';
 $orderType = "a";
 $task = "sendContact";
+$resource = null;
+$merchant = null;
+
 $posx = COM_BOOKINGFORCONNECTOR_GOOGLE_POSX;
 $posy = COM_BOOKINGFORCONNECTOR_GOOGLE_POSY;
 $startzoom = COM_BOOKINGFORCONNECTOR_GOOGLE_STARTZOOM;
@@ -249,16 +252,36 @@ if ( $title ) {
 		<?php endif ?>	
 	</ul>
 
-	<?php if (!empty($resourceLat) && !empty($resourceLon)) :?>
+	<?php if (!empty($resourceLat) && !empty($resourceLon)) {?>
 		<div class="bfi-merchantdetails-map" id="map_canvas" style="width:100%; height:250px">
 			<a class="lightboxlink" onclick='javascript:openGoogleMapBF();' href="javascript:void(0)">
 					<img src="//maps.googleapis.com/maps/api/staticmap?center=<?php echo $resourceLat?>,<?php echo $resourceLon?>&zoom=14&size=260x250&markers=color:blue%7C<?php echo $resourceLat?>,<?php echo $resourceLon?>&key=<?php echo $googlemapsapykey ?>" class="bfi-img-responsive" />
 			</a>
 		</div>
 		<div id="map_canvasBF" style="width:100%; height:400px; display:none;"></div>
-	<?php endif?>
+	<?php }?>
     <div>
-    <?php include(BFI()->plugin_path().'/templates/merchant-sidebar-contact.php'); ?>
+    <?php 
+				$paramRef = array(
+					"merchant"=>$merchant,
+					"layout"=>$layout,
+					"currentView"=>$currentView,
+					"resource"=>$resource,
+					"task"=>$task,
+					"checkoutId"=>$checkoutId,
+					"checkinId"=>$checkinId,
+					"orderType"=>$orderType,
+					"routeThanks"=>$routeThanks,
+					"routeThanksKo"=>$routeThanksKo,
+					"paxes"=>$paxes,
+					"checkin"=>$checkin,
+					"checkout"=>$checkout
+					);
+
+				bfi_get_template("merchant-sidebar-contact.php",$paramRef);	
+	
+//	include(BFI()->plugin_path().'/templates/merchant-sidebar-contact.php'); 
+	?>
     </div>
 </div>	
 </div>

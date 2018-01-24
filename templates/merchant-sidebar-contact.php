@@ -142,7 +142,7 @@ if(COM_BOOKINGFORCONNECTOR_MONTHINCALENDAR==1){
 							<option value="VE">Venezuela</option>
 						</select>
 					</div>
-<?php if(isset($resource)) :?>		
+<?php if(isset($resource)) {?>		
 					<div class="bfi-hide">
 						<?php echo $resource->Name; ?>
 					</div><!--/span-->
@@ -154,7 +154,7 @@ if(empty($maxCapacityPaxes)) {
 	$maxCapacityPaxes = 10;
 }
  ?>
-<?php endif;  ?>
+<?php } ?>
 		<?php if ($merchant->HasResources && $layout !== 'onsellunits' && $layout !== 'onsellunit' && $currentView !== 'onsellunit'):?>
 				<div class="bfi-row">   
 					<div class="bfi-col-md-6 bfi-inline-field-right">
@@ -423,5 +423,12 @@ jQuery(document).ready(function() {
 
     });
 });
+jQuery(window).load(function() {
+	if (!!jQuery.uniform){
+		jQuery.uniform.restore(jQuery('.merchantdetailscontacts input[type="checkbox"]'));
+		jQuery.uniform.restore(jQuery('.merchantdetailscontacts select'));
+	}
+});
+
 //-->
 </script>

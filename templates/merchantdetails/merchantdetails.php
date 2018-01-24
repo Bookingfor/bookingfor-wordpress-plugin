@@ -194,7 +194,8 @@ $merchantName = BFCHelper::getLanguage($merchant->Name, $language, null, array('
 			if(!empty($merchant->VideoData)) {
 				$bfiVideoData = $merchant->VideoData;
 			}
-			include(BFI()->plugin_path().'/templates/gallery.php');
+//			include(BFI()->plugin_path().'/templates/gallery.php');
+			bfi_get_template("gallery.php",array("merchant"=>$merchant,"bfiSourceData"=>$bfiSourceData,"bfiImageData"=>$bfiImageData,"bfiVideoData"=>$bfiVideoData));	
 	?>
 	</div>
 <div class="bfi-content">
@@ -247,7 +248,8 @@ $merchantName = BFCHelper::getLanguage($merchant->Name, $language, null, array('
 				<?php 
 				$resourceId = 0;
 				$condominiumId = 0;
-				include(BFI()->plugin_path().'/templates/search_details.php'); //merchant temp ?>
+				bfi_get_template("search_details.php",array("merchant"=>$merchant,"resourceId"=>$resourceId,"condominiumId"=>$condominiumId,"currencyclass"=>$currencyclass));	
+//				include(BFI()->plugin_path().'/templates/search_details.php'); //merchant temp ?>
 			</div>
 	<?php } ?>	
 	
@@ -278,7 +280,8 @@ $merchantName = BFCHelper::getLanguage($merchant->Name, $language, null, array('
 	<?php endif; ?>	
 
 	<div class="bfi-clearboth"></div>
-	<?php  include(BFI()->plugin_path().'/templates/merchant_small_details.php');  ?>
+
+	<?php  bfi_get_template('merchant_small_details.php',array("merchant"=>$merchant,"routeMerchant"=>$routeMerchant));  ?>
 	
 	<?php if (($showMap)) {?>
 	<br /><br />
@@ -350,7 +353,7 @@ $merchantName = BFCHelper::getLanguage($merchant->Name, $language, null, array('
 			delete_transient( 'temporary_message' );
 		}
 	?>
-		<?php include('merchant-ratings.php'); ?>
+	<?php  bfi_get_template('merchantdetails/merchant-ratings.php',array("merchant"=>$merchant,"summaryRatings"=>$summaryRatings,"ratings"=>$ratings,"routeMerchant"=>$routeMerchant));  ?>
 	</div>
 <?php } ?>
 

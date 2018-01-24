@@ -62,7 +62,16 @@ get_header(); ?>
 	add_action('wp_head', 'bfi_google_analytics_EEc', 10, 1);
 	do_action('wp_head', "Merchants List");
 	if( count($items) > 0){
-		include(BFI()->plugin_path().'/templates/merchantslist/merchantslist.php'); // merchant template
+		$paramRef = array(
+			"merchants"=>$merchants,
+			"total"=>$total,
+			"items"=>$items,
+			"currParam"=>$currParam,
+			"filter_order"=>$filter_order,
+			"filter_order_Dir"=>$filter_order_Dir,
+			);
+		bfi_get_template("merchantslist/merchantslist.php",$paramRef);	
+//		include(BFI()->plugin_path().'/templates/merchantslist/merchantslist.php'); // merchant template
 
 	}
 

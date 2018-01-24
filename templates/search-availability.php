@@ -46,13 +46,21 @@ if (isset($pars['checkin']) && isset($pars['checkout'])){
 	if (($checkin == $checkout && (!in_array("0",$availabilitytype) && !in_array("2",$availabilitytype)&& !in_array("3",$availabilitytype) ) ) || $checkin->diff($checkout)->format("%a") <0 || $checkin < $now ){
 		$nodata = true;
 	}else{
-		$filterinsession = BFCHelper::getFilterSearchParamsSession();
-		$items = $searchmodel->getItems(false, false, $start,COM_BOOKINGFORCONNECTOR_ITEMPERPAGE);
+		if (empty($GLOBALS['bfSearched'])) {
 		
-		$items = is_array($items) ? $items : array();
-				
-		$total=$searchmodel->getTotal();
-		$currSorting=$searchmodel->getOrdering() . "|" . $searchmodel->getDirection();
+			$filterinsession = BFCHelper::getFilterSearchParamsSession();
+			$items = $searchmodel->getItems(false, false, $start,COM_BOOKINGFORCONNECTOR_ITEMPERPAGE);
+			
+			$items = is_array($items) ? $items : array();
+					
+			$total=$searchmodel->getTotal();
+			$currSorting=$searchmodel->getOrdering() . "|" . $searchmodel->getDirection();
+			$GLOBALS['bfSearched'] = 1;
+		}else{
+			$items = $GLOBALS['bfSearchedItems'];
+			$total = $GLOBALS['bfSearchedItemsTotal'];
+			$currSorting = $GLOBALS['bfSearchedItemsCurrSorting'];
+		}
 	}
 
 }
@@ -213,7 +221,10 @@ if(COM_BOOKINGFORCONNECTOR_CRITEOENABLED){
 		
 		//event tracking	
 
-		include(BFI()->plugin_path().'/templates/search/default.php');	  
+
+				bfi_get_template("search/default.php",array("total"=>$total,"items"=>$items,"pages"=>$pages,"page"=>$page,"currencyclass"=>$currencyclass,"listNameAnalytics"=>$listNameAnalytics,"totPerson"=>$totPerson,"currSorting"=>$currSorting));	
+
+//		include(BFI()->plugin_path().'/templates/search/default.php');	  
 
 //  else {
 //    $task = $_GET['task'];

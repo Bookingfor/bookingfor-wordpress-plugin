@@ -47,7 +47,7 @@ class BookingForConnectorModelOrders
 
 	public function __construct($config = array())
 	{
-		$this->helper = new wsQueryHelper(COM_BOOKINGFORCONNECTOR_WSURL, COM_BOOKINGFORCONNECTOR_APIKEY);
+		$this->helper = new wsQueryHelper(COM_BOOKINGFORCONNECTOR_WSURL, COM_BOOKINGFORCONNECTOR_API_KEY);
 		$this->urlCreateOrder = '/CreateOrderByCart';
 		$this->urlGetOrder = '/GetOrder';
 		$this->urlGetOrdersByExternalUser = '/GetOrdersByExternalUser';
@@ -339,10 +339,9 @@ class BookingForConnectorModelOrders
 		
 		$url = $this->helper->getQuery($options);
 		$order = null;
-
 		$r = $this->helper->executeQuery($url,"POST");
 		if (isset($r)) {
-			$res = json_decode($r);
+			$res = json_decode($r);			
 			if (!empty($res->d->results)){
 				$order = $res->d->results;
 			}elseif(!empty($res->d)){

@@ -22,6 +22,14 @@ $url_page_RealEstate = get_permalink( $searchOnSell_page->ID );
 
 $searchAvailability_page = get_post( bfi_get_page_id( 'searchavailability' ) );
 $url_page_Resources = get_permalink( $searchAvailability_page->ID );
+if(BFI()->isSearchPage()){
+	bfi_setSessionFromSubmittedData();
+}
+if(BFI()->isSearchOnSellPage()){
+    $searchmodel = new BookingForConnectorModelSearchOnSell;
+	$searchmodel->setItemPerPage(COM_BOOKINGFORCONNECTOR_ITEMPERPAGE);
+	$searchmodel->populateState();
+}
 
 $parsRealEstate = BFCHelper::getSearchOnSellParamsSession();
 $parsResource = BFCHelper::getSearchParamsSession();
@@ -614,7 +622,7 @@ if ( $title ) {
 								
 									<span ><?php _e('Age of children', 'bfi'); ?></span>
 									<span id="bfi_lblchildrenagesat<?php echo $currModID ?>"><?php echo  _e('on', 'bfi') . " " .$checkout->format("d"). " " .date_i18n('F',$checkout->getTimestamp()). " " . $checkout->format("Y") ?></span><br /><!-- Ages childrens -->	
-									<select id="childages1" name="childages1sel" onchange="quoteChanged<?php echo $currModID ?>();" class="bfi-inputmini" style="display: none;">
+									<select name="childages1sel" onchange="quoteChanged<?php echo $currModID ?>();" class="bfi-inputmini" style="display: none;">
 										<option value="<?php echo COM_BOOKINGFORCONNECTOR_CHILDRENSAGE ?>" ></option>
 										<?php
 										foreach (range(0, $maxchildrenAge) as $number) {
@@ -622,7 +630,7 @@ if ( $title ) {
 										}
 										?>
 									</select>
-									<select id="childages2" name="childages2sel" onchange="quoteChanged<?php echo $currModID ?>();" class="bfi-inputmini" style="display: none;">
+									<select  name="childages2sel" onchange="quoteChanged<?php echo $currModID ?>();" class="bfi-inputmini" style="display: none;">
 										<option value="<?php echo COM_BOOKINGFORCONNECTOR_CHILDRENSAGE ?>" ></option>
 										<?php
 										foreach (range(0, $maxchildrenAge) as $number) {
@@ -630,7 +638,7 @@ if ( $title ) {
 										}
 										?>
 									</select>
-									<select id="childages3" name="childages3sel" onchange="quoteChanged<?php echo $currModID ?>();" class="bfi-inputmini" style="display: none;">
+									<select  name="childages3sel" onchange="quoteChanged<?php echo $currModID ?>();" class="bfi-inputmini" style="display: none;">
 										<option value="<?php echo COM_BOOKINGFORCONNECTOR_CHILDRENSAGE ?>" ></option>
 										<?php
 										foreach (range(0, $maxchildrenAge) as $number) {
@@ -638,7 +646,7 @@ if ( $title ) {
 										}
 										?>
 									</select>
-									<select id="childages4" name="childages4sel" onchange="quoteChanged<?php echo $currModID ?>();" class="bfi-inputmini" style="display: none;">
+									<select name="childages4sel" onchange="quoteChanged<?php echo $currModID ?>();" class="bfi-inputmini" style="display: none;">
 										<option value="<?php echo COM_BOOKINGFORCONNECTOR_CHILDRENSAGE ?>" ></option>
 										<?php
 										foreach (range(0, $maxchildrenAge) as $number) {
@@ -646,7 +654,7 @@ if ( $title ) {
 										}
 										?>
 									</select>
-									<select id="childages5" name="childages5sel" onchange="quoteChanged<?php echo $currModID ?>();" class="bfi-inputmini" style="display: none;">
+									<select name="childages5sel" onchange="quoteChanged<?php echo $currModID ?>();" class="bfi-inputmini" style="display: none;">
 										<option value="<?php echo COM_BOOKINGFORCONNECTOR_CHILDRENSAGE ?>" ></option>
 										<?php
 										foreach (range(0, $maxchildrenAge) as $number) {
@@ -1303,6 +1311,19 @@ jQuery(function() {
 			bfi_maxresults: 5
           }, function(data) {
 			  if (data.length) {
+				jQuery.each(data, function(key, item) {
+					var currentVal = "";
+					if (item.StateId) { currentVal = "stateIds|" + item.StateId; }
+					if (item.RegionId) { currentVal = "regionIds|" + item.RegionId; }
+					if (item.CityId) { currentVal = "cityIds|" + item.CityId; }
+					if (item.ZoneId) { currentVal = "locationzone|" + item.ZoneId; }
+					if (item.MerchantCategoryId) { currentVal = "merchantCategoryId|" + item.MerchantCategoryId; }
+					if (item.ProductCategoryId) { currentVal = "masterTypeId|" + item.ProductCategoryId; }
+					if (item.MerchantId) { currentVal = "merchantIds|" + item.MerchantId; }
+					if (item.MerchantTagId) { currentVal = "merchantTagIds|" + item.MerchantTagId; }
+					if (item.ProductTagId) { currentVal = "productTagIds|" + item.ProductTagId; }
+					item.Value=currentVal;
+				});				  
 				response(data);
 			  } else {
 				  response([{
@@ -1317,7 +1338,8 @@ jQuery(function() {
 		minLength: 2,
 		delay: 250,
 		select: function( event, ui ) {
-			var selectedVal = jQuery(event.srcElement).attr("data-value");
+			var selectedVal = ui.item.Value;
+//			var selectedVal = jQuery(event.srcElement).attr("data-value");
 			if (selectedVal.length) {
 				jQuery("#searchtext<?php echo $currModID ?>").closest("form").find("[name=stateIds],[name=regionIds],[name=cityIds],[name=locationzone],[name=merchantCategoryId],[name=masterTypeId],[name=merchantIds],[name=merchantTagIds],[name=productTagIds]").val("");
 				jQuery("#searchtext<?php echo $currModID ?>").closest("form").find("[name=searchTermValue]").val(selectedVal);
@@ -1368,6 +1390,19 @@ jQuery(function() {
 			bfi_onlyLocations: 1,
           }, function(data) {
 			  if (data.length) {
+				jQuery.each(data, function(key, item) {
+					var currentVal = "";
+					if (item.StateId) { currentVal = "stateIds|" + item.StateId; }
+					if (item.RegionId) { currentVal = "regionIds|" + item.RegionId; }
+					if (item.CityId) { currentVal = "cityIds|" + item.CityId; }
+					if (item.ZoneId) { currentVal = "locationzone|" + item.ZoneId; }
+			//		if (item.MerchantCategoryId) { currentVal = "merchantCategoryId|" + item.MerchantCategoryId; }
+			//		if (item.ProductCategoryId) { currentVal = "masterTypeId|" + item.ProductCategoryId; }
+			//		if (item.MerchantId) { currentVal = "merchantIds|" + item.MerchantId; }
+			//		if (item.MerchantTagId) { currentVal = "merchantTagIds|" + item.MerchantTagId; }
+			//		if (item.ProductTagId) { currentVal = "productTagIds|" + item.ProductTagId; }
+					item.Value=currentVal;
+				});				  
 				response(data);
 			  } else {
 				  response([{
@@ -1382,7 +1417,8 @@ jQuery(function() {
 		minLength: 2,
 		delay: 250,
 		select: function( event, ui ) {
-			var selectedVal = jQuery(event.srcElement).attr("data-value");
+			var selectedVal = ui.item.Value;
+//			var selectedVal = jQuery(event.srcElement).attr("data-value");
 			if (selectedVal.length) {
 				jQuery("#searchtextonsell<?php echo $currModID ?>").closest("form").find("[name=stateIds],[name=regionIds],[name=cityIds],[name=locationzone]").val("");
 				jQuery("#searchtextonsell<?php echo $currModID ?>").closest("form").find("[name=searchTermValue]").val(selectedVal);

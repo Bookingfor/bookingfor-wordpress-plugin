@@ -161,6 +161,28 @@ if($curlEnabled){
 			
 			</td>
 		</tr>
+		<tr>
+			<td>Encrypts data</td>
+			<td><?php 
+					if (version_compare(COM_BOOKINGFORCONNECTOR_CRYPTOVERSION, '1', '<')) {
+
+						echo '<span class="badge" style="background-color: #d43f3a;">No Cryptography Extensions find </span>';
+					}
+					if (version_compare(PHP_VERSION, '7.0.0', '>') && version_compare(COM_BOOKINGFORCONNECTOR_CRYPTOVERSION, '2', '<')) {
+
+						echo '<span class="badge" style="background-color: #d43f3a;">No Cryptography Extensions find for this PHP version '.PHP_VERSION.'  </span>';
+					}
+					if (COM_BOOKINGFORCONNECTOR_CRYPTOVERSION == 1) {
+
+						echo 'Cryptography Extensions find for this PHP version '.PHP_VERSION.': Mcrypt ';
+					}
+					if (COM_BOOKINGFORCONNECTOR_CRYPTOVERSION == 2) {
+
+						echo 'Cryptography Extensions find for this PHP version '.PHP_VERSION.': OpenSSL ';
+					}
+			?>
+			</td>
+		</tr>
 		</tbody>
 	</table>
 	</p>

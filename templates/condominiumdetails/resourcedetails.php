@@ -207,8 +207,8 @@ if (!empty($merchant->LogoUrl)){
 			$bfiSourceData = 'condominium';
 			$bfiImageData = null;
 			$bfiVideoData = null;
-			if(!empty($resource->ImageData)) {
-				$bfiImageData = $resource->ImageData;
+			if(!empty($resource->ImagesData)) {
+				$bfiImageData = $resource->ImagesData;
 			}
 			if(!empty($resource->VideoData)) {
 				$bfiVideoData = $resource->VideoData;

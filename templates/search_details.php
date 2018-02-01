@@ -98,6 +98,7 @@ if(!empty($resourceId)){
 	if(!empty( $checkInDates )){
 		$aCheckInDates = explode(',',$checkInDates);
 		$startDate=DateTime::createFromFormat('Ymd',$aCheckInDates[0]);
+		$startDate->setTime(0,0,0);
 	}	
 	$currUriresource  = $uri.$resource->ResourceId.'-'.BFI()->seoUrl($resourceName);
 	$formRoute = $currUriresource .'/?task=getMerchantResources';
@@ -685,7 +686,7 @@ $showResult= " bfi-hide";
 			<tr>
 				<td class="bfi-firstcol bfi-firstcol-selected">
 					<a class="bfi-resname eectrack" onclick="bfiGoToTop()" href="<?php echo $currUriresource ?>" data-type="Resource" data-id="<?php echo $resource->ResourceId?>" data-index="0" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo $resource->Name; ?></a>
-
+<div class="bfi-clearfix"></div>
 <?php 
 			if(!empty($resource->ImageUrl)){
 				$resourceImageUrl = BFCHelper::getImageUrlResized('resources',$resource->ImageUrl, 'small');
@@ -824,6 +825,7 @@ foreach($allResourceId as $resId) {
 			<tr >
 				<td rowspan="<?php echo $nRowSpan ?>" class="bfi-firstcol <?php echo ($resId == $resourceId)? '  bfi-firstcol-selected' :  '' ; ?>">
 					<a  class="bfi-resname eectrack" href="<?php echo $formRouteSingle ?>" <?php echo ($resId == $resourceId)? 'onclick="bfiGoToTop()"' :  'target="_blank"' ; ?> data-type="Resource" data-id="<?php echo $res->ResourceId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo $res->ResName; ?></a>
+<div class="bfi-clearfix"></div>
 <?php 
 			if(!empty($res->ImageUrl)){
 				$resourceImageUrl = BFCHelper::getImageUrlResized('resources',$res->ImageUrl, 'small');
@@ -1426,6 +1428,7 @@ if($currRateplan->RatePlan->IncludedMeals >-1){
 
 		<div id="services-room-1-<?php echo $currRateplan->ResourceId ?>-<?php echo $currRateplan->RatePlan->RatePlanId ?>" class="bfi-table-responsive" style="display:none;">
 		<div class="bfi-resname-extra"><a  class="bfi-resname eectrack" href="<?php echo $currUriresource ?>" target="_blank" data-type="Resource" data-id="<?php echo $currRateplan->ResourceId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo $currRateplan->ResName; ?></a></div>
+		<div class="bfi-clearfix"></div>
 		<?php  if(!empty($currRateplan->ImageUrl)){
 			$resourceImageUrl = BFCHelper::getImageUrlResized('resources',$currRateplan->ImageUrl, 'small');
 		?>

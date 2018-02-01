@@ -104,6 +104,7 @@ function form($instance) {
 	<p>
 	<?php _e('Items per page', 'bfi') ?></label><br />
 		<select name="<?php echo $this->get_field_name('itemspage'); ?>" id="<?php echo $this->get_field_name('itemspage'); ?>">
+			<option value="1" <?php selected( $itemspage, '1' ); ?> >1</option>
 			<option value="3" <?php selected( $itemspage, '3' ); ?> >3</option>
 			<option value="4" <?php selected( $itemspage, '4' ); ?> >4</option>
 			<option value="6" <?php selected( $itemspage, '6' ); ?> >6</option>

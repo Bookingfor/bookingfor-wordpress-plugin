@@ -1,4 +1,4 @@
-0<?php
+<?php
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
@@ -31,7 +31,9 @@ if(!empty($tags)) {
 $merchants = BFCHelper::getMerchantsExt($tags, 0, $maxitems);
 
 if(!empty($merchants)){
-
+if (count($merchants)<$cols) {
+    $cols = count($merchants);
+}
 $carouselid = uniqid();
 
 $useragent=$_SERVER['HTTP_USER_AGENT'];
@@ -65,12 +67,13 @@ if ( $title ) {
 				$images = explode(",", $merchant->ImageData);
 				$currMerchantImageUrl = BFCHelper::getImageUrlResized('merchant',$images[0], 'small');
 			}
+			$merchantDescription = BFCHelper::getLanguage($merchant->Description, $language, null, array('ln2br'=>'ln2br', 'bbcode'=>'bbcode', 'striptags'=>'striptags'));
+			$merchantDescription = BFCHelper::shorten_string($merchantDescription, $descmaxchars);
 		?>
 			<div class="com_bookingforconnector-item-col" >
 				<div class="com_bookingforconnector-search-merchant com_bookingforconnector-item  bfi-row" style="height:100%">
-					<div class="bfi-row" >
-						<div class="bfi-col-md-12"><a href="<?php echo $routeMerchant?>"><img src="<?php echo $currMerchantImageUrl; ?>" class="bfi-img-responsive center-block" /></a>
-						</div>
+					<div >
+						<a href="<?php echo $routeMerchant?>"><img src="<?php echo $currMerchantImageUrl; ?>" class="bfi-img-responsive center-block" /></a>
 					</div>
 					<div class="bfi-row" >
 						<div class="bfi-col-md-<?php //echo $rating > 0 ? "4" : "12" ?>12" style="padding: 10px!important;">
@@ -91,7 +94,7 @@ if ( $title ) {
 						</div>
 					</div>
 					<div class="bfi-row" >
-						<div class="bfi_merchant-description bfi-col-md-12" style="padding: 10px!important;" id="descr<?php echo $merchant->MerchantId?>"><?php echo BFCHelper::shorten_string($merchant->Description, $descmaxchars);?></div>
+						<div class="bfi_merchant-description bfi-col-md-12" style="padding: 10px!important;" id="descr<?php echo $merchant->MerchantId?>"><?php echo $merchantDescription;?></div>
 					</div>
 					<div class="bfi-row secondarysection">
 						<div class="bfi-col-md-1  secondarysectionitem">
@@ -109,10 +112,10 @@ if ( $title ) {
 <!--
 jQuery(document).ready(function() {
 	var ncolslick = <?php echo $cols ?>;
-	if(jQuery('#<?php echo $carouselid; ?>').width()<400){
+	if(jQuery('#<?php echo $carouselid; ?>').width()<400 && <?php echo $cols ?>>2){
 		ncolslick = 2;
 	}
-	if(jQuery('#<?php echo $carouselid; ?>').width()<200){
+	if(jQuery('#<?php echo $carouselid; ?>').width()<200 && <?php echo $cols ?>>1){
 		ncolslick = 1;
 	}
 
@@ -124,19 +127,12 @@ jQuery(document).ready(function() {
 		slidesToShow: ncolslick,
 		slidesToScroll: 1,
 	});
-	jQuery('#<?php echo $carouselid; ?>').on('afterChange', function(event, slick, currentSlide){
+	jQuery('#<?php echo $carouselid; ?>').on('setPosition', function(event, slick){
 		var maxHeight = 0;
 		jQuery('.com_bookingforconnector-item-col', jQuery(slick.$slider ))
 		.each(function() { maxHeight = Math.max(maxHeight, jQuery(this).height()); })
 		.height(maxHeight);
 	});
-//		jQuery('#<?php echo $carouselid; ?>').on('init', function(event, slick){
-//			var maxHeight = 0;
-//			jQuery('.com_bookingforconnector-item-col', jQuery(slick.$slider ))
-//			.each(function() { maxHeight = Math.max(maxHeight, jQuery(this).height());console.log(jQuery(this).height()) })
-//			.height(maxHeight);
-//		});
-
 
 });
 //-->

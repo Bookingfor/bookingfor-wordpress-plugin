@@ -121,7 +121,7 @@ $fromsearchparam = "?lna=".$listNameAnalytics;
 //				}
 //			}
 			$merchantName = BFCHelper::getLanguage($merchant->Name, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
-			$merchantDescription = BFCHelper::getLanguage($merchant->Description, $language, null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
+			$merchantDescription = BFCHelper::getLanguage($merchant->Description, $language, null, array('striptags'=>'striptags', 'bbcode'=>'bbcode','ln2br'=>'ln2br')); 
 			$routeMerchant .= $fromsearchparam;
 			$merchantNameTrack =  BFCHelper::string_sanitize($merchantName);
 			$merchantCategoryNameTrack = ""; // BFCHelper::string_sanitize($merchant->MainCategoryName);

@@ -210,129 +210,6 @@ class BFI_Controller {
 		exit;
 	}
 
-	function sendOrder(){
-		$formData = $_POST['form'];
-		if(empty($formData)){
-		}
-	BFCHelper::setSession('hdnBookingType', '', 'bfi-cart');
-	BFCHelper::setSession('hdnOrderData', '', 'bfi-cart');
-
-// 		if(!is_user_logged_in()) {
-//                  $email_address = $formData['Email'];
-//                  $password = $formData['Password'];
-//                  if( null == username_exists( $email_address ) ) {
-//                    $user_id = wp_create_user( $email_address, $password, $email_address );
-//                    wp_update_user(
-//                      array(
-//                        'ID'          =>    $user_id,
-//                        'nickname'    =>    $email_address
-//                      )
-//                    );
-//                    $user = new WP_User( $user_id );
-//                    wp_mail( $email_address, 'Welcome!', 'Your Password: ' . $password );
-//                    $creds = array( 'user_login' =>  $email_address, 'user_password' => $password, 'remember' => 0 );
-//                    $user = wp_signon( $creds, false );
-//                    if ( is_wp_error($user) ): echo $user->get_error_message(); endif;
-//                    wp_set_current_user($user->ID);
-//                  }
-//                }
-		$customer = BFCHelper::getCustomerData($formData);
-
-		$suggestedStay = json_decode(stripslashes($formData['staysuggested']));
-		$req = json_decode(stripslashes($formData['stayrequest']), true);
-
-		$redirect = $formData['Redirect'];
-		$redirecterror = $formData['Redirecterror'];
-
-		$isgateway = $formData['isgateway'];
-
-		$otherData = "paxages:". str_replace("]", "" ,str_replace("[", "" , $req['paxages'] ))
-					."|"."checkin_eta_hour:".$formData['checkin_eta_hour'];
-		$ccdata = null;
-		if (BFCHelper::canAcquireCCData($formData)) { 
-			$ccdata = json_encode(BFCHelper::getCCardData($formData));
-			$ccdata = BFCHelper::encrypt($ccdata);
-			}
-		$orderData =  BFCHelper::prepareOrderData($formData, $customer, $suggestedStay, $otherData, $ccdata);
-		$orderData['pricetype'] = $req['pricetype'];
-		$orderData['label'] = $formData['label'];
-		$orderData['checkin_eta_hour'] = $formData['checkin_eta_hour'];
-
-		$processOrder = null;
-		if(!empty($isgateway) && ($isgateway =="true" ||$isgateway =="1")){
-			$processOrder=false;
-		}
-
-		$order = BFCHelper::setOrder(
-                $orderData['customerData'], 
-                $orderData['suggestedStay'], 
-                $orderData['creditCardData'], 
-                $orderData['otherNoteData'], 
-                $orderData['merchantId'], 
-                $orderData['orderType'], 
-                $orderData['userNotes'], 
-                $orderData['label'], 
-                $orderData['cultureCode'], 
-				$processOrder,
-				$orderData['pricetype']
-                );
-
-		if (empty($order)){
-			$order ="";
-			$redirect = $redirecterror;
-		}
-		if (!empty($order)){
-			if(!empty($isgateway) && ($isgateway =="true" ||$isgateway =="1")){
-			$payment_page = get_post( bfi_get_page_id( 'payment' ) );
-			$url_payment_page = get_permalink( $payment_page->ID );
-
-//			$redirect = $url_payment_page .'?orderId=' . $order->OrderId;
-			$redirect = $url_payment_page .'/' . $order->OrderId;
-
-			}else{
-				$numAdults = 0;
-				$persons= explode("|", $suggestedStay->Paxes);
-				foreach($persons as $person) {
-					$totper = explode(":", $person);
-					$numAdults += (int)$totper[1];
-				}
-
-				$act = "OrderResource";
-				if(!empty($order->OrderType) && strtolower($order->OrderType) =="b"){
-					$act = "QuoteRequest";
-				}
-
-				$startDate = DateTime::createFromFormat('Y-m-d',BFCHelper::parseJsonDate($order->StartDate,'Y-m-d'));
-				$endDate = DateTime::createFromFormat('Y-m-d',BFCHelper::parseJsonDate($order->EndDate,'Y-m-d'));
-				
-				if(strpos($redirect, "?")=== false){
-					$redirect = $redirect . '?';
-				}else{
-					$redirect = $redirect . '&';
-				}
-
-				$redirect = $redirect . 'act=' . $act  
-				 . '&orderid=' . $order->OrderId 
-				 . '&merchantid=' . $order->MerchantId 
-				 . '&OrderType=' . $order->OrderType 
-				 . '&OrderTypeId=' . $order->OrderTypeId 
-				 . '&totalamount=' . ($order->TotalAmount *100)
-				 . '&startDate=' . $startDate->format('Y-m-d')
-				 . '&endDate=' . $endDate->format('Y-m-d')
-				 . '&numAdults=' . $numAdults
-				;
-			}
-//			$urlredirpayment = JRoute::_('index.php?view=payment&orderId=' . $order->OrderId);
-//			$redirect = JRoute::_('index.php?view=payment&orderId=' . $order->OrderId);
-		}
-//		$app = JFactory::getApplication();
-//		$app->redirect($redirect, false);
-//		$app->close();
-		wp_redirect($redirect);
-		exit;
-
-	}
-
 	function sendOffer(){
 		$formData = $_POST['form'];
 
@@ -496,31 +373,6 @@ class BFI_Controller {
 				$return = json_encode($return);
 		}
 		echo $return;      
-	}
-
-	function updateCCdataOrder(){
-		$formData = $_POST['form'];
-		if(empty($formData)){
-		}
-		$ccdata = null;
-		$ccdata = json_encode(BFCHelper::getCCardData($formData));
-		$ccdata = BFCHelper::encrypt($ccdata);
-
-		$orderId = BFCHelper::getVar('OrderId');
-								
-		$order = BFCHelper::updateCCdata(
-				$orderId,        
-				$ccdata, 
-				null
-                );								
-		$redirect = $formData['Redirect'];
-		$redirecterror = $formData['Redirecterror'];
-		if (empty($order)){
-			$order ="";
-			$redirect = $redirecterror;
-		}
-		wp_redirect($redirect);
-		exit;
 	}
 
 	function sendOnSellrequest(){
@@ -857,7 +709,7 @@ class BFI_Controller {
 //		if (BFCHelper::canAcquireCCData($formData)) { 
 		$ccdata = BFCHelper::getCCardData($formData);
 		if (!empty($ccdata)) {
-			$ccdata = BFCHelper::encrypt(json_encode($ccdata));
+			$ccdata = BFCHelper::encrypt(json_encode($ccdata),$label.$customer['Email'] );
 		}
 //			}
 

@@ -1655,6 +1655,7 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 		
 		
 		public static function getStayParam($param, $default= null) {
+			date_default_timezone_set('UTC');
 			$pars = self::getSearchParamsSession();
 
 			switch (strtolower($param)) {
@@ -1810,11 +1811,94 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 			return $y;
 		}
 
-		public static function encrypt($string,$key=null) {
+//		public static function encrypt($string,$key=null) {
+//			if(empty($key)){
+//				$key = 'WZgfdUps';
+//			}
+//			$key = str_pad($key, 24, "\0"); 
+//			$cipher_alg = MCRYPT_TRIPLEDES;
+//		
+//			$iv = mcrypt_create_iv(mcrypt_get_iv_size($cipher_alg,MCRYPT_MODE_ECB), MCRYPT_RAND); 
+//			 
+//	 
+//			$encrypted_string = mcrypt_encrypt($cipher_alg, $key, $string, MCRYPT_MODE_ECB, $iv); 
+//			return base64_encode($encrypted_string).$key;
+//		}
+//		
+//	   public static function decrypt($string,$urldecode = false,$key=null) {
+//				if ($urldecode) {
+//					$string = urldecode($string);
+//				}
+//				
+//				$string = base64_decode($string);
+//	 
+//				//key 
+//				if(empty($key)){
+//					$key = 'WZgfdUps';
+//				}
+//				$key = str_pad($key, 24, "\0"); 
+//				 
+//	 
+//				$cipher_alg = MCRYPT_TRIPLEDES;
+//	 
+//				$iv = mcrypt_create_iv(mcrypt_get_iv_size($cipher_alg,MCRYPT_MODE_ECB), MCRYPT_RAND); 
+//				 
+//	 
+//				$decrypted_string = mcrypt_decrypt($cipher_alg, $key, $string, MCRYPT_MODE_ECB, $iv); 
+//				return trim($decrypted_string);
+//		}
+	public static function encryptSupported()
+	{
+		$cryptoVersion= 0;
+
+		if (function_exists('mcrypt_create_iv') && function_exists('mcrypt_get_iv_size') && function_exists('mcrypt_encrypt') && function_exists('mcrypt_decrypt'))
+		{
+			$cryptoVersion= 1;
+		}
+		if (function_exists('openssl_random_pseudo_bytes') && function_exists('openssl_cipher_iv_length') && function_exists('openssl_encrypt') && function_exists('openssl_decrypt'))
+		{
+			$cryptoVersion= 2;
+		}
+
+		return $cryptoVersion;
+	}
+
+	// OPENSSL
+	// - funzione di criptazione/decriptazione basato su una chiave
+	public static function encryptOpenSll($string,$key=null) {
+		$cipher = 'AES-256-CBC';
+		// Must be exact 32 chars (256 bit)
+		$password = substr(hash('sha256', $key, true), 0, 32);
+		// IV must be exact 16 chars (128 bit)
+		$iv = chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0);
+		$encrypted_string = openssl_encrypt($string, $cipher, $password, OPENSSL_RAW_DATA, $iv);
+		return base64_encode($encrypted_string);
+	}
+	public static function decryptOpenSll($string,$urldecode = false,$key=null) {
+		if ($urldecode) {
+			$string = urldecode($string);
+		}
+		$string = base64_decode($string);
+		$cipher = 'AES-256-CBC';
+		// Must be exact 32 chars (256 bit)
+		$password = substr(hash('sha256', $key, true), 0, 32);
+		// IV must be exact 16 chars (128 bit)
+		$iv = chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0);
+		$encrypted_string = openssl_decrypt($string, $cipher, $password, OPENSSL_RAW_DATA, $iv);
+		return $encrypted_string;
+	}
+
+	// MCRYPT
+	// - funzione di criptazione/decriptazione basato su una chiave
+		public static function encryptMcrypt($string,$key=null) {
+			//Key 
 			if(empty($key)){
-				$key = 'WZgfdUps';
+				$key = COM_BOOKINGFORCONNECTOR_KEY;
 			}
-			$key = str_pad($key, 24, "\0"); 
+			
+			$key = str_pad($key, 24, "\0");  
+					 
+			//Encryption
 			$cipher_alg = MCRYPT_TRIPLEDES;
 		
 			$iv = mcrypt_create_iv(mcrypt_get_iv_size($cipher_alg,MCRYPT_MODE_ECB), MCRYPT_RAND); 
@@ -1822,9 +1906,10 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 	 
 			$encrypted_string = mcrypt_encrypt($cipher_alg, $key, $string, MCRYPT_MODE_ECB, $iv); 
 			return base64_encode($encrypted_string).$key;
+	//        return $encrypted_string;
 		}
 		
-	   public static function decrypt($string,$urldecode = false,$key=null) {
+	   public static function decryptMcrypt($string,$urldecode = false,$key=null) {
 				if ($urldecode) {
 					$string = urldecode($string);
 				}
@@ -1833,10 +1918,9 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 	 
 				//key 
 				if(empty($key)){
-					$key = 'WZgfdUps';
+					$key = COM_BOOKINGFORCONNECTOR_KEY;
 				}
-				$key = str_pad($key, 24, "\0"); 
-				 
+				$key = str_pad($key, 24, "\0");               
 	 
 				$cipher_alg = MCRYPT_TRIPLEDES;
 	 
@@ -1846,6 +1930,26 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 				$decrypted_string = mcrypt_decrypt($cipher_alg, $key, $string, MCRYPT_MODE_ECB, $iv); 
 				return trim($decrypted_string);
 		}
+
+
+	public static function encrypt($string,$key=null) {
+		if (COM_BOOKINGFORCONNECTOR_CRYPTOVERSION==1) {
+			return self::encryptMcrypt($string);
+		}
+		if (COM_BOOKINGFORCONNECTOR_CRYPTOVERSION==2) {
+			return self::encryptOpenSll($string,$key);
+		}
+		return null;
+	}
+	public static function decrypt($string,$urldecode = false,$key=null) {
+		if (COM_BOOKINGFORCONNECTOR_CRYPTOVERSION==1) {
+			return self::decryptMcrypt($string,$urldecode);
+		}
+		if (COM_BOOKINGFORCONNECTOR_CRYPTOVERSION==2) {
+			return self::decryptOpenSll($string,$urldecode,$key);
+		}
+		return null;
+	}
 
 
 		public static function getOrderMerchantPaymentId($order) {

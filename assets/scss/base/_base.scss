@@ -1673,6 +1673,21 @@ label.bfi-lblcheckzone {
 .bfi-table-cart > tbody > tr > td:nth-child(2) {
 display:none;
 }
+.bfi-ribbonnew {
+	position: absolute;
+	top: 0px;
+	left: 0;
+	color: #fff;
+	line-height: 40px;
+	font-size: 17px;
+	text-align: center;
+	vertical-align: middle;
+	background: url('../images/newribbon.png') right center no-repeat;
+	height: 41px;
+	width: auto;
+	padding: 0 20px;
+	background-size: cover;
+}
 @media (min-width: 768px) {
 	.bfi-grid-group-item.bfi-list-group-item .bfi-sameheight {
 		min-height: 100%;

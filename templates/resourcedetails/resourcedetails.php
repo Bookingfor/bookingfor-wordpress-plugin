@@ -375,7 +375,7 @@ if (!empty($merchant->LogoUrl)){
 			delete_transient( 'temporary_message' );
 		endif;
 	?>
-		<?php  bfi_get_template('resourcedetails/resource-ratings.php',array("merchant"=>$merchant,"summaryRatings"=>$summaryRatings,"ratings"=>$ratings,"routeMerchant"=>$routeMerchant,"routeRating"=>routeRating));  ?>
+		<?php  bfi_get_template('resourcedetails/resource-ratings.php',array("merchant"=>$merchant,"summaryRatings"=>$summaryRatings,"ratings"=>$ratings,"routeMerchant"=>$routeMerchant,"routeRating"=>$routeRating));  ?>
 	</div>
 <?php } ?>	
 	<script type="text/javascript">

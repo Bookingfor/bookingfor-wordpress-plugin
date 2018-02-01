@@ -2,7 +2,7 @@
 /*
 Plugin Name: BookingFor
 Description: BookingFor integration Code for Wordpress
-Version: 3.2.1
+Version: 3.2.2
 Author: BookingFor
 Author URI: http://www.bookingfor.com/
 */
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'BookingFor' ) ) :
 final class BookingFor {
 	
-	public $version = '3.2.1';
+	public $version = '3.2.2';
 	public $currentOrder = null;
 	
 	protected static $_instance = null;
@@ -179,6 +179,8 @@ final class BookingFor {
 		
 		$this->define( 'COM_BOOKINGFORCONNECTOR_DEFAULTDISPLAYLIST', $bfi_defaultdisplaylist_key );
 		
+		$this->define( 'COM_BOOKINGFORCONNECTOR_KEY', 'WZgfdUps' );
+		
 		$this->define( 'COM_BOOKINGFORCONNECTOR_CARTMULTIMERCHANTENABLED', false );
 
 
@@ -314,6 +316,8 @@ final class BookingFor {
 
 		$this->query = new BFI_Query();
 		$this->shortcodes = new bfi_Shortcodes();
+		$cryptoVersion = BFCHelper::encryptSupported();
+		$this->define( 'COM_BOOKINGFORCONNECTOR_CRYPTOVERSION', $cryptoVersion );
 
 	}
 	/**

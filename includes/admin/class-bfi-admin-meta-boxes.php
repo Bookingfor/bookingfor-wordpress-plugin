@@ -112,11 +112,7 @@ class BFI_Admin_Meta_Boxes {
 			<label for="checkmode"><?php _e('Autentication Mode', 'bfi') ?></label>
 			<select name="checkmode" id="checkmode">
 				<option value="5" <?php selected( $selected, '5' ); ?> >OrderId + Email</option>
-				<option value="6" <?php selected( $selected, '6' ); ?> >ExternalOrderId + Email</option>
 				<option value="25" <?php selected( $selected, '25' ); ?> >OrderId + Firstname + Lastname</option>
-				<option value="26" <?php selected( $selected, '26' ); ?> >ExternalOrderId + Firstname + Lastname</option>
-				<option value="146" <?php selected( $selected, '146' ); ?> >ExternalOrderId + Lastname + Checkin</option>
-				<option value="450" <?php selected( $selected, '450' ); ?> >ExternalCustomerId + ExternalOrderId + Checkin + Checkout</option>
 			</select>
 		</p>
 		<?php    

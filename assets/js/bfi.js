@@ -1,7 +1,9 @@
 var bookingfor = new function() {
-    this.version = "3.2.1";
+    this.version = "3.2.2";
 	this.bsVersion = ( typeof jQuery.fn.typeahead !== 'undefined' ? 2 : 3 );
     this.offersLoaded = [];
+    this.adsBlocked = false;
+    this.adsBlockedChecked = false;
 
     this.getDiscountAjaxInformations = function (discountId, hasRateplans) {
         var query = "discountId=" + discountId + "&hasRateplans=" + hasRateplans + "&language=en-gb&task=getDiscountDetails";
@@ -37,7 +39,7 @@ var bookingfor = new function() {
 
     this.getData = function (urlCheck, query, elem, name, act) {
 		query += '&simple=1';
-		if (typeof(ga) !== 'undefined') {
+		if (typeof(ga) !== 'undefined' && !bookingfor.adsBlocked ) {
 			ga('send', 'event', 'Bookingfor', act, name);
 			ga(function(){
 				jQuery.post(bfi_variable.bfi_urlCheck, query, function(data) {
@@ -554,6 +556,36 @@ var bookingfor = new function() {
 			}
 		}
 	}
+	this.checkAdsBlocked = function() {
+		if (!bookingfor.adsBlockedChecked )
+		{
+			this.isAdsBlocked();
+		}
+	}
+
+	this.isAdsBlocked = function() {
+		var testURL = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'
+
+		var myInit = {
+			method: 'HEAD',
+			mode: 'no-cors'
+		};
+
+		var myRequest = new Request(testURL, myInit);
+
+		fetch(myRequest).then(function(response) {
+			return response;
+		}).then(function(response) {
+//			console.log(response);
+//			callback(false)
+			bookingfor.adsBlocked  = false;
+		}).catch(function(e){
+//			console.log(e)
+//			callback(true)
+			bookingfor.adsBlocked  = true;
+		});
+	}
+
 
 	this.BookNow = function() {
 			//       debugger;
@@ -957,6 +989,8 @@ jQuery(document).ready(function() {
 				}
 			});
 		});
+
+		bookingfor.checkAdsBlocked();
 
 });      
      

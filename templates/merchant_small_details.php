@@ -90,7 +90,7 @@ if(BFI()->isCondominiumPage() && !empty($resource_id)){
 						<?php if($isportal) { ?>
 							<div class="bfi-row bfi-text-center bfi-marchant-ref">
 								<div class="bfi-text-center">
-									<span class="tel "><a  href="javascript:void(0);" onclick="bookingfor.getData(bfi_variable.bfi_urlCheck,'merchantid=<?php echo $merchant->MerchantId?>&task=GetPhoneByMerchantId&language=' + cultureCode,this,'<?php echo  addslashes($merchant->Name) ?>','PhoneView')"  id="phone<?php echo $merchant->MerchantId?>" class="bfi-btn bfi-alternative2"><?php _e('Show phone', 'bfi'); ?></a></span>
+									<span class="tel "><a  href="javascript:void(0);" onclick="bookingfor.getData(bfi_variable.bfi_urlCheck,'merchantid=<?php echo $merchant->MerchantId?>&task=GetPhoneByMerchantId&language=' + bfi_variable.bfi_cultureCode,this,'<?php echo  addslashes($merchant->Name) ?>','PhoneView')"  id="phone<?php echo $merchant->MerchantId?>" class="bfi-btn bfi-alternative2"><?php _e('Show phone', 'bfi'); ?></a></span>
 									<?php if ($merchantSiteUrl != ''):?><span class="website"><a target="_blank" href="<?php echo $uriMerchantRedirect; ?>" class="bfi-btn bfi-alternative2"><?php _e('Web site', 'bfi'); ?></a></span>
 									<?php endif;?>
 								</div>

@@ -321,6 +321,7 @@ class BookingForConnectorModelOrders
 //					'priceType' =>  BFCHelper::getQuotedString($priceType),
 					'addedBy' =>  BFCHelper::getQuotedString($tmpUserId),
 //					'isCartOrder' =>  1,
+					'cryptoVersion' =>COM_BOOKINGFORCONNECTOR_CRYPTOVERSION,
 					'$format' => 'json'
 				)
 			);

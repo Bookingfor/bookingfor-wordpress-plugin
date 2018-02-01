@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	$resource_id = get_query_var( 'resource_id', 0 );
 	$language = $GLOBALS['bfi_lang'];
 	$layout = get_query_var( 'bfi_layout', '' );
-	$sitename = sanitize_key( get_bloginfo( 'name' ) );
+	$sitename = sanitize_text_field( get_bloginfo( 'name' ) );
 	$model = new BookingForConnectorModelResource;
 	$model->setResourceId($resource_id);
 	$model->setItemPerPage(COM_BOOKINGFORCONNECTOR_ITEMPERPAGE);

@@ -9,7 +9,7 @@ $language = $GLOBALS['bfi_lang'];
 $currencyclass = bfi_get_currentCurrency();
 ?>
 <?php
-	$sitename = sanitize_key( get_bloginfo( 'name' ) );
+	$sitename = sanitize_text_field( get_bloginfo( 'name' ) );
 	$layout = get_query_var( 'bfi_layout', '' );
 	$isportal = COM_BOOKINGFORCONNECTOR_ISPORTAL;
 

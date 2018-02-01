@@ -339,11 +339,18 @@ var bookingfor = new function() {
 					}, 1000, 'easeInOutExpo', function () {
 						jQuery(this).remove();
 						//cartModel();
+						var currData = {
+							"hdnOrderData":jQuery("#hdnOrderDataCart").val(),
+							"recalculateOrder":recalculateOrder,
+							"hdnBookingType":jQuery("#hdnBookingType").val(),
+							"bfiResetCart":resetCart
+						}
 						jQuery.ajax({
 							cache: false,
 							type: 'POST',
 							url: bfi_variable.bfi_urlCheck + ((bfi_variable.bfi_urlCheck.indexOf('?') > -1)? "&" :"?") + 'task=addToCart',
-							data: 'hdnOrderData=' + jQuery("#hdnOrderDataCart").val() + "&recalculateOrder=" + recalculateOrder +  '&hdnBookingType=' + jQuery("#hdnBookingType").val() +  '&bfiResetCart=' + resetCart,
+//							data: 'hdnOrderData=' + jQuery("#hdnOrderDataCart").val() + "&recalculateOrder=" + recalculateOrder +  '&hdnBookingType=' + jQuery("#hdnBookingType").val() +  '&bfiResetCart=' + resetCart,
+							data: currData,
 							success: function (data) {
 	//							console.log(data);
 								if (gotoCart==1)
@@ -402,11 +409,18 @@ var bookingfor = new function() {
 					});
 
 			}else{
+				var currData = {
+					"hdnOrderData":jQuery("#hdnOrderDataCart").val(),
+					"recalculateOrder":recalculateOrder,
+					"hdnBookingType":jQuery("#hdnBookingType").val(),
+					"bfiResetCart":resetCart
+				}
 				jQuery.ajax({
 					cache: false,
 					type: 'POST',
 					url: bfi_variable.bfi_urlCheck + ((bfi_variable.bfi_urlCheck.indexOf('?') > -1)? "&" :"?") + 'task=addToCart',
-					data: 'hdnOrderData=' + jQuery("#hdnOrderDataCart").val() + "&recalculateOrder=" + recalculateOrder+  '&hdnBookingType=' + jQuery("#hdnBookingType").val() +  '&bfiResetCart=' + resetCart,
+//					data: 'hdnOrderData=' + jQuery("#hdnOrderDataCart").val() + "&recalculateOrder=" + recalculateOrder+  '&hdnBookingType=' + jQuery("#hdnBookingType").val() +  '&bfiResetCart=' + resetCart,
+					data: currData,
 					success: function (data) {
 		//							console.log(data);
 						if (gotoCart==1)
@@ -560,30 +574,34 @@ var bookingfor = new function() {
 		if (!bookingfor.adsBlockedChecked )
 		{
 			this.isAdsBlocked();
+			bookingfor.adsBlockedChecked =true;
 		}
 	}
 
 	this.isAdsBlocked = function() {
-		var testURL = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'
+		if (typeof Request != 'undefined') {
 
-		var myInit = {
-			method: 'HEAD',
-			mode: 'no-cors'
-		};
+			var testURL = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'
 
-		var myRequest = new Request(testURL, myInit);
+			var myInit = {
+				method: 'HEAD',
+				mode: 'no-cors'
+			};
 
-		fetch(myRequest).then(function(response) {
-			return response;
-		}).then(function(response) {
-//			console.log(response);
-//			callback(false)
-			bookingfor.adsBlocked  = false;
-		}).catch(function(e){
-//			console.log(e)
-//			callback(true)
-			bookingfor.adsBlocked  = true;
-		});
+			var myRequest = new Request(testURL, myInit);
+
+			fetch(myRequest).then(function(response) {
+				return response;
+			}).then(function(response) {
+	//			console.log(response);
+	//			callback(false)
+				bookingfor.adsBlocked  = false;
+			}).catch(function(e){
+	//			console.log(e)
+	//			callback(true)
+				bookingfor.adsBlocked  = true;
+			});
+		}
 	}
 
 

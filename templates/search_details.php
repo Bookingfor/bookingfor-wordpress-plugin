@@ -1328,7 +1328,7 @@ if($currRateplan->RatePlan->IncludedMeals >-1){
 					data-totalprice="<?php echo BFCHelper::priceFormat($currRateplan->TotalPrice,2,".","") ?>" 
 					data-baseprice="<?php echo $currRateplan->Price ?>" 
 					data-basetotalprice="<?php echo $currRateplan->TotalPrice ?>"
-					data-allvariations='<?php echo $currRateplan->RatePlan->AllVariationsString ?>'
+					data-allvariations='<?php echo  str_replace("&", "e",  str_replace("'", "", $currRateplan->RatePlan->AllVariationsString)) ?>'
 					data-percentvariation="<?php echo $currRateplan->RatePlan->PercentVariation ?>"
 					data-availability="<?php echo $currRateplan->Availability ?>" 
 					data-availabilitytype="<?php echo $currRateplan->AvailabilityType ?>"

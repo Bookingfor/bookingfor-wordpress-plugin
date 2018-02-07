@@ -38,7 +38,7 @@ function bfi_setSessionFromSubmittedData() {
 	}
 	$currParamInSession = BFCHelper::getSearchParamsSession();
 	$currParam = array(
-		'searchid' => isset($_REQUEST['searchid']) ? $_REQUEST['searchid'] : '',
+		'searchid' => isset($_REQUEST['searchid']) ? $_REQUEST['searchid'] : uniqid('', true),
 		'searchtypetab' => isset($_REQUEST['searchtypetab']) ? $_REQUEST['searchtypetab'] : '',
 		'newsearch' => isset($_REQUEST['newsearch']) ? $_REQUEST['newsearch'] : '0',
 		'checkin' => BFCHelper::getStayParam('checkin', new DateTime()),
@@ -81,6 +81,7 @@ function bfi_setSessionFromSubmittedData() {
 		'gotCalculator' => isset($_REQUEST['gotCalculator']) ? $_REQUEST['gotCalculator'] : '',
 		'totalDiscounted' => isset($currParamInSession['totalDiscounted']) ? $currParamInSession['totalDiscounted'] : '',
 		'suggestedstay' => isset($currParamInSession['suggestedstay']) ?$currParamInSession['suggestedstay'] : '',
+		'variationPlanIds' => isset($_REQUEST['variationPlanId']) ? $_REQUEST['variationPlanId'] : '',
 		'points' => BFCHelper::getVar('searchType')=="1" ? BFCHelper::getVar('points') : "",
 	);
 	BFCHelper::setSearchParamsSession($currParam);

@@ -93,6 +93,9 @@ class BookingForConnectorModelSearch
 		}
 		$resourceName = $params['resourceName'].'';
 		$refid = $params['refid'].'';
+
+		$variationPlanIds = isset($params['variationPlanIds']) ? $params['variationPlanIds'] : '';
+
 		if (!empty($refid) or !empty($resourceName))  {
 			$options['data']['calculate'] = 0;
 			$options['data']['checkAvailability'] = 0;
@@ -119,6 +122,10 @@ class BookingForConnectorModelSearch
 
 			if (!empty($merchantCategoryId) && $merchantCategoryId > 0) {
 				$options['data']['merchantCategoryIds'] = '\'' .$merchantCategoryId.'\'';
+			}
+			
+			if (!empty($variationPlanIds)) {
+				$options['data']['variationPlanIds'] = '\'' .$variationPlanIds.'\'';
 			}
 			
 			if(empty($duration)){

@@ -2,7 +2,7 @@
 /*
 Plugin Name: BookingFor
 Description: BookingFor integration Code for Wordpress
-Version: 3.2.2
+Version: 3.2.3
 Author: BookingFor
 Author URI: http://www.bookingfor.com/
 */
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'BookingFor' ) ) :
 final class BookingFor {
 	
-	public $version = '3.2.2';
+	public $version = '3.2.3';
 	public $currentOrder = null;
 	
 	protected static $_instance = null;

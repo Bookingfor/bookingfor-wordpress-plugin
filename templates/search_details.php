@@ -47,6 +47,8 @@ $resourceName = "";
 $uri = $url_resource_page;
 $currUriresource  = $uri;
 $formRoute= "";
+$formMethod = "POST";
+
 $mrcAcceptanceCheckInHours=0;
 $mrcAcceptanceCheckInMins=0;
 $mrcAcceptanceCheckInSecs=1;
@@ -119,6 +121,10 @@ if($usessl){
 $formOrderRouteBook = $url_cart_page;
 
 $pars = BFCHelper::getSearchParamsSession();
+if(!is_array($pars)){
+	$pars = array();
+}
+
 $pars['extras'] = '';
 /*--------------------------------------------*/
 
@@ -400,7 +406,21 @@ $currentCartsItems = BFCHelper::getSession('totalItems', 0, 'bfi-cart');
 	</div><!-- /.modal -->
 <div class="bfi-clearfix"></div>
 </h4>
-<form id="bfi-calculatorForm" action="<?php echo $formRoute?>" method="POST" class="bfi_resource-calculatorForm bfi_resource-calculatorTable ">
+<?php 
+if(!empty($variationPlanId)){
+//	$uri  = 'index.php?option=com_bookingforconnector&view=search';
+//	$db->setQuery('SELECT id FROM #__menu WHERE link LIKE '. $db->Quote( $uri ) .' AND (language='. $db->Quote($language) .' OR language='.$db->Quote('*').') AND published = 1 LIMIT 1' );
+//	$itemId = ($db->getErrorNum())? 0 : intval($db->loadResult());
+//	if ($itemId<>0){
+//		$uri = 'index.php?Itemid='.$itemId ;
+//	}
+//	$formRoute = JRoute::_($uri);
+	$searchAvailability_page = get_post( bfi_get_page_id( 'searchavailability' ) );
+	$formRoute = get_permalink( $searchAvailability_page->ID );
+	$formMethod = "GET";
+}
+?>
+<form id="bfi-calculatorForm" action="<?php echo $formRoute?>" method="<?php echo $formMethod?>" class="bfi_resource-calculatorForm bfi_resource-calculatorTable ">
 	<div class="bfi-row bfi_resource-calculatorForm-mandatory nopadding">
 			<div class="bfi-row nopadding">
 				<div class="bfi-col-md-7">
@@ -521,9 +541,13 @@ $currentCartsItems = BFCHelper::getSession('totalItems', 0, 'bfi-cart');
 			</div>
 
 	</div>	<!-- END bfi_resource-calculatorForm-mandatory -->
+	<input name="onlystay" type="hidden" value="1" />
+	<input name="newsearch" type="hidden" value="1" />
+	<input name="groupresulttype" type="hidden" value="0" />
 	<input name="calculate" type="hidden" value="true" />
 	<input name="resourceId" type="hidden" value="<?php echo $resourceId?>" />
 	
+	<input type="hidden" name="persons" value="<?php echo $nad + $nse + $nch?>" id="searchformpersons-calculator" />
 	<input type="hidden" name="adults" value="<?php echo $nad?>" id="searchformpersonsadult-calculator">
 	<input type="hidden" name="seniores" value="<?php echo $nse?>" id="searchformpersonssenior-calculator">
 	<input type="hidden" name="children" value="<?php echo $nch?>" id="searchformpersonschild-calculator">
@@ -561,7 +585,8 @@ if(!empty($fromSearch)){
 } 
 	
 $resCount = 0;
-$totalResCount = count($allRatePlans);
+	$totalResCount = count((array)$allRatePlans);	
+
 
 $loadScriptTimeSlot = false;
 $loadScriptTimePeriod = false;
@@ -620,7 +645,7 @@ if(!empty($allResourceId)){
 		</div>
 </div><!-- /.modal -->
 <?php 
-if(empty($allResourceId) && empty($resourceId)){
+if(!empty($fromSearch) && empty($allResourceId) && empty($resourceId)){
 ?>
 
 					<div class="errorbooking" id="errorbooking">
@@ -1719,8 +1744,8 @@ var allStays = <?php echo json_encode($allRatePlans) ?>;
 		jQuery("#ui-datepicker-div").addClass(classToAdd);
 		jQuery("#ui-datepicker-div").removeClass(classToRemove);
 
-		jQuery("#ui-datepicker-div div.bfi-title").remove();
-		jQuery("#ui-datepicker-div").prepend( "<div class=\"bfi-title\">"+title+"</div>" );
+		jQuery("#ui-datepicker-div div.bfi-title-arrow").remove();
+		jQuery("#ui-datepicker-div").prepend( "<div class=\"bfi-title-arrow\">"+title+"</div>" );
 
 		var checkindate = jQuery('#<?php echo $checkinId; ?>').val();
 		var checkoutdate = jQuery('#<?php echo $checkoutId; ?>').val();
@@ -1933,22 +1958,22 @@ var allStays = <?php echo json_encode($allRatePlans) ?>;
 	});
 	
 	function closedBooking(date, offset, enableDays) {
-	  var checkindate = jQuery('#<?php echo $checkinId; ?>').val();
-	  var checkoutdate = jQuery('#<?php echo $checkoutId; ?>').val();
-	  var strdate = ("0" + date.getDate()).slice(-2) + "/" + ("0" + (date.getMonth()+1)).slice(-2) + "/" + date.getFullYear();
-	  
-	  var d1 = checkindate.split("/");
-	  var d2 = checkoutdate.split("/");
-	  var c = strdate.split("/");
+		var checkindate = jQuery('#<?php echo $checkinId; ?>').val();
+		var checkoutdate = jQuery('#<?php echo $checkoutId; ?>').val();
+		var strdate = ("0" + date.getDate()).slice(-2) + "/" + ("0" + (date.getMonth()+1)).slice(-2) + "/" + date.getFullYear();
 
-	  var from = new Date(d1[2], d1[1]-1, d1[0]);
-	  var to   = new Date(d2[2], d2[1]-1, d2[0]);
-	  var check = new Date(c[2], c[1]-1, c[0]);
-	if(productAvailabilityType ==2 || productAvailabilityType ==3){
-		to = from;
-	}
+		var d1 = checkindate.split("/");
+		var d2 = checkoutdate.split("/");
+		var c = strdate.split("/");
 
-	  var dayenabled = false;
+		var from = new Date(d1[2], d1[1]-1, d1[0]);
+		var to   = new Date(d2[2], d2[1]-1, d2[0]);
+		var check = new Date(c[2], c[1]-1, c[0]);
+		if(productAvailabilityType ==2 || productAvailabilityType ==3){
+			to = from;
+		}
+
+		var dayEnabled = false;
 		var month = date.getMonth() + 1;
 		var day = date.getDate();
 		var year = date.getFullYear();
@@ -1958,32 +1983,41 @@ var allStays = <?php echo json_encode($allRatePlans) ?>;
 			copyarray.pop();
 		var datereformat = year + '' + bookingfor.pad(month,2) + '' + bookingfor.pad(day,2);
 		if (jQuery.inArray(Number(datereformat), copyarray) != -1) {
-			dayenabled = true;
+			dayEnabled = true;
 			//return [true, 'greenDay'];
 		}
 <?php }else{ ?>
-		dayenabled = true;
+		dayEnabled = true;
 <?php } ?>
 
 	//	return [false, 'redDay'];
 
+		var holydayTitle = "";
+		var holydayCss = "";
+		
+		var currDay =  ("0" + date.getDate()).slice(-2) + "" + ("0" + (date.getMonth()+1)).slice(-2);
+		var currIdxHoliday = jQuery.inArray(currDay, bookingfor.holydays);
+		if (currIdxHoliday != -1) {
+			holydayTitle = bookingfor.holydaysTitle[currIdxHoliday];
+			holydayCss = "bfi-date-holidays ";
+		}
+		currDay =  ("0" + date.getDate()).slice(-2) + "" + ("0" + (date.getMonth()+1)).slice(-2) + date.getFullYear();
+		currIdxHoliday = jQuery.inArray(currDay, bookingfor.holydays);
+		if (currIdxHoliday != -1) {
+			holydayTitle = bookingfor.holydaysTitle[currIdxHoliday];
+			holydayCss = "bfi-date-holidays ";
+		}
 
-	  arr = [dayenabled, ''];  
-	  if(check.getTime() == from.getTime()) {
-	//  	console.log(from);
-	//  console.log(to);
-	//  console.log(check);
-		arr = [dayenabled, 'date-start-selected', 'date-selected'];
-	  }
-	  if(check.getTime() == to.getTime()) {
-	//  	console.log(from);
-	//  console.log(to);
-	//  console.log(check);
-		arr = [dayenabled, 'date-end-selected', 'date-selected'];  
-	  }
-	  if(check > from && check < to) {
-		arr = [dayenabled, 'date-selected', 'date-selected'];
-	  }
+		arr = [dayEnabled, holydayCss, holydayTitle];  
+		if(check.getTime() == from.getTime()) {
+			arr = [dayEnabled, holydayCss + ' date-start-selected', holydayTitle ];
+		}
+		if(check.getTime() == to.getTime()) {
+			arr = [dayEnabled, holydayCss + ' date-end-selected', holydayTitle];  
+		}
+		if(check > from && check < to) {
+			arr = [dayEnabled, holydayCss + ' date-selected', holydayTitle];
+		}
 	  return arr;
 	}
 
@@ -2158,6 +2192,7 @@ function countMinAdults(){
 	var numAdults = new Number(jQuery('#adultscalculator').val() || 0);
 	var numSeniores = new Number(jQuery('#seniorescalculator').val() || 0);
 	var numChildren = new Number(jQuery("#childrencalculator").val() || 0);
+	
 	jQuery('#bfi-adult-info-calculator span').html(numAdults);
 	jQuery('#bfi-senior-info-calculator span').html(numSeniores);
 	jQuery('#bfi-child-info-calculator span').html(numChildren);
@@ -2170,6 +2205,7 @@ function countMinAdults(){
 		jQuery('#searchformpersonschild'+(i+1)+'-calculator').val(jQuery(this).val());
 	});
 
+	jQuery('#searchformpersons-calculator').val(numAdults + numChildren + numSeniores);
 	
 	
 	minAdults = numAdults + numSeniores;
@@ -2195,7 +2231,18 @@ function calculateQuote() {
 	jQuery('input[name="state"]','#bfi-calculatorForm').val('');
 	jQuery('input[name="extras[]"]','#bfi-calculatorForm').val('');
 	jQuery('.bfi-percent-discount').webuiPopover('destroy');
+<?php 
+if(!empty($variationPlanId)){
+?>
+	jQuery('#bfi-calculatorForm').submit();
+<?php 
+}else{
+?>
 	jQuery('#bfi-calculatorForm').ajaxSubmit(getAjaxOptions());
+<?php 
+}
+?>
+
 }
 
 function showpopovercalculator() {

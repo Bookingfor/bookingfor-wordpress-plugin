@@ -497,6 +497,10 @@ jQuery(document).ready(function() {
 
 	jQuery(".bfi-discounted-price").on("click", function (e) {
 		e.preventDefault();
+		var bfi_wuiP_width= 400;
+		if(jQuery(window).width()<bfi_wuiP_width){
+			bfi_wuiP_width = jQuery(window).width()*0.7;
+		}
 		var showdiscount = function (obj, text) {
 							obj.find("i").first().switchClass("fa-spinner fa-spin","fa-question-circle")
 							obj.webuiPopover({
@@ -507,6 +511,7 @@ jQuery(document).ready(function() {
 								dismissible:true,
 								trigger:'manual',
 								type:'html',
+								width : bfi_wuiP_width,
 								style:'bfi-webuipopover'
 							});
 							obj.webuiPopover('show');

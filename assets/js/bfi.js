@@ -1,9 +1,12 @@
 var bookingfor = new function() {
-    this.version = "3.2.2";
+    this.version = "3.2.3";
 	this.bsVersion = ( typeof jQuery.fn.typeahead !== 'undefined' ? 2 : 3 );
     this.offersLoaded = [];
     this.adsBlocked = false;
     this.adsBlockedChecked = false;
+    this.loadedholydays = false;
+    this.holydays = "";
+    this.holydaysTitle = "";
 
     this.getDiscountAjaxInformations = function (discountId, hasRateplans) {
         var query = "discountId=" + discountId + "&hasRateplans=" + hasRateplans + "&language=en-gb&task=getDiscountDetails";
@@ -303,7 +306,7 @@ var bookingfor = new function() {
 		gotoCart = (typeof gotoCart !== 'undefined') ?  gotoCart : 0;
 		resetCart = (typeof resetCart !== 'undefined') ?  resetCart : 0;
 		bookingfor.waitBlockUI();
-//		jQuery.blockUI({�message:�''});
+//		jQuery.blockUI({ message: ''});
 		var cart = jQuery('.bfi-shopping-cart').first();
 		if (!jQuery(cart).length) {
 			cart = jQuery('.bfi-content').first();
@@ -570,6 +573,58 @@ var bookingfor = new function() {
 			}
 		}
 	}
+
+	this.easterForYear = function(year) {
+		var a = year % 19;
+		var b = Math.floor(year / 100);
+		var c = year % 100;
+		var d = Math.floor(b / 4); 
+		var e = b % 4;
+		var f = Math.floor((b + 8) / 25);
+		var g = Math.floor((b - f + 1) / 3); 
+		var h = (19 * a + b - d - g + 15) % 30;
+		var i = Math.floor(c / 4);
+		var k = c % 4;
+		var l = (32 + 2 * e + 2 * i - h - k) % 7;
+		var m = Math.floor((a + 11 * h + 22 * l) / 451);
+		var n0 = (h + l + 7 * m + 114)
+		var n = Math.floor(n0 / 31) - 1;
+		var p = n0 % 31 + 1;
+		var date = new Date(year,n,p);
+		return date; 
+	}
+
+	this.loadHolidays = function() {
+		if (!bookingfor.loadedholydays )
+		{
+			var cultureCode = bfi_variable.bfi_cultureCode;
+			if (cultureCode.length>1)
+			{
+				cultureCode = cultureCode.substring(0, 2).toLowerCase();
+			}
+				bookingfor.holydaysTitle = ["New Year","Epiphany","Liberation","Labor Day","Republic Day","Mid-August","All saints","Immaculate Conception","Natale","St. Stephen","Easter","Easter Monday","Easter","Easter Monday"];
+			if (cultureCode== 'it')
+			{
+				bookingfor.holydaysTitle = ["Capodanno","Epifania","Liberazione","Festa dei lavoratori","Festa della Repubblica","Ferragosto","Tutti Santi","Immacolata concezione","Natale","St. Stefano","Pasqua","Lunedì dell'angelo","Pasqua","Lunedì dell'angelo"];
+			}
+				bookingfor.holydays = ["0101","0601","2504","0105","0206","1508","0111","0812","2512","2612"];
+				var date = new Date;
+				// Set the timestamp to midnight.
+				date.setHours( 0, 0, 0, 0 );
+				var currYear =  date.getFullYear();
+				var easterForCurrYear = bookingfor.easterForYear( currYear );
+				var easterForNextYear = bookingfor.easterForYear( currYear+1 );
+				
+				bookingfor.holydays.push(("0" + easterForCurrYear.getDate()).slice(-2) + "" + ("0" + (easterForCurrYear.getMonth()+1)).slice(-2)+ easterForCurrYear.getFullYear()); 
+				easterForCurrYear.setDate(easterForCurrYear.getDate() + 1);
+				bookingfor.holydays.push(("0" + easterForCurrYear.getDate()).slice(-2) + "" + ("0" + (easterForCurrYear.getMonth()+1)).slice(-2)+ easterForCurrYear.getFullYear()); 
+				bookingfor.holydays.push(("0" + easterForNextYear.getDate()).slice(-2) + "" + ("0" + (easterForNextYear.getMonth()+1)).slice(-2)+ easterForNextYear.getFullYear()); 
+				easterForNextYear.setDate(easterForNextYear.getDate() + 1);
+				bookingfor.holydays.push(("0" + easterForNextYear.getDate()).slice(-2) + "" + ("0" + (easterForNextYear.getMonth()+1)).slice(-2)+ easterForNextYear.getFullYear()); 
+			bookingfor.loadedholydays =true;
+		}
+	}
+
 	this.checkAdsBlocked = function() {
 		if (!bookingfor.adsBlockedChecked )
 		{
@@ -1009,6 +1064,7 @@ jQuery(document).ready(function() {
 		});
 
 		bookingfor.checkAdsBlocked();
+		bookingfor.loadHolidays();
 
 });      
      
@@ -1318,3 +1374,57 @@ function bfi_updateQuoteService() {
 
 
 }
+/* jQuery UI dialog clickoutside */
+
+/*
+The MIT License (MIT)
+
+Copyright (c) 2013 - AGENCE WEB COHERACTIO
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+jQuery.widget( 'ui.dialog', jQuery.ui.dialog, {
+    options: {
+        // Determine if clicking outside the dialog shall close it
+        clickOutside: false,
+        // Element (id or class) that triggers the dialog opening 
+        clickOutsideTrigger: ''
+    },
+      open: function() {
+          var clickOutsideTriggerEl = jQuery( this.options.clickOutsideTrigger ),
+              that = this;
+            if (this.options.clickOutside){
+                  // Add document wide click handler for the current dialog namespace
+                  jQuery(document).on( 'click.ui.dialogClickOutside' + that.eventNamespace, function(event){
+                      var $target = jQuery(event.target);
+                      if ( $target.closest(jQuery(clickOutsideTriggerEl)).length === 0 &&
+                           $target.closest(jQuery(that.uiDialog)).length === 0){
+                        that.close();
+                      }
+                  });
+            }
+            // Invoke parent open method
+            this._super();
+      },
+      close: function() {
+        // Remove document wide click handler for the current dialog
+        jQuery(document).off( 'click.ui.dialogClickOutside' + this.eventNamespace );
+        // Invoke parent close method 
+        this._super();
+      },  
+});

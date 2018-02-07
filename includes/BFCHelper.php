@@ -1490,6 +1490,8 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 			$pars['merchantTagIds'] = !empty($params['merchantTagIds']) ? $params['merchantTagIds']:"";
 			$pars['merchantIds'] = !empty($params['merchantIds']) ? $params['merchantIds']:"";
 
+			$pars['variationPlanIds'] = !empty($params['variationPlanIds']) ? $params['variationPlanIds']:"";
+
 			if(isset($params['merchantId'])){
 				$pars['merchantId'] = $params['merchantId'];
 			}

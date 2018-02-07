@@ -25,6 +25,28 @@ $merchantResults = $currParam['merchantResults'];
 $condominiumsResults = $currParam['condominiumsResults'];
 
 ?>
+	<?php 
+	$variationPlanIds = isset($currParam['variationPlanIds']) ? $currParam['variationPlanIds'] : '';
+	if (!empty($variationPlanIds )) {
+	    
+	$offers = json_decode(BFCHelper::getDiscountDetails($variationPlanIds,$language));
+	
+	foreach ($offers as $offer ) {
+		if (!empty($offer)){ ?>
+		<div class="bfi-content">
+			<div class="bfi-title-name"><h1><?php echo  $offer->Name?></h1> </div>
+			<?php if (!empty($offer->Description)) {?>
+			<div class="bfi-description">
+					<?php echo BFCHelper::getLanguage($offer->Description, $language, null, array( 'striptags'=>'striptags', 'bbcode'=>'bbcode','ln2br'=>'ln2br')); ?>
+			</div>
+			<?php } ?>
+		</div>
+		<div class="bfi-clearfix "></div>
+		<?php 
+			} 
+		}
+	}
+	?>
 <div id="bfi-merchantlist"> 
 	<?php if ($total > 0){ ?>
 	<?php 
@@ -272,6 +294,7 @@ jQuery(document).ready(function() {
 			}
 		}
 	}
+	jQuery(".bfi-description").shorten(shortenOption);
 });
 
 	function showResponse(responseText, statusText, xhr, $form)  { 

@@ -1058,8 +1058,7 @@ function updateTitle<?php echo $currModID ?>(classToAdd,classToRemove,title) {
 		jQuery("#ui-datepicker-div").addClass(classToAdd);
 		jQuery("#ui-datepicker-div").removeClass(classToRemove);
 
-		jQuery("#ui-datepicker-div div.bfi-title").remove();
-		jQuery("#ui-datepicker-div").prepend( "<div class=\"bfi-title\">"+title+"</div>" );
+		jQuery("#ui-datepicker-div").prepend( "<div class=\"bfi-title-arrow\"></div>" );
 
 		var resbynight = jQuery(jQuery('#<?php echo $checkinId; ?>')).closest("form").find(".resbynighthd").first();
 		var checkindate = jQuery('#<?php echo $checkinId; ?>').val();
@@ -1123,18 +1122,33 @@ function closed<?php echo $currModID ?>(date) {
 	if (jQuery.inArray(month, monthsToDisable) != -1) {
 		dayEnabled = false;
 	}
-
-	arr = [dayEnabled, ''];  
+	var holydayTitle = "";
+	var holydayCss = "";
+	
+	var currDay =  ("0" + date.getDate()).slice(-2) + "" + ("0" + (date.getMonth()+1)).slice(-2);
+	var currIdxHoliday = jQuery.inArray(currDay, bookingfor.holydays);
+//	console.log(currDay);
+	if (currIdxHoliday != -1) {
+		holydayTitle = bookingfor.holydaysTitle[currIdxHoliday];
+		holydayCss = "bfi-date-holidays ";
+	}
+	currDay =  ("0" + date.getDate()).slice(-2) + "" + ("0" + (date.getMonth()+1)).slice(-2) + date.getFullYear();
+	currIdxHoliday = jQuery.inArray(currDay, bookingfor.holydays);
+//	console.log(currDay);
+	if (currIdxHoliday != -1) {
+		holydayTitle = bookingfor.holydaysTitle[currIdxHoliday];
+		holydayCss = "bfi-date-holidays ";
+	}
+	
+	arr = [dayEnabled, holydayCss, holydayTitle];  
 	if(check.getTime() == from.getTime()) {
-
-		arr = [dayEnabled, 'date-start-selected', 'date-selected'];
+		arr = [dayEnabled, holydayCss + ' date-start-selected', holydayTitle ];
 	}
 	if(check.getTime() == to.getTime()) {
-
-		arr = [dayEnabled, 'date-end-selected', 'date-selected'];  
+		arr = [dayEnabled, holydayCss + ' date-end-selected', holydayTitle];  
 	}
 	if(check > from && check < to) {
-		arr = [dayEnabled, 'date-selected', 'date-selected'];
+		arr = [dayEnabled, holydayCss + ' date-selected', holydayTitle];
 	}
 	return arr;
 }

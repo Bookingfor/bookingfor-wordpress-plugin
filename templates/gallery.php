@@ -123,7 +123,7 @@ jQuery(document).ready(function() {
 
 	jQuery('.bfi-showall, .bfi-launch-fullscreen').click(function() {
 		openAt =  jQuery(this).attr('data-index') || 0;
-		console.log(openAt);
+//		console.log(openAt);
 		jQuery(this).magnificPopup('goTo', Number(openAt));
 	});
 

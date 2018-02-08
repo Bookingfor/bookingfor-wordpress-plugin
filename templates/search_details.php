@@ -1847,6 +1847,10 @@ var allStays = <?php echo json_encode($allRatePlans) ?>;
 
 		jQuery(".bfi-percent-discount").on("click", function (e) {
 			e.preventDefault();
+			var bfi_wuiP_width= 400;
+			if(jQuery(window).width()<bfi_wuiP_width){
+				bfi_wuiP_width = jQuery(window).width()*0.7;
+			}
 			var showdiscount = function (obj, text) {
 								obj.find("i").first().switchClass("fa-spinner fa-spin","fa-question-circle")
 								obj.webuiPopover({
@@ -1857,6 +1861,7 @@ var allStays = <?php echo json_encode($allRatePlans) ?>;
 									dismissible:true,
 									trigger:'manual',
 									type:'html',
+									width : bfi_wuiP_width,
 									style:'bfi-webuipopover'
 								});
 								obj.webuiPopover('show');

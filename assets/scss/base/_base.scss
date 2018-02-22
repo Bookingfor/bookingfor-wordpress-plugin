@@ -277,7 +277,7 @@ a.bfi-avg-value, a.bfi-avg-value:link, a.bfi-avg-value:hover {
     padding: 6px;
 	&:after {
 		display: inline-block;
-		font-family: FontAwesome;
+		font-family: $font-family-icon;
 		content: "\f0dd";
 		margin-left: 5px;
 		transform: translate(0px, -2px);
@@ -358,7 +358,7 @@ a.bfi-avg-value, a.bfi-avg-value:link, a.bfi-avg-value:hover {
 	&:before {
 		display: inline-block;
 		margin-right: 10px;
-		font-family: FontAwesome;
+		font-family: $font-family-icon;
 		content: "\f0de";
 		transform: rotate(90deg);
 	}
@@ -386,7 +386,7 @@ a.bfi-avg-value, a.bfi-avg-value:link, a.bfi-avg-value:hover {
 		display: inline-block;
 		width: 20px;
 		height: 15px;
-		font-family: FontAwesome;
+		font-family: $font-family-icon;
 		content: "\f096";
 		color: $color11;
 		font-weight: $font-weight-bold;
@@ -405,7 +405,7 @@ a.bfi-avg-value, a.bfi-avg-value:link, a.bfi-avg-value:hover {
 			display: inline-block;
 			width: 20px;
 			height: 15px;
-			font-family: FontAwesome;
+			font-family: $font-family-icon;
 			font-size: $font-size-small;
 			content: "\f046";
 			font-weight: $font-weight-bold;
@@ -725,7 +725,7 @@ a.bfi-resname:link, a.bfi-resname:hover, .bfi-resname a {
     color: $color2;
     display: block;
 	&:before {
-		font-family: FontAwesome;
+		font-family: $font-family-icon;
 		content: "\f00c";
 		margin-right: 5px;
 	}
@@ -734,13 +734,13 @@ a.bfi-resname:link, a.bfi-resname:hover, .bfi-resname a {
     color: $color4;
     display: block;
 	&:before {
-		font-family: FontAwesome;
+		font-family: $font-family-icon;
 		content: "\f00c";
 		margin-right: 5px;
 	}
 }
 .bfi-bookingenquiry:before {
-    font-family: FontAwesome;
+    font-family: $font-family-icon;
     content: "\f0e0";
     margin-right: 5px;
 }
@@ -750,12 +750,12 @@ a.bfi-resname:link, a.bfi-resname:hover, .bfi-resname a {
 	}
 }
 .bfi-meals-bb:before {
-    font-family: FontAwesome;
+    font-family: $font-family-icon;
     content: "\f0f4";
     margin-right: 5px;
 }
 .bfi-meals-fb:before {
-    font-family: FontAwesome;
+    font-family: $font-family-icon;
     content: "\f0f5";
     margin-right: 5px;
 }
@@ -926,6 +926,9 @@ a.bfi-resname:link, a.bfi-resname:hover, .bfi-resname a {
 	}
 	& .bfi-showperson, label {
 		display: none;
+	}
+	& .bfi-container {
+		width: auto;
 	}
 }
 .bfi-form-vertical {
@@ -1152,7 +1155,7 @@ div.star-rating{background:transparent!important;overflow:hidden!important}
     vertical-align: middle;
 	&:before {
 		content: "\f023";
-		font-family: FontAwesome;
+		font-family: $font-family-icon;
 		padding: 7px 10px 7px 5px;
 		color: $color1;
 		font-weight: bold;
@@ -1623,7 +1626,7 @@ label.bfi-lblcheckzone {
 		padding: 6px;
 		&:after{
 			display: inline-block;
-			font-family: FontAwesome;
+			font-family: $font-family-icon;
 			content: "\f0dd";
 			margin-left: 5px;
 			transform: translate(0px, -2px);
@@ -1677,7 +1680,7 @@ display:none;
 	position: absolute;
 	top: 0px;
 	left: 0;
-	color: #fff;
+	color: $color13;
 	line-height: 40px;
 	font-size: 17px;
 	text-align: center;
@@ -1688,6 +1691,96 @@ display:none;
 	padding: 0 20px;
 	background-size: cover;
 }
+
+
+.bfi-check-more-slider{
+	margin:auto;
+	font-size: $font-size-medium;
+ }
+
+.bfi-check-more-slider .slick-arrow{
+	width: 20px;
+	height: 60px;
+}
+.bfi-check-more-slider .slick-prev:before, .bfi-check-more-slider .slick-next:before {
+	font-family: $font-family-icon;
+	font-size: $font-size-xxx-large;
+	line-height: 1;
+	opacity: .75;
+	color: $color2;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.bfi-check-more-slider .slick-prev:before {
+	content: '\f104';
+}
+.bfi-check-more-slider .slick-next:before {
+	content: '\f105';
+}
+.bfi-check-more-slider .slick-prev.slick-disabled:before,
+.bfi-check-more-slider .slick-next.slick-disabled:before
+{
+    opacity: .1;
+}
+.bfi-check-more-slider a{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin: 0 5px 0 0;
+    max-width: 23%;
+    height: auto;
+    border: 1px solid $color20;
+    border-radius: 3px;
+    color: $color21 !important;
+    vertical-align: bottom;
+    text-align: center;
+    text-decoration: none !important;
+    font-weight: normal !important;
+	&:hover, &:focus {
+		outline: 0;
+		outline-offset: 0;
+	}
+}
+.bfi-check-more-dates{
+    display: block;
+    margin: .3em;
+    padding: 0 .2em .3em .2em;
+    border-bottom: 1px solid $color14;
+}
+.bfi-check-more-los{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    display: block;
+    font-style: italic;
+}
+.bfi-check-more-price{
+    display: block;
+    padding: .6em;
+    background-color: $color20;
+    color: $color13;
+}
+
 @media (min-width: 768px) {
 	.bfi-grid-group-item.bfi-list-group-item .bfi-sameheight {
 		min-height: 100%;
@@ -1725,5 +1818,25 @@ display:none;
 @media (max-width: 440px) {
 	.bfi-calendar.ui-datepicker-multi .ui-datepicker-group {
 		float: none;
+	}
+}
+@media (max-width: 767px) {
+	.bfi-hidden-xs {
+		display: none !important;
+	}
+}
+@media (min-width: 768px) and (max-width: 991px) {
+	.bfi-hidden-sm {
+		display: none !important;
+	}
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+	.bfi-hidden-md {
+		display: none !important;
+	}
+}
+@media (min-width: 1200px) {
+	.bfi-hidden-lg {
+		display: none !important;
 	}
 }

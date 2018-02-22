@@ -65,6 +65,7 @@
 	}
 	&.ui-widget-content {
 		background: $color13;
+		line-height: 18px;
 		padding: 0; 
 		color: $color12;
 		border: 1px solid #bababa;
@@ -158,12 +159,13 @@
 		border-collapse: collapse;
 		margin: 0 0 .4em;
 		border: 0;
+		line-height: 18px;
 		}
 		& td {
-			padding: 1px;
+			padding: 0px;
 			& a, & span {
 				text-align: center;
-				padding: 5px;
+				padding: 4px;
 			}
 		}
 		& .ui-datepicker-prev span, & .ui-datepicker-next span {

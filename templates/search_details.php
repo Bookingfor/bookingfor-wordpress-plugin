@@ -2,6 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+define( "DONOTCACHEPAGE", true ); // Do not cache this page
 
 $currentCartConfiguration = null;
 $cartLocked = false;
@@ -195,9 +196,12 @@ if(!empty($variationPlanId)){
 		$variationPlanMaxDuration = $offer->MaxDuration;
 		$checkoutspan = '+'.$offer->MinDuration.' day';
 		$dateparsed = BFCHelper::parseJsonDate($offer->FirstAvailableDate, 'Y-m-d');
+		$dateparsedend = BFCHelper::parseJsonDate($offer->LastAvailableDate, 'Y-m-d');
+		
 		$startDate = DateTime::createFromFormat('Y-m-d',$dateparsed);
-		$endDate2 = clone $startDate;
-		$endDate2->modify('+'.$offer->MaxDuration.' day'); 
+		$endDate = DateTime::createFromFormat('Y-m-d',$dateparsedend);
+		$endDate2 = clone $endDate;
+//		$endDate2->modify('+'.$offer->MaxDuration.' day'); 
 		
 		if(empty(BFCHelper::getVar('refreshcalc',''))){
 			$checkin = DateTime::createFromFormat('Y-m-d',$dateparsed);
@@ -2139,8 +2143,8 @@ function checkDateBooking<?php echo $checkinId?>($, obj, selectedDate) {
 
 <?php if(!empty($variationPlanMaxDuration)) { ?>
 	var offsetEndDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-	offsetEndDate.setDate(offsetEndDate.getDate() + <?php echo $variationPlanMaxDuration-1 //night ?>);
-	$("#<?php echo $checkoutId?>").datepicker("option", "maxDate", offsetDate);
+	offsetEndDate.setDate(offsetEndDate.getDate() + <?php echo $variationPlanMaxDuration //night ?>);
+	$("#<?php echo $checkoutId?>").datepicker("option", "maxDate", offsetEndDate);
 <?php } ?>
 
 }
@@ -2686,6 +2690,8 @@ jQuery(document).ready(function () {
 				of: jQuery(this)
 			},
 			dialogClass: 'bfi-dialog bfi-guest',
+			clickOutside: true,
+			clickOutsideTrigger: ".bfi-showperson-text-calculator",
 			open: function( event, ui ) {
 					jQuery("#childrencalculator").change(function() {
 						jQuery('#showmsgchildagecalculator').val(0);

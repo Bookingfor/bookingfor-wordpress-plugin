@@ -76,6 +76,7 @@ $pars = BFCHelper::getSearchParamsSession();
 
 $newsearch = isset($pars['newsearch']) ? $pars['newsearch'] : '0';
 
+
 if (empty($GLOBALS['bfSearched'])) {
 	 if($newsearch == "1"){
 		BFCHelper::setFilterSearchParamsSession(null);
@@ -87,9 +88,9 @@ if (empty($GLOBALS['bfSearched'])) {
 		$start = 0;
 		if (isset($pars['checkin']) && isset($pars['checkout'])){
 			$now = new DateTime();
+			$now->setTime(0,0,0);
 			$checkin = isset($pars['checkin']) ? $pars['checkin'] : new DateTime();
 			$checkout = isset($pars['checkout']) ? $pars['checkout'] : new DateTime();
-
 			$availabilitytype = isset($pars['availabilitytype']) ? $pars['availabilitytype'] : "1";
 			
 			$availabilitytype = explode(",",$availabilitytype);

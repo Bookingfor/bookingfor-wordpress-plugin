@@ -37,6 +37,7 @@ $currSorting = "";
 
 if (isset($pars['checkin']) && isset($pars['checkout'])){
 	$now = new DateTime();
+	$now->setTime(0,0,0);
 	$checkin = isset($pars['checkin']) ? $pars['checkin'] : new DateTime();
 	$checkout = isset($pars['checkout']) ? $pars['checkout'] : new DateTime();
 

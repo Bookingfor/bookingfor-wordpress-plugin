@@ -12,6 +12,8 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
+define( "DONOTCACHEPAGE", true ); // Do not cache this page
+
 $language = $GLOBALS['bfi_lang'];
 $languageForm ='';
 $base_url = get_site_url();

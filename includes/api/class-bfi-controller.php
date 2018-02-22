@@ -35,6 +35,7 @@ class BFI_Controller {
 		$task = isset($_REQUEST['task']) ? $_REQUEST['task'] :null ;
 
 		if(!empty($task)){
+			define( "DONOTCACHEPAGE", true ); // Do not cache this page
 			if (method_exists($this, $task)){
 				$message = $this->$task();
 				$simple = isset($_REQUEST['simple']) ? $_REQUEST['simple'] :null ;

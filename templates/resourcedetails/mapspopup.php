@@ -20,7 +20,7 @@ $routeMerchant = $url_merchant_page . $merchant->MerchantId.'-'.BFI()->seoUrl($m
 $accommodationdetails_page = get_post( bfi_get_page_id( 'accommodationdetails' ) );
 $url_resource_page = get_permalink( $accommodationdetails_page->ID );
 $resourceName = BFCHelper::getLanguage($resource->Name, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
-$resourceDescription = BFCHelper::getLanguage($resource->Description, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'striptags'=>'striptags'));
+$resourceDescription = BFCHelper::getLanguage($resource->Description, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'bbcode'=>'bbcode', 'striptags'=>'striptags'));
 $uri = $url_resource_page.$resource->ResourceId.'-'.BFI()->seoUrl($resourceName);
 
 $isportal = COM_BOOKINGFORCONNECTOR_ISPORTAL;

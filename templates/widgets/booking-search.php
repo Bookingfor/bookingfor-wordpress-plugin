@@ -1729,6 +1729,8 @@ function showhideCategories<?php echo $currModID ?>() {
 				at: "center bottom",
 				of: jQuery(this)
 			},
+			clickOutside: true,
+			clickOutsideTrigger: ".bfi-showperson-text",
 			dialogClass: 'bfi-dialog bfi-guest'
 		});
     })

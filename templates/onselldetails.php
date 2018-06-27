@@ -189,14 +189,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 					$routeThanks = $uriMerchant .'/'._x('thankspopup', 'Page slug', 'bfi' );
 					$routeThanksKo = $uriMerchant .'/'._x('errors', 'Page slug', 'bfi' );
 					$checkoutspan = '+1 day';
-					$checkin = new DateTime();
-					$checkout = new DateTime();
+					$checkin = new DateTime('UTC');
+					$checkout = new DateTime('UTC');
 					$paxes = 2;
 					$pars = BFCHelper::getSearchParamsSession();
 					if (!empty($pars)){
 
-						$checkin = isset($pars['checkin']) ? $pars['checkin'] : new DateTime();
-						$checkout = isset($pars['checkout']) ? $pars['checkout'] : new DateTime();
+						$checkin = isset($pars['checkin']) ? $pars['checkin'] : new DateTime('UTC');
+						$checkout = isset($pars['checkout']) ? $pars['checkout'] : new DateTime('UTC');
 
 						if (!empty($pars['paxes'])) {
 							$paxes = $pars['paxes'];

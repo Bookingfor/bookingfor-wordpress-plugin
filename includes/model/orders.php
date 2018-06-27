@@ -73,14 +73,15 @@ class BookingForConnectorModelOrders
 	}
 
 	public function GetOrdersByExternalUserCount($culturecode='') {
-		$uid = get_current_user_id();
-		if(empty($uid )){
-			return 0;
-		}
-		$user = get_user_by('id', $uid);
-		if (!empty($user->ID)) {
-		  $userId = $user->ID."|". $user->user_login . "|" . $_SERVER["SERVER_NAME"];
-		}
+//		$uid = get_current_user_id();
+//		if(empty($uid )){
+//			return 0;
+//		}
+//		$user = get_user_by('id', $uid);
+//		if (!empty($user->ID)) {
+//		  $userId = $user->ID."|". $user->user_login . "|" . $_SERVER["SERVER_NAME"];
+//		}
+		$userId = BFCHelper::bfi_get_userId();
 		$data = array(
 			'UserId' => BFCHelper::getQuotedString($userId),
 			'cultureCode' => BFCHelper::getQuotedString($culturecode),

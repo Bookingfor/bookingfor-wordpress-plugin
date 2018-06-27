@@ -40,8 +40,13 @@ while ($jdate > $endjdate) {
 $routeThanks = $routeMerchant .'/'. _x('thanks', 'Page slug', 'bfi' );
 $routeThanksKo = $routeMerchant .'/'. _x('errors', 'Page slug', 'bfi' );
 
-$privacy = BFCHelper::GetPrivacy($language);
-$additionalPurpose = BFCHelper::GetAdditionalPurpose($language);
+	$routePrivacy = str_replace("{language}", substr($language,0,2), COM_BOOKINGFORCONNECTOR_PRIVACYURL);
+	$routeTermsofuse = str_replace("{language}", substr($language,0,2), COM_BOOKINGFORCONNECTOR_TERMSOFUSEURL);
+
+	$infoSendBtn = sprintf(__('Choosing <b>Send</b> means that you agree to <a href="%3$s" target="_blank">Terms of use</a> of %1$s and <a href="%2$s" target="_blank">privacy and cookies statement.</a>.' ,'bfi'),$sitename,$routePrivacy,$routeTermsofuse);
+
+//$privacy = BFCHelper::GetPrivacy($language);
+//$additionalPurpose = BFCHelper::GetAdditionalPurpose($language);
 
 $hashorder = BFCHelper::getVar('hash');
 if (empty($hashorder)){
@@ -70,9 +75,9 @@ if (!empty($hashorder)){
 	//		controllo se esiste l'ordine
 			if(isset($order) && ($order->Status===5 || $order->Status===20)){
 				$dateCheckin = BFCHelper::parseJsonDate($order->StartDate,'Y-m-d');
-				$dateCheckin  = new DateTime($dateCheckin);
+				$dateCheckin  = new DateTime($dateCheckin,new DateTimeZone('UTC'));
 				$dateCheckout = BFCHelper::parseJsonDate($order->EndDate,'Y-m-d');
-				$dateCheckout  = new DateTime($dateCheckout);
+				$dateCheckout  = new DateTime($dateCheckout,new DateTimeZone('UTC'));
 				$expirationjdate  = new DateTime('now -1 month'); // 3:20 PM, December 1st, 2012
 				$checkin = $dateCheckin->format('Ym01');
 																														
@@ -332,45 +337,25 @@ $merchantName = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], nu
 			</div>
 		</div>
 
-		<div class="bfi-row" style="display:none;">
-			<div class="bfi-col-md-12">
-				<label id="mbfcPrivacyTitle"><?php _e('Personal data treatment', 'bfi') ?></label>
-				<textarea id="mbfcPrivacyText" name="form[privacy]" class="bfi-col-md-12" style="height:200px;" readonly ><?php echo $privacy ?></textarea>    
-			</div>
-		</div><!--/row-->
-		<div class="bfi-row">
-             <div class="bfi-col-md-12 bfi-checkbox-wrapper">
-		 	     <input name="form[accettazione]" class="checkbox" id="agree" aria-invalid="true" aria-required="true" type="checkbox" required title="<?php _e('Mandatory', 'bfi') ?>">
-			     <label  class="bfi-agreeprivacy"><?php _e('I accept personal data treatment', 'bfi') ?></label>
-			</div>
-		</div><!--/row-->
-		<div class="bfi-row" style="display:none;">
-			<div class="bfi-col-md-12">
-				<label id="mbfcAdditionalPurposeTitle"><?php _e('Additional purposes', 'bfi') ?></label>
-				<textarea id="mbfcAdditionalPurposeText" name="form[additionalPurpose]" class="bfi-col-md-12" style="height:200px;" readonly ><?php echo $additionalPurpose ?></textarea>    
-			</div>
-		</div><!--/row-->
-		<div class="bfi-row" style="display:<?php echo empty($additionalPurpose)?"none":"";?>">
-			<div class="bfi-col-md-12 bfi-checkbox-wrapper">
-				<input name="form[accettazioneadditionalPurpose]" class="checkbox" id="agreeadditionalPurpose" aria-invalid="true" aria-required="true" required type="checkbox" title="<?php _e('Mandatory', 'bfi') ?>">
-				<label class="agreeadditionalPurpose"><?php _e('I accept additional purposes', 'bfi') ?></label>
-			</div>
+		<div class=" bfi-checkbox-wrapper">
+			<input name="form[optinemail]" id="optinemail" type="checkbox">
+			<label for="optinemail"><?php echo sprintf(__('Send me promotional emails from %1$s', 'bfi'),$sitename) ?></label>
 		</div>
-			<?php bfi_display_captcha($idrecaptcha);  ?>
-<div id="recaptcha-error-<?php echo $idrecaptcha ?>" style="display:none"><?php _e('Mandatory', 'bfi') ?></div>
-		  		   
 		<div class="bfi-row">
 			<div class="bfi-col-md-12 bfi-checkbox-wrapper">
 				<input type="checkbox" value="true" name="privacyrating" id="privacyrating" required="required">
 				<label for="privacyrating"><?php echo sprintf( __('I certify that this review is based on my own experience and is my genuine opinion of this accommodation, and that I have no personal or business relationship with this establishment, and have not been offered any incentive or payment originating from the establishment to write this review. I understand that %s has a zero-tolerance policy on fake reviews.', 'bfi'),$sitename); ?></label>    
 			</div>
 		</div>
+		<?php bfi_display_captcha($idrecaptcha);  ?>
+		<div id="recaptcha-error-<?php echo $idrecaptcha ?>" style="display:none"><?php _e('Mandatory', 'bfi') ?></div>
 
-		<div class="bfi-row">
-			<div class="bfi-col-md-12">
-				<button type="submit" class="bfi-btn"><?php _e('send', 'bfi'); ?></button>
+		<div class="bfi-row bfi-footer-book" >
+			<div class="bfi-col-md-10">
+			<?php echo $infoSendBtn ?>
 			</div>
-		</div><!--/row-->
+			<div class="bfi-col-md-2 bfi_footer-send"><button type="submit" class="bfi-btn"><?php _e('Send', 'bfi') ?></button></div>
+		</div>
 	</div>
 </form>
 <?php }else{ ?>

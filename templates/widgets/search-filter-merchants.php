@@ -394,7 +394,7 @@ echo $before_widget;
 	<?php } ?>	
 
 </div>
-<div class="bfi-clearboth"></div>
+<div class="bfi-clearfix"></div>
 	<input type="hidden" name="filters[rating]" id="filtersRatingsHidden" value="<?php echo $filtersRatingValue ?>" />
 	<input type="hidden" name="filters[avg]" id="filtersAvgHidden" value="<?php echo $filtersAvgValue ?>" />
 	<input type="hidden" name="filters[merchantsservices]" id="filtersMerchantsServicesHidden" value="<?php echo $filtersMerchantsServicesValue ?>" />
@@ -468,7 +468,7 @@ function bfi_applyfilterMerchantdata(){
 
 			jQuery('.bfi-filteroptions a').on('click',function() {
 <?php 
-if(COM_BOOKINGFORCONNECTOR_EECENABLED == 1) {
+if(COM_BOOKINGFORCONNECTOR_GAENABLED == 1 && !empty(COM_BOOKINGFORCONNECTOR_GAACCOUNT) && COM_BOOKINGFORCONNECTOR_EECENABLED == 1){
 ?>
 //				currValue = jQuery(this).attr("rel");
 				currValue = jQuery(this).find(".bfi-filter-label").first().text(); 
@@ -492,5 +492,5 @@ jQuery(document).ready(function() {
 });  
 </script>
 <?php echo $after_widget; ?>
-<div class="bfi-clearboth"></div>
+<div class="bfi-clearfix"></div>
 <?php } ?>

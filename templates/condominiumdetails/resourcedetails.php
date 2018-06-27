@@ -319,7 +319,7 @@ if (!empty($merchant->LogoUrl)){
 			</div>
 		<?php endif; ?>
 	</div>
-	<div class="bfi-clearboth"></div>
+	<div class="bfi-clearfix"></div>
 	<?php  
 	bfi_get_template("merchant_small_details.php",array("resource_id"=>$resource_id,"resource"=>$resource,"merchant"=>$merchant,"routeMerchant"=>$routeMerchant));	
 	?>

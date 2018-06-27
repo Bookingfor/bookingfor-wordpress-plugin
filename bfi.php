@@ -2,7 +2,7 @@
 /*
 Plugin Name: BookingFor
 Description: BookingFor integration Code for Wordpress
-Version: 3.2.3
+Version: 3.2.5
 Author: BookingFor
 Author URI: http://www.bookingfor.com/
 */
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'BookingFor' ) ) :
 final class BookingFor {
 	
-	public $version = '3.2.3';
+	public $version = '3.2.5';
 	public $currentOrder = null;
 	
 	protected static $_instance = null;
@@ -123,6 +123,14 @@ final class BookingFor {
 			$subscriptionkey = str_replace("/", "", $subscriptionkey);
 		}
 		$bfiBaseUrl = 'https://' . $subscriptionkey . '.bookingfor.com';
+//		$bfiBaseUrl = 'http://localhost:58892';
+//		$bfiBaseUrl =  'http://' . $subscriptionkey . '.bookingfor.com:58892';
+
+		$cachetime = get_option('cachetime ', 3600); // 1 hour default
+		$cachedir = get_option('cachedir', WP_CONTENT_DIR . '/cache/bookingfor');
+
+		$this->define( 'COM_BOOKINGFORCONNECTOR_CACHEDIR', $cachedir );
+		$this->define( 'COM_BOOKINGFORCONNECTOR_CACHETIME', $cachetime );
 
 		$this->define( 'COM_BOOKINGFORCONNECTOR_SUBSCRIPTION_KEY', $subscriptionkey );
 		$this->define( 'COM_BOOKINGFORCONNECTOR_API_KEY', $apikey );
@@ -130,6 +138,12 @@ final class BookingFor {
 		$this->define( 'COM_BOOKINGFORCONNECTOR_WSURL', $bfiBaseUrl .'/modules/bookingfor/services/bookingservice.svc' );
 		$this->define( 'COM_BOOKINGFORCONNECTOR_ORDERURL', $bfiBaseUrl .'/Public/{language}/orderlogin' );
 		$this->define( 'COM_BOOKINGFORCONNECTOR_PAYMENTURL', $bfiBaseUrl .'/Public/{language}/payment/' );
+		$this->define( 'COM_BOOKINGFORCONNECTOR_PRIVACYURL', $bfiBaseUrl .'/Public/{language}/privacy' );
+		$this->define( 'COM_BOOKINGFORCONNECTOR_TERMSOFUSEURL', $bfiBaseUrl .'/Public/{language}/termsofuse' );
+		$this->define( 'COM_BOOKINGFORCONNECTOR_ACCOUNTLOGIN', $bfiBaseUrl .'/Public/{language}/?openloginpopup=1' );
+		$this->define( 'COM_BOOKINGFORCONNECTOR_ACCOUNTREGISTRATION', $bfiBaseUrl .'/Public/{language}/Account/Register' );
+		$this->define( 'COM_BOOKINGFORCONNECTOR_ACCOUNTFORGOTPASSWORD', $bfiBaseUrl .'/Public/{language}/Account/sendforgotpasswordlink' );
+
 		$this->define( 'COM_BOOKINGFORCONNECTOR_CURRENTCURRENCY', $bfi_currentcurrency );
 		$this->define( 'COM_BOOKINGFORCONNECTOR_MAXATTACHMENTFILES', 3 );
 		

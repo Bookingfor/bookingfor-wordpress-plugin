@@ -26,11 +26,13 @@ $pages = 0;
 if($total>0){
 	$pages = ceil($total / COM_BOOKINGFORCONNECTOR_ITEMPERPAGE);
 }
-$rating = $merchant->Rating;
+$hasSuperior = !empty($merchant->RatingSubValue);
+$rating = (int)$merchant->Rating;
 if ($rating>9 )
 {
 	$rating = $rating/10;
-}
+	$hasSuperior = ($MerchantDetail->Rating%10)>0;
+} 
 
 /*---------------IMPOSTAZIONI SEO----------------------*/
 	$payload["@type"] = "Organization";
@@ -52,7 +54,10 @@ if ($rating>9 )
 	<div class="bfi-title-name bfi-hideonextra"><h1><?php echo  $merchant->Name?></h1>
 		<span class="bfi-item-rating">
 			<?php for($i = 0; $i < $rating; $i++) { ?>
-			<i class="fa fa-star"></i>
+				<i class="fa fa-star"></i>
+			<?php } ?>
+			<?php if ($hasSuperior) { ?>
+				&nbsp;S
 			<?php } ?>
 		</span>
 	</div>
@@ -125,7 +130,7 @@ if ($rating>9 )
 		<?php _e('No Results Found', 'bfi'); ?>
 	</div>
 	<?php } ?>	
-	<div class="bfi-clearboth"></div>
+	<div class="bfi-clearfix"></div>
 	<?php  
 		bfi_get_template("merchant_small_details.php",array("merchant"=>$merchant,"routeMerchant"=>$routeMerchant));	
 	?>

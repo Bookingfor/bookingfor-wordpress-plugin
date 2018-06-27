@@ -292,7 +292,7 @@ if (!empty($merchant->LogoUrl)){
 			</div>
 		<?php } ?>
 	</div>
-	<div class="bfi-clearboth"></div>
+	<div class="bfi-clearfix"></div>
 	<?php  
 	bfi_get_template("merchant_small_details.php",array("resource_id"=>$resource_id,"merchant"=>$merchant,"routeMerchant"=>$routeMerchant));	
 	?>

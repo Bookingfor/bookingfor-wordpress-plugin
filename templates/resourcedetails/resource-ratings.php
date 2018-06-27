@@ -91,13 +91,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 				
 				
 				$creationDate = BFCHelper::parseJsonDate($rating->CreationDate,'Y-m-d');
-				$jdate  = new DateTime($creationDate);
+				$jdate  = new DateTime($creationDate,new DateTimeZone('UTC'));
 				$creationDateLabel = __('Reviewed', 'bfi') . ' ' .$jdate->format('d/m/Y');
 			}
 			$checkInDateLabel = "";
 			if (isset($rating->CheckInDate)) {
 				$checkInDate = BFCHelper::parseJsonDate($rating->CheckInDate,'Y-m-d');
-				$jdate  = new DateTime($checkInDate);
+				$jdate  = new DateTime($checkInDate,new DateTimeZone('UTC'));
 				$checkInDateLabel =  __('Stayed', 'bfi') . ' '.date_i18n('F Y',$jdate->getTimestamp());
 
 			}
@@ -124,7 +124,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 					if(!empty($replydate)){
 //					$jdatereply  = new JDate(strtotime($replydate),2); // 3:20 PM, December 1st, 2012
-					$jdatereply  = DateTime::createFromFormat('Ymd', $replydate);
+					$jdatereply  = DateTime::createFromFormat('Ymd', $replydate,new DateTimeZone('UTC'));
 
 					$replydateLabel =sprintf(__( 'Replied on %1s', 'bfi' ), $jdatereply->format('d/m/Y'));
 					}

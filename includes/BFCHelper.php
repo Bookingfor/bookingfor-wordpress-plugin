@@ -42,6 +42,11 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 		private static $defaultCheckMode = 5;
 		private static $favouriteCookieName = "BFFavourites";
 		private static $ordersCookieName = "BFOrders";
+
+		private static $TwoFactorCookieName = "2faHSTDenabledWP";
+		private static $TwoFactorAuthenticationDeviceExpiration = 30;
+		private static $TwoFactorPrefixClaimName = "TwoFactor.DeviceCode.";
+
 			
 		public static $currencyCode = array(
 			978 => 'EUR',
@@ -448,6 +453,12 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 		public static function getMasterTypologies($onlyEnabled = true) {
 			$model = new BookingForConnectorModelSearch;
 			return $model->getMasterTypologies($onlyEnabled);
+		}
+		public static function GetAlternativeDates($checkin, $duration, $paxes, $paxages, $merchantId, $condominiumId, $resourceId, $cultureCode, $points, $userid, $tagids, $merchantsList, $availabilityTypes, $itemTypeIds, $domainLabel, $merchantCategoryIds = null, $masterTypeIds = null, $merchantTagsIds = null) {
+//			JModelLegacy::addIncludePath(JPATH_ROOT. DIRECTORY_SEPARATOR .'components' . DIRECTORY_SEPARATOR . 'com_bookingforconnector'. DIRECTORY_SEPARATOR . 'models', 'BookingForConnectorModel');
+//			$model = JModelLegacy::getInstance('Search', 'BookingForConnectorModel');
+			$model = new BookingForConnectorModelSearch;
+			return $model->GetAlternativeDates($checkin, $duration, $paxes, $paxages, $merchantId, $condominiumId, $resourceId, $cultureCode, $points, $userid, $tagids, $merchantsList, $availabilityTypes, $itemTypeIds, $domainLabel, $merchantCategoryIds, $masterTypeIds, $merchantTagsIds);
 		}
 		
 		public static function getMerchantGroups() {
@@ -918,11 +929,12 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 				$checkin= NULL, 
 				$resourceId= NULL, 
 				$orderId= NULL, 
-				$label = NULL
+				$label = NULL, 
+				$otherData = NULL
 			) {
 
 			$model = new BookingForConnectorModelRatings;
-			return $model->setRating($name, $city, $typologyid, $email, $nation, $merchantId,$value1, $value2, $value3, $value4, $value5, $totale, $pregi, $difetti, $userId, $cultureCode,$checkin, $resourceId, $orderId, $label);
+			return $model->setRating($name, $city, $typologyid, $email, $nation, $merchantId,$value1, $value2, $value3, $value4, $value5, $totale, $pregi, $difetti, $userId, $cultureCode,$checkin, $resourceId, $orderId, $label, $otherData);
 		}
 
 
@@ -1101,7 +1113,7 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 
 		public static function parseJsonDateTime($date, $format = 'd/m/Y') { 
 			date_default_timezone_set('UTC');
-			return DateTime::createFromFormat($format, BFCHelper::parseJsonDate($date,$format));
+			return DateTime::createFromFormat($format, BFCHelper::parseJsonDate($date,$format),new DateTimeZone('UTC'));
 		}
 
 		public static function parseArrayList($stringList, $fistDelimiter = ';', $secondDelimiter = '|'){
@@ -1177,12 +1189,12 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 		public static function getDefaultParam($param) {
 			switch (strtolower($param)) {
 				case 'checkin':
-					return DateTime::createFromFormat('d/m/Y',self::getStartDate());
-					//return new DateTime();
+					return DateTime::createFromFormat('d/m/Y',self::getStartDate(),new DateTimeZone('UTC'));
+					//return new DateTime('UTC');
 					break;
 				case 'checkout':
-					$co = DateTime::createFromFormat('d/m/Y',self::getStartDate());
-					//$co = new DateTime();
+					$co = DateTime::createFromFormat('d/m/Y',self::getStartDate(),new DateTimeZone('UTC'));
+					//$co = new DateTime('UTC');
 					return $co->modify(self::$defaultDaysSpan);
 					break;
 				case 'duration':
@@ -1255,6 +1267,33 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 			});
 		}
 		
+		public static function getCookie($cookieName, $defaultValue=null) {
+//			$app = JFactory::getApplication();
+//			$cookieValue = $app->input->cookie->get($cookieName, $defaultValue);
+			$cookieValue = $_COOKIE[$cookieName];
+			return $cookieValue;
+		}
+
+		public static function SetTwoFactorCookie($id) {
+			$expire=time()+60*60*24*self::$TwoFactorAuthenticationDeviceExpiration;
+			$ok = setcookie(self::$TwoFactorCookieName, $id, $expire,SITECOOKIEPATH, COOKIE_DOMAIN);
+		}
+		public static function GetTwoFactorCookie() {
+			$twofactorCookie = BFCHelper::getCookie(self::$TwoFactorCookieName);
+			return $twofactorCookie;
+		}
+		public static function DeleteTwoFactorCookie() {
+			setcookie( self::$TwoFactorCookieName, '', 0,SITECOOKIEPATH, COOKIE_DOMAIN);
+			unset( $_COOKIE[self::$TwoFactorCookieName] );
+		}
+
+
+		public static function getLoginTwoFactor($email, $password, $twoFactorAuthCode,$deviceCodeAuthCode) {
+	//J->			JModelLegacy::addIncludePath(JPATH_ROOT. DIRECTORY_SEPARATOR .'components' . DIRECTORY_SEPARATOR . 'com_bookingforconnector'. DIRECTORY_SEPARATOR . 'models', 'BookingForConnectorModel');
+	//J->			$model = JModelLegacy::getInstance('Portal', 'BookingForConnectorModel');
+			$model = new BookingForConnectorModelPortal;
+			return $model->getLoginTwoFactor($email, $password, $twoFactorAuthCode,$deviceCodeAuthCode);
+		}	
 		public static function AddToFavourites($id) {
 			$expire=time()+60*60*24*30;
 			$counter = 1;
@@ -1301,13 +1340,6 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 			return $counter;
 		}
 		
-		public static function getCookie($cookieName, $defaultValue=null) {
-//			$app = JFactory::getApplication();
-//			$cookieValue = $app->input->cookie->get($cookieName, $defaultValue);
-			$cookieValue = $_COOKIE[$cookieName];
-			return $cookieValue;
-		}
-
 		public static function IsInFavourites($id) {
 			$varCook = BFCHelper::getCookie(self::$favouriteCookieName);
 			if (isset($varCook))
@@ -1666,7 +1698,7 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 					if (($strCheckin == null || $strCheckin == '') && (isset($pars['checkin']) && $pars['checkin'] != null && $pars['checkin'] != '')) {
 						return clone $pars['checkin'];
 					}
-					$checkin = DateTime::createFromFormat('d/m/Y',$strCheckin);
+					$checkin = DateTime::createFromFormat('d/m/Y',$strCheckin,new DateTimeZone('UTC'));
 					if ($checkin===false && isset($default)) {
 						$checkin = $default;
 					}
@@ -1677,15 +1709,15 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 					if (($strCheckout == null || $strCheckout == '') && (isset($pars['checkout']) && $pars['checkout'] != null && $pars['checkout'] != '')) {
 						return clone $pars['checkout'];
 					}
-					$checkout = DateTime::createFromFormat('d/m/Y',$strCheckout);
+					$checkout = DateTime::createFromFormat('d/m/Y',$strCheckout,new DateTimeZone('UTC'));
 					if ($checkout===false && isset($default)) {
 						$checkout = $default;
 					}
 					return $checkout;
 					break;
 				case 'duration':
-					$ci = self::getStayParam('checkin', new DateTime());
-					$dco = new DateTime();
+					$ci = self::getStayParam('checkin', new DateTime('UTC'));
+					$dco = new DateTime('UTC');
 					$co = self::getStayParam('checkout', $dco->modify('+7 days'));
 					$interval = $co->diff($ci);
 					return $interval->d;
@@ -2029,7 +2061,7 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 					'VatCode' => $VatCode,
 					'Culture' => $Culture,
 					'UserCulture' => $UserCulture,
-					'BirthDate' => isset($formData['Birthday']) ? DateTime::createFromFormat('d/m/Y', $formData['Birthday'])->format("Y-m-d"): null,
+					'BirthDate' => isset($formData['Birthday']) ? DateTime::createFromFormat('d/m/Y', $formData['Birthday'],new DateTimeZone('UTC'))->format("Y-m-d"): null,
 					'Gender' => $gender,
 			);
 					
@@ -2222,14 +2254,14 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 					"PriceId" => intval($array[0]),
 					"ProductId" => intval($array[0]),
 					"Quantity" =>intval($array[1]),
-					"CheckInDateTime" => count($array) > 2 && !empty($array[2]) ? DateTime::createFromFormat("YmdHis", $array[2]) : null,
+					"CheckInDateTime" => count($array) > 2 && !empty($array[2]) ? DateTime::createFromFormat("YmdHis", $array[2],new DateTimeZone('UTC')) : null,
 					"PeriodDuration" => count($array) > 3 && !empty($array[3]) ? intval($array[3]) : 0,
 					"TimeSlotId" => count($array) > 4 && !empty($array[4]) ? intval($array[4]) : 0,
 					"TimeSlotStart" => count($array) > 5 && !empty($array[5]) ? intval($array[5]) : 0,
 					"TimeSlotEnd" => count($array) > 6 && !empty($array[6]) ? intval($array[6]) : 0,
-					"TimeSlotDate" => count($array) > 7 && !empty($array[7]) ? DateTime::createFromFormat("Ymd", $array[7]) : null,
-					"CheckInDate" => count($array) > 8 && !empty($array[8]) ? DateTime::createFromFormat("Ymd", $array[8]) : null,
-					"CheckOutDate" => count($array) > 9 && !empty($array[9]) ? DateTime::createFromFormat("Ymd", $array[9]) : null,
+					"TimeSlotDate" => count($array) > 7 && !empty($array[7]) ? DateTime::createFromFormat("Ymd", $array[7],new DateTimeZone('UTC')) : null,
+					"CheckInDate" => count($array) > 8 && !empty($array[8]) ? DateTime::createFromFormat("Ymd", $array[8],new DateTimeZone('UTC')) : null,
+					"CheckOutDate" => count($array) > 9 && !empty($array[9]) ? DateTime::createFromFormat("Ymd", $array[9],new DateTimeZone('UTC')) : null,
 					"Configuration" => $str
 				);
 				return $newarray;
@@ -2254,11 +2286,11 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 			public static function calculateOrder($OrderJson,$language,$bookingType = "") {
 				$orderModel = json_decode($OrderJson);
 				$order = new StdClass;
-				$DateTimeMinValue = new DateTime();
+				$DateTimeMinValue = new DateTime('UTC');
 				$DateTimeMinValue->setDate(1, 1, 1);
 
-				$orderModel->SearchModel->FromDate = DateTime::createFromFormat('d/m/Y', $orderModel->SearchModel->checkin);
-				$orderModel->SearchModel->ToDate = DateTime::createFromFormat('d/m/Y', $orderModel->SearchModel->checkout);
+				$orderModel->SearchModel->FromDate = DateTime::createFromFormat('d/m/Y', $orderModel->SearchModel->checkin,new DateTimeZone('UTC'));
+				$orderModel->SearchModel->ToDate = DateTime::createFromFormat('d/m/Y', $orderModel->SearchModel->checkout,new DateTimeZone('UTC'));
 				$orderModel->SearchModel->FromDate->setTime(0,0,0);
 				$orderModel->SearchModel->ToDate->setTime(0,0,0);
 
@@ -2289,8 +2321,8 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 						if ($resourceDetail->AvailabilityType== 2)
 						{
 							$duration = $resource->TimeDuration;
-							$currModel->SearchModel->FromDate = DateTime::createFromFormat("YmdHis", $resource->CheckInTime);
-							$currModel->SearchModel->ToDate = DateTime::createFromFormat("YmdHis", $resource->CheckInTime);
+							$currModel->SearchModel->FromDate = DateTime::createFromFormat("YmdHis", $resource->CheckInTime,new DateTimeZone('UTC'));
+							$currModel->SearchModel->ToDate = DateTime::createFromFormat("YmdHis", $resource->CheckInTime,new DateTimeZone('UTC'));
 												  
 							$currModel->SearchModel->ToDate->modify('+1 day');
 						}
@@ -2489,7 +2521,7 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 
 				$orderModel = json_decode(stripslashes($OrderJson));
 				$lstOrderStay = array();
-				$DateTimeMinValue = new DateTime();
+				$DateTimeMinValue = new DateTime('UTC');
 				$DateTimeMinValue->setDate(1, 1, 1);
 
 	//            foreach ($totalModel as $orderModel)
@@ -2548,11 +2580,11 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 						$currModel = new stdClass;
 						$currModel->SearchModel = new stdClass;
 						if($fromCart==0){
-							$currModel->SearchModel->FromDate  = DateTime::createFromFormat('d/m/Y\TH:i:s', $resource->FromDate);
-							$currModel->SearchModel->ToDate  = DateTime::createFromFormat('d/m/Y\TH:i:s', $resource->ToDate);
+							$currModel->SearchModel->FromDate  = DateTime::createFromFormat('d/m/Y\TH:i:s', $resource->FromDate,new DateTimeZone('UTC'));
+							$currModel->SearchModel->ToDate  = DateTime::createFromFormat('d/m/Y\TH:i:s', $resource->ToDate,new DateTimeZone('UTC'));
 						}else{
-							$currModel->SearchModel->FromDate = new DateTime($resource->FromDate );
-							$currModel->SearchModel->ToDate = new DateTime($resource->ToDate );
+							$currModel->SearchModel->FromDate = new DateTime($resource->FromDate,new DateTimeZone('UTC') );
+							$currModel->SearchModel->ToDate = new DateTime($resource->ToDate,new DateTimeZone('UTC') );
 						}
 						$currModel->SearchModel->FromDate->setTime(0,0,0);
 						$currModel->SearchModel->ToDate->setTime(0,0,0);
@@ -2563,8 +2595,8 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 						if ($resource->AvailabilityType== 2)
 						{
 							$duration = $resource->TimeDuration;
-							$currModel->SearchModel->FromDate = DateTime::createFromFormat("YmdHis", $resource->CheckInTime);
-							$currModel->SearchModel->ToDate = DateTime::createFromFormat("YmdHis", $resource->CheckInTime);
+							$currModel->SearchModel->FromDate = DateTime::createFromFormat("YmdHis", $resource->CheckInTime,new DateTimeZone('UTC'));
+							$currModel->SearchModel->ToDate = DateTime::createFromFormat("YmdHis", $resource->CheckInTime,new DateTimeZone('UTC'));
 							$currModel->SearchModel->ToDate->modify('+1 day');
 						}
 						if ($resource->AvailabilityType== 3)
@@ -2762,5 +2794,38 @@ if ( ! class_exists( 'BFCHelper' ) ) {
 			return $result;
 		}
 
-}
+		public static function bfi_get_clientdata() {
+			$ipClient = BFCHelper::bfi_get_client_ip();
+			$ipServer = $_SERVER['SERVER_ADDR'];
+			$uaClient = $_SERVER['HTTP_USER_AGENT'];
+			$RequestTime = $_SERVER['REQUEST_TIME'];
+			$Referer = $_SERVER['HTTP_REFERER'];
+			$clientdata =
+				"ipClient:" . str_replace( ":", "_", $ipClient) ."|".
+				"ipServer:" . str_replace( ":", "_", $ipServer) ."|".
+				"uaClient:" . str_replace( "|", "_", str_replace( ":", "_", $uaClient)) ."|".
+				"Referer:" . str_replace( "|", "_", str_replace( ":", "_", $Referer)) ."|".
+				"RequestTime:" . $RequestTime;
+			return $clientdata;
+		}
+		public static function bfi_get_client_ip() {
+			$ipaddress = '';
+			if (isset($_SERVER['HTTP_CLIENT_IP']))
+				$ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+			else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+				$ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			else if(isset($_SERVER['HTTP_X_FORWARDED']))
+				$ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+			else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+				$ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+			else if(isset($_SERVER['HTTP_FORWARDED']))
+				$ipaddress = $_SERVER['HTTP_FORWARDED'];
+			else if(isset($_SERVER['REMOTE_ADDR']))
+				$ipaddress = $_SERVER['REMOTE_ADDR'];
+			else
+				$ipaddress = 'UNKNOWN';
+		 
+			return $ipaddress;
+		}
+	}
 }

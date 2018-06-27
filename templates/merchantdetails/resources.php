@@ -39,6 +39,14 @@ if($total>0){
 
 $listsId = array();
 
+$hasSuperior = !empty($merchant->RatingSubValue);
+$rating = $merchant->Rating;
+if ($rating > 9)
+{
+	$hasSuperior = ($merchant->Rating%10)>0;
+	$rating = (int)($rating / 10);
+} 
+
 	$merchantNameTrack =  BFCHelper::string_sanitize($merchantName);
 	$merchantCategoryNameTrack =  BFCHelper::string_sanitize($merchant->MainCategoryName);
 
@@ -61,8 +69,11 @@ $listsId = array();
 		<div class="bfi-col-xs-9 ">
 			<div class="bfi-title-name bfi-hideonextra"><h1><?php echo  $merchant->Name?></h1>
 				<span class="bfi-item-rating">
-					<?php for($i = 0; $i < $merchant->Rating; $i++) { ?>
-					<i class="fa fa-star"></i>
+					<?php for($i = 0; $i < $rating ; $i++) { ?>
+					  <i class="fa fa-star"></i>
+					<?php } ?>
+					<?php if ($hasSuperior) { ?>
+						&nbsp;S
 					<?php } ?>
 				</span>
 			</div>
@@ -114,16 +125,20 @@ $listsId = array();
 //		if($isportal){
 //			$routeMerchant = $url_merchant_page . $resource->MerchantId .'-'.BFI()->seoUrl($resource->MerchantName)."?fromsearch=1";
 //		}
-		$rating = $resource->Rating;
+		$hasSuperior = !empty($resource->RatingSubValue);
+		$rating = (int)$resource->Rating;
 		if ($rating>9 )
 		{
 			$rating = $rating/10;
-		}
-		$ratingMrc = $resource->MrcRating;
+			$hasSuperior = ($resource->Rating%10)>0;
+		} 
+		$hasSuperiorMrc = !empty($resource->MrcRatingSubValue);
+		$ratingMrc = (int)$resource->MrcRating ;
 		if ($ratingMrc>9 )
 		{
 			$ratingMrc = $ratingMrc/10;
-		}
+			$hasSuperiorMrc = ($resource->MrcRating %10)>0;
+		} 
 		if(!empty($resource->ImageUrl)){
 			$resourceImageUrl = BFCHelper::getImageUrlResized('resources',$resource->ImageUrl, 'medium');
 		}
@@ -144,6 +159,9 @@ $listsId = array();
 								<?php for($i = 0; $i < $rating; $i++) { ?>
 									<i class="fa fa-star"></i>
 								<?php } ?>	             
+								<?php if ($hasSuperior) { ?>
+									&nbsp;S
+								<?php } ?>
 							</span>
 							<?php if($isportal){ ?>
 							- <a href="<?php echo $routeMerchant.$fromsearchparam?>" class="bfi-subitem-title eectrack" target="_blank" data-type="Merchant" data-id="<?php echo $resource->MerchantId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $merchantNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>" data-list="<?php echo $analyticsListName; ?>"><?php echo $merchantName; ?></a>
@@ -152,6 +170,9 @@ $listsId = array();
 								<?php for($i = 0; $i < $ratingMrc; $i++) { ?>
 									<i class="fa fa-star"></i>
 								<?php } ?>	             
+								<?php if ($hasSuperiorMrc) { ?>
+									&nbsp;S
+								<?php } ?>
 							</span>
 						</div>
 						<div class="bfi-item-address">
@@ -404,7 +425,7 @@ jQuery(document).ready(function() {
 	<?php _e('No results available', 'bfi') ?>
 </div>
 <?php } ?>
-	<div class="bfi-clearboth"></div>
+	<div class="bfi-clearfix"></div>
 	<?php  
 	bfi_get_template("merchant_small_details.php",array("merchant"=>$merchant,"routeMerchant"=>$routeMerchant));	
 	?>

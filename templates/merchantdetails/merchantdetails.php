@@ -59,39 +59,6 @@ $showMap = (($resourceLat != null) && ($resourceLon !=null) );
 
 $modelmerchant =  new BookingForConnectorModelMerchantDetails;
 
-//$indirizzo = isset($merchant->AddressData->Address)?$merchant->AddressData->Address:"";
-//$cap = isset($merchant->AddressData->ZipCode)?$merchant->AddressData->ZipCode:""; 
-//$comune = isset($merchant->AddressData->CityName)?$merchant->AddressData->CityName:"";
-//$stato = isset($merchant->AddressData->StateName)?$merchant->AddressData->StateName:"";
-
-//	$modelResource = new BookingForConnectorModelResource;
-//	$images = array();
-
-		
-//	//	 $model = new BookingForConnectorModelResource;
-//		$resource_id ='';
-//
-//    	//$model_resource_details = new BookingForConnectorModelMerchantDetails;
-//    	$resources = $modelmerchant->getItems('resourcesajax', $merchant_id);
-//	//$resources[0]->ResourceId
-//		
-//		foreach($resources as $resource){
-//			$vartemp = "$resource->ResourceId";
-//			$resource = $resource;
-//			$language = $GLOBALS['bfi_lang']; 
-//			$allstays = $modelResource->getStay($language , $vartemp );
-//			if(!empty($allstays)){
-//				
-//				$resource_id = $resource->ResourceId;
-//				break;
-//			}
-//			
-//		}
-//		
-//	 $_SESSION['search.params']['resourceId'] = $resource_id;
-// 
-//  $resource = $modelResource->getItem($resource_id);
-
 $fromSearch =  BFCHelper::getVar('fromsearch','0');
 
 $routeSearch = $routeMerchant;
@@ -101,11 +68,14 @@ if(!empty($fromSearch)){
 	$routeSearch .= "/?task=getMerchantResources";
 }
 
-$rating = $merchant->Rating;
+$hasSuperior = !empty($merchant->RatingSubValue);
+$rating = (int)$merchant->Rating;
 if ($rating>9 )
 {
 	$rating = $rating/10;
+	$hasSuperior = ($MerchantDetail->Rating%10)>0;
 } 
+
 $reviewavg = isset($merchant->Avg) ? $merchant->Avg->Average : 0;
 $reviewcount = isset($merchant->Avg) ? $merchant->Avg->Count : 0;
 $resourceDescription = BFCHelper::getLanguage($merchant->Description, $language, null, array( 'striptags'=>'striptags', 'bbcode'=>'bbcode','ln2br'=>'ln2br')) ;
@@ -155,6 +125,9 @@ $merchantName = BFCHelper::getLanguage($merchant->Name, $language, null, array('
 			<span class="bfi-item-rating">
 				<?php for($i = 0; $i < $rating; $i++) { ?>
 				<i class="fa fa-star"></i>
+				<?php } ?>
+				<?php if ($hasSuperior) { ?>
+					&nbsp;S
 				<?php } ?>
 			</span>
 		</div>
@@ -254,7 +227,7 @@ $merchantName = BFCHelper::getLanguage($merchant->Name, $language, null, array('
 	<?php } ?>	
 	
 	
-	<div class="bfi-clearboth"></div>
+	<div class="bfi-clearfix"></div>
 	<?php 
 	$services = [];
 	if (!empty($merchant->ServiceIdList)){
@@ -267,7 +240,7 @@ $merchantName = BFCHelper::getLanguage($merchant->Name, $language, null, array('
 			<?php 
 			$count=0;
 			?>
-			<?php foreach ($services as $service):?>
+			<?php foreach ($services as $service){?>
 				<?php
 				if ($count > 0) { 
 					echo ',';
@@ -275,11 +248,11 @@ $merchantName = BFCHelper::getLanguage($merchant->Name, $language, null, array('
 				?>			
 				<?php echo BFCHelper::getLanguage($service->Name, $language) ?>
 				<?php $count += 1; ?>
-			<?php endforeach?>
+			<?php } ?>
 		</div>
 	<?php endif; ?>	
 
-	<div class="bfi-clearboth"></div>
+	<div class="bfi-clearfix"></div>
 
 	<?php  bfi_get_template('merchant_small_details.php',array("merchant"=>$merchant,"routeMerchant"=>$routeMerchant));  ?>
 	

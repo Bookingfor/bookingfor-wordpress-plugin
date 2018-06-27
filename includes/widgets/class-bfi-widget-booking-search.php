@@ -53,7 +53,6 @@ function form($instance) {
 				$languageForm = "/" .ICL_LANGUAGE_CODE;
 			}
 	}
-
 	// Check values
 	// if( $instance) {
 	// 	 $title = esc_attr($instance['title']);
@@ -63,9 +62,10 @@ function form($instance) {
 	
 	
 	$tablist = array();
-	$tablist['0'] = __('Booking', 'bfi');
-//	$tablist['1'] = __('Services', 'bfi');
-	$tablist['2'] = __('Activities', 'bfi');
+	$tablist['0'] = __('Search 1 (default:Booking)', 'bfi');
+	$tablist['1'] = __('Search 2 (default:Services)', 'bfi');
+	$tablist['2'] = __('Search 3 (default:Activities)', 'bfi');
+	$tablist['4'] = __('Search 4 (default:Others)', 'bfi');
 	$tablist['3'] = __('Real Estate', 'bfi');
 	$tablistRealEstate = array('3');
 
@@ -86,13 +86,13 @@ function form($instance) {
 
 	$months = array();
 	for($i = 1; $i <= 12; $i++){
-		$dateObj = DateTime::createFromFormat('!m', $i);
+		$dateObj = DateTime::createFromFormat('!m', $i,new DateTimeZone('UTC'));
 		$months[$i]=date_i18n('F',$dateObj->getTimestamp());
 	}
 	$days = array();
 
 	for($i = 5; $i <= 11; $i++){
-		$dateObj = DateTime::createFromFormat('!d', $i);
+		$dateObj = DateTime::createFromFormat('!d', $i,new DateTimeZone('UTC'));
 		$days[$i-4]=date_i18n('l',$dateObj->getTimestamp());
 	}
 
@@ -133,6 +133,21 @@ function form($instance) {
 	$blockmonths = ( ! empty( $instance['blockmonths'] ) ) ? $instance['blockmonths'] : array();
 	$blockdays = ( ! empty( $instance['blockdays'] ) ) ? $instance['blockdays'] : array();
 	$showdirection = ( ! empty( $instance['showdirection'] ) ) ? esc_attr($instance['showdirection']) : '0';
+
+	$fixedontop = ( ! empty( $instance['fixedontop'] ) ) ? esc_attr($instance['fixedontop']) : '0';
+	$fixedontopcorrection = ( ! empty( $instance['fixedontopcorrection'] ) ) ? esc_attr($instance['fixedontopcorrection']) : 0;
+	$fixedonbottom = ( ! empty( $instance['fixedonbottom'] ) ) ? esc_attr($instance['fixedonbottom']) : '0';
+
+	$tabnamebooking = ( ! empty( $instance['tabnamebooking'] ) ) ? esc_attr($instance['tabnamebooking']) : 'Booking';
+	$tabnameservices = ( ! empty( $instance['tabnameservices'] ) ) ? esc_attr($instance['tabnameservices']) : 'Services';
+	$tabnameactivities = ( ! empty( $instance['tabnameactivities'] ) ) ? esc_attr($instance['tabnameactivities']) : 'Activities';
+	$tabnameothers = ( ! empty( $instance['tabnameothers'] ) ) ? esc_attr($instance['tabnameothers']) : 'Others';
+
+	$tabiconbooking = ( ! empty( $instance['tabiconbooking'] ) ) ? esc_attr($instance['tabiconbooking']) : 'fa fa-suitcase';
+	$tabiconservices = ( ! empty( $instance['tabiconservices'] ) ) ? esc_attr($instance['tabiconservices']) : 'fa fa-calendar';
+	$tabiconactivities = ( ! empty( $instance['tabiconactivities'] ) ) ? esc_attr($instance['tabiconactivities']) : 'fa fa-calendar';
+	$tabiconothers = ( ! empty( $instance['tabiconothers'] ) ) ? esc_attr($instance['tabiconothers']) : 'fa fa-calendar';
+
 	$showLocation = ( ! empty( $instance['showLocation'] ) ) ? esc_attr($instance['showLocation']) : '0';
 	$showMapIcon = ( ! empty( $instance['showMapIcon'] ) ) ? esc_attr($instance['showMapIcon']) : '0';
 	$showSearchText = ( ! empty( $instance['showSearchText'] ) ) ? esc_attr($instance['showSearchText']) : '0';
@@ -165,20 +180,31 @@ function form($instance) {
 
 	
 	$merchantCategoriesSelectedBooking = ( ! empty( $instance['merchantcategoriesbooking'] ) ) ? $instance['merchantcategoriesbooking'] : array();
+	$merchantCategoriesSelectedServices = ( ! empty( $instance['merchantcategoriesservices'] ) ) ? $instance['merchantcategoriesservices'] : array();
 	$merchantCategoriesSelectedActivities = ( ! empty( $instance['merchantcategoriesactivities'] ) ) ? $instance['merchantcategoriesactivities'] : array();
+	$merchantCategoriesSelectedOthers = ( ! empty( $instance['merchantcategoriesothers'] ) ) ? $instance['merchantcategoriesothers'] : array();
 	$merchantCategoriesSelectedRealEstate = ( ! empty( $instance['merchantcategoriesrealestate'] ) ) ? $instance['merchantcategoriesrealestate'] : array();
+
 	$unitCategoriesSelectedBooking = ( ! empty( $instance['unitcategoriesbooking'] ) ) ? $instance['unitcategoriesbooking'] : array();
+	$unitCategoriesSelectedServices = ( ! empty( $instance['unitcategoriesservices'] ) ) ? $instance['unitcategoriesservices'] : array();
 	$unitCategoriesSelectedActivities = ( ! empty( $instance['unitcategoriesactivities'] ) ) ? $instance['unitcategoriesactivities'] : array();
+	$unitCategoriesSelectedOthers = ( ! empty( $instance['unitcategoriesothers'] ) ) ? $instance['unitcategoriesothers'] : array();
 	$unitCategoriesSelectedRealEstate = ( ! empty( $instance['unitcategoriesrealestate'] ) ) ? $instance['unitcategoriesrealestate'] : array();
 
 	$availabilityTypesSelectedBooking = ( ! empty( $instance['availabilitytypesbooking'] ) ) ? $instance['availabilitytypesbooking'] : array(1);
+	$availabilityTypesSelectedServices = ( ! empty( $instance['availabilitytypesservices'] ) ) ? $instance['availabilitytypesservices'] : array(2,3);
 	$availabilityTypesSelectedAvailability = ( ! empty( $instance['availabilitytypesactivities'] ) ) ? $instance['availabilitytypesactivities'] : array(2,3);
+	$availabilityTypesSelectedOthers = ( ! empty( $instance['availabilitytypesothers'] ) ) ? $instance['availabilitytypesothers'] : array(2,3);
 
 	$itemTypesSelectedBooking = ( ! empty( $instance['itemtypesbooking'] ) ) ? $instance['itemtypesbooking'] : array(0);
+	$itemTypesSelectedServices = ( ! empty( $instance['itemtypesservices'] ) ) ? $instance['itemtypesservices'] : array(1);
 	$itemTypesSelectedActivities = ( ! empty( $instance['itemtypesactivities'] ) ) ? $instance['itemtypesactivities'] : array(1);
+	$itemTypesSelectedOthers = ( ! empty( $instance['itemtypesothers'] ) ) ? $instance['itemtypesothers'] : array(1);
 	
-	$groupBySelectedBooking = ( ! empty( $instance['groupbybooking'] ) ) ? $instance['groupbybooking'] : array();
-	$groupBySelectedActivities = ( ! empty( $instance['groupbyactivities'] ) ) ? $instance['groupbyactivities'] : array();
+	$groupBySelectedBooking = ( ! empty( $instance['groupbybooking'] ) ) ? $instance['groupbybooking'] : array(0);
+	$groupBySelectedServices = ( ! empty( $instance['groupbyservices'] ) ) ? $instance['groupbyservices'] : [0];
+	$groupBySelectedActivities = ( ! empty( $instance['groupbyactivities'] ) ) ? $instance['groupbyactivities'] : array(0);
+	$groupBySelectedOthers = ( ! empty( $instance['groupbyothers'] ) ) ? $instance['groupbyothers'] : [0];
 
 	?>
 	<p>
@@ -187,6 +213,16 @@ function form($instance) {
 	</p>
 	<p class="bookingoptions">
 		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('showdirection'); ?>" value="1" <?php  echo ($showdirection=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Displays horizontally', 'bfi'); ?></label>
+	</p>
+	<p class="bookingoptions">
+		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('fixedontop'); ?>" value="1" <?php  echo ($fixedontop=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Fixed on top', 'bfi'); ?></label>
+	</p>
+	<p class="bookingoptions">
+		<label for="<?php echo $this->get_field_id('fixedontopcorrection'); ?>"><?php _e('Top correction', 'bfi'); ?></label>
+		<input class="widefat" id="<?php echo $this->get_field_id('fixedontopcorrection'); ?>" name="<?php echo $this->get_field_name('fixedontopcorrection'); ?>" type="number" value="<?php echo $fixedontopcorrection; ?>" request />
+	</p>
+	<p class="bookingoptions">
+		<label class="checkbox"><input type="checkbox" name="<?php echo $this->get_field_name('fixedonbottom'); ?>" value="1" <?php  echo ($fixedonbottom=='1') ? 'checked="checked"' : ''; ?> /><?php _e('Fixed on bottom for small device', 'bfi'); ?></label>
 	</p>
 	<p>
 		<span class="bfitabselect"><?php _e('Tab', 'bfi'); ?></span><br />
@@ -237,6 +273,10 @@ function form($instance) {
 	<?php if(!empty($merchantCategories) || !empty($unitCategories) || !empty($unitCategoriesRealEstate)){  ?>
 	<p class="bfitabsearch0 widget-inside" >
 		<span class="bfi-titletab"><?php echo $tablist[0] ?></span><br />
+		<input class="widefat" id="<?php echo $this->get_field_id('tabnamebooking'); ?>" name="<?php echo $this->get_field_name('tabnamebooking'); ?>" type="text" value="<?php echo $tabnamebooking; ?>" />
+		<label for="<?php echo $this->get_field_id('tabiconbooking'); ?>"><?php _e('Icon (for expert users)', 'bfi'); ?></label>
+		<input class="widefat" id="<?php echo $this->get_field_id('tabiconbooking'); ?>" name="<?php echo $this->get_field_name('tabiconbooking'); ?>" type="text" value="<?php echo $tabiconbooking; ?>" />
+
 		<?php if(!empty($merchantCategories)){  ?>
 			<label for="<?php echo $this->get_field_id('merchantcategoriesbooking'); ?>"><?php _e('Merchant category', 'bfi'); ?>
 			<?php 
@@ -332,8 +372,111 @@ function form($instance) {
 				?>
 		</label>
 	</p>
+	<p class="bfitabsearch1 widget-inside" >
+		<span class="bfi-titletab"><?php echo $tablist[1] ?></span><br />
+		<input class="widefat" id="<?php echo $this->get_field_id('tabnameservices'); ?>" name="<?php echo $this->get_field_name('tabnameservices'); ?>" type="text" value="<?php echo $tabnameservices; ?>" />
+		<label for="<?php echo $this->get_field_id('tabiconservices'); ?>"><?php _e('Icon (for expert users)', 'bfi'); ?></label>
+		<input class="widefat" id="<?php echo $this->get_field_id('tabiconservices'); ?>" name="<?php echo $this->get_field_name('tabiconservices'); ?>" type="text" value="<?php echo $tabiconservices; ?>" />
+		<?php if(!empty($merchantCategories)){  ?>
+			<label for="<?php echo $this->get_field_id('merchantcategoriesservices'); ?>"><?php _e('Merchant category', 'bfi'); ?>
+			<?php 
+				printf(
+					'<select multiple="multiple" name="%s[]" id="%s" class="widefat select2full">',
+					$this->get_field_name('merchantcategoriesservices'),
+					$this->get_field_id('merchantcategoriesservices')
+				);
+				foreach ($merchantCategories as $key => $value) {
+					printf(
+						'<option value="%s" %s style="margin-bottom:3px;">%s</option>',
+						$key,
+						in_array( $key, $merchantCategoriesSelectedServices) ? 'selected="selected"' : '',
+						$value
+					);
+				}
+				echo '</select>';
+				?>
+			</label>
+		<?php }  ?>
+		<?php if(!empty($unitCategories)){  ?>
+			<label for="<?php echo $this->get_field_id('unitcategoriesservices'); ?>"><?php _e('Product category', 'bfi'); ?>
+			<?php 
+				printf(
+					'<select multiple="multiple" name="%s[]" id="%s" class="widefat select2full">',
+					$this->get_field_name('unitcategoriesservices'),
+					$this->get_field_id('unitcategoriesservices')
+				);
+				foreach ($unitCategories as $key => $value) {
+					printf(
+						'<option value="%s" %s style="margin-bottom:3px;">%s</option>',
+						$key,
+						in_array( $key, $unitCategoriesSelectedServices) ? 'selected="selected"' : '',
+						$value
+					);
+				}
+				echo '</select>';
+				?>
+			</label>
+		<?php }  ?>
+		<label for="<?php echo $this->get_field_id('availabilitytypesservices'); ?>"><?php _e('Search availability for', 'bfi'); ?>
+			<?php 
+				printf(
+					'<select multiple="multiple" name="%s[]" id="%s" class="widefat select2full">',
+					$this->get_field_name('availabilitytypesservices'),
+					$this->get_field_id('availabilitytypesservices')
+				);
+				foreach ($availabilityTypeList as $key => $value) {
+					printf(
+						'<option value="%s" %s style="margin-bottom:3px;">%s</option>',
+						$key,
+						in_array( $key, $availabilityTypesSelectedServices) ? 'selected="selected"' : '',
+						$value
+					);
+				}
+				echo '</select>';
+				?>
+		</label>
+		<label for="<?php echo $this->get_field_id('itemtypesservices'); ?>"><?php _e('Items type', 'bfi'); ?>
+			<?php 
+				printf(
+					'<select multiple="multiple" name="%s[]" id="%s" class="widefat select2full">',
+					$this->get_field_name('itemtypesservices'),
+					$this->get_field_id('itemtypesservices')
+				);
+				foreach ($itemTypeList as $key => $value) {
+					printf(
+						'<option value="%s" %s style="margin-bottom:3px;">%s</option>',
+						$key,
+						in_array( $key, $itemTypesSelectedServices) ? 'selected="selected"' : '',
+						$value
+					);
+				}
+				echo '</select>';
+				?>
+		</label>
+		<label for="<?php echo $this->get_field_id('groupbyservices'); ?>"><?php _e('Default group by ', 'bfi'); ?>
+			<?php 
+				printf(
+					'<select name="%s[]" id="%s" class="widefat select2full">',
+					$this->get_field_name('groupbyservices'),
+					$this->get_field_id('groupbyservices')
+				);
+				foreach ($groupByList as $key => $value) {
+					printf(
+						'<option value="%s" %s style="margin-bottom:3px;">%s</option>',
+						$key,
+						in_array( $key, $groupBySelectedServices) ? 'selected="selected"' : '',
+						$value
+					);
+				}
+				echo '</select>';
+				?>
+		</label>
+	</p>
 	<p class="bfitabsearch2 widget-inside" >
 		<span class="bfi-titletab"><?php echo $tablist[2] ?></span><br />
+		<input class="widefat" id="<?php echo $this->get_field_id('tabnameactivities'); ?>" name="<?php echo $this->get_field_name('tabnameactivities'); ?>" type="text" value="<?php echo $tabnameactivities; ?>" />
+		<label for="<?php echo $this->get_field_id('tabiconactivities'); ?>"><?php _e('Icon (for expert users)', 'bfi'); ?></label>
+		<input class="widefat" id="<?php echo $this->get_field_id('tabiconactivities'); ?>" name="<?php echo $this->get_field_name('tabiconactivities'); ?>" type="text" value="<?php echo $tabiconactivities; ?>" />
 		<?php if(!empty($merchantCategories)){  ?>
 			<label for="<?php echo $this->get_field_id('merchantcategoriesactivities'); ?>"><?php _e('Merchant category', 'bfi'); ?>
 			<?php 
@@ -422,6 +565,106 @@ function form($instance) {
 						'<option value="%s" %s style="margin-bottom:3px;">%s</option>',
 						$key,
 						in_array( $key, $groupBySelectedActivities) ? 'selected="selected"' : '',
+						$value
+					);
+				}
+				echo '</select>';
+				?>
+		</label>
+	</p>
+	<p class="bfitabsearch4 widget-inside" >
+		<span class="bfi-titletab"><?php echo $tablist[4] ?></span><br />
+		<input class="widefat" id="<?php echo $this->get_field_id('tabnameothers'); ?>" name="<?php echo $this->get_field_name('tabnameothers'); ?>" type="text" value="<?php echo $tabnameothers; ?>" />
+		<label for="<?php echo $this->get_field_id('tabiconothers'); ?>"><?php _e('Icon (for expert users)', 'bfi'); ?></label>
+		<input class="widefat" id="<?php echo $this->get_field_id('tabiconothers'); ?>" name="<?php echo $this->get_field_name('tabiconothers'); ?>" type="text" value="<?php echo $tabiconothers; ?>" />
+		<?php if(!empty($merchantCategories)){  ?>
+			<label for="<?php echo $this->get_field_id('merchantcategoriesothers'); ?>"><?php _e('Merchant category', 'bfi'); ?>
+			<?php 
+				printf(
+					'<select multiple="multiple" name="%s[]" id="%s" class="widefat select2full">',
+					$this->get_field_name('merchantcategoriesothers'),
+					$this->get_field_id('merchantcategoriesothers')
+				);
+				foreach ($merchantCategories as $key => $value) {
+					printf(
+						'<option value="%s" %s style="margin-bottom:3px;">%s</option>',
+						$key,
+						in_array( $key, $merchantCategoriesSelectedOthers) ? 'selected="selected"' : '',
+						$value
+					);
+				}
+				echo '</select>';
+				?>
+			</label>
+		<?php }  ?>
+		<?php if(!empty($unitCategories)){  ?>
+			<label for="<?php echo $this->get_field_id('unitcategoriesothers'); ?>"><?php _e('Product category', 'bfi'); ?>
+			<?php 
+				printf(
+					'<select multiple="multiple" name="%s[]" id="%s" class="widefat select2full">',
+					$this->get_field_name('unitcategoriesothers'),
+					$this->get_field_id('unitcategoriesothers')
+				);
+				foreach ($unitCategories as $key => $value) {
+					printf(
+						'<option value="%s" %s style="margin-bottom:3px;">%s</option>',
+						$key,
+						in_array( $key, $unitCategoriesSelectedOthers) ? 'selected="selected"' : '',
+						$value
+					);
+				}
+				echo '</select>';
+				?>
+			</label>
+		<?php }  ?>
+		<label for="<?php echo $this->get_field_id('availabilitytypesothers'); ?>"><?php _e('Search availability for', 'bfi'); ?>
+			<?php 
+				printf(
+					'<select multiple="multiple" name="%s[]" id="%s" class="widefat select2full">',
+					$this->get_field_name('availabilitytypesothers'),
+					$this->get_field_id('availabilitytypesothers')
+				);
+				foreach ($availabilityTypeList as $key => $value) {
+					printf(
+						'<option value="%s" %s style="margin-bottom:3px;">%s</option>',
+						$key,
+						in_array( $key, $availabilityTypesSelectedOthers) ? 'selected="selected"' : '',
+						$value
+					);
+				}
+				echo '</select>';
+				?>
+		</label>
+		<label for="<?php echo $this->get_field_id('itemtypesothers'); ?>"><?php _e('Items type', 'bfi'); ?>
+			<?php 
+				printf(
+					'<select multiple="multiple" name="%s[]" id="%s" class="widefat select2full">',
+					$this->get_field_name('itemtypesothers'),
+					$this->get_field_id('itemtypesothers')
+				);
+				foreach ($itemTypeList as $key => $value) {
+					printf(
+						'<option value="%s" %s style="margin-bottom:3px;">%s</option>',
+						$key,
+						in_array( $key, $itemTypesSelectedOthers) ? 'selected="selected"' : '',
+						$value
+					);
+				}
+				echo '</select>';
+				?>
+		</label>
+		<label for="<?php echo $this->get_field_id('groupbyothers'); ?>"><?php _e('Default group by ', 'bfi'); ?>
+			<?php 
+				printf(
+					'<select name="%s[]" id="%s" class="widefat select2full">',
+					$this->get_field_name('groupbyothers'),
+					$this->get_field_id('groupbyothers')
+				);
+				foreach ($groupByList as $key => $value) {
+					printf(
+						'<option value="%s" %s style="margin-bottom:3px;">%s</option>',
+						$key,
+						in_array( $key, $groupBySelectedOthers) ? 'selected="selected"' : '',
 						$value
 					);
 				}
@@ -526,23 +769,46 @@ function form($instance) {
 		  $instance['merchantcategoriesbooking'] = ! empty( $new_instance[ 'merchantcategoriesbooking' ] ) ? esc_sql( $new_instance['merchantcategoriesbooking'] ) : "";
 		  $instance['merchantcategoriesservices'] = ! empty( $new_instance[ 'merchantcategoriesservices' ] ) ? esc_sql( $new_instance['merchantcategoriesservices'] ) : "";
 		  $instance['merchantcategoriesactivities'] = ! empty( $new_instance[ 'merchantcategoriesactivities' ] ) ? esc_sql( $new_instance['merchantcategoriesactivities'] ) : "";
+		  $instance['merchantcategoriesothers'] = ! empty( $new_instance[ 'merchantcategoriesothers' ] ) ? esc_sql( $new_instance['merchantcategoriesothers'] ) : "";
 		  $instance['merchantcategoriesrealestate'] = ! empty( $new_instance[ 'merchantcategoriesrealestate' ] ) ? esc_sql( $new_instance['merchantcategoriesrealestate'] ) : "";
 		  
 		  $instance['unitcategoriesbooking'] = ! empty( $new_instance[ 'unitcategoriesbooking' ] ) &&  in_array(0,$instance['tablistSelected']) ? esc_sql( $new_instance['unitcategoriesbooking'] ) : "";
 		  $instance['unitcategoriesservices'] = ! empty( $new_instance[ 'unitcategoriesservices' ] ) &&  in_array(1,$instance['tablistSelected']) ? esc_sql( $new_instance['unitcategoriesservices'] ) : "";
 		  $instance['unitcategoriesactivities'] = ! empty( $new_instance[ 'unitcategoriesactivities' ] ) &&  in_array(2,$instance['tablistSelected']) ? esc_sql( $new_instance['unitcategoriesactivities'] ) : "";
+		  $instance['unitcategoriesothers'] = ! empty( $new_instance[ 'unitcategoriesothers' ] ) &&  in_array(4,$instance['tablistSelected']) ? esc_sql( $new_instance['unitcategoriesothers'] ) : "";
 		  $instance['unitcategoriesrealestate'] = ! empty( $new_instance[ 'unitcategoriesrealestate' ] ) &&  in_array(3,$instance['tablistSelected']) ? esc_sql( $new_instance['unitcategoriesrealestate'] ) : "";
 
+		  $instance['tabnamebooking'] = ! empty( $new_instance[ 'tabnamebooking' ] ) && is_array($instance['tablistSelected']) &&  in_array(0,$instance['tablistSelected']) ? strip_tags( $new_instance['tabnamebooking'] ) : "";
+		  $instance['tabnameservices'] = ! empty( $new_instance[ 'tabnameservices' ] ) && is_array($instance['tablistSelected']) &&  in_array(1,$instance['tablistSelected']) ? strip_tags( $new_instance['tabnameservices'] ) : "";
+		  $instance['tabnameactivities'] = ! empty( $new_instance[ 'tabnameactivities' ] ) && is_array($instance['tablistSelected']) &&  in_array(2,$instance['tablistSelected']) ? strip_tags( $new_instance['tabnameactivities'] ) : "";
+		  $instance['tabnameothers'] = ! empty( $new_instance[ 'tabnameothers' ] ) && is_array($instance['tablistSelected']) &&  in_array(4,$instance['tablistSelected']) ? strip_tags( $new_instance['tabnameothers'] ) : "";
+
+		  $instance['tabiconbooking'] = ! empty( $new_instance[ 'tabiconbooking' ] ) && is_array($instance['tablistSelected']) &&  in_array(0,$instance['tablistSelected']) ? strip_tags( $new_instance['tabiconbooking'] ) : "";
+		  $instance['tabiconservices'] = ! empty( $new_instance[ 'tabiconservices' ] ) && is_array($instance['tablistSelected']) &&  in_array(1,$instance['tablistSelected']) ? strip_tags( $new_instance['tabiconservices'] ) : "";
+		  $instance['tabiconactivities'] = ! empty( $new_instance[ 'tabiconactivities' ] ) && is_array($instance['tablistSelected']) &&  in_array(2,$instance['tablistSelected']) ? strip_tags( $new_instance['tabiconactivities'] ) : "";
+		  $instance['tabiconothers'] = ! empty( $new_instance[ 'tabiconothers' ] ) && is_array($instance['tablistSelected']) &&  in_array(4,$instance['tablistSelected']) ? strip_tags( $new_instance['tabiconothers'] ) : "";
+
 		  $instance['availabilitytypesbooking'] = ! empty( $new_instance[ 'availabilitytypesbooking' ] ) && is_array($instance['tablistSelected']) &&  in_array(0,$instance['tablistSelected']) ? esc_sql( $new_instance['availabilitytypesbooking'] ) : "";
+		  $instance['availabilitytypesservices'] = ! empty( $new_instance[ 'availabilitytypesservices' ] ) && is_array($instance['tablistSelected']) &&  in_array(1,$instance['tablistSelected']) ? esc_sql( $new_instance['availabilitytypesservices'] ) : "";
 		  $instance['availabilitytypesactivities'] = ! empty( $new_instance[ 'availabilitytypesactivities' ] ) && is_array($instance['tablistSelected']) &&  in_array(2,$instance['tablistSelected']) ? esc_sql( $new_instance['availabilitytypesactivities'] ) : "";
+		  $instance['availabilitytypesothers'] = ! empty( $new_instance[ 'availabilitytypesothers' ] ) && is_array($instance['tablistSelected']) &&  in_array(4,$instance['tablistSelected']) ? esc_sql( $new_instance['availabilitytypesothers'] ) : "";
 
 		  $instance['itemtypesbooking'] = ! empty( $new_instance[ 'itemtypesbooking' ] )  && is_array($instance['tablistSelected']) &&  in_array(0,$instance['tablistSelected']) ? esc_sql( $new_instance['itemtypesbooking'] ) : "";
+		  $instance['itemtypesservices'] = ! empty( $new_instance[ 'itemtypesservices' ] )  && is_array($instance['tablistSelected']) &&  in_array(1,$instance['tablistSelected']) ? esc_sql( $new_instance['itemtypesservices'] ) : "";
 		  $instance['itemtypesactivities'] = ! empty( $new_instance[ 'itemtypesactivities' ] )  && is_array($instance['tablistSelected']) &&  in_array(2,$instance['tablistSelected']) ? esc_sql( $new_instance['itemtypesactivities'] ) : "";
+		  $instance['itemtypesothers'] = ! empty( $new_instance[ 'itemtypesothers' ] )  && is_array($instance['tablistSelected']) &&  in_array(4,$instance['tablistSelected']) ? esc_sql( $new_instance['itemtypesothers'] ) : "";
 
 		  $instance['groupbybooking'] = ! empty( $new_instance[ 'groupbybooking' ] ) && is_array($instance['tablistSelected']) &&  in_array(0,$instance['tablistSelected']) ? esc_sql( $new_instance['groupbybooking'] ) : "";
+		  $instance['groupbyservices'] = ! empty( $new_instance[ 'groupbyservices' ] ) && is_array($instance['tablistSelected']) &&   in_array(1,$instance['tablistSelected']) ? esc_sql( $new_instance['groupbyservices'] ) : "";
 		  $instance['groupbyactivities'] = ! empty( $new_instance[ 'groupbyactivities' ] ) && is_array($instance['tablistSelected']) &&   in_array(2,$instance['tablistSelected']) ? esc_sql( $new_instance['groupbyactivities'] ) : "";
+		  $instance['groupbyothers'] = ! empty( $new_instance[ 'groupbyothers' ] ) && is_array($instance['tablistSelected']) &&   in_array(4,$instance['tablistSelected']) ? esc_sql( $new_instance['groupbyothers'] ) : "";
 
 		  $instance['showdirection'] =! empty( $new_instance[ 'showdirection' ] ) ? 1 : 0;
+
+		  $instance['fixedontop'] =! empty( $new_instance[ 'fixedontop' ] ) ? 1 : 0;
+		  $instance['fixedontopcorrection'] =! empty( $new_instance[ 'fixedontopcorrection' ] ) ? esc_sql( $new_instance['fixedontopcorrection'] ) : 0;
+		  $instance['fixedonbottom'] =! empty( $new_instance[ 'fixedonbottom' ] ) ? 1 : 0;
+		  
 		  $instance['showLocation'] = ! empty( $new_instance[ 'showLocation' ] ) ? 1 : 0;
 		  $instance['showMapIcon'] = ! empty( $new_instance[ 'showMapIcon' ] ) ? 1 : 0;
 		  $instance['showSearchText'] = ! empty( $new_instance[ 'showSearchText' ] ) ? 1 : 0;
@@ -566,7 +832,29 @@ function form($instance) {
 		  $instance['showBaths'] = ! empty( $new_instance[ 'showBaths' ] ) ? 1 : 0;
 		  $instance['showOnlyNew'] = ! empty( $new_instance[ 'showOnlyNew' ] ) ? 1 : 0;
 		  $instance['showServicesList'] = ! empty( $new_instance[ 'showServicesList' ] ) ? 1 : 0;
+if ($this->number=="__i__"){
+//echo "<p><strong>Widget ID is</strong>: Please save the widget</p>"   ;
+}  else {
+		$instanceContext = 'BookingFor Search Widget - ' . $this->number;
+		$instance['currid'] = $this->number; 
+		$instance['currcontext'] = $instanceContext; 
+//		// WPML >= 3.2
+//		if ( defined( 'ICL_SITEPRESS_VERSION' ) && version_compare( ICL_SITEPRESS_VERSION, '3.2', '>=' ) ) {
+//			//$this->register_wpml_strings();
+//		// WPML and Polylang compatibility
+//		} elseif ( function_exists( 'icl_register_string' ) ) {
+		if ( function_exists( 'icl_register_string' ) ) {
+			icl_unregister_string ( $instanceContext, 'Search 1');
+			icl_unregister_string ( $instanceContext, 'Search 2');
+			icl_unregister_string ( $instanceContext, 'Search 3');
+			icl_unregister_string ( $instanceContext, 'Search 4');
 
+			icl_register_string( $instanceContext, 'Search 1', $instance['tabnamebooking'] );
+			icl_register_string( $instanceContext, 'Search 2', $instance['tabnameservices'] );
+			icl_register_string( $instanceContext, 'Search 3', $instance['tabnameactivities'] );
+			icl_register_string( $instanceContext, 'Search 4', $instance['tabnameothers'] );
+		}
+}
 		 return $instance;
 	}
 	

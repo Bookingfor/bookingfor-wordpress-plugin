@@ -41,6 +41,14 @@ if($total>0){
 
 $listsId = array();
 
+$hasSuperior = !empty($merchant->RatingSubValue);
+$rating = $merchant->Rating;
+if ($rating > 9)
+{
+	$hasSuperior = ($merchant->Rating%10)>0;
+	$rating = (int)($rating / 10);
+} 
+
 /*---------------IMPOSTAZIONI SEO----------------------*/
 	$payload["@type"] = "Organization";
 	$payload["@context"] = "http://schema.org";
@@ -61,8 +69,11 @@ $listsId = array();
 		<div class="bfi-col-xs-9 ">
 			<div class="bfi-title-name bfi-hideonextra"><?php echo  $merchant->Name?>
 				<span class="bfi-item-rating">
-					<?php for($i = 0; $i < $merchant->Rating; $i++) { ?>
-					<i class="fa fa-star"></i>
+					<?php for($i = 0; $i < $rating ; $i++) { ?>
+					  <i class="fa fa-star"></i>
+					<?php } ?>
+					<?php if ($hasSuperior) { ?>
+						&nbsp;S
 					<?php } ?>
 				</span>
 			</div>
@@ -443,7 +454,7 @@ jQuery(document).ready(function() {
 	<?php _e('No results available', 'bfi') ?>
 </div>
 <?php } ?>
-	<div class="bfi-clearboth"></div>
+	<div class="bfi-clearfix"></div>
 	<?php  
 	bfi_get_template("merchant_small_details.php",array("merchant"=>$merchant,"routeMerchant"=>$routeMerchant));	
 	?>

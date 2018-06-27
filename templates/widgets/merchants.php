@@ -57,40 +57,51 @@ if ( $title ) {
 		<?php foreach($merchants as $mrcKey => $merchant): ?>
 		<?php 
 		
+			$hasSuperior = !empty($merchant->RatingSubValue);
 			$rating = $merchant->Rating;
+			if ($rating > 9)
+			{
+				$hasSuperior = ($merchant->Rating%10)>0;
+				$rating = (int)($rating / 10);
+			} 
 			$routeMerchant = $url_merchant_page . $merchant->MerchantId.'-'.BFI()->seoUrl($merchant->Name);
 			$currMerchantImageUrl = $merchantImageUrl;
 			if(!empty($merchant->DefaultImg)){
-				$currMerchantImageUrl = BFCHelper::getImageUrlResized('merchant',$merchant->DefaultImg, 'small');
+				$currMerchantImageUrl = BFCHelper::getImageUrlResized('merchant',$merchant->DefaultImg, 'medium');
 			}
 			if(!empty($merchant->ImageData)) {
 				$images = explode(",", $merchant->ImageData);
-				$currMerchantImageUrl = BFCHelper::getImageUrlResized('merchant',$images[0], 'small');
+				$currMerchantImageUrl = BFCHelper::getImageUrlResized('merchant',$images[0], 'medium');
 			}
-			$merchantDescription = BFCHelper::getLanguage($merchant->Description, $language, null, array('ln2br'=>'ln2br', 'bbcode'=>'bbcode', 'striptags'=>'striptags'));
+			$merchantDescription = BFCHelper::getLanguage($merchant->Description, $language, null, array('bbcode'=>'bbcode', 'striptags'=>'striptags'));
 			$merchantDescription = BFCHelper::shorten_string($merchantDescription, $descmaxchars);
+			$merchantDescription = BFCHelper::getLanguage($merchantDescription, $language, null, array('ln2br'=>'ln2br'));
+
 		?>
-			<div class="com_bookingforconnector-item-col" >
-				<div class="com_bookingforconnector-search-merchant com_bookingforconnector-item  bfi-row" style="height:100%">
-					<div >
-						<a href="<?php echo $routeMerchant?>"><img src="<?php echo $currMerchantImageUrl; ?>" class="bfi-img-responsive center-block" /></a>
+			<div class="bfi-bookingforconnector-merchants" >
+				<div class="bfi-row" >
+					<div class="bfi-row" >
+						<div class="bfi-col-md-12"><a href="<?php echo $routeMerchant?>" class="eectrack" data-type="Merchant" data-id="<?php echo $merchant->MerchantId?>" data-index="<?php echo $mrcKey?>" data-itemname="<?php echo $merchantNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>"><img src="<?php echo $currMerchantImageUrl; ?>" class="bfi-img-responsive center-block" /></a>
+						</div>
 					</div>
 					<div class="bfi-row" >
-						<div class="bfi-col-md-<?php //echo $rating > 0 ? "4" : "12" ?>12" style="padding: 10px!important;">
-						<a class="com_bookingforconnector-search-merchant-name-anchor" style="font-weight:bold;color:black; font-size: 16px; color:#08c;" href="<?php echo $routeMerchant ?>" id="nameAnchor<?php echo $merchant->MerchantId?>"><?php echo  $merchant->Name ?></a> 
-							<!-- <label class="com_bookingforconnector-search-merchant-name-anchor" style="font-weight:bold; color:#08c; font-size:14px;text-transform: uppercase;width: 100%;"><?php echo $merchant->MainCategoryName?> -->
-						<?php if($rating > 0): ?>
-								<span class="com_bookingforconnector-search-merchant-rating com_bookingforconnector-item-rating">
+						<div class="bfi-col-md-12 bfi-item-title" style="padding: 10px!important;">
+						<a class="eectrack" href="<?php echo $routeMerchant ?>" id="nameAnchor<?php echo $merchant->MerchantId?>" data-type="Merchant" data-id="<?php echo $merchant->MerchantId?>" data-index="<?php echo $mrcKey?>" data-itemname="<?php echo $merchantNameTrack; ?>" data-brand="<?php echo $merchantNameTrack?>" data-category="<?php echo $merchantCategoryNameTrack; ?>"><?php echo  $merchant->Name ?></a> 
+						<?php if($rating > 0){ ?>
+								<span class="bfi-item-rating">
 									<?php for($i = 0; $i < $rating; $i++) { ?>
 										<i class="fa fa-star"></i>
 									<?php } ?>	             
+									<?php if ($hasSuperior) { ?>
+										&nbsp;S
+									<?php } ?>
 								</span>
-						<?php endif; ?></label>
+						<?php } ?>
 						</div>
 					</div>
 					<div class="bfi-row bfi-hide" >
 						<div class="bfi_merchant-description bfi-col-md-12" style="padding-left: 10px!important;padding-right: 10px!important;">
-							<a class="com_bookingforconnector-search-merchant-name-anchor" style="font-weight:bold;color:black; font-size: 16px;" href="<?php echo $routeMerchant ?>" id="nameAnchor<?php echo $merchant->MerchantId?>"><?php echo  $merchant->Name ?></a> 
+							<a href="<?php echo $routeMerchant ?>" id="nameAnchor<?php echo $merchant->MerchantId?>" class="eectrack" data-type="Merchant" data-id="<?php echo $merchant->MerchantId?>" data-index="<?php echo $mrcKey?>" data-itemname="<?php echo $merchantNameTrack; ?>" data-brand="<?php echo $merchantNameTrack?>" data-category="<?php echo $merchantCategoryNameTrack; ?>"><?php echo  $merchant->Name ?></a> 
 						</div>
 					</div>
 					<div class="bfi-row" >
@@ -101,7 +112,7 @@ if ( $title ) {
 							&nbsp;
 						</div>
 						<div class="bfi-col-md-11  secondarysectionitem" style="padding: 10px!important;">
-								<a href="<?php echo $routeMerchant?>" class="bfi-pull-right"><?php _e('Details', 'bfi') ?></a>
+								<a href="<?php echo $routeMerchant?>" class="bfi-btn bfi-pull-right eectrack" data-type="Merchant" data-id="<?php echo $merchant->MerchantId?>" data-index="<?php echo $mrcKey?>" data-itemname="<?php echo $merchantNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"  data-category="<?php echo $merchantCategoryNameTrack; ?>"><?php _e('Details', 'bfi') ?></a>
 						</div>
 					</div>
 				</div>
@@ -127,6 +138,7 @@ jQuery(document).ready(function() {
 		slidesToShow: ncolslick,
 		slidesToScroll: 1,
 	});
+
 	jQuery('#<?php echo $carouselid; ?>').on('setPosition', function(event, slick){
 		var maxHeight = 0;
 		jQuery('.com_bookingforconnector-item-col', jQuery(slick.$slider ))

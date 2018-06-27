@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 function bfi_setSessionFromSubmittedData() {
-	$ci = BFCHelper::getStayParam('checkin', new DateTime());
+	$ci = BFCHelper::getStayParam('checkin', new DateTime('UTC'));
 	$merchantCategoryId = isset($_REQUEST['merchantCategoryId']) ? $_REQUEST['merchantCategoryId'] : array();
 	$cultureCode = isset($_REQUEST['cultureCode']) ? $_REQUEST['cultureCode'] : '';
 	$availabilitytype =  isset($_REQUEST['availabilitytype']) ? $_REQUEST['availabilitytype'] : 1;
@@ -41,7 +41,7 @@ function bfi_setSessionFromSubmittedData() {
 		'searchid' => isset($_REQUEST['searchid']) ? $_REQUEST['searchid'] : uniqid('', true),
 		'searchtypetab' => isset($_REQUEST['searchtypetab']) ? $_REQUEST['searchtypetab'] : '',
 		'newsearch' => isset($_REQUEST['newsearch']) ? $_REQUEST['newsearch'] : '0',
-		'checkin' => BFCHelper::getStayParam('checkin', new DateTime()),
+		'checkin' => BFCHelper::getStayParam('checkin', new DateTime('UTC')),
 		'checkout' => BFCHelper::getStayParam('checkout', $ci->modify(BFCHelper::$defaultDaysSpan)),
 		'duration' => $duration,
 		'searchTerm' => isset($_REQUEST['searchTerm']) ? $_REQUEST['searchTerm'] : '',

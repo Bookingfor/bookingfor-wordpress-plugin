@@ -21,15 +21,25 @@ $fromSearch =  BFCHelper::getVar('fromsearch','0');
 if(!empty($fromSearch)){
 	$routeMerchant .= "/?fromsearch=1";
 }
+$hasSuperior = !empty($merchant->RatingSubValue);
+$rating = $merchant->Rating;
+if ($rating > 9)
+{
+	$hasSuperior = ($merchant->Rating%10)>0;
+	$rating = (int)($rating / 10);
+} 
 
 ?>
 
 <div class="mapdetails">
 <h2 class="bfi-title-name"><a class="com_bookingforconnector_merchantdetails-nameAnchor" href="<?php echo $routeMerchant ?>"><?php echo  $merchant->Name?></a>
-  <span class="bfi-item-rating">
-  <?php for($i = 0; $i < $merchant->Rating; $i++) { ?>
-    <i class="fa fa-star"></i>
-  <?php } ?>
+	<span class="bfi-item-rating">
+	<?php for($i = 0; $i < $rating; $i++) { ?>
+		<i class="fa fa-star"></i>
+	<?php } ?>
+	<?php if ($hasSuperior) { ?>
+		&nbsp;S
+	<?php } ?>
   </span>
 </h2>
 </div>

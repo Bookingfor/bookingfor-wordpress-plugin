@@ -51,8 +51,9 @@
     color: $color8;
 }
 .bfi-item-rating, .bfi-title-name .bfi-item-rating {
-    color: $color7;
+	color: $color7;
 	white-space: nowrap;
+	font-weight: $font-weight-bold;
 }
 .bfi-item-address a, .bfi-row .fa a, .bfi-content a, .bfi-widget_merchant_vcard a {
 	&, &:link, &:hover, &:active, &:visited {
@@ -175,17 +176,19 @@ a.bfi-avg-value, a.bfi-avg-value:link, a.bfi-avg-value:hover {
     line-height: 20px;
     font-size: $font-size-medium;
     margin-bottom: 10px;
+	background-color: $color13;
+	&:hover{
+		background-color: $color14;
+	}
 }
 .bfi-list-group-item {
     position: relative;
     display: block;
-    background-color: #fff;
 }
 
 .bfi-item.bfi-list-group-item {
     float: none;
     width: 100%;
-    background-color: $color13;
     margin-bottom: 10px;
 }
 .bfi-details-container {
@@ -338,16 +341,52 @@ a.bfi-avg-value, a.bfi-avg-value:link, a.bfi-avg-value:hover {
 	padding: 4px;
 	box-sizing: border-box;
 }
+.bfi-mod-bookingforlogin {
+	padding:15px;
+	border: 1px solid #e3e3e3;
+	border-radius: $border-radius-base;
+	background: $color13;
+	@extend .bfi
+}
+.bfi-form-sep{
+    padding-top: 15px;
+}
+.bfi-login-link{
+	&, &:link, &:hover, &:active, &:visited {
+		text-decoration: none;
+		color: $color2;
+	}
+	&:hover{
+		text-decoration: underline;
+	}
+	&::before {
+		content: "\A";
+		white-space: pre;
+	}
+}
 .bfi-searchfilter{
 	padding:15px;
 	border: 1px solid #e3e3e3;
-    border-radius: $border-radius-base;
+	border-radius: $border-radius-base;
 	background: $color13;
 	@extend .bfi
 }
 .bfi-searchfilter h3 {
 	font-size: $font-size-x-large;
 	font-weight: $font-weight-bold;
+	&:before {
+		display: inline-block;
+		margin-right: 10px;
+		font-family: $font-family-icon;
+		content: "\f0de";
+		transform: rotate(180deg) translate(-5px, +2px);
+	}
+	&.bfi-searchfilter-active:before {
+		content: "\f0dd";
+		color: $color2;
+		font-weight: $font-weight-bold;
+		transform: rotate(-90deg) ;
+	}
 }
 #bfi-filtertoggle .bfi-option-title, #bfi-filtertoggleMerchant .bfi-option-title {
     cursor: pointer;
@@ -585,11 +624,25 @@ a.bfi-avg-value, a.bfi-avg-value:link, a.bfi-avg-value:hover {
     border: 1px solid $color10;
     background: $color14;
     padding: 20px;
-    & .bfi-datepicker, & .bfi-showperson-text-calculator, & .bfi-datepicker button  {
-	border: none;
-	text-decoration: underline;
+    & .bfi-datepicker, & .bfi-showperson-text-calculator {
 	color: $color1;
-	    font-weight: $font-weight-bold;
+	border: 1px solid #CECECE;
+	padding: 5px;
+	border-radius: 3px;
+	width: 90%;
+	background: #FFF;
+	background-color: #FFF;
+	-webkit-appearance: none;
+	text-decoration: none; 
+    }
+     & .bfi-datepicker button {
+	border: none;
+	background: transparent;
+	text-decoration: none;
+	color: $color12;
+	font-size: $font-size-regular;
+	line-height: 16px;
+	font-weight: $font-weight-base;
     }
     & .bfi-showperson-text-calculator {
         margin-top: 6px;
@@ -599,6 +652,16 @@ a.bfi-avg-value, a.bfi-avg-value:link, a.bfi-avg-value:hover {
 	color: $color12;
 	font-weight: $font-weight-base;
     }
+}
+.bfi_resource-calculatorForm-mandatory #calculateButton {
+    margin-top: 24px;
+    padding: 3px 12px;
+}
+.bfi_resource-calculatorForm-adult select,
+.bfi_resource-calculatorForm-senior select,
+.bfi_resource-calculatorForm-children select
+{
+	width:95% !important;
 }
 .bfi-shopping-cart {
 	text-align: right;
@@ -921,15 +984,45 @@ a.bfi-resname:link, a.bfi-resname:hover, .bfi-resname a {
 }
 .bfi-form-horizontal {
 	text-align: center;
+	/*
 	& .bfi-fields, .bfi-showperson-text {
 		display: inline-block;
 	}
 	& .bfi-showperson, label {
 		display: none;
 	}
+	*/ 
+	& .bfi-guests {
+		display: none;
+	}
+	& .bfi-fields {
+		display: inline-block;
+	}
 	& .bfi-container {
 		width: auto;
 	}
+	& label {
+		margin-top: 5px;
+	}
+	& input, select {
+		margin-top: 5px;
+	    border: 1px solid #CECECE;
+	    padding: 5px 5px;
+	    border-radius: 3px;
+	    width: 100%;
+	    -webkit-appearance: none;
+	}
+	& .bfi-showadult, .bfi-showchildren, .bfi-showsenior, .bfi-childrenages  {
+		float:none;
+		display:inline-block;
+		width:auto;
+	} & select{
+		width: 35px;
+	}
+	& .bfi-showperson .bfi-row {
+		display:inline-block;
+	}
+
 }
 .bfi-form-vertical {
 	& .bfi-showdaterange, .bfi-container {
@@ -1175,12 +1268,44 @@ div.star-rating{background:transparent!important;overflow:hidden!important}
     margin-top: 15px;
     vertical-align: middle;
 }
-.bf-title-book, .bfi_footer-book {
+.bf-title-book, .bfi-footer-book {
     background: $color10;
     color: $color1;
     border-radius: 3px;
     padding: 10px 20px;
+    line-height: 18px;
 }
+.bfi-footer-book a{
+	&, &:link, &:hover, &:active, &:visited {
+    color: $color1;
+  } 
+}
+.bf-title-book .bfi-btn {
+	margin-top:-8px;
+	margin-right:-16px;
+}
+.bf-title-book .bfi-btn span{
+	border:1px solid #fff;
+	border-radius: 50%;
+	-webkit-border-radius:  50%;
+	-moz-border-radius:  50%;
+	padding:0 4px 0 6px 
+}
+
+.bfi-policies{
+	display:none;
+	margin-top:15px !important;
+	max-height:200px;
+	overflow:auto;
+	border:1px solid #cccccc;
+	padding:5px;
+	& .bfi-merchantname{
+		font-size: $font-size-large;
+		color: $color1;
+		line-height: 24px;
+	}
+}
+
 #bookingTypesDescriptionContainer {
     margin-bottom: 20px;
     border-bottom: 1px solid $color11;
@@ -1496,10 +1621,13 @@ label.bfi-lblcheckzone {
 		background-color: $color13;
 	}
 }
-.bfi-guest .bfi-inputmini, .bfi-childrenages .bfi-inputmini  {
+.bfi-guest .bfi-inputmini, .bfi-childrenages .bfi-inputmini,.bfi_resource-calculatorForm-childrenages .bfi-inputmini {
 	padding-left: 5px;
 	position: relative;
-	width: 55px;
+	width: 45px;
+}
+.bfi_resource-calculatorForm-childrenages  .bfi-inputmini {
+	width: 50px;
 }
 .bfi-mod-bookingforsearch .bfi-hourdisabled, .bfi-dialog option:disabled {
 	cursor: default;
@@ -1701,6 +1829,7 @@ display:none;
 .bfi-check-more-slider .slick-arrow{
 	width: 20px;
 	height: 60px;
+	border: none;
 }
 .bfi-check-more-slider .slick-prev:before, .bfi-check-more-slider .slick-next:before {
 	font-family: $font-family-icon;
@@ -1823,6 +1952,26 @@ display:none;
 @media (max-width: 767px) {
 	.bfi-hidden-xs {
 		display: none !important;
+	}
+	.bfi-searchfilter h3 {
+		font-size: $font-size-x-large;
+		font-weight: $font-weight-bold;
+		&:before {
+			display: inline-block;
+			margin-right: 10px;
+			font-family: $font-family-icon;
+			content: "\f0de";
+			transform: rotate(90deg);
+		}
+		&.bfi-searchfilter-active:before {
+			content: "\f0dd";
+			color: $color2;
+			font-weight: $font-weight-bold;
+			transform: translate(5px, -2px);
+		}
+	}
+	#bfi-filtertoggle {
+		display:none;
 	}
 }
 @media (min-width: 768px) and (max-width: 991px) {

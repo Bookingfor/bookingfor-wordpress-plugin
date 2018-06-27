@@ -62,17 +62,17 @@ if($curlEnabled){
 				}
 				if(!empty($result->ValidationStart)){
 
-					$validationStart = DateTime::createFromFormat('d/m/Y', BFCHelper::parseJsonDate($result->ValidationStart));
-					if($validationStart> new DateTime()){
+					$validationStart = DateTime::createFromFormat('d/m/Y', BFCHelper::parseJsonDate($result->ValidationStart),new DateTimeZone('UTC'));
+					if($validationStart> new DateTime('UTC')){
 						$resultOk = false;
 						$msg = $msg . " - data inizio validità: " . $validationStart;
 					}
 				}
 				if(!empty($result->ValidationEnd)){
 
-					$validationEnd = DateTime::createFromFormat('d/m/Y', BFCHelper::parseJsonDate($result->ValidationEnd));
+					$validationEnd = DateTime::createFromFormat('d/m/Y', BFCHelper::parseJsonDate($result->ValidationEnd),new DateTimeZone('UTC'));
 					
-					if($validationEnd< new DateTime()){
+					if($validationEnd< new DateTime('UTC')){
 						$resultOk = false;
 						$msg = $msg . " - data fine validità: " . $validationEnd;
 					}
@@ -185,6 +185,21 @@ if($curlEnabled){
 		</tr>
 		</tbody>
 	</table>
+<?php 
+//if exist dir allow to clear 
+			if (file_exists (COM_BOOKINGFORCONNECTOR_CACHEDIR) && !BFI_Admin::is_dir_empty(COM_BOOKINGFORCONNECTOR_CACHEDIR)) {
+			
+			echo "<h3>" . __( "Delete Cached Data", 'bfi' ) . "</h3>";
+			echo "<p>" . __( "Cached data are stored on your server in files. If you need to delete them, use the button below.", 'bfi' ) . "</p>";
+			echo '<form name="wp_cache_content_delete" action="?page=bfi-settings" method="post">';
+			echo '<input type="hidden" name="bfi_delete_cache" />';
+			echo '<div class="submit"><input id="deletecachedata" class="button-secondary" type="submit" value="' . __( 'Delete Cache', 'bfi' ) . ' " /></div>';
+			wp_nonce_field('bfi-cache');
+			echo "</form>\n";
+			}
+
+?>
+
 	</p>
 	
 
@@ -194,9 +209,9 @@ if($curlEnabled){
 			do_settings_sections("bfi-options");      
 		?>          
 		<p class="submit">
-			<?php if ( empty( $GLOBALS['hide_save_button'] ) ) : ?>
+			<?php if ( empty( $GLOBALS['hide_save_button'] ) ) { ?>
 				<input name="save" class="button-primary bookingfor-save-button" type="submit" value="<?php esc_attr_e( 'Save changes', 'bfi' ); ?>" />
-			<?php endif; ?>
+			<?php } ?>
 			<?php // wp_nonce_field( 'bookingfor-settings' ); ?>
 		</p>
 	</form>

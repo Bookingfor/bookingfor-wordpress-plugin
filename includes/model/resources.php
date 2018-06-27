@@ -115,7 +115,7 @@ class BookingForConnectorModelResources
 	
 		$services = null;
 	
-		$r = $this->helper->executeQuery($url);
+		$r = $this->helper->executeQuery($url,null,null,false);
 		if (isset($r)) {
 			$res = json_decode($r);
 			if (!empty($res->d->results)){
@@ -137,7 +137,7 @@ class BookingForConnectorModelResources
 			return $resultCheck;
 		}
 		if ($checkIn==null) {
-			$defaultDate = DateTime::createFromFormat('d/m/Y',BFCHelper::getStartDate());
+			$defaultDate = DateTime::createFromFormat('d/m/Y',BFCHelper::getStartDate(),new DateTimeZone('UTC'));
 			$checkIn =  BFCHelper::getStayParam('checkin', $defaultDate);
 		}
 		if ($checkOut==null) {

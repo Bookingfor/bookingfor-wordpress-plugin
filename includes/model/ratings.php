@@ -47,7 +47,8 @@ class BookingForConnectorModelRatings
 			$checkin= NULL, 
 			$resourceId= NULL, 
 			$orderId= NULL, 
-			$label = NULL
+			$label = NULL,
+			$otherData = NULL
 		) {
 		$options = array(
 				'path' => $this->urlCreateRating,
@@ -76,6 +77,11 @@ class BookingForConnectorModelRatings
 					'$format' => 'json'
 				)
 			);
+
+		if(!empty($otherData)){
+			$options['data']['otherData'] = BFCHelper::getQuotedString($otherData);
+		}
+
 		$url = $this->helper->getQuery($options);
 
 	

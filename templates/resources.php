@@ -92,6 +92,10 @@ $listName = BFCHelper::$listNameAnalytics[$listNameAnalytics];// "Resources Sear
 
 		$resourceLat = $resource->XPos;
 		$resourceLon = $resource->YPos;
+		if(isset($resource->ResLat) && !empty($resource->ResLat)  ){
+			$resourceLat = $resource->ResLat;
+			$resourceLon = $resource->ResLng;
+		}
 		
 		$resource->MinPaxes = $resource->MinCapacityPaxes;
 		$resource->MaxPaxes= $resource->MaxCapacityPaxes;
@@ -120,11 +124,11 @@ $listName = BFCHelper::$listNameAnalytics[$listNameAnalytics];// "Resources Sear
 		if(!empty($resource->ImageUrl)){
 			$resourceImageUrl = BFCHelper::getImageUrlResized('resources',$resource->ImageUrl, 'medium');
 		}
-			if(isset($resource->XPos) && !empty($resource->XPos)  ){
+			if(isset($resourceLat) && !empty($resourceLat)  ){
 				$val= new StdClass;
 				$val->Id = $resource->ResourceId ;
-				$val->X = $resource->XPos;
-				$val->Y = $resource->YPos;
+				$val->X = $resourceLat;
+				$val->Y = $resourceLon;
 				$listResourceMaps[] = $val;
 			}
 

@@ -37,6 +37,11 @@ while ($jdate > $endjdate) {
 $routeThanks = $routeMerchant .'/'._x('thanks', 'Page slug', 'bfi' );
 $routeThanksKo = $routeMerchant .'/'._x('errors', 'Page slug', 'bfi' );
 
+	$routePrivacy = str_replace("{language}", substr($language,0,2), COM_BOOKINGFORCONNECTOR_PRIVACYURL);
+	$routeTermsofuse = str_replace("{language}", substr($language,0,2), COM_BOOKINGFORCONNECTOR_TERMSOFUSEURL);
+
+	$infoSendBtn = sprintf(__('Choosing <b>Send</b> means that you agree to <a href="%3$s" target="_blank">Terms of use</a> of %1$s and <a href="%2$s" target="_blank">privacy and cookies statement.</a>.' ,'bfi'),$sitename,$routePrivacy,$routeTermsofuse);
+
 if ($merchant->RatingsContext !== 1 && $merchant->RatingsContext !== 3 ) {
 //redirect almerchant senza possibilità di recensirla
 		header ("Location: ". $route); 
@@ -44,25 +49,30 @@ if ($merchant->RatingsContext !== 1 && $merchant->RatingsContext !== 3 ) {
 		$app->close();
 }
 
-$privacy = BFCHelper::GetPrivacy($language);
-$additionalPurpose = BFCHelper::GetAdditionalPurpose($language);
+//$privacy = BFCHelper::GetPrivacy($language);
+//$additionalPurpose = BFCHelper::GetAdditionalPurpose($language);
 
 $idrecaptcha = uniqid("bfirecaptcha");
 
-$rating = $merchant->Rating;
+$hasSuperior = !empty($merchant->RatingSubValue);
+$rating = (int)$merchant->Rating;
 if ($rating>9 )
 {
 	$rating = $rating/10;
-}
+	$hasSuperior = ($MerchantDetail->Rating%10)>0;
+} 
 
 
 ?>
 <div class="bfi-content">
 	<h2 class="bfi-title-name"><?php echo  $merchant->Name?> 
 		<span class="bfi-item-rating">
-		  <?php for($i = 0; $i < $rating; $i++) { ?>
-		  <i class="fa fa-star"></i>
-		  <?php } ?>
+			<?php for($i = 0; $i < $rating; $i++) { ?>
+				<i class="fa fa-star"></i>
+			<?php } ?>
+			<?php if ($hasSuperior) { ?>
+				&nbsp;S
+			<?php } ?>
 		</span>
 	</h2>
 
@@ -291,43 +301,28 @@ if ($rating>9 )
 			</div>
 		</div><!--/row-->
 
-		<div class="bfi-row">
-             <div class="bfi-col-md-12 bfi-checkbox-wrapper">
-		 	     <input name="form[accettazione]" id="agree" aria-invalid="true" aria-required="true" type="checkbox" required title="<?php _e('Mandatory', 'bfi') ?>">
-			     <label class="bfi-agreeprivacy" id="bfiagreeprivacy"><?php _e('I accept personal data treatment', 'bfi') ?></label>
-			</div>
-		</div><!--/row-->
-		<div class="bfi-row" style="display:none;">
-			<div class="bfi-col-md-12">
-				<label id="mbfcAdditionalPurposeTitle" class="bfi-agreeprivacy"><?php _e('Additional purposes', 'bfi') ?></label>
-				<textarea id="mbfcAdditionalPurposeText" name="form[additionalPurpose]" class="bfi-col-md-12" style="height:200px;" readonly ><?php echo $additionalPurpose ?></textarea>    
-			</div>
-		</div><!--/row-->
-		<div class="bfi-row" style="display:<?php echo empty($additionalPurpose)?"none":"";?>">
-			<div class="bfi-col-md-12 bfi-checkbox-wrapper">
-				<input name="form[accettazioneadditionalPurpose]" id="agreeadditionalPurpose" aria-invalid="true" aria-required="true" required type="checkbox" title="<?php _e('Mandatory', 'bfi') ?>">
-				<label class="bfi-agreeprivacy" id="bfiagreeadditionalPurpose" ><?php _e('I accept additional purposes', 'bfi') ?></label>
-			</div>
+		<div class=" bfi-checkbox-wrapper">
+			<input name="form[optinemail]" id="optinemail" type="checkbox">
+			<label for="optinemail"><?php echo sprintf(__('Send me promotional emails from %1$s', 'bfi'),$sitename) ?></label>
 		</div>
-
-		<?php bfi_display_captcha($idrecaptcha);  ?>
-<div id="recaptcha-error-<?php echo $idrecaptcha ?>" style="display:none"><?php _e('Mandatory', 'bfi') ?></div>
-		   
 		<div class="bfi-row">
 			<div class="bfi-col-md-12 bfi-checkbox-wrapper">
 				<input type="checkbox" value="true" name="privacyrating" id="privacyrating" required="required">
 				<label for="privacyrating"><?php echo sprintf( __('I certify that this review is based on my own experience and is my genuine opinion of this accommodation, and that I have no personal or business relationship with this establishment, and have not been offered any incentive or payment originating from the establishment to write this review. I understand that %s has a zero-tolerance policy on fake reviews.', 'bfi'),$sitename); ?></label>    
 			</div>
 		</div>
+		<?php bfi_display_captcha($idrecaptcha);  ?>
+		<div id="recaptcha-error-<?php echo $idrecaptcha ?>" style="display:none"><?php _e('Mandatory', 'bfi') ?></div>
 
-		<div class="bfi-row">
-			<div class="bfi-col-md-12">
-				<button type="submit" class="bfi-btn"><?php _e('send', 'bfi'); ?></button>
+		<div class="bfi-row bfi-footer-book" >
+			<div class="bfi-col-md-10">
+			<?php echo $infoSendBtn ?>
 			</div>
-		</div><!--/row-->
+			<div class="bfi-col-md-2 bfi_footer-send"><button type="submit" class="bfi-btn"><?php _e('Send', 'bfi') ?></button></div>
+		</div>
 	</div>
 </form>
-	<div class="bfi-clearboth"></div>
+	<div class="bfi-clearfix"></div>
 	<?php  
 	bfi_get_template("merchant_small_details.php",array("merchant"=>$merchant,"routeMerchant"=>$routeMerchant));	
 	?>

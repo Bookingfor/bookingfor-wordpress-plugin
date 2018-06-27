@@ -65,6 +65,14 @@ if(BFI()->isResourceOnSellPage() && !empty($resource_id)){
 if(BFI()->isCondominiumPage() && !empty($resource_id)){
 	$uriMerchantInfoRequest .= '/'.$resource_id .'-'._x( 'condominiumdetails', 'Page slug', 'bfi' );
 }
+$hasSuperior = !empty($merchant->RatingSubValue);
+$rating = $merchant->Rating;
+if ($rating > 9)
+{
+	$hasSuperior = ($merchant->Rating%10)>0;
+	$rating = (int)($rating / 10);
+} 
+
 ?>
 <div class=" bfi-hideonextra">
 	<br />
@@ -74,9 +82,12 @@ if(BFI()->isCondominiumPage() && !empty($resource_id)){
 					<div class="bfi-vcard-name">
 						<a href="<?php echo ($isportal)?$routeMerchant :"/";?>"><?php echo  $merchant->Name?></a>
 						<span class="bfi-item-rating">
-						<?php for($i = 0; $i < $merchant->Rating ; $i++) { ?>
-						  <i class="fa fa-star"></i>
-						<?php } ?>
+							<?php for($i = 0; $i < $rating ; $i++) { ?>
+							  <i class="fa fa-star"></i>
+							<?php } ?>
+							<?php if ($hasSuperior) { ?>
+								&nbsp;S
+							<?php } ?>
 						</span>
 					</div>
 					<div class="bfi-row ">

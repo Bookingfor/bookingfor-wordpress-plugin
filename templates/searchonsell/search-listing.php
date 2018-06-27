@@ -29,7 +29,7 @@ $fromsearchparam = "?lna=".$listNameAnalytics;
 			</div>
 		<?php } ?>
 
-		<div class="bfi-clearboth"></div>		
+		<div class="bfi-clearfix"></div>		
 </div>
 <script type="text/javascript">
 <!--
@@ -68,7 +68,7 @@ $startzoom = COM_BOOKINGFORCONNECTOR_GOOGLE_STARTZOOM;
 $googlemapsapykey = COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY;
 	
 	?>
-<div class="bfi-clearboth"></div>
+<div class="bfi-clearfix"></div>
 <div id="bfi-maps-popup"></div>
 
 <script type="text/javascript">

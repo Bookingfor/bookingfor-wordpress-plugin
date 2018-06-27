@@ -57,15 +57,22 @@ $url_merchant_page = get_permalink( $merchantdetails_page->ID );
 $accommodationdetails_page = get_post( bfi_get_page_id( 'accommodationdetails' ) );
 $url_resource_page = get_permalink( $accommodationdetails_page->ID );
 
-$totalResult = $total;
+$totalResult = $totalAvailable;
 
-$checkin = BFCHelper::getStayParam('checkin', new DateTime());
-$checkout = BFCHelper::getStayParam('checkout', new DateTime());
+$checkin = BFCHelper::getStayParam('checkin', new DateTime('UTC'));
+$checkout = BFCHelper::getStayParam('checkout', new DateTime('UTC'));
 $checkinstr = $checkin->format("d") . " " . date_i18n('F',$checkin->getTimestamp()) . ' ' . $checkin->format("Y") ;
 $checkoutstr = $checkout->format("d") . " " . date_i18n('F',$checkout->getTimestamp()) . ' ' . $checkout->format("Y") ;
 
 $counter = 0;
 
+$currFilterOrder = "";
+$currFilterOrderDirection = "";
+if (!empty($currSorting) &&strpos($currSorting, '|') !== false) {
+	$acurrSorting = explode('|',$currSorting);
+	$currFilterOrder = $acurrSorting[0];
+	$currFilterOrderDirection = $acurrSorting[1];
+}
 ?>
 <div class="bfi-content">
 	<div class="bfi-row">
@@ -73,6 +80,9 @@ $counter = 0;
 			<?php if($showSearchTitle){ ?>
 			<div class="bfi-search-title">
 				<?php echo sprintf( __('Found %s results', 'bfi'),$totalResult ) ?>
+				<?php if ($totalAvailable != $total) {
+					echo " " . __('on', 'bfi') . " " . $total ." ";
+				} ?>
 			</div>
 			<div class="bfi-search-title-sub">
 				<?php echo sprintf( __('From %s to %s', 'bfi'),$checkinstr,$checkoutstr ) ?>
@@ -89,8 +99,8 @@ $counter = 0;
 	</div>	
 	<div class="bfi-search-menu">
 		<form action="<?php echo $formAction; ?>" method="post" name="bookingforsearchForm" id="bookingforsearchFilterForm">
-				<input type="hidden" class="filterOrder" name="filter_order" value="price" />
-				<input type="hidden" class="filterOrderDirection" name="filter_order_Dir" value="asc" />
+				<input type="hidden" class="filterOrder" name="filter_order" value="<?php echo $currFilterOrder ?>" />
+				<input type="hidden" class="filterOrderDirection" name="filter_order_Dir" value="<?php echo $currFilterOrderDirection ?>" />
 				<input type="hidden" name="searchid" value="<?php //echo   $searchid ?>" />
 				<input type="hidden" name="limitstart" value="0" />
 		</form>
@@ -114,11 +124,13 @@ $counter = 0;
 <?php 
 foreach ($merchants as $currKey => $merchant){
 
-	$rating = $merchant->MrcRating;
 	$merchantName = $merchant->MrcName;
+	$hasSuperior = !empty($merchant->MrcRatingSubValue);
+	$rating = (int)$merchant->MrcRating;
 	if ($rating>9 )
 	{
 		$rating = $rating/10;
+		$hasSuperior = ($merchant->MrcRating%10)>0;
 	} 
 
 	$routeMerchant = $url_merchant_page . $merchant->MerchantId.'-'.BFI()->seoUrl($merchantName);
@@ -183,7 +195,11 @@ foreach ($merchants as $currKey => $merchant){
 								<?php for($i = 0; $i < $rating; $i++) { ?>
 									<i class="fa fa-star"></i>
 								<?php } ?>	             
+								<?php if ($hasSuperior) { ?>
+									&nbsp;S
+								<?php } ?>
 							</span>
+							<?php if((isset($merchant->IsRecommendedResult) && $merchant->IsRecommendedResult )) { ?><i class="fa fa-heart-o" aria-hidden="true" data-toggle="tooltip" title="<?php _e('Certainly it is our Preferred Merchant! They provide a great value and an excellent service.', 'bfi') ?>"></i>	<?php } ?>							
 						</div>
 						<div class="bfi-item-address">
 							<?php if ($showMerchantMap){?>
@@ -208,7 +224,7 @@ foreach ($merchants as $currKey => $merchant){
 				</div>
 				<div class="bfi-clearfix bfi-hr-separ"></div>
 				<!-- end merchant details -->
-
+<?php if( !empty($merchant->Availability) || $merchant->IsCatalog) { //ok disp ?>
 				<!-- resource details -->
 				<div class="bfi-row" >
 					<div class="bfi-col-sm-6">
@@ -264,7 +280,7 @@ foreach ($merchants as $currKey => $merchant){
 				<div class="bfi-clearfix bfi-hr-separ"></div>
 																<!-- end resource details -->
 
-				<?php if (!$merchant->IsCatalog && $onlystay ){ ?>
+				<?php if (!$merchant->IsCatalog && $onlystay && !empty($merchant->AvailabilityDate)){ ?>
 				<!-- price details -->
 				<div class="bfi-row" >
 					<div class="bfi-col-sm-4 bfi-text-right ">
@@ -275,8 +291,8 @@ foreach ($merchants as $currKey => $merchant){
 					<div class="bfi-col-sm-5 bfi-text-right ">
 							<div class="bfi-gray-highlight">
 							<?php 
-								$currCheckIn = DateTime::createFromFormat('Y-m-d\TH:i:s',$merchant->AvailabilityDate);
-								$currCheckOut = DateTime::createFromFormat('Y-m-d\TH:i:s',$merchant->CheckOutDate);
+								$currCheckIn = DateTime::createFromFormat('Y-m-d\TH:i:s',$merchant->AvailabilityDate,new DateTimeZone('UTC'));
+								$currCheckOut = DateTime::createFromFormat('Y-m-d\TH:i:s',$merchant->CheckOutDate,new DateTimeZone('UTC'));
 								$currDiff = $currCheckOut->diff($currCheckIn);
 								$hours = $currDiff->h;
 								$minutes = $currDiff->i;
@@ -320,15 +336,49 @@ foreach ($merchants as $currKey => $merchant){
 					</div>
 					<div class="bfi-col-sm-3 bfi-text-right">
 						<?php if ($merchant->Price > 0){ ?>
-								<a href="<?php echo $resourceRoute ?>" class="bfi-btn eectrack <?php echo $btnClass ?> data-type="Resource" data-id="<?php echo $merchant->ResourceId?>" data-index="<?php echo $counter?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"" target="_blank"><?php echo $btnText ?></a>
+								<a href="<?php echo $resourceRoute ?>" class="bfi-btn eectrack <?php echo $btnClass ?>" target="_blank" data-type="Resource" data-id="<?php echo $merchant->ResourceId?>" data-index="<?php echo $counter?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"" target="_blank"><?php echo $btnText ?></a>
 						<?php }else{ ?>
-								<a href="<?php echo $resourceRoute ?>" class="bfi-btn eectrack <?php echo $btnClass ?> data-type="Resource" data-id="<?php echo $merchant->ResourceId?>" data-index="<?php echo $counter?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"" target="_blank"><?php echo _e('Request' , 'bfi')?></a>
+								<a href="<?php echo $resourceRoute ?>" class="bfi-btn eectrack <?php echo $btnClass ?>" target="_blank" data-type="Resource" data-id="<?php echo $merchant->ResourceId?>" data-index="<?php echo $counter?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"" target="_blank"><?php echo _e('Request' , 'bfi')?></a>
 						<?php } ?>
 					</div>
 				</div>
 				<div class="bfi-clearfix"></div>
 				<!-- end price details -->
 				<?php } ?>
+
+<?php 
+   
+} else {  //ko disp:alternative
+?>
+<!-- merchant No resource  -->
+				<?php
+				$currStart = BFCHelper::getVar('limitstart','-1');
+				if ($currKey==0 && $currStart =='0' ) {
+				?>
+					<div class="bfi-noavailability">
+						<div class="bfi-alert bfi-alert-danger">
+							<b><?php echo sprintf( __('Unfortunately we have no availability at this merchant for your dates: %s - %s', 'bfi') ,$checkinstr,$checkoutstr ) ?></b>
+						</div>
+					</div>
+					<div class="bfi-check-more" data-type="merchant" data-id="<?php echo $merchant->MerchantId?>" >
+						<?php _e('Limited availability, but may sell out:', 'bfi') ?>
+						<div class="bfi-check-more-slider">
+						</div>
+					</div>
+				<?php } else { ?>
+					<div class="bfi-noavailability">
+						<div class="bfi-alert bfi-alert-danger">
+							<b>
+							<?php if(rand(0, 1)==0) { ?>
+								<?php _e('For a short time you missed it. Our last resource sold out a few days ago', 'bfi') ?>
+							<?php }else{ ?>
+								<?php _e("We're sorry! we do not have any availability for this resource.", 'bfi') ?>
+							<?php } ?>
+						</div>
+					</div>
+				<?php } ?>
+				<div class="bfi-clearfix"></div>
+<?php } ?>
 			</div>
 			<div class="bfi-discount-box" style="display:<?php echo ($merchant->PercentVariation < 0)?"block":"none"; ?>;">
 				<?php echo sprintf(__('Offer %d%%' , 'bfi'), number_format($merchant->PercentVariation, 1)); ?>
@@ -469,6 +519,11 @@ function getDiscountsAjaxInformations(discountIds,obj, fn){
 var offersLoaded = []
 
 jQuery(document).ready(function() {
+	/*----load sticky for other result...----*/
+	jQuery('#bfi-list').on("cssClassChanged",function() {
+		bfiCheckOtherAvailabilityResize();
+	});
+
 	getAjaxInformations();
 
 	jQuery('.bfi-maps-static,.bfi-search-view-maps').click(function() {
@@ -553,6 +608,21 @@ jQuery(document).ready(function() {
 					
 			bounds.extend(marker.position);
 		});
+	}
+	/*---resize slider on list/grid view change*/
+	function bfiCheckOtherAvailabilityResize() {
+		jQuery(".bfi-check-more").each(function(){
+			var currSlider = jQuery(this).find(".bfi-check-more-slider").first();
+			if(currSlider.hasClass("slick-slider")){
+				var currSliderWidth = jQuery(this).width()-80;
+				console.log(jQuery(this).width());
+				console.log(currSliderWidth);
+				jQuery(currSlider).width(currSliderWidth);
+				var ncolslick = Math.round(currSliderWidth/120);
+				jQuery(currSlider).slick('slickSetOption', 'slidesToShow', ncolslick, true);
+				jQuery(currSlider).slick('slickSetOption', 'slidesToScroll', ncolslick, true);
+			}
+		});	
 	}
 
 

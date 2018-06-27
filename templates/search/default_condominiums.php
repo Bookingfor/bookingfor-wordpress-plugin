@@ -17,12 +17,12 @@ $rating_text = array('merchants_reviews_text_value_0' => __('Very poor', 'bfi'),
 
 $fromsearchparam = "?fromsearch=1&lna=".$listNameAnalytics;
 
-$checkin = BFCHelper::getStayParam('checkin', new DateTime());
-$checkout = BFCHelper::getStayParam('checkout', new DateTime());
+$checkin = BFCHelper::getStayParam('checkin', new DateTime('UTC'));
+$checkout = BFCHelper::getStayParam('checkout', new DateTime('UTC'));
 $checkinstr = $checkin->format("d") . " " . date_i18n('F',$checkin->getTimestamp()) . ' ' . $checkin->format("Y") ;
 $checkoutstr = $checkout->format("d") . " " . date_i18n('F',$checkout->getTimestamp()) . ' ' . $checkout->format("Y") ;
 //$totalResult = count($merchants);
-$totalResult = $total;
+$totalResult = $totalAvailable;
 
 $language = $GLOBALS['bfi_lang'];
 $languageForm ='';
@@ -64,12 +64,22 @@ $url_resource_page = get_permalink( $accommodationdetails_page->ID );
 $condominiumdetails_page = get_post( bfi_get_page_id( 'condominiumdetails' ) );
 $url_condominium_page = get_permalink( $condominiumdetails_page->ID );
 
+$currFilterOrder = "";
+$currFilterOrderDirection = "";
+if (!empty($currSorting) &&strpos($currSorting, '|') !== false) {
+	$acurrSorting = explode('|',$currSorting);
+	$currFilterOrder = $acurrSorting[0];
+	$currFilterOrderDirection = $acurrSorting[1];
+}
 ?>
 <div class="bfi-content">
 	<div class="bfi-row">
 		<div class="bfi-col-xs-9 ">
 			<div class="bfi-search-title">
 				<?php echo sprintf( __('Found %s results', 'bfi'),$totalResult ) ?>
+				<?php if ($totalAvailable != $total) {
+					echo " " . __('on', 'bfi') . " " . $total ." ";
+				} ?>
 			</div>
 			<div class="bfi-search-title-sub">
 				<?php echo sprintf( __('From %s to %s', 'bfi'),$checkinstr,$checkoutstr ) ?>
@@ -85,8 +95,8 @@ $url_condominium_page = get_permalink( $condominiumdetails_page->ID );
 	</div>	
 	<div class="bfi-search-menu">
 		<form action="<?php echo $formAction; ?>" method="post" name="bookingforsearchForm" id="bookingforsearchFilterForm">
-				<input type="hidden" class="filterOrder" name="filter_order" value="price" />
-				<input type="hidden" class="filterOrderDirection" name="filter_order_Dir" value="asc" />
+				<input type="hidden" class="filterOrder" name="filter_order" value="<?php echo $currFilterOrder ?>" />
+				<input type="hidden" class="filterOrderDirection" name="filter_order_Dir" value="<?php echo $currFilterOrderDirection ?>" />
 				<input type="hidden" name="searchid" value="<?php //echo   $searchid ?>" />
 				<input type="hidden" name="limitstart" value="0" />
 		</form>
@@ -110,15 +120,8 @@ $url_condominium_page = get_permalink( $condominiumdetails_page->ID );
 <?php 
 foreach ($merchants as $currKey => $merchant){ 
 
-	$rating = $merchant->MrcRating;
 
 	$currName = BFCHelper::getLanguage($merchant->GrpName, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
-	$merchantName = $merchant->MrcName;
-
-	if ($rating>9 )
-	{
-		$rating = $rating/10;
-	} 
 	$isCondominium = (!empty( $merchant->CondominiumId ) && ($merchant->CondominiumId != $merchant->ResourceId));
 
 	$routeMerchant = $url_merchant_page . $merchant->MerchantId.'-'.BFI()->seoUrl($merchant->MrcName);
@@ -177,11 +180,12 @@ foreach ($merchants as $currKey => $merchant){
 		}
 	}
 	
-	$ratingMrc = $merchant->MrcRating;
+	$ratingMrc = (int)$merchant->MrcRating;
 	if ($ratingMrc>9 )
 	{
 		$ratingMrc = $ratingMrc/10;
-	}
+		$hasSuperiorMrc = ($merchant->MrcRating%10)>0;
+	} 
 
 	$resourceDataTypeTrack =  ($isCondominium)?"Resource Group":"Resource";
 	$resourceNameTrack =  BFCHelper::string_sanitize($currName);
@@ -238,6 +242,7 @@ foreach ($merchants as $currKey => $merchant){
 				<div class="bfi-clearfix bfi-hr-separ"></div>
 				<!-- end merchant details -->
 
+<?php if( !empty($merchant->Availability) || $merchant->IsCatalog) { //ok disp ?>
 				<!-- resource details -->
 				<div class="bfi-row" >
 					<div class="bfi-col-sm-6">
@@ -296,7 +301,7 @@ foreach ($merchants as $currKey => $merchant){
 				<div class="bfi-clearfix bfi-hr-separ"></div>
 																<!-- end resource details -->
 
-				<?php if (!$merchant->IsCatalog && $onlystay ){ ?>
+				<?php if (!$merchant->IsCatalog && $onlystay && !empty($merchant->AvailabilityDate)){ ?>
 				<!-- price details -->
 				<div class="bfi-row" >
 					<div class="bfi-col-sm-4 bfi-text-right ">
@@ -307,41 +312,43 @@ foreach ($merchants as $currKey => $merchant){
 					<div class="bfi-col-sm-5 bfi-text-right ">
 							<div class="bfi-gray-highlight">
 							<?php 
-								$currCheckIn = DateTime::createFromFormat('Y-m-d\TH:i:s',$merchant->AvailabilityDate);
-								$currCheckOut = DateTime::createFromFormat('Y-m-d\TH:i:s',$merchant->CheckOutDate);
-								$currDiff = $currCheckOut->diff($currCheckIn);
-								$hours = $currDiff->h;
-								$minutes = $currDiff->i;
+								if(!empty( $merchant->AvailabilityDate )){
+									$currCheckIn = DateTime::createFromFormat('Y-m-d\TH:i:s',$merchant->AvailabilityDate,new DateTimeZone('UTC'));
+									$currCheckOut = DateTime::createFromFormat('Y-m-d\TH:i:s',$merchant->CheckOutDate,new DateTimeZone('UTC'));
+									$currDiff = $currCheckOut->diff($currCheckIn);
+									$hours = $currDiff->h;
+									$minutes = $currDiff->i;
 
-								switch ($merchant->AvailabilityType) {
-									case 0:
-										echo __('Total for', 'bfi');
-										echo sprintf(__(' %d day/s' ,'bfi'),$merchant->Days);
-										break;
-									case 1:
-										echo __('Total for', 'bfi');
-										echo sprintf(__(' %d night/s' ,'bfi'),$merchant->Days);
-										break;
-									case 2:
-										echo __('Total for', 'bfi');
-										if($hours >0){
-											echo sprintf(__(' %d hour/s' ,'bfi'),$hours);
-										}
-										if($minutes >0){
-											echo sprintf(__(' %d minute/s' ,'bfi'),$minutes);
-										}
-										break;
-									case 3:
-										echo __("From", 'bfi');
-										//sospeso momentaneamente
-//										echo __('Total for', 'bfi');
-//										if($hours >0){
-//											echo sprintf(__('%d hour/s' ,'bfi'),$hours);
-//										}
-//										if($minutes >0){
-//											echo sprintf(__('%d minute/s' ,'bfi'),$minutes);
-//										}
-										break;
+									switch ($merchant->AvailabilityType) {
+										case 0:
+											echo __('Total for', 'bfi');
+											echo sprintf(__(' %d day/s' ,'bfi'),$merchant->Days);
+											break;
+										case 1:
+											echo __('Total for', 'bfi');
+											echo sprintf(__(' %d night/s' ,'bfi'),$merchant->Days);
+											break;
+										case 2:
+											echo __('Total for', 'bfi');
+											if($hours >0){
+												echo sprintf(__(' %d hour/s' ,'bfi'),$hours);
+											}
+											if($minutes >0){
+												echo sprintf(__(' %d minute/s' ,'bfi'),$minutes);
+											}
+											break;
+										case 3:
+											echo __("From", 'bfi');
+											//sospeso momentaneamente
+	//										echo __('Total for', 'bfi');
+	//										if($hours >0){
+	//											echo sprintf(__('%d hour/s' ,'bfi'),$hours);
+	//										}
+	//										if($minutes >0){
+	//											echo sprintf(__('%d minute/s' ,'bfi'),$minutes);
+	//										}
+											break;
+									}									
 								}
 							?>
 							</div>
@@ -350,6 +357,7 @@ foreach ($merchants as $currKey => $merchant){
 							<?php } ?>
 							<span class="bfi-price bfi-price-total bfi_<?php echo $currencyclass ?>  <?php echo ($merchant->Price < $merchant->TotalPrice)?"bfi-red":"" ?>" ><?php echo BFCHelper::priceFormat($merchant->Price,2, ',', '.') ?></span>
 					</div>
+				<?php } ?>
 					<div class="bfi-col-sm-3 bfi-text-right">
 						<?php if ($merchant->Price > 0){ ?>
 								<a href="<?php echo $routeCondominium ?>" class="bfi-btn eectrack <?php echo $btnClass ?>" target="_blank" data-type="<?php echo $resourceDataTypeTrack ?>" data-id="<?php echo $merchant->ResourceId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $resourceNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo $btnText ?></a>
@@ -360,8 +368,8 @@ foreach ($merchants as $currKey => $merchant){
 				</div>
 				<div class="bfi-clearfix"></div>
 				<!-- end price details -->
-				<?php } ?>
 			</div>
+<?php } ?>
 			<div class="bfi-discount-box" style="display:<?php echo ($merchant->PercentVariation < 0)?"block":"none"; ?>;">
 				<?php echo sprintf(__('Offer %d%%' , 'bfi'), number_format($merchant->PercentVariation, 1)); ?>
 			</div>

@@ -23,6 +23,9 @@ if(defined('ICL_LANGUAGE_CODE') &&  class_exists('SitePress')){
 			$base_url .= "/" .ICL_LANGUAGE_CODE;
 		}
 }
+$cultureCode = strtolower(substr($language, 0, 2));
+
+
 $currencyclass = bfi_get_currentCurrency();
 $isportal = COM_BOOKINGFORCONNECTOR_ISPORTAL;
 $usessl = COM_BOOKINGFORCONNECTOR_USESSL;
@@ -36,8 +39,7 @@ $listName = "Cart Page";
 
 $layout = get_query_var( 'bfi_layout', '' );
 $itemType = 0;
-
-if ($layout == 'thanks') {
+if ($layout == _x('thanks', 'Page slug', 'bfi' )) {
 	$listName = "Cart Page";
 	$checkAnalytics = true;
 	$itemType = 2;
@@ -45,6 +47,7 @@ if ($layout == 'thanks') {
 $analyticsEnabled = COM_BOOKINGFORCONNECTOR_GAENABLED == 1 && !empty(COM_BOOKINGFORCONNECTOR_GAACCOUNT) && COM_BOOKINGFORCONNECTOR_EECENABLED == 1;
 add_action('wp_head', 'bfi_google_analytics_EEc', 10, 1);
 do_action('wp_head', $listName);
+
 if($checkAnalytics && $analyticsEnabled ) {
 	$checkAnalytics = true;
 	switch($itemType) {
@@ -164,7 +167,7 @@ if(empty($layout)){
 $totalOrder = 0;
 
 $listStayConfigurations = array();
-$dateTimeNow =  new DateTime();
+$dateTimeNow =  new DateTime('UTC');
 
 
 
@@ -188,6 +191,7 @@ $allServiceIds = array();
 $allPolicyHelp = array();
 $allResourceBookable = array();
 $allResourceNoBookable = array();
+$allPolicies = array();
 
 		$modelMerchant = new BookingForConnectorModelMerchantDetails;
 //		$modelResource = new BookingForConnectorModelResource;
@@ -211,8 +215,8 @@ $allResourceNoBookable = array();
 		$formRouteDelete = $base_url .'/bfi-api/v1/task?task=DeleteFromCart'; 
 		$formRouteaddDiscountCodes = $base_url .'/bfi-api/v1/task?task=addDiscountCodesToCart'; 
 
-		$privacy = BFCHelper::GetPrivacy($language);
-		$additionalPurpose = BFCHelper::GetAdditionalPurpose($language);
+//		$privacy = BFCHelper::GetPrivacy($language);
+//		$additionalPurpose = BFCHelper::GetAdditionalPurpose($language);
 
 		$policyId = $cartConfig->PolicyId;
 //		$currPolicy =  BFCHelper::GetPolicyById($policyId, $language);
@@ -230,7 +234,7 @@ $allResourceNoBookable = array();
 		$listPolicyIdsBookable = array();
 		$listPolicyIdsNoBookable = array();
 
-		$now = new DateTime();
+		$now = new DateTime('UTC');
 		$now->setTime(0,0,0);
 		
 		// cerco risorse scadute come checkin
@@ -238,12 +242,12 @@ $allResourceNoBookable = array();
 			$id = $resource->ResourceId;
 			$merchantId = $resource->MerchantId;
 			$listResourcesCart[] = $id;
-			$tmpCheckinDate = new DateTime();
+			$tmpCheckinDate = new DateTime('UTC');
 			if($cartId==0){
-				$tmpCheckinDate = DateTime::createFromFormat('d/m/Y\TH:i:s', $resource->FromDate);
+				$tmpCheckinDate = DateTime::createFromFormat('d/m/Y\TH:i:s', $resource->FromDate,new DateTimeZone('UTC'));
 //				$tmpCheckinDate->setTime(0,0,1);
 			}else{
-				$tmpCheckinDate = new DateTime($resource->FromDate);
+				$tmpCheckinDate = new DateTime($resource->FromDate,new DateTimeZone('UTC'));
 			}
 			if($tmpCheckinDate < $now){
 				if($cartId==0){
@@ -332,11 +336,14 @@ $allResourceNoBookable = array();
 		$routeMerchant = $url_merchant_page . $MerchantDetail->MerchantId.'-'.BFI()->seoUrl($MerchantDetail->Name);
 		$nRowSpan = 1;
 		
-		$rating = $MerchantDetail->Rating;
+		$hasSuperior = !empty($MerchantDetail->MrcRatingSubValue);
+		$rating = (int)$MerchantDetail->MrcRating;
 		if ($rating>9 )
 		{
 			$rating = $rating/10;
+			$hasSuperior = ($MerchantDetail->MrcRating%10)>0;
 		} 
+
 		$mrcindirizzo = "";
 		$mrccap = "";
 		$mrccomune = "";
@@ -409,6 +416,9 @@ if(!empty($MerchantDetail->AcceptanceCheckIn) && !empty($MerchantDetail->Accepta
 							<?php for($i = 0; $i < $rating; $i++) { ?>
 								<i class="fa fa-star"></i>
 							<?php } ?>	             
+							<?php if ($hasSuperior) { ?>
+								&nbsp;S
+							<?php } ?>
 						</span>
 					</div>
 					<br />
@@ -503,15 +513,15 @@ if(!empty($MerchantDetail->AcceptanceCheckIn) && !empty($MerchantDetail->Accepta
 								/*-----------checkin/checkout--------------------*/	
 									if ($res->AvailabilityType == 0 )
 									{
-										$currCheckIn = new DateTime();
-										$currCheckOut = new DateTime();
+										$currCheckIn = new DateTime('UTC');
+										$currCheckOut = new DateTime('UTC');
 										if($cartId==0){
-											$currCheckIn = DateTime::createFromFormat('d/m/Y\TH:i:s', $res->FromDate);
-											$currCheckOut = DateTime::createFromFormat('d/m/Y\TH:i:s', $res->ToDate);
+											$currCheckIn = DateTime::createFromFormat('d/m/Y\TH:i:s', $res->FromDate,new DateTimeZone('UTC'));
+											$currCheckOut = DateTime::createFromFormat('d/m/Y\TH:i:s', $res->ToDate,new DateTimeZone('UTC'));
 
 										}else{
-											$currCheckIn = new DateTime($res->FromDate);
-											$currCheckOut = new DateTime($res->ToDate);
+											$currCheckIn = new DateTime($res->FromDate,new DateTimeZone('UTC'));
+											$currCheckOut = new DateTime($res->ToDate,new DateTimeZone('UTC'));
 											$currCheckIn->setTime($mrcAcceptanceCheckInHours,$mrcAcceptanceCheckInMins,$mrcAcceptanceCheckInSecs);
 											$currCheckOut->setTime($mrcAcceptanceCheckOutHours,$mrcAcceptanceCheckOutMins,$mrcAcceptanceCheckOutSecs);
 										}										
@@ -546,14 +556,14 @@ if(!empty($MerchantDetail->AcceptanceCheckIn) && !empty($MerchantDetail->Accepta
 									}
 									if ($res->AvailabilityType == 1 )
 									{
-										$currCheckIn = new DateTime();
-										$currCheckOut = new DateTime();
+										$currCheckIn = new DateTime('UTC');
+										$currCheckOut = new DateTime('UTC');
 										if($cartId==0){
-											$currCheckIn = DateTime::createFromFormat('d/m/Y\TH:i:s', $res->FromDate);
-											$currCheckOut = DateTime::createFromFormat('d/m/Y\TH:i:s', $res->ToDate);
+											$currCheckIn = DateTime::createFromFormat('d/m/Y\TH:i:s', $res->FromDate,new DateTimeZone('UTC'));
+											$currCheckOut = DateTime::createFromFormat('d/m/Y\TH:i:s', $res->ToDate,new DateTimeZone('UTC'));
 										}else{
-											$currCheckIn = new DateTime($res->FromDate);
-											$currCheckOut = new DateTime($res->ToDate);
+											$currCheckIn = new DateTime($res->FromDate,new DateTimeZone('UTC'));
+											$currCheckOut = new DateTime($res->ToDate,new DateTimeZone('UTC'));
 											$currCheckIn->setTime($mrcAcceptanceCheckInHours,$mrcAcceptanceCheckInMins,$mrcAcceptanceCheckInSecs);
 											$currCheckOut->setTime($mrcAcceptanceCheckOutHours,$mrcAcceptanceCheckOutMins,$mrcAcceptanceCheckOutSecs);
 										}										
@@ -590,8 +600,8 @@ if(!empty($MerchantDetail->AcceptanceCheckIn) && !empty($MerchantDetail->Accepta
 									if ($res->AvailabilityType == 2)
 									{
 										
-										$currCheckIn = DateTime::createFromFormat("YmdHis", $res->CheckInTime);
-										$currCheckOut = DateTime::createFromFormat("YmdHis", $res->CheckInTime);
+										$currCheckIn = DateTime::createFromFormat("YmdHis", $res->CheckInTime,new DateTimeZone('UTC'));
+										$currCheckOut = DateTime::createFromFormat("YmdHis", $res->CheckInTime,new DateTimeZone('UTC'));
 										$currCheckOut->add(new DateInterval('PT' . $res->TimeDuration . 'M'));
 
 										$currDiff = $currCheckOut->diff($currCheckIn);
@@ -623,7 +633,7 @@ if(!empty($MerchantDetail->AcceptanceCheckIn) && !empty($MerchantDetail->Accepta
 									if ($res->AvailabilityType == 3)
 									{
 
-										$currCheckIn = new DateTime($res->FromDate);										
+										$currCheckIn = new DateTime($res->FromDate,new DateTimeZone('UTC'));										
 										$currCheckOut = clone $currCheckIn;
 										$currCheckIn->setTime(0,0,1);
 										$currCheckOut->setTime(0,0,1);
@@ -769,12 +779,12 @@ if(!empty( $policy )){
 	$currValue = $policy->CancellationBaseValue;
 	$policyId= $policy->PolicyId;
 	$listPolicyIds[] = $policyId;
-	if($IsBookable){
-		$listPolicyIdsBookable[] = $policyId;
-
-	}else{
-		$listPolicyIdsNoBookable[] = $policyId;
-	}
+//	if($IsBookable){
+//		$listPolicyIdsBookable[] = $policyId;
+//
+//	}else{
+//		$listPolicyIdsNoBookable[] = $policyId;
+//	}
 
 	switch (true) {
 		case strstr($policy->CancellationBaseValue ,'%'):
@@ -786,6 +796,8 @@ if(!empty( $policy )){
 		case strstr($policy->CancellationBaseValue ,'n'):
 			$currValue = rtrim($policy->CancellationBaseValue,"n") .' '. __('days', 'bfi');
 			break;
+		default:
+			$currValue = '<span class="bfi_' . $currencyclass .'">'. BFCHelper::priceFormat($policy->CancellationBaseValue) .'</span>' ;
 	}
 	$currValuebefore = $policy->CancellationValue;
 	switch (true) {
@@ -798,15 +810,17 @@ if(!empty( $policy )){
 		case strstr($policy->CancellationValue ,'n'):
 			$currValuebefore = rtrim($policy->CancellationValue,"n") .' '. __('days', 'bfi');
 			break;
+		default:
+			$currValuebefore = '<span class="bfi_' . $currencyclass .'">'. BFCHelper::priceFormat($policy->CancellationValue) .'</span>' ;
 	}
 	if($policy->CanBeCanceled){
 		$currTimeBefore = "";
 		$currDateBefore = "";
-		$currDatePolicy =  new DateTime();
+		$currDatePolicy =  new DateTime('UTC');
 		if($cartId==0){
-			$currDatePolicy = DateTime::createFromFormat('d/m/Y\TH:i:s', $res->FromDate);
+			$currDatePolicy = DateTime::createFromFormat('d/m/Y\TH:i:s', $res->FromDate,new DateTimeZone('UTC'));
 		}else{
-			$currDatePolicy = new DateTime($res->FromDate);
+			$currDatePolicy = new DateTime($res->FromDate,new DateTimeZone('UTC'));
 		}										
 		if(!empty( $policy->CancellationTime )){		
 			switch (true) {
@@ -897,6 +911,14 @@ if(!empty( $policy )){
 if(!empty($policyHelp)){
 	$allPolicyHelp[] = $resource->Name . ": " . $policyHelp;
 }
+$allPolicies[] = array(
+	'merchantid' =>$MerchantDetail->MerchantId,
+	'merchantname' =>$MerchantDetail->Name,
+	'resourcename' =>$resource->Name ,
+	'policyHelp' =>$policyHelp,
+	'policyid' =>$policyId,
+	);
+
 //$currMerchantBookingTypes = array();
 $prepayment = "";
 $prepaymentHelp = "";
@@ -1015,8 +1037,8 @@ if($res->IncludedMeals >-1){
 													<?php 
 													if (!empty($sdetail->CheckInTime) && !empty($sdetail->TimeDuration) && $sdetail->TimeDuration>0)
 													{
-														$currCheckIn = DateTime::createFromFormat("YmdHis", $sdetail->CheckInTime);
-														$currCheckOut = DateTime::createFromFormat("YmdHis", $sdetail->CheckInTime);
+														$currCheckIn = DateTime::createFromFormat("YmdHis", $sdetail->CheckInTime,new DateTimeZone('UTC'));
+														$currCheckOut = DateTime::createFromFormat("YmdHis", $sdetail->CheckInTime,new DateTimeZone('UTC'));
 														$currCheckOut->add(new DateInterval('PT' . $sdetail->TimeDuration . 'M'));
 														$currDiff = $currCheckOut->diff($currCheckIn);
 														$timeDuration = $currDiff->h + ($currDiff->i/60);;
@@ -1048,11 +1070,11 @@ if($res->IncludedMeals >-1){
 													}
 													if (isset($sdetail->TimeSlotId) && $sdetail->TimeSlotId > 0)
 													{									
-														$currCheckIn = new DateTime(); 
+														$currCheckIn = new DateTime('UTC'); 
 														if($cartId==0){
-															$currCheckIn = DateTime::createFromFormat('d/m/Y', $sdetail->TimeSlotDate);
+															$currCheckIn = DateTime::createFromFormat('d/m/Y', $sdetail->TimeSlotDate,new DateTimeZone('UTC'));
 														}else{
-															$currCheckIn = new DateTime($sdetail->TimeSlotDate); 
+															$currCheckIn = new DateTime($sdetail->TimeSlotDate,new DateTimeZone('UTC')); 
 														}
 														$currCheckOut = clone $currCheckIn;
 														$currCheckIn->setTime(0,0,1);
@@ -1131,8 +1153,8 @@ if($res->IncludedMeals >-1){
 													<?php 
 													if (!empty($sdetail->CheckInTime) && !empty($sdetail->TimeDuration) && $sdetail->TimeDuration>0)
 													{
-														$currCheckIn = DateTime::createFromFormat("YmdHis", $sdetail->CheckInTime);
-														$currCheckOut = DateTime::createFromFormat("YmdHis", $sdetail->CheckInTime);
+														$currCheckIn = DateTime::createFromFormat("YmdHis", $sdetail->CheckInTime,new DateTimeZone('UTC'));
+														$currCheckOut = DateTime::createFromFormat("YmdHis", $sdetail->CheckInTime,new DateTimeZone('UTC'));
 														$currCheckOut->add(new DateInterval('PT' . $sdetail->TimeDuration . 'M'));
 														$currDiff = $currCheckOut->diff($currCheckIn);
 														$timeDuration = $currDiff->h + ($currDiff->i/60);
@@ -1164,11 +1186,11 @@ if($res->IncludedMeals >-1){
 													}
 													if (isset($sdetail->TimeSlotId) && $sdetail->TimeSlotId > 0)
 													{									
-														$currCheckIn = new DateTime(); 
+														$currCheckIn = new DateTime('UTC'); 
 														if($cartId==0){
-															$currCheckIn = DateTime::createFromFormat('d/m/Y', $sdetail->TimeSlotDate);
+															$currCheckIn = DateTime::createFromFormat('d/m/Y', $sdetail->TimeSlotDate,new DateTimeZone('UTC'));
 														}else{
-															$currCheckIn = new DateTime($sdetail->TimeSlotDate); 
+															$currCheckIn = new DateTime($sdetail->TimeSlotDate,new DateTimeZone('UTC')); 
 														}
 														$currCheckOut = clone $currCheckIn;
 														$currCheckIn->setTime(0,0,1);
@@ -1336,7 +1358,24 @@ if($countCoupon>0){
 //---------------------FORM
 
 
-	$current_user = wp_get_current_user();
+//	$current_user = wp_get_current_user();
+	$current_user = BFCHelper::getSession('bfiUser',null, 'bfi-User');
+
+	if ($current_user==null) {
+		$current_user = new stdClass;
+		$current_user->CustomerId = 0; 
+		$current_user->Name = ""; 
+		$current_user->Surname = ""; 
+		$current_user->Email = ""; 
+		$current_user->Phone = "+39"; 
+		$current_user->VATNumber = ""; 
+		$current_user->MainAddress = new stdClass;
+		$current_user->MainAddress->Address = ""; 
+		$current_user->MainAddress->Country = $cultureCode; 
+		$current_user->MainAddress->City = ""; 
+		$current_user->MainAddress->ZipCode = ""; 
+		$current_user->MainAddress->Province = ""; 	    
+	}
 	$sitename = get_bloginfo();
 
 	$isportal = COM_BOOKINGFORCONNECTOR_ISPORTAL;
@@ -1345,14 +1384,19 @@ if($countCoupon>0){
 	$idrecaptcha = uniqid("bfirecaptcha");
 	$formlabel = COM_BOOKINGFORCONNECTOR_FORM_KEY;
 	$tmpSearchModel = new stdClass;
-	$tmpSearchModel->FromDate = new DateTime();
-	$tmpSearchModel->ToDate = new DateTime();
+	$tmpSearchModel->FromDate = new DateTime('UTC');
+	$tmpSearchModel->ToDate = new DateTime('UTC');
 	
 
 //	$routeThanks = $routeMerchant .'/'. _x('thanks', 'Page slug', 'bfi' );
 //	$routeThanksKo = $routeMerchant .'/'. _x('errors', 'Page slug', 'bfi' );
 	$routeThanks = $url_cart_page .'/'. _x('thanks', 'Page slug', 'bfi' );
 	$routeThanksKo = $url_cart_page .'/'. _x('errors', 'Page slug', 'bfi' );
+
+$routePrivacy = str_replace("{language}", substr($language,0,2), COM_BOOKINGFORCONNECTOR_PRIVACYURL);
+$routeTermsofuse = str_replace("{language}", substr($language,0,2), COM_BOOKINGFORCONNECTOR_TERMSOFUSEURL);
+
+$infoSendBtn = sprintf(__('Choosing <b>Send</b> means that you agree to <a href="%3$s" target="_blank">Terms of use</a> of %1$s and <a href="%2$s" target="_blank">privacy and cookies statement.</a>.' ,'bfi'),$sitename,$routePrivacy,$routeTermsofuse);
 
 
 $listPolicyIdsstr = implode(",",$listPolicyIds);
@@ -1504,106 +1548,116 @@ if(!empty($bookingTypes)){
 
 ?>
 <div class="bfi-payment-form bfi-form-field">
-<div class="bf-title-book"><?php _e('Enter your details', 'bfi') ?></div>
+<div class="bf-title-book">
+	<?php if($current_user->CustomerId <1) { ?>
+	<a href="javascript:bfishowlogin()" class="bfi-btn bfi-alternative bfi-pull-right " ><?php _e('Log in to book faster', 'bfi') ?>
+	  <span><i id="bfiarrowlogindisplay" class="fa fa-angle-right"></i></span>
+	</a>
+	<?php } ?>
+	<?php _e('Enter your details', 'bfi') ?>
+</div>
+<div id="bfiLoginModule" style="display:<?php echo ($current_user->CustomerId>0)?"":"none"; ?>;">
+	<?php bfi_get_template("widgets/login.php"); ?>
+</div>
 <form method="post" id="bfi-resourcedetailsrequest" class="form-validate" action="<?php echo $formRoute; ?>">
 	<div class="bfi-mailalertform">
 		<div class="bfi-row">
 			<div class="bfi-col-md-6">
 			<div class="bfi-clearfix">
 				<label><?php _e('Name', 'bfi'); ?> *</label>
-				<input type="text" value="<?php echo $current_user->user_login ; ?>" size="50" name="form[Name]" id="Name" required  title="<?php _e('This field is required.', 'bfi') ?>">
+				<input type="text" value="<?php echo $current_user->Name ; ?>" size="50" name="form[Name]" id="Name" required  title="<?php _e('This field is required.', 'bfi') ?>">
 			</div><!--/span-->
 			<div class="bfi-clearfix" >
 				<label><?php _e('Surname', 'bfi'); ?> *</label>
-				<input type="text" value="" size="50" name="form[Surname]" id="Surname" required  title="<?php _e('This field is required.', 'bfi') ?>">
+				<input type="text" value="<?php echo $current_user->Surname ; ?>" size="50" name="form[Surname]" id="Surname" required  title="<?php _e('This field is required.', 'bfi') ?>">
 			</div><!--/span-->
 			<div >
 				<label><?php _e('Email', 'bfi'); ?> *</label>
-				<input type="email" value="<?php echo $current_user->user_email; ?>" size="50" name="form[Email]" id="formemail" required  title="<?php _e('This field is required.', 'bfi') ?>">
+				<input type="email" value="<?php echo $current_user->Email; ?>" size="50" name="form[Email]" id="formemail" required  title="<?php _e('This field is required.', 'bfi') ?>">
 			</div><!--/span-->
 			<div >
 				<label><?php _e('Reenter email', 'bfi'); ?> *</label>
-				<input type="email" value="<?php echo $current_user->user_email; ?>" size="50" name="form[EmailConfirm]" id="formemailconfirm" required equalTo="#formemail" title="<?php _e('This field is required.', 'bfi') ?>">
+				<input type="email" value="<?php echo $current_user->Email; ?>" size="50" name="form[EmailConfirm]" id="formemailconfirm" required equalTo="#formemail" title="<?php _e('This field is required.', 'bfi') ?>">
 			</div><!--/span-->
 			
 						
 			<div class="inputaddress" style="display:;">
 				<div >
 					<label><?php _e('Address', 'bfi'); ?> </label>
-					<input type="text" value="" size="50" name="form[Address]" id="Address"   title="<?php _e('This field is required.', 'bfi') ?>">
+					<input type="text" value="<?php echo $current_user->MainAddress->Address; ?>" size="50" name="form[Address]" id="Address"   title="<?php _e('This field is required.', 'bfi') ?>">
 				</div><!--/span-->
 				<div >
 					<label><?php _e('Postal Code', 'bfi'); ?> </label>
-					<input type="text" value="" size="20" name="form[Cap]" id="Cap"   title="<?php _e('This field is required.', 'bfi') ?>">
+					<input type="text" value="<?php echo $current_user->MainAddress->ZipCode; ?>" size="20" name="form[Cap]" id="Cap"   title="<?php _e('This field is required.', 'bfi') ?>">
 				</div><!--/span-->
 				<div >
 					<label><?php _e('Country', 'bfi'); ?> </label>
 						<select id="formNation" name="form[Nation]" class="bfi_input_select width90percent">
-							<option value="AR">Argentina</option>
-							<option value="AM">Armenia</option>
-							<option value="AU">Australia</option>
-							<option value="AZ">Azerbaigian</option>
-							<option value="BE">Belgium</option>
-							<option value="BY">Bielorussia</option>
-							<option value="BA">Bosnia-Erzegovina</option>
-							<option value="BR">Brazil</option>
-							<option value="BG">Bulgaria</option>
-							<option value="CA">Canada</option>
-							<option value="CN">China</option>
-							<option value="HR">Croatia</option>
-							<option value="CY">Cyprus</option>
-							<option value="CZ">Czech Republic</option>
-							<option value="DK">Denmark</option>
-							<option value="DE" <?php if($language == "de-DE") {echo "selected";}?>>Deutschland</option>
-							<option value="EG">Egipt</option>
-							<option value="EE">Estonia</option>
-							<option value="FI">Finland</option>
-							<option value="FR" <?php if($language == "fr-FR") {echo "selected";}?>>France</option>
-							<option value="GE">Georgia</option>
-							<option value="EN" <?php if($language == "en-GB") {echo "selected";}?>>Great Britain</option>
-							<option value="GR" <?php if($language == "el-GR") {echo "selected";}?>>Greece</option>
-							<option value="HU">Hungary</option>
-							<option value="IS">Iceland</option>
-							<option value="IN">Indian</option>
-							<option value="IE">Ireland</option>
-							<option value="IL">Israel</option>
-							<option value="IT" <?php if($language == "it-IT") {echo "selected";}?>>Italia</option>
-							<option value="JP">Japan</option>
-							<option value="LV">Latvia</option>
-							<option value="LI">Liechtenstein</option>
-							<option value="LT">Lithuania</option>
-							<option value="LU">Luxembourg</option>
-							<option value="MK">Macedonia</option>
-							<option value="MT">Malt</option>
-							<option value="MX">Mexico</option>
-							<option value="MD">Moldavia</option>
-							<option value="NL">Netherlands</option>
-							<option value="NZ">New Zealand</option>
-							<option value="NO">Norvay</option>
-							<option value="AT">Österreich</option>
-							<option value="PL" <?php if($language == "pl-PL") {echo "selected";}?>>Poland</option>
-							<option value="PT">Portugal</option>
-							<option value="RO">Romania</option>
-							<option value="SM">San Marino</option>
-							<option value="SK">Slovakia</option>
-							<option value="SI">Slovenia</option>
-							<option value="ZA">South Africa</option>
-							<option value="KR">South Korea</option>
-							<option value="ES" <?php if($language == "es-ES") {echo "selected";}?>>Spain</option>
-							<option value="SE">Sweden</option>
-							<option value="CH">Switzerland</option>
-							<option value="TJ">Tagikistan</option>
-							<option value="TR">Turkey</option>
-							<option value="TM">Turkmenistan</option>
-							<option value="US" <?php if($language == "en-US") {echo "selected";}?>>USA</option>
-							<option value="UA">Ukraine</option>
-							<option value="UZ">Uzbekistan</option>
-							<option value="VE">Venezuela</option>
+							<option value="AR" <?php if(strtolower($current_user->MainAddress->Country) == "ar") {echo "selected";}?> >Argentina</option>
+							<option value="AM" <?php if(strtolower($current_user->MainAddress->Country) == "am") {echo "selected";}?> >Armenia</option>
+							<option value="AU" <?php if(strtolower($current_user->MainAddress->Country) == "au") {echo "selected";}?> >Australia</option>
+							<option value="AZ" <?php if(strtolower($current_user->MainAddress->Country) == "az") {echo "selected";}?> >Azerbaigian</option>
+							<option value="BE" <?php if(strtolower($current_user->MainAddress->Country) == "be") {echo "selected";}?> >Belgium</option>
+							<option value="BY" <?php if(strtolower($current_user->MainAddress->Country) == "by") {echo "selected";}?> >Bielorussia</option>
+							<option value="BA" <?php if(strtolower($current_user->MainAddress->Country) == "ba") {echo "selected";}?> >Bosnia-Erzegovina</option>
+							<option value="BR" <?php if(strtolower($current_user->MainAddress->Country) == "br") {echo "selected";}?> >Brazil</option>
+							<option value="BG" <?php if(strtolower($current_user->MainAddress->Country) == "bg") {echo "selected";}?> >Bulgaria</option>
+							<option value="CA" <?php if(strtolower($current_user->MainAddress->Country) == "ca") {echo "selected";}?> >Canada</option>
+							<option value="CN" <?php if(strtolower($current_user->MainAddress->Country) == "cn") {echo "selected";}?> >China</option>
+							<option value="HR" <?php if(strtolower($current_user->MainAddress->Country) == "hr") {echo "selected";}?> >Croatia</option>
+							<option value="CY" <?php if(strtolower($current_user->MainAddress->Country) == "cy") {echo "selected";}?> >Cyprus</option>
+							<option value="CZ" <?php if(strtolower($current_user->MainAddress->Country) == "cz") {echo "selected";}?> >Czech Republic</option>
+							<option value="DK" <?php if(strtolower($current_user->MainAddress->Country) == "dk") {echo "selected";}?> >Denmark</option>
+							<option value="DE" <?php if(strtolower($current_user->MainAddress->Country) == "de") {echo "selected";}?> >Deutschland</option>
+							<option value="EG" <?php if(strtolower($current_user->MainAddress->Country) == "eg") {echo "selected";}?> >Egipt</option>
+							<option value="EE" <?php if(strtolower($current_user->MainAddress->Country) == "ee") {echo "selected";}?> >Estonia</option>
+							<option value="FI" <?php if(strtolower($current_user->MainAddress->Country) == "fi") {echo "selected";}?> >Finland</option>
+							<option value="FR" <?php if(strtolower($current_user->MainAddress->Country) == "fr") {echo "selected";}?> >France</option>
+							<option value="GE" <?php if(strtolower($current_user->MainAddress->Country) == "ge") {echo "selected";}?> >Georgia</option>
+							<option value="EN" <?php if(strtolower($current_user->MainAddress->Country) == "en") {echo "selected";}?> >Great Britain</option>
+							<option value="GR" <?php if(strtolower($current_user->MainAddress->Country) == "gr") {echo "selected";}?> >Greece</option>
+							<option value="HU" <?php if(strtolower($current_user->MainAddress->Country) == "hu") {echo "selected";}?> >Hungary</option>
+							<option value="IS" <?php if(strtolower($current_user->MainAddress->Country) == "is") {echo "selected";}?> >Iceland</option>
+							<option value="IN" <?php if(strtolower($current_user->MainAddress->Country) == "in") {echo "selected";}?> >Indian</option>
+							<option value="IE" <?php if(strtolower($current_user->MainAddress->Country) == "ie") {echo "selected";}?> >Ireland</option>
+							<option value="IL" <?php if(strtolower($current_user->MainAddress->Country) == "il") {echo "selected";}?> >Israel</option>
+							<option value="IT" <?php if(strtolower($current_user->MainAddress->Country) == "it") {echo "selected";}?> >Italia</option>
+							<option value="JP" <?php if(strtolower($current_user->MainAddress->Country) == "jp") {echo "selected";}?> >Japan</option>
+							<option value="LV" <?php if(strtolower($current_user->MainAddress->Country) == "lv") {echo "selected";}?> >Latvia</option>
+							<option value="LI" <?php if(strtolower($current_user->MainAddress->Country) == "li") {echo "selected";}?> >Liechtenstein</option>
+							<option value="LT" <?php if(strtolower($current_user->MainAddress->Country) == "lt") {echo "selected";}?> >Lithuania</option>
+							<option value="LU" <?php if(strtolower($current_user->MainAddress->Country) == "lu") {echo "selected";}?> >Luxembourg</option>
+							<option value="MK" <?php if(strtolower($current_user->MainAddress->Country) == "mk") {echo "selected";}?> >Macedonia</option>
+							<option value="MT" <?php if(strtolower($current_user->MainAddress->Country) == "mt") {echo "selected";}?> >Malt</option>
+							<option value="MX" <?php if(strtolower($current_user->MainAddress->Country) == "mx") {echo "selected";}?> >Mexico</option>
+							<option value="MD" <?php if(strtolower($current_user->MainAddress->Country) == "md") {echo "selected";}?> >Moldavia</option>
+							<option value="NL" <?php if(strtolower($current_user->MainAddress->Country) == "nl") {echo "selected";}?> >Netherlands</option>
+							<option value="NZ" <?php if(strtolower($current_user->MainAddress->Country) == "nz") {echo "selected";}?> >New Zealand</option>
+							<option value="NO" <?php if(strtolower($current_user->MainAddress->Country) == "no") {echo "selected";}?> >Norvay</option>
+							<option value="AT" <?php if(strtolower($current_user->MainAddress->Country) == "at") {echo "selected";}?> >Österreich</option>
+							<option value="PL" <?php if(strtolower($current_user->MainAddress->Country) == "pl") {echo "selected";}?> >Poland</option>
+							<option value="PT" <?php if(strtolower($current_user->MainAddress->Country) == "pt") {echo "selected";}?> >Portugal</option>
+							<option value="RO" <?php if(strtolower($current_user->MainAddress->Country) == "ro") {echo "selected";}?> >Romania</option>
+							<option value="SM" <?php if(strtolower($current_user->MainAddress->Country) == "sm") {echo "selected";}?> >San Marino</option>
+							<option value="SK" <?php if(strtolower($current_user->MainAddress->Country) == "sk") {echo "selected";}?> >Slovakia</option>
+							<option value="SI" <?php if(strtolower($current_user->MainAddress->Country) == "si") {echo "selected";}?> >Slovenia</option>
+							<option value="ZA" <?php if(strtolower($current_user->MainAddress->Country) == "za") {echo "selected";}?> >South Africa</option>
+							<option value="KR" <?php if(strtolower($current_user->MainAddress->Country) == "kr") {echo "selected";}?> >South Korea</option>
+							<option value="ES" <?php if(strtolower($current_user->MainAddress->Country) == "es") {echo "selected";}?> >Spain</option>
+							<option value="SE" <?php if(strtolower($current_user->MainAddress->Country) == "se") {echo "selected";}?> >Sweden</option>
+							<option value="CH" <?php if(strtolower($current_user->MainAddress->Country) == "ch") {echo "selected";}?> >Switzerland</option>
+							<option value="TJ" <?php if(strtolower($current_user->MainAddress->Country) == "tj") {echo "selected";}?> >Tagikistan</option>
+							<option value="TR" <?php if(strtolower($current_user->MainAddress->Country) == "tr") {echo "selected";}?> >Turkey</option>
+							<option value="TM" <?php if(strtolower($current_user->MainAddress->Country) == "tm") {echo "selected";}?> >Turkmenistan</option>
+							<option value="US" <?php if(strtolower($current_user->MainAddress->Country) == "us") {echo "selected";}?> >USA</option>
+							<option value="UA" <?php if(strtolower($current_user->MainAddress->Country) == "ua") {echo "selected";}?> >Ukraine</option>
+							<option value="UZ" <?php if(strtolower($current_user->MainAddress->Country) == "uz") {echo "selected";}?> >Uzbekistan</option>
+							<option value="VE" <?php if(strtolower($current_user->MainAddress->Country) == "ve") {echo "selected";}?> >Venezuela</option>
 						</select>
 				</div><!--/span-->
 				<div class="bfi-vatcode-required">
 					<label><?php _e('Fiscal code', 'bfi'); ?></label>
-					<input type="text" value="" size="20" name="form[VatCode]" id="VatCode" class="vatCode" title="<?php _e('This field is required.', 'bfi') ?>">
+					<input type="text" value="<?php echo $current_user->VATNumber; ?>" size="20" name="form[VatCode]" id="VatCode" class="vatCode" title="<?php _e('This field is required.', 'bfi') ?>">
 				</div><!--/span-->
 			</div>
 	    </div>
@@ -1614,7 +1668,7 @@ if(!empty($bookingTypes)){
             </div>
 			<div >
 				<label><?php _e('Phone', 'bfi'); ?> *</label>
-				<input type="text" value="+39" data-rule-minlength="4" size="20" name="form[Phone]" id="Phone" required  title="<?php _e('This field is required.', 'bfi') ?>" data-msg-minlength="<?php _e('This field is required.', 'bfi') ?>">
+				<input type="text" value="<?php echo $current_user->Phone; ?>" data-rule-minlength="4" size="20" name="form[Phone]" id="Phone" required  title="<?php _e('This field is required.', 'bfi') ?>" data-msg-minlength="<?php _e('This field is required.', 'bfi') ?>">
 			</div><!--/span-->
 			<div >
 				<label><?php _e('Your estimated time of arrival', 'bfi') ?></label>
@@ -1650,15 +1704,15 @@ if(!empty($bookingTypes)){
 			</div><!--/span-->
 			<div class="bfi-hide">
 				<label><?php _e('Password', 'bfi') ?> *</label>
-				<input type="password" value="<?php echo $current_user->user_email; ?>" size="50" name="form[Password]" id="Password"   title="">
+				<input type="password" value="<?php echo $current_user->Email; ?>" size="50" name="form[Password]" id="Password"   title="">
 			</div><!--/span-->
 				<div >
 					<label><?php _e('City', 'bfi'); ?> </label>
-					<input type="text" value="" size="50" name="form[City]" id="City"   title="<?php _e('This field is required.', 'bfi') ?>">
+					<input type="text" value="<?php echo $current_user->MainAddress->City ; ?>" size="50" name="form[City]" id="City"   title="<?php _e('This field is required.', 'bfi') ?>">
 				</div><!--/span-->
 				<div >
 					<label><?php _e('Province', 'bfi'); ?> </label>
-					<input type="text" value="" size="20" name="form[Provincia]" id="Provincia"   title="<?php _e('This field is required.', 'bfi') ?>">
+					<input type="text" value="<?php echo $current_user->MainAddress->Province ; ?>" size="20" name="form[Provincia]" id="Provincia"   title="<?php _e('This field is required.', 'bfi') ?>">
 				</div><!--/span-->
 		</div>
 	</div>
@@ -1760,38 +1814,59 @@ if(!empty( $policy )){
 		case strstr($policy->CancellationValue ,'n'):
 			$currValuebefore = sprintf(__(' %d day/s' ,'bfi'),rtrim($policy->CancellationValue,"n"));
 			break;
+		default:
+			$currValuebefore = '<span class="bfi_' . $currencyclass .'">'. BFCHelper::priceFormat($policy->CancellationValue) .'</span>' ;
 	}
 }
 ?>
 			<div class=" bfi-checkbox-wrapper">
 					<input name="form[accettazionepolicy]" class="checkbox" id="agreepolicy" aria-invalid="true" aria-required="true" type="checkbox" required title="<?php _e('Mandatory', 'bfi') ?>">
 					<label class="bfi-shownextelement"><?php _e('I agree to the conditions', 'bfi') ?></label>
-					<textarea name="form[policy]" class="bfi-col-md-12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php
+					<div class="bfi-policies">
+<?php
+	$currMerchantName="";
+	foreach ($allPolicies as  $key => $currSinglePolicy) { 
+		$currPolicyDescription = "";
+		foreach ($currPolicies as $currPolicy) { 
+			if($currPolicy->PolicyId == $currSinglePolicy['policyid']){
+				$currPolicyDescription = $currPolicy->Description;
+				 break;
+			}
+		}
+		if ($currSinglePolicy['merchantname']!=$currMerchantName) {
+		    $currMerchantName = $currSinglePolicy['merchantname'];
+			?>
+			<div class="bfi-merchantname"><?php echo $currMerchantName ?></div>
+			<?php 
+		}
+		?>
+				<div class="bfi-resourcename"><?php echo $key+1 ?>) <?php echo $currSinglePolicy['resourcename'] ?>:</div>
+				<p>
+				<?php echo $currSinglePolicy['policyHelp'] ?><br />
+				<?php echo $currPolicyDescription?><br />
+
+				</p>
+
+		<?php 
+	}
+
+					?>
+<textarea name="form[policy]" class="bfi-col-md-12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php
 if (count($allPolicyHelp)>0) {
 	foreach ($allPolicyHelp as $key => $value) { 
 		echo ($key+1) . ") " . $value . "\r\n";
 	}
 }
-					?>
+?>
 
 <?php echo $currPoliciesDescriptions; ?></textarea>
 		</div>
 		<div class="bfi-clearfix"></div>
 		<?php } ?>
 		<div class=" bfi-checkbox-wrapper">
-				<input name="form[accettazione]" id="agree" aria-invalid="true" aria-required="true" type="checkbox" required title="<?php _e('Mandatory', 'bfi') ?>">
-				<label class="bfi-shownextelement"><?php _e('I accept personal data treatment', 'bfi') ?></label>
-				<textarea name="form[privacy]" class="bfi-col-md-12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php echo $privacy ?></textarea>    
+			<input name="form[optinemail]" id="optinemail" type="checkbox">
+			<label for="optinemail"><?php echo sprintf(__('Send me promotional emails from %1$s', 'bfi'),$sitename) ?></label>
 		</div>
-		<div class="bfi-clearfix"></div>
-<?php if(!empty($additionalPurpose)) { ?>
-		<div class=" bfi-checkbox-wrapper">
-				<input name="form[accettazioneadditionalPurpose]" class="checkbox" id="agreeadditionalPurpose" aria-invalid="true" aria-required="false" type="checkbox" title="<?php _e('Mandatory', 'bfi') ?>">
-				<label class="bfi-shownextelement"><?php _e('I accept additional purposes', 'bfi') ?></label>
-				<textarea name="form[additionalPurpose]" class="bfi-col-md-12" style="display:none;height:200px;margin-top:15px !important;" readonly ><?php echo $additionalPurpose ?></textarea>    
-		</div>
-		<div class="bfi-clearfix"></div>
-<?php } ?>
 
 		<?php bfi_display_captcha($idrecaptcha);  ?>
 <div id="recaptcha-error-<?php echo $idrecaptcha ?>" style="display:none"><?php _e('Mandatory', 'bfi') ?></div>
@@ -1816,8 +1891,10 @@ if (count($allPolicyHelp)>0) {
 
 		</div>
 
-		<div class="bfi-row bfi_footer-book" >
-			<div class="bfi-col-md-10"></div>
+		<div class="bfi-row bfi-footer-book" >
+			<div class="bfi-col-md-10">
+			<?php echo $infoSendBtn ?>
+			</div>
 			<div class="bfi-col-md-2 bfi_footer-send"><button type="submit" id="btnbfFormSubmit" class="bfi-btn" style="display:none;"><?php _e('Send', 'bfi') ?></button></div>
 		</div>
 
@@ -2263,6 +2340,18 @@ function bfiUpdateInfo(){
 	jQuery(".bfisimpleservices").shorten(shortenOption);
 }
 
+function bfishowlogin(){
+	jQuery("#bfiLoginModule").toggle();
+	if (jQuery("#bfiLoginModule").css('display') != 'none')
+	{
+		jQuery("#bfiarrowlogindisplay").removeClass("fa-angle-right");
+		jQuery("#bfiarrowlogindisplay").addClass("fa-angle-down");
+	}else{
+		jQuery("#bfiarrowlogindisplay").addClass("fa-angle-right");
+		jQuery("#bfiarrowlogindisplay").removeClass("fa-angle-down");
+	}
+
+}
 jQuery(document).ready(function () {
 	jQuery(".bfi-description").shorten(shortenOption);
 	getAjaxInformationsSrv();

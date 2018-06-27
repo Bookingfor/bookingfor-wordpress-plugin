@@ -265,7 +265,7 @@ class BookingForConnectorModelMerchants
 		
 		$locationZones = null;
 		
-		$r = $this->helper->executeQuery($url);
+		$r = $this->helper->executeQuery($url,null,null,false);
 		if (isset($r)) {
 			$res = json_decode($r);
 //			$locationZones = $res->d->results ?: $res->d;
@@ -343,7 +343,7 @@ class BookingForConnectorModelMerchants
 		
 		$locations = null;
 		
-		$r = $this->helper->executeQuery($url);
+		$r = $this->helper->executeQuery($url,null,null,false);
 		if (isset($r)) {
 			$res = json_decode($r);
 //			$locationZones = $res->d->results ?: $res->d;
@@ -413,7 +413,7 @@ class BookingForConnectorModelMerchants
 	
 		$categoriesFromService = null;
 	
-		$r = $this->helper->executeQuery($url);
+		$r = $this->helper->executeQuery($url,null,null,false);
 		if (isset($r)) {
 			$res = json_decode($r);
 //			$categories = $res->d->results ?: $res->d;
@@ -457,7 +457,7 @@ class BookingForConnectorModelMerchants
 		
 			$categoriesFromService = null;
 		
-			$r = $this->helper->executeQuery($url);
+		$r = $this->helper->executeQuery($url,null,null,false);
 			if (isset($r)) {
 				$res = json_decode($r);
 				//$categoriesFromService = $res->d->results ?: $res->d;

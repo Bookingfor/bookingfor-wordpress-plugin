@@ -21,15 +21,21 @@ if(COM_BOOKINGFORCONNECTOR_MONTHINCALENDAR==1){
 			$base_url .= "/".ICL_LANGUAGE_CODE;
 		}
 	}
-	$privacy = BFCHelper::GetPrivacy($language);
-	$additionalPurpose = BFCHelper::GetAdditionalPurpose($language);
+//	$privacy = BFCHelper::GetPrivacy($language);
+//	$additionalPurpose = BFCHelper::GetAdditionalPurpose($language);
 	$formlabel = COM_BOOKINGFORCONNECTOR_FORM_KEY;
 	$minCapacityPaxes = 0;
 	$maxCapacityPaxes = 12;
 	
 	$idrecaptcha = uniqid("bfirecaptcha");
 	$idform = uniqid("merchantdetailscontacts");
-	
+
+	$routePrivacy = str_replace("{language}", substr($language,0,2), COM_BOOKINGFORCONNECTOR_PRIVACYURL);
+	$routeTermsofuse = str_replace("{language}", substr($language,0,2), COM_BOOKINGFORCONNECTOR_TERMSOFUSEURL);
+
+	$infoSendBtn = sprintf(__('Choosing <b>Send</b> means that you agree to <a href="%3$s" target="_blank">Terms of use</a> of %1$s and <a href="%2$s" target="_blank">privacy and cookies statement.</a>.' ,'bfi'),$sitename,$routePrivacy,$routeTermsofuse);
+
+
 	$formdisplay = "none";
 	if (($layout  == '' && $currentView=='merchant') || isset($popupview)) {
 		$formdisplay = "";
@@ -195,24 +201,10 @@ if(empty($maxCapacityPaxes)) {
 			
 		<div class="bfi-row">
              <div class="bfi-col-md-12 bfi-checkbox-wrapper">
-		 	   <input name="form[accettazione]" id="agree" aria-invalid="true" aria-required="true" type="checkbox" required title="<?php _e('Mandatory', 'bfi') ?>">
-			   <label  class="bfi-agreeprivacy"><?php _e('I accept personal data treatment', 'bfi') ?></label>
+			<input name="form[optinemail]" id="optinemail" type="checkbox">
+			<label for="optinemail"><?php echo sprintf(__('Send me promotional emails from %1$s', 'bfi'),$sitename) ?></label>
 			</div>
         </div>
-		<div class="bfi-row" style="display:none;">
-			<div class="bfi-col-md-12">
-				<label id="mbfcAdditionalPurposeTitle"><?php _e('Additional purposes', 'bfi') ?></label>
-				<textarea id="mbfcAdditionalPurposeText" name="form[additionalPurpose]" class="bfi-col-md-12" style="height:200px;" readonly ><?php echo $additionalPurpose ?></textarea>    
-			</div>
-		</div><!--/row-->
-		<div class="bfi-row" style="display:<?php echo empty($additionalPurpose)?"none":"";?>">
-			<div class="bfi-col-md-12 bfi-checkbox-wrapper">
-				<input name="form[accettazioneadditionalPurpose]" id="agreeadditionalPurpose" aria-invalid="true" aria-required="true" required type="checkbox" title="<?php _e('Mandatory', 'bfi') ?>">
-				<label class="bfi-agreeprivacy"><?php _e('I accept additional purposes', 'bfi') ?></label>
-			</div>
-		</div>
-        
-        
 		<?php bfi_display_captcha($idrecaptcha);  ?>
 <div id="recaptcha-error-<?php echo $idrecaptcha ?>" style="display:none"><?php _e('Mandatory', 'bfi') ?></div>
 
@@ -225,8 +217,21 @@ if(empty($maxCapacityPaxes)) {
 				<input type="hidden" id="label" name="form[label]" value="" />
 				<input type="hidden" id="redirect" name="form[Redirect]" value="<?php echo $routeThanks;?>" />
 				<input type="hidden" id="redirecterror" name="Redirecterror" value="<?php echo $routeThanksKo;?>" />
-			<div ><button type="submit" class="bfi-btn"><?php _e('Send', 'bfi') ?></button></div>
-     
+<?php if(isset($popupview)){  ?>
+		<div class="bfi-row bfi-footer-book" >
+					<div class="bfi-col-md-10">
+					<?php echo $infoSendBtn ?>
+					</div>
+					<div class="bfi-col-md-2 bfi-footer-send"><button type="submit" class="bfi-btn"><?php _e('Send', 'bfi') ?></button></div>
+				</div>
+<?php }else{  ?>
+				<div class="bfi-footer-book" >
+					<?php echo $infoSendBtn ?>
+				</div>
+				<div class=""><button type="submit" class="bfi-btn" style="width: 100%;" ><?php _e('Send', 'bfi') ?></button></div>
+<?php } ?>
+
+    
 		</div>
 </form>
 

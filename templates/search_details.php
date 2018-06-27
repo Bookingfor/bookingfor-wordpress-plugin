@@ -87,8 +87,8 @@ if(!empty($merchant->AcceptanceCheckIn) && !empty($merchant->AcceptanceCheckOut)
 	list($mrcAcceptanceCheckOutHours,$mrcAcceptanceCheckOutMins,$mrcAcceptanceCheckOutSecs) = explode(':',$correctAcceptanceCheckOuts.":1");
 }
 
-$startDate = DateTime::createFromFormat('d/m/Y',BFCHelper::getStartDateByMerchantId($merchant->MerchantId));
-$endDate = DateTime::createFromFormat('d/m/Y',BFCHelper::getEndDateByMerchantId($merchant->MerchantId));
+$startDate = DateTime::createFromFormat('d/m/Y',BFCHelper::getStartDateByMerchantId($merchant->MerchantId),new DateTimeZone('UTC'));
+$endDate = DateTime::createFromFormat('d/m/Y',BFCHelper::getEndDateByMerchantId($merchant->MerchantId),new DateTimeZone('UTC'));
 $startDate->setTime(0,0,0);
 $endDate->setTime(0,0,0);
 $aCheckInDates = array();
@@ -100,7 +100,7 @@ if(!empty($resourceId)){
 		
 	if(!empty( $checkInDates )){
 		$aCheckInDates = explode(',',$checkInDates);
-		$startDate=DateTime::createFromFormat('Ymd',$aCheckInDates[0]);
+		$startDate=DateTime::createFromFormat('Ymd',$aCheckInDates[0],new DateTimeZone('UTC'));
 		$startDate->setTime(0,0,0);
 	}	
 	$currUriresource  = $uri.$resource->ResourceId.'-'.BFI()->seoUrl($resourceName);
@@ -143,8 +143,8 @@ if ($ProductAvailabilityType== 0)
 
 
 
-$checkin = new DateTime();
-$checkout = new DateTime();
+$checkin = new DateTime('UTC');
+$checkout = new DateTime('UTC');
 
 $paxes = 2;
 $paxages = array();
@@ -159,8 +159,8 @@ $nrooms = 1;
 
 if (!empty($pars)){
 
-	$checkin = !empty($pars['checkin']) ? $pars['checkin'] : new DateTime();
-	$checkout = !empty($pars['checkout']) ? $pars['checkout'] : new DateTime();
+	$checkin = !empty($pars['checkin']) ? $pars['checkin'] : new DateTime('UTC');
+	$checkout = !empty($pars['checkout']) ? $pars['checkout'] : new DateTime('UTC');
 
 	if (!empty($pars['paxes'])) {
 		$paxes = $pars['paxes'];
@@ -198,13 +198,13 @@ if(!empty($variationPlanId)){
 		$dateparsed = BFCHelper::parseJsonDate($offer->FirstAvailableDate, 'Y-m-d');
 		$dateparsedend = BFCHelper::parseJsonDate($offer->LastAvailableDate, 'Y-m-d');
 		
-		$startDate = DateTime::createFromFormat('Y-m-d',$dateparsed);
-		$endDate = DateTime::createFromFormat('Y-m-d',$dateparsedend);
+		$startDate = DateTime::createFromFormat('Y-m-d',$dateparsed,new DateTimeZone('UTC'));
+		$endDate = DateTime::createFromFormat('Y-m-d',$dateparsedend,new DateTimeZone('UTC'));
 		$endDate2 = clone $endDate;
 //		$endDate2->modify('+'.$offer->MaxDuration.' day'); 
 		
 		if(empty(BFCHelper::getVar('refreshcalc',''))){
-			$checkin = DateTime::createFromFormat('Y-m-d',$dateparsed);
+			$checkin = DateTime::createFromFormat('Y-m-d',$dateparsed,new DateTimeZone('UTC'));
 			$checkout = clone $checkin;
 			$checkout->modify($checkoutspan); 
 		}
@@ -306,8 +306,8 @@ $dateStringCheckin =  $checkin->format('d/m/Y');
 $dateStringCheckout =  $checkout->format('d/m/Y');
 
 
-$dateStayCheckin = new DateTime();
-$dateStayCheckout = new DateTime();
+$dateStayCheckin = new DateTime('UTC');
+$dateStayCheckout = new DateTime('UTC');
 
 
 $totalPerson = $nad + $nch + $nse;
@@ -431,13 +431,13 @@ if(!empty($variationPlanId)){
 					<div class="bfi-row nopadding">
 						<div class="bfi-col-md-6 bfi-col-xs-6" id="calcheckin">      
 
-							<span class="fieldLabel"><?php echo _e('Check-in','bfi') ?></span>
+							<label><?php echo _e('Check-in','bfi') ?></label>
 							<div class="bfi-datepicker">
 							<input name="checkin" type="hidden" value="<?php echo $checkin->format('d/m/Y'); ?>" id="<?php echo $checkinId; ?>" readonly="readonly" />
 							</div>
 						</div>
 						<div class="bfi-col-md-6 bfi-col-xs-6 <?php echo ($ProductAvailabilityType == 3 || $ProductAvailabilityType == 2)? "bfi-hide " : " "  ?>" id="calcheckout">
-							<span class="fieldLabel"><?php echo _e('Check-out ','bfi') ?></span>
+							<label><?php echo _e('Check-out ','bfi') ?></label>
 							<div class="bfi-datepicker">
 							<input type="hidden" name="checkout" value="<?php echo $checkout->format('d/m/Y'); ?>" id="<?php echo $checkoutId; ?>" readonly="readonly"/>
 							</div>
@@ -450,22 +450,6 @@ if(!empty($variationPlanId)){
 				<div class="bfi-col-md-5">
 					<div class="bfi-row nopadding">
 						<div class="bfi-col-md-9 bfi-col-xs-8 ">
-							<div class="fieldLabel"><?php _e('Guest', 'bfi'); ?></div>
-							<div class="bfi-showperson-text-calculator bfi-container">
-								<span id="bfi-room-info-calculator" class="bfi-comma bfi-hide"><span><?php echo $nrooms ?></span> <?php _e('Resource', 'bfi'); ?></span>
-								<span id="bfi-adult-info-calculator" class="bfi-comma"><span><?php echo $nad ?></span> <?php _e('Adults', 'bfi'); ?></span>
-								<span id="bfi-senior-info-calculator" class="bfi-comma"><span><?php echo $nse ?></span> <?php _e('Seniores', 'bfi'); ?></span>
-								<span id="bfi-child-info-calculator" class="bfi-comma"><span><?php echo $nch ?></span> <?php _e('Children', 'bfi'); ?></span>
-							</div>
-							<span class="bfi-childmessage" id="bfi_lblchildrenagescalculator">&nbsp;</span>
-						</div>
-						<div class="bfi-col-md-3 bfi-col-xs-4 ">
-							<a href="javascript:calculateQuote()"id="calculateButton" class="calculateButton3 bfi-btn <?php echo $btnSearchclass ?>" ><?php echo _e('Search','bfi') ?> </a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div id="bfishowpersoncalculator" style="display:none;" >
 				<div class="bfi-row">
 					<div class="bfi-col-md-4 bfi-col-xs-4 bfi_resource-calculatorForm-adult">
 						<label><?php echo _e('Adults ','bfi') ?>:</label><br />
@@ -542,6 +526,22 @@ if(!empty($variationPlanId)){
 						?>
 					</select>
 				</div> 
+							<span class="bfi-childmessage" id="bfi_lblchildrenagescalculator">&nbsp;</span>
+						</div>
+						<div class="bfi-col-md-3 bfi-col-xs-4 ">
+							<a href="javascript:calculateQuote()"id="calculateButton" class="calculateButton3 bfi-btn <?php echo $btnSearchclass ?>" ><?php echo _e('Search','bfi') ?> </a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="bfishowpersoncalculator" style="display:none;" >
+							<div class="fieldLabel"><?php _e('Guest', 'bfi'); ?></div>
+							<div class="bfi-showperson-text-calculator bfi-container">
+								<span id="bfi-room-info-calculator" class="bfi-comma bfi-hide"><span><?php echo $nrooms ?></span> <?php _e('Resource', 'bfi'); ?></span>
+								<span id="bfi-adult-info-calculator" class="bfi-comma"><span><?php echo $nad ?></span> <?php _e('Adults', 'bfi'); ?></span>
+								<span id="bfi-senior-info-calculator" class="bfi-comma"><span><?php echo $nse ?></span> <?php _e('Seniores', 'bfi'); ?></span>
+								<span id="bfi-child-info-calculator" class="bfi-comma"><span><?php echo $nch ?></span> <?php _e('Children', 'bfi'); ?></span>
+							</div>
 			</div>
 
 	</div>	<!-- END bfi_resource-calculatorForm-mandatory -->
@@ -882,7 +882,7 @@ foreach($allResourceId as $resId) {
 										$loadScriptTimePeriod = true;
 
 										$timeDurationview = $currDiff->h + round(($currDiff->i/60), 2);
-										$timeDuration = abs((new DateTime())->setTimeStamp(0)->add($currDiff)->getTimeStamp() / 60); 										
+										$timeDuration = abs((new DateTime('UTC'))->setTimeStamp(0)->add($currDiff)->getTimeStamp() / 60); 										
 
 										array_push($allTimePeriodResourceId, $res->ResourceId);
 									?>
@@ -932,7 +932,7 @@ foreach($allResourceId as $resId) {
 											$currDatesTimeSlot =  $listDayTS[$resId];
 										}
 
-										$currCheckIn = DateTime::createFromFormat('Ymd', $currDatesTimeSlot[0]->StartDate);
+										$currCheckIn = DateTime::createFromFormat('Ymd', $currDatesTimeSlot[0]->StartDate,new DateTimeZone('UTC'));
 										$currCheckOut = clone $currCheckIn;
 										$currCheckIn->setTime(0,0,0);
 										$currCheckOut->setTime(0,0,0);
@@ -1171,7 +1171,7 @@ if(!empty( $policy )){
 		if(!empty( $policy->CanBeCanceledCurrentTime )){
 				if(!empty( $policy->CancellationTime )){
 					$currDatePolicyparsed = BFCHelper::parseJsonDate($res->RatePlan->CheckIn, 'Y-m-d');
-					$currDatePolicy = DateTime::createFromFormat('Y-m-d',$currDatePolicyparsed);
+					$currDatePolicy = DateTime::createFromFormat('Y-m-d',$currDatePolicyparsed,new DateTimeZone('UTC'));
 					switch (true) {
 						case strstr($policy->CancellationTime ,'d'):
 							$currTimeBefore = sprintf(__(' %d day/s' ,'bfi'),rtrim($policy->CancellationTime,"d"));	
@@ -1382,7 +1382,7 @@ if($currRateplan->RatePlan->IncludedMeals >-1){
 					</select>
 <script type="text/javascript">
 <!--
-					pricesExtraIncluded[<?php echo $currRateplan->RatePlan->RatePlanId ?>] =<?php echo json_encode($currCalculatedPricesExtra) ?> ;	
+					pricesExtraIncluded[<?php echo $currRateplan->RatePlan->RatePlanId ?>] =<?php echo json_encode((object)$currCalculatedPricesExtra) ?> ;	
 //-->
 </script>
 				</td>
@@ -1488,15 +1488,15 @@ if($currRateplan->RatePlan->IncludedMeals >-1){
 /*-----------scelta date e ore--------------------*/	
 									if ($selPrice->AvailabilityType == 2)
 									{
-										$currCheckIn = DateTime::createFromFormat('Y-m-d\TH:i:s',$selPrice->CheckIn);
-										$currCheckOut = DateTime::createFromFormat('Y-m-d\TH:i:s',$selPrice->CheckOut);
+										$currCheckIn = DateTime::createFromFormat('Y-m-d\TH:i:s',$selPrice->CheckIn,new DateTimeZone('UTC'));
+										$currCheckOut = DateTime::createFromFormat('Y-m-d\TH:i:s',$selPrice->CheckOut,new DateTimeZone('UTC'));
 										$currDiff = $currCheckOut->diff($currCheckIn);
 
    
 										$loadScriptTimePeriod = true;
 										
 										$timeDurationview = $currDiff->h + round(($currDiff->i/60), 2);
-										$timeDuration = abs((new DateTime())->setTimeStamp(0)->add($currDiff)->getTimeStamp() / 60); 										
+										$timeDuration = abs((new DateTime('UTC'))->setTimeStamp(0)->add($currDiff)->getTimeStamp() / 60); 										
 
 										array_push($allTimePeriodResourceId, $selPrice->RelatedProductId );
 //										$currCheckInString = date_i18n('D',$currCheckIn->getTimestamp()) ." " . $currCheckIn->format("d") ." " . date_i18n('M',$currCheckIn->getTimestamp()).' '.$currCheckIn->format("Y");
@@ -1566,7 +1566,7 @@ if($currRateplan->RatePlan->IncludedMeals >-1){
 
 										$listDayTS[$selPrice->RelatedProductId] = $currDatesTimeSlot;
 
-										$currCheckIn = DateTime::createFromFormat('Ymd', $currDatesTimeSlot[0]->StartDate);
+										$currCheckIn = DateTime::createFromFormat('Ymd', $currDatesTimeSlot[0]->StartDate,new DateTimeZone('UTC'));
 										$currCheckOut = clone $currCheckIn;
 										$currCheckIn->setTime(0,0,0);
 										$currCheckOut->setTime(0,0,0);
@@ -1811,16 +1811,16 @@ var allStays = <?php echo json_encode($allRatePlans) ?>;
 
 		var btnTextCheckin = "<span class='bfi-weekdayname'>"+weekday1+" </span>"+day1+" "+month1+"<span class='bfi-year'> "+year1+"</span>";
 		var btnTextCheckout = "<span class='bfi-weekdayname'>"+weekday2+" </span>"+day2+" "+month2+"<span class='bfi-year'> "+year2+"</span>";
-		var btnTextChildrenagesat = "<?php echo strtolower (__('on', 'bfi')) ?> " + day2 + " " + month2 + " " + year2;
+		var btnTextChildrenagesat = "<?php echo strtolower (__('the', 'bfi')) ?> " + day2 + " " + month2 + " " + year2;
 		
 		if (typeof Intl == 'object' && typeof Intl.NumberFormat == 'function') {
 			btnTextCheckin = "<span class='bfi-weekdayname'>"+weekday1+" </span>"+day1+" "+month1+"<span class='bfi-year'> "+year1+"</span>";
 			btnTextCheckout = "<span class='bfi-weekdayname'>"+weekday2+" </span>"+day2+" "+month2+"<span class='bfi-year'> "+year2+"</span>";
-			btnTextChildrenagesat = "<?php echo strtolower (__('on', 'bfi')) ?> " + day2 + " " + month2 + " " + year2;
+			btnTextChildrenagesat = "<?php echo strtolower (__('the', 'bfi')) ?> " + day2 + " " + month2 + " " + year2;
 		} else {
 			btnTextCheckin = "<span class='bfi-weekdayname'>"+weekday1+" </span>"+day1+"/"+d1[1]+"<span class='bfi-year'>/"+d1[2]+"</span>";
 			btnTextCheckout = "<span class='bfi-weekdayname'>"+weekday2+" </span>"+day2+"/"+d2[1]+"<span class='bfi-year'>/"+d2[2]+"</span>";
-			btnTextChildrenagesat = "<?php echo strtolower (__('on', 'bfi')) ?> " +  day2 + " " + d2[1] + " " + d2[2];
+			btnTextChildrenagesat = "<?php echo strtolower (__('the', 'bfi')) ?> " +  day2 + " " + d2[1] + " " + d2[2];
 		}
 		jQuery('.checkinBooking').html(btnTextCheckin);
 		jQuery('.checkoutBooking').html(btnTextCheckout);

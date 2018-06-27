@@ -64,8 +64,8 @@ $zoneIdsSplitted = '';
 $bedroomsmin = '';
 $bedroomsmax = '';
 $checkoutspan = '+1 day';
-$checkin = new DateTime();
-$checkout = new DateTime();
+$checkin = new DateTime('UTC');
+$checkout = new DateTime('UTC');
 $paxes = 2;
 $paxages = array();
 $masterTypeId = '';
@@ -111,8 +111,8 @@ if (!empty($parsRealEstate)){
 
 if (!empty($parsResource)){
 		
-	$checkin = !empty($parsResource['checkin']) ? $parsResource['checkin'] : new DateTime();
-	$checkout = !empty($parsResource['checkout']) ? $parsResource['checkout'] : new DateTime();
+	$checkin = !empty($parsResource['checkin']) ? $parsResource['checkin'] : new DateTime('UTC');
+	$checkout = !empty($parsResource['checkout']) ? $parsResource['checkout'] : new DateTime('UTC');
 	
 //	$searchtypetab = isset($parsResource['searchtypetab']) ? $parsResource['searchtypetab'] : -1;
 //	$availabilitytype = isset($parsResource['availabilitytype']) ? $parsResource['availabilitytype'] : 1;
@@ -132,7 +132,7 @@ if (!empty($parsResource)){
 }
 
 
-$startDate =  new DateTime();
+$startDate =  new DateTime('UTC');
 $startDate->setTime(0,0,0);
 $checkin->setTime(0,0,0);
 $checkout->setTime(0,0,0);
@@ -162,8 +162,46 @@ if(!in_array($searchtypetab,$tablistSelected)){
 	$searchtypetab = -1;
 }
 
+$tabiconbooking = ( ! empty( $instance['tabiconbooking'] ) ) ? ($instance['tabiconbooking']) : 'fa fa-suitcase';
+$tabiconservices = ( ! empty( $instance['tabiconservices'] ) ) ? ($instance['tabiconservices']) : 'fa fa-calendar';
+$tabiconactivities = ( ! empty( $instance['tabiconactivities'] ) ) ? ($instance['tabiconactivities']) : 'fa fa-calendar';
+$tabiconothers = ( ! empty( $instance['tabiconothers'] ) ) ? ($instance['tabiconothers']) : 'fa fa-calendar';
+
+$tabiconrealestate = ( ! empty( $instance['tabiconrealestate'] ) ) ? ($instance['tabiconrealestate']) : 'fa fa-home';
+
 
 $showdirection = ( ! empty( $instance['showdirection'] ) ) ? esc_attr($instance['showdirection']) : '0';
+$fixedontop= ( ! empty( $instance['fixedontop'] ) ) ? esc_attr($instance['fixedontop']) : '0';
+$fixedontopcorrection= ( ! empty( $instance['fixedontopcorrection'] ) ) ? esc_attr($instance['fixedontopcorrection']) : '0';
+
+if($fixedontop){
+// Add styles
+//$style = '.bfi-affix-top'.$currModID.'.bfiAffixTop {'
+//        . 'top: '.$fixedontopcorrection.'px !important;'
+//        . '}' 
+//        . '.bfi-calendar-affixtop'.$currModID.'{'
+//        . 'top:'.($fixedontopcorrection + 110).'px !important;'
+//        . '}';
+//$document->addStyleDeclaration($style);
+
+if($fixedontop){
+	$style = '.bfi-affix-top'.$currModID.'.bfiAffixTop {'
+			. 'top: '.$fixedontopcorrection.'px !important;'
+			. '}' 
+			. '.bfi-calendar-affixtop'.$currModID.'{'
+			. 'top:'.($fixedontopcorrection + 110).'px !important;'
+			. '}';
+	echo "<style>";
+	echo $style;
+	echo "</style>";
+}
+
+
+
+}
+$fixedonbottom= ( ! empty( $instance['fixedonbottom'] ) ) ? ($instance['fixedonbottom']) : '0';
+
+
 $showLocation = ( !empty($tablistResources) && ! empty( $instance['showLocation'] ) ) ? esc_attr($instance['showLocation']) : '0';
 $showMapIcon = ( !empty($tablistResources) && ! empty( $instance['showMapIcon'] ) ) ? esc_attr($instance['showMapIcon']) : '0';
 $showSearchText = ( !empty($tablistResources) && ! empty( $instance['showSearchText'] ) ) ? esc_attr($instance['showSearchText']) : '0';
@@ -195,11 +233,53 @@ $showOnlyNew = ( !empty($tablistRealEstate) && ! empty( $instance['showOnlyNew']
 $showServicesList = ( !empty($tablistRealEstate) && ! empty( $instance['showServicesList'] ) ) ? esc_attr($instance['showServicesList']) : '0';
 
 $merchantCategoriesSelectedBooking = ( ! empty( $instance['merchantcategoriesbooking'] ) ) ? $instance['merchantcategoriesbooking'] : array();
+$merchantCategoriesSelectedServices = ( ! empty( $instance['merchantcategoriesservices'] ) ) ? $instance['merchantcategoriesservices'] : array();
 $merchantCategoriesSelectedActivities = ( ! empty( $instance['merchantcategoriesactivities'] ) ) ? $instance['merchantcategoriesactivities'] : array();
+$merchantCategoriesSelectedOthers = ( ! empty( $instance['merchantcategoriesothers'] ) ) ? $instance['merchantcategoriesothers'] : array();
 $merchantCategoriesSelectedRealEstate = ( ! empty( $instance['merchantcategoriesrealestate'] ) ) ? $instance['merchantcategoriesrealestate'] : array();
+
 $unitCategoriesSelectedBooking = ( ! empty( $instance['unitcategoriesbooking'] ) ) ? $instance['unitcategoriesbooking'] : array();
+$unitCategoriesSelectedServices = ( ! empty( $instance['unitcategoriesservices'] ) ) ? $instance['unitcategoriesservices'] : array();
 $unitCategoriesSelectedActivities = ( ! empty( $instance['unitcategoriesactivities'] ) ) ? $instance['unitcategoriesactivities'] : array();
+$unitCategoriesSelectedOthers = ( ! empty( $instance['unitcategoriesothers'] ) ) ? $instance['unitcategoriesothers'] : array();
 $unitCategoriesSelectedRealEstate = ( ! empty( $instance['unitcategoriesrealestate'] ) ) ? $instance['unitcategoriesrealestate'] : array();
+
+$tabnamebooking = ( ! empty( $instance['tabnamebooking'] ) ) ? esc_attr($instance['tabnamebooking']) : 'Booking';
+$tabnameservices = ( ! empty( $instance['tabnameservices'] ) ) ? esc_attr($instance['tabnameservices']) : 'Services';
+$tabnameactivities = ( ! empty( $instance['tabnameactivities'] ) ) ? esc_attr($instance['tabnameactivities']) : 'Activities';
+$tabnameothers = ( ! empty( $instance['tabnameothers'] ) ) ? esc_attr($instance['tabnameothers']) : 'Others';
+$currid = $instance['currid'];
+$instanceContext = $instance['currcontext'];
+// translation
+// WPML >= 3.2
+if ( defined( 'ICL_SITEPRESS_VERSION' ) && version_compare( ICL_SITEPRESS_VERSION, '3.2', '>=' ) ) {
+	$tabnamebooking = apply_filters( 'wpml_translate_single_string', $instance['tabnamebooking'], $instanceContext, 'Search 1' );
+	$tabnameservices = apply_filters( 'wpml_translate_single_string',  $instance['tabnameservices'], $instanceContext, 'Search 2' );
+	$tabnameactivities = apply_filters( 'wpml_translate_single_string', $instance['tabnameactivities'], $instanceContext, 'Search 3' );
+	$tabnameothers = apply_filters( 'wpml_translate_single_string', $instance['tabnameothers'], $instanceContext, 'Search 4' );
+// WPML and Polylang compatibility
+} elseif ( function_exists( 'icl_t' ) ) {
+	$tabnamebooking = icl_t( $instanceContext, 'Search 1', $instance['tabnamebooking'] );
+	$tabnameservices = icl_t( $instanceContext, 'Search 2', $instance['tabnameservices'] );
+	$tabnameactivities = icl_t( $instanceContext, 'Search 3', $instance['tabnameactivities'] );
+	$tabnameothers = icl_t( $instanceContext, 'Search 4', $instance['tabnameothers'] );
+}else{
+	$tabnamebooking = __( $tabnamebooking, 'bfi');
+	$tabnameservices = __( $tabnameservices, 'bfi');
+	$tabnameactivities = __( $tabnameactivities, 'bfi');
+	$tabnameothers = __( $tabnameothers, 'bfi');
+
+}
+
+$tabnamebooking = ( ! empty( $tabnamebooking ) ) ? $tabnamebooking : __('Booking', 'bfi');
+$tabnameservices = ( ! empty( $tabnameservices ) ) ? $tabnameservices : __('Services', 'bfi');
+$tabnameactivities = ( ! empty( $tabnameactivities ) ) ? $tabnameactivities : __('Activities', 'bfi');
+$tabnameothers = ( ! empty( $tabnameothers ) ) ? $tabnameothers : __('Others', 'bfi');
+
+$tabiconbooking = ( ! empty( $instance['tabiconbooking'] ) ) ? esc_attr($instance['tabiconbooking']) : 'fa fa-suitcase';
+$tabiconservices = ( ! empty( $instance['tabiconservices'] ) ) ? esc_attr($instance['tabiconservices']) : 'fa fa-calendar';
+$tabiconactivities = ( ! empty( $instance['tabiconactivities'] ) ) ? esc_attr($instance['tabiconactivities']) : 'fa fa-calendar';
+$tabiconothers = ( ! empty( $instance['tabiconothers'] ) ) ? esc_attr($instance['tabiconothers']) : 'fa fa-calendar';
 
 
 $merchantCategoriesResource = array();
@@ -215,24 +295,30 @@ $availabilityTypeList['1'] = __('Nights', 'bfi');
 $availabilityTypeList['0'] = __('Days', 'bfi');
 
 $availabilityTypesSelectedBooking = ( ! empty( $instance['availabilitytypesbooking'] ) ) ? $instance['availabilitytypesbooking'] : array();
+$availabilityTypesSelectedServices = ( ! empty( $instance['availabilitytypesservices'] ) ) ? $instance['availabilitytypesservices'] : array();
 $availabilityTypesSelectedActivities = ( ! empty( $instance['availabilitytypesactivities'] ) ) ? $instance['availabilitytypesactivities'] : array();
+$availabilityTypesSelectedOthers = ( ! empty( $instance['availabilitytypesothers'] ) ) ? $instance['availabilitytypesothers'] : array();
 
 $itemTypesSelectedBooking = ( ! empty( $instance['itemtypesbooking'] ) ) ? $instance['itemtypesbooking'] : array();
+$itemTypesSelectedServices = ( ! empty( $instance['itemtypesservices'] ) ) ? $instance['itemtypesservices'] : array();
 $itemTypesSelectedActivities = ( ! empty( $instance['itemtypesactivities'] ) ) ? $instance['itemtypesactivities'] : array();
+$itemTypesSelectedOthers = ( ! empty( $instance['itemtypesothers'] ) ) ? $instance['itemtypesothers'] : array();
 
 $groupBySelectedBooking = ( ! empty( $instance['groupbybooking'] ) ) ? $instance['groupbybooking'] : [0];
+$groupBySelectedServices = ( ! empty( $instance['groupbyservices'] ) ) ? $instance['groupbyservices'] : [0];
 $groupBySelectedActivities = ( ! empty( $instance['groupbyactivities'] ) ) ? $instance['groupbyactivities'] : [0];
+$groupBySelectedOthers = ( ! empty( $instance['groupbyothers'] ) ) ? $instance['groupbyothers'] : [0];
 
 
 $tmpMerchantCategoryIdResource = (strpos($merchantCategoryIdResource, ',') !== FALSE )?"0":$merchantCategoryIdResource;
 $tmpmasterTypeId = (strpos($masterTypeId, ',') !== FALSE )?"0":$masterTypeId;
 
 if($showAccomodations || $showAccomodationsOnSell){
-	if(!empty($merchantCategoriesSelectedBooking) || !empty($merchantCategoriesSelectedActivities) || !empty($merchantCategoriesSelectedRealEstate) ){
+	if(!empty($merchantCategoriesSelectedBooking) || !empty($merchantCategoriesSelectedServices) || !empty($merchantCategoriesSelectedActivities) || !empty($merchantCategoriesSelectedOthers) || !empty($merchantCategoriesSelectedRealEstate) ){
 //		$allMerchantCategories = BFCHelper::getMerchantCategories();
 		$allMerchantCategories = BFCHelper::getMerchantCategories($language);
 
-		if(!empty($merchantCategoriesSelectedBooking) || !empty($merchantCategoriesSelectedActivities) ){
+		if(!empty($merchantCategoriesSelectedBooking) || !empty($merchantCategoriesSelectedServices) || !empty($merchantCategoriesSelectedActivities) || !empty($merchantCategoriesSelectedOthers) ){
 			$listmerchantCategoriesResource = '<option value="0">'.($showdirection?__('Tipology', 'bfi'):__('All', 'bfi')).'</option>';
 		}
 		if(!empty($merchantCategoriesSelectedRealEstate) ){
@@ -242,7 +328,7 @@ if($showAccomodations || $showAccomodationsOnSell){
 		{
 			foreach($allMerchantCategories as $merchantCategory)
 			{
-				if(in_array($merchantCategory->MerchantCategoryId,$merchantCategoriesSelectedBooking) || in_array($merchantCategory->MerchantCategoryId,$merchantCategoriesSelectedActivities)){
+				if(in_array($merchantCategory->MerchantCategoryId,$merchantCategoriesSelectedBooking) || in_array($merchantCategory->MerchantCategoryId,$merchantCategoriesSelectedServices) || in_array($merchantCategory->MerchantCategoryId,$merchantCategoriesSelectedActivities) || in_array($merchantCategory->MerchantCategoryId,$merchantCategoriesSelectedOthers)){
 					$merchantCategoriesResource[$merchantCategory->MerchantCategoryId] = $merchantCategory->Name;
 					$listmerchantCategoriesResource .= '<option value="'.$merchantCategory->MerchantCategoryId.'" ' . ($merchantCategory->MerchantCategoryId== $tmpMerchantCategoryIdResource? 'selected':'' ).'>'.$merchantCategory->Name.'</option>';
 				}
@@ -256,14 +342,14 @@ if($showAccomodations || $showAccomodationsOnSell){
 	}
 
 	$listunitCategoriesResource = "";
-	if(!empty($unitCategoriesSelectedBooking) || !empty($unitCategoriesSelectedActivities)) {
+	if(!empty($unitCategoriesSelectedBooking) || !empty($unitCategoriesSelectedServices) || !empty($unitCategoriesSelectedActivities) || !empty($unitCategoriesSelectedOthers)) {
 		$allUnitCategories =  BFCHelper::GetProductCategoryForSearch($language,1);
 		if (!empty($allUnitCategories))
 		{
 			$listunitCategoriesResource = '<option value="0">'.($showdirection?__('Type', 'bfi'):__('All', 'bfi')).'</option>';
 			foreach($allUnitCategories as $unitCategory)
 			{
-				if(in_array($unitCategory->ProductCategoryId,$unitCategoriesSelectedBooking) || in_array($unitCategory->ProductCategoryId,$unitCategoriesSelectedActivities)){
+				if(in_array($unitCategory->ProductCategoryId,$unitCategoriesSelectedBooking) || in_array($unitCategory->ProductCategoryId,$unitCategoriesSelectedServices) || in_array($unitCategory->ProductCategoryId,$unitCategoriesSelectedActivities) || in_array($unitCategory->ProductCategoryId,$unitCategoriesSelectedOthers)){
 					$unitCategoriesResource[$unitCategory->ProductCategoryId] = $unitCategory->Name;
 					$listunitCategoriesResource .= '<option value="'.$unitCategory->ProductCategoryId.'" ' . ($unitCategory->ProductCategoryId == $tmpmasterTypeId? 'selected':'' ).'>'.$unitCategory->Name.'</option>';
 				}
@@ -430,6 +516,8 @@ if($countPaxes>0){
 
 $showChildrenagesmsg = isset($_REQUEST['showmsgchildage']) ? $_REQUEST['showmsgchildage'] : 0;
 $tabActive = "";
+$totalTabs = count($tablistSelected);
+$widthTabs = 100/$totalTabs;
 
 ?>
 <?php 
@@ -439,8 +527,9 @@ if ( $title ) {
   echo $before_title . $title . $after_title;
 }
 ?>
+<div class="bfi-affix-top<?php echo $currModID ?> <?php echo ( ! empty( $fixedonbottom ) ) ? 'bfiAffixBottom' : '' ?>"><!-- per span8 e padding -->
 <div class="bfi-mod-bookingforsearch" id="bfisearch<?php echo $currModID ?>" >
-    <ul class="bfi-tabs" id="navbookingforsearch<?php echo $currModID ?>" style="<?php echo (count($tablistSelected)>1) ?"": "display:none" ?>">
+    <ul class="bfi-tabs" id="navbookingforsearch<?php echo $currModID ?>" style="<?php echo ($totalTabs>1) ?"": "display:none" ?>">
 		<?php if(in_array(0, $tablistSelected)){ ?>
 		<?php 
 		if((empty($tabActive) && $searchtypetab==-1) || $searchtypetab == 0 ){
@@ -450,10 +539,26 @@ if ( $title ) {
 			$tabActive = "";  
 		}
 		?>
-		<li class="<?php //echo $tabActive ?>" data-searchtypeid="0">
+		<li class="" data-searchtypeid="0" style="width:<?php echo $widthTabs ?>%">
             <a href="#bfisearchtab<?php echo $currModID ?>" data-toggle="tab" aria-expanded="true" class="searchResources">
-                <i class="fa fa-suitcase" aria-hidden="true"></i><br />
-                <?php _e('Booking', 'bfi') ?>
+                <?php if(!empty($tabiconbooking) && $tabiconbooking!='none') { ?><i class="<?php echo $tabiconbooking ?>" aria-hidden="true"></i><?php } ?>
+                <?php echo $tabnamebooking ?>
+            </a>
+        </li>
+		<?php }  ?>
+		<?php if(in_array(1, $tablistSelected)){ ?>
+		<?php 
+		if((empty($tabActive) && $searchtypetab==-1) || $searchtypetab == 1 ){
+			$tabActive = "active";
+			$searchtypetab = 1;
+		}else{
+			$tabActive = "";  
+		}
+		?>
+        <li class="" data-searchtypeid="1" style="width:<?php echo $widthTabs ?>%">
+            <a href="#bfisearchtab<?php echo $currModID ?>" data-toggle="tab" aria-expanded="true" class="searchServices">
+                <?php if(!empty($tabiconservices) && $tabiconservices!='none') { ?><i class="<?php echo $tabiconservices ?>" aria-hidden="true"></i><?php } ?>
+                <?php echo $tabnameservices ?>
             </a>
         </li>
 		<?php }  ?>
@@ -466,10 +571,26 @@ if ( $title ) {
 			$tabActive = "";  
 		}
 		?>
-        <li class="<?php //echo $tabActive ?>" data-searchtypeid="2">
+        <li class="" data-searchtypeid="2" style="width:<?php echo $widthTabs ?>%">
             <a href="#bfisearchtab<?php echo $currModID ?>" data-toggle="tab" aria-expanded="true" class="searchTimeSlots">
-                <i class="fa fa-calendar" aria-hidden="true"></i><br />
-                <?php _e('Activities', 'bfi') ?>
+                <?php if(!empty($tabiconactivities) && $tabiconactivities!='none') { ?><i class="<?php echo $tabiconactivities ?>" aria-hidden="true"></i><?php } ?>
+                <?php echo $tabnameactivities ?>
+            </a>
+        </li>
+		<?php }  ?>
+		<?php if(in_array(4, $tablistSelected)){ ?>
+		<?php 
+		if((empty($tabActive) && $searchtypetab==-1) || $searchtypetab == 4 ){
+			$tabActive = "active";
+			$searchtypetab = 4;
+		}else{
+			$tabActive = "";  
+		}
+		?>
+        <li class="" data-searchtypeid="4" style="width:<?php echo $widthTabs ?>%">
+            <a href="#bfisearchtab<?php echo $currModID ?>" data-toggle="tab" aria-expanded="true" class="searchOthers">
+                <?php if(!empty($tabiconothers) && $tabiconothers!='none') { ?><i class="<?php echo $tabiconothers ?>" aria-hidden="true"></i><?php } ?>
+                <?php echo $tabnameothers ?>
             </a>
         </li>
 		<?php }  ?>
@@ -482,20 +603,25 @@ if ( $title ) {
 			$tabActive = "";  
 		}
 		?>
-        <li class="<?php //echo $tabActive ?>" data-searchtypeid="3">
+        <li class="" data-searchtypeid="4" style="width:<?php echo $widthTabs ?>%">
             <a href="#bfisearchselling<?php echo $currModID ?>" data-toggle="tab" aria-expanded="false" class="searchSelling">
-                <i class="fa fa-home" aria-hidden="true"></i><br />
+                <?php if(!empty($tabiconrealestate) && $tabiconrealestate!='none') { ?><i class="<?php echo $tabiconrealestate ?>" aria-hidden="true"></i><?php } ?>
                 <?php _e('Real Estate', 'bfi') ?>
             </a>
         </li>
 		<?php }  ?>
     </ul>
     <div class="bfi-tab-content tab-content initial">
-<?php if(!empty($tablistResources)){ ?>
+<?php if(!empty($tablistResources)){ 
+$totalfields=0;
+?>
         <div id="bfisearchtab<?php echo $currModID ?>" class="tab-pane fade in">
 		<form action="<?php echo $url_page_Resources; ?>" method="get" id="searchform<?php echo $currModID ?>" class="bfi-form-<?php echo $showdirection?"horizontal":"vertical"; ?> ">
-				<?php if($showSearchText) { ?>
-					<div class="bfi_destination bfi-container">
+			<div class="bfi-row">
+				<?php if($showSearchText) { 
+					$totalfields +=2;
+				?>
+					<div class="bfi_destination bfi-col-sm-2">
 						<label><?php _e('Search text', 'bfi') ?></label>
 						<input type="text" id="searchtext<?php echo $currModID ?>" name="searchterm" class="bfi-inputtext bfi-autocomplete" placeholder="<?php _e('Enter Your destination', 'bfi') ?>" />
 					</div>
@@ -504,71 +630,72 @@ if ( $title ) {
 					<input type="hidden" value="" name="merchantCategoryId" />
 					<input type="hidden" value="" name="searchTermValue" />
 				<?php }//$showSearchText ?>
-				<?php if(!empty($zonesString) && $showLocation){ ?>
-					<div class="bfi_destination bfi-container">
+				<?php if(!empty($zonesString) && $showLocation){  
+					$totalfields +=2;
+				?>
+					<div class="bfi_destination bfi-col-sm-2">
 						<label><?php _e('Destination', 'bfi') ?></label>
-						<select id="locationzone" name="locationzone" class="" data-live-search="true" data-width="99%">
+						<select name="locationzone" class="" data-live-search="true" data-width="99%">
 						<?php echo $zonesString; ?>
 						</select>
 					</div>
 				<?php } //$showLocation ?>
-				<?php if(!empty($listunitCategoriesResource) && $showAccomodations){ ?>
-					<div class="bfi_unitcategoriesresource bfi-container">
+				<?php if(!empty($listunitCategoriesResource) && $showAccomodations){  
+					$totalfields +=2;
+				?>
+					<div class="bfi_unitcategoriesresource bfi-col-sm-2">
 						<label><?php _e('Type', 'bfi') ?></label>
 						<select id="masterTypeId<?php echo $currModID ?>" name="masterTypeId" class="">
 							<?php echo $listunitCategoriesResource; ?>
 						</select>
 					</div>
 				<?php } //$showAccomodations ?>
-				<?php if(!empty($listmerchantCategoriesResource) && $showAccomodations){ ?>
-					<div class="bfi_merchantcategoriesresource bfi-container">
+				<?php if(!empty($listmerchantCategoriesResource) && $showAccomodations){  
+					$totalfields +=2;
+				?>
+					<div class="bfi_merchantcategoriesresource bfi-col-sm-2">
 						<label><?php _e('Tipology', 'bfi') ?></label>
 						<select id="merchantCategoryId<?php echo $currModID ?>" name="merchantCategoryId" onchange="checkSelSearch<?php echo $currModID ?>();" class="hideRent">
 							<?php echo $listmerchantCategoriesResource; ?>
 						</select>
 					</div>
 				<?php } //$showAccomodations ?>
-				<?php if($showMapIcon){ ?>
-				<div class="bfi_listlocations bfi-container">
+				<?php if($showMapIcon){  
+					$totalfields +=2;
+				?>
+				<div class="bfi_listlocations bfi-col-sm-1">
 					<input type="hidden" value="<?php echo $searchType ?>" name="searchType"  />
 					<div class="bfi-btn bfi-mapsearchbtn <?php echo $searchType==1?"bfi-alternative":"bfi-alternative4"; ?>" onclick="javascript:bfiOpenGoogleMapDrawer('searchform<?php echo $currModID ?>','<?php echo $currModID ?>');">
 						<i class="fa fa-map-marker fa-1"></i>
 					</div>
 				</div>
 				<?php } //$showLocation ?>
-				<?php if($showDateRange){ ?>
-				<div class="bfi-container bfi-showdaterange">
-					
-							<div class="bfi-fields">
+				<?php if($showDateRange){  
+					$totalfields +=2;
+				?>
+				<div class="bfi-showdaterange bfi-col-sm-2">
 								<label><?php _e('Check-in' , 'bfi' ); ?></label>
 								<div class="bfi-datepicker">
 									<input name="checkin" type="hidden" value="<?php echo $checkin->format('d/m/Y'); ?>" id="<?php echo $checkinId; ?>" />
 								</div>
 							</div>
-							<div class="bfi-fields"  id="divcheckoutsearch<?php echo $currModID ?>">
+				<div class="bfi-showdaterange bfi-col-sm-2" id="divcheckoutsearch<?php echo $currModID ?>">
 								<label><?php _e('Check-out' , 'bfi' ); ?></label>
 								<div class="bfi-datepicker">
 									<input type="hidden" name="checkout" value="<?php echo $checkout->format('d/m/Y'); ?>" id="<?php echo $checkoutId; ?>" />
 								</div>
 							</div>
-
-							
-							<div  class="bfi-fields" id="divcalendarnightsearch<?php echo $currModID ?>">
+				<div class="bfi-hide ">
+					<div  class="bfi-fields bfi-calendarnightsearch" id="divcalendarnightsearch<?php echo $currModID ?>">
 								<div class="bfi-calendarnight" id="calendarnight<?php echo $durationId ?>"><?php echo $duration->format('%a') ?> <?php _e('Nights' , 'bfi' ); ?></div>
 							</div>
 				</div>
 				<?php } //$showDateRange ?>
 
-				<?php if($showAdult){?>
-					<div class="bfi-showperson-text bfi-container">
-						<span id="bfi-room-info<?php echo $currModID ?>" class="bfi-comma bfi-hide"><span><?php echo $nrooms ?></span> <?php _e('Resource', 'bfi'); ?></span>
-						<span id="bfi-adult-info<?php echo $currModID ?>" class="bfi-comma"><span><?php echo $nad ?></span> <?php _e('Adults', 'bfi'); ?></span>
-						<?php if($showSenior){?><span id="bfi-senior-info<?php echo $currModID ?>" class="bfi-comma"><span><?php echo $nse ?></span> <?php _e('Seniores', 'bfi'); ?></span><?php }?>
-						<span id="bfi-child-info<?php echo $currModID ?>" class="bfi-comma"><span><?php echo $nch ?></span> <?php _e('Children', 'bfi'); ?></span>
-					</div>
-					<div class="bfi-showperson bfi-container" id="bfishowperson<?php echo $currModID ?>">
-						<div class="bfi-row">
-							<div class="bfi-showadult bfi-col-md-<?php echo ($showSenior)?"4":"6" ?> bfi-col-xs-<?php ($showSenior)?"4":"6" ?>"><!-- Adults -->
+				<?php if($showAdult){ 
+					$totalfields +=2;
+				?>
+					<div class="bfi-showadult bfi-col-sm-2"><!-- Adults -->
 								<label><?php _e('Adults', 'bfi'); ?></label>
 								<select id="bfi-adult<?php echo $currModID ?>" name="adultssel" onchange="quoteChanged<?php echo $currModID ?>();" class="" style="display:inline-block !important;">
 									<?php
@@ -578,8 +705,10 @@ if ( $title ) {
 									?>
 								</select>
 							</div>
-						<?php if($showSenior){?>
-							<div class="bfi-showsenior bfi-col-md-4 bfi-col-xs-4"><!-- Seniores -->
+						<?php if($showSenior){ 
+							$totalfields +=2;
+						?>
+						<div class="bfi-showsenior bfi-col-sm-2"><!-- Seniores -->
 								<label><?php _e('Seniores', 'bfi'); ?></label>
 								<select id="bfi-senior<?php echo $currModID ?>" name="senioressel" onchange="quoteChanged<?php echo $currModID ?>();" class="" style="display:inline-block !important;">
 									<?php
@@ -590,8 +719,10 @@ if ( $title ) {
 								</select>
 							</div>
 						<?php }?>
-						<?php if($showChildren){?>
-							<div class="bfi-showchildren bfi-col-md-<?php echo ($showSenior)?"4":"6" ?> bfi-col-xs-<?php ($showSenior)?"4":"6" ?>" id="mod_bookingforsearch-children<?php echo $currModID ?>"  class="col-sm-4"><!-- n childrens -->
+						<?php if($showChildren){ 
+							$totalfields +=2;
+						?>
+						<div class="bfi-showchildren bfi-col-sm-2" id="mod_bookingforsearch-children<?php echo $currModID ?>"><!-- n childrens -->
 								<label><?php _e('Children', 'bfi'); ?></label>
 								<select id="bfi-child<?php echo $currModID ?>" name="childrensel" onchange="quoteChanged<?php echo $currModID ?>();" class="" style="display:inline-block !important;">
 									<?php
@@ -600,28 +731,11 @@ if ( $title ) {
 									}
 									?>
 								</select>
-							</div>
-						<?php }?>
-						<?php if(!empty($services) && $showServices){?>
-							<div class="bfi_showservices icons_right">
-								<?php 
-									foreach ($services as $service){
-										$serviceActive ="";
-										if (isset($filtersServices) &&  is_array($filtersServices) && in_array($service->ServiceId,$filtersServices)){
-											$serviceActive =" active";			
-										}
-								  ?>
-										<a href="javascript: void(0);" class="btn btn-xs btnservices <?php echo $serviceActive ?> btnservices<?php echo $currModID ?>" rel="<?php echo $service->ServiceId ?>"  aria-pressed="false"><i class="fa <?php echo $service->IconSrc ?>" aria-hidden="true"></i></a>
-								<?php
-									  }
-								  ?>				
-							</div>
-						<?php }?>
 							<?php if($showChildren){?>
-								<div class="bfi-childrenages" style="display:none;"  id="mod_bookingforsearch-childrenages<?php echo $currModID ?>">
+						<div class="bfi-childrenages bfi-col-sm-2" style="display:none;"  id="mod_bookingforsearch-childrenages<?php echo $currModID ?>">
 								
-									<span ><?php _e('Age of children', 'bfi'); ?></span>
-									<span id="bfi_lblchildrenagesat<?php echo $currModID ?>"><?php echo  _e('on', 'bfi') . " " .$checkout->format("d"). " " .date_i18n('F',$checkout->getTimestamp()). " " . $checkout->format("Y") ?></span><br /><!-- Ages childrens -->	
+							<label ><?php _e('Age of children', 'bfi'); ?>
+							<span id="bfi_lblchildrenagesat<?php echo $currModID ?>"><?php echo  _e('on', 'bfi') . " " .$checkout->format("d"). " " .date_i18n('F',$checkout->getTimestamp()). " " . $checkout->format("Y") ?></span></label><!-- Ages childrens -->		
 									<select name="childages1sel" onchange="quoteChanged<?php echo $currModID ?>();" class="bfi-inputmini" style="display: none;">
 										<option value="<?php echo COM_BOOKINGFORCONNECTOR_CHILDRENSAGE ?>" ></option>
 										<?php
@@ -665,19 +779,26 @@ if ( $title ) {
 									</div>
 									<span class="bfi-childmessage" id="bfi_lblchildrenages<?php echo $currModID ?>">&nbsp;</span>
 							<?php }?>
-						</div>
-					</div>
 
+
+						</div>
+					<?php }?>
+				<?php if(!$showdirection) { ?>
+							<div class="bfi-clearfix"></div>
+				<?php } ?>
 				<?php } //$showAdult?>
-	        <?php if($showOnlineBooking){ ?>
-	            <div class="bfi_showonlinebooking bfi-container bfsearchfilter">
-					<input type="checkbox" name="bookableonly" id="bookableonly<?php echo $currModID ?>" value="1"  <?php if(!empty($bookableonly)){ echo ' checked'; }   ?>/><?php _e('Show only online booking', 'bfi') ?>
+				<?php
+					$widthbtn = ($totalfields % 12);
+					if (($widthbtn >6)) {
+					    $widthbtn = 12;
+					}
+				?>
+				<div class="bfi-searchbutton-wrapper bfi-col-sm-<?php echo $showdirection? $widthbtn:"2"; $widthbtn ?>" id="divBtnResource<?php echo $currModID ?>">
+					<a  id="BtnResource<?php echo $currModID ?>" class="bfi-btn" href="javascript: void(0);"><i class="fa fa-search" aria-hidden="true"></i> <?php _e('Search', 'bfi') ?></a>
 				</div>
-			<?php } ?>
-			<div class="bfi-searchbutton-wrapper bfi-container" id="divBtnResource<?php echo $currModID ?>">
-				<a  id="BtnResource<?php echo $currModID ?>" class="bfi-btn" href="javascript: void(0);"><i class="fa fa-search" aria-hidden="true"></i> <?php _e('Search', 'bfi') ?></a>
 			</div>
-			<div class="bfi-clearboth"></div>
+			<div class="bfi-clearfix"></div>
+			<div class="bfi-powered"><a href="https://www.bookingfor.com" target="_blank">Powered by Bookingfor</a></div>
 			<input type="hidden" value="<?php echo uniqid('', true)?>" name="searchid" />
 			<input type="hidden" name="onlystay" value="<?php echo $onlystay ?>">
 			<input type="hidden" name="persons" value="<?php echo $nad + $nse + $nch?>" id="searchformpersons<?php echo $currModID ?>">
@@ -718,96 +839,116 @@ if ( $title ) {
 				   
         </div>
 <?php }  ?>
-<?php if(!empty($tablistRealEstate)){ ?>
+<?php if(!empty($tablistRealEstate)){ 
+$totalfields=0;			
+?>
 		<div id="bfisearchselling<?php echo $currModID ?>" class="tab-pane fade in">
-		<form action="<?php echo $url_page_RealEstate; ?>" method="get" id="searchformonsellunit<?php echo $currModID ?>" class=" ">			
-			<div  id="searchBlock<?php echo $currModID ?>" class="bfi-form-<?php echo $showdirection?"horizontal":"vertical"; ?> bfi-row">
-				<?php if($showContract){ ?>
-				<div class="bfi_contracttypeid bfi-container" >
+		<form action="<?php echo $url_page_RealEstate; ?>" method="get" id="searchformonsellunit<?php echo $currModID ?>" class="bfi-form-<?php echo $showdirection?"horizontal":"vertical"; ?>  ">			
+			<div  id="searchBlock<?php echo $currModID ?>" class="bfi-row">
+				<?php if($showContract){  
+					$totalfields +=2;
+				?>
+				<div class="bfi_contracttypeid bfi-col-sm-2" >
 					<label><?php _e('Contract', 'bfi') ?></label>
 					<select name="contractTypeId" class="">
 								<?php echo $listcontractType; ?>
 					</select>
 				</div><!--/span-->
 				<?php } //$showContract ?>
-				<?php if($showSearchTextOnSell) { ?>
-					<div class="bfi_destination bfi-container">
+				<?php if($showSearchTextOnSell) {  
+					$totalfields +=2;
+				?>
+					<div class="bfi_destination bfi-col-sm-2">
 						<label><?php _e('Search text', 'bfi') ?></label>
 						<input type="text" id="searchtextonsell<?php echo $currModID ?>" name="searchterm" class="bfi-inputtext bfi-autocomplete" placeholder="<?php _e('Search text', 'bfi') ?>" />
 					</div>
 					<input type="hidden" value="" name="locationzone" />
 					<input type="hidden" value="" name="searchTermValue" />
 				<?php }//$showSearchText ?>				
-				<?php if($showMapIconOnSell){ ?>
-				<div class="bfi_listlocations bfi-container">
+				<?php if($showMapIconOnSell){  
+					$totalfields +=1;
+				?>
+				<div class="bfi_listlocations bfi-col-sm-1">
 					<input type="hidden" value="<?php echo $searchTypeonsell ?>" name="searchType" id="mapSearch<?php echo $currModID ?>" />
 					<div class="bfi-btn bfi-mapsearchbtn <?php echo $searchTypeonsell==1?"bfi-alternative":"bfi-alternative4"; ?> " onclick="javascript:bfiOpenGoogleMapDrawer('searchformonsellunit<?php echo $currModID ?>','<?php echo $currModID ?>');">
 						<i class="fa fa-map-marker fa-1"></i>
 					</div>
 				</div>
 				<?php } //$showLocation ?>
-				<?php if(!empty($listunitCategoriesRealEstate) && $showAccomodationsOnSell){ ?>
-				<div class="bfi_unitCategoryId bfi-container">
+				<?php if(!empty($listunitCategoriesRealEstate) && $showAccomodationsOnSell){  
+					$totalfields +=2;
+				?>
+				<div class="bfi_unitCategoryId bfi-col-sm-2">
 					<label><?php _e('Type', 'bfi') ?></label>
 					<select name="unitCategoryId" class="">
 						<?php echo $listunitCategoriesRealEstate; ?>
 					</select>
 				</div><!--/span-->
 				<?php } //$listunitCategoriesRealEstate ?>
-				<?php if($showMaxPrice){ ?>
-				<div class="bfi-range-price bfi-container" id="bfi-range-price<?php echo $currModID ?>">
+				<?php if($showMaxPrice){  
+					$totalfields +=2;
+				?>
+				<div class="bfi-range-price bfi-col-sm-2" id="bfi-range-price<?php echo $currModID ?>">
 					<label><?php _e('Price', 'bfi') ?></label>
 					<div class="bfi-row">   
 						<div class="bfi-col-md-6 bfi-col-sm-6">
-							<input name="pricemin" type="text" placeholder="<?php echo $showdirection?__('Price', 'bfi')." ":""; ?><?php _e('from', 'bfi') ?>" value="<?php echo $pricemin;?>" class="bfi-inputtext" data-rule-digits="true" data-msg-digits="<?php _e('Please enter a integer number', 'bfi') ?>" rel="#bfi-range-pricemin<?php echo $currModID ?>"  > 
+							<input name="pricemin" type="text" placeholder="<?php echo __('from', 'bfi') ?>" value="<?php echo $pricemin;?>" class="bfi-inputtext" data-rule-digits="true" data-msg-digits="<?php _e('Please enter a integer number', 'bfi') ?>" rel="#bfi-range-pricemin<?php echo $currModID ?>"  > 
 						</div><!--/span-->
 						<div class="bfi-col-md-6 bfi-col-sm-6">
-							<input name="pricemax" type="text" placeholder="<?php echo $showdirection?__('Price', 'bfi')." ":""; ?><?php _e('to', 'bfi') ?>" value="<?php echo $pricemax;?>"  class="bfi-inputtext" data-rule-digits="true" data-msg-digits="<?php _e('Please enter a integer number', 'bfi') ?>"" rel="#bfi-range-pricemax<?php echo $currModID ?>" > 
+							<input name="pricemax" type="text" placeholder="<?php echo __('to', 'bfi') ?>" value="<?php echo $pricemax;?>"  class="bfi-inputtext" data-rule-digits="true" data-msg-digits="<?php _e('Please enter a integer number', 'bfi') ?>"" rel="#bfi-range-pricemax<?php echo $currModID ?>" > 
 						</div><!--/span-->
 					</div>
 				</div><!--/span-->
 				<?php } //$showMaxPrice ?>
-				<?php if($showMinFloor){ ?>
-				<div class="bfi_floor_area  bfi-container">
+				<?php if($showMinFloor){  
+					$totalfields +=2;
+				?>
+				<div class="bfi_floor_area  bfi-col-sm-2">
 					<label><?php _e('Floor area m&sup2;', 'bfi') ?></label>
 					<div class="bfi-row">   
 						<div class="bfi-col-md-6 bfi-col-sm-6">
-							<input name="areamin" type="text" placeholder="<?php echo $showdirection?__('Floor area m&sup2;', 'bfi')." ":""; ?><?php _e('from', 'bfi') ?>" value="<?php echo $areamin;?>" class="bfi-inputtext" data-rule-digits="true" data-msg-digits="<?php _e('Please enter a integer number', 'bfi') ?>" > 
+							<input name="areamin" type="text" placeholder="<?php echo __('from', 'bfi') ?>" value="<?php echo $areamin;?>" class="bfi-inputtext" data-rule-digits="true" data-msg-digits="<?php _e('Please enter a integer number', 'bfi') ?>" > 
 						</div><!--/span-->
 						<div class="bfi-col-md-6 bfi-col-sm-6">
-							<input name="areamax" type="text" placeholder="<?php echo $showdirection?__('Floor area m&sup2;', 'bfi')." ":""; ?><?php _e('to', 'bfi') ?>" value="<?php echo $areamax;?>" class="bfi-inputtext" data-rule-digits="true" data-msg-digits="<?php _e('Please enter a integer number', 'bfi') ?>" > 
+							<input name="areamax" type="text" placeholder="<?php echo __('to', 'bfi') ?>" value="<?php echo $areamax;?>" class="bfi-inputtext" data-rule-digits="true" data-msg-digits="<?php _e('Please enter a integer number', 'bfi') ?>" > 
 						</div><!--/span-->
 					</div>
 				</div><!--/span-->
 				<?php } //$showMinFloor ?>
-				<?php if($showBedRooms){ ?>
-				<div class="bfi_bedrooms  bfi-container">
+				<?php if($showBedRooms){  
+					$totalfields +=2;
+				?>
+				<div class="bfi_bedrooms  bfi-col-sm-2">
 					<label><?php _e('Bedrooms', 'bfi') ?></label>
 					<div class="bfi-row">   
 						<div class="bfi-col-md-6 bfi-col-sm-6">
-					<input name="bedroomsmin" type="text" placeholder="<?php echo $showdirection?__('Bedrooms', 'bfi')." ":""; ?><?php _e('from', 'bfi') ?>" value="<?php echo $bedroomsmin;?>" class="bfi-inputtext" data-rule-digits="true" data-msg-digits="<?php _e('Please enter a integer number', 'bfi') ?>" > 
+					<input name="bedroomsmin" type="text" placeholder="<?php echo __('from', 'bfi') ?>" value="<?php echo $bedroomsmin;?>" class="bfi-inputtext" data-rule-digits="true" data-msg-digits="<?php _e('Please enter a integer number', 'bfi') ?>" > 
 						</div><!--/span-->
 						<div class="bfi-col-md-6 bfi-col-sm-6">
-					<input name="bedroomsmax" type="text" placeholder="<?php echo $showdirection?__('Bedrooms', 'bfi')." ":""; ?><?php _e('to', 'bfi') ?>" value="<?php echo $bedroomsmax;?>" class="bfi-inputtext" data-rule-digits="true" data-msg-digits="<?php _e('Please enter a integer number', 'bfi') ?>" > 
+					<input name="bedroomsmax" type="text" placeholder="<?php echo __('to', 'bfi') ?>" value="<?php echo $bedroomsmax;?>" class="bfi-inputtext" data-rule-digits="true" data-msg-digits="<?php _e('Please enter a integer number', 'bfi') ?>" > 
 						</div><!--/span-->
 					</div>
 				</div><!--/span-->
 				<?php } //$showBedRooms ?>
-				<?php if($showRooms){ ?>
-				<div class="bfi_rooms  bfi-container">
+				<?php if($showRooms){  
+					$totalfields +=2;
+				?>
+				<div class="bfi_rooms  bfi-col-sm-2">
 					<label><?php _e('Rooms', 'bfi') ?></label>
 					<div class="bfi-row">   
 						<div class="bfi-col-md-6 bfi-col-sm-6">
-					<input name="roomsmin" type="text" placeholder="<?php echo $showdirection?__('Rooms', 'bfi')." ":""; ?><?php _e('from', 'bfi') ?>" value="<?php echo $roomsmin;?>" class="bfi-inputtext" data-rule-digits="true" data-msg-digits="<?php _e('Please enter a integer number', 'bfi') ?>" > 
+					<input name="roomsmin" type="text" placeholder="<?php echo __('from', 'bfi') ?>" value="<?php echo $roomsmin;?>" class="bfi-inputtext" data-rule-digits="true" data-msg-digits="<?php _e('Please enter a integer number', 'bfi') ?>" > 
 						</div><!--/span-->
 						<div class="bfi-col-md-6 bfi-col-sm-6">
-					<input name="roomsmax" type="text" placeholder="<?php echo $showdirection?__('Rooms', 'bfi')." ":""; ?><?php _e('to', 'bfi') ?>" value="<?php echo $roomsmax;?>" class="bfi-inputtext" data-rule-digits="true" data-msg-digits="<?php _e('Please enter a integer number', 'bfi') ?>" > 
+					<input name="roomsmax" type="text" placeholder="<?php echo __('to', 'bfi') ?>" value="<?php echo $roomsmax;?>" class="bfi-inputtext" data-rule-digits="true" data-msg-digits="<?php _e('Please enter a integer number', 'bfi') ?>" > 
 						</div><!--/span-->
 					</div>
 				</div><!--/span-->
 				<?php } //$showRooms ?>
-				<?php if($showBaths){ ?>
-				<div class="bfi_bathrooms  bfi-container">
+				<?php if($showBaths){  
+					$totalfields +=2;
+				?>
+				<div class="bfi_bathrooms  bfi-col-sm-2">
 					<label><?php _e('Bathrooms', 'bfi') ?></label>
 					<select name="baths" onchange="bfi_changeBaths(this);" class="">
 					<?php foreach ($baths as $key => $value):?>
@@ -818,11 +959,13 @@ if ( $title ) {
 					<input name="bathsmax" type="hidden" placeholder="<?php _e('to', 'bfi') ?>" value="<?php echo $bathsmax;?>" class="bfi-inputtext" > 
 				</div><!--/span-->
 				<?php } //$showBaths ?>
-				<?php if (isset($listServices) && $showServicesList) :?>
+				<?php if (isset($listServices) && $showServicesList) { 
+					$totalfields +=2;
+				?>
 				<?php  $countServ=0;?>
-				<div class="bfi_listservices  bfi-container">
+				<div class="bfi_listservices  bfi-col-sm-2">
 					<div class="bfi-row">   
-						<?php foreach ($listServices as $singleService):?>
+						<?php foreach ($listServices as $singleService){?>
 							<div class="bfi-col-md-6">
 							<?php $checked = '';
 								if (isset($filtersServices) &&  is_array($filtersServices) && in_array($singleService->ServiceId,$filtersServices)){
@@ -832,30 +975,37 @@ if ( $title ) {
 								<label class="checkbox"><input type="checkbox" name="services"  class="checkboxservices" value="<?php echo ($singleService->ServiceId) ?>" <?php echo $checked ?> /><?php echo BFCHelper::getLanguage($singleService->Name, $language) ?></label>
 							</div>
 						<?php  $countServ++;
-						if($countServ%2==0):?>
-					</div>
-					<div class="bfi-row">	
-						<?php endif ?>
-
-						<?php endforeach; ?>
-					</div>
-				</div><!--/span-->
-				<?php endif ?>
-				<?php if($showOnlyNew){ ?>
-				<div class="bfi_isnewbuilding  bfi-container">  
-					<div class="bfi-row">   
-						<div class="bfi-col-md-6">
-							<label class="checkbox"><input type="checkbox" name="isnewbuilding" value="1" <?php echo $isnewbuilding ?> /><?php _e('Only new building', 'bfi') ?></label>
+						if($countServ%2==0){
+						?>
 						</div>
+						<div class="bfi-row">	
+						<?php } ?>
+
+						<?php } ?>
 					</div>
 				</div><!--/span-->
 				<?php } ?>
+				<?php if($showOnlyNew){  
+					$totalfields +=2;
+				?>
+				<div class="bfi_isnewbuilding  bfi-col-sm-2">  
+					<label class="checkbox"><input type="checkbox" name="isnewbuilding" value="1" <?php echo $isnewbuilding ?> /><?php _e('Only new building', 'bfi') ?></label>
+				</div><!--/span-->
+				<?php } ?>
 
-				<div id="searchButtonArea<?php echo $currModID ?>" class=" bfi-container">
+				<?php
+					$widthbtn = ($totalfields % 12);
+					if (($widthbtn >6)) {
+					    $widthbtn = 12;
+					}
+				?>
+				<div class="bfi-searchbutton-wrapper bfi-col-sm-<?php echo $showdirection? $widthbtn:"2"; $widthbtn ?>" id="searchButtonArea<?php echo $currModID ?>">
 					<div class="" id="divBtnRealEstate">
 						<a  id="BtnRealEstate<?php echo $currModID ?>" class="bfi-btn" href="javascript: void(0);"><i class="fa fa-search" aria-hidden="true"></i> <?php _e('Search', 'bfi') ?></a>
 					</div>
 				</div>
+					<div class="bfi-clearfix"></div>
+				<div class="bfi-powered"><a href="https://www.bookingfor.com" target="_blank">Powered by Bookingfor</a></div>
 
 			</div><!--/span-->
 
@@ -872,13 +1022,11 @@ if ( $title ) {
 			<input type="hidden" value="" name="stateIds" />
 			<input type="hidden" value="" name="regionIds" />
 			<input type="hidden" value="" name="cityIds" />
-			
-			<br />
-
 		</form>
 		</div>  <!-- role="tabpanel" -->
 <?php }  ?>
     </div>
+</div>
 </div>
 
 <?php echo $after_widget; ?>
@@ -892,6 +1040,11 @@ $googlemapsapykey = '<?php echo COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY?>';
 $startzoom = <?php echo COM_BOOKINGFORCONNECTOR_GOOGLE_STARTZOOM?>;
 msg1 = "<?php _e('We\'re processing your request', 'bfi') ?>";
 msg2 = "<?php _e('Please be patient', 'bfi') ?>";
+if(typeof jQuery.fn.button !== 'undefined' && typeof jQuery.fn.button.noConflict !== 'undefined'){
+	var btn = jQuery.fn.button.noConflict(); // reverts $.fn.button to jqueryui btn
+	jQuery.fn.btn = btn; // assigns bootstrap button functionality to $.fn.btn
+}
+
 //-->
 	</script>
 
@@ -1055,6 +1208,7 @@ function insertNight<?php echo $currModID ?>(){
 
 function updateTitle<?php echo $currModID ?>(classToAdd,classToRemove,title) {
 	setTimeout(function() {
+		bfiCalendarCheck();
 		jQuery("#ui-datepicker-div").addClass(classToAdd);
 		jQuery("#ui-datepicker-div").removeClass(classToRemove);
 
@@ -1153,7 +1307,7 @@ function closed<?php echo $currModID ?>(date) {
 	return arr;
 }
 
-function printChangedDate<?php echo $currModID ?>(date, elem) {
+function printChangedDate<?php echo $currModID ?>() {
 	var checkindate = jQuery('#<?php echo $checkinId; ?>').val();
 	var checkoutdate = jQuery('#<?php echo $checkoutId; ?>').val();
 
@@ -1164,30 +1318,39 @@ function printChangedDate<?php echo $currModID ?>(date, elem) {
 	var to   = new Date(d2[2], d2[1]-1, d2[0]);
 
 	day1  = ('0' + from.getDate()).slice(-2),  
-	month1 = from.toLocaleString("<?php echo substr($language,0,2); ?>", { month: "long" }),              
+	month1 = from.toLocaleString("<?php echo substr($language,0,2); ?>", { month: "short" }),              
 	year1 =  from.getFullYear(),
-	weekday1 = from.toLocaleString("<?php echo substr($language,0,2); ?>", { weekday: "long" });
+	weekday1 = from.toLocaleString("<?php echo substr($language,0,2); ?>", { weekday: "short" });
 
 	day2  = ('0' + to.getDate()).slice(-2),  
-	month2 = to.toLocaleString("<?php echo substr($language,0,2); ?>", { month: "long" }),              
+	month2 = to.toLocaleString("<?php echo substr($language,0,2); ?>", { month: "short" }),              
 	year2 =  to.getFullYear(),
-	weekday2 = to.toLocaleString("<?php echo substr($language,0,2); ?>", { weekday: "long" });
+	weekday2 = to.toLocaleString("<?php echo substr($language,0,2); ?>", { weekday: "short" });
 
 	var btnTextCheckin = "<span class='bfi-weekdayname'>"+weekday1+" </span>"+day1+" "+month1+"<span class='bfi-year'> "+year1+"</span>";
 	var btnTextCheckout = "<span class='bfi-weekdayname'>"+weekday2+" </span>"+day2+" "+month2+"<span class='bfi-year'> "+year2+"</span>";
-	var btnTextChildrenagesat = "<?php echo strtolower (__('on', 'bfi')) ?> " + day2 + " " + month2 + " " + year2;
+	var btnTextChildrenagesat = "<?php echo strtolower (__('the', 'bfi')) ?> " + day2 + " " + month2 + " " + year2;
 	
 	if (typeof Intl == 'object' && typeof Intl.NumberFormat == 'function') {
 		btnTextCheckin = "<span class='bfi-weekdayname'>"+weekday1+" </span>"+day1+" "+month1+"<span class='bfi-year'> "+year1+"</span>";
 		btnTextCheckout = "<span class='bfi-weekdayname'>"+weekday2+" </span>"+day2+" "+month2+"<span class='bfi-year'> "+year2+"</span>";
-		btnTextChildrenagesat = "<?php echo strtolower (__('on', 'bfi')) ?> " + day2 + " " + month2 + " " + year2;
+		btnTextChildrenagesat = "<?php echo strtolower (__('the', 'bfi')) ?> " + day2 + " " + month2 + " " + year2;
 	} else {
 		btnTextCheckin = "<span class='bfi-weekdayname'>"+weekday1+" </span>"+day1+"/"+d1[1]+"<span class='bfi-year'>/"+d1[2]+"</span>";
 		btnTextCheckout = "<span class='bfi-weekdayname'>"+weekday2+" </span>"+day2+"/"+d2[1]+"<span class='bfi-year'>/"+d2[2]+"</span>";
-		btnTextChildrenagesat = "<?php echo strtolower (__('on', 'bfi')) ?> " +  day2 + " " + d2[1] + " " + d2[2];
+		btnTextChildrenagesat = "<?php echo strtolower (__('the', 'bfi')) ?> " +  day2 + " " + d2[1] + " " + d2[2];
 	}
+	var windowsize =  jQuery(window).width();
+	if(windowsize > 769 && windowsize < 1300){
+		jQuery('.checkinli<?php echo $currModID ?>').html(checkindate);
+		jQuery('.checkoutli<?php echo $currModID ?>').html(checkoutdate);
+
+	}else{
 	jQuery('.checkinli<?php echo $currModID ?>').html(btnTextCheckin);
 	jQuery('.checkoutli<?php echo $currModID ?>').html(btnTextCheckout);
+	}
+//	jQuery('.checkinli<?php echo $currModID ?>').html(btnTextCheckin);
+//	jQuery('.checkoutli<?php echo $currModID ?>').html(btnTextCheckout);
 	jQuery('#bfi_lblchildrenagesat<?php echo $currModID ?>').html(btnTextChildrenagesat);
 
 }
@@ -1231,8 +1394,30 @@ function checkChildrenSearch<?php echo $currModID ?>(nch,showMsg) {
 	}
 
 }
-jQuery(function() {
+	function bfiAffix<?php echo $currModID ?>() {
+		var windowsize =  jQuery(window).width();
+		if (windowsize > 767) {
+			if (window.pageYOffset >= 180) {
+				jQuery(".bfi-affix-top<?php echo $currModID ?>").addClass("bfiAffixTop");
+			} else {
+				jQuery(".bfi-affix-top<?php echo $currModID ?>").removeClass("bfiAffixTop");
+			}
+		}else{
+				jQuery(".bfi-affix-top<?php echo $currModID ?>").removeClass("bfiAffixTop");
+		}
+		//hide calendar
+		jQuery("#<?php echo $checkinId; ?>").datepicker("hide");
+		jQuery("#<?php echo $checkoutId; ?>").datepicker("hide");
 
+	}
+jQuery(function() {
+<?php 
+if($showdirection && $fixedontop){
+?>
+	window.onscroll = function() {bfiAffix<?php echo $currModID ?>()};
+<?php 
+}
+?>
 	//correction for joomla!
 //	var baseElements = document.getElementsByTagName("base"); 
 //	if( baseElements.length>0 ) {
@@ -1249,14 +1434,23 @@ jQuery(function() {
 			insertNight<?php echo $currModID ?>() 
 			//jQuery("#<?php echo $checkoutId; ?>").datepicker("show");
 				}
-		, beforeShow: function(dateText, inst) { jQuery(this).attr("disabled", true); jQuery(inst.dpDiv).addClass('bfi-calendar'); insertCheckinTitle<?php echo $currModID ?>(); }
+		, beforeShow: function(dateText, inst) { 
+			jQuery(this).attr("disabled", true); 
+			jQuery(inst.dpDiv).addClass('bfi-calendar'); 
+			insertCheckinTitle<?php echo $currModID ?>(); 
+			var windowsize =  jQuery(window).width();
+			jQuery(inst.dpDiv)[0].className = jQuery(inst.dpDiv)[0].className.replace(/(^|\s)bfi-calendar-affixtop\S+/g, '');
+			if(jQuery(this).closest("div.bfiAffixTop").length || windowsize < 767){
+				jQuery(inst.dpDiv).addClass('bfi-calendar-affixtop<?php echo $currModID; ?>'); 
+			}
+		}
 		, onChangeMonthYear: function(dateText, inst) { insertCheckinTitle<?php echo $currModID ?>(); }
 		, showOn: "button"
 		, beforeShowDay: closed<?php echo $currModID ?>
 		, buttonText: "<div class='checkinli<?php echo $currModID; ?>'><span class='bfi-weekdayname'><?php echo date_i18n('l',$checkin->getTimestamp());?> </span><?php echo $checkin->format("d") ;?> <?php echo date_i18n('F',$checkin->getTimestamp());?><span class='bfi-year'> <?php echo $checkin->format("Y"); ?></span></div>"
 		, onSelect: function(date) { 
 			checkDate<?php echo $checkinId; ?>(jQuery, jQuery(this), date); 
-			printChangedDate<?php echo $currModID ?>(date, jQuery(this));
+			printChangedDate<?php echo $currModID ?>();
 			}
 		, firstDay: 1
 	});
@@ -1265,7 +1459,16 @@ jQuery(function() {
 		,dateFormat: "dd/mm/yy"
 		, numberOfMonths: parseInt("<?php echo COM_BOOKINGFORCONNECTOR_MONTHINCALENDAR;?>")
 		, onClose: function(dateText, inst) { jQuery(this).attr("disabled", false); insertNight<?php echo $currModID ?>();  }
-		, beforeShow: function(dateText, inst) { jQuery(this).attr("disabled", true); jQuery(inst.dpDiv).addClass('bfi-calendar'); insertCheckoutTitle<?php echo $currModID ?>(); }
+		, beforeShow: function(dateText, inst) { 
+			jQuery(this).attr("disabled", true); 
+			jQuery(inst.dpDiv).addClass('bfi-calendar'); 
+			insertCheckoutTitle<?php echo $currModID ?>(); 
+			var windowsize =  jQuery(window).width();
+			jQuery(inst.dpDiv)[0].className = jQuery(inst.dpDiv)[0].className.replace(/(^|\s)bfi-calendar-affixtop\S+/g, '');
+			if(jQuery(this).closest("div.bfiAffixTop").length || windowsize < 767){
+				jQuery(inst.dpDiv).addClass('bfi-calendar-affixtop<?php echo $currModID; ?>'); 
+			}
+		}
 		, onSelect: function(date) { printChangedDate<?php echo $currModID ?>(date, jQuery(this)); }
 		, onChangeMonthYear: function(dateText, inst) { insertCheckoutTitle<?php echo $currModID ?>(); }
 		, minDate: '+0d'
@@ -1275,12 +1478,43 @@ jQuery(function() {
 		, firstDay: 1
 	});
 <?php } ?>
+	jQuery.widget.bridge('bfiTabs', jQuery.ui.tabs );
 
-	jQuery("#bfisearch<?php echo $currModID ?>").tabs();
+	jQuery("#bfisearch<?php echo $currModID ?>").bfiTabs();
+
+
+	function bfiCheckTabsCollapsible<?php echo $currModID ?>() {
+		var windowsize =  jQuery(window).width();
+		var collapsibleTabs = true;
+		var isMacLike = navigator.platform.match(/(Mac|iPhone|iPod|iPad)/i)?true:false;
+
+		if ((jQuery("#bfisearch<?php echo $currModID ?>").closest("div.bfialwaisopen").length || windowsize > 767) && !isMacLike) {
+			collapsibleTabs = false;
+		}
+		if ((jQuery("#bfisearch<?php echo $currModID ?>").closest("div.bfiAffixBottom").length && windowsize < 769)) {
+			collapsibleTabs = true;
+		}
+		
+		jQuery("#bfisearch<?php echo $currModID ?>").bfiTabs("option", "collapsible", collapsibleTabs);
+	}
+
+	jQuery(window).resize(function(){
+		jQuery('#bfi_lblchildrenages<?php echo $currModID ?>').webuiPopover("hide");
+		bfiCheckTabsCollapsible<?php echo $currModID ?>() ;
+		printChangedDate<?php echo $currModID ?>();
+
+	});
+	bfiCheckTabsCollapsible<?php echo $currModID ?>() ;
+	setTimeout(function() {printChangedDate<?php echo $currModID ?>()}, 1);
+
+	var windowsizeStart =  jQuery(window).width();
+	if (windowsizeStart > 767) {
 	var index = jQuery('#bfisearch<?php echo $currModID ?> li[data-searchtypeid="<?php echo $searchtypetab ?>"] a').parent().index();
-	jQuery("#bfisearch<?php echo $currModID ?>").tabs("option", "active", index);
-	jQuery("#bfisearch<?php echo $currModID ?> .tab-content").show();
-	
+	jQuery("#bfisearch<?php echo $currModID ?>").bfiTabs("option", "active", index);
+	}else{
+		jQuery("#bfisearch<?php echo $currModID ?>").bfiTabs("option", "active", false);
+	}
+
 	jQuery('#BtnResource<?php echo $currModID ?>').click(function(e) {
 		e.preventDefault();
 		jQuery("#searchform<?php echo $currModID ?>").submit(); 
@@ -1302,14 +1536,25 @@ jQuery(function() {
 		submitHandler: function(form) {
 			var $form = jQuery(form);
 			if($form.valid()){
+				if ($form.data('submitted') === true) {
+					 return false;
+				} else {
+					// Mark it so that the next submit can be ignored
+					$form.data('submitted', true);
 				var isMacLike = navigator.platform.match(/(Mac|iPhone|iPod|iPad)/i)?true:false;
 				var isIOS = navigator.platform.match(/(iPhone|iPod|iPad)/i)?true:false;				
 				if(!isMacLike){
-					bookingfor.waitBlockUI(msg1, msg2,img1); 
-					jQuery("#BtnResource<?php echo $currModID ?>").hide();
+						//bookingfor.waitBlockUI(msg1, msg2,img1); 
+						//jQuery("#BtnResource<?php echo $currModID ?>").hide();
+						var iconBtn = jQuery("#BtnResource<?php echo $currModID ?>").find("i").first();
+						iconBtn.removeClass("fa-search").addClass("fa-spinner fa-spin ");
+						jQuery("#BtnResource<?php echo $currModID ?>").prop('disabled', true);
+
 				}
 				form.submit();
 			}
+
+		}
 
 		}
 
@@ -1520,7 +1765,7 @@ function countPersone<?php echo $currModID ?>() {
 		jQuery('#searchformpersonschild'+(i+1)+'<?php echo $currModID ?>').val(jQuery(this).val());
 	});
 
-	jQuery('#showmsgchildage<?php echo $currModID ?>').val(0);
+	jQuery('#showmsgchildage<?php echo $currModID ?>').val("0");
 	jQuery("#mod_bookingforsearch-childrenages<?php echo $currModID ?> select:visible option:selected").each(function(i) {
 		if(jQuery(this).text()==""){
 			jQuery('#showmsgchildage<?php echo $currModID ?>').val(1);
@@ -1544,9 +1789,6 @@ function showpopover<?php echo $currModID ?>() {
 		});
 		jQuery('#bfi_lblchildrenages<?php echo $currModID ?>').webuiPopover("show");
 }
-jQuery(window).resize(function(){
-	jQuery('#bfi_lblchildrenages<?php echo $currModID ?>').webuiPopover("hide");
-});
 
 function showhideCategories<?php echo $currModID ?>() {
 	var currTab = jQuery('#navbookingforsearch<?php echo $currModID ?> li.ui-tabs-active a[data-toggle="tab"]').first();
@@ -1555,18 +1797,22 @@ function showhideCategories<?php echo $currModID ?>() {
 	var merchantCategoriesResource =  <?php echo json_encode($merchantCategoriesResource) ?> ;
 
 	var merchantCategoriesSelectedBooking = [<?php echo implode(',', $merchantCategoriesSelectedBooking) ?>];
+    var merchantCategoriesSelectedServices = [<?php echo implode(',', $merchantCategoriesSelectedServices) ?>];
     var merchantCategoriesSelectedActivities = [<?php echo implode(',', $merchantCategoriesSelectedActivities) ?>];
+    var merchantCategoriesSelectedOthers = [<?php echo implode(',', $merchantCategoriesSelectedOthers) ?>];
 
 	var unitCategoriesResource = <?php echo json_encode($unitCategoriesResource) ?>;
 	
 	var unitCategoriesSelectedBooking = [<?php echo implode(',', $unitCategoriesSelectedBooking) ?>];
-    var unitCategoriesSelectedActivities = [<?php echo implode(',', $unitCategoriesSelectedActivities) ?>];
+	var unitCategoriesSelectedServices = [<?php echo implode(',', $unitCategoriesSelectedServices) ?>];
+	var unitCategoriesSelectedActivities = [<?php echo implode(',', $unitCategoriesSelectedActivities) ?>];
+	var unitCategoriesSelectedOthers = [<?php echo implode(',', $unitCategoriesSelectedOthers) ?>];
 	
-	var currentMerchantCategoriesSelected = jQuery("#merchantCategoryId<?php echo $currModID ?>").val()?jQuery("#merchantCategoryId<?php echo $currModID ?>").val():0;
-	var currentUnitCategoriesSelected = jQuery("#masterTypeId<?php echo $currModID ?>").val()?jQuery("#masterTypeId<?php echo $currModID ?>").val():0;
+	var currentMerchantCategoriesSelected = jQuery("#merchantCategoryId<?php echo $currModID ?>").val()?jQuery("#merchantCategoryId<?php echo $currModID ?>").val():"0";
+	var currentUnitCategoriesSelected = jQuery("#masterTypeId<?php echo $currModID ?>").val()?jQuery("#masterTypeId<?php echo $currModID ?>").val():"0";
 
-	jQuery("#merchantCategoryId<?php echo $currModID ?>").val(0);
-	jQuery("#masterTypeId<?php echo $currModID ?>").val(0);
+	jQuery("#merchantCategoryId<?php echo $currModID ?>").val("0");
+	jQuery("#masterTypeId<?php echo $currModID ?>").val("0");
 	
 	var currMerchantCategory = jQuery("#merchantCategoryId<?php echo $currModID ?>");
 	currMerchantCategory.find('option:gt(0)').remove().end();
@@ -1575,18 +1821,25 @@ function showhideCategories<?php echo $currModID ?>() {
 
 	var resbynight = jQuery(jQuery(currTab).attr("href")).find(".resbynighthd").first();
 	var availabilityTypesSelectedBooking = '<?php echo implode(',', $availabilityTypesSelectedBooking) ?>';
+	var availabilityTypesSelectedServices = '<?php echo implode(',', $availabilityTypesSelectedServices) ?>';
 	var availabilityTypesSelectedActivities = '<?php echo implode(',', $availabilityTypesSelectedActivities) ?>';
+	var availabilityTypesSelectedOthers = '<?php echo implode(',', $availabilityTypesSelectedOthers) ?>';
 
 	var itemTypes = jQuery(jQuery(currTab).attr("href")).find(".itemtypeshd").first();
 	var itemTypesSelectedBooking = '<?php echo implode(',', $itemTypesSelectedBooking) ?>';
+	var itemTypesSelectedServices = '<?php echo implode(',', $itemTypesSelectedServices) ?>';
 	var itemTypesSelectedActivities = '<?php echo implode(',', $itemTypesSelectedActivities) ?>';
+	var itemTypesSelectedOthers = '<?php echo implode(',', $itemTypesSelectedOthers) ?>';
 	var currentitemTypesSelected = itemTypes.val()?itemTypes.val():0;
 
 	var groupResultType = jQuery(jQuery(currTab).attr("href")).find(".groupresulttypehd").first();
 	var groupBySelectedBooking = '<?php echo implode(',', $groupBySelectedBooking) ?>';
+	var groupBySelectedServices = '<?php echo implode(',', $groupBySelectedServices) ?>';
 	var groupBySelectedActivities = '<?php echo implode(',', $groupBySelectedActivities) ?>';
-	var currentgroupResultTypeSelected = groupResultType.val()?groupResultType.val():1;
+	var groupBySelectedOthers = '<?php echo implode(',', $groupBySelectedOthers) ?>';
+	var currentgroupResultTypeSelected = groupResultType.val()?groupResultType.val():"1";
 
+	/* -- searchtab 0 -- */
 	if (currTab.hasClass("searchResources")) {		
 		if(availabilityTypesSelectedBooking.length>0){
 			resbynight.val(availabilityTypesSelectedBooking);
@@ -1626,7 +1879,7 @@ function showhideCategories<?php echo $currModID ?>() {
 
 		}else{
 			jQuery("#merchantCategoryId<?php echo $currModID ?>").closest("div").hide();
-			currMerchantCategory.find('option:eq(0)').val(0);
+			currMerchantCategory.find('option:eq(0)').val("0");
 		}
 		if(unitCategoriesSelectedBooking.length>0){
 			jQuery("#masterTypeId<?php echo $currModID ?>").closest("div").show();
@@ -1637,15 +1890,61 @@ function showhideCategories<?php echo $currModID ?>() {
 			currUnitCategory.find('option:eq(0)').val('<?php echo implode(',', $unitCategoriesSelectedBooking) ?>');
 		}else{
 			jQuery("#masterTypeId<?php echo $currModID ?>").closest("div").hide();
-			currUnitCategory.find('option:eq(0)').val(0);
+			currUnitCategory.find('option:eq(0)').val("0");
 		}
-		if(jQuery.inArray(Number(currentMerchantCategoriesSelected), merchantCategoriesSelectedBooking) != -1){
+		if(currentMerchantCategoriesSelected.indexOf(",")==-1 && jQuery.inArray(Number(currentMerchantCategoriesSelected), merchantCategoriesSelectedBooking) != -1){
 			jQuery("#merchantCategoryId<?php echo $currModID ?>").val(currentMerchantCategoriesSelected);
 		}
-		if(jQuery.inArray(Number(currentUnitCategoriesSelected), unitCategoriesSelectedBooking) != -1){
+		if(currentUnitCategoriesSelected.indexOf(",")==-1 && jQuery.inArray(Number(currentUnitCategoriesSelected), unitCategoriesSelectedBooking) != -1){
 			jQuery("#masterTypeId<?php echo $currModID ?>").val(currentUnitCategoriesSelected);
 		}
 	}
+	/* -- searchtab 1 -- */
+	if (currTab.hasClass("searchServices")) {
+		if(availabilityTypesSelectedServices.length>0){
+			resbynight.val(availabilityTypesSelectedServices);
+			if((availabilityTypesSelectedServices =="0" || availabilityTypesSelectedServices =="1"  || availabilityTypesSelectedServices =="0,1" ) ){
+				jQuery("#divcalendarnightsearch<?php echo $currModID ?>").show();
+			}
+		}
+	   jQuery("#searchtypetab<?php echo $currModID ?>").val("1");
+
+		if(itemTypesSelectedServices.length>0){
+			itemTypes.val(itemTypesSelectedServices);
+		}
+		if(groupBySelectedServices.length>0){
+			groupResultType.val(groupBySelectedServices);
+		}
+		if(merchantCategoriesSelectedServices.length>0){
+			jQuery("#merchantCategoryId<?php echo $currModID ?>").closest("div").show();
+            for (var i = 0; i < merchantCategoriesSelectedServices.length; i++) {
+				var currMC = merchantCategoriesResource[merchantCategoriesSelectedServices[i]];
+                currMerchantCategory.append(jQuery('<option>').text(currMC).attr('value', merchantCategoriesSelectedServices[i]));
+            }
+			currMerchantCategory.find('option:eq(0)').val('<?php echo implode(',', $merchantCategoriesSelectedServices) ?>');
+		}else{
+			jQuery("#merchantCategoryId<?php echo $currModID ?>").closest("div").hide();
+			currMerchantCategory.find('option:eq(0)').val("0");
+		}
+		if(unitCategoriesSelectedServices.length>0){
+			jQuery("#masterTypeId<?php echo $currModID ?>").closest("div").show();
+            for (var i = 0; i < unitCategoriesSelectedServices.length; i++) {
+				var currUC = unitCategoriesResource[unitCategoriesSelectedServices[i]];
+                currUnitCategory.append(jQuery('<option>').text(currUC).attr('value', unitCategoriesSelectedServices[i]));
+            }
+			currUnitCategory.find('option:eq(0)').val('<?php echo implode(',', $unitCategoriesSelectedServices) ?>');
+		}else{
+			jQuery("#masterTypeId<?php echo $currModID ?>").closest("div").hide();
+			currUnitCategory.find('option:eq(0)').val("0");
+		}
+		if(currentMerchantCategoriesSelected.indexOf(",")==-1 && jQuery.inArray(Number(currentMerchantCategoriesSelected), merchantCategoriesSelectedServices) != -1){
+			jQuery("#merchantCategoryId<?php echo $currModID ?>").val(currentMerchantCategoriesSelected);
+		}
+		if(currentUnitCategoriesSelected.indexOf(",")==-1 && jQuery.inArray(Number(currentUnitCategoriesSelected), unitCategoriesSelectedServices) != -1){
+			jQuery("#masterTypeId<?php echo $currModID ?>").val(currentUnitCategoriesSelected);
+		}
+	}
+	/* -- searchtab 2 -- */
 	if (currTab.hasClass("searchTimeSlots")) {
 		if(availabilityTypesSelectedActivities.length>0){
 			resbynight.val(availabilityTypesSelectedActivities);
@@ -1670,7 +1969,7 @@ function showhideCategories<?php echo $currModID ?>() {
 			currMerchantCategory.find('option:eq(0)').val('<?php echo implode(',', $merchantCategoriesSelectedActivities) ?>');
 		}else{
 			jQuery("#merchantCategoryId<?php echo $currModID ?>").closest("div").hide();
-			currMerchantCategory.find('option:eq(0)').val(0);
+			currMerchantCategory.find('option:eq(0)').val("0");
 		}
 		if(unitCategoriesSelectedActivities.length>0){
 			jQuery("#masterTypeId<?php echo $currModID ?>").closest("div").show();
@@ -1681,12 +1980,57 @@ function showhideCategories<?php echo $currModID ?>() {
 			currUnitCategory.find('option:eq(0)').val('<?php echo implode(',', $unitCategoriesSelectedActivities) ?>');
 		}else{
 			jQuery("#masterTypeId<?php echo $currModID ?>").closest("div").hide();
-			currUnitCategory.find('option:eq(0)').val(0);
+			currUnitCategory.find('option:eq(0)').val("0");
 		}
-		if(jQuery.inArray(Number(currentMerchantCategoriesSelected), merchantCategoriesSelectedActivities) != -1){
+		if(currentMerchantCategoriesSelected.indexOf(",")==-1 && jQuery.inArray(Number(currentMerchantCategoriesSelected), merchantCategoriesSelectedActivities) != -1){
 			jQuery("#merchantCategoryId<?php echo $currModID ?>").val(currentMerchantCategoriesSelected);
 		}
-		if(jQuery.inArray(Number(currentUnitCategoriesSelected), unitCategoriesSelectedActivities) != -1){
+		if(currentUnitCategoriesSelected.indexOf(",")==-1 && jQuery.inArray(Number(currentUnitCategoriesSelected), unitCategoriesSelectedActivities) != -1){
+			jQuery("#masterTypeId<?php echo $currModID ?>").val(currentUnitCategoriesSelected);
+		}
+	}
+	/* -- searchtab 4 -- */
+	if (currTab.hasClass("searchOthers")) {
+		if(availabilityTypesSelectedOthers.length>0){
+			resbynight.val(availabilityTypesSelectedOthers);
+			if((availabilityTypesSelectedOthers =="0" || availabilityTypesSelectedOthers =="1"  || availabilityTypesSelectedOthers =="0,1" ) ){
+				jQuery("#divcalendarnightsearch<?php echo $currModID ?>").show();
+			}
+		}
+	   jQuery("#searchtypetab<?php echo $currModID ?>").val("4");
+
+		if(itemTypesSelectedOthers.length>0){
+			itemTypes.val(itemTypesSelectedOthers);
+		}
+		if(groupBySelectedOthers.length>0){
+			groupResultType.val(groupBySelectedOthers);
+		}
+		if(merchantCategoriesSelectedOthers.length>0){
+			jQuery("#merchantCategoryId<?php echo $currModID ?>").closest("div").show();
+            for (var i = 0; i < merchantCategoriesSelectedOthers.length; i++) {
+				var currMC = merchantCategoriesResource[merchantCategoriesSelectedOthers[i]];
+                currMerchantCategory.append(jQuery('<option>').text(currMC).attr('value', merchantCategoriesSelectedOthers[i]));
+            }
+			currMerchantCategory.find('option:eq(0)').val('<?php echo implode(',', $merchantCategoriesSelectedOthers) ?>');
+		}else{
+			jQuery("#merchantCategoryId<?php echo $currModID ?>").closest("div").hide();
+			currMerchantCategory.find('option:eq(0)').val("0");
+		}
+		if(unitCategoriesSelectedOthers.length>0){
+			jQuery("#masterTypeId<?php echo $currModID ?>").closest("div").show();
+            for (var i = 0; i < unitCategoriesSelectedOthers.length; i++) {
+				var currUC = unitCategoriesResource[unitCategoriesSelectedOthers[i]];
+                currUnitCategory.append(jQuery('<option>').text(currUC).attr('value', unitCategoriesSelectedOthers[i]));
+            }
+			currUnitCategory.find('option:eq(0)').val('<?php echo implode(',', $unitCategoriesSelectedOthers) ?>');
+		}else{
+			jQuery("#masterTypeId<?php echo $currModID ?>").closest("div").hide();
+			currUnitCategory.find('option:eq(0)').val("0");
+		}
+		if(currentMerchantCategoriesSelected.indexOf(",")==-1 && jQuery.inArray(Number(currentMerchantCategoriesSelected), merchantCategoriesSelectedOthers) != -1){
+			jQuery("#merchantCategoryId<?php echo $currModID ?>").val(currentMerchantCategoriesSelected);
+		}
+		if(currentUnitCategoriesSelected.indexOf(",")==-1 && jQuery.inArray(Number(currentUnitCategoriesSelected), unitCategoriesSelectedOthers) != -1){
 			jQuery("#masterTypeId<?php echo $currModID ?>").val(currentUnitCategoriesSelected);
 		}
 	}
@@ -1714,32 +2058,6 @@ function showhideCategories<?php echo $currModID ?>() {
 		showhideCategories<?php echo $currModID ?>();
     })
 
-    jQuery('.bfi-showperson-text').on('click', function (event, ui) {
-		if (!!jQuery.uniform){
-			jQuery.uniform.restore(jQuery("#bfishowperson<?php echo $currModID ?> select"));
-		}
-
-		jQuery( "#bfishowperson<?php echo $currModID ?>" ).dialog({
-			title: "<?php _e('Guest', 'bfi'); ?>",
-			height: 'auto',
-			width:'auto',
-			resizable: true,
-			position:{
-				my: "center top", 
-				at: "center bottom",
-				of: jQuery(this)
-			},
-			clickOutside: true,
-			clickOutsideTrigger: ".bfi-showperson-text",
-			dialogClass: 'bfi-dialog bfi-guest'
-		});
-    })
-
-	jQuery(window).load(function() {
-		if (!!jQuery.uniform){
-			jQuery.uniform.restore(jQuery("#bfishowperson<?php echo $currModID ?> select"));
-		}
-	});
 
 //-->
 </script>

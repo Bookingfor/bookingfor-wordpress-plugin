@@ -36,10 +36,10 @@ $total = 0;
 $currSorting = "";
 
 if (isset($pars['checkin']) && isset($pars['checkout'])){
-	$now = new DateTime();
+	$now = new DateTime('UTC');
 	$now->setTime(0,0,0);
-	$checkin = isset($pars['checkin']) ? $pars['checkin'] : new DateTime();
-	$checkout = isset($pars['checkout']) ? $pars['checkout'] : new DateTime();
+	$checkin = isset($pars['checkin']) ? $pars['checkin'] : new DateTime('UTC');
+	$checkout = isset($pars['checkout']) ? $pars['checkout'] : new DateTime('UTC');
 
 	$availabilitytype = isset($pars['availabilitytype']) ? $pars['availabilitytype'] : "1";
 	
@@ -55,11 +55,13 @@ if (isset($pars['checkin']) && isset($pars['checkout'])){
 			$items = is_array($items) ? $items : array();
 					
 			$total=$searchmodel->getTotal();
+			$totalAvailable=$searchmodel->getTotalAvailable();
 			$currSorting=$searchmodel->getOrdering() . "|" . $searchmodel->getDirection();
 			$GLOBALS['bfSearched'] = 1;
 		}else{
 			$items = $GLOBALS['bfSearchedItems'];
 			$total = $GLOBALS['bfSearchedItemsTotal'];
+			$totalAvailable = $GLOBALS['bfSearchedItemsTotalAvailable'];
 			$currSorting = $GLOBALS['bfSearchedItemsCurrSorting'];
 		}
 	}
@@ -223,7 +225,7 @@ if(COM_BOOKINGFORCONNECTOR_CRITEOENABLED){
 		//event tracking	
 
 
-				bfi_get_template("search/default.php",array("total"=>$total,"items"=>$items,"pages"=>$pages,"page"=>$page,"currencyclass"=>$currencyclass,"listNameAnalytics"=>$listNameAnalytics,"totPerson"=>$totPerson,"currSorting"=>$currSorting));	
+				bfi_get_template("search/default.php",array("totalAvailable"=>$totalAvailable,"total"=>$total,"items"=>$items,"pages"=>$pages,"page"=>$page,"currencyclass"=>$currencyclass,"listNameAnalytics"=>$listNameAnalytics,"totPerson"=>$totPerson,"currSorting"=>$currSorting));	
 
 //		include(BFI()->plugin_path().'/templates/search/default.php');	  
 

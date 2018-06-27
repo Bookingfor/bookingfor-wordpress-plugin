@@ -1,0 +1,386 @@
+ .bfi-form-horizontal, .bfi-form-vertical{
+    margin-bottom: 0;
+}
+.bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav li,
+.bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav li {
+	float: left;
+	margin: 0;
+	display:block;
+	border-radius:0;
+}
+.bfi-datepicker .ui-datepicker-trigger div {
+    padding: 0 !important;
+}
+.bfi-datepicker, 
+.bfi-datepicker:hover,
+.bfi-showperson-text {
+    border: 1px solid #CECECE;
+    padding: 5px;
+    border-radius: 3px;
+    width: 100%;
+    background-color: #FFF;
+    -webkit-appearance: none;
+}
+.bfi-form-horizontal .bfi-col-sm-2 {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.bfi-form-horizontal .bfi-showadult, .bfi-form-horizontal .bfi-showchildren, .bfi-form-horizontal .bfi-showsenior {
+    float: left !important;
+    width: 16.66667% !important;
+}
+.bfi-form-horizontal select {
+    width: 100% !important;
+}
+.bfi-form-horizontal .bfi-btn, .bfi-form-horizontal a.bfi-btn:link, .bfi-form-horizontal a.bfi-btn:visited, .bfi-form-horizontal a.bfi-btn {
+	display: inline-block;
+    margin-top: 28px;
+    width: 100%;
+    margin-bottom: 0;
+    font-size: 18px;
+    line-height: 16px;
+    font-weight: 300;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    border-bottom: 2px solid #003d78;
+    white-space: nowrap;
+    padding: 4px;
+    border-radius: 3px;
+    color: #fff;
+    background: #1473CF;
+    text-decoration: none;
+}
+.bfi-form-horizontal .bfi-col-sm-12 .bfi-btn,
+.bfi-form-horizontal .bfi-col-sm-12 a.bfi-btn:link,
+.bfi-form-horizontal .bfi-col-sm-12 a.bfi-btn:visited,
+.bfi-form-horizontal .bfi-col-sm-12 a.bfi-btn {
+    margin-top: 5px;
+}
+
+.bfi-form-vertical .bfi-btn, .bfi-form-vertical a.bfi-btn:link, .bfi-form-vertical a.bfi-btn:visited, .bfi-form-vertical a.bfi-btn {
+    width: 100%; 
+}
+
+.bfi-form-horizontal .bfi-datepicker button,
+.bfi-form-horizontal .bfi-datepicker button:hover {
+    color: #616161 !important;
+    font-size: 16px !important;
+    line-height: 16px;
+    font-weight: 300;
+}
+.bfi-form-horizontal input, .bfi-form-horizontal select {
+	box-sizing: border-box;
+    color: #616161 !important;
+    font-size: 16px !important;
+    line-height: 16px;
+    font-weight: 300;
+    margin-top: 0 !important;
+}
+.bfi-form-horizontal select {
+	background-image: url(../images/selarrow.png) !important;
+    background-position: right 3px center !important;
+    background-repeat: no-repeat !important;
+}
+.bfi-form-horizontal>.bfi-row{
+	width:100%;
+}
+.bfi-form-horizontal .bfi-childrenages {
+    text-align: left;
+    width: 150% !important;
+    /*width: 350% !important;*/
+    padding-left: 0 !important;
+}
+.bfi-childrenages label{
+	display:block;
+}
+.bfi-guest .bfi-inputmini, .bfi-childrenages .bfi-inputmini {
+    position: relative;
+    width: 20% !important;
+    margin-right: 4px;
+}
+.bfi-form-vertical .bfi-col-sm-2,.bfi-form-vertical .bfi-col-sm-1 {
+    float: none !important;
+    width: 100% !important;
+    margin-bottom: 0px;
+	margin-top: 0px;
+}
+.bfi-form-vertical select {
+    width: 100%;
+}
+.bfi-form-vertical .bfi-datepicker button{
+   line-height: 22px;
+}
+.bfi-form-vertical .bfi-childrenages .bfi-inputmini {
+    width: 50px !important;
+    margin-bottom: 5px;
+}
+.bfi-form-vertical .bfi-datepicker {margin-bottom: 15px; margin-top: 0; padding: 0;}
+.bfi-form-vertical  .radio input[type="radio"],
+.bfi-form-vertical  .checkbox input[type="checkbox"],
+.bfi-form-horizontal .radio input[type="radio"], 
+.bfi-form-horizontal .checkbox input[type="checkbox"]
+{
+	-webkit-appearance: checkbox;
+}
+.bfi-form-vertical input[type="text"],
+.bfi-form-horizontal input[type="text"]
+{
+	box-sizing: border-box;
+	width: 100%;
+	height:28px;
+	color: $color12;
+	background-color: #FFF;
+}
+
+@media (min-width: 991px){
+	.bfi-form-vertical .bfi-showadult.bfi-col-sm-2, .bfi-form-vertical .bfi-showchildren.bfi-col-sm-2 {
+		width: 50% !important;
+		float: left !important;
+	}
+	.bfi-form-vertical .bfi-showadult.bfi-col-sm-2{
+		padding-right: 2%;
+	}
+	.bfi-form-vertical .bfi-showchildren.bfi-col-sm-2 {
+		padding-left: 2%;
+	}
+
+	.bfi-form-vertical .bfi-childrenages {
+		margin-left: -102px;
+		width: 200% !important;
+	}
+	.bfi-form-vertical .bfi-searchbutton-wrapper.bfi-col-sm-2{
+	clear:both;
+	}
+}
+@media only screen  and (max-width : 767px) {
+	.bfi-form-horizontal div[class*="bfi-col-sm-"],
+	.bfi-form-vertical div[class*="bfi-col-sm-"] {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	.bfi-form-horizontal .bfi-row .bfi-row div[class*="bfi-col-sm-"],
+	.bfi-form-vertical .bfi-row .bfi-row div[class*="bfi-col-sm-"] {
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+
+	.bfi-form-horizontal .bfi-showadult,
+	.bfi-form-horizontal .bfi-showchildren, 
+	.bfi-form-horizontal .bfi-showsenior,
+	.bfi-form-horizontal .bfi-childrenages {
+		float: none !important;
+		width: 100% !important;
+	}
+}
+.bfi-mod-bookingforsearch .bfi-powered {
+    text-align: center;
+    margin: auto;
+    margin-top: 5px;
+}
+.bfi-form-horizontal .bfi-powered{
+	display:none !important;
+}
+.bfi-mod-bookingforsearch .bfi-powered a {
+    font-size: 11px !important;
+    color: #616161 !important;
+}
+@media (max-width: 767px){
+	.bfi-mod-bookingforsearch .bfi-tab-content.tab-content .tab-pane{
+		padding: 15px 0;
+	}
+}
+
+@media (max-width: 991px) {
+	.bfi-maps-static {display:none;}
+}
+
+.bfi-form-horizontal .bfi_merchantcategoriesresource{
+	display:none !important;
+}
+.bfi-grid-group-item .bfi-details-container{
+padding-left:5px;
+}
+.bfi-grid-group-item.bfi-list-group-item .bfi-details-container{
+padding-left:10px;
+}
+
+
+.bfi-noresults{
+	color: red;
+    font-size: 20px;
+}
+.bfi-mod-bookingforsearch.ui-tabs {
+	padding:0;
+}
+.bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav li.ui-tabs-active,
+.bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav li.ui-state-hover {
+	border: none;
+	outline: none;
+}
+.bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav li a:hover,
+.bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav li a:focus {
+	color: #333;
+	text-decoration: none;
+	outline : none !important;
+}
+/*----------------------------------------------------------------*/
+
+.bfiAffixTop{ 
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: auto !important;
+	width: 100%;
+	background-color: #20BBEF; 
+}
+.bfiAffixTop .bfi-mod-bookingforsearch{
+	position: initial;
+}
+.bfiAffixTop .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav li,
+.bfiAffixTop .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav li.ui-tabs-active,
+.bfiAffixTop .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav li.ui-state-hover
+{
+	background: none;
+}
+/*
+.bfiAffixTop .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav li > a,
+.bfiAffixTop .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav .ui-state-active > a,
+.bfiAffixTop .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav .ui-state-active a:link,
+.bfiAffixTop .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav .ui-state-hover > a,
+.bfiAffixTop .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav .ui-state-hover a:link{
+	height: 35px !important;
+} 
+*/
+ .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav li > a .fa{
+	display: block;
+} 
+.bfiAffixTop .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav li > a .fa{
+	display: none;
+} 
+.bfiAffixTop .tab-content{
+	z-index: 99;
+	background: #fff;
+}
+.bfiAffixTop .tab-content:before {
+	content: "";
+	background: #fff;
+	width: 100%;
+	display: block;
+	position: fixed;
+	left: 0;
+	height: 100px;
+	border-bottom: 1px solid #ccc;
+	z-index: -1;
+}
+
+.bfiAffixTop .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav li.ui-tabs-active:before,
+.bfiAffixTop .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav li.ui-state-hover:before {
+    position: absolute;
+    bottom: -7px;
+    left: calc(50% - 3px);
+    content: '';
+    padding: 6px;
+    border: solid #ccc;
+    border-width: 0 1px 1px 0;
+    background-color: rgb(255,255,255);
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}
+.bfiAffixTop .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav li.ui-tabs-active:before, 
+.bfiAffixTop .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav li.ui-state-hover:before
+ {
+    position: absolute;
+    bottom: -7px;
+    left: 50%;
+    content: '';
+    padding: 6px;
+    border: solid #ccc;
+    border-width: 0 1px 1px 0;
+    background: #fff;
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}
+/*----------------------*/
+/* Extra small devices Phones
+// ------------------*/
+@media (max-width: 769px){
+	.bfi-form-horizontal .bfi-btn, .bfi-form-horizontal a.bfi-btn:link, .bfi-form-horizontal a.bfi-btn:visited, .bfi-form-horizontal a.bfi-btn {
+		margin-top: 5px;
+	}
+	.bfiAffixBottom{
+		bottom: 0;
+		left:0;
+		position: fixed;
+		z-index: 994;
+		margin: 0;
+		top: auto !important;
+		background-color: #20BBEF;
+		width:100%;
+	}
+	.bfiAffixBottom .bfi-tab-content.tab-content .tab-pane{
+		bottom: 52px;
+		position: fixed;
+		width: 100%;
+		background: #fff;
+		max-height: calc(100vh - 70px);
+		overflow: scroll;
+		top: auto;
+		border-top: 1px solid #ccc;
+		padding: 15px 0;
+	}
+}
+
+// ------------------*/
+		
+@media only screen  and (max-width : 767px) {
+		.bfiAffixBottom .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav li {
+			margin:0;
+			display:block;
+			float: left;
+			background-color: #20BBEF;
+		}
+		.bfiAffixBottom .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav li a,
+		.bfiAffixBottom .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav li a:link,
+		.bfiAffixBottom .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav .ui-state-active a,
+		.bfiAffixBottom .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav .ui-state-active a:link,
+		.bfiAffixBottom .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav .ui-state-hover a,
+		.bfiAffixBottom .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav .ui-state-hover a:link	{
+			color: #fff;
+			font-size:12px;
+			line-height:20px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			margin-bottom:0px;
+		}
+		.bfiAffixBottom .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav .ui-state-active a,
+		.bfiAffixBottom .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav .ui-state-active a:link,
+		.bfiAffixBottom .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav .ui-state-hover a,
+		.bfiAffixBottom .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav .ui-state-hover a:link{
+			color: #333;
+		}
+		.bfiAffixBottom .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav li.ui-tabs-active,
+		.bfiAffixBottom .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav li.ui-state-hover,
+		{
+			background-color: #20BBEF;
+		}
+
+		.bfiAffixBottom .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav li > a img {
+			display: block;
+			height: 26px;
+			margin: 10px auto;
+		}
+		.bfiAffixBottom .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav li.ui-tabs-active:before,
+		.bfiAffixBottom .bfi-mod-bookingforsearch.ui-tabs .bfi-tabs.ui-tabs-nav li.ui-state-hover:before{
+			display:none;
+		}
+		.bfi-form-horizontal .bfi-showadult, .bfi-form-horizontal .bfi-showchildren, .bfi-form-horizontal .bfi-showsenior, .bfi-form-horizontal .bfi-childrenages {
+			float: none !important;
+			width: 100% !important;
+		}
+
+}

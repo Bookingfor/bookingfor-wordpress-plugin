@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'wsQueryHelper' ) ) :
+if ( ! class_exists( 'wsQueryHelper' ) ) {
 class wsQueryHelper {
 
 	private $serviceUri = null;
@@ -23,6 +23,8 @@ class wsQueryHelper {
 		$this->useproxy = COM_BOOKINGFORCONNECTOR_USEPROXY;
 		$this->urlproxy = COM_BOOKINGFORCONNECTOR_URLPROXY;
 		$this->usegzip = 1;
+		$this->cachetime = COM_BOOKINGFORCONNECTOR_CACHETIME; // 1 hour default
+		$this->cachedir = COM_BOOKINGFORCONNECTOR_CACHEDIR;
 	}
 
 	public function addFilter(&$filterbase, $filter, $operator) {
@@ -34,61 +36,78 @@ class wsQueryHelper {
 		return $this;
 	}
 
-	public function executeQuery($url, $method = 'GET', $setApiKey = true) {
+	public function executeQuery($url, $method = 'GET', $setApiKey = true, $skip_cache=TRUE) {
 
 		if (isset($url)) {
-			$body = array();
-			$isInPost = false;
-			if (isset($method) && strtoupper($method) === "POST" ) {
-				$isInPost = true;
-				$urlParsed = explode("?",$url);
-				$url = $urlParsed[0];
-				if ($setApiKey) {
-					$url .='?s=' . uniqid('', true) . '&apikey='.$this->apikey;
-				}
-				if (isset($urlParsed[1])) {
-					$body = $urlParsed[1];
-				}
+			
+			if ( ! is_dir($this->cachedir)) {
+				mkdir($this->cachedir, 0755, true);
 			}
-
-			$ch = curl_init($url);
-
-			if($this->useproxy ==1 && !empty($this->urlproxy)){
-				curl_setopt($ch, CURLOPT_PROXY, $this->urlproxy);
+			$hash = md5($url);
+			$bfifile = $this->cachedir ."/bfi_$hash.cache";
+			
+			$mtime = 0;
+			if (file_exists($bfifile)) {
+				$mtime = filemtime($bfifile);
 			}
-			if($this->usegzip ==1){
-				curl_setopt($ch,CURLOPT_ENCODING,'gzip');
-			}
-
-			curl_setopt($ch, CURLOPT_URL, $url);
-			curl_setopt($ch, CURLOPT_HEADER, false);
-			curl_setopt($ch, CURLOPT_HTTPGET, true);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-			if ($isInPost){
-				curl_setopt ($ch, CURLOPT_POST, true);
-				curl_setopt ($ch, CURLOPT_POSTFIELDS, $body);
-			}
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_FRESH_CONNECT, TRUE);
-			curl_setopt($ch,CURLOPT_TIMEOUT,360);
-			curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,0);
-
-			$http_codes = parse_ini_file("httpcode.ini");
-			$r = curl_exec($ch);
-			if(!curl_errno($ch)) {
-				$info = curl_getinfo($ch);
-				$this->infomsg = 'Took ' . $info['total_time'] . ' seconds to send a request <!-- to ' . $info['url'] . ' -->' ;
-				if ($info['http_code'] >= 500 && $info['http_code'] <600){
-					$this->errmsg = $http_codes[$info['http_code']];
+			$bfifiletimemod = $mtime + $this->cachetime;			
+			
+			if ($bfifiletimemod < time() || $skip_cache) {
+				$body = array();
+				$isInPost = false;
+				if (isset($method) && strtoupper($method) === "POST" ) {
+					$isInPost = true;
+					$urlParsed = explode("?",$url);
+					$url = $urlParsed[0];
+					if ($setApiKey) {
+						$url .='?s=' . uniqid('', true) . '&apikey='.$this->apikey;
+					}
+					if (isset($urlParsed[1])) {
+						$body = $urlParsed[1];
+					}
 				}
-				if ($info['http_code'] >= 400 && $info['http_code'] <500){
-					$this->errmsg = $http_codes[$info['http_code']];
+
+				$ch = curl_init($url);
+
+				if($this->useproxy ==1 && !empty($this->urlproxy)){
+					curl_setopt($ch, CURLOPT_PROXY, $this->urlproxy);
 				}
-//				echo "<pre>";
-//				echo print_r($info);
-//				echo "</pre>";
-				
-//				 echo '<!--Took ' . $info['total_time'] . ' seconds to send a request to ' . $info['url'] . '-->';
+				if($this->usegzip ==1){
+					curl_setopt($ch,CURLOPT_ENCODING,'gzip');
+				}
+
+				curl_setopt($ch, CURLOPT_URL, $url);
+				curl_setopt($ch, CURLOPT_HEADER, false);
+				curl_setopt($ch, CURLOPT_HTTPGET, true);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+				if ($isInPost){
+					curl_setopt ($ch, CURLOPT_POST, true);
+					curl_setopt ($ch, CURLOPT_POSTFIELDS, $body);
+				}
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_FRESH_CONNECT, TRUE);
+				curl_setopt($ch,CURLOPT_TIMEOUT,360);
+				curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,0);
+
+				$http_codes = parse_ini_file("httpcode.ini");
+				$r = curl_exec($ch);
+				if(!curl_errno($ch)) {
+					$info = curl_getinfo($ch);
+					$this->infomsg = 'Took ' . $info['total_time'] . ' seconds to send a request <!-- to ' . $info['url'] . ' -->' ;
+					if ($info['http_code'] >= 500 && $info['http_code'] <600){
+						$this->errmsg = $http_codes[$info['http_code']];
+					}
+					if ($info['http_code'] >= 400 && $info['http_code'] <500){
+						$this->errmsg = $http_codes[$info['http_code']];
+					}
+	//				echo "<pre>";
+	//				echo print_r($info);
+	//				echo "</pre>";
+					
+	//				 echo '<!--Took ' . $info['total_time'] . ' seconds to send a request to ' . $info['url'] . '-->';
+					if ($r && !$skip_cache) {
+						file_put_contents($bfifile, $r);
+					}
 				}else {
 //				echo '<!--Curl error: ' . curl_error($ch) . '-->';
 				$this->errmsg = curl_error($ch);
@@ -96,7 +115,9 @@ class wsQueryHelper {
 						$this->errmsg .= " ;proxy enabled: check proxy ";
 					 }
 				 }
-
+			} else {
+				$r = file_get_contents($bfifile);
+			}
 			return $r;
 		}
 		return null;
@@ -163,4 +184,4 @@ class wsQueryHelper {
 	}		
 
 }
-endif;
+}

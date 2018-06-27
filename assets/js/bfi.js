@@ -1,5 +1,5 @@
 var bookingfor = new function() {
-    this.version = "3.2.3";
+    this.version = "3.2.5";
 	this.bsVersion = ( typeof jQuery.fn.typeahead !== 'undefined' ? 2 : 3 );
     this.offersLoaded = [];
     this.adsBlocked = false;
@@ -8,7 +8,7 @@ var bookingfor = new function() {
     this.holydays = "";
     this.holydaysTitle = "";
 
-    this.getDiscountAjaxInformations = function (discountId, hasRateplans) {
+	this.getDiscountAjaxInformations = function (discountId, hasRateplans) {
         var query = "discountId=" + discountId + "&hasRateplans=" + hasRateplans + "&language=en-gb&task=getDiscountDetails";
         jQuery.getJSON(bfi_variable.bfi_urlCheck + ((bfi_variable.bfi_urlCheck.indexOf('?') > -1)? "&" :"?") + query, function(data) {
 
@@ -41,7 +41,7 @@ var bookingfor = new function() {
       };
 
     this.getData = function (urlCheck, query, elem, name, act) {
-		query += '&simple=1';
+		query += '&simple=1';		
 		if (typeof(ga) !== 'undefined' && !bookingfor.adsBlocked ) {
 			ga('send', 'event', 'Bookingfor', act, name);
 			ga(function(){
@@ -122,6 +122,10 @@ var bookingfor = new function() {
 		str = str.replace(/(\[size\=[\d]\]|\[\/size\])+/g, '');
 		str = str.replace(/(\[ul\]|\[\/ul\]|\[ol\]|\[\/ol\])+/g, '');
 		return str;
+	};
+
+	this.parseODataDate = function(date) {
+		return new Date(parseInt(date.match(/\/Date\(([0-9]+)(?:.*)\)\//)[1]));
 	};
 
 	this.priceFormat = function (number, decimals, dec_point, thousands_sep) {   
@@ -220,15 +224,25 @@ var bookingfor = new function() {
 	  return s.join(dec);
 	};
 
+	this.getUrlParameter = function (name) {
+		name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+		var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+		var results = regex.exec(location.search);
+		return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+	};
+
 	this.updateQueryStringParameter = function (uri, key, value) {
-	  var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
-	  var separator = uri.indexOf('?') !== -1 ? "&" : "?";
-	  if (uri.match(re)) {
-		return uri.replace(re, '$1' + key + "=" + value + '$2');
-	  }
-	  else {
-		return uri + separator + key + "=" + value;
-	  }
+	  return uri
+        .replace(new RegExp("([?&]"+key+"(?=[=&#]|$)[^#&]*|(?=#|$))"), "&"+key+"="+encodeURIComponent(value))
+        .replace(/^([^?&]+)&/, "$1?");
+//	  var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+//	  var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+//	  if (uri.match(re)) {
+//		return uri.replace(re, '$1' + key + "=" + value + '$2');
+//	  }
+//	  else {
+//		return uri + separator + key + "=" + value;
+//	  }
 	};
 
 
@@ -292,6 +306,13 @@ var bookingfor = new function() {
 		var datereformat = year + '' + bookingfor.pad(month,2) + '' + bookingfor.pad(day,2);
 		var intDate = Number(datereformat);
 		return (intDate)
+	}
+	this.convertDateToIta = function(currDate) {
+		var month = currDate.getMonth() + 1;
+		var day = currDate.getDate();
+		var year = currDate.getFullYear();
+		var datereformat = bookingfor.pad(day,2) + '/' + bookingfor.pad(month,2) + '/' + year;
+		return (datereformat)
 	}
 
 	this.pad = function(str, max) {
@@ -625,6 +646,8 @@ var bookingfor = new function() {
 		}
 	}
 
+
+
 	this.checkAdsBlocked = function() {
 		if (!bookingfor.adsBlockedChecked )
 		{
@@ -632,9 +655,11 @@ var bookingfor = new function() {
 			bookingfor.adsBlockedChecked =true;
 		}
 	}
-
+	this.isFetchAPIsupported = function() {
+		return 'fetch' in window;
+	}
 	this.isAdsBlocked = function() {
-		if (typeof Request != 'undefined') {
+		if (typeof Request != 'undefined' && bookingfor.isFetchAPIsupported() ) {
 
 			var testURL = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'
 
@@ -658,7 +683,6 @@ var bookingfor = new function() {
 			});
 		}
 	}
-
 
 	this.BookNow = function() {
 			//       debugger;
@@ -829,6 +853,7 @@ var bookingfor = new function() {
 		if (Order.Resources.length > 0) {
 			FirstResourceId = Order.Resources[0].ResourceId;
 			jQuery('#frm-order').html('');
+			jQuery('#frm-order').empty();
 
                 if (bfi_variable.bfi_eecenabled==1)
                 {
@@ -844,30 +869,34 @@ var bookingfor = new function() {
 								"list": elm.ListName,
 							};
 						}));
-					var currListName = currAllItems[0].list;
-					callAnalyticsEEc("addProduct", currAllItems, "addToCart", "",  {
-							"step": 1,
-							"list" : currListName
-						},
-						"Add to Cart"
-					);
-					callAnalyticsEEc("addProduct", jQuery.makeArray(jQuery.map(Order.ExtraServices, function(elm, idx) {
-							return {
-								"id": elm.PriceId + " - Service",
-								"name": elm.Name ,
-								"category": elm.Category ,
-								"brand": elm.Brand ,
-								"price": elm.TotalDiscounted,
-								"quantity": elm.CalculatedQt,
-								"variant": elm.RatePlanName.toUpperCase(),
-							};
-						})), "addToCart", "",  {
-							"step": 2,
-							"list" : currListName
-						},
-						"Add to Cart"
-					);
+					if (typeof callAnalyticsEEc !== "undefined" )
+					{
+						var currListName = currAllItems[0].list;
+						callAnalyticsEEc("addProduct", currAllItems, "addToCart", "",  {
+								"step": 1,
+								"list" : currListName
+							},
+							"Add to Cart"
+						);
+						callAnalyticsEEc("addProduct", jQuery.makeArray(jQuery.map(Order.ExtraServices, function(elm, idx) {
+								return {
+									"id": elm.PriceId + " - Service",
+									"name": elm.Name ,
+									"category": elm.Category ,
+									"brand": elm.Brand ,
+									"price": elm.TotalDiscounted,
+									"quantity": elm.CalculatedQt,
+									"variant": elm.RatePlanName.toUpperCase(),
+								};
+							})), "addToCart", "",  {
+								"step": 2,
+								"list" : currListName
+							},
+							"Add to Cart"
+						);
+					}
                 }
+
 				jQuery('#frm-order').prepend('<input id=\"hdnOrderDataCart\" name=\"hdnOrderData\" type=\"hidden\" value=' + "'" + JSON.stringify(Order.Resources).replace(/'/g, "$$$") + "'" + '\>');
 				jQuery('#frm-order').prepend('<input id=\"hdnBookingType\" name=\"hdnBookingType\" type=\"hidden\" value=' + "'" + jQuery('input[name="bookingType"]').val() + "'" + '\>');
 			

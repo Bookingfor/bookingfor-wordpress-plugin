@@ -143,7 +143,7 @@ if (!empty($merchant->LogoUrl)){
 				<?php if (($showResourceMap)) {?></a><?php } ?>
 	</div>	
 <?php } ?>
-	<div class="bfi-clearboth"></div>
+	<div class="bfi-clearfix"></div>
 <!-- Navigation -->	
 	<ul class="bfi-menu-top">
 		<!-- <li><a rel=".bfi-resourcecontainer-gallery" data-toggle="tab"><?php echo  _e('Media' , 'bfi') ?></a></li> -->
@@ -378,7 +378,7 @@ echo("</tr>\n");
 		<br />
 	<?php endif ?>
 
-	<div class="bfi-clearboth"></div>
+	<div class="bfi-clearfix"></div>
 	<?php  
 	bfi_get_template("merchant_small_details.php",array("resource_id"=>$resource_id,"merchant"=>$merchant,"routeMerchant"=>$routeMerchant));	
 	?>

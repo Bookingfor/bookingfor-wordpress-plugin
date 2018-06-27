@@ -46,10 +46,12 @@ $rating_text = array('merchants_reviews_text_value_0' => __('Very poor', 'bfi'),
 					);
 $merchantname = BFCHelper::getLanguage($merchant->Name, $GLOBALS['bfi_lang'], null, array('ln2br'=>'ln2br', 'striptags'=>'striptags')); 
 
-$rating = $merchant->Rating;
+$hasSuperior = !empty($merchant->RatingSubValue);
+$rating = (int)$merchant->Rating;
 if ($rating>9 )
 {
 	$rating = $rating/10;
+	$hasSuperior = ($MerchantDetail->Rating%10)>0;
 } 
 
 /*---------------IMPOSTAZIONI SEO----------------------*/
@@ -72,9 +74,12 @@ if ($rating>9 )
 	<?php //echo JHTML::link(JRoute::_('index.php?option=com_bookingforconnector&view=merchantdetails&merchantId=' . $merchant->MerchantId . ':' . BFCHelper::getSlug($merchant->Name),true,-1), JTEXT::_('COM_BOOKINGFORCONNECTOR_MERCHANTS_VIEW_MERCHANTDETAILS_RATING_RETURN') ,array('class' => ' bfi-pull-right'));?>
 	<div class="bfi-title-name"><h1><?php echo  $merchant->Name?></h1> 
 		<span class="bfi-item-rating">
-		  <?php for($i = 0; $i < $rating; $i++) { ?>
-		  <i class="fa fa-star"></i>
-		  <?php } ?>
+			<?php for($i = 0; $i < $rating; $i++) { ?>
+				<i class="fa fa-star"></i>
+			<?php } ?>
+			<?php if ($hasSuperior) { ?>
+				&nbsp;S
+			<?php } ?>
 		</span>
 	</div>
 
@@ -164,13 +169,13 @@ if ($rating>9 )
 				
 				
 				$creationDate = BFCHelper::parseJsonDate($rating->CreationDate,'Y-m-d');
-				$jdate  = new DateTime($creationDate);
+				$jdate  = new DateTime($creationDate,new DateTimeZone('UTC'));
 				$creationDateLabel = __('Reviewed', 'bfi') . ' ' .$jdate->format('d/m/Y');
 			}
 			$checkInDateLabel = "";
 			if (isset($rating->CheckInDate)) {
 				$checkInDate = BFCHelper::parseJsonDate($rating->CheckInDate,'Y-m-d');
-				$jdate  = new DateTime($checkInDate);
+				$jdate  = new DateTime($checkInDate,new DateTimeZone('UTC'));
 				$checkInDateLabel =  __('Stayed', 'bfi') . ' '.date_i18n('F Y',$jdate->getTimestamp());
 
 			}
@@ -197,7 +202,7 @@ if ($rating>9 )
 
 					if(!empty($replydate)){
 //					$jdatereply  = new JDate(strtotime($replydate),2); // 3:20 PM, December 1st, 2012
-					$jdatereply  = DateTime::createFromFormat('Ymd', $replydate);
+					$jdatereply  = DateTime::createFromFormat('Ymd', $replydate,new DateTimeZone('UTC'));
 
 					$replydateLabel =sprintf(__( 'Replied on %1s', 'bfi' ), $jdatereply->format('d/m/Y'));
 					}
@@ -333,7 +338,7 @@ if( get_option('permalink_structure') ) {
 				</div>
 			<?php }?>	
 		<?php } ?>	
-	<div class="bfi-clearboth"></div>
+	<div class="bfi-clearfix"></div>
 	<?php  
 	bfi_get_template("merchant_small_details.php",array("merchant"=>$merchant,"routeMerchant"=>$routeMerchant));	
 	?>

@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$date = new DateTime();
+$date = new DateTime('UTC');
 ?>
 
 <div class="bfi_form_txt">

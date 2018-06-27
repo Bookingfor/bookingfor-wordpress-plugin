@@ -80,11 +80,13 @@ $fromsearchparam = "?lna=".$listNameAnalytics;
 <?php foreach ($merchants as $currKey => $merchant){ ?>
 <?php 
 
-	$rating = $merchant->MrcRating;
 	$merchant->Name = $merchant->MrcName;
+	$hasSuperior = !empty($merchant->MrcRatingSubValue);
+	$rating = (int)$merchant->MrcRating;
 	if ($rating>9 )
 	{
 		$rating = $rating/10;
+		$hasSuperior = ($merchant->MrcRating%10)>0;
 	} 
 
 	$routeMerchant = $url_merchant_page . $merchant->MerchantId.'-'.BFI()->seoUrl($merchant->Name);
@@ -163,6 +165,9 @@ $fromsearchparam = "?lna=".$listNameAnalytics;
 								<?php for($i = 0; $i < $rating; $i++) { ?>
 									<i class="fa fa-star"></i>
 								<?php } ?>	             
+								<?php if ($hasSuperior) { ?>
+									&nbsp;S
+								<?php } ?>
 							</span>
 						</div>
 						<div class="bfi-item-address">
@@ -268,8 +273,8 @@ $fromsearchparam = "?lna=".$listNameAnalytics;
 					<div class="bfi-col-sm-5 bfi-text-right">
 							<div class="bfi-gray-highlight">
 							<?php 
-								$currCheckIn = DateTime::createFromFormat('Y-m-d\TH:i:s',$merchant->AvailabilityDate);
-								$currCheckOut = DateTime::createFromFormat('Y-m-d\TH:i:s',$merchant->CheckOutDate);
+								$currCheckIn = DateTime::createFromFormat('Y-m-d\TH:i:s',$merchant->AvailabilityDate,new DateTimeZone('UTC'));
+								$currCheckOut = DateTime::createFromFormat('Y-m-d\TH:i:s',$merchant->CheckOutDate,new DateTimeZone('UTC'));
 								$currDiff = $currCheckOut->diff($currCheckIn);
 								$hours = $currDiff->h;
 								$minutes = $currDiff->i;

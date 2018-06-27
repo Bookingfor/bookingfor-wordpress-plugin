@@ -129,10 +129,10 @@ class BookingForConnectorModelResource
 		$checkoutspan = '+1 day';
 
 		if (empty($params['checkin'])){
-			$params['checkin'] = new DateTime();
+			$params['checkin'] = new DateTime('UTC');
 		}
 		if (empty($params['checkout'])){
-			$params['checkout'] = new DateTime();
+			$params['checkout'] = new DateTime('UTC');
 			$params['checkout']->modify($checkoutspan); 
 		}
 		if (empty($params['duration'])){
@@ -754,10 +754,10 @@ class BookingForConnectorModelResource
 		}
 		$checkoutspan = '+1 day';
 		if (empty($params['checkin'])){
-			$params['checkin'] = new DateTime();
+			$params['checkin'] = new DateTime('UTC');
 		}
 		if (empty($params['checkout'])){
-			$params['checkout'] = new DateTime();
+			$params['checkout'] = new DateTime('UTC');
 			$params['checkout']->modify($checkoutspan); 
 		}
 		$checkIn = $params['checkin'];
@@ -1073,6 +1073,11 @@ class BookingForConnectorModelResource
 			$options['data']['condominiumId'] = $condominiumId ;
 		}
 
+		$currUser = BFCHelper::getSession('bfiUser',null, 'bfi-User');
+		if($currUser!=null && !empty($currUser->CustomerId)) {
+			$options['data']['userid'] = '\'' . $currUser->CustomerId . '\'';
+		}
+
 		$url = $this->helper->getQuery($options);
 		
 		$lstResult = new stdClass;
@@ -1132,6 +1137,11 @@ class BookingForConnectorModelResource
 		}
 		if(!empty($getAllResults)){
 			$options['data']['exploded'] = $getAllResults ? 1: 0;
+		}
+
+		$currUser = BFCHelper::getSession('bfiUser',null, 'bfi-User');
+		if($currUser!=null && !empty($currUser->CustomerId)) {
+			$options['data']['userid'] = '\'' . $currUser->CustomerId . '\'';
 		}
 			
 		$url = $this->helper->getQuery($options);
@@ -1284,9 +1294,9 @@ class BookingForConnectorModelResource
 		if(empty($resourceId)){
 			$resourceId = $this->resourceid;
 		}
-		$ci = !empty($params['checkin'])? $params['checkin'] : new DateTime();
-		if(new DateTime() >$ci){
-			$ci =  new DateTime();
+		$ci = !empty($params['checkin'])? $params['checkin'] : new DateTime('UTC');
+		if(new DateTime('UTC') >$ci){
+			$ci =  new DateTime('UTC');
 		}
 
 		$du = !empty($params['duration'])? $params['duration'] : 7;
@@ -1557,7 +1567,7 @@ class BookingForConnectorModelResource
 			$resourceId = $params['resourceId'];
 		}
 		if ($year==null) {
-			$now = new DateTime();
+			$now = new DateTime('UTC');
 			$year = $now->format('Y');
 		}
 				
@@ -1647,8 +1657,8 @@ class BookingForConnectorModelResource
 			if (!empty($dateReturn)){
 			$dateparsed = BFCHelper::parseJsonDate($dateReturn->GetStartDate,"");
 			//if ($dateparsed>$startDate) $startDate = $dateparsed;
-			$d1 =DateTime::createFromFormat('d/m/Y',$dateparsed);
-			$d2 =DateTime::createFromFormat('d/m/Y',$startDate);
+			$d1 =DateTime::createFromFormat('d/m/Y',$dateparsed,new DateTimeZone('UTC'));
+			$d2 =DateTime::createFromFormat('d/m/Y',$startDate,new DateTimeZone('UTC'));
 			if ($d1>$d2) {
 				$startDate = $dateparsed;
 			}
@@ -1731,8 +1741,8 @@ class BookingForConnectorModelResource
 			}
 			$dateparsed = BFCHelper::parseJsonDate($dateReturn->GetStartDateByMerchantId,"");
 			//if ($dateparsed>$startDate) $startDate = $dateparsed;
-			$d1 =DateTime::createFromFormat('d/m/Y',$dateparsed);
-			$d2 =DateTime::createFromFormat('d/m/Y',$startDate);
+			$d1 =DateTime::createFromFormat('d/m/Y',$dateparsed,new DateTimeZone('UTC'));
+			$d2 =DateTime::createFromFormat('d/m/Y',$startDate,new DateTimeZone('UTC'));
 			if ($d1>$d2) {
 				$startDate = $dateparsed;
 			}
@@ -1792,7 +1802,7 @@ class BookingForConnectorModelResource
 //			$resourceId = $params['resourceId'];
 //		}
 		if ($ci==null) {
-			$ci =  new DateTime();
+			$ci =  new DateTime('UTC');
 		}
 		//$ci = $params['checkin'];
 		$options = array(
@@ -1833,7 +1843,7 @@ class BookingForConnectorModelResource
 			$resourceId = $params['resourceId'];
 		}
 		if ($ci==null) {
-			$ci =  new DateTime();
+			$ci =  new DateTime('UTC');
 		}
 		//$ci = $params['checkin'];
 		$options = array(
@@ -1876,7 +1886,7 @@ class BookingForConnectorModelResource
 		}
 		if ($checkIn==null) {
 			//$defaultDate = DateTime::createFromFormat('d/m/Y',BFCHelper::getStartDate());
-			$checkIn =  BFCHelper::getStayParam('checkin', DateTime::createFromFormat('d/m/Y',BFCHelper::getStartDate()));
+			$checkIn =  BFCHelper::getStayParam('checkin', DateTime::createFromFormat('d/m/Y',BFCHelper::getStartDate(),new DateTimeZone('UTC')));
 		}
 		if ($checkOut==null) {
 			$checkOut =   BFCHelper::getStayParam('checkout', $checkIn->modify(BFCHelper::$defaultDaysSpan));
@@ -1956,7 +1966,7 @@ class BookingForConnectorModelResource
 	}
 
 	protected function populateState($ordering = NULL, $direction = NULL) {
-		//$ci = clone BFCHelper::getStayParam('checkin', new DateTime());
+		//$ci = clone BFCHelper::getStayParam('checkin', new DateTime('UTC'));
 
 		//recupero la prima data disponibile per la risorsa se riesco altrimenti recupero la prima data disponibile
 		$resourceId = BFCHelper::getInt('resourceId');
@@ -1968,19 +1978,19 @@ class BookingForConnectorModelResource
 			if (is_array($dates)){
 				$tmpDate1 = array_values($dates);
 				$tmpDate = array_shift($tmpDate1);
-				$defaultDate = DateTime::createFromFormat('Ymd',$tmpDate);
+				$defaultDate = DateTime::createFromFormat('Ymd',$tmpDate,new DateTimeZone('UTC'));
 //				$defaultDate = DateTime::createFromFormat('Ymd',array_shift(array_values($dates)));
 			}elseif($dates != ''){
-				$defaultDate = DateTime::createFromFormat('Ymd',$dates);
+				$defaultDate = DateTime::createFromFormat('Ymd',$dates,new DateTimeZone('UTC'));
 			}
 		}
 		if (!isset($defaultDate)){
-			$defaultDate = DateTime::createFromFormat('d/m/Y',BFCHelper::getStartDate());
+			$defaultDate = DateTime::createFromFormat('d/m/Y',BFCHelper::getStartDate(),new DateTimeZone('UTC'));
 		}
 
 
-		if(new DateTime() >$defaultDate){
-			$defaultDate =  new DateTime();
+		if(new DateTime('UTC') >$defaultDate){
+			$defaultDate =  new DateTime('UTC');
 		}
 		$ci = clone BFCHelper::getStayParam('checkin', $defaultDate);
 		$defaultRequest =  array(
@@ -2014,12 +2024,12 @@ class BookingForConnectorModelResource
 		if ($stayrequest != null && $stayrequest != '') {
 			try {
 				$params = json_decode($stayrequest);
-				$stayCheckin = DateTime::createFromFormat('d/m/Y',$params->checkin);
-				if(new DateTime() <$stayCheckin){
+				$stayCheckin = DateTime::createFromFormat('d/m/Y',$params->checkin,new DateTimeZone('UTC'));
+				if(new DateTime('UTC') <$stayCheckin){
 				$defaultRequest = array(
 					'resourceId' => $params->resourceId,
-					'checkin' => DateTime::createFromFormat('d/m/Y',$params->checkin),
-					'checkout' => DateTime::createFromFormat('d/m/Y',$params->checkout),
+					'checkin' => DateTime::createFromFormat('d/m/Y',$params->checkin,new DateTimeZone('UTC')),
+					'checkout' => DateTime::createFromFormat('d/m/Y',$params->checkout,new DateTimeZone('UTC')),
 					'duration' => $params->duration,
 					'paxages' => $params->paxages,
 					'extras' => $params->extras,

@@ -167,7 +167,7 @@ $uriMerchantRedirect = $uriMerchant .'/'._x('redirect', 'Page slug', 'bfi' );
 $routeThanks = $uriMerchant .'/'._x('thanks', 'Page slug', 'bfi' );
 $routeThanksKo = $uriMerchant .'/'._x('errors', 'Page slug', 'bfi' );
 
-$privacy = BFCHelper::GetPrivacy($language);
+//$privacy = BFCHelper::GetPrivacy($language);
 
 $merchantLogo = BFI()->plugin_url() . "/assets/images/defaults/default-s3.jpeg";
 if (!empty($merchant->LogoUrl)){
@@ -175,16 +175,16 @@ if (!empty($merchant->LogoUrl)){
 }
 
 $checkoutspan = '+1 day';
-$checkin = new DateTime();
-$checkout = new DateTime();
+$checkin = new DateTime('UTC');
+$checkout = new DateTime('UTC');
 $paxes = 2;
 $pars = BFCHelper::getSearchParamsSession();
 
 
 if (!empty($pars)){
 
-	$checkin = !empty($pars['checkin']) ? $pars['checkin'] : new DateTime();
-	$checkout = !empty($pars['checkout']) ? $pars['checkout'] : new DateTime();
+	$checkin = !empty($pars['checkin']) ? $pars['checkin'] : new DateTime('UTC');
+	$checkout = !empty($pars['checkout']) ? $pars['checkout'] : new DateTime('UTC');
 
 	if (!empty($pars['paxes'])) {
 		$paxes = $pars['paxes'];
@@ -201,6 +201,14 @@ if (!empty($pars)){
 }
 $checkinId = uniqid('checkin');
 $checkoutId = uniqid('checkout');
+
+$hasSuperior = !empty($merchant->RatingSubValue);
+$rating = $merchant->Rating;
+if ($rating > 9)
+{
+	$hasSuperior = ($merchant->Rating%10)>0;
+	$rating = (int)($rating / 10);
+} 
 
 ?>
 
@@ -223,9 +231,12 @@ if ( $title ) {
 		<div class="bfi-vcard-name bfi-text-center">
 			<a href="<?php echo $route?>"><?php echo  $merchant->Name?></a>
 			<div class="bfi-item-rating">
-			<?php for($i = 0; $i < $merchant->Rating ; $i++) { ?>
-			  <i class="fa fa-star"></i>
-			<?php } ?>
+				<?php for($i = 0; $i < $rating; $i++) { ?>
+					<i class="fa fa-star"></i>
+				<?php } ?>
+				<?php if ($hasSuperior) { ?>
+					&nbsp;S
+				<?php } ?>
 			</div>
 		</div>
 		<div class="bfi-merchant-simple bfi-text-center">
@@ -346,4 +357,4 @@ function openGoogleMapBF() {
 	<?php endif?>
 <?php } ?>
 <?php echo $after_widget; ?>
-<div class="bfi-clearboth"></div>
+<div class="bfi-clearfix"></div>

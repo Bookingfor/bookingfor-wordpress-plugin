@@ -27,11 +27,11 @@ if(defined('ICL_LANGUAGE_CODE') &&  class_exists('SitePress')){
 		}
 }
 
-$checkin = BFCHelper::getStayParam('checkin', new DateTime());
-$checkout = BFCHelper::getStayParam('checkout', new DateTime());
+$checkin = BFCHelper::getStayParam('checkin', new DateTime('UTC'));
+$checkout = BFCHelper::getStayParam('checkout', new DateTime('UTC'));
 $checkinstr = $checkin->format("d") . " " . date_i18n('F',$checkin->getTimestamp()) . ' ' . $checkin->format("Y") ;
 $checkoutstr = $checkout->format("d") . " " . date_i18n('F',$checkout->getTimestamp()) . ' ' . $checkout->format("Y") ;
-$totalResult = $total;
+$totalResult = $totalAvailable;
 
 $listsId = array();
 $base_url = get_site_url();
@@ -58,6 +58,13 @@ $onlystay =  true;
 //	$onlystay =  $this->params['onlystay'] === 'false'? false: true;
 //}
 
+$currFilterOrder = "";
+$currFilterOrderDirection = "";
+if (!empty($currSorting) &&strpos($currSorting, '|') !== false) {
+	$acurrSorting = explode('|',$currSorting);
+	$currFilterOrder = $acurrSorting[0];
+	$currFilterOrderDirection = $acurrSorting[1];
+}
 ?>
 <div class="bfi-content">
 <div class="bfi-row">
@@ -80,8 +87,8 @@ $onlystay =  true;
 
 <div class="bfi-search-menu">
 	<form action="<?php echo $formAction; ?>" method="post" name="bookingforsearchForm" id="bookingforsearchFilterForm">
-			<input type="hidden" class="filterOrder" name="filter_order" value="price" />
-			<input type="hidden" class="filterOrderDirection" name="filter_order_Dir" value="asc" />
+			<input type="hidden" class="filterOrder" name="filter_order" value="<?php echo $currFilterOrder ?>" />
+			<input type="hidden" class="filterOrderDirection" name="filter_order_Dir" value="<?php echo $currFilterOrderDirection ?>" />
 			<input type="hidden" name="searchid" value="<?php //echo   $searchid ?>" />
 			<input type="hidden" name="limitstart" value="0" />
 	</form>
@@ -162,16 +169,21 @@ $onlystay =  true;
 			$resource->SimpleDiscountIds  = implode(',',$resource->DiscountIds);
 		}
 		
-		$rating = $resource->ResRating;
+		$hasSuperior = !empty($resource->ResRatingSubValue);
+		$rating = (int)$resource->ResRating;
 		if ($rating>9 )
 		{
 			$rating = $rating/10;
-		}
-		$ratingMrc = $resource->MrcRating;
+			$hasSuperior = ($resource->ResRating%10)>0;
+		} 
+		$hasSuperiorMrc = !empty($resource->MrcRatingSubValue);
+		$ratingMrc = (int)$resource->MrcRating;
 		if ($ratingMrc>9 )
 		{
 			$ratingMrc = $ratingMrc/10;
-		}
+			$hasSuperiorMrc = ($merchant->MrcRating%10)>0;
+		} 
+
 
 //			if(!empty($resource->LogoUrl)){
 //				$merchantLogoUrl =  BFCHelper::getImageUrlResized('merchant',$resource->LogoUrl, 'logomedium');
@@ -195,6 +207,9 @@ $onlystay =  true;
 								<?php for($i = 0; $i < $rating; $i++) { ?>
 									<i class="fa fa-star"></i>
 								<?php } ?>	             
+								<?php if ($hasSuperior) { ?>
+									&nbsp;S
+								<?php } ?>
 							</span>
 							<?php if($isportal) { ?>
 								- <a href="<?php echo $routeMerchant?>" class="bfi-subitem-title eectrack" target="_blank" data-type="Merchant" data-id="<?php echo $resource->MerchantId?>" data-index="<?php echo $currKey?>" data-itemname="<?php echo $merchantNameTrack; ?>" data-category="<?php echo $merchantCategoryNameTrack; ?>" data-brand="<?php echo $merchantNameTrack; ?>"><?php echo $resource->MrcName; ?></a>
@@ -202,6 +217,9 @@ $onlystay =  true;
 									<?php for($i = 0; $i < $ratingMrc; $i++) { ?>
 										<i class="fa fa-star"></i>
 									<?php } ?>	             
+									<?php if ($hasSuperiorMrc) { ?>
+										&nbsp;S
+									<?php } ?>						
 								</span>
 							<?php } ?>
 							
@@ -297,8 +315,8 @@ $onlystay =  true;
 					<div class="bfi-col-sm-5 bfi-text-right ">
 							<div class="bfi-gray-highlight">
 							<?php 
-								$currCheckIn = DateTime::createFromFormat('Y-m-d\TH:i:s',$resource->AvailabilityDate);
-								$currCheckOut = DateTime::createFromFormat('Y-m-d\TH:i:s',$resource->CheckOutDate);
+								$currCheckIn = DateTime::createFromFormat('Y-m-d\TH:i:s',$resource->AvailabilityDate,new DateTimeZone('UTC'));
+								$currCheckOut = DateTime::createFromFormat('Y-m-d\TH:i:s',$resource->CheckOutDate,new DateTimeZone('UTC'));
 								$currDiff = $currCheckOut->diff($currCheckIn);
 								$hours = $currDiff->h;
 								$minutes = $currDiff->i;

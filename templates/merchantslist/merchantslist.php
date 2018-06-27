@@ -84,10 +84,12 @@ $fromsearchparam = "?lna=".$listNameAnalytics;
 ?>  
 	<?php foreach ($merchants as $currKey => $merchant): ?>
 		<?php 
+			$hasSuperior = !empty($merchant->RatingSubValue);
 			$rating = $merchant->Rating;
-			if ($rating>9 )
+			if ($rating > 9)
 			{
-				$rating = $rating/10;
+				$hasSuperior = ($merchant->Rating%10)>0;
+				$rating = (int)($rating / 10);
 			} 
 			$routeMerchant = $url_merchant_page . $merchant->MerchantId.'-'.BFI()->seoUrl($merchant->Name);
 			$routeRating = $routeMerchant .'/'._x('reviews', 'Page slug', 'bfi' );
@@ -151,6 +153,9 @@ $fromsearchparam = "?lna=".$listNameAnalytics;
 								<?php for($i = 0; $i < $rating; $i++) { ?>
 									<i class="fa fa-star"></i>
 								<?php } ?>	             
+								<?php if ($hasSuperior) { ?>
+									&nbsp;S
+								<?php } ?>
 							</span>
 						</div>
 						<div class="bfi-item-address">
@@ -163,6 +168,9 @@ $fromsearchparam = "?lna=".$listNameAnalytics;
 											<?php for($i = 0; $i < $rating; $i++) { ?>
 												<i class="fa fa-star"></i>
 											<?php } ?>	             
+											<?php if ($hasSuperior) { ?>
+												&nbsp;S
+											<?php } ?>
 										</span>
 									</div>
 									<span id="mapaddress<?php echo $merchant->MerchantId?>"></span>

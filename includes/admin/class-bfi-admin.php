@@ -171,9 +171,42 @@ class BFI_Admin {
 //	}
 
 	public function bfi_settings_page(){
+		$valid_nonce = isset($_REQUEST['_wpnonce']) ? wp_verify_nonce($_REQUEST['_wpnonce'], 'bfi-cache') : false;
+		if ( $valid_nonce ) {
+			if(isset($_REQUEST['bfi_delete_cache'])) {
+				self::bfi_delete_files_cache();
+			}
+		}
 		include('views/html-admin-settings.php');
 	}
+	public function is_dir_empty($dir) {
+		if (!is_readable($dir)) return NULL; 
+		return (count(scandir($dir)) == 2);
+	}
+	function bfi_delete_files_cache() {
 	
+		if (!file_exists (COM_BOOKINGFORCONNECTOR_CACHEDIR)) {
+			return false;
+		}
+
+		$dir = trailingslashit( COM_BOOKINGFORCONNECTOR_CACHEDIR );
+
+		if ( is_dir( $dir ) && $dh = @opendir( $dir ) ) {
+			while ( ( $file = readdir( $dh ) ) !== false ) {
+				if ( $file != '.' && $file != '..' && $file != '.htaccess' && is_file( $dir . $file ) )
+					@unlink( $dir . $file );
+			}
+			closedir( $dh );
+			@rmdir( $dir );
+?>
+<div class="updated notice">
+    <p><?php _e('Cache are cleaned', 'bfi') ?></p>
+</div>
+<?php 
+		}
+		return true;
+
+	}
 	
 	public function display_bfi_subscription_key_element()
 	{

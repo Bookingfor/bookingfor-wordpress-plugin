@@ -30,6 +30,13 @@ $url_merchant_page = get_permalink( $merchantdetails_page->ID );
 $onselldetails_page = get_post( bfi_get_page_id( 'onselldetails' ) );
 $url_resource_page = get_permalink( $onselldetails_page->ID );
 $uri = $url_resource_page;
+$currFilterOrder = "";
+$currFilterOrderDirection = "";
+if (!empty($currSorting) &&strpos($currSorting, '|') !== false) {
+	$acurrSorting = explode('|',$currSorting);
+	$currFilterOrder = $acurrSorting[0];
+	$currFilterOrderDirection = $acurrSorting[1];
+}
 
 ?>
 <div class="bfi-content">
@@ -50,8 +57,8 @@ $uri = $url_resource_page;
 
 <div class="bfi-search-menu">
 	<form action="<?php echo $formAction; ?>" method="post" name="bookingforsearchForm" id="bookingforsearchFilterForm">
-			<input type="hidden" class="filterOrder" name="filter_order" value="" />
-			<input type="hidden" class="filterOrderDirection" name="filter_order_Dir" value="" />
+			<input type="hidden" class="filterOrder" name="filter_order" value="<?php echo $currFilterOrder ?>" />
+			<input type="hidden" class="filterOrderDirection" name="filter_order_Dir" value="<?php echo $currFilterOrderDirection ?>" />
 			<input type="hidden" name="searchid" value="<?php //echo   $searchid ?>" />
 			<input type="hidden" name="limitstart" value="0" />
 	</form>

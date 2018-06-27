@@ -20,7 +20,7 @@ class BFI_Widget_Merchants extends WP_Widget {
 	 * Constructor.
 	 */
 	public function __construct() {
-		$this->widget_cssclass    = 'bookingfor widget_merchants';
+		$this->widget_cssclass    = 'bfi-widget_merchants';
 		$this->widget_description = __( 'A Carousel list of Merchants.', 'bfi' );
 		$this->widget_id          = 'bookingfor_merchant';
 		$this->widget_name        = __( 'BookingFor Merchants', 'bfi' );

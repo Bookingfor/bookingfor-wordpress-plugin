@@ -21,12 +21,51 @@ if($total<1){
 }
 
 $currParam = BFCHelper::getSearchParamsSession();
-$merchantResults = $currParam['merchantResults'];
-$condominiumsResults = $currParam['condominiumsResults'];
+$merchantResults = false;
+$condominiumsResults = false;
+$variationPlanIds = '';
+$currencyclass = bfi_get_currentCurrency();
+$checkin = BFCHelper::getStayParam('checkin', new DateTime('UTC'));
+$checkout = BFCHelper::getStayParam('checkout', new DateTime('UTC'));
+$duration = $checkin->diff($checkout)->format('%a');
+$paxes = 2;
+$paxages = array();
+$points =  '';
+$merchantCategoryId = '';
+$masterTypeId = '';
+$availabilitytype = 1;
+$itemtypes = '';
+$merchantTagIds = '';
+$condominiumId = '';
+if (!empty($currParam)){
+	$merchantResults = isset($currParam['merchantResults']) ? $currParam['merchantResults']: $merchantResults ;
+	$condominiumsResults = isset($currParam['condominiumsResults']) ? $currParam['condominiumsResults']: $condominiumsResults ;
+	$variationPlanIds = !empty($currParam['variationPlanIds']) ? $currParam['variationPlanIds'] : $variationPlanIds;
+	if (!empty($pars['paxes'])) {
+		$paxes = $pars['paxes'];
+	}
+	if (!empty($pars['paxages'])) {
+		$paxages = $pars['paxages'];
+	}
+	$paxes = !empty($pars['paxes']) ? $pars['paxes'] : $paxes ;
+	$paxages = !empty($pars['paxages']) ? $pars['paxages'] : $paxages ;
+	$points = !empty($pars['points']) ? $pars['points'] : $points ;
+	$merchantCategoryId = !empty($pars['merchantCategoryId']) ? $pars['merchantCategoryId'] : $merchantCategoryId ;
+	$masterTypeId = !empty($pars['masterTypeId']) ? $pars['masterTypeId'] : $masterTypeId ;
+	$availabilitytype = isset($pars['availabilitytype']) ? $pars['availabilitytype'] : $availabilitytype ;
+	$itemtypes = !empty($pars['itemtypes']) ? $pars['itemtypes'] : $itemtypes ;
+	$merchantTagIds = !empty($pars['merchantTagIds']) ? $pars['merchantTagIds'] : $merchantTagIds ;
+}
+if (empty($paxages)){
+	$paxes = 2;
+	$paxages = array(BFCHelper::$defaultAdultsAge, BFCHelper::$defaultAdultsAge);
+}
+if(empty( $condominiumId )){
+	$condominiumId = BFCHelper::getVar('condominiumId','');
+}
 
 ?>
 	<?php 
-	$variationPlanIds = isset($currParam['variationPlanIds']) ? $currParam['variationPlanIds'] : '';
 	if (!empty($variationPlanIds )) {
 	    
 	$offers = json_decode(BFCHelper::getDiscountDetails($variationPlanIds,$language));
@@ -52,17 +91,17 @@ $condominiumsResults = $currParam['condominiumsResults'];
 	<?php 
 		if($merchantResults) {
 			$merchants = $items ;
-			bfi_get_template("search/default_merchants.php",array("merchants"=>$merchants,"total"=>$total,"items"=>$items,"pages"=>$pages,"page"=>$page,"currencyclass"=>$currencyclass,"listNameAnalytics"=>$listNameAnalytics,"totPerson"=>$totPerson,"currSorting"=>$currSorting));	
+			bfi_get_template("search/default_merchants.php",array("merchants"=>$merchants,"totalAvailable"=>$totalAvailable,"total"=>$total,"items"=>$items,"pages"=>$pages,"page"=>$page,"currencyclass"=>$currencyclass,"listNameAnalytics"=>$listNameAnalytics,"totPerson"=>$totPerson,"currSorting"=>$currSorting));	
 //			include('default_merchants.php');
 		}
 		elseif ($condominiumsResults) {
 			$merchants = $items ;
-			bfi_get_template("search/default_condominiums.php",array("merchants"=>$merchants,"total"=>$total,"items"=>$items,"pages"=>$pages,"page"=>$page,"currencyclass"=>$currencyclass,"listNameAnalytics"=>$listNameAnalytics,"totPerson"=>$totPerson,"currSorting"=>$currSorting));	
+			bfi_get_template("search/default_condominiums.php",array("merchants"=>$merchants,"totalAvailable"=>$totalAvailable,"total"=>$total,"items"=>$items,"pages"=>$pages,"page"=>$page,"currencyclass"=>$currencyclass,"listNameAnalytics"=>$listNameAnalytics,"totPerson"=>$totPerson,"currSorting"=>$currSorting));	
 //			include('default_condominiums.php');
 		}
 		else {
 			$results = $items ;
-			bfi_get_template("search/default_resources.php",array("results"=>$results,"total"=>$total,"items"=>$items,"pages"=>$pages,"page"=>$page,"currencyclass"=>$currencyclass,"listNameAnalytics"=>$listNameAnalytics,"totPerson"=>$totPerson,"currSorting"=>$currSorting));	
+			bfi_get_template("search/default_resources.php",array("results"=>$results,"totalAvailable"=>$totalAvailable,"total"=>$total,"items"=>$items,"pages"=>$pages,"page"=>$page,"currencyclass"=>$currencyclass,"listNameAnalytics"=>$listNameAnalytics,"totPerson"=>$totPerson,"currSorting"=>$currSorting));	
 //			include('default_resources.php');
 		}
 		?>
@@ -225,6 +264,18 @@ if (empty($GLOBALS['bfSearchedMerchants'])) {
 					$merchants = is_array($items) ? $items : array();
 					$analiticsSubject = "'No Results Merchant List'";
 					$nopopupmap=true;
+					if (count((array)$merchants)>0) {
+					?>
+										<div class="bfi-content">
+											<div class="bfi-check-more" data-type="merchant" data-id="<?php echo $merchants[0]->MerchantId?>" >
+												<?php _e('Limited availability, but may sell out:', 'bfi') ?>
+												<div class="bfi-check-more-slider">
+												</div>
+											</div>
+										</div>
+
+					<?php 
+					}
 //					include(BFI()->plugin_path().'/templates/merchantslist/merchantslist.php'); // merchant template
 					bfi_get_template("merchantslist/merchantslist.php",array("merchants"=>$merchants,"total"=>$total,"items"=>$items,"pages"=>$pages,"page"=>$page,"currencyclass"=>$currencyclass,"analiticsSubject"=>$analiticsSubject,"nopopupmap"=>$nopopupmap,"filter_order"=>$filter_order,"filter_order_Dir"=>$filter_order_Dir ));	
 				}else{
@@ -248,10 +299,15 @@ if (empty($GLOBALS['bfSearchedMerchants'])) {
 </div>
 
 <?php } ?>
-	<div class="bfi-clearboth"></div>		
+	<div class="bfi-clearfix"></div>		
 </div>
 <script type="text/javascript">
 <!--
+var shortenOption = {
+		moreText: "<?php _e('Read more', 'bfi'); ?>",
+		lessText: "<?php _e('Read less', 'bfi'); ?>",
+		showChars: '250'
+};
 jQuery(document).ready(function() {
 	if(typeof jQuery.fn.button.noConflict !== 'undefined'){
 		var btn = jQuery.fn.button.noConflict(); // reverts $.fn.button to jqueryui btn
@@ -295,6 +351,8 @@ jQuery(document).ready(function() {
 		}
 	}
 	jQuery(".bfi-description").shorten(shortenOption);
+	
+	bfiCheckOtherAvailability();
 });
 
 	function showResponse(responseText, statusText, xhr, $form)  { 
@@ -322,7 +380,110 @@ jQuery(document).ready(function() {
 		jQuery('#bfi-merchantlist').html('<?php echo __('No results available','bfi') ?>')
 		jQuery('#bfi-merchantlist').unblock();
 	}
+	function bfiCheckOtherAvailability() {
+		jQuery(".bfi-check-more").each(function(){
+			var currType = jQuery(this).attr("data-type") || "";
+			var currId = jQuery(this).attr("data-id");
+			var currdata = {
+				checkin: '<?php echo $checkin->format('Ymd'); ?>',
+				duration: <?php echo $duration ?>,
+				paxes:  <?php echo $paxes ?>,
+				paxages:  '<?php echo implode('|',$paxages) ?>',
+//				merchantId:  currId,
+				condominiumId:  '<?php echo $condominiumId ?>',
+				//resourceId:  currResourceId,
+				cultureCode:  bfi_variable.bfi_cultureCode,
+				points:  '<?php echo $points ?>',
+				//	userid:  bookingfor.getUrlParameter("userid"),
+				//tagids:  currTag,
+				//merchantsList:  '',
+				availabilityTypes:  '<?php echo $availabilitytype ?>',
+				itemTypeIds:  '<?php echo $itemtypes ?>',
+				//	domainLabel:  bookingfor.getUrlParameter("availabilitytype"),
+				merchantCategoryIds:  '<?php echo $merchantCategoryId ?>',
+				masterTypeIds:  '<?php echo $masterTypeId ?>',
+				merchantTagsIds:  '<?php echo $merchantTagIds ?>',
+				task:'GetAlternativeDates'
+				};
+				if(currType=="merchant"){
+					currdata.merchantId = currId;
+				}
+				if(currType=="resource"){
+					currdata.resourceId = currId;
+				}
+//			var query = "merchantsId=" + currMerchant + "&language=<?php echo $language ?>&task=GetOtherAvailability&checkin=<?php echo $checkin->format('dmY'); ?>";
+			var currThis = this;
+			bookingfor.waitSimpleWhiteBlock(jQuery(currThis));
+			jQuery.post(bfi_variable.bfi_urlCheck, currdata, function(data) {
+				jQuery(currThis).unblock();
+				var currSlider = jQuery(currThis).find(".bfi-check-more-slider").first();
+				var initialSlide = 0;
+				var totalAlt = 0;
+				var tt = JSON.parse(data);
+				jQuery.each(JSON.parse(data) || [], function(key, val) {
+					totalAlt = key;
+					var price = val.BestValue ;
+					var minstay = val.Duration ;
+					if (initialSlide ==0 && val.Duration  == <?php echo $duration ?>)
+					{
+						initialSlide = key;
+					}
+					var checkinDate =  bookingfor.parseODataDate(val.StartDate);
+					var checkoutDate = bookingfor.parseODataDate(val.EndDate);
+					
+					month1 = bookingfor.pad((checkinDate.getMonth() + 1),2);
+					month2 = bookingfor.pad((checkoutDate.getMonth() + 1),2);
+					day1 = bookingfor.pad((checkinDate.getDate()),2);
+					day2 = bookingfor.pad((checkoutDate.getDate()),2);
+					day1week = bookingfor.pad((checkinDate.getDay()),2);
+					day2week = bookingfor.pad((checkoutDate.getDay()),2);
+					if (typeof Intl == 'object' && typeof Intl.NumberFormat == 'function') {
+						month1 = checkinDate.toLocaleString(localeSetting, { month: "short" });              
+						month2 = checkoutDate.toLocaleString(localeSetting, { month: "short" });            
+						day1week = checkinDate.toLocaleString(localeSetting, { weekday: "short" });   
+						day2week = checkoutDate.toLocaleString(localeSetting, { weekday: "short" }); 
+					}
 
+					var currSearchUrl = window.location.href; 
+					currSearchUrl = bookingfor.updateQueryStringParameter(currSearchUrl,"checkin",bookingfor.convertDateToIta(checkinDate));
+					currSearchUrl = bookingfor.updateQueryStringParameter(currSearchUrl,"checkout",bookingfor.convertDateToIta(checkoutDate));
+					currSearchUrl = bookingfor.updateQueryStringParameter(currSearchUrl,"limitstart",0);
+					currSearchUrl = bookingfor.updateQueryStringParameter(currSearchUrl,"start",0);
+//					if(currType=="merchant"){
+//						currSearchUrl = bookingfor.updateQueryStringParameter(currSearchUrl,"filter_merchantid","merchantid:" + currId);
+//					}
+//					console.log(currSearchUrl);
+					var curravailabilitytype = bookingfor.getUrlParameter("availabilitytype");
+					var strSummaryDays = '<span class="bfi-check-more-los">'+minstay+' <?php echo strtolower (__('Nights', 'bfi')) ?>, '+day1week+' – '+day2week+'</span>'; 
+					if (curravailabilitytype == "0") {
+						minstay += 1;
+						strSummaryDays ='<span class="bfi-check-more-los">'+minstay+' <?php echo strtolower (__('Days', 'bfi')) ?>, '+day1week+' – '+day2week+'</span>'; 
+					}
+					if(days<1){strSummaryDays ="";}
+
+					currSlider.append('<a href="'+currSearchUrl+'"><span class="bfi-check-more-dates">'+day1+' '+month1+' - '+day2+' '+month2+'</span>'+strSummaryDays+'<span class="bfi-check-more-price"><?php _e('From', 'bfi') ?> <span class="bfi_<?php echo $currencyclass ?>">'+bookingfor.priceFormat(price, 2, ',', '.')+'</span></span></a>');
+				});	
+				var currSliderWidth = jQuery(currThis).width()-80;
+				jQuery(currSlider).width(currSliderWidth);
+				var ncolslick = Math.round(currSliderWidth/120);
+				if (totalAlt>0)
+				{
+					jQuery(currSlider).slick({
+						dots: false,
+						draggable: false,
+						arrows: true,
+						initialSlide: initialSlide,
+						infinite: false,
+						slidesToShow: ncolslick,
+						slidesToScroll: ncolslick,
+					});
+				}
+				
+			});
+
+		});
+
+	}
 //-->
 </script>
 <?php if ($showmap) {  
@@ -332,7 +493,7 @@ $startzoom = COM_BOOKINGFORCONNECTOR_GOOGLE_STARTZOOM;
 $googlemapsapykey = COM_BOOKINGFORCONNECTOR_GOOGLE_GOOGLEMAPSKEY;
 	
 ?>
-<div class="bfi-clearboth"></div>
+<div class="bfi-clearfix"></div>
 <div id="bfi-maps-popup"></div>
 
 <script type="text/javascript">

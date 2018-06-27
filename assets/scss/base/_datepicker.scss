@@ -24,12 +24,6 @@
 	padding: 0 4px 0 4px;
 	margin: 0;
 }
-#bfi-calculatorForm .bfi-datepicker {
-	background: $color14;
-	& button {
-		background: $color14;
-	}
-}
 #ui-datepicker-div.bfi-calendar{
 	z-index:999 !important;
 	&::before, &::after {

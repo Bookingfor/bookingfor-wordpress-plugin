@@ -1551,9 +1551,9 @@ if($currRateplan->RatePlan->IncludedMeals >-1){
 											array_push($allTimeSlotResourceId, $selPrice->RelatedProductId );
 										}
 										
-										if(!array_key_exists($resId, $listDayTS)){
+										if(!array_key_exists($selPrice->RelatedProductId , $listDayTS)){
 											$currDatesTimeSlot =  json_decode(BFCHelper::GetCheckInDatesTimeSlot($selPrice->RelatedProductId ,$alternativeDateToSearch));
-											$listDayTS[$resId] = $currDatesTimeSlot;
+											$listDayTS[$selPrice->RelatedProductId ] = $currDatesTimeSlot;
 										}else{
 											$currDatesTimeSlot =  $listDayTS[$selPrice->RelatedProductId ];
 										}

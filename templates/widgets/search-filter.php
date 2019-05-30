@@ -777,6 +777,14 @@ echo $before_widget;
 ajaxFormAction = '<?php echo $formAction; ?>' + '';
 
 function bfi_applyfilterdata(){ 		
+	jQuery(".bfi-searchfilter h3").click(function(){
+		jQuery(this).toggleClass("bfi-searchfilter-active");
+		jQuery("#bfi-filtertoggle").slideToggle("normal",function() {
+			if (jQuery.prototype.masonry){
+				jQuery('.main-siderbar, .main-siderbar1').masonry('reload');
+			}
+		});
+	});
 
 	jQuery("#bfi-filtertoggle .bfi-option-title ").click(function(){
 		jQuery(this).toggleClass("bfi-option-active");

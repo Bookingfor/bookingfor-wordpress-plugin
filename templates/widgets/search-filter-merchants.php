@@ -413,6 +413,15 @@ echo $before_widget;
 <script type="text/javascript">
 function bfi_applyfilterMerchantdata(){ 		
 
+	jQuery(".bfi-filtertoggleMerchant h3").click(function(){
+		jQuery(this).toggleClass("bfi-searchfilter-active");
+		jQuery("#bfi-filtertoggle").slideToggle("normal",function() {
+			if (jQuery.prototype.masonry){
+				jQuery('.main-siderbar, .main-siderbar1').masonry('reload');
+			}
+		});
+	});
+
 	jQuery("#bfi-filtertoggleMerchant .bfi-option-title ").click(function(){
 		jQuery(this).toggleClass("bfi-option-active");
 		jQuery(this).next("div").stop('true','true').slideToggle("normal",function() {

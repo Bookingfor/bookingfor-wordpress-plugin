@@ -218,14 +218,14 @@ class BFI_Admin {
 	{
 		?>
 			<input name="bfi_itemperpage_key" id="bfi_itemperpage_key" value="<?php echo get_option('bfi_itemperpage_key',10); ?>"  style="line-height:normal;" 
-			type="number" style="width:50px;" class="" placeholder="" min="5" man="20" step="1" />
+			type="number" style="width:50px;" class="" placeholder="" min="5" max="20" step="1" />
 		<?php
 	}
 
 	public function display_bfi_maxqtSelectable_key_element(){
 		?>
 			<input type="text" name="bfi_maxqtselectable_key" id="bfi_maxqtselectable_key" value="<?php echo get_option('bfi_maxqtselectable_key',20); ?>"  style="line-height:normal;" 
-				type="number" style="width:50px;" class="" placeholder="" min="0" man="50" step="1" />
+				type="number" style="width:50px;" class="" placeholder="" min="0" max="50" step="1" />
 	<?php
 	}
 

@@ -387,7 +387,7 @@ class BookingForConnectorModelTags
 
 		$ignorePagination = false;
 		$jsonResult = false;
-
+		$items = null;
 		// Try to load the data from internal storage.
 //		if (isset($this->cache[$store]))
 //		{
@@ -415,10 +415,10 @@ class BookingForConnectorModelTags
 					);
 				break;
 			case 'onsell':
-				$items = $this->getOnSellUnitFromService(
-					(absint($currpage)-1)*$this->itemPerPage,
-					$this->itemPerPage
-				);
+//				$items = $this->getOnSellUnitFromService(
+//					(absint($currpage)-1)*$this->itemPerPage,
+//					$this->itemPerPage
+//				);
 				break;
 			case '':
 			default:				

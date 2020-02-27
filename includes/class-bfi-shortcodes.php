@@ -146,6 +146,9 @@ class bfi_Shortcodes {
 	 * @return string
 	 */
 	public static function bfi_shortcode_search( $atts ) {
+		if ( is_admin() ) {
+			return '';
+		}
 		ob_start();
 		bfi_get_template("widgets/booking-search.php",array("instance" =>$atts));	
 //		include(BFI()->plugin_path().'/templates/widgets/booking-search.php');
@@ -155,6 +158,9 @@ class bfi_Shortcodes {
 	}
 
 	public static function bfi_shortcode_currencyswitcher( $atts ) {
+		if ( is_admin() ) {
+			return '';
+		}
 		ob_start();
 		bfi_get_template("widgets/currency-switcher.php",array("instance" =>$atts));	
 //		include(BFI()->plugin_path().'/templates/widgets/currency-switcher.php');
@@ -166,6 +172,9 @@ class bfi_Shortcodes {
 
 	
 	public static function bfi_shortcode_merchantscarousel( $atts ) {
+		if ( is_admin() ) {
+			return '';
+		}
 		$atts = shortcode_atts( array(
 			'tags'  => '',
 			'itemspage'    =>4,
@@ -204,6 +213,9 @@ class bfi_Shortcodes {
 	 * @return string
 	 */
 	public static function bfi_shortcode_merchants( $atts ) {
+		if ( is_admin() ) {
+			return '';
+		}
 
 		$atts = shortcode_atts( array(
 			'per_page' => COM_BOOKINGFORCONNECTOR_ITEMPERPAGE,
@@ -284,6 +296,9 @@ class bfi_Shortcodes {
 	 */
 	public static function bfi_shortcode_resources( $atts ) {
 
+		if ( is_admin() ) {
+			return '';
+		}
 		$atts = shortcode_atts( array(
 			'per_page' => COM_BOOKINGFORCONNECTOR_ITEMPERPAGE,
 			'orderby'  => 'title',
@@ -343,6 +358,9 @@ class bfi_Shortcodes {
 	 * @return string
 	 */
 	public static function bfi_shortcode_onsells( $atts ) {
+		if ( is_admin() ) {
+			return '';
+		}
 
 		$atts = shortcode_atts( array(
 			'per_page' => COM_BOOKINGFORCONNECTOR_ITEMPERPAGE,
@@ -386,6 +404,9 @@ class bfi_Shortcodes {
 	 * @return string
 	 */
 	public static function bfi_shortcode_tag( $atts ) {
+		if ( is_admin() ) {
+			return '';
+		}
 
 		$atts = shortcode_atts( array(
 			'per_page' => COM_BOOKINGFORCONNECTOR_ITEMPERPAGE,

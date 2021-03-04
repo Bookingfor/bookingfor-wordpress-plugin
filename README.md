@@ -1,7 +1,7 @@
 # BookingFor Wordpress plugin - V.3
 Wordpress plugin repo for Bookingfor. BookingFor wordpress plugin is a free and open source web-based booking plugin for reservation multi hotel and multi merchant booking based on the service bookingfor. You must have a bookingfor subscription to use this open source booking plugin.
 
-Demo: www.bookingformars.com
+Demo: wordpress.bookingfor.com
 
 # This release is currently maintained and supported
 

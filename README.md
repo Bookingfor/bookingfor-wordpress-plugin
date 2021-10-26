@@ -11,6 +11,11 @@ Demo:  https://wordpress.bookingfor.com
 5. add Bookingfor widgets.<br/>
 6. enjoy!<br />
 
+# Bookingfor engine
+Every plugin work with his specified version of Bookingfor engine<br/>
+This version required Bookingfor v.7.5
+
+
 # Requirements
 Wordpress  4.8 +<br/>
 PHP 5.6 +<br/>
